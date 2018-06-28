@@ -1,0 +1,6 @@
+.icon {
+    background-repeat: no-repeat;
+}
+.icon.uielement {
+    background-image: url('./icons/UIElement.png');
+}
