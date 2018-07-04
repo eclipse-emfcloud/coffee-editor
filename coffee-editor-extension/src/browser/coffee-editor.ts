@@ -118,20 +118,20 @@ const initStore = async() => {
     }
   );
 
-  const schema = await JsonRefs.resolveRefs(coffeeSchema)
+  return await JsonRefs.resolveRefs(coffeeSchema)
     .then(
-      resolvedSchema => resolvedSchema.resolved,
+      resolvedSchema => {
+        store.dispatch(Actions.init({}, resolvedSchema.resolved, uischema));
+
+        store.dispatch(setContainerProperties(
+          findAllContainerProperties(resolvedSchema.resolved, resolvedSchema.resolved)));
+
+        return store;
+      },
       err => {
         console.log(err.stack);
         return {};
       });
-
-  store.dispatch(Actions.init({}, schema, uischema));
-
-  store.dispatch(setContainerProperties(
-    findAllContainerProperties(schema, schema)));
-
-  return store;
 };
 
 const CoffeeApp = defaultProps(

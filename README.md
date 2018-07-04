@@ -1,5 +1,5 @@
 # Coffee Editor Extension Example
-The example of how to build the Theia-based applications with the tree-editor-extension.
+An example of how to build the Theia-based applications with the tree-editor-extension.
 
 ## Getting started
 
@@ -18,7 +18,8 @@ Install yarn.
 
 ## First Time Setup and Running the browser example afterwards
 
-    cd coffee-editor-extension
+    git clone git@github.com:eclipsesource/coffee-editor.git
+    cd coffee-editor/coffee-editor-extension
     yarn workspace coffee-editor-extension add ./theia-tree-editor-extension-1.0.0.tgz
     cd ..
     yarn install
