@@ -16,21 +16,17 @@ Install yarn.
 
     npm install -g yarn
 
-## First Time Setup and Running the browser example afterwards
+## First Time Setup
 
-    git clone git@github.com:eclipsesource/coffee-editor.git
+    git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor/coffee-editor-extension
+
+`theia-tree-editor-extension-1.0.0.tgz` is a temporary solution to add tree editor extension until theia-tree-editor-extension is published
+Please check this [link](https://github.com/eclipsesource/theia-tree-editor) to learn how to create theia-tree-editor-extension tarball
+
     yarn workspace coffee-editor-extension add ./theia-tree-editor-extension-1.0.0.tgz
     cd ..
     yarn install
-    lerna run prepare (if it is not automatically triggered after `yarn install`)
-    cd browser-app
-    yarn start
-
-Open http://localhost:3000 in the browser.
-
-On the `File Menu`, open a valid UI Schema JSON file
-On the `File Menu`, open a project and right click to a valid UI Schema JSON file and select `Open With -> Open With Tree Editor`
 
 ## Running the browser example
 
@@ -40,14 +36,25 @@ On the `File Menu`, open a project and right click to a valid UI Schema JSON fil
 
 Open http://localhost:3000 in the browser.
 
+On the `File Menu`, open a JSON file
+On the `File Menu`, open a project and right click to a JSON file and select `Open With -> Open With Tree Editor`
+
+
 ## Developing with the browser example
 
 Open a new terminal and start watching of the browser example. It may take time to rebuild the app.
 
-    npx lerna run watch --scope=browser-app --include-filtered-dependencies --parallel
+    cd path_to_root_directory/browser-app
+    yarn watch --mode -development
+
+Open a new terminal and start watching of coffee-editor-extension.
+
+    cd path_to_root_directory/coffee-editor-extension
+    yarn watch
 
 Open a new terminal and start browser example
 
+    cd path_to_root_directory/browser-app
     cd browser-app
     yarn start
 

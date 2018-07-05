@@ -8054,11 +8054,10 @@ textextensions@2:
 
 theia-tree-editor-extension@./theia-tree-editor-extension-1.0.0.tgz:
   version "1.0.0"
-  resolved "./theia-tree-editor-extension-1.0.0.tgz#88e13e618faaf8840d20d1e3465f6916601ebfe6"
+  resolved "./theia-tree-editor-extension-1.0.0.tgz#246301e30e4ed2dd90385708278b8177a3417382"
   dependencies:
     "@jsonforms/core" "^2.0.2"
     "@theia/core" latest
-    ajv "^6.4.0"
     json-refs "^3.0.4"
     react "^16.4.0"
     react-dom "^16.4.0"
