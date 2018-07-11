@@ -1,0 +1,13 @@
+node_modules
+.browser_modules
+dist
+lib
+docs
+*.log
+*-app/*
+!*-app/package.json
+
+.idea/
+.vscode/
+
+.DS_Store
