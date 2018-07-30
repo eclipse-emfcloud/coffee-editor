@@ -1,28 +1,27 @@
 {
-  "name": "Test",
   "children": [
     {
       "eClass": "http://www.eclipse.org/emfforms/example/coffeemodel#//ControlUnit",
       "processor": {
-        "vendor": "TestVendor",
+        "vendor": "Test Vendor",
         "socketconnectorType": "A1T",
-        "clockSpeed": 2,
+        "clockSpeed": 10,
         "manufactoringProcess": "nm18",
         "numberOfCores": 4,
-        "thermalDesignPower": 12342
+        "thermalDesignPower": 123
       },
       "display": {
-        "width": 5,
-        "height": 5
+        "width": 24,
+        "height": 24
       },
       "ram": [
         {
-          "clockSpeed": 1,
-          "size": 2,
+          "clockSpeed": 2,
+          "size": 32,
           "type": "SODIMM"
         }
-      ],
-      "userDescription": "Test"
+      ]
     }
-  ]
+  ],
+  "name": "Test"
 }

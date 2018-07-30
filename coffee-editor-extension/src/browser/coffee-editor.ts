@@ -8,15 +8,15 @@ import { materialFields, materialRenderers } from '@jsonforms/material-renderers
 import {
   Actions,
   jsonformsReducer,
-  JsonSchema4,
+  JsonSchema7,
   RankedTester
 } from '@jsonforms/core';
 import {
-  editorReducer,
   findAllContainerProperties,
   Property,
-  setContainerProperties
-} from '@jsonforms/editor';
+  setContainerProperties,
+  treeWithDetailReducer
+} from '@jsonforms/material-tree-renderer';
 import {
   TreeEditorOpenHandler
 } from 'theia-tree-editor-extension/lib/browser/theia-tree-editor-open-handler';
@@ -37,7 +37,7 @@ const filterPredicate = (data: Object) => {
     if (!_.isEmpty(modelMapping) &&
       !_.isEmpty(modelMapping.mapping)) {
       if (data[modelMapping.attribute]) {
-        return property.schema.id === modelMapping.mapping[data[modelMapping.attribute]];
+        return property.schema.$id === modelMapping.mapping[data[modelMapping.attribute]];
       }
       return true;
     }
@@ -46,16 +46,16 @@ const filterPredicate = (data: Object) => {
   };
 };
 const calculateLabel =
-  (schema: JsonSchema4) => (element: Object): string => {
+  (schema: JsonSchema7) => (element: Object): string => {
 
-    if (!_.isEmpty(labelProvider) && labelProvider[schema.id] !== undefined) {
+    if (!_.isEmpty(labelProvider) && labelProvider[schema.$id] !== undefined) {
 
-      if (typeof labelProvider[schema.id] === 'string') {
+      if (typeof labelProvider[schema.$id] === 'string') {
         // To be backwards compatible: a simple string is assumed to be a property name
-        return element[labelProvider[schema.id]];
+        return element[labelProvider[schema.$id]];
       }
-      if (typeof labelProvider[schema.id] === 'object') {
-        const info = labelProvider[schema.id] as LabelDefinition;
+      if (typeof labelProvider[schema.$id] === 'object') {
+        const info = labelProvider[schema.$id] as LabelDefinition;
         let label;
         if (info.constant !== undefined) {
           label = info.constant;
@@ -73,7 +73,7 @@ const calculateLabel =
 
     const namingKeys = Object
       .keys(schema.properties)
-      .filter(key => key === 'id' || key === 'name');
+      .filter(key => key === '$id' || key === 'name');
     if (namingKeys.length !== 0) {
       return element[namingKeys[0]];
     }
@@ -95,7 +95,7 @@ const initStore = async() => {
     jsonforms: {
       renderers,
       fields,
-      editor: {
+      treeWithDetail: {
         imageMapping: imageProvider,
         labelMapping: labelProvider,
         modelMapping,
@@ -108,7 +108,7 @@ const initStore = async() => {
     combineReducers({
         jsonforms: jsonformsReducer(
           {
-            editor: editorReducer
+            treeWithDetail: treeWithDetailReducer
           }
         )
       }

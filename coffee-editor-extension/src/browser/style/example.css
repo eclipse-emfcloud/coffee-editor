@@ -4,3 +4,7 @@
 .icon.uielement {
     background-image: url('./icons/UIElement.png');
 }
+
+.tree-class {
+    overflow-y: scroll;
+}
