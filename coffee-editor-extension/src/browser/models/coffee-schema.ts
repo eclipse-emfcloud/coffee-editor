@@ -111,7 +111,7 @@ const machineView = {
 export const coffeeSchema = {
   'definitions': {
     'activity': {
-      'id': '#activity',
+      '$id': '#activity',
       'label': 'Activity',
       'type': 'object',
       'properties': {
@@ -125,7 +125,7 @@ export const coffeeSchema = {
       ]
     },
     'brewingunit': {
-      'id': '#brewingunit',
+      '$id': '#brewingunit',
       'label': 'Brewing Unit',
       'properties': {
         'eClass': {
@@ -153,7 +153,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'controlunit': {
-      'id': '#controlunit',
+      '$id': '#controlunit',
       'label': 'Control Unit',
       'type': 'object',
       'properties': {
@@ -205,7 +205,7 @@ export const coffeeSchema = {
       ]
     },
     'dimension': {
-      'id': '#dimension',
+      '$id': '#dimension',
       'type': 'object',
       'properties': {
         'width': {
@@ -221,7 +221,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'diptray': {
-      'id': '#diptray',
+      '$id': '#diptray',
       'label': 'Dip Tray',
       'properties': {
         'eClass': {
@@ -249,7 +249,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'display': {
-      'id': '#display',
+      '$id': '#display',
       'type': 'object',
       'properties': {
         'eClass': {
@@ -266,7 +266,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'processor': {
-      'id': '#processor',
+      '$id': '#processor',
       'type': 'object',
       'properties': {
         'eClass': {
@@ -303,7 +303,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'ram': {
-      'id': '#ram',
+      '$id': '#ram',
       'label': 'RAM',
       'type': 'object',
       'properties': {
@@ -324,7 +324,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     },
     'watertank': {
-      'id': '#watertank',
+      '$id': '#watertank',
       'label': 'Water Tank',
       'properties': {
         'eClass': {
@@ -352,7 +352,7 @@ export const coffeeSchema = {
       'additionalProperties': false
     }
   },
-  'id': '#machine',
+  '$id': '#machine',
   'label': 'Machine',
   'type': 'object',
   'properties': {

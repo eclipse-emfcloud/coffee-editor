@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { TreeRenderer } from '@jsonforms/editor';
+import { TreeWithDetailRenderer } from '@jsonforms/material-tree-renderer';
 import { getSchema, getUiSchema } from '@jsonforms/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -10,13 +10,31 @@ const theme = createMuiTheme({
     primary: {
       main: '#FFFFFF'
     },
+    secondary: {
+      main: '#217DAF',
+      dark: '#26A69A'
+    },
     background: {
-      'default': '#1e1e1e'
+      'default': '#1E1E1E'
     }
   },
   typography: {
     fontSize: 10
-  }
+  },
+  overrides: {
+    MuiButton: {
+      fab: {
+        width: '24px',
+        height: '24px',
+        minHeight: '0px'
+      }
+    },
+    MuiIconButton: {
+      root: {
+        minWidth: '0px'
+      }
+    }
+  },
 });
 
 interface AppProps {
@@ -26,6 +44,7 @@ interface AppProps {
   filterPredicate: any;
   labelProvider: any;
   imageProvider: any;
+  saveable: any;
 }
 
 class App extends React.Component<AppProps, {}> {
@@ -36,7 +55,7 @@ class App extends React.Component<AppProps, {}> {
     return (
       <MuiThemeProvider theme={theme}>
         <div>
-          <TreeRenderer
+          <TreeWithDetailRenderer
             uischema={uischema}
             schema={schema}
             filterPredicate={filterPredicate}
@@ -50,6 +69,9 @@ class App extends React.Component<AppProps, {}> {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  if (!ownProps.saveable.dirty) {
+    ownProps.saveable.dirty = true;
+  }
   return {
     uischema: getUiSchema(state),
     schema: getSchema(state),
