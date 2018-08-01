@@ -74,6 +74,32 @@ const controlUnitView = {
       ]
     },
     {
+      'type': 'Group',
+      'label': 'Dimension',
+      'elements': [
+        {
+          'type': 'HorizontalLayout',
+          'elements': [
+            {
+              'type': 'Control',
+              'label': 'Width',
+              'scope': '#/properties/dimension/properties/width'
+            },
+            {
+              'type': 'Control',
+              'label': 'Height',
+              'scope': '#/properties/dimension/properties/height'
+            },
+            {
+              'type': 'Control',
+              'label': 'Length',
+              'scope': '#/properties/dimension/properties/length'
+            }
+          ]
+        }
+      ]
+    },
+    {
       'type': 'Control',
       'label': 'Ram',
       'scope': '#/properties/ram'
@@ -206,6 +232,7 @@ export const coffeeSchema = {
     },
     'dimension': {
       '$id': '#dimension',
+      'label': 'Dimension',
       'type': 'object',
       'properties': {
         'width': {

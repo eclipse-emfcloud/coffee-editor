@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { TreeWithDetailRenderer } from '@jsonforms/material-tree-renderer';
-import { getSchema, getUiSchema } from '@jsonforms/core';
+import { getData, getSchema, getUiSchema } from '@jsonforms/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import * as _ from 'lodash';
 
 const theme = createMuiTheme({
   palette: {
@@ -49,6 +50,12 @@ interface AppProps {
 
 class App extends React.Component<AppProps, {}> {
 
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(this.props.rootData, prevProps.rootData)) {
+      this.props.saveable.dirty = true;
+    }
+  }
+
   render() {
     const { filterPredicate, labelProvider, imageProvider, uischema, schema } = this.props;
 
@@ -69,15 +76,13 @@ class App extends React.Component<AppProps, {}> {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (!ownProps.saveable.dirty) {
-    ownProps.saveable.dirty = true;
-  }
   return {
     uischema: getUiSchema(state),
     schema: getSchema(state),
     filterPredicate: ownProps.filterPredicate,
     labelProvider: ownProps.labelProvider,
-    imageProvider: ownProps.imageProvider
+    imageProvider: ownProps.imageProvider,
+    rootData: getData(state)
   };
 };
 
