@@ -45,7 +45,7 @@ On the `File Menu`, open a project and right click to a JSON file and select `Op
 Open a new terminal and start watching of the browser example. It may take time to rebuild the app.
 
     cd path_to_root_directory/browser-app
-    yarn watch --mode -development
+    yarn watch
 
 Open a new terminal and start watching of coffee-editor-extension.
 

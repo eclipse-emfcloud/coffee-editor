@@ -20,7 +20,12 @@
           "size": 32,
           "type": "SODIMM"
         }
-      ]
+      ],
+      "dimension": {
+        "width": 6,
+        "height": 6,
+        "length": 6
+      }
     }
   ],
   "name": "Test"
