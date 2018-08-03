@@ -19,7 +19,7 @@ import {
 } from '@jsonforms/material-tree-renderer';
 import {
   TreeEditorOpenHandler
-} from 'theia-tree-editor-extension/lib/browser/theia-tree-editor-open-handler';
+} from 'theia-tree-editor/theia-tree-editor-extension/lib/browser';
 import * as JsonRefs from 'json-refs';
 import App from './App';
 import { defaultProps } from "recompose";
