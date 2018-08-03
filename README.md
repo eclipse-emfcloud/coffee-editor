@@ -19,18 +19,8 @@ Install yarn.
 ## First Time Setup
 
     git clone https://github.com/eclipsesource/coffee-editor.git
-    cd coffee-editor/coffee-editor-extension
-
-`theia-tree-editor-extension-1.0.0.tgz` is a temporary solution to add tree editor extension until theia-tree-editor-extension is published
-Please check this [link](https://github.com/eclipsesource/theia-tree-editor) to learn how to create theia-tree-editor-extension tarball
-
-    yarn workspace coffee-editor-extension add ./theia-tree-editor-extension-1.0.0.tgz
-    cd ..
+    cd coffee-editor
     yarn install
-
-## Running the browser example
-
-    lerna run prepare
     cd browser-app
     yarn start
 
