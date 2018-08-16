@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { TreeWithDetailRenderer } from '@jsonforms/material-tree-renderer';
-import { getData, getSchema, getUiSchema } from '@jsonforms/core';
+import {
+  TreeEditorProps,
+  mapStateToTreeEditorProps
+} from 'theia-tree-editor';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as _ from 'lodash';
 
@@ -38,17 +41,7 @@ const theme = createMuiTheme({
   },
 });
 
-interface AppProps {
-  uischema: any;
-  schema: any;
-  rootData: any;
-  filterPredicate: any;
-  labelProvider: any;
-  imageProvider: any;
-  saveable: any;
-}
-
-class App extends React.Component<AppProps, {}> {
+class App extends React.Component<TreeEditorProps, {}> {
 
   componentDidUpdate(prevProps) {
     if (!_.isEqual(this.props.rootData, prevProps.rootData)) {
@@ -75,15 +68,5 @@ class App extends React.Component<AppProps, {}> {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    uischema: getUiSchema(state),
-    schema: getSchema(state),
-    filterPredicate: ownProps.filterPredicate,
-    labelProvider: ownProps.labelProvider,
-    imageProvider: ownProps.imageProvider,
-    rootData: getData(state)
-  };
-};
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToTreeEditorProps)(App);

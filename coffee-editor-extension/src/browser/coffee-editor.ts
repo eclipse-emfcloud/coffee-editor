@@ -14,7 +14,6 @@ import {
   setContainerProperties,
   treeWithDetailReducer
 } from '@jsonforms/material-tree-renderer';
-import * as JsonRefs from 'json-refs';
 import App from './App';
 import { defaultProps } from "recompose";
 import * as _ from 'lodash';
@@ -112,20 +111,12 @@ export const initStore = async() => {
     }
   );
 
-  return await JsonRefs.resolveRefs(coffeeSchema)
-    .then(
-      resolvedSchema => {
-        store.dispatch(Actions.init({}, resolvedSchema.resolved, uischema));
+  store.dispatch(Actions.init({}, coffeeSchema, uischema));
 
-        store.dispatch(setContainerProperties(
-          findAllContainerProperties(resolvedSchema.resolved, resolvedSchema.resolved)));
+  store.dispatch(setContainerProperties(
+    findAllContainerProperties(coffeeSchema, coffeeSchema)));
 
-        return store;
-      },
-      err => {
-        console.log(err.stack);
-        return {};
-      });
+  return store;
 };
 
 export const CoffeeApp = defaultProps(

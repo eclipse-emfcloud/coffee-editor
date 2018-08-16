@@ -25,7 +25,7 @@
     redux "^3.7.2"
     uuid "^3.2.1"
 
-"@jsonforms/material-renderers@^2.0.6":
+"@jsonforms/material-renderers@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@jsonforms/material-renderers/-/material-renderers-2.0.7.tgz#308c468536cac141a199aacf0cf0bfb38cb5f87c"
   dependencies:
@@ -39,7 +39,7 @@
     react "^16.3.2"
     redux "^3.7.2"
 
-"@jsonforms/material-tree-renderer@^2.0.6":
+"@jsonforms/material-tree-renderer@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@jsonforms/material-tree-renderer/-/material-tree-renderer-2.0.7.tgz#785b4a1b066272d91253874a64b8d201431bab19"
   dependencies:
@@ -8180,11 +8180,12 @@ textextensions@2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.2.0.tgz#38ac676151285b658654581987a0ce1a4490d286"
 
-"theia-tree-editor@https://github.com/AhmetTanakol/theia-tree-editor.git#v0.0.3":
-  version "0.0.3"
-  resolved "https://github.com/AhmetTanakol/theia-tree-editor.git#a6c619e68326e7d59695bd3e22503906d161ccd6"
+"theia-tree-editor@https://github.com/eclipsesource/theia-tree-editor.git#v0.0.5":
+  version "0.0.4"
+  resolved "https://github.com/eclipsesource/theia-tree-editor.git#4d78da95781d2f4de81a2633ad95d6966ca8c8f1"
   dependencies:
     "@jsonforms/core" "^2.0.6"
+    "@jsonforms/material-tree-renderer" "^2.0.7"
     "@theia/core" latest
     "@theia/editor" latest
     "@theia/filesystem" latest

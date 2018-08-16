@@ -16,7 +16,6 @@
     "@theia/monaco": "latest",
     "@theia/typescript": "latest",
     "@theia/messages": "latest",
-    "theia-tree-editor": "https://github.com/AhmetTanakol/theia-tree-editor.git#v0.0.3",
     "coffee-editor-extension": "1.0.0"
   },
   "devDependencies": {
