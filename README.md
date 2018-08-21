@@ -1,6 +1,15 @@
 # Coffee Editor Extension Example
 An example of how to build the Theia-based applications with the tree-editor-extension.
 
+## Used Projects
+We are relying on a bunch of projects:
+* https://github.com/eclipsesource/theia-tree-editor
+* https://github.com/eclipsesource/jsonforms
+* https://github.com/eclipsesource/graphical-lsp
+
+If you encounter issues please report them in the corresponding project.
+This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
+
 ## Prerequisites
 
 Install [nvm](https://github.com/creationix/nvm#install-script).
