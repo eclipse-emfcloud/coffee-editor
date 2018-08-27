@@ -7,7 +7,7 @@
             "label": "Coffee: Watch extension",
             "type": "shell",
             "group": "build",
-            "command": "cd coffee-editor-extension && yarn watch",
+            "command": "cd web/coffee-editor-extension && yarn watch",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
@@ -18,7 +18,7 @@
             "label": "Coffee: Watch browser-app",
             "type": "shell",
             "group": "build",
-            "command": "cd browser-app && yarn watch",
+            "command": "cd web/browser-app && yarn watch",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
@@ -28,7 +28,7 @@
         {
             "label": "Coffee: Start in Browser",
             "type": "shell",
-            "command": "cd browser-app && yarn start",
+            "command": "cd web/browser-app && yarn start",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
