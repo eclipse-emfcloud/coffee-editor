@@ -1,0 +1,33 @@
+{
+  "name": "workflow-sprotty",
+  "version": "0.1.0",
+  "description": "sprotty diagrams for the Workflow DSL",
+  "author": "Tobiaas Ortmayr <tortmayr.ext@eclipsesource.com>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "sprotty",
+    "workflow",
+    "diagram"
+  ],
+  "dependencies": {
+    "glsp-sprotty": "0.0.1"
+  },
+  "devDependencies": {
+    "glsp-sprotty": "0.0.1",
+    "rimraf": "latest",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "src",
+    "build",
+    "css",
+     "icons"
+  ]
+}

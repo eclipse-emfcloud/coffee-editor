@@ -1,0 +1,24 @@
+{
+  "extends": "./configs/base.tsconfig",
+  "compilerOptions": {
+    "skipLibCheck": false,
+    "baseUrl": ".",
+    "paths": {
+      "workflow-glsp-extension": [
+        "workflow-glsp-extension/src/*"
+      ],
+      "workflow-sprotty": [
+        "workflow-sprotty/src/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ]
+  },
+  "include": [
+    "dev-packages/*/src",
+    "examples/*/src"
+  ]
+}

@@ -16,14 +16,16 @@
     "@theia/monaco": "latest",
     "@theia/typescript": "latest",
     "@theia/messages": "latest",
-    "coffee-editor-extension": "1.0.0"
+    "coffee-editor-extension": "1.0.0",
+    "glsp-theia-extension":"0.1.0",
+    "workflow-glsp-extension": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "latest"
   },
   "scripts": {
     "prepare": "theia build",
-    "start": "theia start",
+    "start": "theia start --WORKFLOW_LSP=5007",
     "watch": "theia build --watch --mode development"
   },
   "theia": {
