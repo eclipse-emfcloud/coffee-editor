@@ -35,10 +35,17 @@ const theme = createMuiTheme({
     },
     MuiIconButton: {
       root: {
-        minWidth: '0px'
+        minWidth: '0px',
+        width: '1em',
+        height: '1em'
+      }
+    },
+    MuiSvgIcon: {
+      root: {
+        fontSize: '18px'
       }
     }
-  },
+  }
 });
 
 class App extends React.Component<TreeEditorProps, {}> {
