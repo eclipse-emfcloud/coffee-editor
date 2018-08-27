@@ -16,7 +16,8 @@
     "@theia/monaco": "latest",
     "@theia/typescript": "latest",
     "@theia/messages": "latest",
-    "coffee-editor-extension": "1.0.0"
+    "coffee-editor-extension": "1.0.0",
+    "coffee-java-extension": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "latest"

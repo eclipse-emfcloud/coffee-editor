@@ -41,7 +41,7 @@ class Application implements IApplication {
 			val injector = Guice.createInjector(Modules2.mixin(new ServerModule, [
 				bind(IResourceServiceProvider.Registry).toProvider(IResourceServiceProvider.Registry.RegistryProvider)
 			]))
-			val serverSocket = AsynchronousServerSocketChannel.open.bind(new InetSocketAddress("localhost", 5007))
+			val serverSocket = AsynchronousServerSocketChannel.open.bind(new InetSocketAddress("localhost", 5017))
 			val threadPool = Executors.newCachedThreadPool()
 
 			println("LSP initialized and ready ")
