@@ -1,6 +1,7 @@
+// stub generated from 'example1.wf'
 package SuperCoffee3000;
 	
-import SuperCoffee3000.AbstractWtOK;;
+import SuperCoffee3000.AbstractWtOK;
 		
 public class WtOK extends AbstractWtOK {
 

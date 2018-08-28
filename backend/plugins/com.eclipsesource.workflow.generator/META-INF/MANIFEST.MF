@@ -7,6 +7,8 @@ Bundle-Vendor: AVL
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.12.0",
  org.eclipse.core.resources;bundle-version="3.11.0",
- org.eclipse.uml2.uml;bundle-version="5.2.3"
+ org.eclipse.uml2.uml;bundle-version="5.2.3",
+ com.eclipsesource.workflow.architecture,
+ com.google.gson;bundle-version="2.7.0"
 Export-Package: com.eclipsesource.workflow.generator
 Import-Package: com.google.common.base

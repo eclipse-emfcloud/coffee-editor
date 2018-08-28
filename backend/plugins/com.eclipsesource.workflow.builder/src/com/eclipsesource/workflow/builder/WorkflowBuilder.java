@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -29,10 +30,9 @@ import org.eclipse.ui.statushandlers.StatusManager;
 import com.eclipsesource.workflow.generator.GeneratorUtil;
 import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
-import com.eclipsesource.workflow.generator.WorkflowGeneratorInput;
+import com.eclipsesource.workflow.generator.WorkflowGeneratorInputFactory;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
 
-@SuppressWarnings("restriction")
 public class WorkflowBuilder extends IncrementalProjectBuilder {
 
 	public static final String BUILDER_ID = "com.eclipsesource.workflow.builder.workflowBuilder";
@@ -111,63 +111,58 @@ public class WorkflowBuilder extends IncrementalProjectBuilder {
 		GeneratorUtil.cleanGeneratedFolder(getProject(), monitor);
 	}
 
-	protected boolean isUMLResource(IResource resource) {
-		return "uml".equals(resource.getFileExtension()); //$NON-NLS-1$
-	}
-
 	protected void fullBuild(IProgressMonitor monitor) throws CoreException {
-		UMLResourceVisitor umlResourceCollectingVisitor = new UMLResourceVisitor();
-		getProject().accept(umlResourceCollectingVisitor);
-		List<IResource> umlResources = umlResourceCollectingVisitor.getCollectedResources();
-		build(umlResources, monitor);
+		GeneratorInputResourceVisitor resourceCollectingVisitor = new GeneratorInputResourceVisitor();
+		getProject().accept(resourceCollectingVisitor);
+		List<IResource> resources = resourceCollectingVisitor.getCollectedResources();
+		build(resources, monitor);
 	}
 
 	protected void incrementalBuild(IResourceDelta delta, IProgressMonitor monitor) throws CoreException {
-		UMLResourceDeltaVisitor umlFileCollectingVisitor = new UMLResourceDeltaVisitor();
-		delta.accept(umlFileCollectingVisitor);
-		List<IResource> umlResources = umlFileCollectingVisitor.getCollectedResources();
-		build(umlResources, monitor);
+		GeneratorInputResourceDeltaVisitor fileCollectingVisitor = new GeneratorInputResourceDeltaVisitor();
+		delta.accept(fileCollectingVisitor);
+		List<IResource> resources = fileCollectingVisitor.getCollectedResources();
+		build(resources, monitor);
 	}
 
-	private void build(List<IResource> umlResources, IProgressMonitor monitor) throws CoreException {
-		SubMonitor subMonitor = SubMonitor.convert(monitor, umlResources.size() * 2);
+	private void build(List<IResource> resources, IProgressMonitor monitor) throws CoreException {
+		SubMonitor subMonitor = SubMonitor.convert(monitor, resources.size() * 2);
 		IWorkflowGenerator generator = getWorkflowGenerator();
-		for (IResource umlResource : umlResources) {
+		for (IResource resource : resources) {
 			if (subMonitor.isCanceled()) {
 				return;
 			}
-			if (umlResource.exists() && umlResource instanceof IFile) {
-				IFile umlFile = (IFile) umlResource;
-				deleteMarkers(umlFile);
-				IWorkflowGeneratorInput input = createGeneratorInput(umlFile);
-				IStatus validationStatus = validateModel(input, subMonitor.split(1));
-				if (!validationStatus.isOK()) {
-					String errorMessage = "There are model validation errors in " + umlResource.getName();
-					addMarker(umlFile, errorMessage, 1, IMarker.SEVERITY_ERROR);
-				}
-				generator.generate(input, subMonitor.split(1));
-				input.dispose();
+			if (resource.exists() && resource instanceof IFile) {
+				IFile file = (IFile) resource;
+				deleteMarkers(file);
+				Optional<IWorkflowGeneratorInput> input = createGeneratorInput(file);
+				if(input.isPresent()) {
+					IStatus validationStatus = validateModel(input.get(), subMonitor.split(1));
+					if (!validationStatus.isOK()) {
+						String errorMessage = "There are model validation errors in " + resource.getName();
+						addMarker(file, errorMessage, 1, IMarker.SEVERITY_ERROR);
+					}
+					generator.generate(input.get(), subMonitor.split(1));
+					input.get().dispose();
+				}				
 			}
 		}
 		generator.dispose();
 	}
 
 	private IStatus validateModel(IWorkflowGeneratorInput input, IProgressMonitor monitor) {
-		// TODO validate model before the build
 		return Status.OK_STATUS;
 	}
 
-	protected IWorkflowGeneratorInput createGeneratorInput(IResource umlResource) {
-		return new WorkflowGeneratorInput(umlResource);
+	protected Optional<IWorkflowGeneratorInput> createGeneratorInput(IResource resource) {
+		return WorkflowGeneratorInputFactory.getInstance().createInput(resource);
 	}
 
 	protected IWorkflowGenerator getWorkflowGenerator() {
-		// TODO maybe decide which generator to take based on builder parameters
-		// (future)
 		return new JavaWorkflowGenerator();
 	}
 
-	abstract class UMLResourceCollector {
+	abstract class ResourceCollector {
 		private List<IResource> collectedResources = new ArrayList<>();
 
 		public List<IResource> getCollectedResources() {
@@ -175,20 +170,20 @@ public class WorkflowBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	class UMLResourceDeltaVisitor extends UMLResourceCollector implements IResourceDeltaVisitor {
+	class GeneratorInputResourceDeltaVisitor extends ResourceCollector implements IResourceDeltaVisitor {
 		@Override
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			IResource resource = delta.getResource();
-			if (isUMLResource(resource)) {
+			if (WorkflowGeneratorInputFactory.canHandle(resource)) {
 				getCollectedResources().add(resource);
 			}
 			return true;
 		}
 	}
 
-	class UMLResourceVisitor extends UMLResourceCollector implements IResourceVisitor {
+	class GeneratorInputResourceVisitor extends ResourceCollector implements IResourceVisitor {
 		public boolean visit(IResource resource) {
-			if (isUMLResource(resource)) {
+			if (WorkflowGeneratorInputFactory.canHandle(resource)) {
 				getCollectedResources().add(resource);
 			}
 			return true;
