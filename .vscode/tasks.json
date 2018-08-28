@@ -4,10 +4,32 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Coffee: Watch extension",
+            "label": "Coffee: Watch Tree extension",
             "type": "shell",
             "group": "build",
             "command": "cd web/coffee-editor-extension && yarn watch",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Coffee: Watch GLSP extension",
+            "type": "shell",
+            "group": "build",
+            "command": "cd web/workflow-glsp-extension && yarn watch",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Coffee: Watch Java extension",
+            "type": "shell",
+            "group": "build",
+            "command": "cd web/coffee-java-extension && yarn watch",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"

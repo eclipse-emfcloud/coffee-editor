@@ -9087,19 +9087,6 @@ worker-loader@^1.1.1:
     loader-utils "^1.0.0"
     schema-utils "^0.4.0"
 
-workflow-glsp-extension@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/workflow-glsp-extension/-/workflow-glsp-extension-0.0.0.tgz#5d932f1ad2a23d2679214d2c9dbf71cab7bc7a50"
-  dependencies:
-    "@theia/core" latest
-    "@theia/editor" latest
-    "@theia/filesystem" latest
-    "@theia/languages" latest
-    "@theia/monaco" latest
-    "@types/node" "^8.0.14"
-    glsp-theia-extension "0.1.0"
-    workflow-sprotty "0.1.0"
-
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
