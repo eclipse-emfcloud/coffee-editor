@@ -1,0 +1,59 @@
+Label[type=StereotypeLabel] {
+	visible: false;
+}
+
+Activity {
+	elementIcon:false;
+	bold: true;
+	textAlignment: center;
+	lineWidth:2;
+	
+}
+
+[appliedStereotypes~="AutomaticTask"] {
+	fillColor: gray;
+	radiusWidth:5;
+	radiusHeight:5;
+	svgFile: "platform:/plugin/com.eclipsesource.workflow.architecture/resources/icons/gear.svg"
+	
+}
+
+[appliedStereotypes~="AutomaticTask"]> Compartment[kind="symbol"] {
+	visible: true;
+	displayBorder: false;
+}
+
+[appliedStereotypes~="ManualTask"] {
+	radiusWidth:5;
+	radiusHeight:5;
+	fillColor: lightblue;
+	lineWidth: 1px;
+	lineColor: black;
+	svgFile: "platform:/plugin/com.eclipsesource.workflow.architecture/resources/icons/person.svg";
+}
+
+[appliedStereotypes~="ManualTask"]> Compartment[kind="symbol"] {
+	visible: true;
+	displayBorder: false;
+}
+
+
+[appliedStereotypes~="WeightedFlow"][probability=low] {
+	lineColor: lightblue;
+}
+
+[appliedStereotypes~="WeightedFlow"][probability=medium] {
+	lineColor: blue;
+	lineWidth: 2px;
+}
+
+[appliedStereotypes~="WeightedFlow"][probability=high] {
+	lineColor: darkblue;
+	lineWidth: 3px;
+}
+
+ControlFlow >Label:Stereotype{
+	visible: false;
+}
+
+

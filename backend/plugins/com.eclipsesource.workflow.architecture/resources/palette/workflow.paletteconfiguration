@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ASCII"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="workflow-paletteconfig" label="Workflow" description="">
+  <drawerConfigurations id="workflow-drawer" label="Tools">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.automatictask.tool" label="Automatic Task" description="">
+      <icon pluginID="com.eclipsesource.workflow.architecture" iconPath="/resources/icons/gear16.png"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/com.eclipsesource.workflow.architecture/resources/types/workflow-ui.elementtypesconfigurations#_1kOW0ey8EeeyzfmEZxHbDQ"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.manualtask.tool" label="Manual Task" description="" toolClassName="">
+      <icon pluginID="com.eclipsesource.workflow.architecture" iconPath="/resources/icons/person16.png"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/com.eclipsesource.workflow.architecture/resources/types/workflow-ui.elementtypesconfigurations#_1kOW0uy8EeeyzfmEZxHbDQ"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:SeparatorConfiguration" id="workflow-palette.separator" label="Separator"/>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.edges.controlflow.tool" label="Control Flow" kind="ConnectionTool" toolClassName="">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ControlFlow.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ControlFlow_Edge"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.edges.weightedflow.tool" label="Weighted Flow" description="" kind="ConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ControlFlow.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/com.eclipsesource.workflow.architecture/resources/types/workflow-ui.elementtypesconfigurations#_1kOW0-y8EeeyzfmEZxHbDQ"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.controlnodes" label="ControlNodes">
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.initialnode" label="Initial Node" description="Create an Initial node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InitialNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InitialNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.activityfinal" label="Activity FInal" description="Create an Activity final node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActivityFinalNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.flowfinal" label="Flow Final" description="Create a Flow final node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/FlowFinalNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.FlowFinalNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.decisionnode" label="Decision Node" description="Create a Decision node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DecisionNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DecisionNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.mergenode" label="Merge Node" description="Create a Merge node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/MergeNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.MergeNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.joinnode" label="Join Node" description="Create a Merge node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/JoinNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.JoinNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.controlnodes.forknode" label="Fork Node" description="Create a Fork node">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ForkNode.gif"/>
+        <elementDescriptors>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ForkNode_Shape"/>
+        </elementDescriptors>
+      </ownedConfigurations>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

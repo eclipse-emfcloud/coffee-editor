@@ -1,0 +1,84 @@
+target "Workflow Oxygen" with source, requirements
+
+location "http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" papyrus-release {
+	org.eclipse.papyrus.toolsmiths.feature.feature.group [1.1.0,1.2.0)
+}
+
+location "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" gmf-tooling-release {
+	org.eclipse.gmf.tooling.feature.group
+	org.eclipse.gmf.tooling.runtime.feature.group
+	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+}
+
+location "http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/" e4-tools-latest {
+	org.eclipse.e4.tools.spies.feature.feature.group
+}
+
+location "http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository" orbit-release {
+	com.google.gson [2.7.0,2.8.0)
+	org.apache.commons.io [2.2.0,2.3.0)
+}
+
+location "https://hudson.eclipse.org/papyrus/job/Papyrus-Compare-Oxygen-Integration/lastSuccessfulBuild/artifact/repository/" papyrus-compare {
+	org.eclipse.papyrus.compare.feature.feature.group lazy
+}
+
+location "http://download.eclipse.org/egit/updates" egit {
+	org.eclipse.egit.feature.group [5.0.0,6.0.0)
+}
+
+location "http://download.eclipse.org/cbi/updates/license" cbi-license {
+	org.eclipse.license.feature.group [1.0.1,1.1.0)
+}
+
+location "http://download.eclipse.org/ecp/releases/releases_target_117/" emf-forms {
+	org.eclipse.emf.ecp.emfforms.sdk.feature.feature.group [1.17.0,1.17.1)
+	org.eclipse.emfforms.editor.feature.feature.group [1.17.0,1.17.1)
+	org.eclipse.emfforms.coffee.feature.feature.group [1.17.0,1.17.1)
+}
+
+location "http://download.eclipse.org/releases/oxygen/" eclipse-oxygen {
+	org.eclipse.draw2d.feature.group
+	org.eclipse.emf.feature.group
+	org.eclipse.emf.mwe2.language.sdk.feature.group
+	org.eclipse.emf.mwe2.runtime.sdk.feature.group
+	org.eclipse.emf.mwe.core.feature.feature.group
+	org.eclipse.emf.mwe.sdk.feature.group
+	org.eclipse.emf.validation.ocl.feature.group
+	org.eclipse.equinox.executable.feature.group
+	org.eclipse.equinox.p2.discovery.feature.feature.group
+	org.eclipse.gmf.feature.group
+	org.eclipse.jdt.feature.group
+	org.eclipse.m2m.qvt.oml.feature.group
+	org.eclipse.m2m.qvt.oml.project // no feature
+	org.eclipse.ocl.all.feature.group // no feature group for ocl.ecore alone
+	org.eclipse.ocl.common.ui // no feature group or feature
+	org.eclipse.ocl.core.sdk.feature.group // necessary?
+	org.eclipse.ocl.examples.feature.group
+	org.eclipse.ocl.uml.feature.group
+	org.eclipse.papyrus.sdk.feature.feature.group
+	org.eclipse.pde.feature.group
+	org.eclipse.platform.feature.group
+	org.eclipse.rcp.feature.group
+	org.eclipse.uml2.feature.group
+	org.eclipse.wst.common_core.feature.feature.group
+	org.eclipse.wst.xml_core.feature.feature.group
+	org.eclipse.xsd.feature.group
+	org.eclipse.xwt.feature.feature.group
+}
+
+location "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" xtext {
+	org.eclipse.xtend.feature.group
+	org.eclipse.xtend.sdk.feature.group
+	org.eclipse.xtext.runtime.feature.group
+	org.eclipse.xtext.sdk.feature.group
+	org.eclipse.xtext.ui.feature.group
+	org.eclipse.xtext.xbase.feature.group
+	org.eclipse.xtext.xbase.lib.feature.group
+	org.eclipse.xpand.feature.group
+}
+
+location "http://download.eclipse.org/lsp4j/updates/releases/" {
+	org.eclipse.lsp4j.sdk.feature.group
+}
+

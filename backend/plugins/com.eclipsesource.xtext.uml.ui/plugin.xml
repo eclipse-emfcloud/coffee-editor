@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+          point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+              class="com.eclipsesource.xtext.uml.ui.ExecutableExtensionFactory:org.eclipse.xtext.ui.resource.generic.EmfResourceUIServiceProvider"
+              uriExtension="uml">
+        </resourceServiceProvider>
+    </extension>
+
+</plugin>

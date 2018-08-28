@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.eclipsesource.workflow.editor.CoffeeModelEditor"
+            default="true"
+            extensions="coffee"
+            icon="icons/coffee-editor.png"
+            id="CoffeeEditor"
+            name="Coffee Editor">
+      </editor>
+   </extension>
+
+</plugin>

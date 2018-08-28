@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.eclipsesource.workflow.feature_0.8.0.qualifier.jar" id="com.eclipsesource.workflow.feature" version="0.8.0.qualifier">
+      <category name="com.eclipsesource.workflow.category"/>
+   </feature>
+   <category-def name="com.eclipsesource.workflow.category" label="Papyrus Workflow">
+      <description>
+         asd
+      </description>
+   </category-def>
+   <repository-reference location="http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository" enabled="true" />
+   <repository-reference location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" enabled="true" />
+   <repository-reference location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
+</site>

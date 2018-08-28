@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}" property="workflow:Task:duration"></ppe:IntegerEditor>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="workflow:ManualTask:actor"></ppe:ReferenceDialog>
+	</Composite>
+</Composite>

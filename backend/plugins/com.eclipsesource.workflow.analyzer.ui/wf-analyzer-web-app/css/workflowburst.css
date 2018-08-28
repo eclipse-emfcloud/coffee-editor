@@ -1,0 +1,51 @@
+/*
+ * Based on work by kerryrodden
+ * Apache License 2.0
+ * See https://bl.ocks.org/kerryrodden/7090426
+ */
+
+#main {
+  float: left;
+  width: 750px;
+}
+
+#sidebar {
+  float: right;
+  width: 100px;
+}
+
+#sequence {
+  width: 700px;
+  height: 70px;
+}
+
+#legend {
+  padding: 10px 0 0 3px;
+}
+
+#sequence text, #legend text {
+  font-weight: 400;
+  fill: #fff;
+}
+
+#chart {
+  position: relative;
+}
+
+#chart path {
+  stroke: #fff;
+}
+
+#explanation {
+  position: absolute;
+  top: 145px;
+  left: 205px;
+  width: 140px;
+  text-align: center;
+  color: #666;
+  z-index: -1;
+}
+
+#percentage {
+  font-size: 2.3em;
+}
