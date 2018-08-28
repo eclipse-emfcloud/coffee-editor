@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:workflow="http:///schemas/workflow/_ZfZKAMVzEeei9vqqQSCeug/3" xsi:schemaLocation="http:///schemas/workflow/_ZfZKAMVzEeei9vqqQSCeug/3 pathmap://WORKFLOW_PROFILE/workflow.profile.uml#_ZfZxEMVzEeei9vqqQSCeug">
+  <uml:Model xmi:id="_tfszcMVvEeei9vqqQSCeug" name="FeedbackWorkflow">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_tk6DkMVvEeei9vqqQSCeug">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_tf5nwMVvEeei9vqqQSCeug" name="Get feedback" node="_ybKn4MVvEeei9vqqQSCeug _yobn0MVvEeei9vqqQSCeug _yyxPkMVvEeei9vqqQSCeug _zOFSkMVvEeei9vqqQSCeug _zv8CcMVvEeei9vqqQSCeug _z6MKoMVvEeei9vqqQSCeug _AX958MVwEeei9vqqQSCeug _BX2poMVwEeei9vqqQSCeug _TMDrEMVwEeei9vqqQSCeug">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_DmJGIMVwEeei9vqqQSCeug" target="_AX958MVwEeei9vqqQSCeug" source="_ybKn4MVvEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_FP8VgMVwEeei9vqqQSCeug" target="_yobn0MVvEeei9vqqQSCeug" source="_AX958MVwEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_GR4ToMVwEeei9vqqQSCeug" target="_yyxPkMVvEeei9vqqQSCeug" source="_AX958MVwEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_G9pNcMVwEeei9vqqQSCeug" target="_BX2poMVwEeei9vqqQSCeug" source="_yyxPkMVvEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_IPTCkMVwEeei9vqqQSCeug" target="_BX2poMVwEeei9vqqQSCeug" source="_yobn0MVvEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_JTmYMMVwEeei9vqqQSCeug" target="_zOFSkMVvEeei9vqqQSCeug" source="_BX2poMVwEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_WAQRAMVwEeei9vqqQSCeug" target="_TMDrEMVwEeei9vqqQSCeug" source="_yyxPkMVvEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Xx5NwMVwEeei9vqqQSCeug" target="_zv8CcMVvEeei9vqqQSCeug" source="_TMDrEMVwEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_YZTMAMVwEeei9vqqQSCeug" target="_z6MKoMVvEeei9vqqQSCeug" source="_TMDrEMVwEeei9vqqQSCeug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ZNUC4MVwEeei9vqqQSCeug" target="_ybKn4MVvEeei9vqqQSCeug" source="_zv8CcMVvEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_ybKn4MVvEeei9vqqQSCeug" name="Send Forms" incoming="_ZNUC4MVwEeei9vqqQSCeug" outgoing="_DmJGIMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_yobn0MVvEeei9vqqQSCeug" name="Check sent forms" incoming="_FP8VgMVwEeei9vqqQSCeug" outgoing="_IPTCkMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_yyxPkMVvEeei9vqqQSCeug" name="Test checksum" incoming="_GR4ToMVwEeei9vqqQSCeug" outgoing="_G9pNcMVwEeei9vqqQSCeug _WAQRAMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_zOFSkMVvEeei9vqqQSCeug" name="Check feedback" incoming="_JTmYMMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_zv8CcMVvEeei9vqqQSCeug" name="Prepare Resubmission" incoming="_Xx5NwMVwEeei9vqqQSCeug" outgoing="_ZNUC4MVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_z6MKoMVvEeei9vqqQSCeug" name="Print confirmation" incoming="_YZTMAMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_AX958MVwEeei9vqqQSCeug" name="" incoming="_DmJGIMVwEeei9vqqQSCeug" outgoing="_FP8VgMVwEeei9vqqQSCeug _GR4ToMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_BX2poMVwEeei9vqqQSCeug" name="" incoming="_G9pNcMVwEeei9vqqQSCeug _IPTCkMVwEeei9vqqQSCeug" outgoing="_JTmYMMVwEeei9vqqQSCeug"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_TMDrEMVwEeei9vqqQSCeug" name="" incoming="_WAQRAMVwEeei9vqqQSCeug" outgoing="_Xx5NwMVwEeei9vqqQSCeug _YZTMAMVwEeei9vqqQSCeug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_M_54IMXvEeei9vqqQSCeug" name="Printer"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_Pm3TUMXvEeei9vqqQSCeug" name="MD5Check"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_SSZsgMXvEeei9vqqQSCeug" name="MailServer"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_gfKGIMXvEeei9vqqQSCeug" name="Assistant"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_iB-jwMXvEeei9vqqQSCeug" name="CRM Team"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Jey7wOylEee69_uVRUf_Kw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Je63kOylEee69_uVRUf_Kw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://WORKFLOW_PROFILE/workflow.profile.uml#_ZfZxEMVzEeei9vqqQSCeug"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://WORKFLOW_PROFILE/workflow.profile.uml#_dmETMMVtEeei9vqqQSCeug"/>
+    </profileApplication>
+  </uml:Model>
+  <workflow:AutomaticTask xmi:id="_kqGPQMVwEeei9vqqQSCeug" duration="1" base_Action="_ybKn4MVvEeei9vqqQSCeug" component="_SSZsgMXvEeei9vqqQSCeug"/>
+  <workflow:ManualTask xmi:id="_m7IdwMVwEeei9vqqQSCeug" duration="1" base_Action="_yobn0MVvEeei9vqqQSCeug" actor="_gfKGIMXvEeei9vqqQSCeug"/>
+  <workflow:AutomaticTask xmi:id="_n_xKkMVwEeei9vqqQSCeug" base_Action="_yyxPkMVvEeei9vqqQSCeug" component="_Pm3TUMXvEeei9vqqQSCeug"/>
+  <workflow:ManualTask xmi:id="_pSxqkMVwEeei9vqqQSCeug" duration="3" base_Action="_zOFSkMVvEeei9vqqQSCeug" actor="_iB-jwMXvEeei9vqqQSCeug"/>
+  <workflow:AutomaticTask xmi:id="_qLh3gMVwEeei9vqqQSCeug" base_Action="_z6MKoMVvEeei9vqqQSCeug" component="_M_54IMXvEeei9vqqQSCeug"/>
+  <workflow:ManualTask xmi:id="_rUCXsMVwEeei9vqqQSCeug" duration="2" base_Action="_zv8CcMVvEeei9vqqQSCeug" actor="_gfKGIMXvEeei9vqqQSCeug"/>
+  <workflow:WeightedFlow xmi:id="_xCyDMMVwEeei9vqqQSCeug" base_ControlFlow="_Xx5NwMVwEeei9vqqQSCeug"/>
+  <workflow:WeightedFlow xmi:id="_xtksoMVwEeei9vqqQSCeug" base_ControlFlow="_YZTMAMVwEeei9vqqQSCeug" probability="high"/>
+</xmi:XMI>

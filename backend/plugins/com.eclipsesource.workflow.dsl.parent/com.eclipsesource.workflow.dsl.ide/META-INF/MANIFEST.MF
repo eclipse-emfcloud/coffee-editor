@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.eclipsesource.workflow.dsl.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.eclipsesource.workflow.dsl.ide;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.eclipsesource.workflow.dsl,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime,
+ com.google.gson;bundle-version="2.7.0",
+ org.eclipse.lsp4j;bundle-version="0.3.0",
+ org.eclipse.lsp4j.jsonrpc;bundle-version="0.3.0",
+ org.eclipse.ui;bundle-version="3.109.0",
+ com.eclipsesource.xtext.uml;bundle-version="1.0.0",
+ org.eclipse.core.resources;bundle-version="3.12.0",
+ org.eclipse.equinox.app,
+ org.eclipse.core.runtime;bundle-version="3.13.0",
+ org.eclipse.ui.ide,
+ org.apache.commons.io;bundle-version="2.2.0",
+ org.eclipse.uml2.uml;bundle-version="5.3.0",
+ com.eclipsesource.workflow.analyzer.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.eclipsesource.workflow.dsl.ide,
+ com.eclipsesource.workflow.dsl.ide.contentassist.antlr,
+ com.eclipsesource.workflow.dsl.ide.contentassist.antlr.internal,
+ com.eclipsesource.workflow.dsl.ide.extension,
+ com.eclipsesource.workflow.dsl.ide.extension.commands
+Import-Package: org.eclipse.emfforms.coffee.model.coffee;version="1.17.0",
+ org.eclipse.ui.actions,
+ org.eclipse.ui.internal.ide.dialogs,
+ org.eclipse.ui.wizards.datatransfer
+

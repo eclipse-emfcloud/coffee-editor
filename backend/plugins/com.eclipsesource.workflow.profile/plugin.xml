@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://WORKFLOW_PROFILE/"
+            target="platform:/plugin/com.eclipsesource.workflow.profile/profile/">
+      </mapping>
+   </extension>
+  
+   
+</plugin>

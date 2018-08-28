@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.eclipsesource.workflow.feature_0.8.0.qualifier.jar" id="com.eclipsesource.workflow.feature" version="0.8.0.qualifier"/>
+</site>
