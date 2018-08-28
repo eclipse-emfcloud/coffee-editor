@@ -331,6 +331,15 @@
     "@theia/languages" "^0.3.13"
     "@theia/variable-resolver" "^0.3.13"
 
+"@theia/editorconfig@latest":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@theia/editorconfig/-/editorconfig-0.3.13.tgz#f85cfd222a9dfd29dcb34f8cd39a731a4a91f768"
+  dependencies:
+    "@theia/core" "^0.3.13"
+    "@theia/editor" "^0.3.13"
+    "@theia/monaco" "^0.3.13"
+    editorconfig "^0.15.0"
+
 "@theia/filesystem@^0.3.13", "@theia/filesystem@latest":
   version "0.3.13"
   resolved "https://registry.yarnpkg.com/@theia/filesystem/-/filesystem-0.3.13.tgz#346a6d9c6e5ba67c76ac9d0d551ab42dc0dadd7b"
@@ -356,6 +365,20 @@
     trash "^4.0.1"
     uuid "^3.2.1"
     zip-dir "^1.0.2"
+
+"@theia/java@latest":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@theia/java/-/java-0.3.13.tgz#66afedf12f8e227f520500677c9f945b57413ec0"
+  dependencies:
+    "@theia/core" "^0.3.13"
+    "@theia/editor" "^0.3.13"
+    "@theia/languages" "^0.3.13"
+    "@theia/monaco" "^0.3.13"
+    "@types/glob" "^5.0.30"
+    "@types/tar" "4.0.0"
+    glob "^7.1.2"
+    mkdirp "^0.5.0"
+    tar "^4.0.0"
 
 "@theia/languages@^0.3.13", "@theia/languages@latest":
   version "0.3.13"
@@ -383,6 +406,16 @@
   dependencies:
     "@theia/core" "^0.3.13"
 
+"@theia/mini-browser@latest":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@theia/mini-browser/-/mini-browser-0.3.13.tgz#352b437287a238948b7f08beb99f040df7a79fde"
+  dependencies:
+    "@theia/core" "^0.3.13"
+    "@theia/filesystem" "^0.3.13"
+    "@types/mime-types" "^2.1.0"
+    mime-types "^2.1.18"
+    pdfobject "^2.0.201604172"
+
 "@theia/monaco@^0.3.13", "@theia/monaco@latest":
   version "0.3.13"
   resolved "https://registry.yarnpkg.com/@theia/monaco/-/monaco-0.3.13.tgz#6fe3de8486740ef8ce4df702dd85889707f065df"
@@ -409,7 +442,7 @@
     "@theia/workspace" "^0.3.13"
     fuzzy "^0.1.3"
 
-"@theia/outline-view@^0.3.13":
+"@theia/outline-view@^0.3.13", "@theia/outline-view@latest":
   version "0.3.13"
   resolved "https://registry.yarnpkg.com/@theia/outline-view/-/outline-view-0.3.13.tgz#19f39f967923470ec6c3410f145e864fee38dc4c"
   dependencies:
@@ -507,6 +540,12 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
 
+"@types/commander@^2.11.0":
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/@types/commander/-/commander-2.12.2.tgz#183041a23842d4281478fa5d23c5ca78e6fd08ae"
+  dependencies:
+    commander "*"
+
 "@types/connect@*":
   version "3.4.32"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"
@@ -545,7 +584,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/glob@*":
+"@types/glob@*", "@types/glob@^5.0.30":
   version "5.0.35"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-5.0.35.tgz#1ae151c802cece940443b5ac246925c85189f32a"
   dependencies:
@@ -667,6 +706,12 @@
 "@types/tar-fs@^1.16.1":
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/@types/tar-fs/-/tar-fs-1.16.1.tgz#6e3fba276c173e365ae91e55f7b797a0e64298e5"
+  dependencies:
+    "@types/node" "*"
+
+"@types/tar@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/tar/-/tar-4.0.0.tgz#e3239d969eeb693a012200613860d0eb871c94f0"
   dependencies:
     "@types/node" "*"
 
@@ -2406,7 +2451,7 @@ command-join@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/command-join/-/command-join-2.0.0.tgz#52e8b984f4872d952ff1bdc8b98397d27c7144cf"
 
-commander@^2.11.0:
+commander@*, commander@^2.11.0:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
@@ -3145,6 +3190,17 @@ ecc-jsbn@~0.1.1:
 editions@^1.3.3:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/editions/-/editions-1.3.4.tgz#3662cb592347c3168eb8e498a0ff73271d67f50b"
+
+editorconfig@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.0.tgz#b6dd4a0b6b9e76ce48e066bdc15381aebb8804fd"
+  dependencies:
+    "@types/commander" "^2.11.0"
+    "@types/semver" "^5.4.0"
+    commander "^2.11.0"
+    lru-cache "^4.1.1"
+    semver "^5.4.1"
+    sigmund "^1.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -6490,6 +6546,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+pdfobject@^2.0.201604172:
+  version "2.0.201604172"
+  resolved "https://registry.yarnpkg.com/pdfobject/-/pdfobject-2.0.201604172.tgz#112edf93b98be121a5e780b06e7f5f78ad31ab3f"
+
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
@@ -7760,6 +7820,10 @@ shelljs@^0.8.0:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+sigmund@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -8246,7 +8310,7 @@ tar@^2.0.0:
     fstream "^1.0.2"
     inherits "2"
 
-tar@^4:
+tar@^4, tar@^4.0.0:
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.6.tgz#63110f09c00b4e60ac8bcfe1bf3c8660235fbc9b"
   dependencies:
@@ -8503,6 +8567,10 @@ typescript-language-server@^0.1.14:
     np "^2.20.1"
     vscode-languageserver "^3.4.3"
     vscode-uri "^1.0.1"
+
+typescript@2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
 typescript@latest:
   version "3.0.1"

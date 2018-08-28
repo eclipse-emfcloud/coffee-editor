@@ -35,7 +35,7 @@ class BuildCommand implements ICommand {
 	}
 
 	override execute(String[] args) {
-		val projects = loadProjects(args.head.replace("file://", ""))
+		val projects = loadProjects(args.head.replace("file://", "").replace("\"", ""))
 		val cleanJob = new WorkspaceJob(IDEWorkbenchMessages.CleanDialog_cleanSelectedTaskName) {
 
 			override runInWorkspace(IProgressMonitor monitor) throws CoreException {

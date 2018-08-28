@@ -9,6 +9,6 @@
     "lerna": "2.4.0"
   },
   "workspaces": [
-    "coffee-editor-extension", "workflow-browser-extension", "workflow-sprotty", "browser-app", "electron-app"
+    "coffee-editor-extension", "coffee-java-extension", "workflow-browser-extension", "workflow-sprotty", "browser-app", "electron-app"
   ]
 }
