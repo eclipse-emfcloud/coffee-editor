@@ -1,23 +1,19 @@
 package com.eclipsesource.workflow.generator.java
 
+import com.eclipsesource.workflow.generator.IAutomaticWorkflowTask
+import com.eclipsesource.workflow.generator.IManualWorkflowTask
+import com.eclipsesource.workflow.generator.IWorkflowTask
 import java.io.ByteArrayInputStream
 import java.nio.charset.StandardCharsets
 import org.apache.commons.io.FileUtils
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.IResource
 import org.eclipse.core.runtime.IProgressMonitor
-import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.SubMonitor
-import org.eclipse.uml2.uml.Action
-import org.eclipse.uml2.uml.NamedElement
-import org.eclipse.uml2.uml.Stereotype
-
-import static com.eclipsesource.workflow.architecture.internal.utils.ArchitectureConstants.STEREOTYPE_MANUAL_TASK
-import static com.eclipsesource.workflow.architecture.internal.utils.WorkflowExtensionUtil.*
 
 class StaticCodeGenerator {
 	protected String SRC_DIR = "src-gen"
-	private String packageName = ""
+	String packageName = ""
 
 	def init(IProject project, IProgressMonitor monitor) {
 		val subMonitor = SubMonitor.convert(monitor, 2)
@@ -115,78 +111,58 @@ class StaticCodeGenerator {
 	}
 
 	def generate(
-		Action action,
-		Stereotype stereotype,
 		IProject project,
+		IResource resource,
+		IWorkflowTask task,
 		IProgressMonitor monitor
 	) {
 		val subMonitor = SubMonitor.convert(monitor, 1)
-		val file = project.getFile('''«SRC_DIR»/«packageName.filePath»Abstract«action.name.tofileName»''')
+		val file = project.getFile('''«SRC_DIR»/«packageName.filePath»Abstract«task.name.tofileName»''')
 
 		if (!file.exists) {
-			file.create(inputStream(action.toFileContents(stereotype)), true, subMonitor.split(1))
+			file.create(inputStream(task.toFileContents(resource)), true, subMonitor.split(1))
 		}
 
 	}
 
-	def CharSequence toFileContents(Action action, Stereotype stereotype) {
+	def CharSequence toFileContents(IWorkflowTask task, IResource resource) {
 		'''	
-			«var isManual=stereotype.qualifiedName.equals(STEREOTYPE_MANUAL_TASK)»
+			// auto-generated from '«resource.name»'
 			package «packageName»;
 			
-			«IF isManual»
+			«IF task.manual»
 			import «packageName».library.ManualWorkflowTask;
 				
-			public abstract class Abstract«action.name.normalize» extends ManualWorkflowTask {
+			public abstract class Abstract«task.name.normalize» extends ManualWorkflowTask {
 			«ELSE»
 			import «packageName».library.AutomaticWorkflowTask;
 				
-			public abstract class Abstract«action.name.normalize» extends AutomaticWorkflowTask {
+			public abstract class Abstract«task.name.normalize» extends AutomaticWorkflowTask {
 			«ENDIF»
 				@Override
-				«IF isManual»
+				«IF task.manual»
 				public String getActor() {
-					return "«getStringProperty(action,"actor",stereotype)»";
+					return "«(task as IManualWorkflowTask).actor»";
 				}
 				«ELSE»
 				public String getComponent() {
-					return "«getStringProperty(action,"component",stereotype)»";
+					return "«(task as IAutomaticWorkflowTask).component»";
 				}
 				«ENDIF»
 			
 			
 				@Override
 				public int getDuration() {
-					return «getStereotypePropertyValue(action,"duration",stereotype)»;
+					return «task.duration»;
 				}
 			
 				@Override
 				public String getId() {
-					return "«action.activity.name+"::"+action.name»";
-				}
-			
-				@Override
-				protected void preExecute() {
-					// TODO Auto-generated method stub
-			
-				}
-			
-				@Override
-				protected void postExecute() {
-					// TODO Auto-generated method stub
-			
+					return "«task.id»";
 				}
 			
 			}
 		'''
-	}
-
-	def getStringProperty(Action action, String property, Stereotype stereotype) {
-		val element = getStereotypePropertyValue(action, property, stereotype)
-		if (element instanceof NamedElement)
-			(element as NamedElement).name
-		else
-			""
 	}
 
 	def ByteArrayInputStream inputStream(CharSequence fileContents) {

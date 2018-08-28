@@ -1,13 +1,17 @@
 package com.eclipsesource.workflow.generator;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IProject;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.core.resources.IResource;
 
 public interface IWorkflowGeneratorInput {
 
-	Model getModel();
-
 	IProject getProject();
+	
+	IResource getResource();
+	
+	List<IWorkflowTask> getTasks();
 
 	void dispose();
 

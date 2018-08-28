@@ -1,3 +1,4 @@
+// stub generated from 'example1.wf'
 package SuperCoffee3000;
 	
 import SuperCoffee3000.AbstractChkTp;

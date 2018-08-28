@@ -24,6 +24,12 @@ public interface WorkflowExtensionUtil {
 		}
 		return null;
 	}
+	
+	public static <T> T getStereotypePropertyValue(final NamedElement namedElement, final String name,
+			Stereotype stereotype, Class<T> expectedClazz) {
+		Object value = getStereotypePropertyValue(namedElement, name, stereotype);
+		return expectedClazz.isInstance(value) ? expectedClazz.cast(value) : null;
+	}
 
 	public static void setStereotypePropertyValue(final NamedElement namedElement, final String name,
 			Stereotype stereotype, Object value) {
@@ -31,4 +37,13 @@ public interface WorkflowExtensionUtil {
 			namedElement.setValue(stereotype, name, value);
 		}
 	}
+	
+	public static String getStringProperty(final NamedElement namedElement, String name, Stereotype stereotype) {
+		Object value = getStereotypePropertyValue(namedElement, name, stereotype);
+		if(value instanceof NamedElement) {
+			return ((NamedElement) value).getName();
+		}
+		return null;
+	}
+	
 }
