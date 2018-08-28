@@ -9,13 +9,8 @@
 	<packaging>pom</packaging>
 
 	<name>com.eclipsesource.workflow.rcp.parent</name>
+	<version>0.8.0-SNAPSHOT</version>
 
-	<parent>
-  	<groupId>com.eclipsesource.workflow</groupId>
-  	<artifactId>com.eclipsesource.workflow.parent</artifactId>
-  	<version>0.8.0-SNAPSHOT</version>
-    <relativePath>../</relativePath>
-  </parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho-version>1.0.0</tycho-version>
