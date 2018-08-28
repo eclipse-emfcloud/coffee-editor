@@ -14,6 +14,7 @@ import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server'
 import * as net from 'net'
 import { WorkflowLanguage } from "../common/workflow-language";
 import { BaseGraphicalLanguageServerContribution } from 'glsp-theia-extension/lib/node'
+import { spawn } from "child_process";
 
 function getPort(): number | undefined {
     let arg = process.argv.filter(arg => arg.startsWith('--WORKFLOW_LSP='))[0]
@@ -39,6 +40,14 @@ export class WorkflowGLServerContribution extends BaseGraphicalLanguageServerCon
 
     start(clientConnection: IConnection): void {
         let socketPort = getPort();
+        console.log('before spawn')
+        const child = spawn('java -jar ~/.glsp-workflow/workflow-example-0.0.1-SNAPSHOT-glsp.jar', [''], {
+            detached: true,
+            shell: true,
+            stdio: 'inherit'
+          });
+          child.unref();
+          console.log('after spawn')  
         if (socketPort) {
             const socket = new net.Socket()
             const serverConnection = createSocketConnection(socket, socket, () => {

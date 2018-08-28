@@ -25,6 +25,18 @@ Install yarn.
 
     npm install -g yarn
 
+## Setting the graphical server language protocol
+
+This step is required to get the workflow graphical editor running (empty editor without the server started). The server should be automatically started when the editor is opened.
+
+### compiling the GLSP server code and the workflow example 
+    clone the graphical-lsp repository git clone https://github.com/eclipsesource/graphical-lsp
+    cd graphical-lsp
+    cd server
+    mvn clean verify 
+    mkdir ~/.glsp-workflow
+    cp example/workflow-example/target/workflow-example-0.0.1-SNAPSHOT-glsp.jar ~/.glsp-workflow
+    
 ## Getting started
 
     git clone https://github.com/eclipsesource/coffee-editor.git
