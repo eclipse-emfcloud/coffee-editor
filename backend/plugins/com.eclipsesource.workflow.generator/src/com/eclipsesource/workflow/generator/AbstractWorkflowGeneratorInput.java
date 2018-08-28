@@ -1,33 +1,27 @@
 package com.eclipsesource.workflow.generator;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-
-import com.google.common.base.Preconditions;
-
 public abstract class AbstractWorkflowGeneratorInput implements IWorkflowGeneratorInput {
 
-	protected IResource resource;
-	protected IProject project;
+	private String packageName;
+	private String sourceFileName;
 
-	public AbstractWorkflowGeneratorInput(IResource resource) {
-		this.resource = Preconditions.checkNotNull(resource);
-		this.project = Preconditions.checkNotNull(resource.getProject());
-	}
-	
-	@Override
-	public IResource getResource() {
-		return resource;
+	public AbstractWorkflowGeneratorInput(String packageName, String sourceFileName) {
+		this.packageName = packageName;
+		this.sourceFileName = sourceFileName;
 	}
 
 	@Override
-	public IProject getProject() {
-		return project;
+	public String getPackageName() {
+		return packageName;
+	}
+
+	@Override
+	public String getSourceFileName() {
+		return sourceFileName;
 	}
 
 	@Override
 	public void dispose() {
-		// do nothing		
+		// do nothing
 	}
-
 }

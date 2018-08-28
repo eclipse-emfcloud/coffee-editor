@@ -6,6 +6,8 @@ import org.eclipse.core.runtime.IStatus;
 public interface IWorkflowGenerator {
 
 	IStatus generate(IWorkflowGeneratorInput input, IProgressMonitor monitor);
+	
+	IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input, IProgressMonitor monitor);
 
 	void dispose();
 

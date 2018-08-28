@@ -1,12 +1,8 @@
 package com.eclipsesource.workflow.generator.json;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.eclipse.core.resources.IResource;
 
 import com.eclipsesource.workflow.generator.AbstractWorkflowGeneratorInput;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
@@ -19,7 +15,6 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.JsonReader;
 
 public class SprottyWFWorkflowGeneratorInput extends AbstractWorkflowGeneratorInput implements IWorkflowGeneratorInput {
 
@@ -38,9 +33,12 @@ public class SprottyWFWorkflowGeneratorInput extends AbstractWorkflowGeneratorIn
 	private static final Integer TASK_DURATION_UNDEFINED = 0;
 	private static final String TASK_REFERENCE = "reference";
 	private static final String TASK_REFERENCE_UNDEFINED = "undefined";
+	
+	private String content;
 
-	public SprottyWFWorkflowGeneratorInput(IResource resource) {
-		super(resource);
+	public SprottyWFWorkflowGeneratorInput(String packageName, String sourceFileName, String content) {
+		super(packageName, sourceFileName);
+		this.content = content;
 	}
 
 	@Override
@@ -48,7 +46,7 @@ public class SprottyWFWorkflowGeneratorInput extends AbstractWorkflowGeneratorIn
 		List<IWorkflowTask> tasks = new ArrayList<>();
 		JsonParser parser = new JsonParser();
 		try {
-			JsonElement graph = parser.parse(new JsonReader(new FileReader(resource.getLocation().toFile())));
+			JsonElement graph = parser.parse(content);
 			JsonElement graphType = graph.getAsJsonObject().get(GRAPH_TYPE);
 			if(graphType == null || !GRAPH_TYPE_EXPECTED.equalsIgnoreCase(graphType.getAsString())) {
 				return tasks;
@@ -66,7 +64,7 @@ public class SprottyWFWorkflowGeneratorInput extends AbstractWorkflowGeneratorIn
 					}
 				}
 			}
-		} catch (JsonIOException | JsonSyntaxException | FileNotFoundException | IllegalStateException e) {
+		} catch (JsonIOException | JsonSyntaxException | IllegalStateException e) {
 		}
 		return tasks;
 	}
