@@ -7,7 +7,8 @@ Bundle-Vendor: ECLIPSESOURCE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: lib/kotlin-stdlib-1.2.31.jar,
  lib/com.eclipsesource.workflow-analyzer.core-1.0.0-201804121324.jar
-Export-Package: kotlin,
+Export-Package: com.eclipsesource.workflow.analyzer,
+ kotlin,
  kotlin.annotation,
  kotlin.collections,
  kotlin.comparisons,
@@ -32,3 +33,5 @@ Export-Package: kotlin,
  kotlin.system,
  kotlin.text,
  workflowanalyzer
+Require-Bundle: com.google.gson,
+ org.eclipse.core.runtime
