@@ -3,60 +3,19 @@ package com.eclipsesource.workflow.generator.java
 import com.eclipsesource.workflow.generator.IAutomaticWorkflowTask
 import com.eclipsesource.workflow.generator.IManualWorkflowTask
 import com.eclipsesource.workflow.generator.IWorkflowTask
-import java.io.ByteArrayInputStream
-import java.nio.charset.StandardCharsets
-import org.apache.commons.io.FileUtils
-import org.eclipse.core.resources.IProject
-import org.eclipse.core.resources.IResource
-import org.eclipse.core.runtime.IProgressMonitor
-import org.eclipse.core.runtime.SubMonitor
+import java.time.format.DateTimeFormatter
+import java.time.LocalDateTime
 
 class StaticCodeGenerator {
 	protected String SRC_DIR = "src-gen"
-	String packageName = ""
-
-	def init(IProject project, IProgressMonitor monitor) {
-		val subMonitor = SubMonitor.convert(monitor, 2)
-		packageName = project.name;
-		var file = project.getFile('''«SRC_DIR»/«packageName.filePath»''')
-		var folder = file.getLocation().toFile()
-		if (!folder.exists) {
-			folder.mkdirs
-		} else {
-			FileUtils.cleanDirectory(folder)
-		}
-		file = project.getFile('''«SRC_DIR»/«packageName.filePath»/library''')
-		folder = file.getLocation().toFile()
-		if (!folder.exists) {
-			folder.mkdirs
-		} else {
-			FileUtils.cleanDirectory(folder)
-		}
-
-		project.refreshLocal(IResource.DEPTH_INFINITE, subMonitor.split(1))
-		generateBaseClasses(project, subMonitor.split(1))
+	
+	def String toWorkflowTaskName(String packageName) {
+		'''«SRC_DIR»/«packageName.filePath»library/«"WorkflowTask".toJavaFileName»'''
 	}
 
-	private def generateBaseClasses(IProject project, IProgressMonitor monitor) {
-		val subMonitor = SubMonitor.convert(monitor, 1)
-		var file = project.getFile('''«SRC_DIR»/«packageName.filePath»/library/«"WorkflowTask".tofileName»''')
-		if (!file.exists) {
-			file.create(inputStream(workflowTaskClass), true, subMonitor.split(1))
-		}
-		file = project.getFile('''«SRC_DIR»/«packageName.filePath»/library/«"AutomaticWorkflowTask".tofileName»''')
-
-		if (!file.exists) {
-			file.create(inputStream(automaticWorkflowClass), true, subMonitor.split(1))
-		}
-
-		file = project.getFile('''«SRC_DIR»/«packageName.filePath»/library/«"ManualWorkflowTask".tofileName»''')
-
-		file.create(inputStream(manualWorkflowClass), true, subMonitor.split(1))
-
-	}
-
-	def CharSequence workflowTaskClass() {
+	def String toWorkflowTaskContent(String packageName) {
 		'''
+			// auto-generated at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 			package «packageName».library;
 			
 			public abstract class WorkflowTask {
@@ -89,9 +48,14 @@ class StaticCodeGenerator {
 			}
 		'''
 	}
-
-	def CharSequence automaticWorkflowClass() {
+	
+	def String toAutomaticWorkflowTaskName(String packageName) {
+		'''«SRC_DIR»/«packageName.filePath»library/«"AutomaticWorkflowTask".toJavaFileName»'''
+	}
+	
+	def String toAutomaticWorkflowTaskContent(String packageName) {
 		'''
+			// auto-generated at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 			package «packageName».library;
 			
 			public abstract class AutomaticWorkflowTask extends WorkflowTask {
@@ -100,8 +64,13 @@ class StaticCodeGenerator {
 		'''
 	}
 
-	def CharSequence manualWorkflowClass() {
+	def String toManualWorkflowTaskName(String packageName) {
+		'''«SRC_DIR»/«packageName.filePath»library/«"ManualWorkflowTask".toJavaFileName»'''
+	}
+
+	def String toManualWorkflowTaskContent(String packageName) {
 		'''
+			// auto-generated at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 			package «packageName».library;
 			
 			public abstract class ManualWorkflowTask extends WorkflowTask {
@@ -109,25 +78,14 @@ class StaticCodeGenerator {
 			}
 		'''
 	}
-
-	def generate(
-		IProject project,
-		IResource resource,
-		IWorkflowTask task,
-		IProgressMonitor monitor
-	) {
-		val subMonitor = SubMonitor.convert(monitor, 1)
-		val file = project.getFile('''«SRC_DIR»/«packageName.filePath»Abstract«task.name.tofileName»''')
-
-		if (!file.exists) {
-			file.create(inputStream(task.toFileContents(resource)), true, subMonitor.split(1))
-		}
-
+	
+	def String toFileName(String packageName, String taskName) {
+		'''«SRC_DIR»/«packageName.filePath»Abstract«taskName.toJavaFileName»'''
 	}
 
-	def CharSequence toFileContents(IWorkflowTask task, IResource resource) {
+	def CharSequence toFileContent(String packageName, String sourceFileName, IWorkflowTask task) {
 		'''	
-			// auto-generated from '«resource.name»'
+			// auto-generated from '«sourceFileName»' at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 			package «packageName»;
 			
 			«IF task.manual»
@@ -165,20 +123,16 @@ class StaticCodeGenerator {
 		'''
 	}
 
-	def ByteArrayInputStream inputStream(CharSequence fileContents) {
-		new ByteArrayInputStream(fileContents.toString.getBytes(StandardCharsets.UTF_8.name()))
-	}
-
-	def String tofileName(String name) {
+	private def String toJavaFileName(String name) {
 		'''«name.normalize».java'''
 	}
 
-	def normalize(String string) {
+	private def normalize(String string) {
 		// camelCase+ only alphanumeric
 		string.split(" ").map[toFirstUpper].join("").replaceAll("[^A-Za-z0-9]", "")
 	}
 
-	def getFilePath(String packageName) {
+	private def getFilePath(String packageName) {
 		packageName.split("\\.").join("/") + "/"
 	}
 
