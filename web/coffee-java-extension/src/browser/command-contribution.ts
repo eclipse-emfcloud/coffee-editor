@@ -6,16 +6,11 @@ import { EditorManager, EDITOR_CONTEXT_MENU } from "@theia/editor/lib/browser";
 import { isString } from "util";
 import { UriAwareCommandHandler, UriCommandHandler } from "@theia/core/lib/common/uri-command-handler"
 import URI from "@theia/core/lib/common/uri";
-import { open, OpenerService } from "@theia/core/lib/browser";
+import { OpenerService } from "@theia/core/lib/browser";
 
 export const CODEGEN_COMMAND: Command = {
     id: "workflow.generate.code.command",
     label: "Generate Workflow code"
-}
-
-export const ANALYZE_COMMAND: Command = {
-    id: "workflow.analyze.command",
-    label: "Analyze workflow model"
 }
 @injectable()
 export class WorkflowCommandContribution implements CommandContribution, MenuContribution {
@@ -34,43 +29,11 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
-            commandId: ANALYZE_COMMAND.id,
-            label: 'Perform Analysis'
-        })
-        menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
             commandId: CODEGEN_COMMAND.id,
             label: 'Generate Workflow code'
         })
     }
     registerCommands(registry: CommandRegistry): void {
-        registry.registerCommand(ANALYZE_COMMAND, this.newUriAwareCommandHandler({
-            execute: async (uri) => {
-                const documentURL = uri.path.toString().replace("file://", "");
-                const client = await this.clientContributon.languageClient;
-                var result = await client.sendRequest(ExecuteCommandRequest.type, {
-                    command: "workflow.analyze",
-                    arguments: [documentURL]
-                });
-                if (isString(result)) {
-                    result = JSON.parse(result)
-                    if (result.error == undefined) {
-                        let fileName = result.name;
-                        let uri = new URI("file://" + fileName);
-                        open(this.openHandler, uri)
-                    }
-
-                }
-                return result
-            },
-            isVisible: (uri) => uri.toString().endsWith("wf"),
-            isEnabled: (uri) => uri.toString().endsWith("wf")
-
-
-
-        }),
-
-
-        );
         registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
             execute: async (uri) => {
                 const rootPath = this.workspace.rootPath

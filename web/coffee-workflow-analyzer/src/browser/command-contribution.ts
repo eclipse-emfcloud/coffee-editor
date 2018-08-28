@@ -8,11 +8,6 @@ import { UriAwareCommandHandler, UriCommandHandler } from "@theia/core/lib/commo
 import URI from "@theia/core/lib/common/uri";
 import { open, OpenerService } from "@theia/core/lib/browser";
 
-export const CODEGEN_COMMAND: Command = {
-    id: "workflow.generate.code.command",
-    label: "Generate Workflow code"
-}
-
 export const ANALYZE_COMMAND: Command = {
     id: "workflow.analyze.command",
     label: "Analyze workflow model"
@@ -36,10 +31,6 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
         menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
             commandId: ANALYZE_COMMAND.id,
             label: 'Perform Analysis'
-        })
-        menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
-            commandId: CODEGEN_COMMAND.id,
-            label: 'Generate Workflow code'
         })
     }
     registerCommands(registry: CommandRegistry): void {
@@ -69,26 +60,6 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
 
         }),
 
-
-        );
-        registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
-            execute: async (uri) => {
-                const rootPath = this.workspace.rootPath
-                if (isString(rootPath)) {
-                    const client = await this.clientContributon.languageClient;
-                    const result = await client.sendRequest(ExecuteCommandRequest.type, {
-                        command: "workflow.project.build",
-                        arguments: [rootPath]
-                    });
-                    return result;
-                }
-
-
-            },
-            isVisible: (uri) => uri.toString().endsWith("wfconfig"),
-            isEnabled: (uri) => uri.toString().endsWith("wfconfig")
-
-        }),
 
         );
     }
