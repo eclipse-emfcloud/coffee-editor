@@ -8316,9 +8316,9 @@ theia-glsp@0.1.0:
     "@theia/monaco" latest
     glsp-sprotty "0.1.0"
 
-"theia-tree-editor@https://github.com/eclipsesource/theia-tree-editor.git#v0.0.5":
-  version "0.0.4"
-  resolved "https://github.com/eclipsesource/theia-tree-editor.git#4d78da95781d2f4de81a2633ad95d6966ca8c8f1"
+"theia-tree-editor@https://github.com/eclipsesource/theia-tree-editor.git#master":
+  version "0.0.5"
+  resolved "https://github.com/eclipsesource/theia-tree-editor.git#71afecb28ba91e981dfaeaaaaf3059e811b6c29e"
   dependencies:
     "@jsonforms/core" "^2.0.6"
     "@jsonforms/material-tree-renderer" "^2.0.7"
