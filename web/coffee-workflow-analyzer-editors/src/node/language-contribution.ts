@@ -5,6 +5,7 @@ import * as net from 'net';
 
 function getPort(): number | undefined {
     let arg = process.argv.filter(arg => arg.startsWith('--WF_LSP='))[0]
+    console.error("!!!!!!!Socket "+arg);
     if (!arg) {
         return undefined
     } else {
@@ -16,20 +17,20 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
 
 
     readonly description = {
-        id: 'wf',
-        name: 'wf',
-        documentSelector: ['wf'],
+        id: this.id,
+        name: this.name,
+        documentSelector: ['wfconfig'],
         fileEvents: [
-            '**/*.wf'
+            '**/*.wfconfig'
         ]
     }
 
-    readonly id = "wf";
-    readonly name = "WF";
+    readonly id = "wfconfig";
+    readonly name = "WFCONFIG";
 
     start(clientConnection: IConnection): void {
         let socketPort = getPort();
-
+        console.error("!!!!!!!Socket "+socketPort);
         if (socketPort) {
             const socket = new net.Socket()
             const serverConnection = createSocketConnection(socket, socket, () => {

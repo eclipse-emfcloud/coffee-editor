@@ -1,8 +1,7 @@
 import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, Command, SelectionService } from "@theia/core/lib/common";
 import { injectable, inject } from "inversify";
-import { WorkflowClientContribution } from "./language-contribution";
-import { ExecuteCommandRequest, Workspace } from "@theia/languages/lib/common";
-import { EditorManager, EDITOR_CONTEXT_MENU } from "@theia/editor/lib/browser";
+import { Workspace } from "@theia/languages/lib/common";
+import { EditorManager } from "@theia/editor/lib/browser";
 import { isString } from "util";
 import { UriAwareCommandHandler, UriCommandHandler } from "@theia/core/lib/common/uri-command-handler"
 import URI from "@theia/core/lib/common/uri";
@@ -17,8 +16,6 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
 
 
     constructor(
-        @inject(WorkflowClientContribution)
-        protected readonly clientContributon: WorkflowClientContribution,
         @inject(Workspace)
         protected readonly workspace: Workspace,
         @inject(EditorManager)
@@ -28,22 +25,25 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
     ) { }
 
     registerMenus(menus: MenuModelRegistry): void {
-        menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
-            commandId: CODEGEN_COMMAND.id,
-            label: 'Generate Workflow code'
-        })
+        menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {
+            commandId: CODEGEN_COMMAND.id
+        });
     }
+
     registerCommands(registry: CommandRegistry): void {
         registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
             execute: async (uri) => {
                 const rootPath = this.workspace.rootPath
                 if (isString(rootPath)) {
-                    const client = await this.clientContributon.languageClient;
-                    const result = await client.sendRequest(ExecuteCommandRequest.type, {
-                        command: "workflow.project.build",
-                        arguments: [rootPath]
-                    });
-                    return result;
+                    // TODO replace with REST calls
+                    console.log("!!!!!!!!!!!!!GENERATE CODE WAS CALLED")
+
+                    // const client = await this.clientContributon.languageClient;
+                    // const result = await client.sendRequest(ExecuteCommandRequest.type, {
+                    //     command: "workflow.project.build",
+                    //     arguments: [rootPath]
+                    // });
+                    // return result;
                 }
 
 

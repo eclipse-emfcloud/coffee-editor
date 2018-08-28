@@ -1,5 +1,5 @@
 {
-  "name": "coffee-java-extension",
+  "name": "coffee-workflow-analyzer-editors",
   "keywords": [
     "theia-extension"
   ],
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "rimraf": "latest",
-    "typescript": "2.9.2"
+    "typescript": "^2.9.2"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
@@ -23,7 +23,8 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/frontend-extension"
+      "frontend": "lib/browser/frontend-extension",
+      "backend": "lib/node/backend-extension"
     }
   ]
 }
