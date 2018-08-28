@@ -1,0 +1,30 @@
+{
+  "name": "coffee-workflow-analyzer",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.0.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "latest"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/frontend-extension",
+      "backend": "lib/node/backend-extension"
+    }
+  ]
+}
