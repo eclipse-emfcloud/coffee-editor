@@ -81,4 +81,6 @@ location "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/relea
 location "http://download.eclipse.org/lsp4j/updates/releases/" {
 	org.eclipse.lsp4j.sdk.feature.group
 }
-
+location "http://hstaudacher.github.io/osgi-jax-rs-connector" {
+	com.eclipsesource.jaxrs.connector.feature.feature.group
+}

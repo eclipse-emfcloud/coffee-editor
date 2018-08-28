@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.eclipsesource.demo.rest.StaticContentService">
+   <service>
+      <provide interface="com.eclipsesource.demo.rest.StaticContentService"/>
+   </service>
+   <implementation class="com.eclipsesource.demo.rest.StaticContentService"/>
+</scr:component>
