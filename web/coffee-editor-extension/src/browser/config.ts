@@ -1,14 +1,14 @@
 export const imageProvider = {
-  '#activity': 'uielement',
-  '#brewingunit': 'uielement',
-  '#controlunit': 'uielement',
-  '#dimension': 'uielement',
-  '#diptray': 'uielement',
-  '#display': 'uielement',
-  '#machine': 'uielement',
-  '#processor': 'uielement',
-  '#ram': 'uielement',
-  '#watertank': 'uielement'
+  '#activity': 'activity',
+  '#brewingunit': 'brewingunit',
+  '#controlunit': 'controlunit',
+  '#dimension': 'dimension',
+  '#diptray': 'diptray',
+  '#display': 'display',
+  '#machine': 'machine',
+  '#processor': 'processor',
+  '#ram': 'ram',
+  '#watertank': 'watertank'
 };
 
 export const labelProvider = {

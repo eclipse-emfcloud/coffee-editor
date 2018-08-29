@@ -4,6 +4,36 @@
 .icon.uielement {
     background-image: url('./icons/UIElement.png');
 }
+.icon.activity {
+    background-image: url('./icons/Activity.png');
+}
+.icon.brewingunit {
+    background-image: url('./icons/BrewingUnit.png');
+}
+.icon.controlunit {
+    background-image: url('./icons/ControlUnit.png');
+}
+.icon.dimension {
+    background-image: url('./icons/Dimension.png');
+}
+.icon.diptray {
+    background-image: url('./icons/DipTray.png');
+}
+.icon.display {
+    background-image: url('./icons/Display.png');
+}
+.icon.machine {
+    background-image: url('./icons/Machine.png');
+}
+.icon.processor {
+    background-image: url('./icons/Processor.png');
+}
+.icon.ram {
+    background-image: url('./icons/RAM.png');
+}
+.icon.watertank {
+    background-image: url('./icons/WaterTank.png');
+}
 
 .tree-class {
     overflow-y: scroll;
