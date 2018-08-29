@@ -65,7 +65,7 @@ public class StaticContentService {
 		String content = element.getAsJsonObject().get("content").getAsJsonObject().toString();
 		Optional<IWorkflowGeneratorInput> createInput = WorkflowGeneratorInputFactory.getInstance()
 				.createInput(packageName, sourceFile, content);
-		IWorkflowGeneratorOutput generateClasses = new JavaWorkflowGenerator().generateClasses(createInput.get(),
+		IWorkflowGeneratorOutput generateClasses = new JavaWorkflowGenerator().generateClasses(createInput.orElse(null),
 				new NullProgressMonitor());
 		return new Gson().toJson(generateClasses.getGeneratedFiles());
 	}

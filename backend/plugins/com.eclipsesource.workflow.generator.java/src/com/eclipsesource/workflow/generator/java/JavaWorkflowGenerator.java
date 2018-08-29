@@ -17,6 +17,9 @@ public class JavaWorkflowGenerator extends AbstractWorkflowGenerator {
 	@Override
 	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input, IProgressMonitor monitor) {
 		WorkflowGeneratorOutput output = new WorkflowGeneratorOutput(input);
+		if(input == null) {
+			return output;
+		}
 		
 		DynamicCodeGenerator dynamicGen = new DynamicCodeGenerator();
 		StaticCodeGenerator staticGen = new StaticCodeGenerator();
