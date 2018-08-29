@@ -30,8 +30,8 @@ import org.eclipse.ui.statushandlers.StatusManager;
 import com.eclipsesource.workflow.generator.GeneratorUtil;
 import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
-import com.eclipsesource.workflow.generator.WorkflowGeneratorInputFactory;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
+import com.eclipsesource.workflow.generator.uml.WorkflowGeneratorInputFactory;
 
 public class WorkflowBuilder extends IncrementalProjectBuilder {
 
