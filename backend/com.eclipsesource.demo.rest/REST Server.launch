@@ -22,5 +22,5 @@
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="com.eclipsesource.demo.rest@default:default,com.eclipsesource.workflow.analyzer.json@default:default,com.eclipsesource.workflow.analyzer.ui@default:default,com.eclipsesource.workflow.analyzer@default:default,com.eclipsesource.workflow.architecture@default:default,com.eclipsesource.workflow.dsl.ide@default:default,com.eclipsesource.workflow.dsl.ui@default:default,com.eclipsesource.workflow.dsl@default:default,com.eclipsesource.workflow.generator.java@default:default,com.eclipsesource.workflow.generator@default:default,com.eclipsesource.workflow.profile@default:default,com.eclipsesource.xtext.uml.ui@default:default,com.eclipsesource.xtext.uml@default:default"/>
+<stringAttribute key="workspace_bundles" value="com.eclipsesource.demo.rest@default:default,com.eclipsesource.workflow.analyzer.json@default:default,com.eclipsesource.workflow.analyzer@default:default,com.eclipsesource.workflow.dsl@default:default,com.eclipsesource.workflow.generator.java@default:default,com.eclipsesource.workflow.generator@default:default,com.eclipsesource.xtext.uml@default:default"/>
 </launchConfiguration>

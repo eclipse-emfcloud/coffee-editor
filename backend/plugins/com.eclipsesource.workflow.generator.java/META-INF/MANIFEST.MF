@@ -6,17 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: AVL
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.eclipsesource.workflow.generator;bundle-version="[1.0.0,2.0.0)",
- com.google.guava,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro,
- org.eclipse.uml2.uml,
- org.eclipse.core.resources,
- org.eclipse.core.runtime;bundle-version="3.12.0",
- org.eclipse.jdt.core,
- org.eclipse.papyrus.infra.services.validation,
- org.eclipse.papyrus.uml.service.validation;bundle-version="2.0.0",
- com.eclipsesource.workflow.architecture;bundle-version="0.8.0",
- org.apache.commons.io;bundle-version="2.2.0"
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.core.runtime;bundle-version="3.13.0"
 Export-Package: com.eclipsesource.workflow.generator.java
+Automatic-Module-Name: com.eclipsesource.workflow.generator.java
 

@@ -63,8 +63,14 @@ public class StaticContentService {
 		String packageName = element.getAsJsonObject().get("packageName").getAsString();
 		String sourceFile = element.getAsJsonObject().get("sourceFile").getAsString();
 		String content = element.getAsJsonObject().get("content").getAsJsonObject().toString();
+<<<<<<< HEAD
+		Optional<IWorkflowGeneratorInput> createInput = WorkflowGeneratorInputFactory.getInstance()
+				.createInput(packageName, sourceFile, content);
+		IWorkflowGeneratorOutput generateClasses = new JavaWorkflowGenerator().generateClasses(createInput.orElse(null),
+=======
 		IWorkflowGeneratorInput createInput = new SprottyWFWorkflowGeneratorInput(packageName, sourceFile, content);
 		IWorkflowGeneratorOutput generateClasses = new JavaWorkflowGenerator().generateClasses(createInput,
+>>>>>>> Update rest service to be as minimal as possible
 				new NullProgressMonitor());
 		return new Gson().toJson(generateClasses.getGeneratedFiles());
 	}

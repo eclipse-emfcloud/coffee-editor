@@ -1,4 +1,4 @@
-package com.eclipsesource.workflow.generator;
+package com.eclipsesource.workflow.generator.uml;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,24 +7,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
-import com.eclipsesource.workflow.generator.json.SprottyWFWorkflowGeneratorInput;
-import com.eclipsesource.workflow.generator.uml.UMLWorkflowGeneratorInput;
+import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
 
 public class WorkflowGeneratorInputFactory {
 	private static WorkflowGeneratorInputFactory INSTANCE = new WorkflowGeneratorInputFactory();
 	
-	private static Set<String> UML_FILE_EXTENSION = new HashSet<>(Arrays.asList("uml"));
-	private static Set<String> SPROTTYWF_FILE_EXTENSION = new HashSet<>(Arrays.asList("json", "wf"));
-	
-	private static Set<String> SUPPORTED_EXTENSIONS = Stream.of(SPROTTYWF_FILE_EXTENSION)
-			.flatMap(Set::stream).collect(Collectors.toSet());
+	private static Set<String> SUPPORTED_EXTENSIONS = new HashSet<>(Arrays.asList("uml"));
 
 	private WorkflowGeneratorInputFactory() {
 	}
@@ -33,8 +26,7 @@ public class WorkflowGeneratorInputFactory {
 		if(!(resource instanceof IFile)) {
 			return Optional.empty();
 		}
-		if(!UML_FILE_EXTENSION.contains(resource.getFileExtension()) &&
-			!SPROTTYWF_FILE_EXTENSION.contains(resource.getFileExtension())) {
+		if(!SUPPORTED_EXTENSIONS.contains(resource.getFileExtension())) {
 			return Optional.empty();
 		}
 		
@@ -48,11 +40,8 @@ public class WorkflowGeneratorInputFactory {
 	
 	public Optional<IWorkflowGeneratorInput> createInput(String packageName, String sourceFileName, String content) {
 		String fileExtension = getFileExtension(sourceFileName);
-		if(UML_FILE_EXTENSION.contains(fileExtension)) {
+		if(SUPPORTED_EXTENSIONS.contains(fileExtension)) {
 			return Optional.of(new UMLWorkflowGeneratorInput(packageName, sourceFileName, content));
-		}
-		if(SPROTTYWF_FILE_EXTENSION.contains(fileExtension)) {
-			return Optional.of(new SprottyWFWorkflowGeneratorInput(packageName, sourceFileName, content));
 		}
 		return Optional.empty();
 	}
