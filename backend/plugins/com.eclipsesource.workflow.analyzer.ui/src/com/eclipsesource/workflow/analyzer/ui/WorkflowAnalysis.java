@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.util.UMLSwitch;
-
+import com.eclipsesource.workflow.analyzer.json.WorkflowAnalysisGeneric;
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowFactory;
@@ -64,10 +64,10 @@ public class WorkflowAnalysis {
 	
 	private ProbabilityConfiguration probconf;
 
-	private com.eclipsesource.workflow.analyzer.WorkflowAnalysis analysis;
+	private WorkflowAnalysisGeneric analysis;
 
 	public WorkflowAnalysis(Activity activity) {
-		analysis = new com.eclipsesource.workflow.analyzer.WorkflowAnalysis();
+		analysis = new WorkflowAnalysisGeneric();
 		initializeWorkflow(activity);
 
 	}

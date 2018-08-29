@@ -48,7 +48,7 @@ public class StaticContentService {
 	public String workflowAnalysis(String json) {
 		JsonObject element = new JsonParser().parse(json).getAsJsonObject();
 		try {
-			return new AnalyzeWorkflow(element.get("graph").toString(), element.get("config").toString()).generate(new NullProgressMonitor());
+			return new AnalyzeWorkflow(element.get("graph").toString(), element.get("config").getAsString()).generate(new NullProgressMonitor());
 		} catch (IOException e) {
 			return new Gson().toJson(e);
 		}

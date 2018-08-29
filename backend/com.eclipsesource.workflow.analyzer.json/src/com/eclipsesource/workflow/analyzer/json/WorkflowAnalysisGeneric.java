@@ -1,4 +1,4 @@
-package com.eclipsesource.workflow.analyzer;
+package com.eclipsesource.workflow.analyzer.json;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ import workflowanalyzer.NodeExecutionIterator;
 import workflowanalyzer.Task;
 import workflowanalyzer.Workflow;
 
-public class WorkflowAnalysis {
+public class WorkflowAnalysisGeneric {
 
 	private class TaskElement {
 		@SuppressWarnings("unused")

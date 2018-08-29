@@ -8,13 +8,16 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.resource.XtextResourceFactory;
+import org.eclipse.xtext.resource.XtextResourceSet;
 
-import com.eclipsesource.workflow.analyzer.WorkflowAnalysis;
+import com.eclipsesource.workflow.dsl.WorkflowStandaloneSetup;
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowFactory;
@@ -22,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.inject.Injector;
 
 import workflowanalyzer.Decision;
 import workflowanalyzer.ForkOrJoin;
@@ -35,10 +39,10 @@ public class AnalyzeWorkflow {
 	private ProbabilityConfiguration probconf;
 	private Map<String, Node> nodeMap = new LinkedHashMap<String, Node>();
 	private Map<String, Set<JsonObject>> weightedEdgeMap = new LinkedHashMap<String, Set<JsonObject>>();
-	private WorkflowAnalysis analysis;
+	private WorkflowAnalysisGeneric analysis;
 
 	public AnalyzeWorkflow(String graphJson, String configJson) throws IOException {
-		analysis = new WorkflowAnalysis();
+		analysis = new WorkflowAnalysisGeneric();
 		JsonElement graph = new JsonParser().parse(graphJson);
 
 		initializeProbabilityConfiguration(configJson);
@@ -60,10 +64,14 @@ public class AnalyzeWorkflow {
 	}
 
 	private ProbabilityConfiguration loadConfiguration(String configJson) throws IOException {
-		ResourceSet rs = new ResourceSetImpl();
-		Resource resource = rs.createResource(URI.createURI("VIRTUAL-CONFIG-URI"));
+		Injector injector = new WorkflowStandaloneSetup().createInjectorAndDoEMFRegistration();
+		XtextResourceSet rs = injector.getInstance(XtextResourceSet.class);
+		Resource resource = rs.createResource(URI.createURI("dummy:/dummy.wf"));
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(configJson.getBytes())) {
 			resource.load(bis, null);
+		} catch(IOException e) {
+			System.err.println(resource.getErrors());
+			throw e;
 		}
 		return ((WorkflowConfiguration) resource.getContents().get(0)).getProbConf();
 	}
