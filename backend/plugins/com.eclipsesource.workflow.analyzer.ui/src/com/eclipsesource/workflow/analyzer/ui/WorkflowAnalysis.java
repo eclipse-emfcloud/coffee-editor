@@ -230,16 +230,6 @@ public class WorkflowAnalysis {
 
 	}
 
-	
-
-	
-
-	
-
-	
-
-	
-
 	protected Path createAnalysisFilePath() {
 		return new Path(cleanForFileName(activityName) + "_" + //$NON-NLS-1$
 				createTimestamp() + "." + WorkflowAnalysisEditor.EXTENSION); //$NON-NLS-1$

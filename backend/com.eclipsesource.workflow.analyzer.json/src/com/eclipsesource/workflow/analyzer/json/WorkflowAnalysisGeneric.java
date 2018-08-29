@@ -39,7 +39,7 @@ public class WorkflowAnalysisGeneric {
 	private Map<Task, String> taskTypeMap = new HashMap<>();
 	
 	public void addTask(Task task, String type) {
-		taskTypeMap.put(task, "manual");
+		taskTypeMap.put(task, type);
 	}
 	private Task getFirstTask(Workflow workflow) {
 		return (Task) workflow.getNodes().stream()
