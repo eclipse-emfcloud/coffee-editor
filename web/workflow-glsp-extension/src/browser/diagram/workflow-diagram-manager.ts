@@ -16,6 +16,8 @@ import { WorkflowGLClientContribution } from "../language/workflow-gl-client-con
 import { EditorManager } from "@theia/editor/lib/browser";
 import { ThemeManager } from "./thememanager";
 import { MenuModelRegistry, SelectionService, CommandRegistry } from "@theia/core";
+import URI from "@theia/core/lib/common/uri"
+import { OpenerOptions } from "@theia/core/lib/browser";
 
 
 
@@ -43,6 +45,12 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         @inject(SelectionService) readonly selectionService: SelectionService) {
         super();
 
+    }
+
+    canHandle(uri: URI, options?: OpenerOptions | undefined): number {
+        if (uri.path.ext.endsWith("wf"))
+            return 1001
+        return 10
     }
 
     get diagramConnector() {
