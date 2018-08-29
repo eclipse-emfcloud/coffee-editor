@@ -9,7 +9,8 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest"
+    "@theia/core": "latest",
+    "coffee-workflow-analyzer-editors": "0.0.0"
   },
   "devDependencies": {
     "rimraf": "latest",

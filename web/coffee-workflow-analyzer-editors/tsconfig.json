@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "declaration": true,
         "strict": true,
         "experimentalDecorators": true,
         "noUnusedLocals": true,
