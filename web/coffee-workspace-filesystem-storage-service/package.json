@@ -1,5 +1,5 @@
 {
-  "name": "coffee-java-extension",
+  "name": "coffee-workspace-filesystem-storage-service",
   "keywords": [
     "theia-extension"
   ],
@@ -9,8 +9,7 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest",
-    "coffee-workspace-filesystem-storage-service": "0.0.0"
+    "@theia/core": "latest"
   },
   "devDependencies": {
     "rimraf": "latest",

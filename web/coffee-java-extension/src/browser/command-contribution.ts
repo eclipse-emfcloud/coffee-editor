@@ -5,7 +5,7 @@ import { EditorManager } from "@theia/editor/lib/browser";
 import { UriAwareCommandHandler, UriCommandHandler } from "@theia/core/lib/common/uri-command-handler"
 import URI from "@theia/core/lib/common/uri";
 import { OpenerService } from "@theia/core/lib/browser";
-import { WorkspaceStorageServiceFilesystem } from "./workspace-storage-service-filesystem";
+import { WorkspaceStorageServiceFilesystem } from "coffee-workspace-filesystem-storage-service/lib/browser/workspace-storage-service-filesystem";
 
 export const CODEGEN_COMMAND: Command = {
     id: "workflow.generate.code.command",
