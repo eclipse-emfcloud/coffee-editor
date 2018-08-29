@@ -13,7 +13,7 @@ import { LanguageClientContribution } from "@theia/languages/lib/browser"
 import { WorkflowGLClientContribution } from "./language/workflow-gl-client-contribution";
 import { DiagramConfiguration, DiagramManagerProvider, DiagramManager } from "theia-glsp/lib";
 import { WorkflowDiagramConfiguration } from "./diagram/di.config";
-import { WorkflowDiagramManager } from "./diagram/workflow-diagram-manager.";
+import { WorkflowDiagramManager } from "./diagram/workflow-diagram-manager";
 import { WorkflowLanguage } from "../common/workflow-language";
 import { FrontendApplicationContribution, OpenHandler } from "@theia/core/lib/browser";
 import { ThemeManager } from "./diagram/thememanager";
