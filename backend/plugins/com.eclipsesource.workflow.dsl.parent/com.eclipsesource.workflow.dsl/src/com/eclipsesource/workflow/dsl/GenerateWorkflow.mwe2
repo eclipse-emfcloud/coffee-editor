@@ -84,7 +84,7 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "com.eclipsesource.workflow.dsl.Workflow"
-			fileExtensions = "wf"
+			fileExtensions = "wfconfig"
 			serializer = {
 				generateStub = false
 			}

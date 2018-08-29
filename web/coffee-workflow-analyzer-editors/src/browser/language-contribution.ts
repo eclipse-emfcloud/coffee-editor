@@ -31,7 +31,7 @@ export function registerDSL() {
         id: 'wfconfig',
         aliases: ['WFCONFIG', 'wfconfig'],
         extensions: ['.wfconfig'],
-        mimetypes: ['text/wf']
+        mimetypes: ['text/wfconfig']
     })
     monaco.languages.setLanguageConfiguration('wfconfig', {
         comments: {
