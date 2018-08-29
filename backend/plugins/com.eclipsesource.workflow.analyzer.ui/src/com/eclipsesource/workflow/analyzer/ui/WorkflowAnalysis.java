@@ -2,20 +2,14 @@ package com.eclipsesource.workflow.analyzer.ui;
 
 import static java.util.stream.Collectors.toMap;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,46 +41,44 @@ import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.util.UMLSwitch;
-
+import com.eclipsesource.workflow.analyzer.json.WorkflowAnalysisGeneric;
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowFactory;
-import com.google.gson.Gson;
 
 import kotlin.Pair;
 import workflowanalyzer.Decision;
 import workflowanalyzer.ForkOrJoin;
 import workflowanalyzer.Merge;
 import workflowanalyzer.Node;
-import workflowanalyzer.NodeExecutionIterator;
 import workflowanalyzer.Performer;
 import workflowanalyzer.Task;
-import workflowanalyzer.Workflow;
 
 public class WorkflowAnalysis {
 
 	private static final String ILLEGAL_FILE_CHARS_PATTERN = "[^a-zA-Z0-9\\.\\-]"; //$NON-NLS-1$
 
 	private String activityName;
-	private Workflow workflow;
+	
 	private Map<ActivityNode, Node> nodeMap;
-	private Map<Task, String> taskTypeMap;
+	
 	private ProbabilityConfiguration probconf;
 
-	public WorkflowAnalysis(Activity activity) {
+	private WorkflowAnalysisGeneric analysis;
 
+	public WorkflowAnalysis(Activity activity) {
+		analysis = new WorkflowAnalysisGeneric();
 		initializeWorkflow(activity);
 
 	}
 
 	private void initializeWorkflow(Activity activity) {
-		taskTypeMap = new HashMap<>();
+		
 		activityName = activity.getName();
 		initializeProbabilityConfiguration(activity);
 		initializeNodeMap(activity);
 		initializeConnections(activity);
 		setProbabilities(activity);
-		workflow = new Workflow(nodeMap.values().stream().collect(Collectors.toList()));
 	}
 
 	private void initializeNodeMap(Activity activity) {
@@ -133,9 +125,9 @@ public class WorkflowAnalysis {
 		Task task = new Task(object.getName(), new Performer("unkown"),
 				(int) getStereotypeAttribute(object, "duration"));
 		if (isAutomaticTask(object)) {
-			taskTypeMap.put(task, "automatic");
+			analysis.addTask(task, "automatic");
 		} else if (isManualTask(object)) {
-			taskTypeMap.put(task, "manual");
+			analysis.addTask(task, "manual");
 		}
 		return task;
 	}
@@ -218,7 +210,7 @@ public class WorkflowAnalysis {
 			file.delete(true, subMonitor.split(1));
 		}
 		subMonitor.setWorkRemaining(2);
-		file.create(generateAnalysisData(subMonitor.split(1)), true, subMonitor.split(1));
+		file.create(analysis.generateAnalysisData(nodeMap.values().stream().collect(Collectors.toList()),subMonitor.split(1)), true, subMonitor.split(1));
 		return file;
 	}
 
@@ -228,7 +220,7 @@ public class WorkflowAnalysis {
 			destination.delete();
 		}
 		try {
-			FileUtils.writeStringToFile(destination, generateAnalysisDataAsJson(monitor));
+			FileUtils.writeStringToFile(destination, analysis.generateAnalysisDataAsJson(nodeMap.values().stream().collect(Collectors.toList()),monitor));
 			return destination;
 		} catch (IOException e) {
 
@@ -238,49 +230,15 @@ public class WorkflowAnalysis {
 
 	}
 
-	public String generateAnalysisDataAsJson(IProgressMonitor monitor) {
-		final TaskElement rootTask = new TaskElement("Root", "", 1000);
-		buildTaskElementHierarchy(getFirstTask(), rootTask, 1f);
-		return new Gson().toJson(rootTask);
-	}
+	
 
-	protected InputStream generateAnalysisData(IProgressMonitor monitor) {
-		final TaskElement rootTask = new TaskElement("Root", "", 1000);
-		buildTaskElementHierarchy(getFirstTask(), rootTask, 1f);
-		String json = new Gson().toJson(rootTask);
-		return new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8));
-	}
+	
 
-	private Task getFirstTask() {
-		return (Task) workflow.getNodes().stream()
-				.filter((node) -> node instanceof Task && node.getIncoming().isEmpty()).findFirst().get();
-	}
+	
 
-	private void buildTaskElementHierarchy(Node node, TaskElement rootTaskElement, float probability) {
-		TaskElement currentTaskElement = rootTaskElement;
-		int size = Math.round(currentTaskElement.size * probability);
-		NodeExecutionIterator iterator = node.getNodeExecutionIterator();
-		while (iterator.hasNext()) {
-			final Node next = iterator.next();
-			if (next instanceof Task) {
-				TaskElement taskElement = createTaskElement((Task) next, size);
-				currentTaskElement.children.add(taskElement);
-				currentTaskElement = taskElement;
-			} else if (next instanceof Decision) {
-				for (Node nodeAfterDecision : next.getOutgoing()) {
-					buildTaskElementHierarchy(nodeAfterDecision, currentTaskElement,
-							nodeAfterDecision.getProbabilityInBranch());
-				}
-				return;
-			}
-		}
-	}
+	
 
-	private TaskElement createTaskElement(Task task, int probability) {
-		String type = Optional.ofNullable(taskTypeMap.get(task)).orElse("");
-		TaskElement taskElement = new TaskElement(task.getName(), type, probability);
-		return taskElement;
-	}
+	
 
 	protected Path createAnalysisFilePath() {
 		return new Path(cleanForFileName(activityName) + "_" + //$NON-NLS-1$
@@ -295,22 +253,7 @@ public class WorkflowAnalysis {
 		return activityName.replaceAll(ILLEGAL_FILE_CHARS_PATTERN, "_"); //$NON-NLS-1$
 	}
 
-	private class TaskElement {
-		@SuppressWarnings("unused")
-		String name, type;
-
-		@SuppressWarnings("unused")
-		int size;
-
-		List<TaskElement> children = new ArrayList<>();
-
-		public TaskElement(String name, String type, int size) {
-			super();
-			this.name = name;
-			this.type = type;
-			this.size = size;
-		}
-	}
+	
 
 	private ProbabilityConfiguration loadConfiguration(Activity activity) {
 		URI uri = activity.eResource().getURI();

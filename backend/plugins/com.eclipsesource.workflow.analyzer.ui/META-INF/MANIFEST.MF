@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  com.google.gson,
  com.eclipsesource.workflow.dsl,
- org.apache.commons.io;bundle-version="2.2.0"
+ org.apache.commons.io;bundle-version="2.2.0",
+ com.eclipsesource.workflow.analyzer.json
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.eclipsesource.workflow.analyzer.ui

@@ -32,3 +32,6 @@ Export-Package: kotlin,
  kotlin.system,
  kotlin.text,
  workflowanalyzer
+Require-Bundle: com.google.gson,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy

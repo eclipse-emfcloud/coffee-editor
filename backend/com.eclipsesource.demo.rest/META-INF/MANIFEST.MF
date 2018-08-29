@@ -8,7 +8,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.google.gson;bundle-version="2.7.0",
  org.eclipse.core.runtime,
- com.eclipsesource.workflow.dsl.ide
+ com.eclipsesource.workflow.generator.java,
+ com.eclipsesource.workflow.generator,
+ com.eclipsesource.workflow.analyzer.json
 Import-Package: javax.ws.rs,
  javax.ws.rs.container;version="2.0.1",
  javax.ws.rs.core;version="2.0.1",
