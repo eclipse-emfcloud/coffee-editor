@@ -118,11 +118,11 @@ public class AnalyzeWorkflow {
 	}
 
 	private boolean isAutomaticTask(JsonObject object) {
-		return getTaskType(object) == "automated";
+		return getTaskType(object).equals("automated");
 	}
 
 	private boolean isManualTask(JsonObject object) {
-		return getTaskType(object) == "manual";
+		return getTaskType(object).equals("manual");
 	}
 
 	private Node createDecision(JsonObject object) {
@@ -160,11 +160,11 @@ public class AnalyzeWorkflow {
 
 	private void connectSourceAndTarget(JsonElement edge) {
 		JsonObject jsonObject = edge.getAsJsonObject();
-		if (jsonObject.get("type").getAsString() == "edge" || jsonObject.get("type").getAsString() == "edge:weighted") {
+		if (jsonObject.get("type").getAsString().equals("edge") || jsonObject.get("type").getAsString().equals("edge:weighted")) {
 			Node sourceNode = nodeMap.get(jsonObject.get("sourceId").getAsString());
 			sourceNode.connectTo(nodeMap.get(jsonObject.get("targetId").getAsString()));
 		}
-		if (jsonObject.get("type").getAsString() == "edge:weighted") {
+		if (jsonObject.get("type").getAsString().equals("edge:weighted")) {
 			String sourceId = jsonObject.get("sourceId").getAsString();
 			if (!weightedEdgeMap.containsKey(sourceId)) {
 				weightedEdgeMap.put(sourceId, new LinkedHashSet<JsonObject>());
@@ -181,7 +181,7 @@ public class AnalyzeWorkflow {
 	private void setProbabilities(JsonElement decisionNode) {
 		JsonObject jsonObject = decisionNode.getAsJsonObject();
 
-		if (jsonObject.has("nodeType") && jsonObject.get("nodeType").getAsString() == "decisionNode") {
+		if (jsonObject.has("nodeType") && jsonObject.get("nodeType").getAsString().equals("decisionNode")) {
 			Decision decision = (Decision) nodeMap.get(getId(jsonObject));
 
 			for (JsonObject edge : weightedEdgeMap.get(getId(jsonObject))) {
