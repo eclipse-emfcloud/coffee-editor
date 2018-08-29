@@ -61,6 +61,10 @@ public class WorkflowGeneratorInputFactory {
 		return resource != null && SUPPORTED_EXTENSIONS.contains(resource.getFileExtension());
 	}
 	
+	public static boolean canHandle(String sourceFileName) {
+		return sourceFileName != null && SUPPORTED_EXTENSIONS.contains(getFileExtension(sourceFileName));
+	}
+	
 	public static WorkflowGeneratorInputFactory getInstance() {
 		return INSTANCE;
 	}
