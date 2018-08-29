@@ -35,3 +35,4 @@ Export-Package: kotlin,
 Require-Bundle: com.google.gson,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: com.eclipsesource.workflow.analyzer
