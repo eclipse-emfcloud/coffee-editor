@@ -1,0 +1,30 @@
+{
+  "name": "coffee-workflow-generator",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.0.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "latest",
+    "coffee-workspace-filesystem-storage-service": "0.0.0"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/frontend-extension"
+    }
+  ]
+}
