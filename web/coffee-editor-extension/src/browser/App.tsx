@@ -13,10 +13,10 @@ const theme = createMuiTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#000000'
+      main: '#616161'
     },
     secondary: {
-      main: '#217DAF',
+      main: '#d7eaf8',
       dark: '#26A69A'
     },
     background: {
@@ -24,7 +24,8 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontSize: 13
+    fontSize: 13,
+    fontFamily: '"Helvetica Neue"'
   },
   overrides: {
     MuiButton: {
@@ -44,6 +45,20 @@ const theme = createMuiTheme({
     MuiSvgIcon: {
       root: {
         fontSize: '18px'
+      }
+    },
+    MuiTypography: {
+      root: {
+        color: '#616161'
+      },
+      body1: {
+        color: '#616161'
+      },
+      subheading: {
+        color: '#616161'
+      },
+      title: {
+        color: '#616161'
       }
     }
   }
