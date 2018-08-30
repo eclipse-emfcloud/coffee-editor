@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { TreeWithDetailRenderer } from '@jsonforms/material-tree-renderer';
+import  TreeWithDetailRenderer from '@jsonforms/material-tree-renderer/lib/tree/TreeWithDetailRenderer';
 import {
   DIRTY_CLASS,
   TreeEditorProps,
@@ -86,7 +86,7 @@ class App extends React.Component<TreeEditorProps, {}> {
             uischema={uischema}
             schema={schema}
             filterPredicate={filterPredicate}
-            labelProvider={labelProvider}
+            labelProviders={labelProvider}
             imageProvider={imageProvider}
           />
         </div>

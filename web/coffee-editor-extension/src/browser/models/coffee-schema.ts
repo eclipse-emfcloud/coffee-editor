@@ -1,4 +1,4 @@
-const controlUnitView = {
+export const controlUnitView = {
   'type': 'VerticalLayout',
   'elements': [
     {
@@ -123,7 +123,7 @@ const controlUnitView = {
   ]
 };
 
-const machineView = {
+export const machineView = {
   'type': 'VerticalLayout',
   'elements': [
     {
@@ -410,7 +410,3 @@ export const coffeeSchema = {
   ]
 };
 
-export const detailSchemata = {
-  '#controlunit': controlUnitView,
-  '#machine': machineView
-};
