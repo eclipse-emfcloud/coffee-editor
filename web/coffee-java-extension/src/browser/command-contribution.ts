@@ -7,6 +7,7 @@ import URI from "@theia/core/lib/common/uri";
 import { OpenerService, PreferenceService, CommonMenus } from "@theia/core/lib/browser";
 import { WorkspaceStorageServiceFilesystem } from "coffee-workspace-filesystem-storage-service/lib/browser/workspace-storage-service-filesystem";
 import { FileSystem } from "@theia/filesystem/lib/common";
+import { TerminalService } from '@theia/terminal/lib/browser/base/terminal-service';
 
 export const CODEGEN_COMMAND: Command = {
     id: "workflow.generate.code.command",
@@ -18,8 +19,13 @@ export const AUTO_CODEGEN_COMMAND: Command = {
     label: "Auto-Generate Code"
 }
 
+export const TEST_CODE_COMMAND: Command = {
+    id: "workflow.test.code.command",
+    label: "Run JUnit Test"
+}
+
 @injectable()
-export class WorkflowCommandContribution implements CommandContribution, MenuContribution {
+export class JavaGenerationCommandContribution implements CommandContribution, MenuContribution {
     public static readonly AUTO_CODEGEN_PREFERENCE: string = "editor.autoGenerateCode";
 
     protected readonly toDispose = new DisposableCollection();
@@ -34,7 +40,8 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
         @inject(WorkspaceStorageServiceFilesystem) protected readonly wsStorage: WorkspaceStorageServiceFilesystem,
         @inject(CommandService) protected readonly commandService: CommandService,
         @inject(FileSystem) protected readonly fileSystem: FileSystem,
-        @inject(PreferenceService) protected readonly preferenceService: PreferenceService
+        @inject(PreferenceService) protected readonly preferenceService: PreferenceService,
+        @inject(TerminalService) protected readonly terminalService: TerminalService
     ) {
         const event = this.workspace.onDidSaveTextDocument
         if (event) {
@@ -54,6 +61,9 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {
             commandId: CODEGEN_COMMAND.id
+        });
+        menus.registerMenuAction([...['navigator-context-menu'], '1_addition'], {
+            commandId: TEST_CODE_COMMAND.id
         });
         menus.registerMenuAction([...CommonMenus.EDIT, '4_autogenerate'], {
             commandId: AUTO_CODEGEN_COMMAND.id,
@@ -107,6 +117,27 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
             isVisible: isWorkflowFile,
             isEnabled: isWorkflowFile
         }));
+        registry.registerCommand(TEST_CODE_COMMAND, this.newUriAwareCommandHandler({
+            execute: (uri) => {
+                const projectName = deriveProjectName(uri);
+                const packageName = derivePackageName(uri);
+                const binDirectory = deriveBinDirectory(uri);
+                if (projectName && packageName && binDirectory) {
+                    this.terminalService.newTerminal({
+                        title: "JUnit Terminal",
+                        cwd: binDirectory.toString(),
+                        destroyTermOnClose: false
+                    }).then(terminalWidget => {
+                        terminalWidget.start().then(number => {
+                            this.terminalService.activateTerminal(terminalWidget);
+                            terminalWidget.sendText("java -cp .:../lib/* org.junit.runner.JUnitCore " + packageName + "\n");
+                        })
+                    })
+                }
+            },
+            isVisible: isJUnitTestFile,
+            isEnabled: isJUnitTestFile
+        }));
     }
 
     protected newUriAwareCommandHandler(handler: UriCommandHandler<URI>): UriAwareCommandHandler<URI> {
@@ -133,15 +164,54 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
     }
 
     private isAutoGenerateOn(): boolean {
-        const autoSave = this.preferenceService.get(WorkflowCommandContribution.AUTO_CODEGEN_PREFERENCE);
+        const autoSave = this.preferenceService.get(JavaGenerationCommandContribution.AUTO_CODEGEN_PREFERENCE);
         return autoSave === 'on' || autoSave === undefined;
     }
 
     private async toggleAutoGenerate(): Promise<void> {
-        this.preferenceService.set(WorkflowCommandContribution.AUTO_CODEGEN_PREFERENCE, this.isAutoGenerateOn() ? 'off' : 'on');
+        this.preferenceService.set(JavaGenerationCommandContribution.AUTO_CODEGEN_PREFERENCE, this.isAutoGenerateOn() ? 'off' : 'on');
     }
 }
 
 function isWorkflowFile(fileUri: URI): boolean {
     return fileUri.toString().endsWith(".wf");
+}
+
+function isJUnitTestFile(fileUri: URI): boolean {
+    return fileUri.toString().endsWith("Test.java");
+}
+
+function findSourceDirectory(javaUri: URI): URI | undefined {
+    let sourceDir = javaUri;
+    while (!sourceDir.path.isRoot && sourceDir.path.name !== 'src' && sourceDir.path.name !== 'src-gen') {
+        sourceDir = sourceDir.parent
+    }
+    if(sourceDir.path.name === 'src' || sourceDir.path.name === 'src-gen') {
+        return sourceDir
+    }
+    return undefined;
+}
+
+function deriveBinDirectory(javaUri: URI): URI | undefined {
+    const sourceDir = findSourceDirectory(javaUri);
+    if(sourceDir) {
+        return sourceDir.parent.resolve("bin");
+    }
+    return undefined;
+}
+
+function deriveProjectName(javaUri: URI): string | undefined {
+    const sourceDir = findSourceDirectory(javaUri);
+    if(sourceDir) {
+        return sourceDir.parent.path.name;
+    }
+    return undefined;
+}
+
+function derivePackageName(javaUri: URI): string | undefined {
+    const sourceDir = findSourceDirectory(javaUri);
+    if(sourceDir) {
+        return javaUri.toString().replace(sourceDir.toString() + "/", "").replace(".java", "").split('/').join('.');
+    }
+    return undefined;
 }

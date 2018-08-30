@@ -34,7 +34,7 @@ class WorkflowTaskGenerator {
 				}
 			
 				public void execute() throws InterruptedException {
-					Thread.sleep(getDuration() * 1000);
+					Thread.sleep(getDuration());
 					finished = true;
 				}
 			

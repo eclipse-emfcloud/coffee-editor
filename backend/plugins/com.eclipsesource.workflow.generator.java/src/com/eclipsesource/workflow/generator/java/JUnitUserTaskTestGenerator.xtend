@@ -40,27 +40,30 @@ class JUnitUserTaskTestGenerator {
 				
 				@BeforeClass
 				public static void setUpBeforeClass() throws Exception {
-					System.out.println("Setup «packageName.toTestClassName»");
+					// setup resources before all test runs
+					System.out.println("========== Class Setup of «packageName.toTestClassName» ==========");
 				}
 			
 				@AfterClass
 				public static void tearDownAfterClass() throws Exception {
-					System.out.println("Tear down «packageName.toTestClassName»");
+					// tear down resources after all test runs
+					System.out.println("========== Class Tear Down of «packageName.toTestClassName» ==========");
 				}
 			
 				@Before
 				public void setUp() throws Exception {
-					System.out.println("Init before test case");
+					// setup resources before each test run
 				}
 			
 				@After
 				public void tearDown() throws Exception {
-					System.out.println("Tear down after test case");
+					// tear down resources after each test run
 				}
 				«FOR task : tasks»
 				
 				@Test
 				public void test«task.name.toClassName»() throws InterruptedException {
+					System.out.println("Run test«task.name.toClassName»()...");
 					«task.name.toClassName» task = new «task.name.toClassName»();
 					
 					// verify initial state
