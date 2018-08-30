@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { TreeWithDetailRenderer } from '@jsonforms/material-tree-renderer';
 import {
+  DIRTY_CLASS,
   TreeEditorProps,
   mapStateToTreeEditorProps
 } from 'theia-tree-editor';
@@ -51,8 +52,12 @@ const theme = createMuiTheme({
 class App extends React.Component<TreeEditorProps, {}> {
 
   componentDidUpdate(prevProps) {
+    const dirtyClass = ` ${DIRTY_CLASS}`;
     if (!_.isEqual(this.props.rootData, prevProps.rootData)) {
-      this.props.saveable.dirty = true;
+      this.props.widget.saveable.dirty = true;
+      if (!this.props.widget.title.className.includes(dirtyClass)) {
+        this.props.widget.title.className += dirtyClass;
+      }
     }
   }
 
