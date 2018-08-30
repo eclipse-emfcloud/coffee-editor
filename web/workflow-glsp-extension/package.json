@@ -16,7 +16,7 @@
     "@theia/monaco": "latest",
     "@types/node": "^8.0.14",
     "workflow-sprotty": "0.1.0",
-    "glsp-theia-extension": "0.1.0"
+    "glsp-theia-extension": "0.3.0"
   },
   "devDependencies": {
     "rimraf": "latest",
