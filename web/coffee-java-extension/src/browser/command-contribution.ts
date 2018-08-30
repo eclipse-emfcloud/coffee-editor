@@ -72,7 +72,8 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
                 if (!workspaceURI) {
                     return
                 }
-                const packageName = workspaceURI.path.name
+                const generationDirectory = uri.parent;
+                const packageName = generationDirectory.path.name;
                 this.wsStorage.readFileContent(uri)
                     .then(fileContent => {
                         if (fileContent.length > 0) {
@@ -83,18 +84,18 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
                                 sourceFile: uri.path.base.toString(),
                                 content: JSON.parse(fileContent)
                             }
-                            xhttp.setRequestHeader("Content-type", "application/json")
+                            xhttp.setRequestHeader("Content-type", "application/json");
                             xhttp.setRequestHeader("Accept", "application/json");
                             xhttp.send(JSON.stringify(load));
 
                             xhttp.onreadystatechange = (e) => {
                                 var fileList = JSON.parse(xhttp.responseText)
                                 // clear all parent directories
-                                this.deleteDirectories(fileList).then(fileList => {
+                                this.deleteDirectories(fileList, generationDirectory).then(fileList => {
                                     // (re-)generate code
                                     fileList.forEach((generatedFile: any) => {
-                                        this.wsStorage.setWorkspaceFileContent(
-                                            generatedFile.fileName,
+                                        this.wsStorage.setFileContent(
+                                            generationDirectory.resolve(generatedFile.fileName),
                                             generatedFile.content,
                                             generatedFile.overwrite)
                                     });
@@ -112,9 +113,9 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
         return new UriAwareCommandHandler(this.selectionService, handler)
     };
 
-    async deleteDirectories(fileList: any): Promise<any> {
+    async deleteDirectories(fileList: any, generationDirectory: URI): Promise<any> {
         for (const generatedFile of fileList) {
-            const fileUri = this.wsStorage.getWorkspaceFileURI(generatedFile.fileName);
+            const fileUri = generationDirectory.resolve(generatedFile.fileName);
             if (fileUri) {
                 const exists = await this.fileSystem.exists(fileUri.parent.toString());
                 if (exists) {

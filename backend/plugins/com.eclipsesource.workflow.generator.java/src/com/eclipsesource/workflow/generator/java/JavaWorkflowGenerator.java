@@ -9,6 +9,21 @@ import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
 import com.eclipsesource.workflow.generator.impl.WorkflowGeneratorOutput;
 
 public class JavaWorkflowGenerator extends AbstractWorkflowGenerator {
+	private static final String SRC_FOLDER = "src";
+	private static final String SRC_GEN_FOLDER = "src-gen";
+
+	// workflow library
+	private WorkflowTaskGenerator workflowTaskGen = new WorkflowTaskGenerator(SRC_GEN_FOLDER);
+	private AutomaticWorkflowTaskGenerator automaticWorkflowTaskGen = new AutomaticWorkflowTaskGenerator(SRC_GEN_FOLDER);
+	private ManualWorkflowTaskGenerator manualWorkflowTaskGen = new ManualWorkflowTaskGenerator(SRC_GEN_FOLDER);
+	
+	// testing library
+	private JUnitUserTaskTestGenerator junitTestGen = new JUnitUserTaskTestGenerator(SRC_FOLDER);
+	
+	// task-specific files
+	private AbstractTaskGenerator abstractTaskGen = new AbstractTaskGenerator(SRC_GEN_FOLDER);
+	private UserTaskGenerator userTaskGen = new UserTaskGenerator(SRC_FOLDER);	
+	
 	@Override
 	protected void validateInputModel(IWorkflowGeneratorInput input, IProgressMonitor monitor) throws CoreException {
 		// do nothing
@@ -17,39 +32,49 @@ public class JavaWorkflowGenerator extends AbstractWorkflowGenerator {
 	@Override
 	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input, IProgressMonitor monitor) {
 		WorkflowGeneratorOutput output = new WorkflowGeneratorOutput(input);
-		if(input == null) {
+		if(input == null || input.getTasks().isEmpty()) {
 			return output;
 		}
 		
-		DynamicCodeGenerator dynamicGen = new DynamicCodeGenerator();
-		StaticCodeGenerator staticGen = new StaticCodeGenerator();
+		String packageName = JavaUtil.normalize(input.getPackageName());
+		String sourceFileName = input.getSourceFileName();
 		
-		String packageName = input.getPackageName();
-		
-		output.addGeneratedFile(
-				staticGen.toWorkflowTaskName(packageName), 
-				staticGen.toWorkflowTaskContent(packageName),
-				false);
-		
-		output.addGeneratedFile(
-				staticGen.toAutomaticWorkflowTaskName(packageName), 
-				staticGen.toAutomaticWorkflowTaskContent(packageName),
-				false);
-		
-		output.addGeneratedFile(
-				staticGen.toManualWorkflowTaskName(packageName), 
-				staticGen.toManualWorkflowTaskContent(packageName),
-				false);		
+		// generate libraries
+		generateWorkflowLibrary(output, packageName, SRC_GEN_FOLDER);
 
+		// generate tasks
 		input.getTasks().stream().forEach(task -> {
-			String dynamicFileName = dynamicGen.toFileName(input.getPackageName(), task.getName()).toString();
-			String dynamicFileContent = dynamicGen.toFileContent(input.getPackageName(), input.getSourceFileName(), task).toString();
-			output.addGeneratedFile(dynamicFileName, dynamicFileContent);
+			output.addGeneratedFile(
+					abstractTaskGen.toFileName(packageName, task.getName()), 
+					abstractTaskGen.toFileContent(packageName, sourceFileName, task));
 			
-			String staticFileName = staticGen.toFileName(input.getPackageName(), task.getName()).toString();
-			String staticFileContent = staticGen.toFileContent(input.getPackageName(), input.getSourceFileName(), task).toString();
-			output.addGeneratedFile(staticFileName, staticFileContent);
+			output.addGeneratedFile(
+					userTaskGen.toFileName(packageName, task.getName()), 
+					userTaskGen.toFileContent(packageName, sourceFileName, task));			
 		});
+		
+		// generate JUnit test		
+		output.addGeneratedFile(
+				junitTestGen.toFileName(packageName),
+				junitTestGen.toFileContent(packageName, sourceFileName, input.getTasks()));
+
 		return output;
+	}
+
+	private void generateWorkflowLibrary(WorkflowGeneratorOutput output, String packageName, String sourceDir) {
+		output.addGeneratedFile(
+				workflowTaskGen.toFileName(packageName), 
+				workflowTaskGen.toFileContent(packageName),
+				false);
+		
+		output.addGeneratedFile(
+				automaticWorkflowTaskGen.toFileName(packageName), 
+				automaticWorkflowTaskGen.toFileContent(packageName),
+				false);
+		
+		output.addGeneratedFile(
+				manualWorkflowTaskGen.toFileName(packageName), 
+				manualWorkflowTaskGen.toFileContent(packageName),
+				false);
 	}
 }
