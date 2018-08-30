@@ -1,0 +1,162 @@
+{
+  "revision": 0,
+  "type": "graph",
+  "id": "sprotty",
+  "children": [
+    {
+      "name": "Preheat",
+      "expanded": false,
+      "duration": 15,
+      "taskType": "automated",
+      "reference": "BrewingUnit",
+      "layout": "vbox",
+      "position": {
+        "x": 438.0,
+        "y": 192.0
+      },
+      "type": "node:task",
+      "id": "task0",
+      "children": [
+        {
+          "layout": "hbox",
+          "type": "comp:header",
+          "id": "task0_header",
+          "children": [
+            {
+              "layout": "stack",
+              "position": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "layoutOptions": {
+                "resizeContainer": false,
+                "hAlign": "center"
+              },
+              "type": "icon",
+              "id": "task0_icon",
+              "children": [
+                {
+                  "text": "A",
+                  "type": "label:icon",
+                  "id": "task0_ticon"
+                }
+              ]
+            },
+            {
+              "text": "Preheat",
+              "type": "label:heading",
+              "id": "task0_classname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Brew",
+      "expanded": false,
+      "duration": 7,
+      "taskType": "automated",
+      "reference": "BrewingUnit",
+      "layout": "vbox",
+      "position": {
+        "x": 647.0,
+        "y": 187.0
+      },
+      "type": "node:task",
+      "id": "task1",
+      "children": [
+        {
+          "layout": "hbox",
+          "type": "comp:header",
+          "id": "task1_header",
+          "children": [
+            {
+              "layout": "stack",
+              "position": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "layoutOptions": {
+                "resizeContainer": false,
+                "hAlign": "center"
+              },
+              "type": "icon",
+              "id": "task1_icon",
+              "children": [
+                {
+                  "text": "A",
+                  "type": "label:icon",
+                  "id": "task1_ticon"
+                }
+              ]
+            },
+            {
+              "text": "Brew",
+              "type": "label:heading",
+              "id": "task1_classname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AutomatedTask3",
+      "expanded": false,
+      "duration": 0,
+      "taskType": "automated",
+      "layout": "vbox",
+      "position": {
+        "x": 869.0,
+        "y": 193.5
+      },
+      "type": "node:task",
+      "id": "task3",
+      "children": [
+        {
+          "layout": "hbox",
+          "type": "comp:header",
+          "id": "task3_header",
+          "children": [
+            {
+              "layout": "stack",
+              "position": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "layoutOptions": {
+                "resizeContainer": false,
+                "hAlign": "center"
+              },
+              "type": "icon",
+              "id": "task3_icon",
+              "children": [
+                {
+                  "text": "A",
+                  "type": "label:icon",
+                  "id": "task3_ticon"
+                }
+              ]
+            },
+            {
+              "text": "AutomatedTask3",
+              "type": "label:heading",
+              "id": "task3_classname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "task0",
+      "targetId": "task1",
+      "type": "edge",
+      "id": "edge0"
+    },
+    {
+      "sourceId": "task1",
+      "targetId": "task3",
+      "type": "edge",
+      "id": "edge1"
+    }
+  ]
+}
