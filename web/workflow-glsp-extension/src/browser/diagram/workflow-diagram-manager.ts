@@ -11,13 +11,11 @@
 import { injectable, inject } from "inversify";
 import { TheiaFileSaver, DiagramWidgetRegistry } from "theia-glsp/lib";
 import { WorkflowLanguage } from "../../common/workflow-language";
-import { GLSPTheiaSprottyConnector, GraphicalLanguageClientContribution, GLSPDiagramManager } from "glsp-theia-extension/lib/browser";
+import { GLSPTheiaSprottyConnector, GraphicalLanguageClientContribution, GLSPDiagramManager, GLSPPaletteContribution } from "glsp-theia-extension/lib/browser";
 import { WorkflowGLClientContribution } from "../language/workflow-gl-client-contribution";
 import { EditorManager } from "@theia/editor/lib/browser";
 import { ThemeManager } from "./thememanager";
-import { MenuModelRegistry, SelectionService, CommandRegistry } from "@theia/core";
-import URI from "@theia/core/lib/common/uri"
-import { OpenerOptions } from "@theia/core/lib/browser";
+import { read } from "fs";
 
 
 
@@ -40,17 +38,9 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         readonly diagramWidgetRegistry: DiagramWidgetRegistry,
         @inject(ThemeManager)
         readonly themeManager: ThemeManager,
-        @inject(MenuModelRegistry) readonly menuModelRegistry: MenuModelRegistry,
-        @inject(CommandRegistry) readonly commandRegistry: CommandRegistry,
-        @inject(SelectionService) readonly selectionService: SelectionService) {
+        @inject(GLSPPaletteContribution) readonly paletteContribution: GLSPPaletteContribution) {
         super();
 
-    }
-
-    canHandle(uri: URI, options?: OpenerOptions | undefined): number {
-        if (uri.path.ext.endsWith("wf"))
-            return 1001
-        return 10
     }
 
     get diagramConnector() {
@@ -60,9 +50,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
                 this.theiaFileSaver,
                 this.editorManager,
                 this.diagramWidgetRegistry,
-                this.menuModelRegistry,
-                this.commandRegistry,
-                this.selectionService)
+                this.paletteContribution)
             this.themeManager.initialize();
 
         }

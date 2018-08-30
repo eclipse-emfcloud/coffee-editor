@@ -4079,21 +4079,15 @@ globby@^8.0.1:
     pify "^3.0.0"
     slash "^1.0.0"
 
-glsp-sprotty@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/glsp-sprotty/-/glsp-sprotty-0.0.1.tgz#202112b32580cfda0a6258838215d1b9f05d34d2"
+glsp-sprotty@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/glsp-sprotty/-/glsp-sprotty-0.4.0.tgz#3c1e1761ca5a0b5d0c1d83965ec62da98f9ce757"
   dependencies:
     sprotty "0.4.0"
 
-glsp-sprotty@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/glsp-sprotty/-/glsp-sprotty-0.1.0.tgz#d288b55b04ec22e48fed5acee6f911475d73fe54"
-  dependencies:
-    sprotty "0.4.0"
-
-glsp-theia-extension@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/glsp-theia-extension/-/glsp-theia-extension-0.1.0.tgz#ba62d22c4b58cdf3f207989327e4e0830c631e93"
+glsp-theia-extension@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/glsp-theia-extension/-/glsp-theia-extension-0.3.0.tgz#87421ba7ee70b733e4daa9d78e3ba91c0cf20fa1"
   dependencies:
     "@theia/core" latest
     "@theia/editor" latest
@@ -4101,8 +4095,8 @@ glsp-theia-extension@0.1.0:
     "@theia/languages" latest
     "@theia/monaco" latest
     "@types/node" "^8.0.14"
-    glsp-sprotty "0.1.0"
-    theia-glsp "0.1.0"
+    glsp-sprotty "0.4.0"
+    theia-glsp "0.3.0"
 
 got@^6.7.1:
   version "6.7.1"
@@ -8369,16 +8363,16 @@ textextensions@2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.2.0.tgz#38ac676151285b658654581987a0ce1a4490d286"
 
-theia-glsp@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/theia-glsp/-/theia-glsp-0.1.0.tgz#b3ca8bbacd76bbc55af2094daab1c50c6451c941"
+theia-glsp@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/theia-glsp/-/theia-glsp-0.3.0.tgz#654dc6751918919a2c83741c5d4e2a2d43ec3442"
   dependencies:
     "@theia/core" latest
     "@theia/editor" latest
     "@theia/filesystem" latest
     "@theia/languages" latest
     "@theia/monaco" latest
-    glsp-sprotty "0.1.0"
+    glsp-sprotty "0.4.0"
 
 "theia-tree-editor@https://github.com/eclipsesource/theia-tree-editor.git#master":
   version "0.0.5"

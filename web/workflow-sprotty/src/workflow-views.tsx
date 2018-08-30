@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 Tobias Ortmayr.
+ * Copyright (c) 2018 EclipseSource Services GmbH and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  ******************************************************************************/
 import * as snabbdom from "snabbdom-jsx"
 import { TaskNode, WeightedEdge, Icon } from "./model";
-import { RenderingContext, RectangularNodeView, PolylineEdgeView, IView, SShapeElement } from "sprotty/lib";
+import { RenderingContext, RectangularNodeView, PolylineEdgeView, IView, SShapeElement, SEdge, Point, angleOfPoint, toDegrees } from "sprotty/lib";
 import { VNode } from "snabbdom/vnode";
 import { ActivityNode } from "./model";
 
@@ -49,16 +49,23 @@ export class ActivityNodeView extends RectangularNodeView {
                 x={0} y={0}
                 width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)} transform={`rotate(45,${hw},${hh})`}></rect>
             {context.renderChildren(node)}
-
         </g>;
         return graph
-
     }
 }
 
+export class WorkflowEdgeView extends PolylineEdgeView {
+    protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
+        const p1 = segments[segments.length - 2];
+        const p2 = segments[segments.length - 1];
+        return [
+            <path class-sprotty-edge={true} class-arrow={true} d="M 0,0 L 10,-4 L 10,4 Z"
+                transform={`rotate(${toDegrees(angleOfPoint({ x: p1.x - p2.x, y: p1.y - p2.y }))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`} />
+        ];
+    }
+}
 
-export class WeightedEdgeView extends PolylineEdgeView {
-
+export class WeightedEdgeView extends WorkflowEdgeView {
     render(edge: Readonly<WeightedEdge>, context: RenderingContext): VNode {
         const route = edge.route();
         if (route.length === 0)
@@ -75,9 +82,7 @@ export class WeightedEdgeView extends PolylineEdgeView {
             {context.renderChildren(edge, { route })}
         </g>;
     }
-
 }
-
 
 export class IconView implements IView {
 

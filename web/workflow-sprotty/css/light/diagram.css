@@ -67,7 +67,7 @@
 }
 
 .sprotty-edge {
-    fill: none;
+    fill: black;
     stroke:black;
     stroke-width: 2px;
 }

@@ -10,10 +10,9 @@
     "diagram"
   ],
   "dependencies": {
-    "glsp-sprotty": "0.0.1"
+    "glsp-sprotty": "0.4.0"
   },
   "devDependencies": {
-    "glsp-sprotty": "0.0.1",
     "rimraf": "latest",
     "typescript": "latest"
   },
@@ -28,6 +27,6 @@
     "src",
     "build",
     "css",
-     "icons"
+    "icons"
   ]
 }

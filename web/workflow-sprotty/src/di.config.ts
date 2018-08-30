@@ -14,10 +14,10 @@ import {
 } from "sprotty/lib";
 
 
-import { WeightedEdgeView, IconView, ActivityNodeView, TaskNodeView} from "./workflow-views";
+import { WeightedEdgeView, IconView, ActivityNodeView, TaskNodeView, WorkflowEdgeView } from "./workflow-views";
 import { WorkflowModelFactory } from "./model-factory";
 import { TaskNode, WeightedEdge, Icon, ActivityNode } from "./model";
-import {saveModule,GLSPGraph} from "glsp-sprotty/lib"
+import { saveModule, paletteModule, moveToolModule, GLSPGraph } from "glsp-sprotty/lib"
 
 
 const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
@@ -32,12 +32,12 @@ const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind
     configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView);
     configureModelElement(context, 'comp:header', SCompartment, SCompartmentView);
     configureModelElement(context, 'label:icon', SLabel, SLabelView);
-    configureModelElement(context, 'edge', SEdge, PolylineEdgeView);
     configureModelElement(context, 'html', HtmlRoot, HtmlRootView);
     configureModelElement(context, 'pre-rendered', PreRenderedElement, PreRenderedView);
     configureModelElement(context, 'button:expand', SButton, ExpandButtonView);
     configureModelElement(context, 'routing-point', SRoutingHandle, SRoutingHandleView);
     configureModelElement(context, 'volatile-routing-point', SRoutingHandle, SRoutingHandleView);
+    configureModelElement(context, 'edge', SEdge, WorkflowEdgeView)
     configureModelElement(context, 'edge:weighted', WeightedEdge, WeightedEdgeView)
     configureModelElement(context, 'icon', Icon, IconView);
     configureModelElement(context, 'node:activity', ActivityNode, ActivityNodeView)
@@ -48,15 +48,15 @@ export default function createContainer(widgetId: string): Container {
 
     container.load(defaultModule, selectModule, moveModule, boundsModule, undoRedoModule, viewportModule,
         hoverModule, fadeModule, exportModule, expandModule, openModule, buttonModule, modelSourceModule,
-        workflowDiagramModule, saveModule);
+        workflowDiagramModule, saveModule, paletteModule, moveToolModule);
 
-        
+
     overrideViewerOptions(container, {
         needsClientLayout: true,
         needsServerLayout: false,
         baseDiv: widgetId
     })
-    
+
 
     return container
 }
