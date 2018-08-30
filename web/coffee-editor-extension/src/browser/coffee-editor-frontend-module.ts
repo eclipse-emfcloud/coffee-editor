@@ -12,21 +12,49 @@ import {
   DirtyResourceSavable,
   TreeEditorWidget,
   TreeEditorWidgetOptions,
-  TheiaTreeEditorContribution
 } from 'theia-tree-editor';
-import { WidgetFactory, WidgetManager } from '@theia/core/lib/browser';
+import { WidgetFactory, WidgetManager,LabelProviderContribution } from '@theia/core/lib/browser';
+import { MaybePromise } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
+import { FileStat } from '@theia/filesystem/lib/common';
 import { CoffeeApp, initStore } from './coffee-editor';
 import { getData } from '@jsonforms/core';
 import { OpenHandler } from '@theia/core/lib/browser';
 import '../../src/browser/style/index.css';
+import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
+
 export default new ContainerModule(bind => {
   bind(TreeEditorWidget).toSelf();
+  bind(LabelProviderContribution).toDynamicValue(ctx => ({
+    canHandle(uri: object): number {
+      let toCheck = uri;
+      if(FileStat.is(toCheck)){
+        toCheck = new URI(toCheck.uri);
+      }
+      if (toCheck instanceof URI) {
+          if(toCheck.path.ext === '.jc'){
+            return 1000;
+          }
+      }
+      return 0;
+  },
 
+  getIcon(): MaybePromise<string> {
+      return 'database-icon medium-yellow';
+  },
+
+  getName(uri: URI): string {
+      return uri.displayName;
+  },
+
+  getLongName(uri: URI): string {
+      return uri.path.toString();
+  }
+  }));
   // value is cached
-  bind(TheiaTreeEditorContribution).toSelf().inSingletonScope();
+  bind(CoffeeTreeEditorContribution).toSelf().inSingletonScope();
   [CommandContribution, MenuContribution, OpenHandler].forEach(serviceIdentifier =>
-    bind(serviceIdentifier).toService(TheiaTreeEditorContribution)
+    bind(serviceIdentifier).toService(CoffeeTreeEditorContribution)
   );
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(ctx => ({
