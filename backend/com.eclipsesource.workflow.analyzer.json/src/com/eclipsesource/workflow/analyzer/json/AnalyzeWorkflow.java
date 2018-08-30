@@ -63,7 +63,7 @@ public class AnalyzeWorkflow {
 	private ProbabilityConfiguration loadConfiguration(String configJson) throws IOException {
 		Injector injector = new WorkflowStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet rs = injector.getInstance(XtextResourceSet.class);
-		Resource resource = rs.createResource(URI.createURI("dummy:/dummy.wf"));
+		Resource resource = rs.createResource(URI.createURI("dummy:/dummy.wfconfig"));
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(configJson.getBytes())) {
 			resource.load(bis, null);
 		} catch(IOException e) {
