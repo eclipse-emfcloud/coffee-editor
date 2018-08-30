@@ -1,19 +1,15 @@
 import { combineReducers, createStore, Store } from 'redux';
 import { imageProvider, labelProvider, modelMapping } from './config';
-import { coffeeSchema, detailSchemata } from './models/coffee-schema';
+import { coffeeSchema, controlUnitView, machineView } from './models/coffee-schema';
 import { materialFields, materialRenderers } from '@jsonforms/material-renderers';
+import { filterPredicate } from "theia-tree-editor";
+import  {InstanceLabelProvider} from '@jsonforms/material-tree-renderer/lib/helpers/LabelProvider';
 import {
   Actions,
   jsonformsReducer,
   JsonSchema7,
   RankedTester
 } from '@jsonforms/core';
-import {
-  findAllContainerProperties,
-  Property,
-  setContainerProperties,
-  treeWithDetailReducer
-} from '@jsonforms/material-tree-renderer';
 import App from './App';
 import { defaultProps } from "recompose";
 import * as _ from 'lodash';
@@ -25,21 +21,9 @@ interface LabelDefinition {
   property?: string;
 }
 
-const filterPredicate = (data: Object) => {
-  return (property: Property): boolean => {
-    if (!_.isEmpty(modelMapping) &&
-      !_.isEmpty(modelMapping.mapping)) {
-      if (data[modelMapping.attribute]) {
-        return property.schema.$id === modelMapping.mapping[data[modelMapping.attribute]];
-      }
-      return true;
-    }
-
-    return false;
-  };
-};
+const forSchema:InstanceLabelProvider = (schema) => labelProvider[schema["$id"]].constant;
 const calculateLabel =
-  (schema: JsonSchema7) => (element: Object): string => {
+  (schema: JsonSchema7,element: Object): string => {
 
     if (!_.isEmpty(labelProvider) && labelProvider[schema.$id] !== undefined) {
 
@@ -74,8 +58,8 @@ const calculateLabel =
     return JSON.stringify(element);
   };
 
-const imageGetter = (schemaId: string) =>
-  !_.isEmpty(imageProvider) ? `icon ${imageProvider[schemaId]}` : '';
+const imageGetter = (schema: JsonSchema7) =>
+  !_.isEmpty(imageProvider) ? `icon ${imageProvider[schema.$id]}` : '';
 
 export const initStore = async() => {
   const uischema = {
@@ -87,22 +71,13 @@ export const initStore = async() => {
   const jsonforms: any = {
     jsonforms: {
       renderers,
-      fields,
-      treeWithDetail: {
-        imageMapping: imageProvider,
-        labelMapping: labelProvider,
-        modelMapping,
-        uiSchemata: detailSchemata
-      }
+      fields
     }
   };
 
   const store: Store<any> = createStore(
     combineReducers({
         jsonforms: jsonformsReducer(
-          {
-            treeWithDetail: treeWithDetailReducer
-          }
         )
       }
     ),
@@ -112,17 +87,19 @@ export const initStore = async() => {
   );
 
   store.dispatch(Actions.init({}, coffeeSchema, uischema));
-
-  store.dispatch(setContainerProperties(
-    findAllContainerProperties(coffeeSchema, coffeeSchema)));
+  store.dispatch(Actions.registerUISchema((schema => schema['$id']==='#controlunit'?100:-1),controlUnitView));
+  store.dispatch(Actions.registerUISchema((schema => schema['$id']==='#machine'?100:-1),machineView));
 
   return store;
 };
 
 export const CoffeeApp = defaultProps(
   {
-    'filterPredicate': filterPredicate,
-    'labelProvider': calculateLabel,
+    'filterPredicate': filterPredicate(modelMapping),
+    'labelProvider': {
+      forData:calculateLabel,
+      forSchema:forSchema
+    },
     'imageProvider': imageGetter
   }
 )(App);
