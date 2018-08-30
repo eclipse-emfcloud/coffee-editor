@@ -16,6 +16,7 @@
     "coffee-workspace-filesystem-storage-service",
     "workflow-glsp-extension",
     "workflow-sprotty",
+    "coffee-workflow-generator",
     "browser-app",
     "electron-app"
   ]
