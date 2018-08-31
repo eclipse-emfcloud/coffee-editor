@@ -47,7 +47,7 @@ export class ActivityNodeView extends RectangularNodeView {
         const graph = <g>
             <rect class-sprotty-node={true} class-activity-node={true} class-mouseover={node.hoverFeedback} class-selected={node.selected}
                 x={0} y={0}
-                width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)} transform={`rotate(45,${hw},${hh})`}></rect>
+                width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}></rect>
             {context.renderChildren(node)}
         </g>;
         return graph
@@ -59,7 +59,7 @@ export class WorkflowEdgeView extends PolylineEdgeView {
         const p1 = segments[segments.length - 2];
         const p2 = segments[segments.length - 1];
         return [
-            <path class-sprotty-edge={true} class-arrow={true} d="M 0,0 L 10,-4 L 10,4 Z"
+            <path class-sprotty-edge={true} class-arrow={true} d="M 2,0 L 10,-4 L 10,4 Z"
                 transform={`rotate(${toDegrees(angleOfPoint({ x: p1.x - p2.x, y: p1.y - p2.y }))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`} />
         ];
     }

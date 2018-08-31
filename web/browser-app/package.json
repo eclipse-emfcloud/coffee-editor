@@ -25,7 +25,7 @@
     "coffee-workflow-analyzer-editors": "0.0.0",
     "coffee-workspace-filesystem-storage-service": "0.0.0",
     "coffee-java-extension": "0.0.0",
-    "glsp-theia-extension": "0.3.0",
+    "glsp-theia-extension": "0.4.0",
     "workflow-glsp-extension": "0.0.0",
     "coffee-workflow-generator": "0.0.0"
   },
