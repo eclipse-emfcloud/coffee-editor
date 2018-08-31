@@ -8372,7 +8372,7 @@ theia-glsp@0.3.0:
 
 "theia-tree-editor@https://github.com/eclipsesource/theia-tree-editor.git#master":
   version "0.0.5"
-  resolved "https://github.com/eclipsesource/theia-tree-editor.git#05d53e2d8f71be429821cab974892c25cd1a6a2b"
+  resolved "https://github.com/eclipsesource/theia-tree-editor.git#98dce9e5de86a4783d9d65e5095cf33656fd95a2"
 
 theming@^1.3.0:
   version "1.3.0"
