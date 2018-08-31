@@ -46,8 +46,8 @@ export class ActivityNodeView extends RectangularNodeView {
         const hh = node.bounds.height / 2
         const graph = <g>
             <rect class-sprotty-node={true} class-activity-node={true} class-mouseover={node.hoverFeedback} class-selected={node.selected}
-                x={0} y={0}
-                width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}></rect>
+                x={0} y={0} width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}
+                transform={`rotate(${node.rotationInDegrees},${hw},${hh})`}></rect>
             {context.renderChildren(node)}
         </g>;
         return graph

@@ -8,7 +8,7 @@
  * Contributors:
  * 	Tobias Ortmayr - initial API and implementation
  ******************************************************************************/
-import { RectangularNode, SEdge, LayoutContainer, SShapeElement, Bounds, boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature, Expandable, expandFeature, } from "sprotty/lib";
+import { RectangularNode, SEdge, LayoutContainer, SShapeElement, Bounds, boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature, Expandable, expandFeature, Point, SParentElement, toRadians, } from "sprotty/lib";
 import { ActivityNodeSchema } from "./model-schema";
 
 export class TaskNode extends RectangularNode implements Expandable {
@@ -29,14 +29,51 @@ export class WeightedEdge extends SEdge {
     probability?: string
 }
 
-export class ActivityNode extends RectangularNode {
+export class RotatableRectangularNode extends RectangularNode {
+
+    rotationInDegrees: number = 0
+
+    getTranslatedAnchor(refPoint: Point, refContainer: SParentElement, edge: SEdge, offset?: number): Point {
+        let cx = this.position.x + this.size.width / 2
+        let cy = this.position.y + this.size.height / 2
+        let translatedRefPoint = this.rotatePoint(cx, cy, -this.rotationInDegrees, refPoint)
+        let originalAnchor = super.getTranslatedAnchor(translatedRefPoint, refContainer, edge, offset);
+        return this.rotatePoint(cx, cy, this.rotationInDegrees, originalAnchor);
+    }
+
+    rotatePoint(cx: number, cy: number, angle: number, p: Point): Point {
+        let rad = toRadians(angle)
+        let s = Math.sin(rad);
+        let c = Math.cos(rad);
+
+        // translate point back to origin:
+        let x = p.x;
+        let y = p.y;
+        x -= cx;
+        y -= cy;
+
+        // rotate point
+        let xnew = x * c - y * s;
+        let ynew = x * s + y * c;
+
+        // translate point back:
+        return {
+            x: xnew + cx,
+            y: ynew + cy
+        };
+    }
+}
+
+export class ActivityNode extends RotatableRectangularNode {
     nodeType: string = ActivityNodeSchema.Type.UNDEFINED
     size = {
         width: 16,
         height: 16
     };
-
+    rotationInDegrees = 45
 }
+
+
 export class Icon extends SShapeElement implements LayoutContainer {
     layout: string
     layoutOptions?: { [key: string]: string | number | boolean; };
