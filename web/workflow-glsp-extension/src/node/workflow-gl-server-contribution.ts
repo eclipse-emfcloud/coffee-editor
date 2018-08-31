@@ -29,6 +29,8 @@ export class WorkflowGLServerContribution extends BaseGraphicalLanguageServerCon
     readonly id = WorkflowLanguage.Id
     readonly name = WorkflowLanguage.Name
 
+    serverStarted = false
+
     readonly description = {
         id: 'workflow',
         name: 'Workflow',
@@ -39,26 +41,39 @@ export class WorkflowGLServerContribution extends BaseGraphicalLanguageServerCon
     }
 
     start(clientConnection: IConnection): void {
+        console.log('[WorkflowGL] Start Server for Client Connection.')
         let socketPort = getPort();
-        console.log('before spawn')
-        const child = spawn('java -jar ~/.glsp-workflow/workflow-example-0.0.1-SNAPSHOT-glsp.jar', [''], {
-            detached: true,
-            shell: true,
-            stdio: 'inherit'
-          });
-          child.unref();
-          console.log('after spawn')  
         if (socketPort) {
+            if (!this.serverStarted) {
+                const command = 'java';
+                const jarPath = '~/.glsp-workflow/workflow-example-0.0.1-SNAPSHOT-glsp.jar';
+                const args: string[] = [];
+                args.push(
+                    '-jar', jarPath
+                );
+
+                console.log('[WorkflowGL] Spawn Server Process from ' + jarPath + '.')
+                const child = spawn(command, args, {
+                    detached: true,
+                    shell: true,
+                    stdio: 'inherit'
+                });
+                child.unref();
+            }
+
             const socket = new net.Socket()
+            console.log('[WorkflowGL] Create Socket Connection at ' + socketPort + '.')
             const serverConnection = createSocketConnection(socket, socket, () => {
+                console.log('[WorkflowGL] Socket Connection Disposed.')
                 socket.destroy()
             });
+            console.log('[WorkflowGL] Forward Client Connections.')
             this.forward(clientConnection, serverConnection)
             socket.connect(socketPort)
+            this.serverStarted = true;
+            console.log('[WorkflowGL] Client Connection Started.')
         } else {
-            console.error("Error when trying to connect to Workflow graphical language server")
+            console.log('[WorkflowGL] Unable to connect to Workflow Graphical Language Server: No Socket Port.')
         }
     }
-
-
 }
