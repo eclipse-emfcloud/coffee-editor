@@ -1,17 +1,35 @@
 /**
  * Generated using theia-extension-generator
  */
-import { ContainerModule } from "inversify";
-import { WorkflowCommandContribution } from './command-contribution';
 import { CommandContribution, MenuContribution } from '@theia/core';
-import { ThemeService } from '@theia/core/lib/browser/theming'
+import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
+import { OpenHandler } from '@theia/core/lib/browser';
+import { LocationMapper } from '@theia/mini-browser/lib/browser/location-mapper-service';
 
-const LIGHT_THEME_ID = "light"
+import { ContainerModule, injectable } from "inversify";
+import { filePath, IFileClient, IFileServer } from '../common/request-file-protocol';
+import { AnalysisService } from './analysis-service';
+import { AnalysisEditorOpenHandler, WorkflowFileLocationMapper } from './editor-contribution';
+import { WorkflowCommandContribution } from './command-contribution';
+
 export default new ContainerModule(bind => {
-    ThemeService.get().setCurrentTheme(LIGHT_THEME_ID)
-
+    bind(AnalysisService).toSelf().inSingletonScope();
     bind(WorkflowCommandContribution).toSelf().inSingletonScope();
-    bind(CommandContribution).toDynamicValue(ctx => ctx.container.get(WorkflowCommandContribution)).inSingletonScope();
-    bind(MenuContribution).toDynamicValue(ctx => ctx.container.get(WorkflowCommandContribution)).inSingletonScope();
+
+    bind(WorkflowFileClient).toSelf()
+    bind(IFileServer).toDynamicValue(ctx => {
+        const connection = ctx.container.get(WebSocketConnectionProvider);
+        const client = ctx.container.get(WorkflowFileClient)
+        return connection.createProxy<IFileServer>(filePath, client);
+    }).inSingletonScope();
+
+    bind(OpenHandler).to(AnalysisEditorOpenHandler);
+    bind(LocationMapper).to(WorkflowFileLocationMapper);
+
+    [CommandContribution, MenuContribution].forEach(s => bind(s).to(WorkflowCommandContribution));
 
 });
+@injectable()
+export class WorkflowFileClient implements IFileClient{
+
+}
