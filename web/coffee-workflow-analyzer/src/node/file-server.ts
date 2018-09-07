@@ -1,9 +1,7 @@
-import { IFileServer, IFileClient, TypeNotFound } from "../common/request-file-protocol";
+import { IFileServer, IFileClient, TypeNotFound,FileTypes } from "../common/request-file-protocol";
 import * as path from 'path'
 import { injectable } from "inversify";
-export namespace FileTypes {
-    export const WORKFLOW_ANALYSIS_HTML = "wfanalysis"
-}
+
 
 @injectable()
 export class WorkflowFileServer implements IFileServer {

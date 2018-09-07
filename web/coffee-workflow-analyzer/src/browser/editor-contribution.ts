@@ -2,11 +2,9 @@ import { injectable, inject } from "inversify";
 import { OpenHandler, OpenerOptions, Endpoint } from "@theia/core/lib/browser";
 import { SelectionService, ResourceProvider, MaybePromise } from "@theia/core";
 import { MiniBrowserOpenHandler } from "@theia/mini-browser/lib/browser/mini-browser-open-handler";
-
+import {IFileServer, FileTypes} from '../common/request-file-protocol';
 import { LocationMapper } from "@theia/mini-browser/lib/browser/location-mapper-service";
 import URI from "@theia/core/lib/common/uri";
-import { IFileServer } from "../common/request-file-protocol";
-import { FileTypes } from "../node/file-server";
 
 export namespace AnalysisEditor {
     export const FILE_EXTENSION = '.wfanalysis'
