@@ -51,7 +51,7 @@ export class WorkspaceStorageServiceFilesystem {
         }
     }
 
-    private getWorkspaceURI(): URI | undefined {
+    getWorkspaceURI(): URI | undefined {
         const rootPath = this.workspace.rootPath
         if (isString(rootPath)) {
             return new URI(rootPath);
