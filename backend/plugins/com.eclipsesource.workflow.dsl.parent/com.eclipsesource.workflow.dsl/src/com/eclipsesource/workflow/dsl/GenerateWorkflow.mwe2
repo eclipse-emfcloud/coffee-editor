@@ -4,14 +4,14 @@ import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
 
 var rootPath = ".."
-var projectName = "com.eclipsesource.workflow.dsl"
-var runtimeProject = "../${projectName}"
+//var projectName = "com.eclipsesource.workflow.dsl"
+//var runtimeProject = "../${projectName}"
 
 Workflow {
 
 	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
 		scanClassPath = true
-		platformUri = "${runtimeProject}/.."
+		platformUri = "${rootPath}"
 		uriMap = {
 			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
 			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
@@ -75,6 +75,7 @@ Workflow {
 					enabled = true
 				}
 				createEclipseMetaData = true
+				
 			}
 			code = {
 				encoding = "UTF-8"
