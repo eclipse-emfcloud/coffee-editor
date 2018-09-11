@@ -1,10 +1,24 @@
-language: node_js
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - "8"
+      before_install:
+        - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
+      script:
+        - cd web/ && yarn --network-concurrency 1
 
-node_js:
-  - "8"
-
-before_install:
-  - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
-
-script:
-  - cd web/ && yarn --network-concurrency 1
+    - language: java
+      jdk:
+        - oraclejdk8
+      cache:
+        directories:
+          - "$HOME/.m2/repository"
+      env:  
+        global:  
+          - DISPLAY=:99.0
+      before_install:
+        - sh -e /etc/init.d/xvfb start - sleep 10
+      install: true
+      script:
+        - cd backend && mvn clean insteall

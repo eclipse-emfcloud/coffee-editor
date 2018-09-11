@@ -1,45 +1,26 @@
 import URI from "@theia/core/lib/common/uri";
 import { MiniBrowserOpenHandler } from "@theia/mini-browser/lib/browser/mini-browser-open-handler";
-import { IFileServer,FileTypes } from "../common/request-file-protocol";
-import { WorkspaceStorageServiceFilesystem } from "coffee-workspace-filesystem-storage-service/lib/browser/workspace-storage-service-filesystem";
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
+import { FileTypes, IFileServer } from "../common/request-file-protocol";
+import { WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
 
 @injectable()
 export class AnalysisService {
     constructor(
         @inject(MiniBrowserOpenHandler) private readonly openHandler: MiniBrowserOpenHandler,
         @inject(IFileServer) private readonly fileServer: IFileServer,
-        @inject(WorkspaceStorageServiceFilesystem) private readonly workpaceFilesystemService: WorkspaceStorageServiceFilesystem
+        @inject(WorkflowAnalyzer) private readonly workflowAnalyzer: WorkflowAnalyzer
     ) { }
 
     analyze(uri: URI): void {
-        const configFilePath = uri.path.toString();
-        const configFileContent = this.workpaceFilesystemService.readFileContent(new URI(configFilePath));
+        const configFilePath = uri.toString();
 
-        const wfFilePath = uri.path.toString().replace(".wfconfig", ".wf");
-        const wfFileContent = this.workpaceFilesystemService.readFileContent(new URI(wfFilePath));
-
-
-        Promise.all([configFileContent, wfFileContent]).then((result) => {
-            const configContent = result[0];
-            const wfContent = result[1];
-            const content = {
-                'graph': JSON.parse(wfContent),
-                'config': configContent
-            };
-            const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:9090/services/backend/wfanalysis", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("Accept", "application/json");
-            xhttp.send(JSON.stringify(content));
-
-            xhttp.onreadystatechange = async (e) => {
-                const htmlFile = await this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
-                const jsonFile = escape(xhttp.responseText);
-                const urlWithQuery = htmlFile + "?json=" + jsonFile;
-                return await this.openHandler.open(undefined, { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
-            }
-
+        const wfFilePath = uri.toString().replace(".wfconfig", ".wf");
+        const analysisPromise = this.workflowAnalyzer.analyze(wfFilePath, configFilePath);
+        const htmlFilePromise = this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
+        Promise.all([analysisPromise, htmlFilePromise]).then(async ([jsonFile, htmlFile]) => {
+            const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
+            return await this.openHandler.open(undefined, { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
         });
     }
 }

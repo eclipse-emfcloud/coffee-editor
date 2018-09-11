@@ -1,14 +1,13 @@
 package com.eclipsesource.workflow.generator.java;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import com.eclipsesource.workflow.generator.AbstractWorkflowGenerator;
+import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
 import com.eclipsesource.workflow.generator.impl.WorkflowGeneratorOutput;
 
-public class JavaWorkflowGenerator extends AbstractWorkflowGenerator {
+public class JavaWorkflowGenerator implements IWorkflowGenerator {
 	private static final String SRC_FOLDER = "src";
 	private static final String SRC_GEN_FOLDER = "src-gen";
 
@@ -24,10 +23,6 @@ public class JavaWorkflowGenerator extends AbstractWorkflowGenerator {
 	private AbstractTaskGenerator abstractTaskGen = new AbstractTaskGenerator(SRC_GEN_FOLDER);
 	private UserTaskGenerator userTaskGen = new UserTaskGenerator(SRC_FOLDER);	
 	
-	@Override
-	protected void validateInputModel(IWorkflowGeneratorInput input, IProgressMonitor monitor) throws CoreException {
-		// do nothing
-	}
 
 	@Override
 	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input, IProgressMonitor monitor) {

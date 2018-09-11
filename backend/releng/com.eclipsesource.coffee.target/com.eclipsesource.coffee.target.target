@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
+<target name="Coffee Photon" sequenceNumber="1536577606">
+  <locations>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
+      <unit id="org.apache.commons.lang" version="2.6.0.v201404270220"/>
+      <repository id="orbit-release" location="http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.uml2.feature.group" version="5.4.0.v20180604-1153"/>
+      <repository id="eclipse-photon" location="http://download.eclipse.org/releases/photon/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.e4.rcp.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+      <repository id="eclipse-4.8" location="http://download.eclipse.org/eclipse/updates/4.8"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.xtext.xbase.lib.feature.group" version="2.14.0.v20180522-1631"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.14.0.v20180523-0937"/>
+      <unit id="org.eclipse.xtext.xbase.feature.group" version="2.14.0.v20180523-0937"/>
+      <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+    </location>
+  </locations>
+</target>

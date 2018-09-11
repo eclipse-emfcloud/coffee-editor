@@ -27,7 +27,6 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-import com.eclipsesource.workflow.generator.GeneratorUtil;
 import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
@@ -142,12 +141,11 @@ public class WorkflowBuilder extends IncrementalProjectBuilder {
 						String errorMessage = "There are model validation errors in " + resource.getName();
 						addMarker(file, errorMessage, 1, IMarker.SEVERITY_ERROR);
 					}
-					generator.generate(input.get(), subMonitor.split(1));
+					GenerateClasses.generate(input.get(), generator, subMonitor.split(1));
 					input.get().dispose();
 				}				
 			}
 		}
-		generator.dispose();
 	}
 
 	private IStatus validateModel(IWorkflowGeneratorInput input, IProgressMonitor monitor) {

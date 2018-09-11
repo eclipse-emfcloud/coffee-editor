@@ -11,6 +11,7 @@ import { filePath, IFileClient, IFileServer } from '../common/request-file-proto
 import { AnalysisService } from './analysis-service';
 import { AnalysisEditorOpenHandler, WorkflowFileLocationMapper } from './editor-contribution';
 import { WorkflowCommandContribution } from './command-contribution';
+import { WorkflowAnalyzer, workflowServicePath } from '../common/workflow-analyze-protocol';
 
 export default new ContainerModule(bind => {
     bind(AnalysisService).toSelf().inSingletonScope();
@@ -22,6 +23,12 @@ export default new ContainerModule(bind => {
         const client = ctx.container.get(WorkflowFileClient)
         return connection.createProxy<IFileServer>(filePath, client);
     }).inSingletonScope();
+
+    bind(WorkflowAnalyzer).toDynamicValue(ctx => {
+        const connection = ctx.container.get(WebSocketConnectionProvider);
+        return connection.createProxy<WorkflowAnalyzer>(workflowServicePath);
+    }).inSingletonScope();
+
 
     bind(OpenHandler).to(AnalysisEditorOpenHandler);
     bind(LocationMapper).to(WorkflowFileLocationMapper);
