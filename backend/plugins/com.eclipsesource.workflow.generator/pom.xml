@@ -4,9 +4,9 @@
 	<artifactId>com.eclipsesource.workflow.generator</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<parent>
-		<groupId>com.eclipsesource.codegen</groupId>
-		<artifactId>com.eclipsesource.codegen.parent</artifactId>
+		<groupId>com.eclipsesource.coffee</groupId>
+		<artifactId>com.eclipsesource.coffee.parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
-		<relativePath>../../releng/com.eclipsesource.codegen.parent</relativePath>
+		<relativePath>../../releng/com.eclipsesource.coffee.parent</relativePath>
 	</parent>
 </project>
