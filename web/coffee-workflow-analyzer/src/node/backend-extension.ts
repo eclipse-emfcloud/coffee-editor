@@ -9,6 +9,8 @@ import { ContainerModule } from "inversify";
 import { ConnectionHandler, JsonRpcConnectionHandler } from "@theia/core";
 import { IFileClient, filePath, IFileServer } from "../common/request-file-protocol";
 import { WorkflowFileServer } from "./file-server";
+import { WorkflowAnalyzer, workflowServicePath } from "../common/workflow-analyze-protocol";
+import { WorkflowAnalyzerServer } from "./analyze";
 
 export default new ContainerModule(bind => {
     bind(IFileServer).to(WorkflowFileServer).inSingletonScope()
@@ -19,6 +21,14 @@ export default new ContainerModule(bind => {
             return fileServer;
         })
     ).inSingletonScope();
+
+    bind(WorkflowAnalyzer).to(WorkflowAnalyzerServer).inSingletonScope();
+    bind(ConnectionHandler).toDynamicValue(ctx =>
+        new JsonRpcConnectionHandler<WorkflowAnalyzer>(workflowServicePath, () => {
+            return ctx.container.get<WorkflowAnalyzer>(WorkflowAnalyzer);
+        })
+    ).inSingletonScope();
 });
+
 
 

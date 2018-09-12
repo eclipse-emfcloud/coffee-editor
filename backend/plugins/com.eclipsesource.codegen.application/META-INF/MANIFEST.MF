@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Codegen
+Bundle-SymbolicName: com.eclipsesource.codegen.application;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: ECLIPSESOURCE
+Require-Bundle: org.eclipse.core.runtime,
+ com.eclipsesource.workflow.generator,
+ com.eclipsesource.workflow.generator.json,
+ com.eclipsesource.workflow.generator.java
+Automatic-Module-Name: com.eclipsesource.codegen
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

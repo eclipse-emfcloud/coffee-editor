@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.eclipsesource.workflow.analyzer.application.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.eclipsesource.coffee.workflow.analyzer.application.application"
+            name="Workflow Analyzer">
+         <property
+               name="appName"
+               value="Workflow Analyzer">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

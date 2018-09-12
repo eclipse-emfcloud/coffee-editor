@@ -1,0 +1,32 @@
+target "Coffee 2018-09" with source, requirements
+
+
+location "http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository" orbit-release {
+	com.google.gson [2.7.0,2.8.0)
+	org.apache.commons.lang
+}
+
+//location "http://download.eclipse.org/releases/2018-09/" eclipse-photon {
+//	org.eclipse.uml2.feature.group
+//	org.eclipse.emf.mwe2.launcher.feature.group
+//}
+
+location "http://download.eclipse.org/releases/oxygen/" eclipse-photon {
+	org.eclipse.uml2.feature.group
+	org.eclipse.emf.mwe2.launcher.feature.group
+}
+
+location "http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950" eclipse-4.8 {
+	org.eclipse.e4.rcp.feature.group lazy
+	org.eclipse.equinox.executable.feature.group lazy
+}
+
+//location "http://download.eclipse.org/eclipse/updates/4.9milestones" eclipse-4.9 {
+//	org.eclipse.e4.rcp.feature.group lazy
+//	org.eclipse.equinox.executable.feature.group lazy
+//}
+location "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" xtext {
+	org.eclipse.xtext.xbase.lib.feature.group
+	org.eclipse.xtext.runtime.feature.group
+	org.eclipse.xtext.xbase.feature.group
+}
