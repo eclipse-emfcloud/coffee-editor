@@ -3,12 +3,6 @@
  */
 package com.eclipsesource.workflow.dsl.scoping
 
-import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration
-import com.eclipsesource.workflow.dsl.workflow.WorkflowPackage
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.uml2.uml.OpaqueAction
-import org.eclipse.xtext.scoping.IScope
-import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 /**
@@ -18,14 +12,4 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
  * on how and when to use it.
  */
 class WorkflowScopeProvider extends AbstractDeclarativeScopeProvider {
-	def IScope scope_Workflow_assertions(WorkflowConfiguration wfConfig, EReference eReference) {
-		if (!eReference.equals(WorkflowPackage.Literals.WORKFLOW_CONFIGURATION__ASSERTIONS)) {
-			return null
-		}
-		if (wfConfig.model !== null) {
-			return Scopes.scopeFor(wfConfig.model.allOwnedElements.filter(OpaqueAction))
-		}
-		return IScope.NULLSCOPE
-
-	}
 }

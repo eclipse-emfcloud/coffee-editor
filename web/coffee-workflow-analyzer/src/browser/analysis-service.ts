@@ -13,13 +13,18 @@ export class AnalysisService {
     ) { }
 
     analyze(uri: URI): void {
+        console.log('[WorkflowAnalyzer] Analyze ' + uri)
         const configFilePath = uri.toString();
 
         const wfFilePath = uri.toString().replace(".wfconfig", ".wf");
+        console.log('[WorkflowAnalyzer] Analyze' + wfFilePath + ' with ' + configFilePath)
         const analysisPromise = this.workflowAnalyzer.analyze(wfFilePath, configFilePath);
+        console.log('[WorkflowAnalyzer] Request Analysis File ' + FileTypes.WORKFLOW_ANALYSIS_HTML)
         const htmlFilePromise = this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
         Promise.all([analysisPromise, htmlFilePromise]).then(async ([jsonFile, htmlFile]) => {
+            console.log('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile)
             const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
+            console.log('[WorkflowAnalyzer] Open Analysis Result')
             return await this.openHandler.open(undefined, { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
         });
     }

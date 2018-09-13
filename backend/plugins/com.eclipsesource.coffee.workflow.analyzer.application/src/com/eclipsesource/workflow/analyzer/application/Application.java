@@ -8,7 +8,6 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
@@ -51,7 +50,7 @@ public class Application implements IApplication {
 			String wfConfigUri = request.get("WFConfig-URI").getAsString();
 			String graph = new String(Files.readAllBytes(Paths.get(URI.create(wfUri))));
 			String config = new String(Files.readAllBytes(Paths.get(URI.create(wfConfigUri))));
-			String analyzeResult = new AnalyzeWorkflow(graph, config).generate(new NullProgressMonitor());
+			String analyzeResult = new AnalyzeWorkflow(graph, config).generate();
 			osw.write(analyzeResult);
 			osw.flush();
 		}

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.eclipse.core.runtime.IProgressMonitor;
+
 import com.google.gson.Gson;
 
 import workflowanalyzer.Decision;
@@ -45,14 +45,14 @@ public class WorkflowAnalysisGeneric {
 		return (Task) workflow.getNodes().stream()
 				.filter((node) -> node instanceof Task && node.getIncoming().isEmpty()).findFirst().get();
 	}
-	public String generateAnalysisDataAsJson(List<Node> nodes, IProgressMonitor monitor) {
+	public String generateAnalysisDataAsJson(List<Node> nodes) {
 		final TaskElement rootTask = new TaskElement("Root", "", 1000);
 		buildTaskElementHierarchy(getFirstTask(new Workflow(nodes)), rootTask, 1f);
 		return new Gson().toJson(rootTask);
 	}
 	
-	public InputStream generateAnalysisData(List<Node> nodes, IProgressMonitor monitor) {
-		String json = generateAnalysisDataAsJson(nodes, monitor);
+	public InputStream generateAnalysisData(List<Node> nodes) {
+		String json = generateAnalysisDataAsJson(nodes);
 		return new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8));
 	}
 	

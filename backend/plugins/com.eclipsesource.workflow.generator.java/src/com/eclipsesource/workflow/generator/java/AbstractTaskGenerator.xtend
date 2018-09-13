@@ -1,10 +1,10 @@
 package com.eclipsesource.workflow.generator.java
 
-import com.eclipsesource.workflow.generator.IWorkflowTask
-import java.time.format.DateTimeFormatter
+import com.eclipsesource.workflow.IAutomaticWorkflowTask
+import com.eclipsesource.workflow.IManualWorkflowTask
+import com.eclipsesource.workflow.IWorkflowTask
 import java.time.LocalDateTime
-import com.eclipsesource.workflow.generator.IManualWorkflowTask
-import com.eclipsesource.workflow.generator.IAutomaticWorkflowTask
+import java.time.format.DateTimeFormatter
 
 class AbstractTaskGenerator {
 	String sourceDirectory

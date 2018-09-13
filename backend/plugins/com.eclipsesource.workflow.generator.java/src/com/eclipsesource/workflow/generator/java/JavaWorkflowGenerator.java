@@ -1,7 +1,5 @@
 package com.eclipsesource.workflow.generator.java;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-
 import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
@@ -25,9 +23,9 @@ public class JavaWorkflowGenerator implements IWorkflowGenerator {
 	
 
 	@Override
-	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input, IProgressMonitor monitor) {
+	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input) {
 		WorkflowGeneratorOutput output = new WorkflowGeneratorOutput(input);
-		if(input == null || input.getTasks().isEmpty()) {
+		if(input == null || input.getGraph() == null || input.getGraph().getTasks().isEmpty()) {
 			return output;
 		}
 		
@@ -38,7 +36,7 @@ public class JavaWorkflowGenerator implements IWorkflowGenerator {
 		generateWorkflowLibrary(output, packageName, SRC_GEN_FOLDER);
 
 		// generate tasks
-		input.getTasks().stream().forEach(task -> {
+		input.getGraph().getTasks().stream().forEach(task -> {
 			output.addGeneratedFile(
 					abstractTaskGen.toFileName(packageName, task.getName()), 
 					abstractTaskGen.toFileContent(packageName, sourceFileName, task));
@@ -51,7 +49,7 @@ public class JavaWorkflowGenerator implements IWorkflowGenerator {
 		// generate JUnit test		
 		output.addGeneratedFile(
 				junitTestGen.toFileName(packageName),
-				junitTestGen.toFileContent(packageName, sourceFileName, input.getTasks()));
+				junitTestGen.toFileContent(packageName, sourceFileName, input.getGraph().getTasks()));
 
 		return output;
 	}

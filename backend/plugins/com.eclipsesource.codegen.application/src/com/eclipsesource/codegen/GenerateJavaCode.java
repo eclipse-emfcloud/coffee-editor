@@ -8,19 +8,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
-
 import com.eclipsesource.workflow.generator.IWorkflowGenerator;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
 import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
 
 public class GenerateJavaCode {
 
-	public static IStatus generate(URI targetLocation, IWorkflowGeneratorInput input, IWorkflowGenerator generator)
+	public static void generate(URI targetLocation, IWorkflowGeneratorInput input, IWorkflowGenerator generator)
 			throws UnsupportedEncodingException, IOException {
-		IWorkflowGeneratorOutput output = generator.generateClasses(input, new NullProgressMonitor());
+		IWorkflowGeneratorOutput output = generator.generateClasses(input);
 		Path targetFolder = Paths.get(targetLocation);
 
 		for (IWorkflowGeneratorOutput.IGeneratedFile generatedFile : output.getGeneratedFiles()) {
@@ -30,6 +26,5 @@ public class GenerateJavaCode {
 				Files.write(file, generatedFile.getContent().getBytes(StandardCharsets.UTF_8.name()));
 			}
 		}
-		return Status.OK_STATUS;
 	}
 }

@@ -35,12 +35,16 @@
 				<configuration>
 					<products>
 						<product>
-							<id>codegen</id>
+							<id>com.eclipsesource.coffee.product.codegen</id>
 							<attachId>CodeGen</attachId>
 						</product>
 						<product>
-							<id>workflowAnalyzer</id>
+							<id>com.eclipsesource.coffee.product.workflow.analyzer</id>
 							<attachId>Analyzer</attachId>
+						</product>
+						<product>
+							<id>com.eclipsesource.coffee.product.workflow.dsl</id>
+							<attachId>WorkflowDSL</attachId>
 						</product>
 					</products>
 				</configuration>

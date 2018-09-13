@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.XtextResourceSet;
@@ -202,7 +201,7 @@ public class AnalyzeWorkflow {
 		return 1f;
 	}
 	
-	public String generate(IProgressMonitor monitor) {
-		return analysis.generateAnalysisDataAsJson(nodeMap.values().stream().collect(Collectors.toList()),monitor);
+	public String generate() {
+		return analysis.generateAnalysisDataAsJson(nodeMap.values().stream().collect(Collectors.toList()));
 	}
 }

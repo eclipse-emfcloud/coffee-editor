@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Code Gen" uid="codegen" id="com.eclipsesource.codegen.application.product" application="com.eclipsesource.codegen.application.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
+<product name="Code Gen" uid="com.eclipsesource.coffee.product.codegen" id="com.eclipsesource.codegen.application.product" application="com.eclipsesource.codegen.application.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
 
    <configIni use="default">
    </configIni>

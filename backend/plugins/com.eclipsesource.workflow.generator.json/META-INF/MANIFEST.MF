@@ -1,11 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Json
+Bundle-Name: Workflow Code Generator JSon Support
 Bundle-SymbolicName: com.eclipsesource.workflow.generator.json
 Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: ECLIPSESOURCE
+Bundle-Vendor: EclipseSource
 Automatic-Module-Name: com.eclipsesource.workflow.generator.json
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.google.gson,
- com.eclipsesource.workflow.generator;bundle-version="0.1.0"
+ com.eclipsesource.workflow.generator;bundle-version="0.1.0",
+ com.eclipsesource.workflow
 Export-Package: com.eclipsesource.workflow.generator.json

@@ -27,6 +27,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
 
         return new Promise((resolve) => {
             return this.getSocket(command, args).then(socket => {
+                console.log('[WorkflowAnalyzer] Send Request for ' + wfUri + ' and ' + wfConfigUri)
                 const request = {'WF-URI':wfUri,'WFConfig-URI':wfConfigUri };
                 socket.write(JSON.stringify(request)+'\n');
 
@@ -48,6 +49,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
             '-host', address.address,
             '-port', address.port.toString(),
         );
+        console.log('[WorkflowAnalyzer] Spawn Process with Command ' + command + ' and arguments ' + args)
         this.spawnProcess(command, args);
         return socket;
     }
@@ -82,7 +84,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
             );
             // allocate ports dynamically
             server.listen(0, '127.0.0.1');
-            console.log('started server');
+            console.log('[WorkflowAnalyzer] Server Started')
         });
     }
 
@@ -90,7 +92,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         return new Promise((resolve, reject) => {
             server.on('error', reject);
             server.on('connection', socket => {
-                console.log('started socket');
+                console.log('[WorkflowAnalyzer] Socket Started')
                 // stop accepting new connections
                 server.close();
                 resolve(socket);

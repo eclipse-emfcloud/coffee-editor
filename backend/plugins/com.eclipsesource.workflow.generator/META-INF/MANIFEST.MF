@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Statemachine Generator Framework
+Bundle-Name: Workflow Code Generator Model
 Bundle-SymbolicName: com.eclipsesource.workflow.generator
 Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: AVL
+Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.eclipsesource.workflow.generator,
  com.eclipsesource.workflow.generator.impl
 Automatic-Module-Name: com.eclipsesource.workflow.generator
-Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0"
+Require-Bundle: com.eclipsesource.workflow

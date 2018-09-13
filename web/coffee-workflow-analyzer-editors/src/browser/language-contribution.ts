@@ -17,7 +17,8 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
 
     protected get globPatterns() {
         return [
-            '**/*.wfconfig'
+            '**/*.wfconfig',
+            '**/*.wf'
         ];
     }
 }

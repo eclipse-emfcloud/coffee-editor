@@ -36,7 +36,7 @@
 						<artifact>
 							<groupId>com.eclipsesource.coffee</groupId>
 							<artifactId>com.eclipsesource.coffee.target</artifactId>
-							<version>${project.version}</version>
+							<version>0.1.0-SNAPSHOT</version>
 						</artifact>
 					</target>
 					<environments>
@@ -89,24 +89,15 @@
 	<modules>
 		<module>../com.eclipsesource.coffee.target</module>
 		<module>../com.eclipsesource.coffee.product</module>
-		
-		<!-- Code Gen -->
+		<module>../../plugins/com.eclipsesource.workflow</module>
 		<module>../../plugins/com.eclipsesource.codegen.application</module>
-		<module>../../plugins/com.eclipsesource.coffee.workflow.analyzer.application</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator.java</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator.json</module>
-		
+		<module>../../plugins/com.eclipsesource.coffee.workflow.analyzer.application</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer.json</module>
-		<module>../../plugins/com.eclipsesource.workflow.dsl.parent/com.eclipsesource.workflow.dsl</module>
-		<module>../../plugins/com.eclipsesource.xtext.uml</module>
+		<module>../../plugins/com.eclipsesource.workflow.dsl.parent</module>
+		
 	</modules>
-		<pluginRepositories>
-		<pluginRepository>
-			<id>jboss</id>
-			<url>http://repository.jboss.org/</url>
-			<layout>default</layout>
-		</pluginRepository>
-	</pluginRepositories>
 </project>

@@ -33,8 +33,6 @@ public class WorkflowGeneratorOutput implements IWorkflowGeneratorOutput {
 		addGeneratedFile(fileName, content, true);
 	}
 	
-
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("Output for '" + input.getPackageName() + "/" + input.getSourceFileName() + "':\n");
