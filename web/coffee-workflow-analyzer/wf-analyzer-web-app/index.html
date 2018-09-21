@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Sequences sunburst</title>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <script src="./d3.min.js"></script>
+    <link rel="stylesheet" type="text/css"href="./analyze.css">
   </head>
   <body onload="init()">
     <div id="main">
@@ -292,68 +291,5 @@ function drawLegend() {
 
   </script>
 
-  <style media="screen" type="text/css">
-  
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  background-color: #fff;
-  width: 960px;
-  height: 700px;
-  margin-top: 10px;
-}
-/*
- * Based on work by kerryrodden
- * Apache License 2.0
- * See https://bl.ocks.org/kerryrodden/7090426
- */
-
-#main {
-  float: left;
-  width: 750px;
-}
-
-#sidebar {
-  float: right;
-  width: 100px;
-}
-
-#sequence {
-  width: 700px;
-  height: 70px;
-}
-
-#legend {
-  padding: 10px 0 0 3px;
-}
-
-#sequence text, #legend text {
-  font-weight: 400;
-  fill: #fff;
-}
-
-#chart {
-  position: relative;
-}
-
-#chart path {
-  stroke: #fff;
-}
-
-#explanation {
-  position: absolute;
-  top: 145px;
-  left: 205px;
-  width: 140px;
-  text-align: center;
-  color: #666;
-  z-index: -1;
-}
-
-#percentage {
-  font-size: 2.3em;
-
-</style>
   </body>
 </html>

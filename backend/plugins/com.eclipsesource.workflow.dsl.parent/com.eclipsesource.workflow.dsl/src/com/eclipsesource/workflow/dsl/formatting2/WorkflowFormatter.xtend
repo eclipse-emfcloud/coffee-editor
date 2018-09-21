@@ -36,7 +36,7 @@ class WorkflowFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(Assertion assert, extension IFormattableDocument document) {
-		assert.before.append[newLine]
-		assert.after.prepend[newLine]
+//		assert.before.append[newLine]
+//		assert.after.prepend[newLine]
 	}
 }

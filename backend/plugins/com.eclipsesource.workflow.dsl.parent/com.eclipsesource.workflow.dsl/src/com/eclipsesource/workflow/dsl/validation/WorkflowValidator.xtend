@@ -3,8 +3,13 @@
  */
 package com.eclipsesource.workflow.dsl.validation
 
+import com.eclipsesource.workflow.dsl.index.IWorkflowIndex
+import com.eclipsesource.workflow.dsl.workflow.Assertion
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration
+import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration
 import com.eclipsesource.workflow.dsl.workflow.WorkflowPackage
+import com.google.inject.Inject
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
 
 /**
@@ -18,8 +23,43 @@ class WorkflowValidator extends AbstractWorkflowValidator {
 	public static val WRONG_PROBABILITY_ORDER = "propabilityOrder"
 	public static val PROBABILITY_NOT_IN_RANGE = "probabilityNotInRange"
 
-	private static val PROBABILITY_ORDER_WARNING = "The probability value for \"%s\" is higher than the probability value for \"%s\"";
-	private static val PROBABILITY_RANGE_ERROR = "The probability value for \"%s\" must be between 0.0 and 1.0"
+	static val PROBABILITY_ORDER_WARNING = "The probability value for \"%s\" is higher than the probability value for \"%s\"";
+	static val PROBABILITY_RANGE_ERROR = "The probability value for \"%s\" must be between 0.0 and 1.0"
+
+	static val INVALID_TASK_ID = "invalidTaskID"
+	static val INVALID_TASK_ID_MESSAGE = "The ID does not refer to a task of \"%s\"."
+
+	static val DUPLICATE_TASKS = "duplicateTasks"
+	static val DUPLICATE_TASKS_MESSAGE = "Before and After cannot be the same."
+
+	static val INVALID_MODEL_ID = "invalidModelID"
+	static val INVALID_MODEL_ID_MESSAGE = "The ID does not refer to an existing model."
+	
+	@Inject
+	IWorkflowIndex index;
+
+	@Check
+	def checkAssertion(WorkflowConfiguration workflowConfiguration) {
+		if(!index.getGraph(workflowConfiguration.model).isPresent) {
+			error(INVALID_MODEL_ID_MESSAGE,
+				WorkflowPackage.Literals.WORKFLOW_CONFIGURATION__MODEL, INVALID_MODEL_ID);
+		}
+	}
+
+	@Check
+	def checkAssertion(Assertion assertion) {
+		if(!index.getTaskByName(assertion.workflowConfiguration.model, assertion.before).present) {
+			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model),
+				WorkflowPackage.Literals.ASSERTION__BEFORE, INVALID_TASK_ID);
+		}
+		if(!index.getTaskByName(assertion.workflowConfiguration.model, assertion.after).present) {
+			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model),
+				WorkflowPackage.Literals.ASSERTION__AFTER, INVALID_TASK_ID);
+		}
+		if(assertion.after == assertion.before) {
+			error(DUPLICATE_TASKS_MESSAGE, WorkflowPackage.Literals.ASSERTION__AFTER, DUPLICATE_TASKS);
+		}
+	}
 
 	@Check
 	def checkProbabilityRange(ProbabilityConfiguration probConf) {
@@ -51,6 +91,9 @@ class WorkflowValidator extends AbstractWorkflowValidator {
 			warning(String.format(WorkflowValidator.PROBABILITY_ORDER_WARNING, "MEDIUM", "HIGH"),
 				WorkflowPackage.Literals.PROBABILITY_CONFIGURATION__MEDIUM, WRONG_PROBABILITY_ORDER);
 		}
-
+	}
+	
+	def WorkflowConfiguration workflowConfiguration(EObject assertion) {
+		assertion.eContainer as WorkflowConfiguration
 	}
 }

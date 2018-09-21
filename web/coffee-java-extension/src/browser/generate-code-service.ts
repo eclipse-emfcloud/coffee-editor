@@ -1,10 +1,9 @@
-import URI from "@theia/core/lib/common/uri";
-import { FileSystem } from "@theia/filesystem/lib/common";
-import { WorkspaceStorageServiceFilesystem } from "coffee-workspace-filesystem-storage-service/lib/browser/workspace-storage-service-filesystem";
-import { injectable, inject } from "inversify";
-import { Workspace } from "@theia/languages/lib/common";
 import { DisposableCollection } from "@theia/core";
 import { PreferenceService } from "@theia/core/lib/browser";
+import URI from "@theia/core/lib/common/uri";
+import { Workspace } from "@theia/languages/lib/common";
+import { inject, injectable } from "inversify";
+import { CodeGenServer } from "../common/generate-protocol";
 
 @injectable()
 export class GenerateCodeService {
@@ -13,9 +12,8 @@ export class GenerateCodeService {
     constructor(
         @inject(Workspace) private readonly workspace: Workspace,
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
-        @inject(FileSystem) private readonly fileSystem: FileSystem,
-        @inject(WorkspaceStorageServiceFilesystem) private readonly wsStorage: WorkspaceStorageServiceFilesystem,
-    ){
+        @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer
+    ) {
         const event = this.workspace.onDidSaveTextDocument
         if (event) {
             this.toDispose.push(event(textDocument => {
@@ -31,56 +29,11 @@ export class GenerateCodeService {
         }
     }
     public generateCode(uri: URI): void {
-        const workspaceURI = this.wsStorage.getWorkspaceURI();
-        if (!workspaceURI) {
-            return
-        }
         const generationDirectory = uri.parent;
         const packageName = generationDirectory.path.name;
-        this.wsStorage.readFileContent(uri)
-            .then(async fileContent => {
-                if (fileContent.length > 0) {
-                    const xhttp = new XMLHttpRequest();
-                    xhttp.open("POST", "http://localhost:9090/services/backend/generate", true);
-                    const load = {
-                        packageName: packageName,
-                        sourceFile: uri.path.base.toString(),
-                        content: JSON.parse(fileContent)
-                    }
-                    xhttp.setRequestHeader("Content-type", "application/json");
-                    xhttp.setRequestHeader("Accept", "application/json");
-                    xhttp.send(JSON.stringify(load));
-
-                    xhttp.onreadystatechange = (e) => {
-                        var fileList = JSON.parse(xhttp.responseText)
-                        // clear all parent directories
-                        this.deleteDirectories(fileList, generationDirectory).then(fileList => {
-                            // (re-)generate code
-                            fileList.forEach((generatedFile: any) => {
-                                this.wsStorage.setFileContent(
-                                    generationDirectory.resolve(generatedFile.fileName),
-                                    generatedFile.content,
-                                    generatedFile.overwrite)
-                            });
-                        });
-                    }
-                }
-            });
-    }
-
-    private async deleteDirectories(fileList: any, generationDirectory: URI): Promise<any> {
-        for (const generatedFile of fileList) {
-            const fileUri = generationDirectory.resolve(generatedFile.fileName);
-            if (fileUri) {
-                const exists = await this.fileSystem.exists(fileUri.parent.toString());
-                if (exists) {
-                    console.log("Delete " + fileUri.parent.toString() + "...")
-                    await this.fileSystem.delete(fileUri.parent.toString());
-                    console.log("Done deleting " + fileUri.parent.toString() + ".")
-                }
-            }
-        }
-        return fileList;
+        const sourceFile = uri.toString();
+        const target = generationDirectory.toString();
+        this.codeGenServer.generateCode(sourceFile, target, packageName).then(r => console.log(r));
     }
 
     dispose(): void {

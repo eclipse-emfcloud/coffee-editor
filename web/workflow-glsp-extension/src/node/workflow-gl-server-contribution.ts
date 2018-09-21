@@ -73,7 +73,7 @@ export class WorkflowGLServerContribution extends BaseGraphicalLanguageServerCon
             this.serverStarted = true;
             console.log('[WorkflowGL] Client Connection Started.')
         } else {
-            console.log('[WorkflowGL] Unable to connect to Workflow Graphical Language Server: No Socket Port.')
+            console.error('[WorkflowGL] Unable to connect to Workflow Graphical Language Server: No Socket Port.')
         }
     }
 }

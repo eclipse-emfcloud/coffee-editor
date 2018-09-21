@@ -1,6 +1,6 @@
 package com.eclipsesource.workflow.generator;
 
-import java.util.List;
+import com.eclipsesource.workflow.IWorkflowGraph;
 
 public interface IWorkflowGeneratorInput {
 
@@ -8,7 +8,7 @@ public interface IWorkflowGeneratorInput {
 	
 	String getSourceFileName();
 	
-	List<IWorkflowTask> getTasks();
+	IWorkflowGraph getGraph();
 
 	void dispose();
 

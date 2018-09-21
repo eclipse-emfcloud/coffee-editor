@@ -3,15 +3,15 @@
  */
 package com.eclipsesource.workflow.dsl.ide
 
-import com.eclipsesource.workflow.dsl.ide.^extension.CommandService
-import org.eclipse.xtext.ide.server.commands.IExecutableCommandService
+import com.eclipsesource.workflow.dsl.ide.contentassist.WorkflowIdeContentProposalProvider
+import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider
 
 /**
  * Use this class to register ide components.
  */
 class WorkflowIdeModule extends AbstractWorkflowIdeModule {
 	
-	def Class<? extends IExecutableCommandService> bindIExecutableCommandService() {
-		return CommandService
+	def Class<? extends IdeContentProposalProvider> bindIdeContentProposalProvider() {
+		WorkflowIdeContentProposalProvider
 	}
 }

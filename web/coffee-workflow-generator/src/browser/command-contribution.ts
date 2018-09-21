@@ -42,7 +42,7 @@ export class WorkflowGenerateCommandContribution implements CommandContribution,
                     const workflow = {
                         'revision': 0,
                         'type': "graph",
-                        'id': "sprotty",
+                        'id': uri.path.name,
                         'children': []
                     } as Workflow;
 

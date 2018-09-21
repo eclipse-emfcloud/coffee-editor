@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9" xmi:id="_ukgiYJbrEeeyGfBUdbYPdw">
-  <modelElementFactories xmi:id="_vPBPAJebEeevq8NPNSck1g" name="Workflow Stereotype Factory" factoryClass="com.eclipsesource.workflow.architecture.internal.modelelement.WorkflowStereotypeModelFactory"/>
-  <namespaces xmi:id="_7G_LgJbrEeeyGfBUdbYPdw" name="wfadl" value="com.eclipsesource.workflow.architecture.properties.widgets"/>
-</environment:Environment>

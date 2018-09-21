@@ -1,4 +1,4 @@
-workflowModel : sc3000
+workflowModel : SuperBrewer3001
 
 probabilities
 low    : 0.1

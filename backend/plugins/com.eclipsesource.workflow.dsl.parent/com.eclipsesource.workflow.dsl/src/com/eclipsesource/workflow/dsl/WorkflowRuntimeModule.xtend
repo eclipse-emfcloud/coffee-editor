@@ -3,9 +3,14 @@
  */
 package com.eclipsesource.workflow.dsl
 
+import com.eclipsesource.workflow.dsl.index.IWorkflowIndex
+import com.eclipsesource.workflow.dsl.index.WorkflowIndex
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class WorkflowRuntimeModule extends AbstractWorkflowRuntimeModule {
+	def Class<? extends IWorkflowIndex> bindIWorkflowIndex() {
+		return WorkflowIndex;
+	}
 }

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Workflow Analyzer JSon Support
+Bundle-SymbolicName: com.eclipsesource.coffee.workflow.analyzer.json
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Automatic-Module-Name: com.eclipsesource.workflow.analyzer.json
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.eclipsesource.workflow.analyzer.json
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.eclipsesource.workflow.dsl,
+ com.google.gson,
+ com.eclipsesource.coffee.workflow.analyzer,
+ com.google.inject,
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext
