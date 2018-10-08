@@ -1,1 +1,1 @@
-/// <reference types='monaco-editor-core/monaco'/>
+/// <reference types='@typefox/monaco-editor-core/monaco'/>

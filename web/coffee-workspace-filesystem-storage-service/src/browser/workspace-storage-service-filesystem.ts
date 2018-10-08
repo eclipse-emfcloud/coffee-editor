@@ -1,7 +1,7 @@
 import { injectable, inject } from 'inversify';
 import { FileSystem } from '@theia/filesystem/lib/common';
 import URI from '@theia/core/lib/common/uri';
-import { Workspace } from "@theia/languages/lib/common";
+import { Workspace } from "@theia/languages/lib/browser";
 import { isString } from "util";
 
 @injectable()
