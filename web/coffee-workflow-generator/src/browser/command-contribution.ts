@@ -1,7 +1,7 @@
 import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, Command, SelectionService } from "@theia/core/lib/common";
 import { injectable, inject } from "inversify";
 
-import { Workspace } from "@theia/languages/lib/common";
+import { Workspace } from "@theia/languages/lib/browser";
 import { EditorManager } from "@theia/editor/lib/browser";
 
 import { UriAwareCommandHandler, UriCommandHandler } from "@theia/core/lib/common/uri-command-handler"

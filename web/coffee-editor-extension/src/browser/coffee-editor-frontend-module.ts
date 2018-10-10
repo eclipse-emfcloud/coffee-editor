@@ -2,7 +2,7 @@
  * Generated using theia-extension-generator
  */
 import { getData } from '@jsonforms/core';
-import { LabelProviderContribution, OpenHandler, WidgetFactory, WidgetManager } from '@theia/core/lib/browser';
+import { LabelProviderContribution, OpenHandler, WidgetFactory, WidgetManager, NavigatableWidgetOptions } from '@theia/core/lib/browser';
 import { CommandContribution, MenuContribution, MessageService, ResourceProvider } from "@theia/core/lib/common";
 import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from "inversify";
@@ -22,9 +22,10 @@ export default new ContainerModule(bind => {
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(ctx => ({
     id: 'theia-tree-editor',
-    async createWidget(uri: string): Promise<TreeEditorWidget> {
+    async createWidget(options: NavigatableWidgetOptions): Promise<TreeEditorWidget> {
       const { container } = ctx;
-      const resource = await container.get<ResourceProvider>(ResourceProvider)(new URI(uri));
+      const uri = new URI(options.uri);
+      const resource = await container.get<ResourceProvider>(ResourceProvider)(uri);
       const widgetManager = await container.get<WidgetManager>(WidgetManager);
       const messageService = await container.get<MessageService>(MessageService);
       const store = await initStore();
@@ -48,7 +49,7 @@ export default new ContainerModule(bind => {
           resource,
           store,
           EditorComponent: CoffeeApp,
-          fileName: new URI(uri).path.base,
+          fileName: uri.path.base,
           saveable,
           onResourceLoad
         });

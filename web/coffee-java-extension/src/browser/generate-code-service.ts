@@ -1,7 +1,7 @@
 import { DisposableCollection } from "@theia/core";
 import { PreferenceService } from "@theia/core/lib/browser";
 import URI from "@theia/core/lib/common/uri";
-import { Workspace } from "@theia/languages/lib/common";
+import { Workspace } from "@theia/languages/lib/browser";
 import { inject, injectable } from "inversify";
 import { CodeGenServer } from "../common/generate-protocol";
 

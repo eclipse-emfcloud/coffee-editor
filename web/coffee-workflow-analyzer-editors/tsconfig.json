@@ -1,9 +1,14 @@
 {
     "compilerOptions": {
+        "skipLibCheck": true,
         "declaration": true,
-        "strict": true,
-        "experimentalDecorators": true,
+        "declarationMap": true,
+        "noImplicitAny": true,
+        "noEmitOnError": false,
+        "noImplicitThis": true,
         "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "downlevelIteration": true,
         "module": "commonjs",
