@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2018-09" sequenceNumber="1537435524">
+<target name="Coffee 2018-09" sequenceNumber="1556179668">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
@@ -19,13 +19,13 @@
       <repository id="eclipse-4.8" location="http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.xbase.lib.feature.group" version="2.15.0.v20180916-1132"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.15.0.v20180916-1232"/>
-      <unit id="org.eclipse.xtext.xbase.feature.group" version="2.15.0.v20180916-1232"/>
+      <unit id="org.eclipse.xtext.xbase.lib.feature.group" version="2.17.1.v20190401-1513"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.17.1.v20190403-0733"/>
+      <unit id="org.eclipse.xtext.xbase.feature.group" version="2.17.1.v20190403-0733"/>
       <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.5.0.v20180903-1212"/>
+      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.7.1.v20190416-0714"/>
       <repository location="http://download.eclipse.org/lsp4j/updates/releases/"/>
     </location>
   </locations>

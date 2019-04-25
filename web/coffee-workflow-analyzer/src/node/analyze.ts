@@ -42,7 +42,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         const socket = this.accept(server);
         const address = server.address();
 
-        if (isString(address)) {
+        if (isString(address) || !address) {
             throw new Error("Wrong type of socket!");
         }
         args.push(
@@ -63,11 +63,13 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
     private spawnProcess(command: string, args?: string[]): RawProcess {
         const rawProcess = this.processFactory({ command, args });
         rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
-        rawProcess.process.stderr.on('data', this.logError.bind(this));
+        const stderr = rawProcess.process.stderr;
+        if(stderr)
+            stderr.on('data', this.logError.bind(this));
         return rawProcess;
     }
     protected onDidFailSpawnProcess(error: Error): void {
-        console.error(error);
+        console.error(JSON.stringify(error));
     }
 
     protected logError(data: string | Buffer) {

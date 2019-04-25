@@ -53,7 +53,9 @@ export class CoffeeCodeGenServer implements CodeGenServer {
     private spawnProcess(command: string, args?: string[]): RawProcess {
         const rawProcess = this.processFactory({ command, args });
         rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
-        rawProcess.process.stderr.on('data', this.logError.bind(this));
+        const stderr = rawProcess.process.stderr;
+        if(stderr)
+            stderr.on('data', this.logError.bind(this));
         return rawProcess;
     }
     protected onDidFailSpawnProcess(error: Error): void {

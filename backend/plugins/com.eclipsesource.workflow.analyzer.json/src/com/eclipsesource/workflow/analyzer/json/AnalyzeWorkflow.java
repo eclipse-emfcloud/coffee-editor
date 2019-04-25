@@ -97,7 +97,11 @@ public class AnalyzeWorkflow {
 			}
 		if (jsonObject.has("type"))
 			switch (jsonObject.get("type").getAsString()) {
+			// legacy support
 			case "node:task":
+			// new types
+			case "task:manual":
+			case "task:automated":
 				nodeMap.put(getId(jsonObject), createTask(jsonObject));
 				break;
 			}

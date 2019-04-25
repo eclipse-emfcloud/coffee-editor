@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sequences sunburst</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <link rel="stylesheet" type="text/css" href="./css/workflowburst.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+  </head>
+  <body>
+    <div id="main">
+      <div id="sequence"></div>
+      <div id="chart">
+        <div id="explanation" style="visibility: hidden;">
+          <span id="percentage"></span><br/>
+          of executions take this path
+        </div>
+      </div>
+    </div>
+    <div id="sidebar">
+      <div id="legend"></div>
+    </div>
+    <script type="text/javascript" src="./js/workflowburst.js"></script>
+    <script type="text/javascript">
+      d3.select(self.frameElement).style("height", "450px");
+  </script>
+  </body>
+</html>

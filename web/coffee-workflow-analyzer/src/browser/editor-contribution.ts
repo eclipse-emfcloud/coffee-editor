@@ -32,7 +32,7 @@ export class AnalysisEditorOpenHandler implements OpenHandler {
                     const jsonFile = escape(content);
                     const editorName = resource.uri.displayName.replace(AnalysisEditor.FILE_EXTENSION, "")
                     const urlWithQuery = htmlFile + "?json=" + jsonFile;
-                    return await this.openHandler.open(undefined, { name: editorName, startPage: urlWithQuery, toolbar: 'hide' });
+                    return await this.openHandler.open(new URI(undefined), { name: editorName, startPage: urlWithQuery, toolbar: 'hide' });
                 }
             });
         });

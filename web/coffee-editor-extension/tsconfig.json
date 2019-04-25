@@ -10,6 +10,7 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "downlevelIteration": true,
+        "skipLibCheck": true,
         "module": "esnext",
         "moduleResolution": "node",
         "target": "es5",
