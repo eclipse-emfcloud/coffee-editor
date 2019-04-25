@@ -1,1 +1,3 @@
 @import './example.css';
+svg {border:none;}
+button[type='button'] {padding:0}
