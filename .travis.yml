@@ -5,9 +5,15 @@ matrix:
         - "8"
       before_install:
         - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+      env:
+        global:
+          - NODE_OPTIONS=--max-old-space-size=4096
       script:
         - cd web/ && yarn --network-concurrency 1
-
     - language: java
       jdk: oraclejdk8
       cache:
