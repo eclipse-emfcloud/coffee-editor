@@ -9,33 +9,6 @@ var rootPath = ".."
 
 Workflow {
 
-	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
-		scanClassPath = true
-		platformUri = "${rootPath}"
-		uriMap = {
-			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
-			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
-		}
-		uriMap = {
-			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel"
-			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-		}
-
-		uriMap = {
-			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
-			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
-		}
-		uriMap = {
-			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
-			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore"
-		}
-		// 
-		registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
-		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
-		registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
-	}
-
 	component = XtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
