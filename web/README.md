@@ -29,7 +29,14 @@ Install yarn.
 
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
-    ./run.sh -b -c -f -r
+    ./run.sh -b -c -f
+    
+    git clone git@github.com:eclipsesource/graphical-lsp.git
+    cd graphical-lsp
+    Open in Eclipse and start the com.eclipsesource.glsp.example.workflow.ExampleServerLauncher Java class
+    
+    in coffee-editor:
+    ./run.sh -r
 
 Open http://localhost:3000 in the browser.
 
