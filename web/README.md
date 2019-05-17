@@ -33,7 +33,7 @@ Install yarn.
     
     git clone git@github.com:eclipsesource/graphical-lsp.git
     cd graphical-lsp
-    Open in Eclipse and start the com.eclipsesource.glsp.example.workflow.ExampleServerLauncher Java class
+Open in Eclipse and start the com.eclipsesource.glsp.example.workflow.ExampleServerLauncher Java class
     
     in coffee-editor:
     ./run.sh -r
