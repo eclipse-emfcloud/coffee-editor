@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="coffee" nsURI="http://www.eclipse.org/emfforms/example/coffeemodel"
+    nsPrefix="org.eclipse.emfforms.coffee.model">
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Component" containment="true" eOpposite="#//Component/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Component"
+        eOpposite="#//Component/children"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activities" upperBound="-1"
+        eType="#//Activity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Machine" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlUnit" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processor" lowerBound="1"
+        eType="#//Processor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" lowerBound="1"
+        eType="#//Dimension" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ram" lowerBound="1" upperBound="-1"
+        eType="#//RAM" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//Display"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="userDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BrewingUnit" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DipTray" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WaterTank" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Processor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="socketconnectorType" eType="#//SocketConnectorType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="thermalDesignPower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="manufactoringProcess" eType="#//ManufactoringProcess"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RAM">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RamType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dimension">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SocketConnectorType">
+    <eLiterals name="A1T"/>
+    <eLiterals name="Z51" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ManufactoringProcess">
+    <eLiterals name="nm18" literal="18nm"/>
+    <eLiterals name="nm25" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RamType">
+    <eLiterals name="SODIMM" literal="SO-DIMM"/>
+    <eLiterals name="SIDIMM" literal="SI-DIMM"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Display">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>

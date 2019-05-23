@@ -65,8 +65,8 @@ export class WorkflowGenerateCommandContribution implements CommandContribution,
     }
     private generateActivities(rootElement: CoffeeModel, workflow: Workflow): void {
         if (rootElement.activities) {
-            rootElement.activities.forEach(a => workflow.children.push(
-                this.createTask(a.name,this.getParentReference(rootElement), `task${workflow.children.length}`, workflow.children.length * 100 + 10, 100)
+            rootElement.activities.forEach((a,idx) => workflow.children.push(
+                this.createTask(a.name,this.getParentReference(rootElement), `task${idx}`, idx * 110 + 10, 100)
             ));
         }
         if (rootElement.children) {
@@ -86,7 +86,7 @@ export class WorkflowGenerateCommandContribution implements CommandContribution,
                 x: xPosition,
                 y: yPosition
             },
-            type: "node:task",
+            type: "task:automated",
             id: taskId,
             children: [
                 {

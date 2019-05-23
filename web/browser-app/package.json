@@ -20,13 +20,12 @@
     "@theia/typescript": "latest",
     "@theia/messages": "latest",
     "@theia/outline-view": "latest",
+    "@glsp-examples/workflow-theia": "next",
     "coffee-editor-extension": "1.0.0",
     "coffee-workflow-analyzer": "0.0.0",
     "coffee-workflow-analyzer-editors": "0.0.0",
     "coffee-workspace-filesystem-storage-service": "0.0.0",
     "coffee-java-extension": "0.0.0",
-    "glsp-theia-extension": "0.1.7",
-    "workflow-glsp-extension": "0.0.0",
     "coffee-workflow-generator": "0.0.0"
   },
   "devDependencies": {

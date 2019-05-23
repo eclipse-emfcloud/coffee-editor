@@ -1,34 +1,31 @@
-target "Coffee 2018-09" with source, requirements
+target "Coffee 2019-03" with source, requirements
 
 
-location "http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository" orbit-release {
+location "http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repository" orbit-release {
 	com.google.gson [2.7.0,2.8.0)
 	org.apache.commons.lang
 	org.apache.commons.io [2.2.0,2.3.0)
 }
 
-//location "http://download.eclipse.org/releases/2018-09/" eclipse-photon {
-//	org.eclipse.uml2.feature.group
-//	org.eclipse.emf.mwe2.launcher.feature.group
-//}
-
-location "http://download.eclipse.org/releases/oxygen/" eclipse-photon {
+location "http://download.eclipse.org/releases/2019-03/" eclipse-2019-03 {
+	org.eclipse.jdt.feature.group
+    org.eclipse.platform.feature.group
+    org.eclipse.pde.feature.group
+    org.eclipse.draw2d.feature.group
+    org.eclipse.emf.sdk.feature.group
+    org.eclipse.xpand
+    org.eclipse.xtend
+    org.eclipse.xtend.typesystem.emf
 	org.eclipse.emf.mwe2.launcher.feature.group
 }
 
-location "http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950" eclipse-4.8 {
+location "http://download.eclipse.org/eclipse/updates/4.11/" eclipse-4.11 {
 	org.eclipse.e4.rcp.feature.group lazy
 	org.eclipse.equinox.executable.feature.group lazy
 }
 
-//location "http://download.eclipse.org/eclipse/updates/4.9milestones" eclipse-4.9 {
-//	org.eclipse.e4.rcp.feature.group lazy
-//	org.eclipse.equinox.executable.feature.group lazy
-//}
-location "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" xtext {
-	org.eclipse.xtext.xbase.lib.feature.group
-	org.eclipse.xtext.runtime.feature.group
-	org.eclipse.xtext.xbase.feature.group
+location "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.1/" xtext {
+	org.eclipse.xtext.sdk.feature.group
 }
 
 location "http://download.eclipse.org/lsp4j/updates/releases/" {

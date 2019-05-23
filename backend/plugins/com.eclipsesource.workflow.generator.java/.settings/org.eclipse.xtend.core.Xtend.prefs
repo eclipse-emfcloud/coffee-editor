@@ -1,4 +1,4 @@
-//outlet.DEFAULT_OUTPUT.sourceFolder.src/test/java.directory=src/test/generated-sources/xtend
+//outlet.DEFAULT_OUTPUT.sourceFolder.src/test/java.directory=xtend-gen
 BuilderConfiguration.is_project_specific=true
 eclipse.preferences.version=1
 outlet.DEFAULT_OUTPUT.hideLocalSyntheticVariables=true

@@ -25,7 +25,7 @@ export class AnalysisService {
             console.log('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile)
             const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
             console.log('[WorkflowAnalyzer] Open Analysis Result')
-            return await this.openHandler.open(undefined, { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
+            return await this.openHandler.open(new URI(undefined), { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
         });
     }
 }

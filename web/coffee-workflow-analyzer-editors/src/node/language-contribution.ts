@@ -5,6 +5,7 @@ import * as net from 'net';
 import * as path from 'path';
 import * as glob from 'glob';
 import { spawn } from "child_process";
+import { ProcessErrorEvent } from "@theia/process/lib/node/process";
 
 function getPort(): number | undefined {
     let arg = process.argv.filter(arg => arg.startsWith('--WF_LSP='))[0]
@@ -76,7 +77,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
         }
     }
 
-    protected onDidFailSpawnProcess(error: Error): void {
+    protected onDidFailSpawnProcess(error: ProcessErrorEvent): void {
         super.onDidFailSpawnProcess(error);
         console.error("[WorkflowDSL] Error starting Workflow language server.", error)
     }
