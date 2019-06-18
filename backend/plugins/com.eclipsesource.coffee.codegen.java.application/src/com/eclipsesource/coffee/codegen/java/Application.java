@@ -1,4 +1,4 @@
-package com.eclipsesource.codegen;
+package com.eclipsesource.coffee.codegen.java;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

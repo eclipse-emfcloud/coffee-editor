@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Codegen Application
-Bundle-SymbolicName: com.eclipsesource.codegen.application;singleton:=true
+Bundle-SymbolicName: com.eclipsesource.coffee.codegen.java.application;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Require-Bundle: com.eclipsesource.workflow.generator,
