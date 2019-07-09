@@ -244,12 +244,13 @@
 		<module>../../plugins/com.eclipsesource.coffee.codegen.java.application</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator.java</module>
-		<module>../../plugins/com.eclipsesource.workflow.generator.json</module>
 		<module>../../plugins/com.eclipsesource.coffee.workflow.analyzer.application</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer.json</module>
 		<module>../../plugins/com.eclipsesource.workflow.dsl.parent</module>
 		
+		
+		<module>../../../../../Workspaces/coffee-editor/com.eclipsesource.emfforms.coffee.model</module>
 	</modules>
 	
 	<repositories>

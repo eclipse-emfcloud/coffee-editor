@@ -3,39 +3,32 @@ package com.eclipsesource.workflow.generator.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
-import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
+public class WorkflowGeneratorOutput  {
 
-public class WorkflowGeneratorOutput implements IWorkflowGeneratorOutput {
-
-	private IWorkflowGeneratorInput input;
 	private List<IGeneratedFile> generatedFiles = new ArrayList<>();
+	private String packageName;
+	private String sourceFileName;
 
-	public WorkflowGeneratorOutput(IWorkflowGeneratorInput input) {
-		this.input = input;		
+	public WorkflowGeneratorOutput(String packageName, String sourceFileName) {
+		this.packageName = packageName;
+		this.sourceFileName = sourceFileName;
 	}
-	
-	@Override
-	public IWorkflowGeneratorInput getInput() {
-		return input;
-	}
-	
-	@Override
+
 	public List<IGeneratedFile> getGeneratedFiles() {
 		return generatedFiles;
 	}
-	
+
 	public void addGeneratedFile(String fileName, String content, boolean overwrite) {
 		generatedFiles.add(new GeneratedFile(fileName, content, overwrite));
 	}
-	
+
 	public void addGeneratedFile(String fileName, String content) {
 		addGeneratedFile(fileName, content, true);
 	}
-	
+
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("Output for '" + input.getPackageName() + "/" + input.getSourceFileName() + "':\n");
+		StringBuilder sb = new StringBuilder("Output for '" + packageName + "/" + sourceFileName + "':\n");
 		getGeneratedFiles().forEach(file -> sb.append(file.getFileName() + "\n"));
 		return sb.toString();
 	}
@@ -50,7 +43,7 @@ public class WorkflowGeneratorOutput implements IWorkflowGeneratorOutput {
 			this.content = content;
 			this.overwrite = overwrite;
 		}
-		
+
 		@Override
 		public String getFileName() {
 			return fileName;
@@ -65,11 +58,16 @@ public class WorkflowGeneratorOutput implements IWorkflowGeneratorOutput {
 		public boolean shouldOverwrite() {
 			return overwrite;
 		}
-		
+
 		@Override
 		public String toString() {
 			return getFileName() + "\n" + getContent();
 		}
 	}
 
+	interface IGeneratedFile {
+		String getFileName();
+		String getContent();
+		boolean shouldOverwrite();
+	}
 }

@@ -2,6 +2,7 @@ package com.eclipsesource.workflow.dsl.ide.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -9,6 +10,9 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.apache.commons.io.FileUtils;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.lsp4j.DidChangeConfigurationParams;
 import org.eclipse.lsp4j.DidChangeWatchedFilesParams;
 import org.eclipse.lsp4j.DidChangeWorkspaceFoldersParams;
@@ -19,9 +23,8 @@ import org.eclipse.lsp4j.WorkspaceFolder;
 import org.eclipse.lsp4j.WorkspaceSymbolParams;
 import org.eclipse.lsp4j.services.WorkspaceService;
 
-import com.eclipsesource.workflow.IWorkflowGraph;
+import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.dsl.index.IWorkflowIndex;
-import com.eclipsesource.workflow.util.SprottyWFParser;
 
 public class WorkflowIndexService implements WorkspaceService {
 	private static final String WORKFLOW_EXTENSION = "wf";
@@ -129,7 +132,14 @@ public class WorkflowIndexService implements WorkspaceService {
 		System.out.println("[WorkflowDSL] File " + uri + " deleted from index.");
 	}
 	
-	private static IWorkflowGraph getContent(String uri) throws FileNotFoundException, URISyntaxException {	
-		return SprottyWFParser.parseGraph(new URI(uri));
+	private static Machine getContent(String uri) throws FileNotFoundException, URISyntaxException {
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI(uri));
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return (Machine) resource.getContents().get(0);
 	}
 }

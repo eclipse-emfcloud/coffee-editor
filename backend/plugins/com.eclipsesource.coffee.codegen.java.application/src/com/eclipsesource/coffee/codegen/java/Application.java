@@ -3,13 +3,21 @@ package com.eclipsesource.coffee.codegen.java;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
-import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
+import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
+import com.eclipsesource.workflow.generator.GeneratedFile;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
-import com.eclipsesource.workflow.generator.json.SprottyWFWorkflowGeneratorInput;
 
 /**
  * This class controls all aspects of the application's execution
@@ -50,9 +58,8 @@ public class Application implements IApplication {
 			return -12;
 		}
 
-		IWorkflowGeneratorInput createInput = new SprottyWFWorkflowGeneratorInput(packageName, new URI(source));
 		try {
-			GenerateJavaCode.generate(URI.create(targetFolder), createInput, new JavaWorkflowGenerator());
+			generate(URI.create(targetFolder), packageName, new URI(source));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return -20;
@@ -67,5 +74,33 @@ public class Application implements IApplication {
 	@Override
 	public void stop() {
 		// nothing to do
+	}
+	
+	
+	private static void generate(URI targetLocation, String packageName, URI sourceUri)
+			throws UnsupportedEncodingException, IOException {
+		JavaWorkflowGenerator generator = new JavaWorkflowGenerator();
+		
+		Collection<GeneratedFile> files = generator.generateClasses(parse(sourceUri), packageName, sourceUri.getPath());
+		Path targetFolder = Paths.get(targetLocation);
+
+		for (GeneratedFile generatedFile : files) {
+			Path file = targetFolder.resolve(generatedFile.getFileName());
+			if (Files.notExists(file) || generatedFile.shouldOverwrite()) {
+				Files.createDirectories(file.getParent());
+				Files.write(file, generatedFile.getContent().getBytes(StandardCharsets.UTF_8.name()));
+			}
+		}
+	}
+	
+	private static Machine parse (URI uri) {
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI(uri.getPath()));
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return (Machine) resource.getContents().get(0);
 	}
 }

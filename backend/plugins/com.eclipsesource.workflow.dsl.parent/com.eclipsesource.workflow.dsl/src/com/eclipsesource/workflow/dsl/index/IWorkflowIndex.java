@@ -4,21 +4,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import com.eclipsesource.workflow.IWorkflowGraph;
-import com.eclipsesource.workflow.IWorkflowTask;
+import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
+import com.eclipsesource.emfforms.coffee.model.coffee.Task;
 
 public interface IWorkflowIndex {
-	void putGraph(String uri, IWorkflowGraph graph);
+	void putGraph(String uri, Machine graph);
 
 	void removeGraph(String uri);
 
-	Collection<IWorkflowGraph> getGraphs();
+	Collection<Machine> getGraphs();
 	
-	Optional<IWorkflowGraph> getGraph(String graphId);
+	Optional<Machine> getGraph(String graphId);
 	
-	List<IWorkflowTask> getTasks(String graphId);
+	List<Task> getTasks(String graphId);
 	
-	Optional<IWorkflowTask> getTask(String graphId, String taskId);
-
-	Optional<IWorkflowTask> getTaskByName(String graphId, String taskName);
+	Optional<Task> getTaskByName(String graphId, String taskName);
 }
