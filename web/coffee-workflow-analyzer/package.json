@@ -9,7 +9,7 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest",
+    "@theia/core": "0.7.1",
     "coffee-workflow-analyzer-editors": "0.0.0"
   },
   "devDependencies": {

@@ -3,24 +3,24 @@
   "name": "electron-app",
   "version": "0.0.0",
   "dependencies": {
-    "@theia/core": "latest",
-    "@theia/filesystem": "latest",
-    "@theia/workspace": "latest",
-    "@theia/preferences": "latest",
-    "@theia/navigator": "latest",
-    "@theia/process": "latest",
-    "@theia/terminal": "latest",
-    "@theia/editor": "latest",
-    "@theia/languages": "latest",
-    "@theia/markers": "latest",
-    "@theia/monaco": "latest",
-    "@theia/typescript": "latest",
-    "@theia/messages": "latest",
+    "@theia/core": "0.7.1",
+    "@theia/filesystem": "0.7.1",
+    "@theia/workspace": "0.7.1",
+    "@theia/preferences": "0.7.1",
+    "@theia/navigator": "0.7.1",
+    "@theia/process": "0.7.1",
+    "@theia/terminal": "0.7.1",
+    "@theia/editor": "0.7.1",
+    "@theia/languages": "0.7.1",
+    "@theia/markers": "0.7.1",
+    "@theia/monaco": "0.7.1",
+    "@theia/typescript": "0.7.1",
+    "@theia/messages": "0.7.1",
     "coffee-editor-extension": "1.0.0"
 
   },
   "devDependencies": {
-    "@theia/cli": "latest"
+    "@theia/cli": "0.7.1"
   },
   "scripts": {
     "prepare": "theia build",

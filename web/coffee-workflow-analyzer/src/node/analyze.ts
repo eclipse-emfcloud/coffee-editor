@@ -60,8 +60,11 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         //do nothing
     }
 
-    private spawnProcess(command: string, args?: string[]): RawProcess {
+    private spawnProcess(command: string, args?: string[]): RawProcess|undefined {
         const rawProcess = this.processFactory({ command, args });
+        if(rawProcess.process === undefined) {
+            return undefined;
+        }
         rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
         const stderr = rawProcess.process.stderr;
         if(stderr)

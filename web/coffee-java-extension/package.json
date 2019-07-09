@@ -9,7 +9,7 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest",
+    "@theia/core": "0.7.1",
     "coffee-workspace-filesystem-storage-service": "0.0.0"
   },
   "devDependencies": {
