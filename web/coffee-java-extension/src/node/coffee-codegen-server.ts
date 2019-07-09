@@ -30,6 +30,10 @@ export class CoffeeCodeGenServer implements CodeGenServer {
         
         return new Promise((resolve) => {
             const process = this.spawnProcess(command, args);
+            if(process === undefined || process.process === undefined){
+                resolve('Process not spawned');
+                return;
+            }
             process.process.on('exit', (code)=> {
                 switch(code){
                     case 0: resolve('OK');break;
@@ -50,8 +54,11 @@ export class CoffeeCodeGenServer implements CodeGenServer {
         //do nothing
     }
 
-    private spawnProcess(command: string, args?: string[]): RawProcess {
+    private spawnProcess(command: string, args?: string[]): RawProcess | undefined {
         const rawProcess = this.processFactory({ command, args });
+        if(rawProcess.process === undefined){
+            return undefined;
+        }
         rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
         const stderr = rawProcess.process.stderr;
         if(stderr)

@@ -50,7 +50,7 @@ export class GenerateCodeService {
     }
 
     public isWorkflowFile(fileUri: URI): boolean {
-        return fileUri.toString().endsWith(".wf");
+        return fileUri.toString().endsWith(".jc");
     }
 }
 

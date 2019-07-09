@@ -1,14 +1,15 @@
-import { combineReducers, createStore, Store } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { imageProvider, labelProvider, modelMapping } from './config';
 import { coffeeSchema, controlUnitView, machineView } from './models/coffee-schema';
-import { materialFields, materialRenderers } from '@jsonforms/material-renderers';
+import { materialCells, materialRenderers } from '@jsonforms/material-renderers';
 import { filterPredicate } from "theia-tree-editor";
 import  {InstanceLabelProvider} from '@jsonforms/material-tree-renderer/lib/helpers/LabelProvider';
 import {
   Actions,
   jsonformsReducer,
   JsonSchema7,
-  RankedTester
+  JsonFormsState,
+  JsonFormsStore
 } from '@jsonforms/core';
 import App from './App';
 import { defaultProps } from "recompose";
@@ -66,16 +67,16 @@ export const initStore = async() => {
     'type': 'MasterDetailLayout',
     'scope': '#'
   };
-  const renderers: { tester: RankedTester, renderer: any}[] = materialRenderers;
-  const fields: { tester: RankedTester, field: any}[] = materialFields;
-  const jsonforms: any = {
+  const renderers = materialRenderers;
+  const cells = materialCells;
+  const jsonforms: JsonFormsState = {
     jsonforms: {
       renderers,
-      fields
+      cells
     }
   };
 
-  const store: Store<any> = createStore(
+  const store: JsonFormsStore = createStore(
     combineReducers({
         jsonforms: jsonformsReducer(
         )
@@ -96,7 +97,7 @@ export const initStore = async() => {
 export const CoffeeApp = defaultProps(
   {
     'filterPredicate': filterPredicate(modelMapping),
-    'labelProvider': {
+    'labelProviders': {
       forData:calculateLabel,
       forSchema:forSchema
     },

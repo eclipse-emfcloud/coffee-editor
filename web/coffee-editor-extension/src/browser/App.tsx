@@ -8,6 +8,7 @@ import {
 } from 'theia-tree-editor';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import * as _ from 'lodash';
+import { JsonFormsReduxContext } from '@jsonforms/react';
 
 const theme = createMuiTheme({
   palette: {
@@ -29,11 +30,11 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
-      fab: {
-        width: '24px',
-        height: '24px',
-        minHeight: '0px'
-      }
+      // fab: {
+      //   width: '24px',
+      //   height: '24px',
+      //   minHeight: '0px'
+      // }
     },
     MuiIconButton: {
       root: {
@@ -54,12 +55,12 @@ const theme = createMuiTheme({
       body1: {
         color: '#616161'
       },
-      subheading: {
-        color: '#616161'
-      },
-      title: {
-        color: '#616161'
-      }
+      // subheading: {
+      //   color: '#616161'
+      // },
+      // title: {
+      //   color: '#616161'
+      // }
     }
   }
 });
@@ -77,18 +78,20 @@ class App extends React.Component<TreeEditorProps, {}> {
   }
 
   render() {
-    const { filterPredicate, labelProvider, imageProvider, uischema, schema } = this.props;
+    const { filterPredicate, labelProviders, imageProvider, uischema, schema } = this.props;
 
     return (
       <MuiThemeProvider theme={theme}>
         <div>
+        <JsonFormsReduxContext>
           <TreeWithDetailRenderer
             uischema={uischema}
             schema={schema}
             filterPredicate={filterPredicate}
-            labelProviders={labelProvider}
+            labelProviders={labelProviders}
             imageProvider={imageProvider}
           />
+          </JsonFormsReduxContext>
         </div>
       </MuiThemeProvider>
     );
