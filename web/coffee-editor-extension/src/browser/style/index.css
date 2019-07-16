@@ -1,3 +1,24 @@
 @import './example.css';
 svg {border:none;}
 button[type='button'] {padding:0}
+
+.json-forms-tree-editor,
+.json-forms-tree-editor-content,
+.json-forms-tree-editor-tree-container,
+.json-forms-tree-editor-forms-container,
+.json-forms-tree {
+  height: 100%;
+}
+
+.json-forms-tree-editor-content {
+  display: flex;
+  width: 100%;
+}
+
+.json-forms-tree-editor-tree-container {
+  width: 30%;
+}
+
+.json-forms-tree-editor-forms-container {
+  width: 70%;
+}
