@@ -8,17 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.eclipsesource.workflow.IWorkflowGraph;
-import com.eclipsesource.workflow.IWorkflowTask;
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
+import com.eclipsesource.modelserver.coffee.model.coffee.Task;
 import com.google.inject.Singleton;
 
 @Singleton
 public class WorkflowIndex implements IWorkflowIndex {	
-	private static Map<URI, IWorkflowGraph> graphs = new HashMap<>();
+	private static Map<URI, Machine> graphs = new HashMap<>();
 	
 	@Override
-	public void putGraph(String uri, IWorkflowGraph graph) {
+	public void putGraph(String uri, Machine graph) {
 		if(graph != null && uri != null) {
 			try {
 				graphs.put(new URI(uri), graph);
@@ -36,27 +37,27 @@ public class WorkflowIndex implements IWorkflowIndex {
 	}
 	
 	@Override
-	public Collection<IWorkflowGraph> getGraphs() {
+	public Collection<Machine> getGraphs() {
 		return Collections.unmodifiableCollection(graphs.values());
 	}
 	
 	@Override
-	public Optional<IWorkflowGraph> getGraph(String graphId) {
-		return graphs.values().stream().filter(graph -> graph.getId().equals(graphId)).findAny();
+	public Optional<Machine> getGraph(String graphId) {
+		return graphs.values().stream().filter(graph -> graph.getName().equals(graphId)).findAny();
 	}
 		
 	@Override
-	public List<IWorkflowTask> getTasks(String graphId) {
-		return getGraph(graphId).map(IWorkflowGraph::getTasks).orElse(Collections.emptyList());
+	public List<Task> getTasks(String graphId) {
+		return getGraph(graphId).map(m -> m.getWorkflows().stream().flatMap(w-> w.getNodes().stream().filter(Task.class::isInstance).map(Task.class::cast)).collect(Collectors.toList())).orElse(Collections.emptyList());
 	}
 	
-	@Override
-	public Optional<IWorkflowTask> getTask(String graphId, String taskId) {
-		return getGraph(graphId).map(graph -> graph.getTasks().stream().filter(task -> task.getId().equals(taskId)).findFirst()).orElse(Optional.empty());
-	}
+//	@Override
+//	public Optional<Task> getTask(String graphId, String taskId) {
+//		  return getGraph(graphId).map(m -> m.getWorkflows().stream().flatMap(w-> w.getNodes().stream().filter(Task.class::isInstance).map(Task.class::cast).filter(task -> task.getId().equals(taskId))).findFirst()).orElse(Optional.empty());
+//	}
 	
 	@Override
-	public Optional<IWorkflowTask> getTaskByName(String graphId, String taskName) {
-		return getGraph(graphId).map(graph -> graph.getTasks().stream().filter(task -> task.getName().equals(taskName)).findFirst()).orElse(Optional.empty());
+	public Optional<Task> getTaskByName(String graphId, String taskName) {
+		return getGraph(graphId).map(m -> m.getWorkflows().stream().flatMap(w-> w.getNodes().stream().filter(Task.class::isInstance).map(Task.class::cast).filter(task -> task.getName().equals(taskName))).findFirst()).orElse(Optional.empty());
 	}
 }

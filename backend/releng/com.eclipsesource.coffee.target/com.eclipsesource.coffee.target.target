@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2019-03" sequenceNumber="1557344497">
+<target name="Coffee 2019-03" sequenceNumber="1563196814">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
@@ -31,8 +31,12 @@
       <repository id="xtext" location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.1/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.7.1.v20190416-0714"/>
+      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.7.2.v20190528-0935"/>
       <repository location="http://download.eclipse.org/lsp4j/updates/releases/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="com.eclipsesource.modelserver.coffee.model" version="0.0.1.201907151218"/>
+      <repository location="https://dl.bintray.com/eclipsesource/modelserver/nightly/"/>
     </location>
   </locations>
 </target>

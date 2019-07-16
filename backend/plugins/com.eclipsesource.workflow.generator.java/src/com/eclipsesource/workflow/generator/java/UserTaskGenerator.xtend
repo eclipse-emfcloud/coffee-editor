@@ -1,6 +1,6 @@
 package com.eclipsesource.workflow.generator.java
 
-import com.eclipsesource.workflow.IWorkflowTask
+import com.eclipsesource.modelserver.coffee.model.coffee.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -11,7 +11,7 @@ class UserTaskGenerator {
 		this.sourceDirectory = sourceDirectory
 	}
 		
-	def String toFileContent(String packageName, String sourceFileName, IWorkflowTask task) {
+	def String toFileContent(String packageName, String sourceFileName, Task task) {
 		'''	
 		// auto-generated stub from '«sourceFileName»' at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 		package «packageName»;

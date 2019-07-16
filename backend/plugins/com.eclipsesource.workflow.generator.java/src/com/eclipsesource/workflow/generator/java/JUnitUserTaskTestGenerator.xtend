@@ -1,8 +1,8 @@
 package com.eclipsesource.workflow.generator.java
 
-import com.eclipsesource.workflow.IAutomaticWorkflowTask
-import com.eclipsesource.workflow.IManualWorkflowTask
-import com.eclipsesource.workflow.IWorkflowTask
+import com.eclipsesource.modelserver.coffee.model.coffee.AutomaticTask
+import com.eclipsesource.modelserver.coffee.model.coffee.ManualTask
+import com.eclipsesource.modelserver.coffee.model.coffee.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.List
@@ -18,7 +18,7 @@ class JUnitUserTaskTestGenerator {
 		'''«sourceDirectory»/«JavaUtil.getFilePath(packageName)»tests/«JavaUtil.getJavaFileName(packageName.toTestClassName)»'''
 	}
 
-	def String toFileContent(String packageName, String sourceFileName, List<IWorkflowTask> tasks) {
+	def String toFileContent(String packageName, String sourceFileName, List<Task> tasks) {
 		'''
 			// auto-generated stub from '«sourceFileName»' at «DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now)»
 			package «packageName».tests;
@@ -67,12 +67,11 @@ class JUnitUserTaskTestGenerator {
 					«task.name.toClassName» task = new «task.name.toClassName»();
 					
 					// verify initial state
-					assertEquals("Unexpected task id.", "«task.id»", task.getId());
 					assertEquals("Unexpected task duration.", «task.duration», task.getDuration());
-					«IF task.isManual»
-					assertEquals("Unexpected task actor.", "«(task as IManualWorkflowTask).actor»", task.getActor());
+					«IF task instanceof ManualTask»
+					assertEquals("Unexpected task actor.", "«(task as ManualTask).actor»", task.getActor());
 					«ELSE»
-					assertEquals("Unexpected task component.", "«(task as IAutomaticWorkflowTask).component»", task.getComponent());
+					assertEquals("Unexpected task component.", "«(task as AutomaticTask).component»", task.getComponent());
 					«ENDIF»
 					
 					// verify preExecute

@@ -36,7 +36,7 @@ class WorkflowIdeContentProposalProvider extends IdeContentProposalProvider {
 
 	def completeWorkflowConfigurationModel(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
 		index.graphs.forEach[graph | 
-			val proposal = proposalCreator.createProposal(graph.id, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
+			val proposal = proposalCreator.createProposal(graph.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]
 	}

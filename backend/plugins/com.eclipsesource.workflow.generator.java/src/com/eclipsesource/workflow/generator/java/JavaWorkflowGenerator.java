@@ -1,11 +1,15 @@
 package com.eclipsesource.workflow.generator.java;
 
-import com.eclipsesource.workflow.generator.IWorkflowGenerator;
-import com.eclipsesource.workflow.generator.IWorkflowGeneratorInput;
-import com.eclipsesource.workflow.generator.IWorkflowGeneratorOutput;
-import com.eclipsesource.workflow.generator.impl.WorkflowGeneratorOutput;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class JavaWorkflowGenerator implements IWorkflowGenerator {
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
+import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import com.eclipsesource.workflow.generator.GeneratedFile;
+
+public class JavaWorkflowGenerator {
 	private static final String SRC_FOLDER = "src";
 	private static final String SRC_GEN_FOLDER = "src-gen";
 
@@ -22,52 +26,45 @@ public class JavaWorkflowGenerator implements IWorkflowGenerator {
 	private UserTaskGenerator userTaskGen = new UserTaskGenerator(SRC_FOLDER);	
 	
 
-	@Override
-	public IWorkflowGeneratorOutput generateClasses(IWorkflowGeneratorInput input) {
-		WorkflowGeneratorOutput output = new WorkflowGeneratorOutput(input);
-		if(input == null || input.getGraph() == null || input.getGraph().getTasks().isEmpty()) {
-			return output;
-		}
-		
-		String packageName = JavaUtil.normalize(input.getPackageName());
-		String sourceFileName = input.getSourceFileName();
+	public Collection<GeneratedFile> generateClasses(Machine machine, String packageName, String sourceFileName) {
+		List<GeneratedFile> result = new ArrayList<GeneratedFile>();
 		
 		// generate libraries
-		generateWorkflowLibrary(output, packageName, SRC_GEN_FOLDER);
+		generateWorkflowLibrary(result, packageName, SRC_GEN_FOLDER);
 
+		List<Task> tasks = machine.getWorkflows().stream().flatMap(w -> w.getNodes().stream().filter(Task.class::isInstance).map(Task.class::cast)).collect(Collectors.toList());
+		
 		// generate tasks
-		input.getGraph().getTasks().stream().forEach(task -> {
-			output.addGeneratedFile(
+		tasks.forEach(task -> {
+			result.add(new GeneratedFile(
 					abstractTaskGen.toFileName(packageName, task.getName()), 
-					abstractTaskGen.toFileContent(packageName, sourceFileName, task));
+					abstractTaskGen.toFileContent(packageName, sourceFileName, task)));
 			
-			output.addGeneratedFile(
+			result.add(new GeneratedFile(
 					userTaskGen.toFileName(packageName, task.getName()), 
-					userTaskGen.toFileContent(packageName, sourceFileName, task));			
+					userTaskGen.toFileContent(packageName, sourceFileName, task)));			
 		});
 		
-		// generate JUnit test		
-		output.addGeneratedFile(
-				junitTestGen.toFileName(packageName),
-				junitTestGen.toFileContent(packageName, sourceFileName, input.getGraph().getTasks()));
+		// generate JUnit test	
+		result.add(new GeneratedFile(junitTestGen.toFileName(packageName), junitTestGen.toFileContent(packageName, sourceFileName, tasks), true));
 
-		return output;
+		return result;
 	}
 
-	private void generateWorkflowLibrary(WorkflowGeneratorOutput output, String packageName, String sourceDir) {
-		output.addGeneratedFile(
+	private void generateWorkflowLibrary(Collection<GeneratedFile> result, String packageName, String sourceDir) {
+		result.add(new GeneratedFile(
 				workflowTaskGen.toFileName(packageName), 
 				workflowTaskGen.toFileContent(packageName),
-				false);
+				false));
 		
-		output.addGeneratedFile(
+		result.add(new GeneratedFile(
 				automaticWorkflowTaskGen.toFileName(packageName), 
 				automaticWorkflowTaskGen.toFileContent(packageName),
-				false);
+				false));
 		
-		output.addGeneratedFile(
+		result.add(new GeneratedFile(
 				manualWorkflowTaskGen.toFileName(packageName), 
 				manualWorkflowTaskGen.toFileContent(packageName),
-				false);
+				false));
 	}
 }

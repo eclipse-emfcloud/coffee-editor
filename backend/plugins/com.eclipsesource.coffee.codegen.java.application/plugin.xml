@@ -7,7 +7,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="com.eclipsesource.codegen.Application">
+               class="com.eclipsesource.coffee.codegen.java.Application">
          </run>
       </application>
    </extension>
@@ -15,7 +15,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="com.eclipsesource.codegen.application.application"
+            application="com.eclipsesource.coffee.codegen.java.application.application"
             name="Code Gen">
          <property
                name="appName"
