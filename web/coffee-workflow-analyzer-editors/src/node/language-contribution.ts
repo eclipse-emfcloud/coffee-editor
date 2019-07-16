@@ -31,7 +31,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
     readonly id = "wfconfig";
     readonly name = "WFCONFIG";
     serverConnection: IConnection|undefined = undefined;
-    serverStarted = false
+    serverStarted = false;
 
     start(clientConnection: IConnection): void {
         console.log('[WorkflowDSL] Start Server for Client Connection.')

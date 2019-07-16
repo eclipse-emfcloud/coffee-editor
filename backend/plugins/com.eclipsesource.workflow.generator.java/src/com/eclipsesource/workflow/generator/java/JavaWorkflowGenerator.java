@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
-import com.eclipsesource.emfforms.coffee.model.coffee.Task;
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
+import com.eclipsesource.modelserver.coffee.model.coffee.Task;
 import com.eclipsesource.workflow.generator.GeneratedFile;
 
 public class JavaWorkflowGenerator {

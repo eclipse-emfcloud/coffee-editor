@@ -23,11 +23,11 @@ import org.eclipse.lsp4j.WorkspaceFolder;
 import org.eclipse.lsp4j.WorkspaceSymbolParams;
 import org.eclipse.lsp4j.services.WorkspaceService;
 
-import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.dsl.index.IWorkflowIndex;
 
 public class WorkflowIndexService implements WorkspaceService {
-	private static final String WORKFLOW_EXTENSION = "wf";
+	private static final String WORKFLOW_EXTENSION = "xmi";
 	private static final String DOT_WORKFLOW_EXTENSION = "." + WORKFLOW_EXTENSION;
 	
 	private IWorkflowIndex index;

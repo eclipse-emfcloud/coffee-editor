@@ -1,9 +1,0 @@
-workflowModel : SuperBrewer3001
-
-probabilities
-low    : 0.1
-medium : 0.5
-high   : 0.75
-
-assertions
-Push => ChkTp

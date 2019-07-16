@@ -248,9 +248,6 @@
 		<module>../../plugins/com.eclipsesource.workflow.analyzer</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer.json</module>
 		<module>../../plugins/com.eclipsesource.workflow.dsl.parent</module>
-		
-		
-		<module>../../../../../Workspaces/coffee-editor/com.eclipsesource.emfforms.coffee.model</module>
 	</modules>
 	
 	<repositories>

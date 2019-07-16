@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
-import com.eclipsesource.emfforms.coffee.model.coffee.Machine;
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.generator.GeneratedFile;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
 
@@ -59,7 +59,7 @@ public class Application implements IApplication {
 		}
 
 		try {
-			generate(URI.create(targetFolder), packageName, new URI(source));
+			generate(URI.create(targetFolder), packageName, URI.create(source));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return -20;

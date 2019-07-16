@@ -6,4 +6,4 @@ medium : 0.5
 high   : 0.75
 
 assertions
-PreHeat => Brew
+Preheat => Brew

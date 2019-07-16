@@ -1,6 +1,6 @@
 package com.eclipsesource.workflow.generator.java
 
-import com.eclipsesource.emfforms.coffee.model.coffee.Task
+import com.eclipsesource.modelserver.coffee.model.coffee.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

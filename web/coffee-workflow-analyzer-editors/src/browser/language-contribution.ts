@@ -18,7 +18,8 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
     protected get globPatterns() {
         return [
             '**/*.wfconfig',
-            '**/*.wf'
+            '**/*.wf',
+            '**/*.xmi'
         ];
     }
 }
