@@ -16,6 +16,7 @@ matrix:
         - cd web/ && yarn --network-concurrency 1
     - language: java
       jdk: oraclejdk8
+      dist: trusty
       cache:
         directories:
           - "$HOME/.m2/repository"
