@@ -20,6 +20,7 @@
     "@theia/typescript": "0.7.1",
     "@theia/messages": "0.7.1",
     "@theia/outline-view": "0.7.1",
+    "@theia/textmate-grammars": "0.7.1",
     "@glsp-examples/workflow-theia": "next",
     "coffee-editor-extension": "1.0.0",
     "coffee-workflow-analyzer": "0.0.0",

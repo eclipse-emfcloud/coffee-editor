@@ -1,21 +1,34 @@
 matrix:
   include:
-    - language: node_js
+    - sudo: required
+      language: node_js
       node_js:
-        - "8"
-      before_install:
-        - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
+        - "10"
       cache:
         yarn: true
         directories:
           - node_modules
+      addons:
+        apt:
+          update: true
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - libxkbfile-dev
+          chrome: stable
+      before_cache:
+        # Runs before the cache is updated, after successful CI
+        - rm -rf node_modules/electron
       env:
         global:
-          - NODE_OPTIONS=--max-old-space-size=4096
+          - NODE_OPTIONS="--max_old_space_size=4096"
+      before_install:
+        - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
       script:
         - cd web/ && yarn --network-concurrency 1
     - language: java
       jdk: oraclejdk8
+      dist: trusty
       cache:
         directories:
           - "$HOME/.m2/repository"

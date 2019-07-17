@@ -1451,6 +1451,13 @@
     "@theia/workspace" "^0.7.1"
     xterm "3.13.0"
 
+"@theia/textmate-grammars@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@theia/textmate-grammars/-/textmate-grammars-0.7.1.tgz#080d334f97948ff9f8abd2cf0239f4c61435fb58"
+  integrity sha512-DutmdVTBDmLRAsqlrEe2yVySi02v8h3okWF+PqDTboDI/8rLca3fPOY0ezvTTDCGo0Cos4qoJandya5chJXg+g==
+  dependencies:
+    "@theia/monaco" "^0.7.1"
+
 "@theia/typescript@0.7.1":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/typescript/-/typescript-0.7.1.tgz#46c6cfeff347d6df7aff5b11b74cd0253c7882df"

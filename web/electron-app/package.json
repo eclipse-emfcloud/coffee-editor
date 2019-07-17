@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "dependencies": {
     "@theia/core": "0.7.1",
+    "@theia/electron": "0.7.1",
     "@theia/filesystem": "0.7.1",
     "@theia/workspace": "0.7.1",
     "@theia/preferences": "0.7.1",
@@ -15,9 +16,7 @@
     "@theia/markers": "0.7.1",
     "@theia/monaco": "0.7.1",
     "@theia/typescript": "0.7.1",
-    "@theia/messages": "0.7.1",
-    "coffee-editor-extension": "1.0.0"
-
+    "@theia/messages": "0.7.1"
   },
   "devDependencies": {
     "@theia/cli": "0.7.1"
