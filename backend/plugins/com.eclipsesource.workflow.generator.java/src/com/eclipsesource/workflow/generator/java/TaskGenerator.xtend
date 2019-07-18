@@ -6,7 +6,7 @@ import com.eclipsesource.modelserver.coffee.model.coffee.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class AbstractTaskGenerator {
+class TaskGenerator {
 	String sourceDirectory
 	
 	new(String sourceDirectory) {

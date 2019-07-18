@@ -18,7 +18,9 @@ Require-Bundle: com.eclipsesource.workflow.dsl,
  com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.eclipsesource.workflow.dsl.ide,
+ com.eclipsesource.workflow.dsl.ide.contentassist,
  com.eclipsesource.workflow.dsl.ide.contentassist.antlr,
- com.eclipsesource.workflow.dsl.ide.contentassist.antlr.internal
+ com.eclipsesource.workflow.dsl.ide.contentassist.antlr.internal,
+ com.eclipsesource.workflow.dsl.ide.server
 Automatic-Module-Name: com.eclipsesource.workflow.dsl.ide
 

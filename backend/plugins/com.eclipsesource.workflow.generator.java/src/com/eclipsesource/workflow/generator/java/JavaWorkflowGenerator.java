@@ -22,7 +22,7 @@ public class JavaWorkflowGenerator {
 	private JUnitUserTaskTestGenerator junitTestGen = new JUnitUserTaskTestGenerator(SRC_FOLDER);
 	
 	// task-specific files
-	private AbstractTaskGenerator abstractTaskGen = new AbstractTaskGenerator(SRC_GEN_FOLDER);
+	private TaskGenerator abstractTaskGen = new TaskGenerator(SRC_GEN_FOLDER);
 	private UserTaskGenerator userTaskGen = new UserTaskGenerator(SRC_FOLDER);	
 	
 
