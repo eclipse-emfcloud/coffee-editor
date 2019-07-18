@@ -10,3 +10,4 @@ Require-Bundle: com.eclipsesource.workflow.generator,
  org.eclipse.equinox.app
 Automatic-Module-Name: com.eclipsesource.codegen
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.eclipsesource.codegen

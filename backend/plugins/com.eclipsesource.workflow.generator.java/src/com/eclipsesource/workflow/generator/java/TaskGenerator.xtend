@@ -6,7 +6,7 @@ import com.eclipsesource.workflow.IWorkflowTask
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class AbstractTaskGenerator {
+class TaskGenerator {
 	String sourceDirectory
 	
 	new(String sourceDirectory) {

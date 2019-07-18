@@ -7,5 +7,6 @@ Bundle-Vendor: EclipseSource
 Automatic-Module-Name: com.eclipsesource.workflow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.eclipsesource.workflow,
+ com.eclipsesource.workflow.impl,
  com.eclipsesource.workflow.util
 Require-Bundle: com.google.gson
