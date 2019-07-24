@@ -22,7 +22,7 @@
     "@theia/outline-view": "0.7.1",
     "@theia/textmate-grammars": "0.7.1",
     "@glsp-examples/workflow-theia": "next",
-    "coffee-editor-extension": "1.0.0",
+    "coffee-editor-extension": "0.0.0",
     "coffee-workflow-analyzer": "0.0.0",
     "coffee-workflow-analyzer-editors": "0.0.0",
     "coffee-workspace-filesystem-storage-service": "0.0.0",
