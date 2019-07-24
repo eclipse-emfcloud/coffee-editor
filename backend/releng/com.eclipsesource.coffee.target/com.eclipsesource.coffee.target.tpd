@@ -31,6 +31,6 @@ location "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.
 location "http://download.eclipse.org/lsp4j/updates/releases/" {
 	org.eclipse.lsp4j.sdk.feature.group
 }
-location "https://dl.bintray.com/eclipsesource/modelserver/nightly/" {
+location "https://dl.bintray.com/eclipsesource/modelserver/snapshots/0.0.1.20190723.150809-28/" {
 	com.eclipsesource.modelserver.coffee.model
 }
