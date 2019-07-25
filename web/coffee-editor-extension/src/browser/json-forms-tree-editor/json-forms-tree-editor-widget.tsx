@@ -14,11 +14,11 @@ import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
 import URI from "@theia/core/lib/common/uri";
 
 // import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
-import {
-  materialRenderers,
-  materialCells
-} from "@jsonforms/material-renderers";
-import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
+// import {
+//   materialRenderers,
+//   materialCells
+// } from "@jsonforms/material-renderers";
+// import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
 
 import {
   coffeeSchema,
@@ -93,15 +93,15 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   initStore() {
-    const initState: JsonFormsState = {
-      jsonforms: {
-        cells: materialCells,
-        renderers: materialRenderers
-      }
-    };
+    // const initState: JsonFormsState = {
+    //   jsonforms: {
+    //     cells: materialCells,
+    //     renderers: materialRenderers
+    //   }
+    // };
     return createStore(
-      combineReducers({ jsonforms: jsonformsReducer() }),
-      initState
+      combineReducers({})//combineReducers({ jsonforms: jsonformsReducer() }),
+      // initState
     );
   }
 
@@ -200,21 +200,21 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.selectedNode = undefined;
     } else {
       this.selectedNode = selectedNodes[0];
-      this.store.dispatch(
-        Actions.init(
-          this.selectedNode.jsonforms.data,
-          {
-            definitions: coffeeSchema.definitions,
-            ...this.getSchema(this.selectedNode.jsonforms.type)
-          },
-          this.getUiSchema(this.selectedNode.jsonforms.type),
-          {
-            refParserOptions: {
-              dereference: { circular: "ignore" }
-            }
-          }
-        )
-      );
+      // this.store.dispatch(
+      //   Actions.init(
+      //     this.selectedNode.jsonforms.data,
+      //     {
+      //       definitions: coffeeSchema.definitions,
+      //       ...this.getSchema(this.selectedNode.jsonforms.type)
+      //     },
+      //     this.getUiSchema(this.selectedNode.jsonforms.type),
+      //     {
+      //       refParserOptions: {
+      //         dereference: { circular: "ignore" }
+      //       }
+      //     }
+      //   )
+      // );
     }
     this.update();
   }
