@@ -18,7 +18,7 @@ import URI from "@theia/core/lib/common/uri";
 //   materialRenderers,
 //   materialCells
 // } from "@jsonforms/material-renderers";
-// import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
+import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
 
 import {
   coffeeSchema,
@@ -81,7 +81,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.toDispose.push(this.treeWidget);
 
     this.store = this.initStore();
-    // this.store.dispatch(Actions.init({}, { type: "string" }));
+    this.store.dispatch(Actions.init({}, { type: "string" }));
   }
 
   getResourceUri(): URI | undefined {
@@ -93,15 +93,15 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   initStore() {
-    // const initState: JsonFormsState = {
-    //   jsonforms: {
+    const initState: JsonFormsState = {
+      jsonforms: {
     //     cells: materialCells,
     //     renderers: materialRenderers
-    //   }
-    // };
+      }
+    };
     return createStore(
-      combineReducers({})//combineReducers({ jsonforms: jsonformsReducer() }),
-      // initState
+      combineReducers({ jsonforms: jsonformsReducer() }),
+      initState
     );
   }
 

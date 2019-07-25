@@ -19,7 +19,7 @@
     "@theia/messages": "0.7.1"
   },
   "devDependencies": {
-    "@theia/cli": "0.7.1"
+    "@theia/cli": "0.8.0"
   },
   "scripts": {
     "prepare": "theia build",
