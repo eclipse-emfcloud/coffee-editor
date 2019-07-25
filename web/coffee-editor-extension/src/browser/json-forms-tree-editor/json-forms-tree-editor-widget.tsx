@@ -14,20 +14,20 @@ import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
 import URI from "@theia/core/lib/common/uri";
 
 // import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
-// import {
-//   materialRenderers,
-//   materialCells
-// } from "@jsonforms/material-renderers";
-// import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
+import {
+  materialRenderers,
+  materialCells
+} from "@jsonforms/material-renderers";
+import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
 
-// import {
-//   coffeeSchema,
-//   controlUnitView,
-//   machineView,
-//   brewingView
-// } from "../models/coffee-schemas";
-// import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
-// import { combineReducers, createStore } from "redux";
+import {
+  coffeeSchema,
+  controlUnitView,
+  machineView,
+  brewingView
+} from "../models/coffee-schemas";
+import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
+import { combineReducers, createStore } from "redux";
 // import { Provider } from "react-redux";
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
@@ -40,16 +40,16 @@ export interface JsonFormsTreeEditorWidgetOptions {
 @injectable()
 export class JsonFormsTreeEditorWidget extends BaseWidget
   implements Navigatable {
-  // protected contentNode: HTMLElement;
-  // protected treeNode: HTMLElement;
-  // protected formsNode: HTMLElement;
+  protected contentNode: HTMLElement;
+  protected treeNode: HTMLElement;
+  protected formsNode: HTMLElement;
 
   // protected readonly onDidUpdateEmitter = new Emitter<void>();
   // readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
 
-  // protected selectedNode: JsonFormsTree.Node;
+  protected selectedNode: JsonFormsTree.Node;
 
-  // protected store: any;
+  protected store: any;
 
   constructor(
     @inject(JsonFormsTreeEditorWidgetOptions)
@@ -63,25 +63,25 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
     this.addClass(JsonFormsTreeEditorWidget.Styles.JSONFORMS_TREE_EDITOR_CLASS);
 
-  //   this.contentNode = document.createElement("div");
-  //   this.contentNode.classList.add("json-forms-tree-editor-content");
-  //   this.node.appendChild(this.contentNode);
+    this.contentNode = document.createElement("div");
+    this.contentNode.classList.add("json-forms-tree-editor-content");
+    this.node.appendChild(this.contentNode);
 
-  //   this.treeNode = document.createElement("div");
-  //   this.treeNode.classList.add("json-forms-tree-editor-tree-container");
-  //   this.contentNode.appendChild(this.treeNode);
+    this.treeNode = document.createElement("div");
+    this.treeNode.classList.add("json-forms-tree-editor-tree-container");
+    this.contentNode.appendChild(this.treeNode);
 
-  //   this.formsNode = document.createElement("div");
-  //   this.formsNode.classList.add("json-forms-tree-editor-forms-container");
-  //   this.contentNode.appendChild(this.formsNode);
+    this.formsNode = document.createElement("div");
+    this.formsNode.classList.add("json-forms-tree-editor-forms-container");
+    this.contentNode.appendChild(this.formsNode);
 
-  //   this.toDispose.push(
-  //     this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
-  //   );
-  //   this.toDispose.push(this.treeWidget);
+    this.toDispose.push(
+      this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
+    );
+    this.toDispose.push(this.treeWidget);
 
-  //   this.store = this.initStore();
-  //   this.store.dispatch(Actions.init({}, { type: "string" }));
+    this.store = this.initStore();
+    // this.store.dispatch(Actions.init({}, { type: "string" }));
   }
 
   getResourceUri(): URI | undefined {
@@ -92,18 +92,18 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     return this.options.uri && this.options.uri.withPath(resourceUri.path);
   }
 
-  // initStore() {
-  //   const initState: JsonFormsState = {
-  //     jsonforms: {
-  //       cells: materialCells,
-  //       renderers: materialRenderers
-  //     }
-  //   };
-  //   return createStore(
-  //     combineReducers({ jsonforms: jsonformsReducer() }),
-  //     initState
-  //   );
-  // }
+  initStore() {
+    const initState: JsonFormsState = {
+      jsonforms: {
+        cells: materialCells,
+        renderers: materialRenderers
+      }
+    };
+    return createStore(
+      combineReducers({ jsonforms: jsonformsReducer() }),
+      initState
+    );
+  }
 
   // protected renderForms(): void {
   //   if (this.selectedNode) {
@@ -129,37 +129,37 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   //   );
   // }
 
-  // protected getUiSchema(type: string) {
-  //   switch (type) {
-  //     case "machine":
-  //       return machineView;
-  //     case "control-unit":
-  //       return controlUnitView;
-  //     case "activity":
-  //       return undefined;
-  //     case "brewing-unit":
-  //       return brewingView;
-  //     default:
-  //       console.log("Can't find ui schema for type " + type);
-  //       return undefined;
-  //   }
-  // }
+  protected getUiSchema(type: string) {
+    switch (type) {
+      case "machine":
+        return machineView;
+      case "control-unit":
+        return controlUnitView;
+      case "activity":
+        return undefined;
+      case "brewing-unit":
+        return brewingView;
+      default:
+        console.log("Can't find ui schema for type " + type);
+        return undefined;
+    }
+  }
 
-  // protected getSchema(type: string) {
-  //   switch (type) {
-  //     case "machine":
-  //       return coffeeSchema;
-  //     case "control-unit":
-  //       return coffeeSchema.definitions.controlunit;
-  //     case "activity":
-  //       return coffeeSchema.definitions.activity;
-  //     case "brewing-unit":
-  //       return coffeeSchema.definitions.brewingunit;
-  //     default:
-  //       console.log("Can't find schema for type " + type);
-  //       return undefined;
-  //   }
-  // }
+  protected getSchema(type: string) {
+    switch (type) {
+      case "machine":
+        return coffeeSchema;
+      case "control-unit":
+        return coffeeSchema.definitions.controlunit;
+      case "activity":
+        return coffeeSchema.definitions.activity;
+      case "brewing-unit":
+        return coffeeSchema.definitions.brewingunit;
+      default:
+        console.log("Can't find schema for type " + type);
+        return undefined;
+    }
+  }
 
   // protected onAfterAttach(msg: Message): void {
   //   super.onAfterAttach(msg);
@@ -193,31 +193,31 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   //   this.treeWidget.activate();
   // }
 
-  // protected treeSelectionChanged(
-  //   selectedNodes: readonly Readonly<JsonFormsTree.Node>[]
-  // ) {
-  //   if (selectedNodes.length === 0) {
-  //     this.selectedNode = undefined;
-  //   } else {
-  //     this.selectedNode = selectedNodes[0];
-  //     this.store.dispatch(
-  //       Actions.init(
-  //         this.selectedNode.jsonforms.data,
-  //         {
-  //           definitions: coffeeSchema.definitions,
-  //           ...this.getSchema(this.selectedNode.jsonforms.type)
-  //         },
-  //         this.getUiSchema(this.selectedNode.jsonforms.type),
-  //         {
-  //           refParserOptions: {
-  //             dereference: { circular: "ignore" }
-  //           }
-  //         }
-  //       )
-  //     );
-  //   }
-  //   this.update();
-  // }
+  protected treeSelectionChanged(
+    selectedNodes: readonly Readonly<JsonFormsTree.Node>[]
+  ) {
+    if (selectedNodes.length === 0) {
+      this.selectedNode = undefined;
+    } else {
+      this.selectedNode = selectedNodes[0];
+      this.store.dispatch(
+        Actions.init(
+          this.selectedNode.jsonforms.data,
+          {
+            definitions: coffeeSchema.definitions,
+            ...this.getSchema(this.selectedNode.jsonforms.type)
+          },
+          this.getUiSchema(this.selectedNode.jsonforms.type),
+          {
+            refParserOptions: {
+              dereference: { circular: "ignore" }
+            }
+          }
+        )
+      );
+    }
+    this.update();
+  }
 }
 
 export namespace JsonFormsTreeEditorWidget {
