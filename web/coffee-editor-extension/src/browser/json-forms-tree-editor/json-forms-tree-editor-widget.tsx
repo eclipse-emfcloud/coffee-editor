@@ -2,15 +2,15 @@ import { injectable, inject } from "inversify";
 import {
   BaseWidget,
   Navigatable,
-  // Message,
-  // Widget,
-  // MessageLoop
+  Message,
+  Widget,
+  MessageLoop
 } from "@theia/core/lib/browser";
 import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
-// import { Disposable, Emitter, Event } from "@theia/core/lib/common";
+import { Disposable, Emitter, Event } from "@theia/core/lib/common";
 
-// import * as React from "react";
-// import * as ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import URI from "@theia/core/lib/common/uri";
 
 // import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
@@ -44,8 +44,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   protected treeNode: HTMLElement;
   protected formsNode: HTMLElement;
 
-  // protected readonly onDidUpdateEmitter = new Emitter<void>();
-  // readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
+  protected readonly onDidUpdateEmitter = new Emitter<void>();
+  readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
 
   protected selectedNode: JsonFormsTree.Node;
 
@@ -105,7 +105,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
   }
 
-  // protected renderForms(): void {
+  protected renderForms(): void {
   //   if (this.selectedNode) {
   //     ReactDOM.render(
   //       <React.Fragment>
@@ -118,16 +118,16 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   //       this.formsNode
   //     );
   //   } else {
-  //     this.renderEmptyForms();
+      this.renderEmptyForms();
   //   }
-  // }
+  }
 
-  // protected renderEmptyForms(): void {
-  //   ReactDOM.render(
-  //     <React.Fragment>Please select an element</React.Fragment>,
-  //     this.formsNode
-  //   );
-  // }
+  protected renderEmptyForms(): void {
+    ReactDOM.render(
+      <React.Fragment>Please select an element</React.Fragment>,
+      this.formsNode
+    );
+  }
 
   protected getUiSchema(type: string) {
     switch (type) {
@@ -161,37 +161,37 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     }
   }
 
-  // protected onAfterAttach(msg: Message): void {
-  //   super.onAfterAttach(msg);
-  //   Widget.attach(this.treeWidget, this.treeNode);
-  //   this.toDisposeOnDetach.push(
-  //     Disposable.create(() => {
-  //       Widget.detach(this.treeWidget);
-  //     })
-  //   );
-  //   this.renderForms();
-  // }
+  protected onAfterAttach(msg: Message): void {
+    super.onAfterAttach(msg);
+    Widget.attach(this.treeWidget, this.treeNode);
+    this.toDisposeOnDetach.push(
+      Disposable.create(() => {
+        Widget.detach(this.treeWidget);
+      })
+    );
+    this.renderForms();
+  }
 
-  // protected onAfterShow(msg: Message): void {
-  //   super.onAfterShow(msg);
-  //   this.treeWidget.activate();
-  // }
+  protected onAfterShow(msg: Message): void {
+    super.onAfterShow(msg);
+    this.treeWidget.activate();
+  }
 
-  // protected onUpdateRequest(msg: Message): void {
-  //   super.onUpdateRequest(msg);
-  //   this.renderForms();
-  //   this.onDidUpdateEmitter.fire(undefined);
-  // }
+  protected onUpdateRequest(msg: Message): void {
+    super.onUpdateRequest(msg);
+    this.renderForms();
+    this.onDidUpdateEmitter.fire(undefined);
+  }
 
-  // protected onResize(msg: Widget.ResizeMessage): void {
-  //   super.onResize(msg);
-  //   MessageLoop.sendMessage(this.treeWidget, Widget.ResizeMessage.UnknownSize);
-  // }
+  protected onResize(msg: Widget.ResizeMessage): void {
+    super.onResize(msg);
+    MessageLoop.sendMessage(this.treeWidget, Widget.ResizeMessage.UnknownSize);
+  }
 
-  // protected onActivateRequest(msg: Message): void {
-  //   super.onActivateRequest(msg);
-  //   this.treeWidget.activate();
-  // }
+  protected onActivateRequest(msg: Message): void {
+    super.onActivateRequest(msg);
+    this.treeWidget.activate();
+  }
 
   protected treeSelectionChanged(
     selectedNodes: readonly Readonly<JsonFormsTree.Node>[]
