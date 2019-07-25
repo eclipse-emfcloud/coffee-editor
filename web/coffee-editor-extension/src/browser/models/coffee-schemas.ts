@@ -134,6 +134,11 @@ export const machineView = {
   ]
 };
 
+export const brewingView = {
+  'type': 'Label',
+  'text': 'Brewing Unit'
+}
+
 export const coffeeSchema = {
   'definitions': {
     'activity': {
@@ -410,3 +415,41 @@ export const coffeeSchema = {
   ]
 };
 
+export const instance = {
+  "name": "Super Brewer 3000",
+  "children": [
+    {
+      "eClass": "http://www.eclipse.org/emfforms/example/coffeemodel#//BrewingUnit",
+      "activities": [
+        {
+          "name": "Preheat"
+        },
+        {
+          "name": "Brew"
+        }
+      ],
+      "children": [
+        {
+          "eClass": "http://www.eclipse.org/emfforms/example/coffeemodel#//ControlUnit",
+          "processor": {
+            "vendor": "Qualcomm",
+            "socketconnectorType": "Z51",
+            "manufactoringProcess": "nm18",
+            "clockSpeed": 5,
+            "numberOfCores": 10,
+            "thermalDesignPower": 1000
+          },
+          "display": {
+            "width": 10,
+            "height": 20
+          },
+          "dimension": {
+            "width": 10,
+            "height": 12,
+            "length": 13
+          }
+        }
+      ]
+    }
+  ]
+};

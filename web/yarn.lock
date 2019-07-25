@@ -10535,23 +10535,6 @@ textextensions@^2.4.0:
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.4.0.tgz#6a143a985464384cc2cff11aea448cd5b018e72b"
   integrity sha512-qftQXnX1DzpSV8EddtHIT0eDDEiBF8ywhFYR2lI9xrGtxqKN+CvLXhACeCIGbCpQfxxERbrkZEFb8cZcDKbVZA==
 
-"theia-tree-editor@https://github.com/eneufeld/theia-tree-editor.git#master":
-  version "0.0.6"
-  resolved "https://github.com/eneufeld/theia-tree-editor.git#73c59876213d9400811723eb5bdaaa123ef6a7e9"
-  dependencies:
-    "@jsonforms/core" "2.3.0-alpha.1"
-    "@jsonforms/material-renderers" "2.3.0-alpha.1"
-    "@jsonforms/material-tree-renderer" "2.3.0-alpha.1"
-    "@jsonforms/react" "2.3.0-alpha.1"
-    "@theia/core" "0.7.1"
-    "@theia/editor" "0.7.1"
-    "@theia/filesystem" "0.7.1"
-    react "^16.4.0"
-    react-dom "^16.4.0"
-    react-redux "^6.0.0"
-    recompose "^0.27.1"
-    redux "^3.7.2"
-
 through2@^2.0.0, through2@^2.0.2:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.5.tgz#01c1e39eb31d07cb7d03a96a70823260b23132cd"
