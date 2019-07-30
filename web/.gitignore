@@ -8,7 +8,7 @@ docs
 !*-app/package.json
 
 .idea/
-.vscode/
+
 server/
 
 .DS_Store
