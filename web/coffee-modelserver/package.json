@@ -1,0 +1,42 @@
+{
+  "name": "coffee-modelserver",
+  "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
+  "keywords": [
+    "theia-extension"
+  ],
+  "homepage": "https://github.com/eclipsesource/coffee-editor",
+  "bugs": "https://github.com/eclipsesource/coffee-editor/issues",
+  "version": "0.0.0",
+  "files": [
+    "build",
+    "lib",
+    "src"
+  ],
+  "author": {
+    "name": "EclipseSource"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipsesource/cofee-editor.git"
+  },
+  "dependencies": {
+    "@theia/core": "^0.7.1",
+    "@theia/workspace": "^0.7.1",
+    "@modelserver/theia": "next"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc && yarn run download-server",
+    "download-server": "cd ./scripts && ./download-server.sh"
+  },
+  "theiaExtensions": [
+    {
+      "backend": "lib/node/backend-module"
+    }
+  ]
+}
