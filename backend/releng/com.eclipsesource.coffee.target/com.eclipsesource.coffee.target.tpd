@@ -33,4 +33,10 @@ location "http://download.eclipse.org/lsp4j/updates/releases/" {
 }
 location "https://dl.bintray.com/eclipsesource/modelserver/nightly/" {
 	com.eclipsesource.modelserver.coffee.model
+	com.eclipsesource.modelserver.client
+	com.eclipsesource.modelserver.common
+	com.squareup.okhttp3
+}
+location "http://ghillairet.github.io/p2" {
+	org.emfjson.jackson
 }

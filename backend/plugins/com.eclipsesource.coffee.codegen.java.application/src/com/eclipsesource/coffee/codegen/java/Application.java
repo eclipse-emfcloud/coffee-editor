@@ -1,5 +1,6 @@
 package com.eclipsesource.coffee.codegen.java;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -15,6 +17,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
+import com.eclipsesource.modelserver.client.ModelServerClient;
 import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.generator.GeneratedFile;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
@@ -61,10 +64,10 @@ public class Application implements IApplication {
 		try {
 			generate(URI.create(targetFolder), packageName, URI.create(source));
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 			return -20;
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 			return -30;
 		}
 
@@ -78,7 +81,7 @@ public class Application implements IApplication {
 	
 	
 	private static void generate(URI targetLocation, String packageName, URI sourceUri)
-			throws UnsupportedEncodingException, IOException {
+			throws UnsupportedEncodingException, IOException, InterruptedException, ExecutionException {
 		JavaWorkflowGenerator generator = new JavaWorkflowGenerator();
 		
 		Collection<GeneratedFile> files = generator.generateClasses(parse(sourceUri), packageName, sourceUri.getPath());
@@ -93,14 +96,19 @@ public class Application implements IApplication {
 		}
 	}
 	
-	private static Machine parse (URI uri) {
+	private static Machine parse (URI uri) throws InterruptedException, ExecutionException, IOException {
+		ModelServerClient msc = new ModelServerClient("http://localhost:8081/api/v1/");
+		String content = msc.get(Paths.get(uri).getFileName().toString()+"?format=xmi")
+	      .get().body();
+		
+		//TODO remove
+		System.out.println(content);
+		
 		ResourceSet rs = new ResourceSetImpl();
-		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI(uri.getPath()));
-		try {
-			resource.load(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI("VIRTUAL"));
+		resource.load(new ByteArrayInputStream(content.getBytes()), null);
+
 		return (Machine) resource.getContents().get(0);
 	}
 }
