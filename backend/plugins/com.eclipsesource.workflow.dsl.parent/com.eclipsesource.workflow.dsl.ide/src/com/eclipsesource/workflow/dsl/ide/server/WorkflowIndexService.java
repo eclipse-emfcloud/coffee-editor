@@ -1,13 +1,15 @@
 package com.eclipsesource.workflow.dsl.ide.server;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,6 +25,7 @@ import org.eclipse.lsp4j.WorkspaceFolder;
 import org.eclipse.lsp4j.WorkspaceSymbolParams;
 import org.eclipse.lsp4j.services.WorkspaceService;
 
+import com.eclipsesource.modelserver.client.ModelServerClient;
 import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.dsl.index.IWorkflowIndex;
 
@@ -112,7 +115,7 @@ public class WorkflowIndexService implements WorkspaceService {
 		try {
 			index.putGraph(uri, getContent(uri));
 			System.out.println("[WorkflowDSL] File " + uri + " added to index.");
-		} catch (FileNotFoundException | URISyntaxException e) {
+		} catch (InterruptedException | ExecutionException | IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -122,7 +125,7 @@ public class WorkflowIndexService implements WorkspaceService {
 			// changed: simply re-parse the whole graph
 			index.putGraph(uri, getContent(uri));
 			System.out.println("[WorkflowDSL] File " + uri + " changed in index.");
-		} catch (FileNotFoundException | URISyntaxException e) {
+		} catch (InterruptedException | ExecutionException | IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -132,14 +135,16 @@ public class WorkflowIndexService implements WorkspaceService {
 		System.out.println("[WorkflowDSL] File " + uri + " deleted from index.");
 	}
 	
-	private static Machine getContent(String uri) throws FileNotFoundException, URISyntaxException {
+	private static Machine getContent (String uri) throws InterruptedException, ExecutionException, IOException {
+		ModelServerClient msc = new ModelServerClient("http://localhost:8081/api/v1/");
+		String content = msc.get(Paths.get(uri).getFileName().toString()+"?format=xmi").get().body();
+		
 		ResourceSet rs = new ResourceSetImpl();
-		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI(uri));
-		try {
-			resource.load(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI("VIRTUAL"));
+		resource.load(new ByteArrayInputStream(content.getBytes()), null);
+
 		return (Machine) resource.getContents().get(0);
 	}
+	
 }

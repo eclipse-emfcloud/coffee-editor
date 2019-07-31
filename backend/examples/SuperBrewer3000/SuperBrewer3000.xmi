@@ -3,7 +3,7 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:com.eclipsesource.coffee.model="http://www.eclipsesource.com/coffee/model"
+    xmlns:com.eclipsesource.coffee.model="http://www.eclipsesource.com/modelserver/example/coffeemodel"
     name="SuperBrewer3000">
   <children
       xsi:type="com.eclipsesource.coffee.model:BrewingUnit">

@@ -98,11 +98,7 @@ public class Application implements IApplication {
 	
 	private static Machine parse (URI uri) throws InterruptedException, ExecutionException, IOException {
 		ModelServerClient msc = new ModelServerClient("http://localhost:8081/api/v1/");
-		String content = msc.get(Paths.get(uri).getFileName().toString()+"?format=xmi")
-	      .get().body();
-		
-		//TODO remove
-		System.out.println(content);
+		String content = msc.get(Paths.get(uri).getFileName().toString()+"?format=xmi").get().body();
 		
 		ResourceSet rs = new ResourceSetImpl();
 		

@@ -37,11 +37,11 @@ export class CoffeeCodeGenServer implements CodeGenServer {
             process.process.on('exit', (code)=> {
                 switch(code){
                     case 0: resolve('OK');break;
-                    case -10:resolve('Target Folder Parameter missing');
-                    case -11:resolve('Source File Parameter missing');
-                    case -12:resolve('Package Name Parameter missing');
-                    case -20:resolve('Encoding not found, check Server Log!');
-                    case -30:resolve('IO Exception occurred, check Server Log!');
+                    case -10:resolve('Target Folder Parameter missing');break;
+                    case -11:resolve('Source File Parameter missing');break;
+                    case -12:resolve('Package Name Parameter missing');break;
+                    case -20:resolve('Encoding not found, check Server Log!');break;
+                    case -30:resolve('IO Exception occurred, check Server Log!');break;
                     default:resolve('UNKNOWN ERROR');break;
                 }
             });   
@@ -59,7 +59,7 @@ export class CoffeeCodeGenServer implements CodeGenServer {
         if(rawProcess.process === undefined){
             return undefined;
         }
-        rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
+        rawProcess.process.on('error', this.onDidFailSpawnProcess.bind(this));
         const stderr = rawProcess.process.stderr;
         if(stderr)
             stderr.on('data', this.logError.bind(this));

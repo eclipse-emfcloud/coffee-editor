@@ -20,7 +20,7 @@
     "electron-app"
   ],
   "resolutions": {
-    "**/@theia/core": "0.7.1",
+    "**/@theia/*": "0.7.1",
     "**/@theia/editor": "0.7.1",
     "**/@theia/filesystem": "0.7.1",
     "**/@theia/languages": "0.7.1",
@@ -37,6 +37,13 @@
     "**/@theia/userstorage": "0.7.1",
     "**/@theia/variable-resolver": "0.7.1",
     "**/@theia/workspace": "0.7.1",
+    "**/@theia/java": "0.7.1",
+    "**/@theia/java-debug": "0.7.1",
+    "**/@theia/terminal": "0.7.1",
+    "**/@theia/debug": "0.7.1",
+    "**/@theia/console": "0.7.1",
+    "**/@theia/preferences": "0.7.1",
+    "**/@theia/core": "0.7.1",
     "**/sprotty": "0.7.0-next.cea0e2b"
   }
 }

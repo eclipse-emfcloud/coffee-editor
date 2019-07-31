@@ -32,9 +32,9 @@ location "http://download.eclipse.org/lsp4j/updates/releases/" {
 	org.eclipse.lsp4j.sdk.feature.group
 }
 location "https://dl.bintray.com/eclipsesource/modelserver/nightly/" {
-	com.eclipsesource.modelserver.coffee.model
-	com.eclipsesource.modelserver.client
-	com.eclipsesource.modelserver.common
+	com.eclipsesource.modelserver.coffee.model lazy
+	com.eclipsesource.modelserver.client lazy
+	com.eclipsesource.modelserver.common lazy
 	com.squareup.okhttp3
 }
 location "http://ghillairet.github.io/p2" {
