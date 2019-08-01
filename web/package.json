@@ -11,7 +11,7 @@
   "workspaces": [
     "coffee-editor-extension",
     "coffee-java-extension",
-    "coffee-modelserver",
+    "coffee-server",
     "coffee-workflow-analyzer",
     "coffee-workflow-analyzer-editors",
     "coffee-workspace-filesystem-storage-service",
