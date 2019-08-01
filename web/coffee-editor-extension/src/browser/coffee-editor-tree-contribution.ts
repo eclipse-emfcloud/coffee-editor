@@ -9,7 +9,7 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<
   readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;
 
   canHandle(uri: URI): number {
-    if (uri.path.ext === ".jc") {
+    if (uri.path.ext === ".jc" || uri.path.ext === ".xmi") {
       return 1000;
     }
     return 0;

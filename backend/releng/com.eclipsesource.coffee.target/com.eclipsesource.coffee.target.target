@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2019-03" sequenceNumber="1564045792">
+<target name="Coffee 2019-03" sequenceNumber="1564580736">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
@@ -35,8 +35,15 @@
       <repository location="http://download.eclipse.org/lsp4j/updates/releases/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="com.eclipsesource.modelserver.coffee.model" version="0.0.1.201907250755"/>
+      <unit id="com.eclipsesource.modelserver.coffee.model" version="0.0.0"/>
+      <unit id="com.eclipsesource.modelserver.client" version="0.0.0"/>
+      <unit id="com.eclipsesource.modelserver.common" version="0.0.0"/>
+      <unit id="com.squareup.okhttp3" version="0.0.1.201907311338"/>
       <repository location="https://dl.bintray.com/eclipsesource/modelserver/nightly/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.emfjson.jackson" version="1.2.0"/>
+      <repository location="http://ghillairet.github.io/p2"/>
     </location>
   </locations>
 </target>
