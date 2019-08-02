@@ -105,11 +105,6 @@ export const controlUnitView = {
       'scope': '#/properties/ram'
     },
     {
-      'type': 'Control',
-      'label': 'Activities',
-      'scope': '#/properties/activities'
-    },
-    {
       'type': 'Group',
       'label': 'User Description',
       'elements': [
@@ -141,43 +136,62 @@ export const brewingView = {
 
 export const coffeeSchema = {
   'definitions': {
-    'activity': {
-      '$id': '#activity',
-      'label': 'Activity',
-      'type': 'object',
-      'properties': {
-        'name': {
-          'type': 'string'
-        }
-      },
-      'additionalProperties': false,
-      'required': [
-        'name'
-      ]
-    },
-    'brewingunit': {
-      '$id': '#brewingunit',
-      'label': 'Brewing Unit',
+    'component': {
+      '$id': '#component',
+      'title': 'Component',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//BrewingUnit'
-        },
-        'activities': {
-          'type': 'array',
-          'items': {
-            '$ref': '#/definitions/activity'
-          }
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Component'
         },
         'children': {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
               { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
               { '$ref': '#/definitions/diptray'},
               { '$ref': '#/definitions/watertank'}
             ]
+          }
+        },
+        'workflows': {
+          'type': 'array',
+          'items': {
+            '$ref': '#/definitions/workflow'
+          }
+        }
+      },
+      'additionalProperties': false
+    },
+    'machine': {
+      '$id': '#machine',
+      'title': 'Machine',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine'
+        },
+        'name': {
+          'type': 'string'
+        },
+        'children': {
+          'type': 'array',
+          'items': {
+            'anyOf': [
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
+              { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/diptray'},
+              { '$ref': '#/definitions/watertank'}
+            ]
+          }
+        },
+        'workflows': {
+          'type': 'array',
+          'items': {
+            '$ref': '#/definitions/workflow'
           }
         }
       },
@@ -185,25 +199,20 @@ export const coffeeSchema = {
     },
     'controlunit': {
       '$id': '#controlunit',
-      'label': 'Control Unit',
+      'title': 'Control Unit',
       'type': 'object',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//ControlUnit'
-        },
-        'activities': {
-          'type': 'array',
-          'items': {
-            '$ref': '#/definitions/activity'
-          }
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit'
         },
         'children': {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
               { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
               { '$ref': '#/definitions/diptray'},
               { '$ref': '#/definitions/watertank'}
             ]
@@ -235,43 +244,21 @@ export const coffeeSchema = {
         'ram'
       ]
     },
-    'dimension': {
-      '$id': '#dimension',
-      'label': 'Dimension',
-      'type': 'object',
-      'properties': {
-        'width': {
-          'type': 'integer'
-        },
-        'height': {
-          'type': 'integer'
-        },
-        'length': {
-          'type': 'integer'
-        }
-      },
-      'additionalProperties': false
-    },
-    'diptray': {
-      '$id': '#diptray',
-      'label': 'Dip Tray',
+    'brewingunit': {
+      '$id': '#brewingunit',
+      'title': 'Brewing Unit',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//DipTray'
-        },
-        'activities': {
-          'type': 'array',
-          'items': {
-            '$ref': '#/definitions/activity'
-          }
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
         },
         'children': {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
               { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
               { '$ref': '#/definitions/diptray'},
               { '$ref': '#/definitions/watertank'}
             ]
@@ -280,19 +267,48 @@ export const coffeeSchema = {
       },
       'additionalProperties': false
     },
-    'display': {
-      '$id': '#display',
-      'type': 'object',
+    'diptray': {
+      '$id': '#diptray',
+      'title': 'Dip Tray',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//Display'
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//DipTray'
         },
-        'width': {
-          'type': 'integer'
+        'children': {
+          'type': 'array',
+          'items': {
+            'anyOf': [
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
+              { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/diptray'},
+              { '$ref': '#/definitions/watertank'}
+            ]
+          }
+        }
+      },
+      'additionalProperties': false
+    },
+    'watertank': {
+      '$id': '#watertank',
+      'title': 'Water Tank',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WaterTank'
         },
-        'height': {
-          'type': 'integer'
+        'children': {
+          'type': 'array',
+          'items': {
+            'anyOf': [
+              { '$ref': '#/definitions/component'},
+              { '$ref': '#/definitions/machine'},
+              { '$ref': '#/definitions/controlunit'},
+              { '$ref': '#/definitions/brewingunit'},
+              { '$ref': '#/definitions/diptray'},
+              { '$ref': '#/definitions/watertank'}
+            ]
+          }
         }
       },
       'additionalProperties': false
@@ -300,10 +316,10 @@ export const coffeeSchema = {
     'processor': {
       '$id': '#processor',
       'type': 'object',
+      'title': 'Processor',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//Processor'
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Processor'
         },
         'vendor': {
           'type': 'string'
@@ -334,11 +350,34 @@ export const coffeeSchema = {
       },
       'additionalProperties': false
     },
-    'ram': {
-      '$id': '#ram',
-      'label': 'RAM',
+    'dimension': {
+      '$id': '#dimension',
+      'title': 'Dimension',
       'type': 'object',
       'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Dimension'
+        },
+        'width': {
+          'type': 'integer'
+        },
+        'height': {
+          'type': 'integer'
+        },
+        'length': {
+          'type': 'integer'
+        }
+      },
+      'additionalProperties': false
+    },
+    'ram': {
+      '$id': '#ram',
+      'title': 'RAM',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//RAM'
+        },
         'clockSpeed': {
           'type': 'integer'
         },
@@ -355,101 +394,222 @@ export const coffeeSchema = {
       },
       'additionalProperties': false
     },
-    'watertank': {
-      '$id': '#watertank',
-      'label': 'Water Tank',
+    'display': {
+      '$id': '#display',
+      'type': 'object',
+      'title': 'Display',
       'properties': {
         'eClass': {
-          'type': 'string',
-          'default': 'http://www.eclipse.org/emfforms/example/coffeemodel#//WaterTank'
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Display'
         },
-        'activities': {
-          'type': 'array',
-          'items': {
-            '$ref': '#/definitions/activity'
-          }
+        'width': {
+          'type': 'integer'
         },
-        'children': {
+        'height': {
+          'type': 'integer'
+        }
+      },
+      'additionalProperties': false
+    },
+    'workflow': {
+      '$id': '#workflow',
+      'title': 'Workflow',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Workflow'
+        },
+        'nodes': {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/automatictask'},
+              { '$ref': '#/definitions/manualtask'},
+              { '$ref': '#/definitions/fork'},
+              { '$ref': '#/definitions/join'},
+              { '$ref': '#/definitions/decision'},
+              { '$ref': '#/definitions/merge'}
+            ]
+          }
+        },
+        'flows': {
+          'type': 'array',
+          'items': {
+            'anyOf': [
+              { '$ref': '#/definitions/flow'},
+              { '$ref': '#/definitions/weightedflow'},
             ]
           }
         }
       },
       'additionalProperties': false
-    }
-  },
-  '$id': '#machine',
-  'label': 'Machine',
-  'type': 'object',
-  'properties': {
-    'name': {
-      'type': 'string'
     },
-    'children': {
-      'type': 'array',
-      'items': {
-        'anyOf': [
-          { '$ref': '#/definitions/brewingunit'},
-          { '$ref': '#/definitions/controlunit'},
-          { '$ref': '#/definitions/diptray'},
-          { '$ref': '#/definitions/watertank'}
-        ]
-      }
+    'node': {
+      '$id': '#node',
+      'type': 'object',
+      'title': 'Node',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Node'
+        }
+      },
+      'additionalProperties': false
     },
-    'activities': {
-      'type': 'array',
-      'items': {
-        '$ref': '#/definitions/activity'
-      }
-    }
+    'task': {
+      '$id': '#task',
+      'title': 'Task',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task'
+        },
+        'name': {
+          'type': 'string',
+        },
+        'duration': {
+          'type': 'integer',
+        }
+      },
+      'additionalProperties': false
+    },
+    'automatictask': {
+      '$id': '#automatictask',
+      'title': 'Automatic Task',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask'
+        },
+        'name': {
+          'type': 'string',
+        },
+        'duration': {
+          'type': 'integer',
+        },       
+        // missing component link
+      },
+      //'additionalProperties': false
+    },
+    'manualtask': {
+      '$id': '#manualtask',
+      'title': 'Manual Task',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask'
+        },
+        'name': {
+          'type': 'string',
+        },
+        'duration': {
+          'type': 'integer',
+        },
+        'actor': {
+          'type': 'string'
+        },
+      },
+      'additionalProperties': false
+    },
+    'fork': {
+      '$id': '#fork',
+      'title': 'Fork',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Fork'
+        }
+      },
+      'additionalProperties': false
+    },
+    'join': {
+      '$id': '#join',
+      'title': 'Join',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Join'
+        }
+      },
+      'additionalProperties': false
+    },
+    'decision': {
+      '$id': '#decision',
+      'title': 'Decision',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Decision'
+        }
+      },
+      'additionalProperties': false
+    },
+    'merge': {
+      '$id': '#merge',
+      'title': 'Merge',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Merge'
+        }
+      },
+      'additionalProperties': false
+    },
+    'flow': {
+      '$id': '#flow',
+      'title': 'Flow',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Flow'
+        }
+        // Missing Source and Target
+      },
+      //'additionalProperties': false
+    },
+    'weightedflow': {
+      '$id': '#weightedflow',
+      'title': 'Weighted Flow',
+      'type': 'object',
+      'properties': {
+        'eClass': {
+          'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WeightedFlow'
+        },
+        'probability': {
+          'type': 'number'
+        }
+        // Missing Source and Target
+      },
+      //'additionalProperties': false
+    },
   },
-  'additionalProperties': false,
-  'required': [
-    'name'
-  ]
+  '$ref': '#/definitions/machine'
 };
 
 export const instance = {
-  "name": "Super Brewer 3000",
-  "children": [
-    {
-      "eClass": "http://www.eclipse.org/emfforms/example/coffeemodel#//BrewingUnit",
-      "activities": [
-        {
-          "name": "Preheat"
-        },
-        {
-          "name": "Brew"
-        }
-      ],
-      "children": [
-        {
-          "eClass": "http://www.eclipse.org/emfforms/example/coffeemodel#//ControlUnit",
-          "processor": {
-            "vendor": "Qualcomm",
-            "socketconnectorType": "Z51",
-            "manufactoringProcess": "nm18",
-            "clockSpeed": 5,
-            "numberOfCores": 10,
-            "thermalDesignPower": 1000
-          },
-          "display": {
-            "width": 10,
-            "height": 20
-          },
-          "dimension": {
-            "width": 10,
-            "height": 12,
-            "length": 13
-          }
-        }
-      ]
+  "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine",
+  "children" : [ {
+    "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit"
+  }, {
+    "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit",
+    "processor" : {
+      "clockSpeed" : 5,
+      "numberOfCores" : 10,
+      "socketconnectorType" : "Z51",
+      "thermalDesignPower" : 100
+    },
+    "display" : {
+      "width" : 10,
+      "height" : 20
     }
-  ]
+  } ],
+  "name" : "Super Brewer 3000",
+  "workflows" : [ {
+    "nodes" : [ {
+      "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask",
+      "name" : "PreHeat",
+      "component" : {
+        "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit",
+        "$ref" : "//@children.0"
+      }
+    } ]
+  } ]
 };

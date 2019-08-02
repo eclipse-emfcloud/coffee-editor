@@ -10,6 +10,7 @@ import { TreeModel, ExpandableTreeNode } from "@theia/core/lib/browser";
 import { v4 } from "uuid";
 import { Emitter, Event } from "@theia/core";
 import { instance } from "../models/coffee-schemas";
+import URI from "@theia/core/lib/common/uri";
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
@@ -91,123 +92,100 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
-  protected mapDataToNodes(): [JsonFormsTree.Node] {
-    const node = this.mapMachineData();
-    return [node];
+  protected mapDataToNodes(): JsonFormsTree.Node[] {
+    const node = this.mapData(this.data);
+    if (node) {
+      return [node];
+    }
+    return [];
   }
 
-  protected mapMachineData(): JsonFormsTree.Node {
-    const currentData = this.data;
-    const node = {
+  protected defaultNode(): Pick<
+    JsonFormsTree.Node,
+    "id" | "expanded" | "selected" | "parent" | "decorationData" | "children"
+  > {
+    return {
       id: v4(),
-      name: currentData.name,
+      expanded: false,
+      selected: false,
       parent: undefined,
-      expanded: false,
-      selected: false,
       decorationData: {},
-      children: [],
-      jsonforms: {
-        type: "machine",
-        data: currentData
-      }
+      children: []
     };
-    if (currentData.activities) {
-      currentData.activities.forEach(element => {
-        this.mapActivityData(element, node);
-      });
-    }
-    if (currentData.children) {
-      currentData.children.forEach(element => {
-        this.mapData(element, node);
-      });
-    }
-    return node;
   }
 
-  protected mapActivityData(currentData: any, parent: JsonFormsTree.Node) {
-    const node = {
-      id: v4(),
-      name: currentData.name,
-      parent: parent,
-      expanded: false,
-      selected: false,
-      decorationData: {},
-      children: [],
-      jsonforms: {
-        type: "activity",
-        data: currentData
-      }
-    };
-    parent.children.push(node);
-    parent.expanded = true;
+  protected getName(currentData: any) {
+    switch (currentData.eClass) {
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
+        return currentData.name;
+      default:
+        // TODO query title of schema
+        const fragment = new URI(currentData.eClass).fragment;
+        if (fragment.startsWith("//")) {
+          return fragment.substring(2);
+        }
+        return fragment;
+    }
   }
 
-  protected mapData(currentData: any, parent: JsonFormsTree.Node) {
+  protected mapData(
+    currentData: any,
+    parent?: JsonFormsTree.Node
+  ): JsonFormsTree.Node {
     if (!(currentData && currentData.eClass)) {
       // sanity check
       console.log("Don't know how to map data:");
       console.log(currentData);
-      return;
+      return undefined;
     }
-    let node;
-    switch (currentData.eClass) {
-      case "http://www.eclipse.org/emfforms/example/coffeemodel#//BrewingUnit":
-        node = {
-          id: v4(),
-          name: "Brewing Unit",
-          parent: parent,
-          expanded: false,
-          selected: false,
-          decorationData: {},
-          children: [],
-          jsonforms: {
-            type: "brewing-unit",
-            data: currentData
-          }
-        };
-        parent.children.push(node);
-        parent.expanded = true;
-        if (currentData.activities) {
-          currentData.activities.forEach(element => {
-            this.mapActivityData(element, node);
-          });
-        }
-        if (currentData.children) {
-          currentData.children.forEach(element => {
-            this.mapData(element, node);
-          });
-        }
-        break;
-      case "http://www.eclipse.org/emfforms/example/coffeemodel#//ControlUnit":
-        node = {
-          id: v4(),
-          name: "Control Unit",
-          parent: parent,
-          expanded: false,
-          selected: false,
-          decorationData: {},
-          children: [],
-          jsonforms: {
-            type: "control-unit",
-            data: currentData
-          }
-        };
-        parent.children.push(node);
-        parent.expanded = true;
-        if (currentData.activities) {
-          currentData.activities.forEach(element => {
-            this.mapActivityData(element, node);
-          });
-        }
-        if (currentData.children) {
-          currentData.children.forEach(element => {
-            this.mapData(element, node);
-          });
-        }
-        break;
-      default:
-        console.log("Don't know how to map eClass " + currentData.eClass);
+    const node = {
+      ...this.defaultNode(),
+      name: this.getName(currentData),
+      parent: parent,
+      jsonforms: {
+        type: currentData.eClass,
+        data: currentData
+      }
+    };
+    // containments
+    if (parent) {
+      parent.children.push(node);
+      parent.expanded = true;
     }
+    if (currentData.children) {
+      // component types
+      currentData.children.forEach(element => {
+        this.mapData(element, node);
+      });
+    }
+    if (currentData.workflows) {
+      // machine type
+      currentData.workflows.forEach(element => {
+        this.mapData(element, node);
+      });
+    }
+    if (currentData.ram) {
+      // controlunit type
+      currentData.ram.forEach(element => {
+        this.mapData(element, node);
+      });
+    }
+    if (currentData.nodes) {
+      // workflow type
+      currentData.nodes.forEach(element => {
+        this.mapData(element, node);
+      });
+    }
+    if (currentData.flows) {
+      // workflow type
+      currentData.flows.forEach(element => {
+        this.mapData(element, node);
+      });
+    }
+    return node;
   }
 
   protected isExpandable(node: TreeNode): node is ExpandableTreeNode {

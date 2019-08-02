@@ -131,34 +131,27 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
 
   protected getUiSchema(type: string) {
     switch (type) {
-      case "machine":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
         return machineView;
-      case "control-unit":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit":
         return controlUnitView;
-      case "activity":
-        return undefined;
-      case "brewing-unit":
+      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit":
         return brewingView;
       default:
-        console.log("Can't find ui schema for type " + type);
+        console.log("Can't find registered ui schema for type " + type);
         return undefined;
     }
   }
 
   protected getSchema(type: string) {
-    switch (type) {
-      case "machine":
-        return coffeeSchema;
-      case "control-unit":
-        return coffeeSchema.definitions.controlunit;
-      case "activity":
-        return coffeeSchema.definitions.activity;
-      case "brewing-unit":
-        return coffeeSchema.definitions.brewingunit;
-      default:
-        console.log("Can't find schema for type " + type);
-        return undefined;
+    console.log(type);
+    const schema = Object.entries(coffeeSchema.definitions)
+      .map(entry => entry[1])
+      .find(definition => definition.properties && definition.properties.eClass.const === type);
+    if (!schema) {
+      console.log("Can't find definition schema for type " + type);
     }
+    return schema;
   }
 
   protected onAfterAttach(msg: Message): void {
