@@ -9,7 +9,6 @@ import { JsonFormsTree } from "./json-forms-tree";
 import { TreeModel, ExpandableTreeNode } from "@theia/core/lib/browser";
 import { v4 } from "uuid";
 import { Emitter, Event } from "@theia/core";
-import { instance } from "../models/coffee-schemas";
 import URI from "@theia/core/lib/common/uri";
 
 @injectable()
@@ -17,7 +16,10 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
     readonly Readonly<JsonFormsTree.Node>[]
   >();
-  protected data: any;
+  protected data: {
+    error: boolean;
+    data?: any;
+  };
 
   constructor(
     @inject(TreeProps) readonly props: TreeProps,
@@ -56,44 +58,40 @@ export class JsonFormsTreeWidget extends TreeWidget {
         >[]);
       })
     );
+  }
 
-    this.fillTree().then(() => {
-      // select first node if it exists
-      if (
-        this.model.root &&
-        JsonFormsTree.RootNode.is(this.model.root) &&
-        this.model.root.children.length > 0 &&
-        JsonFormsTree.Node.is(this.model.root.children[0])
-      ) {
-        this.model.selectNode(this.model.root
-          .children[0] as JsonFormsTree.Node);
-        this.model.refresh();
-      }
-    });
+  public async setData(data: any) {
+    this.data = data;
+    await this.refreshModelChildren();
+  }
+
+  public selectFirst(): void {
+    if (
+      this.model.root &&
+      JsonFormsTree.RootNode.is(this.model.root) &&
+      this.model.root.children.length > 0 &&
+      JsonFormsTree.Node.is(this.model.root.children[0])
+    ) {
+      this.model.selectNode(this.model.root.children[0] as JsonFormsTree.Node);
+      this.model.refresh();
+    }
   }
 
   get onSelectionChange(): Event<readonly Readonly<JsonFormsTree.Node>[]> {
     return this.onTreeWidgetSelectionEmitter.event;
   }
 
-  async fillTree(): Promise<void> {
-    await this.requestData();
-    this.refreshModelChildren();
-  }
-
-  async requestData(): Promise<void> {
-    this.data = instance;
-  }
-
   protected async refreshModelChildren(): Promise<void> {
     if (this.model.root && JsonFormsTree.RootNode.is(this.model.root)) {
-      this.model.root.children = this.mapDataToNodes();
+      const newTree =
+        !this.data || this.data.error ? [] : this.mapDataToNodes();
+      this.model.root.children = newTree;
       this.model.refresh();
     }
   }
 
   protected mapDataToNodes(): JsonFormsTree.Node[] {
-    const node = this.mapData(this.data);
+    const node = this.mapData(this.data.data);
     if (node) {
       return [node];
     }
@@ -115,30 +113,36 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected getName(currentData: any) {
-    switch (currentData.eClass) {
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task":
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask":
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask":
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
-        return currentData.name;
-      default:
-        // TODO query title of schema
-        const fragment = new URI(currentData.eClass).fragment;
-        if (fragment.startsWith("//")) {
-          return fragment.substring(2);
-        }
-        return fragment;
+    if (currentData.eClass) {
+      switch (currentData.eClass) {
+        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task":
+        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask":
+        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask":
+        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
+          return currentData.name;
+        default:
+          // TODO query title of schema
+          const fragment = new URI(currentData.eClass).fragment;
+          if (fragment.startsWith("//")) {
+            return fragment.substring(2);
+          }
+          return fragment;
+      }
     }
+    // guess
+    if (currentData.nodes) {
+      return "Workflow";
+    }
+    return undefined;
   }
 
   protected mapData(
     currentData: any,
     parent?: JsonFormsTree.Node
   ): JsonFormsTree.Node {
-    if (!(currentData && currentData.eClass)) {
+    if (!currentData) {
       // sanity check
-      console.log("Don't know how to map data:");
-      console.log(currentData);
+      console.log("mapData called without data");
       return undefined;
     }
     const node = {

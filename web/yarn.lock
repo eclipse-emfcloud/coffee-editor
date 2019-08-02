@@ -143,10 +143,10 @@
     "@types/node" "^8.0.14"
     sprotty-theia "0.7.0-next.6b63891"
 
-"@jsonforms/core@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/core/-/core-2.3.0-alpha.1.tgz#8f66d08260b86589f512dda0632399bc17c8db61"
-  integrity sha512-FwHrqm2ft3pmTTC3GujcF+gOqYq9B7ARYYg8sgOwwbI+n8rijuTmH9rO+F6RljCDwGuK/tJodnYTyjlggxxlrA==
+"@jsonforms/core@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-2.3.0.tgz#31f9aa752db2dffa915761fdeaa1cb7af81e6430"
+  integrity sha512-+UMyWmCFwrgQN4P6gQ7WsGl1MUvXbDGWc+KBUlrE5EdZDKnZKKLPKB36VZbBHZ8KEzNuuKQJhOdIckscmKj7QA==
   dependencies:
     "@types/json-schema" "^7.0.3"
     ajv "^6.4.0"
@@ -155,31 +155,31 @@
     uri-js "^4.2.2"
     uuid "^3.2.1"
 
-"@jsonforms/material-renderers@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/material-renderers/-/material-renderers-2.3.0-alpha.1.tgz#cc9f6f3efffba70e09c31e802d9ccc90323a8a91"
-  integrity sha512-Ely59kNFzg+A4AUtPuwwWsqoqkCyGTMv86T37T0qwsa0k0cAiYIdXX8WJZcGP0fcqB9UsgHdyRBZ7OhOn6B8Ug==
+"@jsonforms/material-renderers@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/material-renderers/-/material-renderers-2.3.0.tgz#a95fba7e5b70f571dfe4eeffa81ec18ded44b741"
+  integrity sha512-nllXVEMPGmwTphFyFpGDcuPyVtTcLlJZGW9zDBp7MV+hijdM6olRS0XUI7Xb5EP0c476Etw/izYgAg5ATmoAuw==
   dependencies:
     "@date-io/moment" "1.1.0"
-    "@material-ui/core" "^4.0.1"
-    "@material-ui/icons" "^4.0.1"
-    "@material-ui/lab" "^4.0.0-alpha.15"
+    "@material-ui/core" "~4.0.1"
+    "@material-ui/icons" "~4.0.1"
+    "@material-ui/lab" "4.0.0-alpha.15"
     material-ui-pickers "^2.2.4"
-    moment "^2.20.1"
+    moment "^2.24.0"
 
-"@jsonforms/material-tree-renderer@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/material-tree-renderer/-/material-tree-renderer-2.3.0-alpha.1.tgz#3e2a4565cebee689f21822032347a31db8bc7e28"
-  integrity sha512-33zV+K6eP82jtrMO9TZ/LYxCypIzptuwpIH0fcg3uAiZFjJUgxfDru0ttvfg1u7Nx2WPy9zttdy6TGsNkyP5lg==
+"@jsonforms/material-tree-renderer@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/material-tree-renderer/-/material-tree-renderer-2.3.0.tgz#371cac5465df29c35e92be00646d486acb8763ac"
+  integrity sha512-4LxD0c+9b3OmOk8zqNuq22FETuGZcCJlJfGBUhNXIT5dYRPCNe5paO+KpMbf0HXbxhGMmqMTZk4zgH5EUQtCyA==
   dependencies:
     react-dnd "^7.4.5"
     react-dnd-html5-backend "^7.4.4"
     recompose "^0.27.1"
 
-"@jsonforms/react@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/react/-/react-2.3.0-alpha.1.tgz#766fe166dae9b4556be3e9905da25b1c8b01f694"
-  integrity sha512-pAMER9bSsKEb/ajIMpE3w9jnM3IxeCgb7QJ05uONpyh3dYod+D0nxGLaSHsoB/F7ZJ2pqvEmLOIFjIIhsStGvA==
+"@jsonforms/react@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/react/-/react-2.3.0.tgz#429ac664f2e282e2815de1ecc928f5de45406fc3"
+  integrity sha512-Q6VGGsgc0bAuUB2SKTItivGz3aBS2cV/LhNa+fppvO67gjPiCO6BmCY8hpCk/SM8UeRaa3ST0CAtoh8NIWrOtw==
   dependencies:
     "@types/react" "^16.4.14"
     "@types/react-redux" "^7.0.6"
@@ -885,6 +885,31 @@
     react-transition-group "^4.0.0"
     warning "^4.0.1"
 
+"@material-ui/core@~4.0.1":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.0.2.tgz#c7a07c1d1b13b94adf479d7267b51cb682fcb279"
+  integrity sha512-k7o95UIupTp14lsO9hejmswuPZsmWUafOBNaptHN+Pv8CBp/vW+hD6peuThgUpeGesrCuL2/yTpHB/9JkO9rNg==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    "@material-ui/styles" "^4.0.2"
+    "@material-ui/system" "^4.0.2"
+    "@material-ui/types" "^4.0.1"
+    "@material-ui/utils" "^4.0.1"
+    "@types/react-transition-group" "^2.0.16"
+    clsx "^1.0.2"
+    convert-css-length "^2.0.0"
+    csstype "^2.5.2"
+    debounce "^1.1.0"
+    deepmerge "^3.0.0"
+    hoist-non-react-statics "^3.2.1"
+    is-plain-object "^3.0.0"
+    normalize-scroll-left "^0.2.0"
+    popper.js "^1.14.1"
+    prop-types "^15.7.2"
+    react-event-listener "^0.6.6"
+    react-transition-group "^4.0.0"
+    warning "^4.0.1"
+
 "@material-ui/icons@^4.0.1":
   version "4.2.1"
   resolved "https://registry.npmjs.org/@material-ui/icons/-/icons-4.2.1.tgz#fe2f1c4f60c24256d244a69d86d0c00e8ed4037e"
@@ -892,18 +917,25 @@
   dependencies:
     "@babel/runtime" "^7.2.0"
 
-"@material-ui/lab@^4.0.0-alpha.15":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.21.tgz#6b736961b6a2d366d97e015d98d129c808e2ccbf"
-  integrity sha512-8AxamsTTiUx1tINORY+F8n+OzEqm+0F8Wa0WUKD0yqc39IRFF996c3ffUgoOFBbpCHnI5TouM0WbAIxsgvNYcA==
+"@material-ui/icons@~4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.0.1.tgz#f63990f731c6206c82023c96d510bd7bdda44250"
+  integrity sha512-03zUfksGXXbaWX2piB1LCmC28eydlT8ah8MbYT4n4mgiX9BTL4HH50lkFn9JIJJSk2oO5kRy4FvpXRGRBI+oxw==
   dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.1.0"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    warning "^4.0.3"
+    "@babel/runtime" "^7.2.0"
 
-"@material-ui/styles@^4.2.0":
+"@material-ui/lab@4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.15.tgz#f86e1fcbdc6e0c98877e2d1f65cd1840a025a957"
+  integrity sha512-ixO6YxO0fFro2mt9C0dwrcgbpaNQEVszaDxWgKXaTFHIkXZDV4cY+XM0otV2o7DZVVfjvB5aAvyNsb0+db1JPA==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    "@material-ui/utils" "^4.0.1"
+    clsx "^1.0.2"
+    keycode "^2.1.9"
+    prop-types "^15.7.2"
+
+"@material-ui/styles@^4.0.2", "@material-ui/styles@^4.2.0":
   version "4.3.0"
   resolved "https://registry.npmjs.org/@material-ui/styles/-/styles-4.3.0.tgz#27f11fbf061d8a20ad5703acb0dbb0e69cc00345"
   integrity sha512-7yOu+IOvbTVM+LfFJ0c7RZKksSpi2PmPwMhVnAKo1Ca3Nadjd950ALL6WG+R/W3C3GqakUvOqA5OLMvN/8N2jg==
@@ -927,6 +959,16 @@
     prop-types "^15.7.2"
     warning "^4.0.1"
 
+"@material-ui/system@^4.0.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-4.3.2.tgz#2f8f0d5bae29647f5a4e74efaaa82755dbac2b3b"
+  integrity sha512-jSQLtjKvD956UgEeh4b9ojg4gSrlLpuNvlZzS2ML6KWW7gCXhGx0tKMbpUn4qHzD5IpoF+86SS8JFBWdYdnH0Q==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    deepmerge "^4.0.0"
+    prop-types "^15.7.2"
+    warning "^4.0.1"
+
 "@material-ui/system@^4.3.0":
   version "4.3.1"
   resolved "https://registry.npmjs.org/@material-ui/system/-/system-4.3.1.tgz#5fe508d4ca94cdf1d76f7fe535413fcc949b23d9"
@@ -937,14 +979,14 @@
     prop-types "^15.7.2"
     warning "^4.0.1"
 
-"@material-ui/types@^4.1.1":
+"@material-ui/types@^4.0.1", "@material-ui/types@^4.1.1":
   version "4.1.1"
   resolved "https://registry.npmjs.org/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
   integrity sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==
   dependencies:
     "@types/react" "*"
 
-"@material-ui/utils@^4.1.0":
+"@material-ui/utils@^4.0.1", "@material-ui/utils@^4.1.0":
   version "4.3.0"
   resolved "https://registry.npmjs.org/@material-ui/utils/-/utils-4.3.0.tgz#ea7f09815c792e80f270ef8b916517c3f9caba13"
   integrity sha512-tK3Z/ap5ifPQwIryuGQ+AHLh2hEyBLRPj4NCMcqVrQfD+0KH2IP5BXR4A+wGVsyamKfLaOc8tz1fzxZblsztpw==
@@ -1206,6 +1248,15 @@
   dependencies:
     "@theia/application-manager" "^0.7.1"
 
+"@theia/console@0.7.1", "@theia/console@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@theia/console/-/console-0.7.1.tgz#8992b20fea5036602ff91ae2f434d7e49f41201d"
+  integrity sha512-boOIC0cUHdrPlxGEkhAd5fraVm4ddyR86/nS+J9+WaGxTuFW+5X/2QyfWDGQb9jVF2WlTYiPvzva/7iEnTT7mQ==
+  dependencies:
+    "@theia/core" "^0.7.1"
+    "@theia/monaco" "^0.7.1"
+    anser "^1.4.7"
+
 "@theia/core@0.7.1", "@theia/core@^0.7.1", "@theia/core@next":
   version "0.7.1"
   resolved "https://registry.npmjs.org/@theia/core/-/core-0.7.1.tgz#808fde21d7a6907fed25b9ea52f64d7d42a03439"
@@ -1247,6 +1298,34 @@
     vscode-ws-jsonrpc "^0.0.2-1"
     ws "^5.2.2"
     yargs "^11.1.0"
+
+"@theia/debug@0.7.1", "@theia/debug@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@theia/debug/-/debug-0.7.1.tgz#8cf161b52fdc6bb503469614117cb70e0ce28771"
+  integrity sha512-0qVqYvhb8/YAAm+7UUDN50dPlxlGrRwBOCwxXXBIPTo1y00t/bF9jVj76i/jrOoGmUg1/PzpO/Kb9wzZpmHbYQ==
+  dependencies:
+    "@theia/console" "^0.7.1"
+    "@theia/core" "^0.7.1"
+    "@theia/editor" "^0.7.1"
+    "@theia/filesystem" "^0.7.1"
+    "@theia/json" "^0.7.1"
+    "@theia/markers" "^0.7.1"
+    "@theia/monaco" "^0.7.1"
+    "@theia/output" "^0.7.1"
+    "@theia/preferences" "^0.7.1"
+    "@theia/process" "^0.7.1"
+    "@theia/terminal" "^0.7.1"
+    "@theia/userstorage" "^0.7.1"
+    "@theia/variable-resolver" "^0.7.1"
+    "@theia/workspace" "^0.7.1"
+    "@types/p-debounce" "^1.0.0"
+    jsonc-parser "^2.0.2"
+    mkdirp "^0.5.0"
+    p-debounce "^1.0.0"
+    requestretry "^3.1.0"
+    tar "^4.0.0"
+    unzip-stream "^0.3.0"
+    vscode-debugprotocol "^1.32.0"
 
 "@theia/editor@0.7.1", "@theia/editor@^0.7.1", "@theia/editor@next":
   version "0.7.1"
@@ -1309,7 +1388,16 @@
     uuid "^3.2.1"
     zip-dir "^1.0.2"
 
-"@theia/java@0.7.1":
+"@theia/java-debug@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@theia/java-debug/-/java-debug-0.7.1.tgz#d2227a19ee9ad926a8f75189a79270b2d6a1ceac"
+  integrity sha512-pKqF8nhsInJv4U3Khe4TEYrNemmGxZuTD5solwrd4jjkvMsgARGmWjeub4E1XOW7sfiJkuPhFz35lhXAIUflsQ==
+  dependencies:
+    "@theia/debug" "^0.7.1"
+    "@theia/java" "^0.7.1"
+    lodash "^4.17.10"
+
+"@theia/java@0.7.1", "@theia/java@^0.7.1":
   version "0.7.1"
   resolved "https://registry.npmjs.org/@theia/java/-/java-0.7.1.tgz#8369b879004cd4cca1077ea600e37e105e78b50b"
   integrity sha512-MwJ58NDttJnc0Rh0J2B/YwNqZ4GrcU2s0hnoYR7d93c5VbwAHf/Sy9he8CdzGa/K0PQ7zs9nFK6k12FC4fj4bA==
@@ -1430,7 +1518,7 @@
   dependencies:
     "@theia/core" "^0.7.1"
 
-"@theia/preferences@0.7.1":
+"@theia/preferences@0.7.1", "@theia/preferences@^0.7.1":
   version "0.7.1"
   resolved "https://registry.npmjs.org/@theia/preferences/-/preferences-0.7.1.tgz#f36f11050b9b3b5ae7fb448ca5cf0198965dc99a"
   integrity sha512-qw33hwsplfrSNsq9Y/EUnS3J8f7++4NoYw1uKyWNYAI0HSU41BNjwVq1Tl7RQvbW8BAbkWQv8J+5FQh89VDcuw==
@@ -1455,7 +1543,7 @@
     "@theia/node-pty" "0.7.8-theia004"
     string-argv "^0.1.1"
 
-"@theia/terminal@0.7.1":
+"@theia/terminal@0.7.1", "@theia/terminal@^0.7.1":
   version "0.7.1"
   resolved "https://registry.npmjs.org/@theia/terminal/-/terminal-0.7.1.tgz#d6e8738eb32b72f37aabcdb7687eb3682c668368"
   integrity sha512-k5eoBKOIljceOzLy6lQOja08+fFzRYLh1rfNUTSipeVSn/qFQ9gb8cF7Yq3Bb/KM7ciXDiOvNUi2kMYCNxwJcw==
@@ -1666,6 +1754,13 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-8.10.51.tgz#80600857c0a47a8e8bafc2dae6daed6db58e3627"
   integrity sha512-cArrlJp3Yv6IyFT/DYe+rlO8o3SIHraALbBW/+CcCYW/a9QucpLI+n2p4sRxAvl2O35TiecpX2heSZtJjvEO+Q==
 
+"@types/p-debounce@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/p-debounce/-/p-debounce-1.0.1.tgz#c9956067a240dffedf2682a24d0712ffa5e3c8fe"
+  integrity sha512-zlAn04fH4cGYPAjmYW8Tst/vxn78IJmD3PVMxxBnl3IYAG+9aGKWCu/311fPHnePJMwyxGeOhi63neSiSgM+iw==
+  dependencies:
+    p-debounce "*"
+
 "@types/prop-types@*":
   version "15.7.1"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
@@ -1697,6 +1792,13 @@
   version "5.4.6"
   resolved "https://registry.npmjs.org/@types/react-text-mask/-/react-text-mask-5.4.6.tgz#3a81e9de472beb939038e78cb16d737ae94ba14a"
   integrity sha512-0KkER9oXZY/v1x8aoMTHwANlWnKT5tnmV7Zz+g81gBvcHRtcIHotcpY4KgWRwx0T5JMcsYmEh7wGOz0lwdONew==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-transition-group@^2.0.16":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.9.2.tgz#c48cf2a11977c8b4ff539a1c91d259eaa627028d"
+  integrity sha512-5Fv2DQNO+GpdPZcxp2x/OQG/H19A01WlmpjVD9cKvVFmoVLOZ9LvBgSWG6pSXIU4og5fgbvGPaCV5+VGkWAEHA==
   dependencies:
     "@types/react" "*"
 
@@ -2044,6 +2146,11 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
+
+anser@^1.4.7:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/anser/-/anser-1.4.8.tgz#19a3bfc5f0e31c49efaea38f58fd0d136597f2a3"
+  integrity sha512-tVHucTCKIt9VRrpQKzPtOlwm/3AmyQ7J+QE29ixFnvuE2hm83utEVrN7jJapYkHV6hI0HOHkEX9TOMCzHtwvuA==
 
 ansi-escapes@^1.0.0:
   version "1.4.0"
@@ -3064,9 +3171,9 @@ binary-extensions@^1.0.0:
   resolved "https://registry.npmjs.org/binary-extensions/-/binary-extensions-1.13.1.tgz#598afe54755b2868a5330d2aff9d4ebb53209b65"
   integrity sha512-Un7MIEDdUC5gNpcGDV97op1Ywk748MpHcFTHoYs6qnj1Z3j7I53VG3nwZhKzoBZmbdRNnb6WRdFlwl7tSDuZGw==
 
-binary@~0.3.0:
+binary@^0.3.0, binary@~0.3.0:
   version "0.3.0"
-  resolved "https://registry.npmjs.org/binary/-/binary-0.3.0.tgz#9f60553bc5ce8c3386f3b553cff47462adecaa79"
+  resolved "https://registry.yarnpkg.com/binary/-/binary-0.3.0.tgz#9f60553bc5ce8c3386f3b553cff47462adecaa79"
   integrity sha1-n2BVO8XOjDOG87VTz/R0Yq3sqnk=
   dependencies:
     buffers "~0.1.1"
@@ -3714,7 +3821,7 @@ cloneable-readable@^1.0.0:
     process-nextick-args "^2.0.0"
     readable-stream "^2.3.5"
 
-clsx@^1.0.1, clsx@^1.0.2, clsx@^1.0.4:
+clsx@^1.0.1, clsx@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/clsx/-/clsx-1.0.4.tgz#0c0171f6d5cb2fe83848463c15fcc26b4df8c2ec"
   integrity sha512-1mQ557MIZTrL/140j+JVdRM6e31/OA4vTYxXgqIIZlndyfjHpyawKZia1Im05Vp9BWmImkcNrNtFYQMyFcgJDg==
@@ -4000,7 +4107,7 @@ conventional-recommended-bump@^5.0.0:
     meow "^4.0.0"
     q "^1.5.1"
 
-convert-css-length@^2.0.1:
+convert-css-length@^2.0.0, convert-css-length@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/convert-css-length/-/convert-css-length-2.0.1.tgz#90a76bde5bfd24d72881a5b45d02249b2c1d257c"
   integrity sha512-iGpbcvhLPRKUbBc0Quxx7w/bV14AC3ItuBEGMahA5WTYqB8lq9jH0kTXFheCBASsYnqeMFZhiTruNxr1N59Axg==
@@ -4334,6 +4441,11 @@ dateformat@^3.0.0, dateformat@^3.0.3:
   resolved "https://registry.npmjs.org/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
+debounce@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
+  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
+
 debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.5.1, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -4416,6 +4528,11 @@ deepmerge@4.0.0, deepmerge@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.0.0.tgz#3e3110ca29205f120d7cb064960a39c3d2087c09"
   integrity sha512-YZ1rOP5+kHor4hMAH+HRQnBQHg+wvS1un1hAOuIcxcBy0hzcUf6Jg2a1w65kpoOUnurOfZbERwjI1TfZxNjcww==
+
+deepmerge@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
+  integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
 
 default-shell@^1.0.0:
   version "1.0.1"
@@ -5086,7 +5203,7 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
-extend@~3.0.2:
+extend@^3.0.2, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
@@ -6976,6 +7093,11 @@ jszip@^2.4.0:
   dependencies:
     pako "~1.0.2"
 
+keycode@^2.1.9:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
+  integrity sha1-PQr1bce4uOXLqNCpfxByBO7CKwQ=
+
 keyv@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -7770,7 +7892,7 @@ modify-values@^1.0.0:
   resolved "https://registry.npmjs.org/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moment@^2.10.6, moment@^2.20.1, moment@^2.21.0:
+moment@^2.10.6, moment@^2.21.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -8446,6 +8568,11 @@ p-cancelable@^0.4.0:
   version "0.4.1"
   resolved "https://registry.npmjs.org/p-cancelable/-/p-cancelable-0.4.1.tgz#35f363d67d52081c8d9585e37bcceb7e0bbcb2a0"
   integrity sha512-HNa1A8LvB1kie7cERyy21VNeHb2CWJJYqyyC2o3klWFfMGlFmWv2Z7sFgZH8ZiaYL95ydToKTFVXgMV/Os0bBQ==
+
+p-debounce@*:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-debounce/-/p-debounce-2.1.0.tgz#e79f70c6e325cbb9bddbcbec0b81025084671ad3"
+  integrity sha512-M9bMt62TTnozdZhqFgs+V7XD2MnuKCaz+7fZdlu2/T7xruI3uIE5CicQ0vx1hV7HIUYF0jF+4/R1AgfOkl74Qw==
 
 p-debounce@^1.0.0:
   version "1.0.0"
@@ -9899,6 +10026,15 @@ request@^2.45.0, request@^2.82.0, request@^2.83.0, request@^2.87.0:
     tunnel-agent "^0.6.0"
     uuid "^3.3.2"
 
+requestretry@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/requestretry/-/requestretry-3.1.0.tgz#c8e1976bb946f14889d3604bbad56a01d191c10d"
+  integrity sha512-DkvCPK6qvwxIuVA5TRCvi626WHC2rWjF/n7SCQvVHAr2JX9i1/cmIpSEZlmHAo+c1bj9rjaKoZ9IsKwCpTkoXA==
+  dependencies:
+    extend "^3.0.2"
+    lodash "^4.17.10"
+    when "^3.7.7"
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -11279,6 +11415,14 @@ untildify@^3.0.3:
   resolved "https://registry.npmjs.org/untildify/-/untildify-3.0.3.tgz#1e7b42b140bcfd922b22e70ca1265bfe3634c7c9"
   integrity sha512-iSk/J8efr8uPT/Z4eSUywnqyrQU7DSdMfdqK4iWEaUVVmcP5JcnpRqmVMwcwcnmI1ATFNgC5V90u09tBynNFKA==
 
+unzip-stream@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/unzip-stream/-/unzip-stream-0.3.0.tgz#c30c054cd6b0d64b13a23cd3ece911eb0b2b52d8"
+  integrity sha512-NG1h/MdGIX3HzyqMjyj1laBCmlPYhcO4xEy7gEqqzGiSLw7XqDQCnY4nYSn5XSaH8mQ6TFkaujrO8d/PIZN85A==
+  dependencies:
+    binary "^0.3.0"
+    mkdirp "^0.5.1"
+
 unzipper@^0.9.11:
   version "0.9.15"
   resolved "https://registry.npmjs.org/unzipper/-/unzipper-0.9.15.tgz#97d99203dad17698ee39882483c14e4845c7549c"
@@ -11496,6 +11640,11 @@ vscode-base-languageclient@4.4.0:
   dependencies:
     vscode-languageserver-protocol "^3.10.0"
 
+vscode-debugprotocol@^1.32.0:
+  version "1.35.0"
+  resolved "https://registry.yarnpkg.com/vscode-debugprotocol/-/vscode-debugprotocol-1.35.0.tgz#565140cd42945e30c6c85cafb38c631457d4a46c"
+  integrity sha512-+OMm11R1bGYbpIJ5eQIkwoDGFF4GvBz3Ztl6/VM+/RNNb2Gjk2c0Ku+oMmfhlTmTlPCpgHBsH4JqVCbUYhu5bA==
+
 vscode-json-languageserver@^1.0.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/vscode-json-languageserver/-/vscode-json-languageserver-1.2.1.tgz#c7b55d4c024036305f3dcc65bc14400f39d262e2"
@@ -11610,7 +11759,7 @@ vscode-ws-jsonrpc@^0.0.2-1:
   dependencies:
     vscode-jsonrpc "^3.6.0"
 
-warning@^4.0.1, warning@^4.0.3:
+warning@^4.0.1:
   version "4.0.3"
   resolved "https://registry.npmjs.org/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
@@ -11726,6 +11875,11 @@ whatwg-url@^7.0.0:
     lodash.sortby "^4.7.0"
     tr46 "^1.0.1"
     webidl-conversions "^4.0.2"
+
+when@^3.7.7:
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/when/-/when-3.7.8.tgz#c7130b6a7ea04693e842cdc9e7a1f2aa39a39f82"
+  integrity sha1-xxMLan6gRpPoQs3J56Hyqjmjn4I=
 
 whet.extend@~0.9.9:
   version "0.9.9"

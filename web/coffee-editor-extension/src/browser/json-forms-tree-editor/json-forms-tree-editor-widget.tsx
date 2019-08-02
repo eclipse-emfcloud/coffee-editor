@@ -8,6 +8,7 @@ import {
 } from "@theia/core/lib/browser";
 import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
 import { Disposable, Emitter, Event } from "@theia/core/lib/common";
+import { WorkspaceService } from "@theia/workspace/lib/browser/workspace-service";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -19,6 +20,8 @@ import {
   materialCells
 } from "@jsonforms/material-renderers";
 import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
+
+import { ModelServerApi } from "@modelserver/theia/lib/browser";
 
 import {
   coffeeSchema,
@@ -55,7 +58,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     @inject(JsonFormsTreeEditorWidgetOptions)
     protected readonly options: JsonFormsTreeEditorWidgetOptions,
     @inject(JsonFormsTreeWidget)
-    protected readonly treeWidget: JsonFormsTreeWidget
+    protected readonly treeWidget: JsonFormsTreeWidget,
+    @inject(ModelServerApi)
+    protected readonly modelServerApi: ModelServerApi,
+    @inject(WorkspaceService)
+    protected readonly workspaceService: WorkspaceService
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -82,6 +89,41 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
 
     this.store = this.initStore();
     this.store.dispatch(Actions.init({}, { type: "string" }));
+
+    this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
+      if (response.statusCode === 200) {
+        // response is wrongly typed
+        const data = (response.element as any).data;
+        this.treeWidget
+          .setData({ error: false, data: data })
+          .then(() => this.treeWidget.selectFirst());
+        return;
+      }
+      this.treeWidget.setData({ error: response.statusMessage });
+      this.renderError(
+        "An error occurred when requesting '" +
+          this.getModelIDToRequest() +
+          "' - Status " +
+          response.statusCode +
+          " " +
+          response.statusMessage
+      );
+      return;
+    });
+  }
+
+  getModelIDToRequest(): string {
+    const rootUriLength = this.workspaceService
+      .getWorkspaceRootUri(this.options.uri)
+      .toString().length;
+    const thisUriLength = this.options.uri.toString().length;
+    const thisUriExtLength = this.options.uri.path.ext.length;
+    return (
+      this.options.uri
+        .toString()
+        .substring(rootUriLength + 1, thisUriLength - thisUriExtLength) +
+      ".json"
+    );
   }
 
   getResourceUri(): URI | undefined {
@@ -129,7 +171,32 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
   }
 
-  protected getUiSchema(type: string) {
+  protected renderError(errorMessage: string): void {
+    ReactDOM.render(
+      <React.Fragment>{errorMessage}</React.Fragment>,
+      this.formsNode
+    );
+  }
+
+  protected getUiSchemaForNode(node: JsonFormsTree.Node) {
+    let schema = this.getUiSchemaForType(node.jsonforms.type);
+    if (schema) {
+      return schema;
+    }
+    // there is no type, try to guess
+    if (node.jsonforms.data.nodes) {
+      return {
+        type: "Label",
+        text: "Workflow"
+      };
+    }
+    return undefined;
+  }
+
+  protected getUiSchemaForType(type: string) {
+    if (!type) {
+      return undefined;
+    }
     switch (type) {
       case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
         return machineView;
@@ -143,11 +210,28 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     }
   }
 
-  protected getSchema(type: string) {
-    console.log(type);
+  protected getSchemaForNode(node: JsonFormsTree.Node) {
+    let schema = this.getSchemaForType(node.jsonforms.type);
+    if (schema) {
+      return schema;
+    }
+    // there is no type, try to guess
+    if (node.jsonforms.data.nodes) {
+      return coffeeSchema.definitions.workflow;
+    }
+    return undefined;
+  }
+
+  protected getSchemaForType(type: string) {
+    if (!type) {
+      return undefined;
+    }
     const schema = Object.entries(coffeeSchema.definitions)
       .map(entry => entry[1])
-      .find(definition => definition.properties && definition.properties.eClass.const === type);
+      .find(
+        definition =>
+          definition.properties && definition.properties.eClass.const === type
+      );
     if (!schema) {
       console.log("Can't find definition schema for type " + type);
     }
@@ -198,9 +282,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
           this.selectedNode.jsonforms.data,
           {
             definitions: coffeeSchema.definitions,
-            ...this.getSchema(this.selectedNode.jsonforms.type)
+            ...this.getSchemaForNode(this.selectedNode)
           },
-          this.getUiSchema(this.selectedNode.jsonforms.type),
+          this.getUiSchemaForNode(this.selectedNode),
           {
             refParserOptions: {
               dereference: { circular: "ignore" }
