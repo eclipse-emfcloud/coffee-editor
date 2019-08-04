@@ -21,6 +21,7 @@ export namespace JsonFormsTree {
       SelectableTreeNode,
       TreeDecoration.DecoratedTreeNode {
     children: TreeNode[];
+    name: string;
     jsonforms: {
       type?: string;
       data: any;
