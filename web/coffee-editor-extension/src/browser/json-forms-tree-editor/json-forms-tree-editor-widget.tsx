@@ -4,7 +4,8 @@ import {
   Navigatable,
   Message,
   Widget,
-  MessageLoop
+  MessageLoop,
+  Saveable
 } from "@theia/core/lib/browser";
 import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
 import { Disposable, Emitter, Event } from "@theia/core/lib/common";
@@ -42,13 +43,21 @@ export interface JsonFormsTreeEditorWidgetOptions {
 
 @injectable()
 export class JsonFormsTreeEditorWidget extends BaseWidget
-  implements Navigatable {
+  implements Navigatable, Saveable {
+  public dirty: boolean;
+  public autoSave: "off";
+
   protected contentNode: HTMLElement;
   protected treeNode: HTMLElement;
   protected formsNode: HTMLElement;
 
   protected readonly onDidUpdateEmitter = new Emitter<void>();
   readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
+
+  protected readonly onDirtyChangedEmitter = new Emitter<void>();
+  get onDirtyChanged(): Event<void> {
+    return this.onDirtyChangedEmitter.event;
+  }
 
   protected selectedNode: JsonFormsTree.Node;
   protected store: any;
@@ -88,11 +97,20 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
     this.toDispose.push(this.treeWidget);
 
+    this.toDispose.push(this.onDirtyChangedEmitter);
+
     this.store = this.initStore();
     this.store.dispatch(Actions.init({}, { type: "string" }));
     this.store.subscribe(() => {
-      this.treeWidget.updateDataForNode(this.selectedNode, this.store.getState().jsonforms.core.data);
-    })
+      this.treeWidget.updateDataForNode(
+        this.selectedNode,
+        this.store.getState().jsonforms.core.data
+      );
+      if (!this.dirty) {
+        this.dirty = true;
+        this.onDirtyChangedEmitter.fire(undefined);
+      }
+    });
 
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
@@ -115,6 +133,18 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.instanceData = undefined;
       return;
     });
+  }
+
+  public save(): Promise<void> {
+    console.log("Save data to server");
+    console.log(this.instanceData);
+    return this.modelServerApi
+      .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
+      .then(() => {
+        // TODO check for success
+        this.dirty = false;
+        this.onDirtyChangedEmitter.fire();
+      });
   }
 
   getModelIDToRequest(): string {
