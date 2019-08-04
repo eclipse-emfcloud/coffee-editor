@@ -171,12 +171,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
         this.mapData(element, node);
       });
     }
-    if (currentData.ram) {
-      // controlunit type
-      currentData.ram.forEach(element => {
-        this.mapData(element, node);
-      });
-    }
     if (currentData.nodes) {
       // workflow type
       currentData.nodes.forEach(element => {
@@ -195,6 +189,32 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected isExpandable(node: TreeNode): node is ExpandableTreeNode {
     return JsonFormsTree.Node.is(node) && node.children.length > 0;
   }
+
+  /**
+   * Updates the data of the given node with the new data. Refreshes the tree if necessary.
+   * Note that this method will only work properly if only data relevant for this node was changed.
+   * If data of the subtree was changed too please call updateDataForSubtree instead.
+   */
+  public updateDataForNode(node: JsonFormsTree.Node, data: any) {
+    Object.assign(node.jsonforms.data, data);
+    const newName = this.getName(data);
+    if (node.name !== newName) {
+      node.name = newName;
+      this.model.refresh();
+    }
+  }
+
+  /**
+   * Updates the data of the given node and recreates its whole subtree. Refreshes the tree.
+   */
+  public updateDataForSubtree(node: JsonFormsTree.Node, data: any) {
+    Object.assign(node.jsonforms.data, data);
+    const newNode = this.mapData(data);
+    node.name = newNode.name;
+    node.children = newNode.children;
+    this.model.refresh();
+  }
+
 }
 
 export namespace JsonFormsTreeWidget {

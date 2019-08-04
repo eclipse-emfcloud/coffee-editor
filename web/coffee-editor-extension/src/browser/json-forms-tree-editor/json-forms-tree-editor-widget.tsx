@@ -51,8 +51,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
 
   protected selectedNode: JsonFormsTree.Node;
-
   protected store: any;
+
+  protected instanceData: any;
 
   constructor(
     @inject(JsonFormsTreeEditorWidgetOptions)
@@ -89,13 +90,16 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
 
     this.store = this.initStore();
     this.store.dispatch(Actions.init({}, { type: "string" }));
+    this.store.subscribe(() => {
+      this.treeWidget.updateDataForNode(this.selectedNode, this.store.getState().jsonforms.core.data);
+    })
 
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
         // response is wrongly typed
-        const data = (response.element as any).data;
+        this.instanceData = (response.element as any).data;
         this.treeWidget
-          .setData({ error: false, data: data })
+          .setData({ error: false, data: this.instanceData })
           .then(() => this.treeWidget.selectFirst());
         return;
       }
@@ -108,6 +112,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
           " " +
           response.statusMessage
       );
+      this.instanceData = undefined;
       return;
     });
   }
