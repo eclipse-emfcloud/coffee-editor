@@ -22,7 +22,7 @@ export namespace JsonFormsTree {
       TreeDecoration.DecoratedTreeNode {
     children: TreeNode[];
     jsonforms: {
-      type: string;
+      type?: string;
       data: any;
     };
   }
@@ -31,10 +31,7 @@ export namespace JsonFormsTree {
     export function is(node: TreeNode | undefined): node is Node {
       if (!!node && "jsonforms" in node) {
         const { jsonforms } = node;
-        if (!!jsonforms && "type" in jsonforms) {
-          const { type } = jsonforms;
-          return !!type;
-        }
+        return !!jsonforms;
       }
       return false;
     }

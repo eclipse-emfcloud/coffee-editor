@@ -145,10 +145,10 @@
     "@types/node" "^8.0.14"
     sprotty-theia "0.7.0-next.6b63891"
 
-"@jsonforms/core@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/core/-/core-2.3.0-alpha.1.tgz#8f66d08260b86589f512dda0632399bc17c8db61"
-  integrity sha512-FwHrqm2ft3pmTTC3GujcF+gOqYq9B7ARYYg8sgOwwbI+n8rijuTmH9rO+F6RljCDwGuK/tJodnYTyjlggxxlrA==
+"@jsonforms/core@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-2.3.0.tgz#31f9aa752db2dffa915761fdeaa1cb7af81e6430"
+  integrity sha512-+UMyWmCFwrgQN4P6gQ7WsGl1MUvXbDGWc+KBUlrE5EdZDKnZKKLPKB36VZbBHZ8KEzNuuKQJhOdIckscmKj7QA==
   dependencies:
     "@types/json-schema" "^7.0.3"
     ajv "^6.4.0"
@@ -157,31 +157,31 @@
     uri-js "^4.2.2"
     uuid "^3.2.1"
 
-"@jsonforms/material-renderers@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/material-renderers/-/material-renderers-2.3.0-alpha.1.tgz#cc9f6f3efffba70e09c31e802d9ccc90323a8a91"
-  integrity sha512-Ely59kNFzg+A4AUtPuwwWsqoqkCyGTMv86T37T0qwsa0k0cAiYIdXX8WJZcGP0fcqB9UsgHdyRBZ7OhOn6B8Ug==
+"@jsonforms/material-renderers@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/material-renderers/-/material-renderers-2.3.0.tgz#a95fba7e5b70f571dfe4eeffa81ec18ded44b741"
+  integrity sha512-nllXVEMPGmwTphFyFpGDcuPyVtTcLlJZGW9zDBp7MV+hijdM6olRS0XUI7Xb5EP0c476Etw/izYgAg5ATmoAuw==
   dependencies:
     "@date-io/moment" "1.1.0"
-    "@material-ui/core" "^4.0.1"
-    "@material-ui/icons" "^4.0.1"
-    "@material-ui/lab" "^4.0.0-alpha.15"
+    "@material-ui/core" "~4.0.1"
+    "@material-ui/icons" "~4.0.1"
+    "@material-ui/lab" "4.0.0-alpha.15"
     material-ui-pickers "^2.2.4"
-    moment "^2.20.1"
+    moment "^2.24.0"
 
-"@jsonforms/material-tree-renderer@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/material-tree-renderer/-/material-tree-renderer-2.3.0-alpha.1.tgz#3e2a4565cebee689f21822032347a31db8bc7e28"
-  integrity sha512-33zV+K6eP82jtrMO9TZ/LYxCypIzptuwpIH0fcg3uAiZFjJUgxfDru0ttvfg1u7Nx2WPy9zttdy6TGsNkyP5lg==
+"@jsonforms/material-tree-renderer@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/material-tree-renderer/-/material-tree-renderer-2.3.0.tgz#371cac5465df29c35e92be00646d486acb8763ac"
+  integrity sha512-4LxD0c+9b3OmOk8zqNuq22FETuGZcCJlJfGBUhNXIT5dYRPCNe5paO+KpMbf0HXbxhGMmqMTZk4zgH5EUQtCyA==
   dependencies:
     react-dnd "^7.4.5"
     react-dnd-html5-backend "^7.4.4"
     recompose "^0.27.1"
 
-"@jsonforms/react@2.3.0-alpha.1":
-  version "2.3.0-alpha.1"
-  resolved "https://registry.npmjs.org/@jsonforms/react/-/react-2.3.0-alpha.1.tgz#766fe166dae9b4556be3e9905da25b1c8b01f694"
-  integrity sha512-pAMER9bSsKEb/ajIMpE3w9jnM3IxeCgb7QJ05uONpyh3dYod+D0nxGLaSHsoB/F7ZJ2pqvEmLOIFjIIhsStGvA==
+"@jsonforms/react@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/react/-/react-2.3.0.tgz#429ac664f2e282e2815de1ecc928f5de45406fc3"
+  integrity sha512-Q6VGGsgc0bAuUB2SKTItivGz3aBS2cV/LhNa+fppvO67gjPiCO6BmCY8hpCk/SM8UeRaa3ST0CAtoh8NIWrOtw==
   dependencies:
     "@types/react" "^16.4.14"
     "@types/react-redux" "^7.0.6"
@@ -887,6 +887,31 @@
     react-transition-group "^4.0.0"
     warning "^4.0.1"
 
+"@material-ui/core@~4.0.1":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.0.2.tgz#c7a07c1d1b13b94adf479d7267b51cb682fcb279"
+  integrity sha512-k7o95UIupTp14lsO9hejmswuPZsmWUafOBNaptHN+Pv8CBp/vW+hD6peuThgUpeGesrCuL2/yTpHB/9JkO9rNg==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    "@material-ui/styles" "^4.0.2"
+    "@material-ui/system" "^4.0.2"
+    "@material-ui/types" "^4.0.1"
+    "@material-ui/utils" "^4.0.1"
+    "@types/react-transition-group" "^2.0.16"
+    clsx "^1.0.2"
+    convert-css-length "^2.0.0"
+    csstype "^2.5.2"
+    debounce "^1.1.0"
+    deepmerge "^3.0.0"
+    hoist-non-react-statics "^3.2.1"
+    is-plain-object "^3.0.0"
+    normalize-scroll-left "^0.2.0"
+    popper.js "^1.14.1"
+    prop-types "^15.7.2"
+    react-event-listener "^0.6.6"
+    react-transition-group "^4.0.0"
+    warning "^4.0.1"
+
 "@material-ui/icons@^4.0.1":
   version "4.2.1"
   resolved "https://registry.npmjs.org/@material-ui/icons/-/icons-4.2.1.tgz#fe2f1c4f60c24256d244a69d86d0c00e8ed4037e"
@@ -894,18 +919,25 @@
   dependencies:
     "@babel/runtime" "^7.2.0"
 
-"@material-ui/lab@^4.0.0-alpha.15":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.21.tgz#6b736961b6a2d366d97e015d98d129c808e2ccbf"
-  integrity sha512-8AxamsTTiUx1tINORY+F8n+OzEqm+0F8Wa0WUKD0yqc39IRFF996c3ffUgoOFBbpCHnI5TouM0WbAIxsgvNYcA==
+"@material-ui/icons@~4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.0.1.tgz#f63990f731c6206c82023c96d510bd7bdda44250"
+  integrity sha512-03zUfksGXXbaWX2piB1LCmC28eydlT8ah8MbYT4n4mgiX9BTL4HH50lkFn9JIJJSk2oO5kRy4FvpXRGRBI+oxw==
   dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.1.0"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    warning "^4.0.3"
+    "@babel/runtime" "^7.2.0"
 
-"@material-ui/styles@^4.2.0":
+"@material-ui/lab@4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.15.tgz#f86e1fcbdc6e0c98877e2d1f65cd1840a025a957"
+  integrity sha512-ixO6YxO0fFro2mt9C0dwrcgbpaNQEVszaDxWgKXaTFHIkXZDV4cY+XM0otV2o7DZVVfjvB5aAvyNsb0+db1JPA==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    "@material-ui/utils" "^4.0.1"
+    clsx "^1.0.2"
+    keycode "^2.1.9"
+    prop-types "^15.7.2"
+
+"@material-ui/styles@^4.0.2", "@material-ui/styles@^4.2.0":
   version "4.3.0"
   resolved "https://registry.npmjs.org/@material-ui/styles/-/styles-4.3.0.tgz#27f11fbf061d8a20ad5703acb0dbb0e69cc00345"
   integrity sha512-7yOu+IOvbTVM+LfFJ0c7RZKksSpi2PmPwMhVnAKo1Ca3Nadjd950ALL6WG+R/W3C3GqakUvOqA5OLMvN/8N2jg==
@@ -929,6 +961,16 @@
     prop-types "^15.7.2"
     warning "^4.0.1"
 
+"@material-ui/system@^4.0.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-4.3.2.tgz#2f8f0d5bae29647f5a4e74efaaa82755dbac2b3b"
+  integrity sha512-jSQLtjKvD956UgEeh4b9ojg4gSrlLpuNvlZzS2ML6KWW7gCXhGx0tKMbpUn4qHzD5IpoF+86SS8JFBWdYdnH0Q==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    deepmerge "^4.0.0"
+    prop-types "^15.7.2"
+    warning "^4.0.1"
+
 "@material-ui/system@^4.3.0":
   version "4.3.1"
   resolved "https://registry.npmjs.org/@material-ui/system/-/system-4.3.1.tgz#5fe508d4ca94cdf1d76f7fe535413fcc949b23d9"
@@ -939,14 +981,14 @@
     prop-types "^15.7.2"
     warning "^4.0.1"
 
-"@material-ui/types@^4.1.1":
+"@material-ui/types@^4.0.1", "@material-ui/types@^4.1.1":
   version "4.1.1"
   resolved "https://registry.npmjs.org/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
   integrity sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==
   dependencies:
     "@types/react" "*"
 
-"@material-ui/utils@^4.1.0":
+"@material-ui/utils@^4.0.1", "@material-ui/utils@^4.1.0":
   version "4.3.0"
   resolved "https://registry.npmjs.org/@material-ui/utils/-/utils-4.3.0.tgz#ea7f09815c792e80f270ef8b916517c3f9caba13"
   integrity sha512-tK3Z/ap5ifPQwIryuGQ+AHLh2hEyBLRPj4NCMcqVrQfD+0KH2IP5BXR4A+wGVsyamKfLaOc8tz1fzxZblsztpw==
@@ -1770,6 +1812,13 @@
   version "5.4.6"
   resolved "https://registry.npmjs.org/@types/react-text-mask/-/react-text-mask-5.4.6.tgz#3a81e9de472beb939038e78cb16d737ae94ba14a"
   integrity sha512-0KkER9oXZY/v1x8aoMTHwANlWnKT5tnmV7Zz+g81gBvcHRtcIHotcpY4KgWRwx0T5JMcsYmEh7wGOz0lwdONew==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-transition-group@^2.0.16":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.9.2.tgz#c48cf2a11977c8b4ff539a1c91d259eaa627028d"
+  integrity sha512-5Fv2DQNO+GpdPZcxp2x/OQG/H19A01WlmpjVD9cKvVFmoVLOZ9LvBgSWG6pSXIU4og5fgbvGPaCV5+VGkWAEHA==
   dependencies:
     "@types/react" "*"
 
@@ -3792,7 +3841,7 @@ cloneable-readable@^1.0.0:
     process-nextick-args "^2.0.0"
     readable-stream "^2.3.5"
 
-clsx@^1.0.1, clsx@^1.0.2, clsx@^1.0.4:
+clsx@^1.0.1, clsx@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/clsx/-/clsx-1.0.4.tgz#0c0171f6d5cb2fe83848463c15fcc26b4df8c2ec"
   integrity sha512-1mQ557MIZTrL/140j+JVdRM6e31/OA4vTYxXgqIIZlndyfjHpyawKZia1Im05Vp9BWmImkcNrNtFYQMyFcgJDg==
@@ -4078,7 +4127,7 @@ conventional-recommended-bump@^5.0.0:
     meow "^4.0.0"
     q "^1.5.1"
 
-convert-css-length@^2.0.1:
+convert-css-length@^2.0.0, convert-css-length@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/convert-css-length/-/convert-css-length-2.0.1.tgz#90a76bde5bfd24d72881a5b45d02249b2c1d257c"
   integrity sha512-iGpbcvhLPRKUbBc0Quxx7w/bV14AC3ItuBEGMahA5WTYqB8lq9jH0kTXFheCBASsYnqeMFZhiTruNxr1N59Axg==
@@ -4412,6 +4461,11 @@ dateformat@^3.0.0, dateformat@^3.0.3:
   resolved "https://registry.npmjs.org/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
+debounce@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
+  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
+
 debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.5.1, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -4494,6 +4548,11 @@ deepmerge@4.0.0, deepmerge@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.0.0.tgz#3e3110ca29205f120d7cb064960a39c3d2087c09"
   integrity sha512-YZ1rOP5+kHor4hMAH+HRQnBQHg+wvS1un1hAOuIcxcBy0hzcUf6Jg2a1w65kpoOUnurOfZbERwjI1TfZxNjcww==
+
+deepmerge@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
+  integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
 
 default-shell@^1.0.0:
   version "1.0.1"
@@ -7054,6 +7113,11 @@ jszip@^2.4.0:
   dependencies:
     pako "~1.0.2"
 
+keycode@^2.1.9:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
+  integrity sha1-PQr1bce4uOXLqNCpfxByBO7CKwQ=
+
 keyv@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -7848,7 +7912,7 @@ modify-values@^1.0.0:
   resolved "https://registry.npmjs.org/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moment@^2.10.6, moment@^2.20.1, moment@^2.21.0:
+moment@^2.10.6, moment@^2.21.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -11715,7 +11779,7 @@ vscode-ws-jsonrpc@^0.0.2-1:
   dependencies:
     vscode-jsonrpc "^3.6.0"
 
-warning@^4.0.1, warning@^4.0.3:
+warning@^4.0.1:
   version "4.0.3"
   resolved "https://registry.npmjs.org/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==

@@ -16,9 +16,10 @@ button[type='button'] {padding:0}
 }
 
 .json-forms-tree-editor-tree-container {
-  width: 30%;
+  flex: 1;
 }
 
 .json-forms-tree-editor-forms-container {
-  width: 70%;
+  flex: 2;
+  overflow-y: auto;
 }
