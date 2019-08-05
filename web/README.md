@@ -1,49 +1,8 @@
-# Coffee Editor Extension Example
-An example of how to build the Theia-based applications with the tree-editor-extension.
+# Coffee Editor Extension Example - Frontend
 
-## Used Projects
-We are relying on a bunch of projects:
-* https://github.com/eclipsesource/theia-tree-editor
-* https://github.com/eclipsesource/jsonforms
-* https://github.com/eclipsesource/graphical-lsp
-
-If you encounter issues please report them in the corresponding project.
-This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
-
-## Prerequisites
-
-Install [nvm](https://github.com/creationix/nvm#install-script).
-
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-
-Install npm and node.
-
-    nvm install 8
-    nvm use 8
-
-Install yarn.
-
-    npm install -g yarn
-
-## Getting started
-
-    git clone https://github.com/eclipsesource/coffee-editor.git
-    cd coffee-editor
-    ./run.sh -b -c -f
-    
-    git clone git@github.com:eclipsesource/graphical-lsp.git
-    cd graphical-lsp
-Open in Eclipse and start the com.eclipsesource.glsp.example.workflow.ExampleServerLauncher Java class
-    
-    in coffee-editor:
-    ./run.sh -r
-
-Open http://localhost:3000 in the browser.
-
-On the `File Menu`, open a project and right click to a JSON file and select `Open With -> Open With Tree Editor`
+This part contains the frontend of the coffee editor IDE shown in the browser.
 
 ## Developing with the browser example
-
 
 1. Start watching changes on the extension via 
    ```
@@ -72,14 +31,3 @@ On the `File Menu`, open a project and right click to a JSON file and select `Op
    This start the browser app on `http://localhost:3000`
 
 **NOTE**: The browser does not reload automatically whenever you changed something, you need to reload yourself currently.
-
-
-## Publishing coffee-editor-extension
-
-Create a npm user and login to the npm registry, [more on npm publishing](https://docs.npmjs.com/getting-started/publishing-npm-packages).
-
-    npm login
-
-Publish packages with lerna to update versions properly across local packages, [more on publishing with lerna](https://github.com/lerna/lerna#publish).
-
-    npx lerna publish
