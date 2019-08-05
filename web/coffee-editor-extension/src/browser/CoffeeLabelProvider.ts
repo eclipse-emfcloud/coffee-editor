@@ -20,7 +20,7 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
     }
     
     getIcon(): MaybePromise<string> {
-        return 'database-icon medium-yellow';
+        return 'coffee-icon dark-purple';
     }
     
     getName(uri: URI): string {
