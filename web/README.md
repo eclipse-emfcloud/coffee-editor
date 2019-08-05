@@ -1,4 +1,4 @@
-# Coffee Editor Extension Example - Frontend
+# Coffee Editor IDE - Frontend
 
 This part contains the frontend of the coffee editor IDE shown in the browser.
 
