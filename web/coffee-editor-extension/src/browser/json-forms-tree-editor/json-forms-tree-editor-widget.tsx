@@ -78,6 +78,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
     this.title.label = options.uri.path.base;
     this.title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
+    this.title.closable = true;
+    this.title.iconClass = "icon machine";
     this.addClass(JsonFormsTreeEditorWidget.Styles.JSONFORMS_TREE_EDITOR_CLASS);
 
     this.contentNode = document.createElement("div");
