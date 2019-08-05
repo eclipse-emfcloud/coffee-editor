@@ -3,6 +3,7 @@
 echo "$(date +"[%T.%3N]") Evaluate Options... "
 buildBackend='false'
 copyBackend='false'
+downloadServers='false'
 buildFrontend='false'
 runFrontend='false'
 
@@ -11,6 +12,8 @@ while [ "$1" != "" ]; do
     -b | --backend )  buildBackend='true'
                       ;;
     -c | --copy )     copyBackend='true'
+                      ;;
+    -d | --download ) downloadServers='true'
                       ;;
     -f | --frontend ) buildFrontend='true'
                       ;;
@@ -21,6 +24,7 @@ while [ "$1" != "" ]; do
 done
 [[ "$buildBackend" == "true" ]] && echo "  Build Backend (-b)" || echo "  Do not build Backend (-b)"
 [[ "$copyBackend" == "true" ]] && echo "  Copy Backend (-c)" || echo "  Do not copy Backend (-c)"
+[[ "$downloadServers" == "true" ]] && echo "  Download Model & GLSP Servers (-d)" || echo "  Do not download Model & GLSP Servers (-d)"
 [[ "$buildFrontend" == "true" ]] && echo "  Build Frontend (-f)" || echo "  Do not build Frontend (-f)"
 [[ "$runFrontend" == "true" ]] && echo "  Run Frontend (-r)" || echo "  Do not run Frontend (-r)"
 
@@ -50,6 +54,12 @@ if [ "$copyBackend" == "true" ]; then
   rm -r $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
 
   echo "$(date +"[%T.%3N]") Copy finished."
+fi
+
+if [ "$downloadServers" == "true" ]; then
+  cd ./web/coffee-server/scripts/
+  ./download-server.sh
+  cd ../../../
 fi
 
 if [ "$buildFrontend" == "true" ]; then
