@@ -12,7 +12,7 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
           toCheck = new URI(toCheck.uri);
         }
         if (toCheck instanceof URI) {
-            if(toCheck.path.ext === '.jc'){
+            if(toCheck.path.ext === '.coffee'){
               return 1000;
             }
         }
