@@ -44,7 +44,7 @@ export interface JsonFormsTreeEditorWidgetOptions {
 @injectable()
 export class JsonFormsTreeEditorWidget extends BaseWidget
   implements Navigatable, Saveable {
-  public dirty: boolean;
+  public dirty: boolean = false;
   public autoSave: "off";
 
   protected contentNode: HTMLElement;
