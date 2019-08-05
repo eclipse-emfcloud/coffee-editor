@@ -137,14 +137,7 @@ public class WorkflowIndexService implements WorkspaceService {
 	
 	private static Machine getContent (String uri) throws InterruptedException, ExecutionException, IOException {
 		ModelServerClient msc = new ModelServerClient("http://localhost:8081/api/v1/");
-		String content = msc.get(Paths.get(uri).getFileName().toString()+"?format=xmi").get().body();
-		
-		ResourceSet rs = new ResourceSetImpl();
-		
-		Resource resource = rs.createResource(org.eclipse.emf.common.util.URI.createURI("VIRTUAL"));
-		resource.load(new ByteArrayInputStream(content.getBytes()), null);
-
-		return (Machine) resource.getContents().get(0);
+		return (Machine) msc.get(Paths.get(uri).getFileName().toString(), "xmi").get().body();
 	}
 	
 }
