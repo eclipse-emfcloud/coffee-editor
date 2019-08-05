@@ -10,8 +10,6 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<
 
   canHandle(uri: URI): number {
     if (
-      uri.path.ext === ".jc" ||
-      uri.path.ext === ".xmi" ||
       uri.path.ext === ".coffee"
     ) {
       return 1000;

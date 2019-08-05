@@ -151,13 +151,10 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     const rootUriLength = this.workspaceService
       .getWorkspaceRootUri(this.options.uri)
       .toString().length;
-    const thisUriLength = this.options.uri.toString().length;
-    const thisUriExtLength = this.options.uri.path.ext.length;
     return (
       this.options.uri
         .toString()
-        .substring(rootUriLength + 1, thisUriLength - thisUriExtLength) +
-      ".json"
+        .substring(rootUriLength + 1)
     );
   }
 
