@@ -37,17 +37,17 @@ if [ "$copyBackend" == "true" ]; then
   inputCodeGen=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.codegen/linux/gtk/x86_64
   outputCodeGen=web/coffee-java-extension/server
   echo "  $(date +"[%T.%3N]") Copy CodeGen to '$outputCodeGen'."
-  mkdir -p $outputCodeGen && cp -rf $inputCodeGen $outputCodeGen
+  rm -r $outputCodeGen && mkdir -p $outputCodeGen && cp -rf $inputCodeGen $outputCodeGen
 
   inputWorkflowAnalyzer=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.analyzer/linux/gtk/x86_64
   outputWorkflowAnalyzer=web/coffee-workflow-analyzer/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowAnalyzer to '$outputWorkflowAnalyzer'."
-  mkdir -p $outputWorkflowAnalyzer && cp -rf $inputWorkflowAnalyzer $outputWorkflowAnalyzer
+  rm -r $outputWorkflowAnalyzer && mkdir -p $outputWorkflowAnalyzer && cp -rf $inputWorkflowAnalyzer $outputWorkflowAnalyzer
 
   inputWorkflowDSL=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.dsl/linux/gtk/x86_64
   outputWorkflowDSL=web/coffee-workflow-analyzer-editors/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
-  mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
+  rm -r $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
 
   echo "$(date +"[%T.%3N]") Copy finished."
 fi
