@@ -1,4 +1,4 @@
-# Coffee Editor Extension Example - Backend
+# Coffee Editor IDE - Backend
 
 The backend is implemented as an Eclipse product. The custom plugins are located in `plugins/` and `releng/` contains build information like the target platform and the product configuration.
 
