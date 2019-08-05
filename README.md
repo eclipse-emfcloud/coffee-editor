@@ -1,4 +1,4 @@
-# Coffee Editor Extension Example
+# Coffee Editor IDE
 An example of how to build the Theia-based applications with the tree-editor-extension.
 The coffee-editor consists of a frontend and a backend.
 
