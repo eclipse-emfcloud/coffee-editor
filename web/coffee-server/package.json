@@ -31,7 +31,7 @@
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
-    "build": "tsc && yarn run download-server",
+    "build": "tsc",
     "download-server": "cd ./scripts && ./download-server.sh"
   },
   "theiaExtensions": [
