@@ -3,8 +3,9 @@ import { ExpandableTreeNode, TreeModel } from "@theia/core/lib/browser";
 import { ContextMenuRenderer } from "@theia/core/lib/browser/context-menu-renderer";
 import { TreeNode } from "@theia/core/lib/browser/tree/tree";
 import { TreeProps, TreeWidget } from "@theia/core/lib/browser/tree/tree-widget";
-import URI from "@theia/core/lib/common/uri";
+import * as React from "react";
 import { inject, injectable, postConstruct } from "inversify";
+import { JsonFormsTreeLabelProvider } from "./json-forms-tree-label-provider";
 import { v4 } from "uuid";
 
 import { CoffeeModel } from "./coffee-model";
@@ -24,7 +25,8 @@ export class JsonFormsTreeWidget extends TreeWidget {
     @inject(TreeProps) readonly props: TreeProps,
     @inject(TreeModel) readonly model: TreeModel,
     @inject(ContextMenuRenderer)
-    readonly contextMenuRenderer: ContextMenuRenderer
+    readonly contextMenuRenderer: ContextMenuRenderer,
+    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider
   ) {
     super(props, model, contextMenuRenderer);
     this.id = JsonFormsTreeWidget.WIDGET_ID;
@@ -129,30 +131,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
     return undefined;
   }
 
-  protected getName(currentData: any) {
-    if (currentData.eClass) {
-      switch (currentData.eClass) {
-        case CoffeeModel.Type.Task:
-        case CoffeeModel.Type.AutomaticTask:
-        case CoffeeModel.Type.ManualTask:
-        case CoffeeModel.Type.Machine:
-          return currentData.name;
-        default:
-          // TODO query title of schema
-          const fragment = new URI(currentData.eClass).fragment;
-          if (fragment.startsWith("//")) {
-            return fragment.substring(2);
-          }
-          return fragment;
-      }
-    }
-    // guess
-    if (currentData.nodes) {
-      return "Workflow";
-    }
-    return undefined;
-  }
-
   protected mapData(
     currentData: any,
     parent?: JsonFormsTree.Node,
@@ -166,7 +144,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
     const node = {
       ...this.defaultNode(),
-      name: this.getName(currentData),
+      name: this.labelProvider.getName(currentData),
       parent: parent,
       jsonforms: {
         type: this.getEClass(eClass, currentData),
@@ -210,6 +188,10 @@ export class JsonFormsTreeWidget extends TreeWidget {
     return JsonFormsTree.Node.is(node) && node.children.length > 0;
   }
 
+  protected renderIcon(node: TreeNode): React.ReactNode {
+    return <div className='tree-icon-container'><div className={this.labelProvider.getIconClass(node)}/></div>;
+  }
+
   /**
    * Updates the data of the given node with the new data. Refreshes the tree if necessary.
    * Note that this method will only work properly if only data relevant for this node was changed.
@@ -217,7 +199,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    */
   public updateDataForNode(node: JsonFormsTree.Node, data: any) {
     Object.assign(node.jsonforms.data, data);
-    const newName = this.getName(data);
+    const newName = this.labelProvider.getName(data);
     if (node.name !== newName) {
       node.name = newName;
       this.model.refresh();
