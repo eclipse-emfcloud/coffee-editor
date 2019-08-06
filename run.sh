@@ -7,6 +7,24 @@ downloadServers='false'
 buildFrontend='false'
 runFrontend='false'
 
+if [[ ${#1} -gt 2 ]]; then
+  if [[ "$1" == -*"b"* ]]; then
+    buildBackend='true'
+  fi
+  if [[ "$1" == -*"c"* ]]; then
+    copyBackend='true'
+  fi
+  if [[ "$1" == -*"d"* ]]; then
+    downloadServers='true'
+  fi
+  if [[ "$1" == -*"f"* ]]; then
+    buildFrontend='true'
+  fi
+  if [[ "$1" == -*"r"* ]]; then
+    runFrontend='true'
+  fi
+fi
+
 while [ "$1" != "" ]; do
   case $1 in
     -b | --backend )  buildBackend='true'
@@ -22,6 +40,7 @@ while [ "$1" != "" ]; do
   esac
   shift
 done
+
 [[ "$buildBackend" == "true" ]] && echo "  Build Backend (-b)" || echo "  Do not build Backend (-b)"
 [[ "$copyBackend" == "true" ]] && echo "  Copy Backend (-c)" || echo "  Do not copy Backend (-c)"
 [[ "$downloadServers" == "true" ]] && echo "  Download Model & GLSP Servers (-d)" || echo "  Do not download Model & GLSP Servers (-d)"
