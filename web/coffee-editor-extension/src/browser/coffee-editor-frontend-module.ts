@@ -14,6 +14,7 @@ import {
 import { createJsonFormsTreeWidget } from "./json-forms-tree/json-forms-tree-container";
 import { JsonFormsTreeWidget } from "./json-forms-tree/json-forms-tree-widget";
 
+import { JsonFormsTreeLabelProvider } from "./json-forms-tree/json-forms-tree-label-provider";
 export default new ContainerModule(bind => {
   bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
   bind(JsonFormsTreeWidget).toDynamicValue(context =>
@@ -23,6 +24,7 @@ export default new ContainerModule(bind => {
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
   bind(JsonFormsTreeEditorWidget).toSelf();
+  bind(JsonFormsTreeLabelProvider).toSelf();
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
     id: JsonFormsTreeEditorWidget.WIDGET_ID,
