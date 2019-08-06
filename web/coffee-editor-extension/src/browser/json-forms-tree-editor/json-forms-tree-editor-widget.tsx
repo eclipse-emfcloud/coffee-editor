@@ -1,38 +1,21 @@
-import { injectable, inject } from "inversify";
-import {
-  BaseWidget,
-  Navigatable,
-  Message,
-  Widget,
-  MessageLoop,
-  Saveable
-} from "@theia/core/lib/browser";
-import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
+import { Actions, jsonformsReducer, JsonFormsState } from "@jsonforms/core";
+import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
+import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
+import { ModelServerApi } from "@modelserver/theia/lib/browser";
+import { BaseWidget, Message, MessageLoop, Navigatable, Saveable, Widget } from "@theia/core/lib/browser";
 import { Disposable, Emitter, Event } from "@theia/core/lib/common";
+import URI from "@theia/core/lib/common/uri";
 import { WorkspaceService } from "@theia/workspace/lib/browser/workspace-service";
-
+import { inject, injectable } from "inversify";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import URI from "@theia/core/lib/common/uri";
-
-import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
-import {
-  materialRenderers,
-  materialCells
-} from "@jsonforms/material-renderers";
-import { JsonFormsState, jsonformsReducer, Actions } from "@jsonforms/core";
-
-import { ModelServerApi } from "@modelserver/theia/lib/browser";
-
-import {
-  coffeeSchema,
-  controlUnitView,
-  machineView,
-  brewingView
-} from "../models/coffee-schemas";
-import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
-import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
+import { combineReducers, createStore } from "redux";
+
+import { CoffeeModel } from "../json-forms-tree/coffee-model";
+import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
+import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
+import { brewingView, coffeeSchema, controlUnitView, machineView } from "../models/coffee-schemas";
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
   "JsonFormsTreeEditorWidgetOptions"
@@ -59,7 +42,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     return this.onDirtyChangedEmitter.event;
   }
 
-  protected selectedNode: JsonFormsTree.Node;
+  public selectedNode: JsonFormsTree.Node;
   protected store: any;
 
   protected instanceData: any;
@@ -116,8 +99,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
 
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
-        // response is wrongly typed
-        this.instanceData = (response.element as any).data;
+        this.instanceData = response.body;
         this.treeWidget
           .setData({ error: false, data: this.instanceData })
           .then(() => this.treeWidget.selectFirst());
@@ -126,15 +108,19 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.treeWidget.setData({ error: response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
-          this.getModelIDToRequest() +
-          "' - Status " +
-          response.statusCode +
-          " " +
-          response.statusMessage
+        this.getModelIDToRequest() +
+        "' - Status " +
+        response.statusCode +
+        " " +
+        response.statusMessage
       );
       this.instanceData = undefined;
       return;
     });
+  }
+
+  public uri(): URI {
+    return this.options.uri;
   }
 
   public save(): Promise<void> {
@@ -232,11 +218,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       return undefined;
     }
     switch (type) {
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
+      case CoffeeModel.Type.Machine:
         return machineView;
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit":
+      case CoffeeModel.Type.ControlUnit:
         return controlUnitView;
-      case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit":
+      case CoffeeModel.Type.BrewingUnit:
         return brewingView;
       default:
         console.log("Can't find registered ui schema for type " + type);

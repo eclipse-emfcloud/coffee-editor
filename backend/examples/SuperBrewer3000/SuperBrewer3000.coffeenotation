@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="ASCII"?>
-<wfnotation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wfnotation="http://www.eclipsesource.com/glsp/examples/workflow/notation">
-  <semanticElement uri="//@workflows.0"/>
-  <elements xsi:type="wfnotation:Shape">
-    <semanticElement uri="//@workflows.0/@nodes.0"/>
-    <position x="294.0" y="185.0"/>
-    <size width="127.71875" height="52.0"/>
-  </elements>
-  <elements xsi:type="wfnotation:Shape">
-    <semanticElement uri="//@workflows.0/@nodes.1"/>
-    <position x="524.0" y="188.0"/>
-    <size width="103.15625" height="52.0"/>
-  </elements>
-  <elements xsi:type="wfnotation:Shape">
-    <semanticElement uri="//@workflows.0/@nodes.7"/>
-    <position x="419.0" y="89.0"/>
-    <size width="32.0" height="32.0"/>
-  </elements>
-  <elements xsi:type="wfnotation:Shape">
-    <semanticElement uri="//@workflows.0/@nodes.8"/>
-    <position x="149.0" y="193.0"/>
-    <size width="32.0" height="32.0"/>
-  </elements>
-  <elements xsi:type="wfnotation:Edge">
-    <semanticElement uri="//@workflows.0/@flows.0"/>
-  </elements>
-</wfnotation:Diagram>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wfnotation="http://www.eclipsesource.com/glsp/examples/workflow/notation">
+  <wfnotation:Diagram>
+    <semanticElement uri="//@workflows.0"/>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.0"/>
+      <position x="434.0" y="329.0"/>
+      <size width="127.71875" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.1"/>
+      <position x="204.0" y="315.0"/>
+      <size width="103.359375" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.7"/>
+      <position x="419.0" y="89.0"/>
+      <size width="32.0" height="32.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.8"/>
+      <position x="149.0" y="193.0"/>
+      <size width="32.0" height="32.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.0"/>
+    </elements>
+  </wfnotation:Diagram>
+  <wfnotation:Diagram>
+    <semanticElement uri="//@workflows.1"/>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.1/@nodes.0"/>
+      <position x="373.0" y="434.0"/>
+      <size width="143.9375" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.1/@nodes.1"/>
+      <position x="383.0" y="328.0"/>
+      <size width="119.46875" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.1/@flows.0"/>
+    </elements>
+  </wfnotation:Diagram>
+</xmi:XMI>

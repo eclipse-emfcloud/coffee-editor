@@ -1,15 +1,14 @@
-import { inject, injectable, postConstruct } from "inversify";
-import { TreeNode } from "@theia/core/lib/browser/tree/tree";
+import { Emitter } from "@theia/core";
+import { ExpandableTreeNode, TreeModel } from "@theia/core/lib/browser";
 import { ContextMenuRenderer } from "@theia/core/lib/browser/context-menu-renderer";
-import {
-  TreeWidget,
-  TreeProps
-} from "@theia/core/lib/browser/tree/tree-widget";
-import { JsonFormsTree } from "./json-forms-tree";
-import { TreeModel, ExpandableTreeNode } from "@theia/core/lib/browser";
-import { v4 } from "uuid";
-import { Emitter, Event } from "@theia/core";
+import { TreeNode } from "@theia/core/lib/browser/tree/tree";
+import { TreeProps, TreeWidget } from "@theia/core/lib/browser/tree/tree-widget";
 import URI from "@theia/core/lib/common/uri";
+import { inject, injectable, postConstruct } from "inversify";
+import { v4 } from "uuid";
+
+import { CoffeeModel } from "./coffee-model";
+import { JsonFormsTree } from "./json-forms-tree";
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
@@ -77,7 +76,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
-  get onSelectionChange(): Event<readonly Readonly<JsonFormsTree.Node>[]> {
+  get onSelectionChange(): import("@theia/core").Event<readonly Readonly<JsonFormsTree.Node>[]> {
     return this.onTreeWidgetSelectionEmitter.event;
   }
 
@@ -112,13 +111,31 @@ export class JsonFormsTreeWidget extends TreeWidget {
     };
   }
 
+  protected getEClass(eClass: any, currentData: any) {
+    // FIXME: eClass should always be sent from server
+
+    if (eClass) {
+      // given eClass
+      return eClass;
+    }
+    if (currentData.eClass) {
+      // eClass of node
+      return currentData.eClass;
+    }
+    // guess
+    if (currentData.nodes) {
+      return CoffeeModel.Type.Workflow;
+    }
+    return undefined;
+  }
+
   protected getName(currentData: any) {
     if (currentData.eClass) {
       switch (currentData.eClass) {
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
+        case CoffeeModel.Type.Task:
+        case CoffeeModel.Type.AutomaticTask:
+        case CoffeeModel.Type.ManualTask:
+        case CoffeeModel.Type.Machine:
           return currentData.name;
         default:
           // TODO query title of schema
@@ -138,7 +155,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   protected mapData(
     currentData: any,
-    parent?: JsonFormsTree.Node
+    parent?: JsonFormsTree.Node,
+    eClass?: string,
+    index?: number
   ): JsonFormsTree.Node {
     if (!currentData) {
       // sanity check
@@ -150,8 +169,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
       name: this.getName(currentData),
       parent: parent,
       jsonforms: {
-        type: currentData.eClass,
-        data: currentData
+        type: this.getEClass(eClass, currentData),
+        data: currentData,
+        index: index ? index.toFixed(0) : undefined
       }
     };
     // containments
@@ -161,26 +181,26 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
     if (currentData.children) {
       // component types
-      currentData.children.forEach(element => {
-        this.mapData(element, node);
+      currentData.children.forEach((element, idx) => {
+        this.mapData(element, node, undefined, idx);
       });
     }
     if (currentData.workflows) {
       // machine type
-      currentData.workflows.forEach(element => {
-        this.mapData(element, node);
+      currentData.workflows.forEach((element, idx) => {
+        this.mapData(element, node, CoffeeModel.Type.Workflow, idx);
       });
     }
     if (currentData.nodes) {
       // workflow type
-      currentData.nodes.forEach(element => {
-        this.mapData(element, node);
+      currentData.nodes.forEach((element, idx) => {
+        this.mapData(element, node, undefined, idx);
       });
     }
     if (currentData.flows) {
       // workflow type
-      currentData.flows.forEach(element => {
-        this.mapData(element, node);
+      currentData.flows.forEach((element, idx) => {
+        this.mapData(element, node, undefined, idx);
       });
     }
     return node;

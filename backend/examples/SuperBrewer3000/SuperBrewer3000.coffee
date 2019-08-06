@@ -12,4 +12,9 @@
     <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:AutomaticTask" name="Brew"/>
     <flows xsi:type="com.eclipsesource.modelserver.coffee.model:WeightedFlow" source="//@workflows.0/@nodes.0" target="//@workflows.0/@nodes.1"/>
   </workflows>
+  <workflows>
+    <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:AutomaticTask" name="Preheat 2"/>
+    <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:AutomaticTask" name="Brew 2"/>
+    <flows xsi:type="com.eclipsesource.modelserver.coffee.model:WeightedFlow" source="//@workflows.1/@nodes.0" target="//@workflows.1/@nodes.1"/>
+  </workflows>
 </com.eclipsesource.modelserver.coffee.model:Machine>
