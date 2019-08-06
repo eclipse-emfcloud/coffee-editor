@@ -1,24 +1,26 @@
-import { Actions, jsonformsReducer, JsonFormsState } from "@jsonforms/core";
-import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
-import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
-import { ModelServerApi } from "@modelserver/theia/lib/browser";
-import { BaseWidget, Message, MessageLoop, Navigatable, Saveable, Widget } from "@theia/core/lib/browser";
-import { Disposable, Emitter, Event } from "@theia/core/lib/common";
-import URI from "@theia/core/lib/common/uri";
-import { WorkspaceService } from "@theia/workspace/lib/browser/workspace-service";
-import { inject, injectable } from "inversify";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { combineReducers, createStore } from "redux";
+import { ModelServerApi } from '@modelserver/theia/lib/browser';
+import {
+  BaseWidget,
+  Navigatable,
+  Saveable,
+  SplitPositionHandler,
+  SplitPanel,
+  Message,
+  Widget
+} from '@theia/core/lib/browser';
+import { Emitter, Event } from '@theia/core/lib/common';
+import URI from '@theia/core/lib/common/uri';
+import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
+import { inject, injectable } from 'inversify';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
 
-import { CoffeeModel } from "../json-forms-tree/coffee-model";
-import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
-import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
-import { brewingView, coffeeSchema, controlUnitView, machineView } from "../models/coffee-schemas";
+import { JSONFormsWidget } from './json-forms-widget';
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
-  "JsonFormsTreeEditorWidgetOptions"
+  'JsonFormsTreeEditorWidgetOptions'
 );
 export interface JsonFormsTreeEditorWidgetOptions {
   uri: URI;
@@ -28,14 +30,8 @@ export interface JsonFormsTreeEditorWidgetOptions {
 export class JsonFormsTreeEditorWidget extends BaseWidget
   implements Navigatable, Saveable {
   public dirty: boolean = false;
-  public autoSave: "off";
-
-  protected contentNode: HTMLElement;
-  protected treeNode: HTMLElement;
-  protected formsNode: HTMLElement;
-
-  protected readonly onDidUpdateEmitter = new Emitter<void>();
-  readonly onDidUpdate: Event<void> = this.onDidUpdateEmitter.event;
+  public autoSave: 'off';
+  private splitPanel: SplitPanel;
 
   protected readonly onDirtyChangedEmitter = new Emitter<void>();
   get onDirtyChanged(): Event<void> {
@@ -43,7 +39,6 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   public selectedNode: JsonFormsTree.Node;
-  protected store: any;
 
   protected instanceData: any;
 
@@ -51,51 +46,41 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     @inject(JsonFormsTreeEditorWidgetOptions)
     protected readonly options: JsonFormsTreeEditorWidgetOptions,
     @inject(JsonFormsTreeWidget)
-    protected readonly treeWidget: JsonFormsTreeWidget,
+    private readonly treeWidget: JsonFormsTreeWidget,
+    @inject(JSONFormsWidget)
+    private readonly formWidget: JSONFormsWidget,
     @inject(ModelServerApi)
     protected readonly modelServerApi: ModelServerApi,
     @inject(WorkspaceService)
-    protected readonly workspaceService: WorkspaceService
+    protected readonly workspaceService: WorkspaceService,
+    @inject(SplitPositionHandler)
+    protected splitPositionHandler: SplitPositionHandler
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
     this.title.label = options.uri.path.base;
     this.title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
     this.title.closable = true;
-    this.title.iconClass = "fa coffee-icon dark-purple";
-    this.addClass(JsonFormsTreeEditorWidget.Styles.JSONFORMS_TREE_EDITOR_CLASS);
+    this.title.iconClass = 'fa coffee-icon dark-purple';
+    this.splitPanel = new SplitPanel();
+    this.splitPanel.addClass('json-forms-tree-editor');
 
-    this.contentNode = document.createElement("div");
-    this.contentNode.classList.add("json-forms-tree-editor-content");
-    this.node.appendChild(this.contentNode);
-
-    this.treeNode = document.createElement("div");
-    this.treeNode.classList.add("json-forms-tree-editor-tree-container");
-    this.contentNode.appendChild(this.treeNode);
-
-    this.formsNode = document.createElement("div");
-    this.formsNode.classList.add("json-forms-tree-editor-forms-container");
-    this.contentNode.appendChild(this.formsNode);
-
-    this.toDispose.push(
-      this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
-    );
-    this.toDispose.push(this.treeWidget);
-
-    this.toDispose.push(this.onDirtyChangedEmitter);
-
-    this.store = this.initStore();
-    this.store.dispatch(Actions.init({}, { type: "string" }));
-    this.store.subscribe(() => {
-      this.treeWidget.updateDataForNode(
-        this.selectedNode,
-        this.store.getState().jsonforms.core.data
-      );
+    this.formWidget.onChange(data => {
+      this.treeWidget.updateDataForNode(this.selectedNode, data);
       if (!this.dirty) {
         this.dirty = true;
         this.onDirtyChangedEmitter.fire(undefined);
       }
     });
+    this.toDispose.push(
+      this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
+    );
+    this.toDispose.push(this.treeWidget);
+    this.toDispose.push(this.formWidget);
+
+    this.toDispose.push(this.splitPanel);
+
+    this.toDispose.push(this.onDirtyChangedEmitter);
 
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
@@ -108,11 +93,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.treeWidget.setData({ error: response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
-        this.getModelIDToRequest() +
-        "' - Status " +
-        response.statusCode +
-        " " +
-        response.statusMessage
+          this.getModelIDToRequest() +
+          "' - Status " +
+          response.statusCode +
+          ' ' +
+          response.statusMessage
       );
       this.instanceData = undefined;
       return;
@@ -124,7 +109,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   public save(): Promise<void> {
-    console.log("Save data to server");
+    console.log('Save data to server');
     console.log(this.instanceData);
     return this.modelServerApi
       .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
@@ -139,11 +124,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     const rootUriLength = this.workspaceService
       .getWorkspaceRootUri(this.options.uri)
       .toString().length;
-    return (
-      this.options.uri
-        .toString()
-        .substring(rootUriLength + 1)
-    );
+    return this.options.uri.toString().substring(rootUriLength + 1);
   }
 
   getResourceUri(): URI | undefined {
@@ -154,140 +135,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     return this.options.uri && this.options.uri.withPath(resourceUri.path);
   }
 
-  initStore() {
-    const initState: JsonFormsState = {
-      jsonforms: {
-        cells: materialCells,
-        renderers: materialRenderers
-      }
-    };
-    return createStore(
-      combineReducers({ jsonforms: jsonformsReducer() }),
-      initState
-    );
-  }
-
-  protected renderForms(): void {
-    if (this.selectedNode) {
-      ReactDOM.render(
-        <React.Fragment>
-          <Provider store={this.store}>
-            <JsonFormsReduxContext>
-              <JsonFormsDispatch />
-            </JsonFormsReduxContext>
-          </Provider>
-        </React.Fragment>,
-        this.formsNode
-      );
-    } else {
-      this.renderEmptyForms();
-    }
-  }
-
-  protected renderEmptyForms(): void {
-    ReactDOM.render(
-      <React.Fragment>Please select an element</React.Fragment>,
-      this.formsNode
-    );
-  }
-
   protected renderError(errorMessage: string): void {
     ReactDOM.render(
       <React.Fragment>{errorMessage}</React.Fragment>,
-      this.formsNode
+      this.formWidget.node
     );
-  }
-
-  protected getUiSchemaForNode(node: JsonFormsTree.Node) {
-    let schema = this.getUiSchemaForType(node.jsonforms.type);
-    if (schema) {
-      return schema;
-    }
-    // there is no type, try to guess
-    if (node.jsonforms.data.nodes) {
-      return {
-        type: "Label",
-        text: "Workflow"
-      };
-    }
-    return undefined;
-  }
-
-  protected getUiSchemaForType(type: string) {
-    if (!type) {
-      return undefined;
-    }
-    switch (type) {
-      case CoffeeModel.Type.Machine:
-        return machineView;
-      case CoffeeModel.Type.ControlUnit:
-        return controlUnitView;
-      case CoffeeModel.Type.BrewingUnit:
-        return brewingView;
-      default:
-        console.log("Can't find registered ui schema for type " + type);
-        return undefined;
-    }
-  }
-
-  protected getSchemaForNode(node: JsonFormsTree.Node) {
-    let schema = this.getSchemaForType(node.jsonforms.type);
-    if (schema) {
-      return schema;
-    }
-    // there is no type, try to guess
-    if (node.jsonforms.data.nodes) {
-      return coffeeSchema.definitions.workflow;
-    }
-    return undefined;
-  }
-
-  protected getSchemaForType(type: string) {
-    if (!type) {
-      return undefined;
-    }
-    const schema = Object.entries(coffeeSchema.definitions)
-      .map(entry => entry[1])
-      .find(
-        definition =>
-          definition.properties && definition.properties.eClass.const === type
-      );
-    if (!schema) {
-      console.log("Can't find definition schema for type " + type);
-    }
-    return schema;
-  }
-
-  protected onAfterAttach(msg: Message): void {
-    super.onAfterAttach(msg);
-    Widget.attach(this.treeWidget, this.treeNode);
-    this.toDisposeOnDetach.push(
-      Disposable.create(() => {
-        Widget.detach(this.treeWidget);
-      })
-    );
-    this.renderForms();
-  }
-
-  protected onAfterShow(msg: Message): void {
-    super.onAfterShow(msg);
-    this.treeWidget.activate();
-  }
-
-  protected onUpdateRequest(msg: Message): void {
-    super.onUpdateRequest(msg);
-    this.renderForms();
-    this.onDidUpdateEmitter.fire(undefined);
-  }
-
-  protected onResize(msg: Widget.ResizeMessage): void {
-    super.onResize(msg);
-    MessageLoop.sendMessage(this.treeWidget, Widget.ResizeMessage.UnknownSize);
-  }
-
-  protected onActivateRequest(msg: Message): void {
-    super.onActivateRequest(msg);
-    this.treeWidget.activate();
   }
 
   protected treeSelectionChanged(
@@ -297,31 +149,26 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.selectedNode = undefined;
     } else {
       this.selectedNode = selectedNodes[0];
-      this.store.dispatch(
-        Actions.init(
-          this.selectedNode.jsonforms.data,
-          {
-            definitions: coffeeSchema.definitions,
-            ...this.getSchemaForNode(this.selectedNode)
-          },
-          this.getUiSchemaForNode(this.selectedNode),
-          {
-            refParserOptions: {
-              dereference: { circular: "ignore" }
-            }
-          }
-        )
-      );
+      this.formWidget.setSelection(this.selectedNode);
     }
     this.update();
+  }
+
+  protected onAfterAttach(msg: Message): void {
+    this.splitPanel.addWidget(this.treeWidget);
+    this.splitPanel.addWidget(this.formWidget);
+    this.splitPanel.setRelativeSizes([1,4]);
+    this.treeWidget.activate();
+    Widget.attach(this.splitPanel, this.node);
+    super.onAfterAttach(msg);
   }
 }
 
 export namespace JsonFormsTreeEditorWidget {
-  export const WIDGET_ID = "json-forms-tree-editor";
-  export const WIDGET_LABEL = "JSONForms Tree Editor";
+  export const WIDGET_ID = 'json-forms-tree-editor';
+  export const WIDGET_LABEL = 'JSONForms Tree Editor';
 
   export namespace Styles {
-    export const JSONFORMS_TREE_EDITOR_CLASS = "json-forms-tree-editor";
+    export const JSONFORMS_TREE_EDITOR_CLASS = 'json-forms-tree-editor';
   }
 }
