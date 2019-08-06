@@ -1,8 +1,9 @@
-import { DisposableCollection } from "@theia/core";
+import { DisposableCollection, ILogger, MessageService, Progress } from "@theia/core";
 import { PreferenceService } from "@theia/core/lib/browser";
 import URI from "@theia/core/lib/common/uri";
 import { Workspace } from "@theia/languages/lib/browser";
 import { inject, injectable } from "inversify";
+
 import { CodeGenServer } from "../common/generate-protocol";
 
 @injectable()
@@ -12,28 +13,38 @@ export class GenerateCodeService {
     constructor(
         @inject(Workspace) private readonly workspace: Workspace,
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
-        @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer
+        @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer,
+        @inject(MessageService) protected readonly messageService: MessageService,
+        @inject(ILogger) private readonly logger: ILogger
     ) {
         const event = this.workspace.onDidSaveTextDocument
         if (event) {
             this.toDispose.push(event(textDocument => {
                 const fileUri = new URI(textDocument.uri)
                 if (this.isWorkflowFile(fileUri)) {
-                    console.log("Saved " + fileUri.path.base + ", autogenerate is set to: " + this.isAutoGenerateOn());
+                    this.logger.info(`Saved ${fileUri.path.base}, autogenerate is set to: ${this.isAutoGenerateOn()}`);
                     if (this.isAutoGenerateOn()) {
-                        console.log("Generate code for " + fileUri);
+                        this.logger.info(`Generate code for ${fileUri}`);
                         this.generateCode(fileUri);
                     }
                 }
             }))
         }
     }
+
     public generateCode(uri: URI): void {
+        this.messageService.showProgress(
+            { text: `Generating code for ${uri.parent.relative(uri)}`, options: { cancelable: false } }
+        ).then(progress => this.doGenerateCode(uri, progress));
+    }
+
+    private doGenerateCode(uri: URI, progress: Progress) {
         const generationDirectory = uri.parent;
         const packageName = generationDirectory.path.name;
         const sourceFile = uri.toString();
         const target = generationDirectory.toString();
-        this.codeGenServer.generateCode(sourceFile, target, packageName).then(r => console.log(r));
+        this.codeGenServer.generateCode(sourceFile, target, packageName)
+            .finally(() => progress.cancel());
     }
 
     dispose(): void {

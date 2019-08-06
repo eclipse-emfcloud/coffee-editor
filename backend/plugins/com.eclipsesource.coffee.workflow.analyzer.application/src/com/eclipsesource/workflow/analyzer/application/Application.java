@@ -1,24 +1,16 @@
 package com.eclipsesource.workflow.analyzer.application;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
-import com.eclipsesource.workflow.analyzer.json.AnalyzeWorkflow;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-/**
- * This class controls all aspects of the application's execution
- */
 public class Application implements IApplication {
+
+	private static final String DEFAULT_HOST = "localhost";
+	private static final int DEFAULT_PORT = 8023;
+
+	private WorkflowAnalyzerServerLauncher serverLauncher;
 
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
@@ -39,26 +31,20 @@ public class Application implements IApplication {
 				break;
 			}
 		}
-		try(
-				Socket socket = new Socket(host, port);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream());
-			){
-			String requestMessage = reader.readLine();
-			JsonObject request = new JsonParser().parse(requestMessage).getAsJsonObject();
-			String wfUri = request.get("WF-URI").getAsString();
-			String wfConfigUri = request.get("WFConfig-URI").getAsString();
-			String graph = new String(Files.readAllBytes(Paths.get(URI.create(wfUri))));
-			String config = new String(Files.readAllBytes(Paths.get(URI.create(wfConfigUri))));
-			String analyzeResult = new AnalyzeWorkflow(graph, config).generate();
-			osw.write(analyzeResult);
-			osw.flush();
-		}
+
+		serverLauncher = new WorkflowAnalyzerServerLauncher();
+		serverLauncher.start(Optional.ofNullable(host).orElse(DEFAULT_HOST),
+				Optional.ofNullable(Integer.valueOf(port)).orElse(DEFAULT_PORT));
+
+		System.out.println("Press any key to stop server...");
+	    System.in.read();
 		return IApplication.EXIT_OK;
 	}
 
 	@Override
 	public void stop() {
-		// nothing to do
+		if (serverLauncher != null) {
+			serverLauncher.shutdown();
+		}
 	}
 }

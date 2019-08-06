@@ -1,11 +1,11 @@
-import { injectable } from "inversify";
 import { BaseLanguageServerContribution, IConnection } from "@theia/languages/lib/node";
-import { createSocketConnection } from "vscode-ws-jsonrpc/lib/server";
-import * as net from 'net';
-import * as path from 'path';
-import * as glob from 'glob';
-import { spawn } from "child_process";
 import { ProcessErrorEvent } from "@theia/process/lib/node/process";
+import { spawn } from "child_process";
+import * as glob from "glob";
+import { injectable } from "inversify";
+import * as net from "net";
+import * as path from "path";
+import { createSocketConnection } from "vscode-ws-jsonrpc/lib/server";
 
 function getPort(): number | undefined {
     let arg = process.argv.filter(arg => arg.startsWith('--WF_LSP='))[0]
@@ -15,9 +15,9 @@ function getPort(): number | undefined {
         return Number.parseInt(arg.substring('--WF_LSP='.length))
     }
 }
+
 @injectable()
 export class WorkflowContribution extends BaseLanguageServerContribution {
-
 
     readonly description = {
         id: this.id,
@@ -30,7 +30,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
 
     readonly id = "wfconfig";
     readonly name = "WFCONFIG";
-    serverConnection: IConnection|undefined = undefined;
+    serverConnection: IConnection | undefined = undefined;
     serverStarted = false;
 
     start(clientConnection: IConnection): void {
@@ -39,7 +39,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
         if (socketPort) {
             if (!this.serverStarted) {
                 const command = 'java';
-                
+
                 var serverPath = path.resolve(__dirname, '..', '..', 'server');
                 var jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
                 if (jarPaths.length === 0) {

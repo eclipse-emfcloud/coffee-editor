@@ -1,17 +1,16 @@
 /**
  * Generated using theia-extension-generator
  */
-import { CommandContribution, MenuContribution } from '@theia/core';
-import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
-import { OpenHandler } from '@theia/core/lib/browser';
-import { LocationMapper } from '@theia/mini-browser/lib/browser/location-mapper-service';
-
+import { CommandContribution, MenuContribution } from "@theia/core";
+import { OpenHandler, WebSocketConnectionProvider } from "@theia/core/lib/browser";
+import { LocationMapper } from "@theia/mini-browser/lib/browser/location-mapper-service";
 import { ContainerModule, injectable } from "inversify";
-import { filePath, IFileClient, IFileServer } from '../common/request-file-protocol';
-import { AnalysisService } from './analysis-service';
-import { AnalysisEditorOpenHandler, WorkflowFileLocationMapper } from './editor-contribution';
-import { WorkflowCommandContribution } from './command-contribution';
-import { WorkflowAnalyzer, workflowServicePath } from '../common/workflow-analyze-protocol';
+
+import { filePath, IFileClient, IFileServer } from "../common/request-file-protocol";
+import { WorkflowAnalyzer, workflowServicePath } from "../common/workflow-analyze-protocol";
+import { AnalysisService, WorkflowAnalysisClientImpl } from "./analysis-service";
+import { WorkflowCommandContribution } from "./command-contribution";
+import { AnalysisEditorOpenHandler, WorkflowFileLocationMapper } from "./editor-contribution";
 
 export default new ContainerModule(bind => {
     bind(AnalysisService).toSelf().inSingletonScope();
@@ -24,11 +23,12 @@ export default new ContainerModule(bind => {
         return connection.createProxy<IFileServer>(filePath, client);
     }).inSingletonScope();
 
+    bind(WorkflowAnalysisClientImpl).toSelf().inSingletonScope();
     bind(WorkflowAnalyzer).toDynamicValue(ctx => {
         const connection = ctx.container.get(WebSocketConnectionProvider);
-        return connection.createProxy<WorkflowAnalyzer>(workflowServicePath);
+        const client = ctx.container.get(WorkflowAnalysisClientImpl)
+        return connection.createProxy<WorkflowAnalyzer>(workflowServicePath, client);
     }).inSingletonScope();
-
 
     bind(OpenHandler).to(AnalysisEditorOpenHandler);
     bind(LocationMapper).to(WorkflowFileLocationMapper);
@@ -37,6 +37,6 @@ export default new ContainerModule(bind => {
 
 });
 @injectable()
-export class WorkflowFileClient implements IFileClient{
+export class WorkflowFileClient implements IFileClient {
 
 }
