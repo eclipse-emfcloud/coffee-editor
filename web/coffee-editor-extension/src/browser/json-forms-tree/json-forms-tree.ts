@@ -24,6 +24,7 @@ export namespace JsonFormsTree {
     name: string;
     jsonforms: {
       type: string;
+      property: string;
       index?: string;
       data: any;
     };

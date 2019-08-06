@@ -36,3 +36,15 @@ button[type='button'] {padding:0}
 .tree-class {
   overflow-y: scroll;
 }
+
+.json-forms-tree .node-buttons {
+  visibility: hidden;
+}
+
+.json-forms-tree .node-button {
+  margin-left: 5px;
+}
+
+.json-forms-tree .theia-TreeNode:hover .node-buttons {
+  visibility: inherit;
+}

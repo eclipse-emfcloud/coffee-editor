@@ -1,3 +1,4 @@
+
 export namespace CoffeeModel {
     export namespace Type {
         export const AutomaticTask = "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask";
@@ -21,5 +22,44 @@ export namespace CoffeeModel {
         export const WaterTank = "http://www.eclipsesource.com/modelserver/example/coffeemodel#//WaterTank";
         export const WeightedFlow = "http://www.eclipsesource.com/modelserver/example/coffeemodel#//WeightedFlow";
         export const Workflow = "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Workflow";
+    }
+
+    const components = [
+        Type.Component,
+        Type.Machine,
+        Type.ControlUnit,
+        Type.BrewingUnit,
+        Type.DipTray,
+        Type.WaterTank
+    ];
+
+    // FIXME add all mappings
+    export const childrenMapping: Map<string, ChildrenDescriptor[]> = new Map([
+        [
+            Type.BrewingUnit, [
+                {
+                    property: 'children',
+                    children: components
+                }
+            ]
+        ],
+        [
+            Type.Component, [
+                {
+                    property: 'children',
+                    children: components
+                },
+                {
+                    property: 'workflows',
+                    children: [ Type.Workflow ]
+                }
+            ]
+        ]
+    ]);
+
+
+    export interface ChildrenDescriptor {
+        property: string;
+        children: string[];
     }
 }
