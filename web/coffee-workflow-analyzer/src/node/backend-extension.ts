@@ -4,13 +4,13 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
-
-import { ContainerModule } from "inversify";
 import { ConnectionHandler, JsonRpcConnectionHandler } from "@theia/core";
-import { IFileClient, filePath, IFileServer } from "../common/request-file-protocol";
-import { WorkflowFileServer } from "./file-server";
-import { WorkflowAnalyzer, workflowServicePath } from "../common/workflow-analyze-protocol";
+import { ContainerModule } from "inversify";
+
+import { filePath, IFileClient, IFileServer } from "../common/request-file-protocol";
+import { WorkflowAnalysisClient, WorkflowAnalyzer, workflowServicePath } from "../common/workflow-analyze-protocol";
 import { WorkflowAnalyzerServer } from "./analyze";
+import { WorkflowFileServer } from "./file-server";
 
 export default new ContainerModule(bind => {
     bind(IFileServer).to(WorkflowFileServer).inSingletonScope()
@@ -24,8 +24,10 @@ export default new ContainerModule(bind => {
 
     bind(WorkflowAnalyzer).to(WorkflowAnalyzerServer).inSingletonScope();
     bind(ConnectionHandler).toDynamicValue(ctx =>
-        new JsonRpcConnectionHandler<WorkflowAnalyzer>(workflowServicePath, () => {
-            return ctx.container.get<WorkflowAnalyzer>(WorkflowAnalyzer);
+        new JsonRpcConnectionHandler<WorkflowAnalysisClient>(workflowServicePath, client => {
+            const analysisServer = ctx.container.get<WorkflowAnalyzer>(WorkflowAnalyzer);
+            analysisServer.setClient(client);
+            return analysisServer;
         })
     ).inSingletonScope();
 });

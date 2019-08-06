@@ -1,31 +1,88 @@
+import { ILogger, MessageService, Progress } from "@theia/core";
+import { ConfirmDialog } from "@theia/core/lib/browser";
 import URI from "@theia/core/lib/common/uri";
 import { MiniBrowserOpenHandler } from "@theia/mini-browser/lib/browser/mini-browser-open-handler";
 import { inject, injectable } from "inversify";
+
 import { FileTypes, IFileServer } from "../common/request-file-protocol";
-import { WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
+import { WorkflowAnalysisClient, WorkflowAnalysisStatus, WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
 
 @injectable()
 export class AnalysisService {
+
     constructor(
         @inject(MiniBrowserOpenHandler) private readonly openHandler: MiniBrowserOpenHandler,
         @inject(IFileServer) private readonly fileServer: IFileServer,
-        @inject(WorkflowAnalyzer) private readonly workflowAnalyzer: WorkflowAnalyzer
+        @inject(WorkflowAnalyzer) private readonly workflowAnalyzer: WorkflowAnalyzer,
+        @inject(MessageService) protected readonly messageService: MessageService,
+        @inject(ILogger) private readonly logger: ILogger
     ) { }
 
     analyze(uri: URI): void {
-        console.log('[WorkflowAnalyzer] Analyze ' + uri)
-        const configFilePath = uri.toString();
-
-        const wfFilePath = uri.toString().replace(".wfconfig", ".wf");
-        console.log('[WorkflowAnalyzer] Analyze' + wfFilePath + ' with ' + configFilePath)
-        const analysisPromise = this.workflowAnalyzer.analyze(wfFilePath, configFilePath);
-        console.log('[WorkflowAnalyzer] Request Analysis File ' + FileTypes.WORKFLOW_ANALYSIS_HTML)
-        const htmlFilePromise = this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
-        Promise.all([analysisPromise, htmlFilePromise]).then(async ([jsonFile, htmlFile]) => {
-            console.log('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile)
-            const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
-            console.log('[WorkflowAnalyzer] Open Analysis Result')
-            return await this.openHandler.open(new URI(undefined), { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
-        });
+        this.logger.info('Analyze ' + uri)
+        this.messageService.showProgress(
+            { text: `Analyzing ${uri.parent.relative(uri)}`, options: { cancelable: false } }
+        ).then(progress => this.runAnalysis(uri, progress));
     }
+
+    private async runAnalysis(uri: URI, progress: Progress) {
+        const configFilePath = uri.toString();
+        const wfFilePath = uri.toString().replace(".wfconfig", ".coffee");
+        this.logger.info('[WorkflowAnalyzer] Analyze ' + wfFilePath + ' with ' + configFilePath);
+        this.logger.info('[WorkflowAnalyzer] Request Analysis File ' + FileTypes.WORKFLOW_ANALYSIS_HTML);
+        try {
+            const jsonFile = await this.workflowAnalyzer.analyze(wfFilePath, configFilePath);
+            const htmlFile = await this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
+            progress.report({ message: 'Finished analysis, opening result ...' });
+            this.logger.info('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile);
+            const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
+            this.logger.info('[WorkflowAnalyzer] Open Analysis Result');
+            await this.openHandler.open(new URI(undefined), { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
+        } catch (error) {
+            this.messageService.error('The workflow analysis failed', 'Show details')
+                .then(result => {
+                    if (result === 'Show details') {
+                        showErrorDialog(error);
+                    }
+                });
+        } finally {
+            progress.cancel();
+        }
+    }
+}
+
+@injectable()
+export class WorkflowAnalysisClientImpl implements WorkflowAnalysisClient {
+    constructor(@inject(MessageService) protected readonly messageService: MessageService) { }
+    reportStatus(status: WorkflowAnalysisStatus): void {
+        switch (status.status) {
+            case 'ok': this.messageService.info(status.message); break;
+            case 'error': this.messageService.error(status.message); break;
+        }
+    }
+}
+
+export function showErrorDialog(error: Error) {
+    new ConfirmDialog({
+        title: error.name,
+        msg: getDetails(error)
+    }).open();
+}
+
+export function getDetails(error: Error): HTMLElement {
+    const pre = document.createElement('pre');
+    if (isErrorWithData(error) && typeof error.data === 'string') {
+        pre.textContent = error.data;
+    } else {
+        pre.textContent = error.stack ? error.stack : 'Sorry, no stacktrace is available';
+    }
+    return pre;
+}
+
+export function isErrorWithData(arg: object | undefined): arg is ErrorWithData {
+    return arg ? 'data' in arg : false;
+}
+
+interface ErrorWithData extends Error {
+    data: string;
 }
