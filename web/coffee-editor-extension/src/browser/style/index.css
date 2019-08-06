@@ -23,3 +23,15 @@ button[type='button'] {padding:0}
   margin-right: 5px;
   text-align: center;
 }
+
+.json-forms-tree .node-buttons {
+  visibility: hidden;
+}
+
+.json-forms-tree .node-button {
+  margin-left: 5px;
+}
+
+.json-forms-tree .theia-TreeNode:hover .node-buttons {
+  visibility: inherit;
+}
