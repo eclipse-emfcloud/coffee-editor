@@ -40,3 +40,13 @@ matrix:
       install: true
       script:
         - cd backend/releng/com.eclipsesource.coffee.parent && mvn clean install
+    - stage: deploy
+      services:
+        - docker
+      env:
+        global:
+          - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+      language: minimal
+      script:
+        - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./test-deploy.sh; fi'
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo Deploy not allowed; fi'
