@@ -1,6 +1,5 @@
 package com.eclipsesource.workflow.analyzer.application;
 
-import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,7 +7,9 @@ import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.lsp4j.jsonrpc.CompletableFutures;
 
-import com.eclipsesource.workflow.analyzer.json.AnalyzeWorkflow;
+import com.eclipsesource.coffee.common.ModelServerClientUtil;
+import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
+import com.eclipsesource.workflow.analyzer.coffee.AnalyzeWorkflow;
 
 public class WorkflowAnalyzerServerImpl implements WorkflowAnalyzerServer {
 
@@ -26,12 +27,12 @@ public class WorkflowAnalyzerServerImpl implements WorkflowAnalyzerServer {
 	}
 
 	private String doRunAnalysis(String uri, String configUri) {
-		// TODO fetch coffee model from coffee server
 		try {
-			String graph = new String(Files.readAllBytes(Paths.get(URI.create(uri))));
+			Machine machine = ModelServerClientUtil.loadResource(URI.create(uri), Machine.class)
+					.orElseThrow(IllegalArgumentException::new);
 			String config = new String(Files.readAllBytes(Paths.get(URI.create(configUri))));
-			return new AnalyzeWorkflow(graph, config).generate();
-		} catch (IOException e) {
+			return new AnalyzeWorkflow(machine, config).generate();
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

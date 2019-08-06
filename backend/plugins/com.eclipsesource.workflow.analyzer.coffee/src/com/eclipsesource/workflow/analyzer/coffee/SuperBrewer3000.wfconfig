@@ -1,0 +1,9 @@
+workflowModel: SuperBrewer3000
+
+probabilities
+low    : 0.1
+medium : 0.5
+high   : 0.75
+
+assertions
+Preheat => Brew

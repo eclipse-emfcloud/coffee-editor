@@ -15,7 +15,6 @@
 
    <windowImages/>
 
-
    <launcher>
       <win useIco="true">
          <bmp/>
@@ -26,14 +25,22 @@
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
    </vm>
 
-
    <plugins>
+      <plugin id="com.eclipsesource.coffee.common"/>
+      <plugin id="com.eclipsesource.modelserver.client"/>
+      <plugin id="com.eclipsesource.modelserver.coffee.model"/>
+      <plugin id="com.eclipsesource.modelserver.common"/>
+      <plugin id="com.eclipsesource.modelserver.edit"/>
       <plugin id="com.eclipsesource.workflow"/>
       <plugin id="com.eclipsesource.workflow.dsl"/>
       <plugin id="com.eclipsesource.workflow.dsl.ide"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-core"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
+      <plugin id="com.squareup.okhttp3"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.antlr.runtime"/>
@@ -45,6 +52,7 @@
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filesystem"/>
+      <plugin id="org.eclipse.core.filesystem.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.runtime"/>
@@ -52,6 +60,7 @@
       <plugin id="org.eclipse.emf.ecore"/>
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
+      <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.launcher"/>
@@ -64,6 +73,7 @@
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.util"/>
+      <plugin id="org.eclipse.pde.ds.lib"/>
       <plugin id="org.eclipse.xtend.lib"/>
       <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtext"/>
@@ -74,6 +84,7 @@
       <plugin id="org.eclipse.xtext.xbase"/>
       <plugin id="org.eclipse.xtext.xbase.ide"/>
       <plugin id="org.eclipse.xtext.xbase.lib"/>
+      <plugin id="org.emfjson.jackson"/>
       <plugin id="org.objectweb.asm"/>
    </plugins>
 

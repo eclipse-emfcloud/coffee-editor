@@ -71,7 +71,6 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
     }
 
     public createRunAnalysisRequest(): rpc.RequestType2<string, string, string, void, void> {
-        this.showError("this is a test error");
         return new rpc.RequestType2<string, string, string, void, void>('runAnalysis');
     }
 

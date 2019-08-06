@@ -32,7 +32,7 @@
 	</properties>
 
 	<build>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -212,7 +212,7 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<!-- 
+					<!--
 						Can be removed after first generator execution
 						https://bugs.eclipse.org/bugs/show_bug.cgi?id=480097
 					-->
@@ -242,14 +242,16 @@
 		<module>../com.eclipsesource.coffee.product</module>
 		<module>../../plugins/com.eclipsesource.workflow</module>
 		<module>../../plugins/com.eclipsesource.coffee.codegen.java.application</module>
+		<module>../../plugins/com.eclipsesource.coffee.common</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator</module>
 		<module>../../plugins/com.eclipsesource.workflow.generator.java</module>
 		<module>../../plugins/com.eclipsesource.coffee.workflow.analyzer.application</module>
 		<module>../../plugins/com.eclipsesource.workflow.analyzer</module>
-		<module>../../plugins/com.eclipsesource.workflow.analyzer.json</module>
-		<module>../../plugins/com.eclipsesource.workflow.dsl.parent</module>
+		<module>../../plugins/com.eclipsesource.workflow.analyzer.coffee</module>
+		<module>../../plugins/com.eclipsesource.workflow.dsl</module>
+		<module>../../plugins/com.eclipsesource.workflow.dsl.ide</module>
 	</modules>
-	
+
 	<repositories>
 		<repository>
 			<id>codehaus-snapshots</id>

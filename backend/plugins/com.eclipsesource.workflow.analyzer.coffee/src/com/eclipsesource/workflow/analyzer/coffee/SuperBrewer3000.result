@@ -1,0 +1,30 @@
+{  
+   "name":"Root",
+   "type":"",
+   "size":1000,
+   "children":[  
+      {  
+         "name":"Preheat",
+         "type":"automatic",
+         "size":1000,
+         "children":[  
+            {  
+               "name":"AlternativeBrew",
+               "type":"manual",
+               "size":750,
+               "children":[  
+
+               ]
+            },
+            {  
+               "name":"Brew",
+               "type":"automatic",
+               "size":500,
+               "children":[  
+
+               ]
+            }
+         ]
+      }
+   ]
+}
