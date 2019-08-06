@@ -19,7 +19,9 @@ public class JavaWorkflowGenerator {
 	private ManualWorkflowTaskGenerator manualWorkflowTaskGen = new ManualWorkflowTaskGenerator(SRC_GEN_FOLDER);
 	
 	// testing library
-	private JUnitUserTaskTestGenerator junitTestGen = new JUnitUserTaskTestGenerator(SRC_FOLDER);
+//	private JUnitUserTaskTestGenerator junitTestGen = new JUnitUserTaskTestGenerator(SRC_FOLDER);
+	// main runner
+	private MainMethodUserTaskGenerator mainTestGen = new MainMethodUserTaskGenerator(SRC_FOLDER);
 	
 	// task-specific files
 	private TaskGenerator abstractTaskGen = new TaskGenerator(SRC_GEN_FOLDER);
@@ -46,7 +48,9 @@ public class JavaWorkflowGenerator {
 		});
 		
 		// generate JUnit test	
-		result.add(new GeneratedFile(junitTestGen.toFileName(packageName), junitTestGen.toFileContent(packageName, sourceFileName, tasks), true));
+//		result.add(new GeneratedFile(junitTestGen.toFileName(packageName), junitTestGen.toFileContent(packageName, sourceFileName, tasks), true));
+
+		result.add(new GeneratedFile(mainTestGen.toFileName(packageName), mainTestGen.toFileContent(packageName, sourceFileName, tasks), true));
 
 		return result;
 	}

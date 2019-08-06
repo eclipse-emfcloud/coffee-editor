@@ -36,7 +36,7 @@ class TaskGenerator {
 				public String getActor() {
 					return "«(task as ManualTask).actor»";
 				}
-				«ELSE»
+				«ELSEIF task instanceof AutomaticTask»
 				public String getComponent() {
 					return "«(task as AutomaticTask).component»";
 				}

@@ -25,8 +25,6 @@ class WorkflowTaskGenerator {
 			
 				public abstract int getDuration();
 			
-				public abstract String getId();
-			
 				public void doExecute() throws InterruptedException {
 					preExecute();
 					execute();
