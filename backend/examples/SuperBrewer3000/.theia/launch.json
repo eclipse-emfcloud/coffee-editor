@@ -11,7 +11,7 @@
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
       "stopOnEntry": false,
-      "mainClass": "SuperBrewer3000.tests.Dummy",
+      "mainClass": "SuperBrewer3000.tests.SuperBrewer3000Runner",
       "args": ""
     },
     {

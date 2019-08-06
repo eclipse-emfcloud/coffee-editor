@@ -38,7 +38,7 @@ class MainMethodUserTaskGenerator {
 				«FOR task:tasks»
 				«var className = task.name.toClassName»
 				private static void run«className» () {
-					System.out.println("Run methods of «className»()...");
+					System.out.println("Run methods of «className» ...");
 					«className» task = new «className»();
 					// verify initial state
 					System.out.println(String.format("«className» duration %s.", task.getDuration()));
