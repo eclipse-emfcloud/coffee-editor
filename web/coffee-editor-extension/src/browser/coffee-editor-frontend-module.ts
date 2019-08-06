@@ -13,6 +13,7 @@ import {
 } from "./json-forms-tree-editor/json-forms-tree-editor-widget";
 import { createJsonFormsTreeWidget } from "./json-forms-tree/json-forms-tree-container";
 import { JsonFormsTreeWidget } from "./json-forms-tree/json-forms-tree-widget";
+import { JSONFormsWidget } from "./json-forms-tree-editor/json-forms-widget";
 
 import { JsonFormsTreeLabelProvider } from "./json-forms-tree/json-forms-tree-label-provider";
 export default new ContainerModule(bind => {
@@ -20,6 +21,7 @@ export default new ContainerModule(bind => {
   bind(JsonFormsTreeWidget).toDynamicValue(context =>
     createJsonFormsTreeWidget(context.container)
   );
+  bind(JSONFormsWidget).toSelf();
   bind(OpenHandler).to(CoffeeTreeEditorContribution);
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
