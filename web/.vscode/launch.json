@@ -13,7 +13,8 @@
         "--loglevel=debug",
         "--port=3000",
         "--no-cluster",
-        "--WORKFLOW_LSP=5007",
+        "--WORKFLOW_NOTATION_LSP=5008",
+        "--WF_LSP=5017"
       ],
       "env": {
         "NODE_ENV": "development"
