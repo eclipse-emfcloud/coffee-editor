@@ -1,7 +1,8 @@
-import { injectable, inject } from 'inversify';
-import { FileSystem } from '@theia/filesystem/lib/common';
-import URI from '@theia/core/lib/common/uri';
+import { ILogger } from "@theia/core";
+import URI from "@theia/core/lib/common/uri";
+import { FileSystem } from "@theia/filesystem/lib/common";
 import { Workspace } from "@theia/languages/lib/browser";
+import { inject, injectable } from "inversify";
 import { isString } from "util";
 
 @injectable()
@@ -9,7 +10,8 @@ export class WorkspaceStorageServiceFilesystem {
 
     constructor(
         @inject(FileSystem) protected readonly fileSystem: FileSystem,
-        @inject(Workspace) protected readonly workspace: Workspace
+        @inject(Workspace) protected readonly workspace: Workspace,
+        @inject(ILogger) private readonly logger: ILogger
     ) {
     }
 
@@ -18,7 +20,7 @@ export class WorkspaceStorageServiceFilesystem {
         if (exists) {
             return this.fileSystem.resolveContent(uri.toString()).then(({ stat, content }) => content);
         }
-        console.warn('File ' + uri.toString + ' does not exist.');
+        this.logger.warn('File ' + uri.toString + ' does not exist.');
         return '';
     }
 
@@ -27,7 +29,7 @@ export class WorkspaceStorageServiceFilesystem {
         if (fileUri) {
             return this.readFileContent(fileUri);
         }
-        console.warn('Could not determine content of file ' + wsRelativePath + '.');
+        this.logger.warn('Could not determine content of file ' + wsRelativePath + '.');
         return '';
     }
 
@@ -37,17 +39,17 @@ export class WorkspaceStorageServiceFilesystem {
             this.setFileContent(fileUri, content, overwrite);
             return;
         }
-        console.warn('Could not determine file ' + wsRelativePath + '.');
+        this.logger.warn('Could not determine file ' + wsRelativePath);
     }
 
     async setFileContent(fileUri: URI, content: string, overwrite: boolean): Promise<void> {
         const fileStat = await this.fileSystem.getFileStat(fileUri.toString());
         if (fileStat && overwrite) {
             this.fileSystem.updateContent(fileStat, [{ text: content }]).then(() => Promise.resolve());
-            console.log("Update content of file '" + fileUri + "'.");
+            this.logger.info(`Update content of file '${fileUri}'`);
         } else {
             this.fileSystem.createFile(fileUri.toString(), { content });
-            console.log("Create file '" + fileUri + "'.");
+            this.logger.info(`Create file '${fileUri}'`);
         }
     }
 

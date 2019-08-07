@@ -1,22 +1,15 @@
-import { ModelServerClient } from '@modelserver/theia/lib/common';
-import {
-  BaseWidget,
-  Navigatable,
-  Saveable,
-  SplitPanel,
-  Message,
-  Widget
-} from '@theia/core/lib/browser';
-import { Emitter, Event } from '@theia/core/lib/common';
-import URI from '@theia/core/lib/common/uri';
-import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
-import { inject, injectable } from 'inversify';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
+import { ModelServerClient } from "@modelserver/theia/lib/common";
+import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from "@theia/core/lib/browser";
+import { Emitter, Event, ILogger } from "@theia/core/lib/common";
+import URI from "@theia/core/lib/common/uri";
+import { WorkspaceService } from "@theia/workspace/lib/browser/workspace-service";
+import { inject, injectable } from "inversify";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-import { JSONFormsWidget } from './json-forms-widget';
+import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
+import { JsonFormsTreeWidget } from "../json-forms-tree/json-forms-tree-widget";
+import { JSONFormsWidget } from "./json-forms-widget";
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
   'JsonFormsTreeEditorWidgetOptions'
@@ -51,7 +44,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     @inject(ModelServerClient)
     protected readonly modelServerApi: ModelServerClient,
     @inject(WorkspaceService)
-    protected readonly workspaceService: WorkspaceService
+    protected readonly workspaceService: WorkspaceService,
+    @inject(ILogger) private readonly logger: ILogger
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -87,11 +81,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.treeWidget.setData({ error: response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
-          this.getModelIDToRequest() +
-          "' - Status " +
-          response.statusCode +
-          ' ' +
-          response.statusMessage
+        this.getModelIDToRequest() +
+        "' - Status " +
+        response.statusCode +
+        ' ' +
+        response.statusMessage
       );
       this.instanceData = undefined;
       return;
@@ -103,8 +97,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   public save(): Promise<void> {
-    console.log('Save data to server');
-    console.log(this.instanceData);
+    this.logger.info('Save data to server');
+    this.logger.debug(this.instanceData);
     return this.modelServerApi
       .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
       .then(() => {
@@ -151,7 +145,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   protected onAfterAttach(msg: Message): void {
     this.splitPanel.addWidget(this.treeWidget);
     this.splitPanel.addWidget(this.formWidget);
-    this.splitPanel.setRelativeSizes([1,4]);
+    this.splitPanel.setRelativeSizes([1, 4]);
     Widget.attach(this.splitPanel, this.node);
     this.treeWidget.activate();
     super.onAfterAttach(msg);
