@@ -1,11 +1,26 @@
-import { ILogger, MessageService, Progress } from "@theia/core";
-import { ConfirmDialog } from "@theia/core/lib/browser";
-import URI from "@theia/core/lib/common/uri";
-import { MiniBrowserOpenHandler } from "@theia/mini-browser/lib/browser/mini-browser-open-handler";
-import { inject, injectable } from "inversify";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+import { ILogger, MessageService, Progress } from '@theia/core';
+import { ConfirmDialog } from '@theia/core/lib/browser';
+import URI from '@theia/core/lib/common/uri';
+import { MiniBrowserOpenHandler } from '@theia/mini-browser/lib/browser/mini-browser-open-handler';
+import { inject, injectable } from 'inversify';
 
-import { FileTypes, IFileServer } from "../common/request-file-protocol";
-import { WorkflowAnalysisClient, WorkflowAnalysisStatus, WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
+import { FileTypes, IFileServer } from '../common/request-file-protocol';
+import { WorkflowAnalysisClient, WorkflowAnalysisStatus, WorkflowAnalyzer } from '../common/workflow-analyze-protocol';
 
 @injectable()
 export class AnalysisService {
@@ -19,7 +34,7 @@ export class AnalysisService {
     ) { }
 
     analyze(uri: URI): void {
-        this.logger.info('Analyze ' + uri)
+        this.logger.info('Analyze ' + uri);
         this.messageService.showProgress(
             { text: `Analyzing ${uri.parent.relative(uri)}`, options: { cancelable: false } }
         ).then(progress => this.runAnalysis(uri, progress));
@@ -27,7 +42,7 @@ export class AnalysisService {
 
     private async runAnalysis(uri: URI, progress: Progress) {
         const configFilePath = uri.toString();
-        const wfFilePath = uri.toString().replace(".wfconfig", ".coffee");
+        const wfFilePath = uri.toString().replace('.wfconfig', '.coffee');
         this.logger.info('[WorkflowAnalyzer] Analyze ' + wfFilePath + ' with ' + configFilePath);
         this.logger.info('[WorkflowAnalyzer] Request Analysis File ' + FileTypes.WORKFLOW_ANALYSIS_HTML);
         try {
@@ -35,9 +50,9 @@ export class AnalysisService {
             const htmlFile = await this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
             progress.report({ message: 'Finished analysis, opening result ...' });
             this.logger.info('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile);
-            const urlWithQuery = htmlFile + "?json=" + escape(jsonFile);
+            const urlWithQuery = htmlFile + '?json=' + escape(jsonFile);
             this.logger.info('[WorkflowAnalyzer] Open Analysis Result');
-            await this.openHandler.open(new URI(undefined), { name: "Workflow Analysis", startPage: urlWithQuery, toolbar: 'hide' });
+            await this.openHandler.open(new URI(undefined), { name: 'Workflow Analysis', startPage: urlWithQuery, toolbar: 'hide' });
         } catch (error) {
             this.messageService.error('The workflow analysis failed', 'Show details')
                 .then(result => {

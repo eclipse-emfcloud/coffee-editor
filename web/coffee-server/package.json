@@ -22,15 +22,18 @@
   "dependencies": {
     "@theia/core": "^0.7.1",
     "@theia/workspace": "^0.7.1",
+    "@theia/process": "^0.7.1",
     "@modelserver/theia": "next"
   },
   "devDependencies": {
     "rimraf": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "tslint": "^5.5.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
+    "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc",
     "watch": "tsc -w",
     "download-server": "cd ./scripts && ./download-server.sh"

@@ -1,0 +1,107 @@
+{
+  "defaultSeverity": "error",
+  "rules": {
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ],
+    "arrow-return-shorthand": [
+      true,
+      "multiline"
+    ],
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "curly": true,
+    "eofline": true,
+    "file-header": [
+      true,
+      "[\n\r]+ \\* Copyright \\([cC]\\) \\d{4}(-\\d{4})? .*[\n\r]+",
+      "Copyright (C) 2019 EclipseSource and others.\n\nThis program and the accompanying materials are made available under the\nterms of the Eclipse Public License v. 2.0 which is available at\nhttp://www.eclipse.org/legal/epl-2.0.\n\nThis Source Code may also be made available under the following Secondary\nLicenses when the conditions for such availability set forth in the Eclipse\nPublic License v. 2.0 are satisfied: GNU General Public License, version 2\nwith the GNU Classpath Exception which is available at\nhttps://www.gnu.org/software/classpath/license.html.\n\nSPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0"
+    ],
+    "forin": true,
+    "indent": [
+      true,
+      "spaces",
+      4
+    ],
+    "interface-over-type-literal": true,
+    "jsdoc-format": [
+      true,
+      "check-multiline-start"
+    ],
+    "max-line-length": [
+      true,
+      180
+    ],
+    "no-any": true,
+    "no-consecutive-blank-lines": true,
+    "no-construct": true,
+    "no-magic-numbers": false,
+    "no-null-keyword": true,
+    "no-shadowed-variable": true,
+    "no-string-throw": true,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "one-variable-per-declaration": true,
+    "prefer-const": [
+      true,
+      {
+        "destructuring": "all"
+      }
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-single",
+      "avoid-escape",
+      "avoid-template"
+    ],
+    "radix": false,
+    "semicolon": [
+      true,
+      "always",
+      "ignore-interfaces"
+    ],
+    "space-before-function-paren": [
+      true,
+      {
+        "anonymous": "always"
+      }
+    ],
+    "trailing-comma": false,
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": false,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
+  }
+}
