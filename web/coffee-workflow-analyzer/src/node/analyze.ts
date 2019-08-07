@@ -1,4 +1,7 @@
+import { ILogger } from "@theia/core";
+import { ProcessErrorEvent } from "@theia/process/lib/node/process";
 import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
+import * as cp from "child_process";
 import * as glob from "glob";
 import { inject, injectable } from "inversify";
 import * as net from "net";
@@ -8,35 +11,40 @@ import { createSocketConnection } from "vscode-ws-jsonrpc/lib/server";
 
 import { WorkflowAnalysisClient, WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
 
+const DEFAULT_PORT = 8024;
+
 @injectable()
 export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
 
     private startedServer: boolean = false;
-    private connection?: rpc.MessageConnection = undefined;
+    private connection?: rpc.MessageConnection;
     private client?: WorkflowAnalysisClient;
 
-    constructor(@inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory) { }
+    constructor(
+        @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory,
+        @inject(ILogger) private readonly logger: ILogger) { }
 
-    analyze(wfUri: string, wfConfigUri: string): Promise<string> {
-        this.connection = this.connect();
-        return new Promise((resolve, reject) => {
-            this.connection!
-                .sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
+    async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
+        const con = await this.connect();
+        return await new Promise((resolve, reject) => {
+            con.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
                 .then(r => resolve(r), e => reject(e));
         });
     }
 
-    private connect(): rpc.MessageConnection {
+    private async connect(): Promise<rpc.MessageConnection> {
         let port = this.getPort();
         if (!port && !this.startedServer) {
-            port = 8024;
-            this.startServer(port);
+            await this.startServer(DEFAULT_PORT);
+        }
+        if (!port) {
+            port = DEFAULT_PORT;
         }
 
         const socket = new net.Socket();
         const connection = createSocketConnection(socket, socket, () => {
-            console.log('[WorkflowAnalyzer] Socket Connection Disposed.')
-            socket.destroy()
+            this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
+            socket.destroy();
         });
         socket.connect(port!);
 
@@ -54,19 +62,22 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         }
     }
 
-    private startServer(port: number) {
+    private async startServer(port: number) {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
         const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
         if (jarPaths.length === 0) {
-            throw new Error('The Java server launcher is not found.');
+            throw new Error('The workflow analysis server launcher is not found.');
         }
         const jarPath = path.resolve(serverPath, jarPaths[0]);
         const command = 'java';
         const args: string[] = [];
         args.push('-jar', jarPath);
         args.push('-host', 'localhost', '-port', port.toString());
-        console.log('[WorkflowAnalyzer] Spawn Process with Command ' + command + ' and arguments ' + args);
-        this.spawnProcess(command, args);
+        this.logger.info('[WorkflowAnalyzer] Spawn Process with command ' + command + ' and arguments ' + args);
+        const process = await this.spawnProcessAsync(command, args);
+        this.logger.info('[WorkflowAnalyzer] Spawned process, waiting for server to be ready');
+        await this.waitUntilServerReady(process);
+        this.logger.info('[WorkflowAnalyzer] Server communicated to be ready');
         this.startedServer = true;
     }
 
@@ -84,16 +95,23 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         this.client = client;
     }
 
-    private spawnProcess(command: string, args?: string[]): RawProcess | undefined {
-        const rawProcess = this.processFactory({ command, args });
-        if (rawProcess.process === undefined) {
-            return undefined;
-        }
-        rawProcess.process.once('error', this.onDidFailSpawnProcess.bind(this));
-        const stderr = rawProcess.process.stderr;
-        if (stderr)
-            stderr.on('data', this.showError.bind(this));
-        return rawProcess;
+    protected spawnProcessAsync(command: string, args?: string[], options?: cp.SpawnOptions): Promise<RawProcess> {
+        const rawProcess = this.processFactory({ command, args, options });
+        rawProcess.errorStream.on('data', this.showError.bind(this));
+        return new Promise<RawProcess>((resolve, reject) => {
+            rawProcess.onError((error: ProcessErrorEvent) => {
+                this.onDidFailSpawnProcess(error);
+                if (error.code === 'ENOENT') {
+                    const guess = command.split(/\s+/).shift();
+                    if (guess) {
+                        reject(new Error(`Failed to spawn ${guess}\nPerhaps it is not on the PATH.`));
+                        return;
+                    }
+                }
+                reject(error);
+            });
+            process.nextTick(() => resolve(rawProcess));
+        });
     }
 
     protected onDidFailSpawnProcess(error: Error): void {
@@ -108,6 +126,18 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
                 this.client.reportStatus({ status: 'error', message: data.toString() });
             }
         }
+    }
+
+    private waitUntilServerReady(process: RawProcess): Promise<any> {
+        return new Promise<any>(resolve =>
+            process.outputStream.on('data', data => {
+                const message = String.fromCharCode.apply(null, data);
+                this.logger.info('[WorkflowAnalyzer] Server output: ' + message);
+                if (message.includes('Ready')) {
+                    return resolve(data);
+                }
+            })
+        );
     }
 
 }

@@ -1,7 +1,5 @@
 package com.eclipsesource.workflow.analyzer.application;
 
-import java.util.Optional;
-
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
@@ -16,8 +14,8 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		String[] args = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
-		Integer port = null;
-		String host = null;
+		Integer port = DEFAULT_PORT;
+		String host = DEFAULT_HOST;
 		for (int i = 0; i < args.length; i++) {
 			String arg = args[i];
 			switch (arg) {
@@ -33,11 +31,10 @@ public class Application implements IApplication {
 		}
 
 		serverLauncher = new WorkflowAnalyzerServerLauncher();
-		serverLauncher.start(Optional.ofNullable(host).orElse(DEFAULT_HOST),
-				Optional.ofNullable(Integer.valueOf(port)).orElse(DEFAULT_PORT));
+		serverLauncher.start(host, port);
 
-		System.out.println("Press any key to stop server...");
-	    System.in.read();
+		System.out.println("[WorkflowAnalysisServer] Press any key to stop server...");
+		System.in.read();
 		return IApplication.EXIT_OK;
 	}
 
