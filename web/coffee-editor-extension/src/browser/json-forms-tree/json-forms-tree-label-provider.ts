@@ -36,14 +36,15 @@ const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 @injectable()
 export class JsonFormsTreeLabelProvider {
 
-  public getIconClass(node: TreeNode): string {
-    if (JsonFormsTree.Node.is(node)) {
-      const iconClass = ICON_CLASSES.get(node.jsonforms.type);
-      if (iconClass !== undefined) {
-        return 'fa ' + iconClass;
-      }
+  public getIconClass(node: TreeNode | string): string {
+    var iconClass: string;
+    if (typeof node === "string") {
+      iconClass =  ICON_CLASSES.get(node);
+    } else if (JsonFormsTree.Node.is(node)){
+      iconClass = ICON_CLASSES.get(node.jsonforms.type);
     }
-    return 'far ' + UNKNOWN_ICON;
+
+    return iconClass ? 'fa ' + iconClass : 'far ' + UNKNOWN_ICON;
   }
 
   public getName(data: any): string {
