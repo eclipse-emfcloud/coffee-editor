@@ -13,15 +13,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { ILogger } from "@theia/core";
-import { BackendApplicationContribution } from "@theia/core/lib/node";
-import { ProcessErrorEvent } from "@theia/process/lib/node/process";
-import { ProcessManager } from "@theia/process/lib/node/process-manager";
-import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
-import * as cp from "child_process";
-import { inject, injectable, optional } from "inversify";
+import { ILogger } from '@theia/core';
+import { BackendApplicationContribution } from '@theia/core/lib/node';
+import { ProcessErrorEvent } from '@theia/process/lib/node/process';
+import { ProcessManager } from '@theia/process/lib/node/process-manager';
+import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
+import * as cp from 'child_process';
+import { inject, injectable, optional } from 'inversify';
 
-export const GLSPLaunchOptions = Symbol.for("LaunchOptions")
+export const GLSPLaunchOptions = Symbol.for('LaunchOptions');
 export interface GLSPLaunchOptions {
     isRunning: boolean
     serverPort: number
@@ -39,7 +39,7 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
 
     initialize() {
         if (!this.launchOptions.isRunning && !this.start()) {
-            this.logError("Error during model server startup");
+            this.logError('Error during model server startup');
         }
     }
 
@@ -52,13 +52,13 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
 
     protected startServer(): boolean {
         if (this.launchOptions.jarPath) {
-            let args = ["-jar", this.launchOptions.jarPath, "--port", `${this.launchOptions.serverPort}`];
+            let args = ['-jar', this.launchOptions.jarPath, '--port', `${this.launchOptions.serverPort}`];
             if (this.launchOptions.additionalArgs) {
                 args = [...args, ...this.launchOptions.additionalArgs];
             }
-            this.spawnProcessAsync("java", args);
+            this.spawnProcessAsync('java', args);
         } else {
-            this.logError("Could not start GLSP server. No path to executable is specified");
+            this.logError('Could not start GLSP server. No path to executable is specified');
         }
         return true;
     }
@@ -99,5 +99,3 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
     }
 
 }
-
-

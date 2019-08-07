@@ -1,11 +1,26 @@
-import { injectable, inject } from 'inversify';
-import { Workspace, Languages, LanguageClientFactory, BaseLanguageClientContribution } from '@theia/languages/lib/browser';
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+import { BaseLanguageClientContribution, LanguageClientFactory, Languages, Workspace } from '@theia/languages/lib/browser';
+import { inject, injectable } from 'inversify';
 
 @injectable()
 export class WorkflowClientContribution extends BaseLanguageClientContribution {
 
-    readonly id = "wfconfig";
-    readonly name = "WFCONFIG";
+    readonly id = 'wfconfig';
+    readonly name = 'WFCONFIG';
 
     constructor(
         @inject(Workspace) protected readonly workspace: Workspace,
@@ -34,10 +49,10 @@ export function registerDSL() {
         aliases: ['WFCONFIG', 'wfconfig'],
         extensions: ['.wfconfig'],
         mimetypes: ['text/wfconfig']
-    })
+    });
     monaco.languages.setLanguageConfiguration('wfconfig', {
         comments: {
-            lineComment: "//",
+            lineComment: '//',
             blockComment: ['/*', '*/']
         },
         brackets: [['{', '}'], ['(', ')']],
@@ -50,21 +65,21 @@ export function registerDSL() {
                 open: '(',
                 close: ')'
             }]
-    })
+    });
     monaco.languages.setMonarchTokensProvider('wfconfig', <any>{
         // Set defaultToken to invalid to see what you do not tokenize yet
         // defaultToken: 'invalid',
 
         keywords: [
-            'workflowModel' ,'probabilities', 'assertions','low' ,'medium','high'
+            'workflowModel', 'probabilities', 'assertions', 'low', 'medium', 'high'
         ],
 
         typeKeywords: [
-            'boolean', 'number', 'string',"int"
+            'boolean', 'number', 'string', 'int'
         ],
 
         operators: [
-            ':',"=",","
+            ':', '=', ','
         ],
 
         // we include these common regular expressions
@@ -107,7 +122,7 @@ export function registerDSL() {
             comment: [
                 [/[^\/*]+/, 'comment'],
                 [/\/\*/, 'comment.invalid'],
-                ["\\*/", 'comment', '@pop'],
+                ['\\*/', 'comment', '@pop'],
                 [/[\/*]/, 'comment']
             ],
 
@@ -118,5 +133,5 @@ export function registerDSL() {
                 [/"/, 'string', '@pop']
             ],
         },
-    })
+    });
 }

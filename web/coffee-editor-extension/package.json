@@ -27,11 +27,13 @@
   },
   "devDependencies": {
     "rimraf": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "tslint": "^5.5.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
+    "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc",
     "watch": "tsc -w"
   },

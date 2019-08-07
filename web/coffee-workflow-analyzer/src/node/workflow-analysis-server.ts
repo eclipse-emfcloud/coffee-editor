@@ -1,17 +1,32 @@
-import { ILogger } from "@theia/core";
-import { BackendApplicationContribution } from "@theia/core/lib/node";
-import { ProcessErrorEvent } from "@theia/process/lib/node/process";
-import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
-import * as cp from "child_process";
-import { Application } from "express";
-import * as glob from "glob";
-import { inject, injectable } from "inversify";
-import * as net from "net";
-import * as path from "path";
-import * as rpc from "vscode-jsonrpc";
-import { createSocketConnection } from "vscode-ws-jsonrpc/lib/server";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+import { ILogger } from '@theia/core';
+import { BackendApplicationContribution } from '@theia/core/lib/node';
+import { ProcessErrorEvent } from '@theia/process/lib/node/process';
+import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
+import * as cp from 'child_process';
+import { Application } from 'express';
+import * as glob from 'glob';
+import { inject, injectable } from 'inversify';
+import * as net from 'net';
+import * as path from 'path';
+import * as rpc from 'vscode-jsonrpc';
+import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
 
-import { WorkflowAnalysisClient, WorkflowAnalyzer } from "../common/workflow-analyze-protocol";
+import { WorkflowAnalysisClient, WorkflowAnalyzer } from '../common/workflow-analyze-protocol';
 
 const DEFAULT_PORT = 8024;
 
@@ -136,7 +151,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
     }
 
     async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
-        return await new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             if (this.connection) {
                 this.connection.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
                     .then(r => resolve(r), e => reject(e));

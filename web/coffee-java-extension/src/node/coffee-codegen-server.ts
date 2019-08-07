@@ -1,12 +1,27 @@
-import { ILogger } from "@theia/core";
-import { BackendApplicationContribution } from "@theia/core/lib/node/backend-application";
-import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
-import { Application } from "express";
-import * as glob from "glob";
-import { inject, injectable } from "inversify";
-import * as path from "path";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+import { ILogger } from '@theia/core';
+import { BackendApplicationContribution } from '@theia/core/lib/node/backend-application';
+import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
+import { Application } from 'express';
+import * as glob from 'glob';
+import { inject, injectable } from 'inversify';
+import * as path from 'path';
 
-import { CodeGenServer } from "../common/generate-protocol";
+import { CodeGenServer } from '../common/generate-protocol';
 
 @injectable()
 export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationContribution {
@@ -34,13 +49,13 @@ export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationCon
             '-packageName', packageName
         );
 
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             const process = this.spawnProcess(command, args);
             if (process === undefined || process.process === undefined) {
                 resolve('Process not spawned');
                 return;
             }
-            process.process.on('exit', (code) => {
+            process.process.on('exit', code => {
                 switch (code) {
                     case 0: resolve('OK'); break;
                     case -10: resolve('Target Folder Parameter missing'); break;
@@ -59,11 +74,11 @@ export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationCon
     }
 
     dispose(): void {
-        //do nothing
+        // do nothing
     }
 
     setClient(): void {
-        //do nothing
+        // do nothing
     }
 
     private spawnProcess(command: string, args?: string[]): RawProcess | undefined {
@@ -73,8 +88,9 @@ export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationCon
         }
         rawProcess.process.on('error', this.onDidFailSpawnProcess.bind(this));
         const stderr = rawProcess.process.stderr;
-        if (stderr)
+        if (stderr) {
             stderr.on('data', this.logError.bind(this));
+        }
         return rawProcess;
     }
 
