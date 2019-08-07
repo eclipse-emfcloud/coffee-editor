@@ -50,6 +50,7 @@ public class WorkflowAnalyzerServerLauncher {
 			try (AsynchronousServerSocketChannel serverSocket = AsynchronousServerSocketChannel.open()
 					.bind(new InetSocketAddress(host, port))) {
 				while (shouldRun) {
+					System.out.println("[WorkflowAnalysisServer] Ready to accept client requests");
 					socketChannel = serverSocket.accept().get();
 					final WorkflowAnalyzerServerImpl server = new WorkflowAnalyzerServerImpl();
 					final InputStream input = Channels.newInputStream(socketChannel);
@@ -59,10 +60,10 @@ public class WorkflowAnalyzerServerLauncher {
 					final WorkflowAnalysisClient client = launcher.getRemoteProxy();
 					server.connect(client);
 					CompletableFuture.supplyAsync(() -> startLauncher(launcher)).thenRun(server::dispose);
-					System.out.println("Workflow Analysis Server connected client " + socketChannel.getRemoteAddress());
+					System.out.println("[WorkflowAnalysisServer] Connected client " + socketChannel.getRemoteAddress());
 				}
 			} catch (IOException | InterruptedException | ExecutionException e) {
-				System.err.println("Workflow Analysis Server encountered an error at accepting new client");
+				System.err.println("[WorkflowAnalysisServer] Encountered an error at accepting new client");
 				e.printStackTrace();
 			}
 
@@ -83,9 +84,9 @@ public class WorkflowAnalyzerServerLauncher {
 			if (socketChannel != null) {
 				try {
 					socketChannel.close();
-					System.out.println("Workflow Analysis Server shut down");
+					System.out.println("[WorkflowAnalysisServer] Shut down");
 				} catch (final IOException exception) {
-					System.err.println("Workflow Analysis  Server encountered an error at shutdown");
+					System.err.println("[WorkflowAnalysisServer] Encountered an error at shutdown");
 					exception.printStackTrace();
 				}
 				if (threadPool != null) {
