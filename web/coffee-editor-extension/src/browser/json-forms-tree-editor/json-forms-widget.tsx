@@ -59,7 +59,11 @@ export class JSONFormsWidget extends BaseWidget {
             ...this.getSchemaForNode(this.selectedNode)
           },
           this.getUiSchemaForNode(this.selectedNode),
-          {}
+          {
+            refParserOptions: {
+              dereference: { circular: "ignore" }
+            }
+          }
         )
       );
       this.renderForms();
