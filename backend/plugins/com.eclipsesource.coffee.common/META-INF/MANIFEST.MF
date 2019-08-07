@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Coffee Editor Common Utilities
+Bundle-SymbolicName: com.eclipsesource.coffee.common
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Automatic-Module-Name: com.eclipsesource.coffee.common
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: com.eclipsesource.modelserver.client;bundle-version="0.0.1",
+ com.eclipsesource.modelserver.common;bundle-version="0.0.1"
+Export-Package: com.eclipsesource.coffee.common
