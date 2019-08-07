@@ -3,7 +3,6 @@
   "scripts": {
     "prepare": "lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
-    "rebuild:electron": "theia rebuild:electron",
     "watch": "lerna run --parallel watch"
   },
   "devDependencies": {
@@ -17,8 +16,7 @@
     "coffee-workflow-analyzer-editors",
     "coffee-workspace-filesystem-storage-service",
     "coffee-workflow-generator",
-    "browser-app",
-    "electron-app"
+    "browser-app"
   ],
   "resolutions": {
     "**/@theia/*": "0.7.1",
