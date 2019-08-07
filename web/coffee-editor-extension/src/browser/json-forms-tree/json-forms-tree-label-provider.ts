@@ -16,7 +16,7 @@ const ICON_CLASSES: Map<string, string> = new Map([
   [ CoffeeModel.Type.Dimension, 'fa-arrows-alt ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.DipTray, 'fa-inbox ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.Display, 'fa-tv ' + DEFAULT_COLOR],
-  [ CoffeeModel.Type.Flow, 'exchange-alt ' + DEFAULT_COLOR],
+  [ CoffeeModel.Type.Flow, 'fa-exchange-alt ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.Fork, 'fa-code-branch fa-rotate-90 ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.Join, 'fa-code-branch fa-rotate-270 ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.Machine, 'fa-cogs ' + DEFAULT_COLOR],
@@ -27,7 +27,7 @@ const ICON_CLASSES: Map<string, string> = new Map([
   [ CoffeeModel.Type.RAM, 'fa-memory ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.Task, 'fa-tasks ' + DEFAULT_COLOR],
   [ CoffeeModel.Type.WaterTank, 'fa-water ' + DEFAULT_COLOR],
-  [ CoffeeModel.Type.WeightedFlow, 'exchange-alt light-orange'],
+  [ CoffeeModel.Type.WeightedFlow, 'fa-exchange-alt light-orange'],
 ]);
 
  /* Icon for unknown types */
