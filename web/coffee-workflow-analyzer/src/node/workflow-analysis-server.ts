@@ -1,7 +1,9 @@
 import { ILogger } from "@theia/core";
+import { BackendApplicationContribution } from "@theia/core/lib/node";
 import { ProcessErrorEvent } from "@theia/process/lib/node/process";
 import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
 import * as cp from "child_process";
+import { Application } from "express";
 import * as glob from "glob";
 import { inject, injectable } from "inversify";
 import * as net from "net";
@@ -14,7 +16,7 @@ import { WorkflowAnalysisClient, WorkflowAnalyzer } from "../common/workflow-ana
 const DEFAULT_PORT = 8024;
 
 @injectable()
-export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
+export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicationContribution {
 
     private startedServer: boolean = false;
     private connection?: rpc.MessageConnection;
@@ -24,33 +26,15 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory,
         @inject(ILogger) private readonly logger: ILogger) { }
 
-    async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
-        const con = await this.connect();
-        return await new Promise((resolve, reject) => {
-            con.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
-                .then(r => resolve(r), e => reject(e));
-        });
-    }
-
-    private async connect(): Promise<rpc.MessageConnection> {
+    initialize(): void {
         let port = this.getPort();
         if (!port && !this.startedServer) {
-            await this.startServer(DEFAULT_PORT);
+            this.startServer(DEFAULT_PORT).then(() => this.connect(DEFAULT_PORT));
         }
         if (!port) {
             port = DEFAULT_PORT;
         }
-
-        const socket = new net.Socket();
-        const connection = createSocketConnection(socket, socket, () => {
-            this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
-            socket.destroy();
-        });
-        socket.connect(port!);
-
-        const messageConnection = rpc.createMessageConnection(connection.reader, connection.writer);
-        messageConnection.listen();
-        return messageConnection;
+        this.connect(port);
     }
 
     private getPort(): number | undefined {
@@ -72,7 +56,7 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         const command = 'java';
         const args: string[] = [];
         args.push('-jar', jarPath);
-        args.push('-host', 'localhost', '-port', port.toString());
+        args.push('-host', 'localhost', '-port', DEFAULT_PORT.toString());
         this.logger.info('[WorkflowAnalyzer] Spawn Process with command ' + command + ' and arguments ' + args);
         const process = await this.spawnProcessAsync(command, args);
         this.logger.info('[WorkflowAnalyzer] Spawned process, waiting for server to be ready');
@@ -81,18 +65,25 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
         this.startedServer = true;
     }
 
-    public createRunAnalysisRequest(): rpc.RequestType2<string, string, string, void, void> {
-        return new rpc.RequestType2<string, string, string, void, void>('runAnalysis');
+    private async connect(port: number) {
+        const socket = new net.Socket();
+        const connection = createSocketConnection(socket, socket, () => {
+            this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
+            socket.destroy();
+        });
+        socket.connect(port!);
+        this.connection = rpc.createMessageConnection(connection.reader, connection.writer);
+        this.connection.listen();
+    }
+
+    onStop(app?: Application): void {
+        this.dispose();
     }
 
     dispose(): void {
         if (this.connection) {
             this.connection.dispose();
         }
-    }
-
-    setClient(client: WorkflowAnalysisClient): void {
-        this.client = client;
     }
 
     protected spawnProcessAsync(command: string, args?: string[], options?: cp.SpawnOptions): Promise<RawProcess> {
@@ -138,6 +129,25 @@ export class WorkflowAnalyzerServer implements WorkflowAnalyzer {
                 }
             })
         );
+    }
+
+    setClient(client: WorkflowAnalysisClient): void {
+        this.client = client;
+    }
+
+    async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
+        return await new Promise((resolve, reject) => {
+            if (this.connection) {
+                this.connection.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
+                    .then(r => resolve(r), e => reject(e));
+            } else {
+                reject(new Error('No connection to model analysis server'));
+            }
+        });
+    }
+
+    public createRunAnalysisRequest(): rpc.RequestType2<string, string, string, void, void> {
+        return new rpc.RequestType2<string, string, string, void, void>('runAnalysis');
     }
 
 }
