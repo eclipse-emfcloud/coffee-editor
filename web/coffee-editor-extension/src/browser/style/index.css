@@ -7,6 +7,7 @@ button[type='button'] {padding:0}
 .json-forms-tree-editor-forms-container,
 .json-forms-tree {
   height: 100%;
+  width: 150px;
 }
 
 .json-forms-tree-editor .tree-icon-container {

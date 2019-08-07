@@ -1,9 +1,8 @@
-import { ModelServerApi } from '@modelserver/theia/lib/browser';
+import { ModelServerClient } from '@modelserver/theia/lib/common';
 import {
   BaseWidget,
   Navigatable,
   Saveable,
-  SplitPositionHandler,
   SplitPanel,
   Message,
   Widget
@@ -49,12 +48,10 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     private readonly treeWidget: JsonFormsTreeWidget,
     @inject(JSONFormsWidget)
     private readonly formWidget: JSONFormsWidget,
-    @inject(ModelServerApi)
-    protected readonly modelServerApi: ModelServerApi,
+    @inject(ModelServerClient)
+    protected readonly modelServerApi: ModelServerClient,
     @inject(WorkspaceService)
-    protected readonly workspaceService: WorkspaceService,
-    @inject(SplitPositionHandler)
-    protected splitPositionHandler: SplitPositionHandler
+    protected readonly workspaceService: WorkspaceService
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -63,8 +60,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.title.closable = true;
     this.title.iconClass = 'fa coffee-icon dark-purple';
     this.splitPanel = new SplitPanel();
+    this.addClass('json-forms-tree-editor');
     this.splitPanel.addClass('json-forms-tree-editor');
-
+    this.treeWidget.addClass('json-forms-tree-editor');
     this.formWidget.onChange(data => {
       this.treeWidget.updateDataForNode(this.selectedNode, data);
       if (!this.dirty) {
@@ -75,10 +73,6 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.toDispose.push(
       this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
     );
-    this.toDispose.push(this.treeWidget);
-    this.toDispose.push(this.formWidget);
-
-    this.toDispose.push(this.splitPanel);
 
     this.toDispose.push(this.onDirtyChangedEmitter);
 
@@ -158,8 +152,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.splitPanel.addWidget(this.treeWidget);
     this.splitPanel.addWidget(this.formWidget);
     this.splitPanel.setRelativeSizes([1,4]);
-    this.treeWidget.activate();
     Widget.attach(this.splitPanel, this.node);
+    this.treeWidget.activate();
     super.onAfterAttach(msg);
   }
 }
