@@ -9,8 +9,7 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "0.7.1",
-    "coffee-workspace-filesystem-storage-service": "0.0.0"
+    "@theia/core": "0.7.1"
   },
   "devDependencies": {
     "rimraf": "latest",
