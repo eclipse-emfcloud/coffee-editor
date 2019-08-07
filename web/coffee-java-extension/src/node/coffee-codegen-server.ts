@@ -1,3 +1,4 @@
+import { ILogger } from "@theia/core";
 import { BackendApplicationContribution } from "@theia/core/lib/node/backend-application";
 import { RawProcess, RawProcessFactory } from "@theia/process/lib/node/raw-process";
 import { Application } from "express";
@@ -10,7 +11,9 @@ import { CodeGenServer } from "../common/generate-protocol";
 @injectable()
 export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationContribution {
 
-    constructor(@inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory) { }
+    constructor(
+        @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory,
+        @inject(ILogger) private readonly logger: ILogger) { }
 
     generateCode(sourceFile: string, targetFolder: string, packageName: string): Promise<string> {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
@@ -76,12 +79,12 @@ export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationCon
     }
 
     protected onDidFailSpawnProcess(error: Error): void {
-        console.error(error);
+        this.logger.error(error);
     }
 
     protected logError(data: string | Buffer) {
         if (data) {
-            console.error(`Code Gen: ${data}`);
+            this.logger.error(`Code Gen: ${data}`);
         }
     }
 

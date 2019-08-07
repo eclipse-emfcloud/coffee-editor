@@ -1,15 +1,15 @@
-import { Emitter } from "@theia/core";
+import { Emitter, ILogger } from "@theia/core";
 import { ExpandableTreeNode, TreeModel } from "@theia/core/lib/browser";
 import { ContextMenuRenderer } from "@theia/core/lib/browser/context-menu-renderer";
 import { TreeNode } from "@theia/core/lib/browser/tree/tree";
 import { TreeProps, TreeWidget } from "@theia/core/lib/browser/tree/tree-widget";
-import * as React from "react";
 import { inject, injectable, postConstruct } from "inversify";
-import { JsonFormsTreeLabelProvider } from "./json-forms-tree-label-provider";
+import * as React from "react";
 import { v4 } from "uuid";
 
 import { CoffeeModel } from "./coffee-model";
 import { JsonFormsTree } from "./json-forms-tree";
+import { JsonFormsTreeLabelProvider } from "./json-forms-tree-label-provider";
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
@@ -26,7 +26,8 @@ export class JsonFormsTreeWidget extends TreeWidget {
     @inject(TreeModel) readonly model: TreeModel,
     @inject(ContextMenuRenderer)
     readonly contextMenuRenderer: ContextMenuRenderer,
-    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider
+    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider,
+    @inject(ILogger) private readonly logger: ILogger
   ) {
     super(props, model, contextMenuRenderer);
     this.id = JsonFormsTreeWidget.WIDGET_ID;
@@ -139,7 +140,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   ): JsonFormsTree.Node {
     if (!currentData) {
       // sanity check
-      console.log("mapData called without data");
+      this.logger.warn("mapData called without data");
       return undefined;
     }
     const node = {
@@ -189,7 +190,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected renderIcon(node: TreeNode): React.ReactNode {
-    return <div className='tree-icon-container'><div className={this.labelProvider.getIconClass(node)}/></div>;
+    return <div className='tree-icon-container'><div className={this.labelProvider.getIconClass(node)} /></div>;
   }
 
   /**

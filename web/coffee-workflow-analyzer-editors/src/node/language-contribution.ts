@@ -1,8 +1,9 @@
+import { ILogger } from "@theia/core";
 import { BaseLanguageServerContribution, IConnection } from "@theia/languages/lib/node";
 import { ProcessErrorEvent } from "@theia/process/lib/node/process";
 import { spawn } from "child_process";
 import * as glob from "glob";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import * as net from "net";
 import * as path from "path";
 import { createSocketConnection } from "vscode-ws-jsonrpc/lib/server";
@@ -19,6 +20,8 @@ function getPort(): number | undefined {
 @injectable()
 export class WorkflowContribution extends BaseLanguageServerContribution {
 
+    @inject(ILogger) private readonly logger: ILogger;
+
     readonly description = {
         id: this.id,
         name: this.name,
@@ -34,7 +37,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
     serverStarted = false;
 
     start(clientConnection: IConnection): void {
-        console.log('[WorkflowDSL] Start Server for Client Connection.')
+        this.logger.info('[WorkflowDSL] Start Server for Client Connection.');
         let socketPort = getPort();
         if (socketPort) {
             if (!this.serverStarted) {
@@ -51,7 +54,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
                     '-jar', jarPath
                 );
 
-                console.log('[WorkflowDSL] Spawn Server Process from ' + jarPath + '.')
+                this.logger.info('[WorkflowDSL] Spawn Server Process from ' + jarPath);
                 const child = spawn(command, args, {
                     detached: true,
                     shell: true,
@@ -63,23 +66,23 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
             }
 
             const socket = new net.Socket()
-            console.log('[WorkflowDSL] Create Socket Connection at ' + socketPort + '.')
+            this.logger.info('[WorkflowDSL] Create Socket Connection at ' + socketPort);
             this.serverConnection = createSocketConnection(socket, socket, () => {
-                console.log('[WorkflowDSL] Socket Connection Disposed.')
+                this.logger.info('[WorkflowDSL] Socket Connection Disposed');
                 socket.destroy()
             });
-            console.log('[WorkflowDSL] Forward Client Connections.')
+            this.logger.info('[WorkflowDSL] Forward Client Connections.');
             this.forward(clientConnection, this.serverConnection as IConnection)
             socket.connect(socketPort)
-            console.log('[WorkflowDSL] Client Connection Started.')
+            this.logger.info('[WorkflowDSL] Client Connection Started.');
         } else {
-            console.error('[WorkflowDSL] Unable to connect to Workflow Graphical Language Server: No Socket Port.')
+            this.logger.error('[WorkflowDSL] Unable to connect to Workflow Graphical Language Server: No Socket Port');
         }
     }
 
     protected onDidFailSpawnProcess(error: ProcessErrorEvent): void {
         super.onDidFailSpawnProcess(error);
-        console.error("[WorkflowDSL] Error starting Workflow language server.", error)
+        this.logger.error("[WorkflowDSL] Error starting Workflow language server", error);
     }
 
 }

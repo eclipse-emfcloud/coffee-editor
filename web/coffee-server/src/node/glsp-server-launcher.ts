@@ -13,6 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
+import { ILogger } from "@theia/core";
 import { BackendApplicationContribution } from "@theia/core/lib/node";
 import { ProcessErrorEvent } from "@theia/process/lib/node/process";
 import { ProcessManager } from "@theia/process/lib/node/process-manager";
@@ -27,15 +28,15 @@ export interface GLSPLaunchOptions {
     hostname: string
     jarPath?: string
     additionalArgs?: string[];
-
 }
-
 
 @injectable()
 export class GLSPServerLauncher implements BackendApplicationContribution {
     @inject(GLSPLaunchOptions) @optional() protected readonly launchOptions: GLSPLaunchOptions;
     @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory;
     @inject(ProcessManager) protected readonly processManager: ProcessManager;
+    @inject(ILogger) private readonly logger: ILogger;
+
     initialize() {
         if (!this.launchOptions.isRunning && !this.start()) {
             this.logError("Error during model server startup");
@@ -87,13 +88,13 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
 
     protected logError(data: string | Buffer) {
         if (data) {
-            console.error(`ModelServerBackendContribution: ${data}`);
+            this.logger.error(`ModelServerBackendContribution: ${data}`);
         }
     }
 
     protected logInfo(data: string | Buffer) {
         if (data) {
-            console.info(`ModelServerBackendContribution: ${data}`);
+            this.logger.info(`ModelServerBackendContribution: ${data}`);
         }
     }
 
