@@ -10,6 +10,7 @@ import { v4 } from "uuid";
 import { CoffeeModel } from './coffee-model';
 import { JsonFormsTree } from "./json-forms-tree";
 import { JsonFormsTreeLabelProvider } from "./json-forms-tree-label-provider";
+import { JsonFormsTreeContextMenu, JsonFormsTreeAnchor } from './json-forms-tree-container';
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
@@ -34,8 +35,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.title.label = JsonFormsTreeWidget.WIDGET_LABEL;
     this.title.caption = JsonFormsTreeWidget.WIDGET_LABEL;
     this.addClass(JsonFormsTreeWidget.Styles.JSONFORMS_TREE_CLASS);
-
-    model.selectNextNode;
 
     model.root = {
       id: JsonFormsTreeWidget.WIDGET_ID,
@@ -64,12 +63,12 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   /** Overrides method in TreeWidget */
   protected handleClickEvent(node: TreeNode | undefined, event: React.MouseEvent<HTMLElement>): void {
-     const x = event.target as HTMLElement;
-     if (x.classList.contains("node-button")) {
-       // Don't do anything because the event is handled in the button's handler
-       return;
-     }
-     super.handleClickEvent(node, event);
+    const x = event.target as HTMLElement;
+    if (x.classList.contains("node-button")) {
+      // Don't do anything because the event is handled in the button's handler
+      return;
+    }
+    super.handleClickEvent(node, event);
   }
 
   /*
@@ -83,17 +82,16 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
 
     const addPlus = this.hasCreatableChildren(node.jsonforms.type);
-    const removeHandler = this.createRemoveHandler(node);
     return (<React.Fragment>
       {deco}
       <div className="node-buttons">
-        {addPlus ? <div className="node-button far fa-plus-square"/> : ''}
-        <div className="node-button far fa-minus-square" onClickCapture={removeHandler} />
+        {addPlus ? <div className="node-button far fa-plus-square" onClick={this.createAddHandler(node)} /> : ''}
+        <div className="node-button far fa-minus-square" onClickCapture={this.createRemoveHandler(node)} />
       </div>
     </React.Fragment>);
   }
 
-  hasCreatableChildren(type: string) {
+  private hasCreatableChildren(type: string) {
     return CoffeeModel.childrenMapping.get(type) !== undefined;
   }
 
@@ -101,7 +99,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    * Creates a handler for the delete button of a tree node.
    * @param node The tree node to create a remove handler for
    */
-  createRemoveHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
+  private createRemoveHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return _event => {
       event.stopPropagation();
       const dialog = new ConfirmDialog({
@@ -122,6 +120,17 @@ export class JsonFormsTreeWidget extends TreeWidget {
           // TODO send command to model server
         }
       });
+    }
+  }
+
+  private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
+    return event => {
+      const treeAnchor: JsonFormsTreeAnchor = {
+        x: event.nativeEvent.x,
+        y: event.nativeEvent.y,
+        node: node
+      };
+      this.contextMenuRenderer.render(JsonFormsTreeContextMenu.ADD_MENU, treeAnchor);
     }
   }
 
@@ -198,7 +207,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected mapData(
     currentData: any,
     parent?: JsonFormsTree.Node,
-    property?:string,
+    property?: string,
     eClass?: string,
     index?: number
   ): JsonFormsTree.Node {

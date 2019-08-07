@@ -11,6 +11,7 @@ import { JsonFormsTreeWidget } from "./json-forms-tree-widget";
 
 export namespace JsonFormsTreeContextMenu {
   export const CONTEXT_MENU: MenuPath = ['json-forms-tree-context-menu'];
+  export const ADD_MENU: MenuPath = ['json-forms-tree-add-menu'];
 }
 
 export namespace JsonFormsTreeCommands {
@@ -18,6 +19,55 @@ export namespace JsonFormsTreeCommands {
     id: 'workflow.open',
     label: 'Open Workflow Diagram'
   };
+
+  export function generateAddCommands(): Map<string, Command> {
+    const creatableTypes: Set<string> = Array.from(CoffeeModel.childrenMapping, ([_key, value]) => value)
+      // get flat array of child descriptors
+      .reduce((acc, val) => acc.concat(val), [])
+      // map to creatable children types
+      .map(desc => desc.children)
+      // flatten to 1 dimensional array
+      .reduce((acc, val) => acc.concat(val), [])
+      // unify by adding to set
+      .reduce((acc, val) => acc.add(val), new Set<string>());
+
+      // Create a command for every eclass which can be added to at least one model object
+      const commandMap: Map<string, Command> = new Map();
+      Array.from(creatableTypes).forEach(eclass => {
+        const name = CoffeeModel.Type.name(eclass);
+        commandMap.set(eclass, {
+          id: 'json-forms-tree.add.' + name,
+          label: name
+        });
+      });
+
+      return commandMap;
+  }
+}
+
+export interface JsonFormsTreeAnchor {
+  x: number,
+  y: number,
+  node: JsonFormsTree.Node
+}
+
+export class AddCommandHandler implements CommandHandler {
+  
+  constructor (readonly eclass: string) {
+  }
+
+  execute(treeAnchor: JsonFormsTreeAnchor) {
+    // FIXME use treeAnchor.node to send command to model server
+    console.log('execute add ' + this.eclass);
+  }
+
+  isVisible(treeAnchor: JsonFormsTreeAnchor): boolean {
+    return CoffeeModel.childrenMapping.get(treeAnchor.node.jsonforms.type)
+      .map(desc => desc.children)
+      .reduce((acc, val) => acc.concat(val), [])
+      .reduce((acc, val) => acc.add(val), new Set<string>())
+      .has(this.eclass);
+  }
 }
 
 export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
