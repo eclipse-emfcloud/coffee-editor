@@ -70,6 +70,6 @@ fi
 
 if [ "$runFrontend" == "true" ]; then
   cd web/browser-app
-  yarn start
+  yarn start --hostname 0.0.0.0
 fi
 
