@@ -62,7 +62,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.splitPanel = new SplitPanel();
     this.addClass('json-forms-tree-editor');
     this.splitPanel.addClass('json-forms-tree-editor');
-    this.treeWidget.addClass('json-forms-tree-editor');
+    this.treeWidget.addClass('json-forms-tree');
     this.formWidget.onChange(data => {
       this.treeWidget.updateDataForNode(this.selectedNode, data);
       if (!this.dirty) {
