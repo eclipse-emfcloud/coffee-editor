@@ -10,6 +10,15 @@ matrix:
       jdk: openjdk10
       node_js:
         - "10"
+      addons:
+        apt:
+          update: true
+          sources:
+          - ubuntu-toolchain-r-test
+          packages:
+          - libxkbfile-dev
+          - libxml2-utils
+          chrome: stable
       script:
         - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./deploy-k8s.sh; fi'
         - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo Deploy not allowed; fi'
