@@ -2,37 +2,24 @@ svg {border:none;}
 button[type='button'] {padding:0}
 
 .json-forms-tree-editor,
-.json-forms-tree-editor-content,
-.json-forms-tree-editor-tree-container,
-.json-forms-tree-editor-forms-container,
-.json-forms-tree {
+.json-forms-tree-editor-sash,
+.json-forms-tree-editor-tree,
+.json-forms-tree-editor-forms {
   height: 100%;
 }
-.json-forms-tree {
-  width: 150px;
-}
 
-.json-forms-tree-editor .tree-icon-container {
-  width: 16px;
-  margin-right: 5px;
-  text-align: center;
-}
-
-.json-forms-tree-editor-content {
-  display: flex;
+.json-forms-tree-editor,
+.json-forms-tree-editor-sash {
   width: 100%;
 }
 
-.json-forms-tree-editor-tree-container {
-  flex: 1;
-}
-
-.json-forms-tree-editor-forms-container {
-  flex: 2;
+.json-forms-tree-editor-tree,
+.json-forms-tree-editor-forms {
   overflow-y: auto;
 }
 
-/* TODO needed? */
-.tree-class {
-  overflow-y: scroll;
+.json-forms-tree-editor-tree .tree-icon-container {
+  width: 16px;
+  margin-right: 5px;
+  text-align: center;
 }

@@ -55,8 +55,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.title.iconClass = 'fa coffee-icon dark-purple';
     this.splitPanel = new SplitPanel();
     this.addClass('json-forms-tree-editor');
-    this.splitPanel.addClass('json-forms-tree-editor');
-    this.treeWidget.addClass('json-forms-tree');
+    this.splitPanel.addClass('json-forms-tree-editor-sash');
+    this.treeWidget.addClass('json-forms-tree-editor-tree');
+    this.formWidget.addClass('json-forms-tree-editor-forms');
     this.formWidget.onChange(data => {
       this.treeWidget.updateDataForNode(this.selectedNode, data);
       if (!this.dirty) {
