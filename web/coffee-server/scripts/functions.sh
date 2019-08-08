@@ -55,7 +55,7 @@ function download_artifact() {
     
     
     
-    wget -q "$_baseURL"/"$_jarfile" #Download jarfile
+    wget "$_baseURL"/"$_jarfile" #Download jarfile
     
 }
 
