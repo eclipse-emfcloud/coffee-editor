@@ -124,6 +124,12 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       });
   }
 
+  protected onResize(_msg: any) {
+    if (this.splitPanel) {
+      this.splitPanel.update();
+    }
+  }
+
   getModelIDToRequest(): string {
     const rootUriLength = this.workspaceService
       .getWorkspaceRootUri(this.options.uri)
