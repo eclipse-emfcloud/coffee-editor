@@ -13,7 +13,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 import { Actions, jsonformsReducer, JsonFormsState } from '@jsonforms/core';
 import { materialCells, materialRenderers } from '@jsonforms/material-renderers';
 import { JsonFormsDispatch, JsonFormsReduxContext } from '@jsonforms/react';

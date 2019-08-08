@@ -13,20 +13,19 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 import { Emitter, ILogger } from '@theia/core';
-import { ExpandableTreeNode, TreeModel, ConfirmDialog } from '@theia/core/lib/browser';
+import { ConfirmDialog, ExpandableTreeNode, TreeModel } from '@theia/core/lib/browser';
 import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
-import { TreeProps, TreeWidget, NodeProps } from '@theia/core/lib/browser/tree/tree-widget';
+import { NodeProps, TreeProps, TreeWidget } from '@theia/core/lib/browser/tree/tree-widget';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';
 import { JsonFormsTree } from './json-forms-tree';
+import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-container';
 import { JsonFormsTreeLabelProvider } from './json-forms-tree-label-provider';
-import { JsonFormsTreeContextMenu, JsonFormsTreeAnchor } from './json-forms-tree-container';
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {

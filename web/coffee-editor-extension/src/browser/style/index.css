@@ -1,20 +1,20 @@
-svg {border:none;}
-button[type='button'] {padding:0}
+svg {
+  border: none;
+}
 
-.json-forms-tree-editor,
-.json-forms-tree-editor-sash,
-.json-forms-tree-editor-tree,
-.json-forms-tree-editor-forms {
+button[type='button'] {
+  padding: 0
+}
+
+.json-forms-tree-editor, .json-forms-tree-editor-sash, .json-forms-tree-editor-tree, .json-forms-tree-editor-forms {
   height: 100%;
 }
 
-.json-forms-tree-editor,
-.json-forms-tree-editor-sash {
+.json-forms-tree-editor, .json-forms-tree-editor-sash {
   width: 100%;
 }
 
-.json-forms-tree-editor-tree,
-.json-forms-tree-editor-forms {
+.json-forms-tree-editor-tree, .json-forms-tree-editor-forms {
   overflow-y: auto;
 }
 

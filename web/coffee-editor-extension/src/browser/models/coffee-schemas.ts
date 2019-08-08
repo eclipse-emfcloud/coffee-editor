@@ -163,12 +163,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         },
@@ -195,12 +195,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         },
@@ -225,12 +225,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         },
@@ -271,12 +271,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         }
@@ -294,12 +294,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         }
@@ -317,12 +317,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/component'},
-              { '$ref': '#/definitions/machine'},
-              { '$ref': '#/definitions/controlunit'},
-              { '$ref': '#/definitions/brewingunit'},
-              { '$ref': '#/definitions/diptray'},
-              { '$ref': '#/definitions/watertank'}
+              { '$ref': '#/definitions/component' },
+              { '$ref': '#/definitions/machine' },
+              { '$ref': '#/definitions/controlunit' },
+              { '$ref': '#/definitions/brewingunit' },
+              { '$ref': '#/definitions/diptray' },
+              { '$ref': '#/definitions/watertank' }
             ]
           }
         }
@@ -438,12 +438,12 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/automatictask'},
-              { '$ref': '#/definitions/manualtask'},
-              { '$ref': '#/definitions/fork'},
-              { '$ref': '#/definitions/join'},
-              { '$ref': '#/definitions/decision'},
-              { '$ref': '#/definitions/merge'}
+              { '$ref': '#/definitions/automatictask' },
+              { '$ref': '#/definitions/manualtask' },
+              { '$ref': '#/definitions/fork' },
+              { '$ref': '#/definitions/join' },
+              { '$ref': '#/definitions/decision' },
+              { '$ref': '#/definitions/merge' }
             ]
           }
         },
@@ -451,8 +451,8 @@ export const coffeeSchema = {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/flow'},
-              { '$ref': '#/definitions/weightedflow'},
+              { '$ref': '#/definitions/flow' },
+              { '$ref': '#/definitions/weightedflow' },
             ]
           }
         }
@@ -601,31 +601,31 @@ export const coffeeSchema = {
 };
 
 export const instance = {
-  'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine',
-  'children' : [ {
-    'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
+  'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine',
+  'children': [{
+    'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
   }, {
-    'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit',
-    'processor' : {
-      'clockSpeed' : 5,
-      'numberOfCores' : 10,
-      'socketconnectorType' : 'Z51',
-      'thermalDesignPower' : 100
+    'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit',
+    'processor': {
+      'clockSpeed': 5,
+      'numberOfCores': 10,
+      'socketconnectorType': 'Z51',
+      'thermalDesignPower': 100
     },
-    'display' : {
-      'width' : 10,
-      'height' : 20
+    'display': {
+      'width': 10,
+      'height': 20
     }
-  } ],
-  'name' : 'Super Brewer 3000',
-  'workflows' : [ {
-    'nodes' : [ {
-      'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask',
-      'name' : 'PreHeat',
-      'component' : {
-        'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit',
-        '$ref' : '//@children.0'
+  }],
+  'name': 'Super Brewer 3000',
+  'workflows': [{
+    'nodes': [{
+      'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask',
+      'name': 'PreHeat',
+      'component': {
+        'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit',
+        '$ref': '//@children.0'
       }
-    } ]
-  } ]
+    }]
+  }]
 };
