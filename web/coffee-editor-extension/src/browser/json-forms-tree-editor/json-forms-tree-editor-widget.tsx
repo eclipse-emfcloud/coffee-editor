@@ -166,6 +166,12 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.treeWidget.activate();
     super.onAfterAttach(msg);
   }
+
+  protected onActivateRequest() {
+    if (this.splitPanel) {
+      this.splitPanel.node.focus();
+    }
+  }
 }
 
 export namespace JsonFormsTreeEditorWidget {
