@@ -1,17 +1,33 @@
-import { Actions, jsonformsReducer, JsonFormsState } from "@jsonforms/core";
-import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
-import { JsonFormsDispatch, JsonFormsReduxContext } from "@jsonforms/react";
-import { Emitter, Event, ILogger } from "@theia/core";
-import { BaseWidget, Message } from "@theia/core/lib/browser";
-import { inject, injectable } from "inversify";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { combineReducers, createStore } from "redux";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
 
-import { CoffeeModel } from "../json-forms-tree/coffee-model";
-import { JsonFormsTree } from "../json-forms-tree/json-forms-tree";
-import { brewingView, coffeeSchema, controlUnitView, machineView } from "../models/coffee-schemas";
+import { Actions, jsonformsReducer, JsonFormsState } from '@jsonforms/core';
+import { materialCells, materialRenderers } from '@jsonforms/material-renderers';
+import { JsonFormsDispatch, JsonFormsReduxContext } from '@jsonforms/react';
+import { Emitter, Event, ILogger } from '@theia/core';
+import { BaseWidget, Message } from '@theia/core/lib/browser';
+import { inject, injectable } from 'inversify';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+
+import { CoffeeModel } from '../json-forms-tree/coffee-model';
+import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { brewingView, coffeeSchema, controlUnitView, machineView } from '../models/coffee-schemas';
 
 @injectable()
 export class JSONFormsWidget extends BaseWidget {
@@ -28,7 +44,7 @@ export class JSONFormsWidget extends BaseWidget {
     this.toDispose.push(this.changeEmitter);
     this.store.subscribe(() => {
       this.changeEmitter.fire(this.store.getState().jsonforms.core.data);
-    })
+    });
     this.renderEmptyForms();
   }
   get onChange(): Event<Readonly<any>> {
@@ -61,7 +77,7 @@ export class JSONFormsWidget extends BaseWidget {
         this.getUiSchemaForNode(this.selectedNode),
         {
           refParserOptions: {
-            dereference: { circular: "ignore" }
+            dereference: { circular: 'ignore' }
           }
         }
       )
@@ -69,7 +85,7 @@ export class JSONFormsWidget extends BaseWidget {
     this.renderForms();
   }
   protected getSchemaForNode(node: JsonFormsTree.Node) {
-    let schema = this.getSchemaForType(node.jsonforms.type);
+    const schema = this.getSchemaForType(node.jsonforms.type);
     if (schema) {
       return schema;
     }
@@ -80,15 +96,15 @@ export class JSONFormsWidget extends BaseWidget {
     return undefined;
   }
   protected getUiSchemaForNode(node: JsonFormsTree.Node) {
-    let schema = this.getUiSchemaForType(node.jsonforms.type);
+    const schema = this.getUiSchemaForType(node.jsonforms.type);
     if (schema) {
       return schema;
     }
     // there is no type, try to guess
     if (node.jsonforms.data.nodes) {
       return {
-        type: "Label",
-        text: "Workflow"
+        type: 'Label',
+        text: 'Workflow'
       };
     }
     return undefined;

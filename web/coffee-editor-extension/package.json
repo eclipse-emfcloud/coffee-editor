@@ -17,13 +17,15 @@
     "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
     "@theia/core": "0.7.1",
+    "@theia/filesystem": "0.7.1",
     "@theia/workspace": "0.7.1",
     "material-ui-pickers": "^2.2.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^6.0.0",
     "recompose": "^0.27.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "rimraf": "latest",
