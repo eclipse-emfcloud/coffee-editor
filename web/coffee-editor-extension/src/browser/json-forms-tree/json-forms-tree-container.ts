@@ -77,6 +77,9 @@ export class AddCommandHandler implements CommandHandler {
   }
 
   isVisible(treeAnchor: JsonFormsTreeAnchor): boolean {
+    if (!treeAnchor) {
+      return false;
+    }
     return CoffeeModel.childrenMapping.get(treeAnchor.node.jsonforms.type)
       .map(desc => desc.children)
       .reduce((acc, val) => acc.concat(val), [])
