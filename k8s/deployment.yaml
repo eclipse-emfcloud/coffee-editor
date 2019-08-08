@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-editor-deployment
+  labels:
+    app: coffee-editor
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: coffee-editor
+  template:
+    metadata:
+      labels:
+        app: coffee-editor
+    spec:
+      containers:
+      - name: coffee-editor-deployment
+        image: eu.gcr.io/kubernetes-238012/coffee-editor:BUILD-NUMBER
+        ports:
+        - containerPort: 3000
