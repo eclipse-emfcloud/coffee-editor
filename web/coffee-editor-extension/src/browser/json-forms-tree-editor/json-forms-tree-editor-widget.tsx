@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ModelServerClient } from '@modelserver/theia/lib/common';
+import { ModelServerClient, ModelServerSubscriptionService } from '@modelserver/theia/lib/common';
 import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
@@ -22,9 +22,9 @@ import { inject, injectable } from 'inversify';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
-import { JSONFormsWidget } from './json-forms-widget';
+import { JsonFormsTree, JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { JsonFormsTreeWidget, JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
+import { JSONFormsWidget, JSONFormsWidget } from './json-forms-widget';
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
   'JsonFormsTreeEditorWidgetOptions'
@@ -60,7 +60,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     protected readonly modelServerApi: ModelServerClient,
     @inject(WorkspaceService)
     protected readonly workspaceService: WorkspaceService,
-    @inject(ILogger) private readonly logger: ILogger
+    @inject(ILogger) private readonly logger: ILogger,
+    @inject(ModelServerSubscriptionService)
+    private readonly suscriptionService: ModelServerSubscriptionService
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -85,7 +87,15 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
-
+    this.suscriptionService.onDirtyStateListener(dirtyState =>
+      this.onDirtyChangedEmitter.fire()
+    );
+    this.suscriptionService.onFullUpdateListener(fullUpdate => {
+      this.instanceData = fullUpdate;
+      this.treeWidget
+        .setData({ error: false, data: this.instanceData })
+        .then(() => this.treeWidget.select(this.selectedNode));
+    });
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
         this.instanceData = response.body;
@@ -106,6 +116,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.instanceData = undefined;
       return;
     });
+    this.modelServerApi.subscribe(this.getModelIDToRequest());
   }
 
   public uri(): URI {
@@ -114,14 +125,14 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
 
   public save(): Promise<void> {
     this.logger.info('Save data to server');
-    this.logger.debug(this.instanceData);
-    return this.modelServerApi
-      .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
-      .then(() => {
-        // TODO check for success
-        this.dirty = false;
-        this.onDirtyChangedEmitter.fire();
-      });
+    // this.logger.debug(this.instanceData);
+    return this.modelServerApi.save(this.getModelIDToRequest());
+    // .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
+    // .then(() => {
+    // TODO check for success
+    // this.dirty = false;
+    // this.onDirtyChangedEmitter.fire();
+    // });
   }
 
   protected onResize(_msg: any) {
@@ -176,7 +187,11 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   protected onActivateRequest() {
     if (this.splitPanel) {
       this.splitPanel.node.focus();
-    }
+      }
+      }
+  dispose() {
+    this.modelServerApi.unsubscribe(this.getModelIDToRequest());
+    super.dispose();
   }
 }
 

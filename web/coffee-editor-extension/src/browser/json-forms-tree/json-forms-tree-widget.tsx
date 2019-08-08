@@ -42,7 +42,8 @@ export class JsonFormsTreeWidget extends TreeWidget {
     @inject(TreeModel) readonly model: TreeModel,
     @inject(ContextMenuRenderer)
     readonly contextMenuRenderer: ContextMenuRenderer,
-    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider,
+    @inject(JsonFormsTreeLabelProvider)
+    readonly labelProvider: JsonFormsTreeLabelProvider,
     @inject(ILogger) private readonly logger: ILogger
   ) {
     super(props, model, contextMenuRenderer);
@@ -77,7 +78,10 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   /** Overrides method in TreeWidget */
-  protected handleClickEvent(node: TreeNode | undefined, event: React.MouseEvent<HTMLElement>): void {
+  protected handleClickEvent(
+    node: TreeNode | undefined,
+    event: React.MouseEvent<HTMLElement>
+  ): void {
     const x = event.target as HTMLElement;
     if (x.classList.contains('node-button')) {
       // Don't do anything because the event is handled in the button's handler
@@ -89,21 +93,36 @@ export class JsonFormsTreeWidget extends TreeWidget {
   /*
    * Overrides TreeWidget.renderTailDecorations
    * Add a add child and a remove button.
-  */
-  protected renderTailDecorations(node: TreeNode, props: NodeProps): React.ReactNode {
+   */
+  protected renderTailDecorations(
+    node: TreeNode,
+    props: NodeProps
+  ): React.ReactNode {
     const deco = super.renderTailDecorations(node, props);
     if (!JsonFormsTree.Node.is(node)) {
       return deco;
     }
 
     const addPlus = this.hasCreatableChildren(node.jsonforms.type);
-    return (<React.Fragment>
-      {deco}
-      <div className='node-buttons'>
-        {addPlus ? <div className='node-button far fa-plus-square' onClick={this.createAddHandler(node)} /> : ''}
-        <div className='node-button far fa-minus-square' onClickCapture={this.createRemoveHandler(node)} />
-      </div>
-    </React.Fragment>);
+    return (
+      <React.Fragment>
+        {deco}
+        <div className='node-buttons'>
+          {addPlus ? (
+            <div
+              className='node-button far fa-plus-square'
+              onClick={this.createAddHandler(node)}
+            />
+          ) : (
+              ''
+            )}
+          <div
+            className='node-button far fa-minus-square'
+            onClickCapture={this.createRemoveHandler(node)}
+          />
+        </div>
+      </React.Fragment>
+    );
   }
 
   private hasCreatableChildren(type: string) {
@@ -166,7 +185,14 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
-  get onSelectionChange(): import('@theia/core').Event<readonly Readonly<JsonFormsTree.Node>[]> {
+  public select(node: JsonFormsTree.Node): void {
+    this.model.selectNode(node);
+    this.model.refresh();
+  }
+
+  get onSelectionChange(): import('@theia/core').Event<
+    readonly Readonly<JsonFormsTree.Node>[]
+    > {
     return this.onTreeWidgetSelectionEmitter.event;
   }
 
@@ -256,7 +282,13 @@ export class JsonFormsTreeWidget extends TreeWidget {
     if (currentData.workflows) {
       // machine type
       currentData.workflows.forEach((element, idx) => {
-        this.mapData(element, node, 'workflows', CoffeeModel.Type.Workflow, idx);
+        this.mapData(
+          element,
+          node,
+          'workflows',
+          CoffeeModel.Type.Workflow,
+          idx
+        );
       });
     }
     if (currentData.nodes) {
@@ -279,7 +311,11 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected renderIcon(node: TreeNode): React.ReactNode {
-    return <div className='tree-icon-container'><div className={this.labelProvider.getIconClass(node)} /></div>;
+    return (
+      <div className='tree-icon-container'>
+        <div className={this.labelProvider.getIconClass(node)} />
+      </div>
+    );
   }
 
   /**
@@ -306,7 +342,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
     node.children = newNode.children;
     this.model.refresh();
   }
-
 }
 
 export namespace JsonFormsTreeWidget {
