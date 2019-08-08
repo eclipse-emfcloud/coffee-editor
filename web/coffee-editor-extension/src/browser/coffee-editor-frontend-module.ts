@@ -13,7 +13,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 import '../../src/browser/style/index.css';
 
 import { CommandContribution, MenuContribution } from '@theia/core';
@@ -25,13 +24,13 @@ import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution'
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 import {
   JsonFormsTreeEditorWidget,
-  JsonFormsTreeEditorWidgetOptions
+  JsonFormsTreeEditorWidgetOptions,
 } from './json-forms-tree-editor/json-forms-tree-editor-widget';
-import { createJsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-container';
-import { JsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-widget';
 import { JSONFormsWidget } from './json-forms-tree-editor/json-forms-widget';
-
+import { createJsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-container';
 import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
+import { JsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-widget';
+
 export default new ContainerModule(bind => {
   bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
   bind(JsonFormsTreeWidget).toDynamicValue(context =>

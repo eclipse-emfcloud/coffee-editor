@@ -13,11 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-import { LabelProviderContribution } from '@theia/core/lib/browser';
-import { FileStat } from '@theia/filesystem/lib/common';
-import URI from '@theia/core/lib/common/uri';
 import { MaybePromise } from '@theia/core';
+import { LabelProviderContribution } from '@theia/core/lib/browser';
+import URI from '@theia/core/lib/common/uri';
+import { FileStat } from '@theia/filesystem/lib/common';
 import { injectable } from 'inversify';
 
 @injectable()
@@ -25,11 +24,11 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
     canHandle(uri: object): number {
         let toCheck = uri;
         if (FileStat.is(toCheck)) {
-          toCheck = new URI(toCheck.uri);
+            toCheck = new URI(toCheck.uri);
         }
         if (toCheck instanceof URI) {
             if (toCheck.path.ext === '.coffee') {
-              return 1000;
+                return 1000;
             }
         }
         return 0;

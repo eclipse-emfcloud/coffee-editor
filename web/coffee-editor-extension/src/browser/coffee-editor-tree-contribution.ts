@@ -13,20 +13,19 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, Command } from '@theia/core';
+import { Command, CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry } from '@theia/core';
 import { ApplicationShell, NavigatableWidgetOpenHandler, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
 
 import { JsonFormsTreeEditorWidget } from './json-forms-tree-editor/json-forms-tree-editor-widget';
-import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 import {
   AddCommandHandler,
   JsonFormsTreeCommands,
   JsonFormsTreeContextMenu,
-  OpenWorkflowDiagramCommandHandler
+  OpenWorkflowDiagramCommandHandler,
 } from './json-forms-tree/json-forms-tree-container';
+import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
@@ -62,9 +61,9 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
       JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM,
       new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
 
-      this.getCommandMap().forEach((value, key, _map) => {
-        commands.registerCommand(value, new AddCommandHandler(key));
-      });
+    this.getCommandMap().forEach((value, key, _map) => {
+      commands.registerCommand(value, new AddCommandHandler(key));
+    });
   }
 
   registerMenus(menus: MenuModelRegistry): void {
