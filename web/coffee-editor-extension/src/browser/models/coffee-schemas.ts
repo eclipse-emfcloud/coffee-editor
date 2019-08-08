@@ -1,3 +1,19 @@
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
 export const controlUnitView = {
   'type': 'VerticalLayout',
   'elements': [
@@ -132,7 +148,7 @@ export const machineView = {
 export const brewingView = {
   'type': 'Label',
   'text': 'Brewing Unit'
-}
+};
 
 export const coffeeSchema = {
   'definitions': {
@@ -484,10 +500,10 @@ export const coffeeSchema = {
         },
         'duration': {
           'type': 'integer',
-        },       
+        },
         // missing component link
       },
-      //'additionalProperties': false
+      // 'additionalProperties': false
     },
     'manualtask': {
       '$id': '#manualtask',
@@ -563,7 +579,7 @@ export const coffeeSchema = {
         }
         // Missing Source and Target
       },
-      //'additionalProperties': false
+      // 'additionalProperties': false
     },
     'weightedflow': {
       '$id': '#weightedflow',
@@ -578,37 +594,37 @@ export const coffeeSchema = {
         }
         // Missing Source and Target
       },
-      //'additionalProperties': false
+      // 'additionalProperties': false
     },
   },
   '$ref': '#/definitions/machine'
 };
 
 export const instance = {
-  "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine",
-  "children" : [ {
-    "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit"
+  'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine',
+  'children' : [ {
+    'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
   }, {
-    "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit",
-    "processor" : {
-      "clockSpeed" : 5,
-      "numberOfCores" : 10,
-      "socketconnectorType" : "Z51",
-      "thermalDesignPower" : 100
+    'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit',
+    'processor' : {
+      'clockSpeed' : 5,
+      'numberOfCores' : 10,
+      'socketconnectorType' : 'Z51',
+      'thermalDesignPower' : 100
     },
-    "display" : {
-      "width" : 10,
-      "height" : 20
+    'display' : {
+      'width' : 10,
+      'height' : 20
     }
   } ],
-  "name" : "Super Brewer 3000",
-  "workflows" : [ {
-    "nodes" : [ {
-      "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask",
-      "name" : "PreHeat",
-      "component" : {
-        "eClass" : "http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit",
-        "$ref" : "//@children.0"
+  'name' : 'Super Brewer 3000',
+  'workflows' : [ {
+    'nodes' : [ {
+      'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask',
+      'name' : 'PreHeat',
+      'component' : {
+        'eClass' : 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit',
+        '$ref' : '//@children.0'
       }
     } ]
   } ]

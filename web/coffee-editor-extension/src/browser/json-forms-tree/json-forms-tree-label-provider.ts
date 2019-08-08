@@ -1,9 +1,24 @@
-import { CoffeeModel } from "./coffee-model";
-import { injectable } from "inversify";
-import { JsonFormsTree } from "./json-forms-tree";
-import URI from "@theia/core/lib/common/uri";
-import { TreeNode } from "@theia/core/lib/browser/tree/tree";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
 
+import { CoffeeModel } from './coffee-model';
+import { injectable } from 'inversify';
+import { JsonFormsTree } from './json-forms-tree';
+import URI from '@theia/core/lib/common/uri';
+import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 
 const DEFAULT_COLOR = 'black';
 
@@ -37,10 +52,10 @@ const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 export class JsonFormsTreeLabelProvider {
 
   public getIconClass(node: TreeNode | string): string {
-    var iconClass: string;
-    if (typeof node === "string") {
+    let iconClass: string;
+    if (typeof node === 'string') {
       iconClass =  ICON_CLASSES.get(node);
-    } else if (JsonFormsTree.Node.is(node)){
+    } else if (JsonFormsTree.Node.is(node)) {
       iconClass = ICON_CLASSES.get(node.jsonforms.type);
     }
 
@@ -50,15 +65,15 @@ export class JsonFormsTreeLabelProvider {
   public getName(data: any): string {
     if (data.eClass) {
       switch (data.eClass) {
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask":
-        case "http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine":
+        case 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task':
+        case 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask':
+        case 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask':
+        case 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine':
           return data.name;
         default:
           // TODO query title of schema
           const fragment = new URI(data.eClass).fragment;
-          if (fragment.startsWith("//")) {
+          if (fragment.startsWith('//')) {
             return fragment.substring(2);
           }
           return fragment;
@@ -66,7 +81,7 @@ export class JsonFormsTreeLabelProvider {
     }
     // guess
     if (data.nodes) {
-      return "Workflow";
+      return 'Workflow';
     }
     return undefined;
   }

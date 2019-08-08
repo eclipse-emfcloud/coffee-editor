@@ -1,16 +1,32 @@
-import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, Command } from "@theia/core";
-import { ApplicationShell, NavigatableWidgetOpenHandler, OpenerService } from "@theia/core/lib/browser";
-import URI from "@theia/core/lib/common/uri";
-import { inject, injectable } from "inversify";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
 
-import { JsonFormsTreeEditorWidget } from "./json-forms-tree-editor/json-forms-tree-editor-widget";
+import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, Command } from '@theia/core';
+import { ApplicationShell, NavigatableWidgetOpenHandler, OpenerService } from '@theia/core/lib/browser';
+import URI from '@theia/core/lib/common/uri';
+import { inject, injectable } from 'inversify';
+
+import { JsonFormsTreeEditorWidget } from './json-forms-tree-editor/json-forms-tree-editor-widget';
 import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 import {
   AddCommandHandler,
   JsonFormsTreeCommands,
   JsonFormsTreeContextMenu,
   OpenWorkflowDiagramCommandHandler
-} from "./json-forms-tree/json-forms-tree-container";
+} from './json-forms-tree/json-forms-tree-container';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
@@ -34,7 +50,7 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
 
   canHandle(uri: URI): number {
     if (
-      uri.path.ext === ".coffee"
+      uri.path.ext === '.coffee'
     ) {
       return 1000;
     }
@@ -62,7 +78,7 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
         commandId: value.id,
         label: value.label,
         icon: this.labelProvider.getIconClass(key)
-      })
+      });
     });
   }
 

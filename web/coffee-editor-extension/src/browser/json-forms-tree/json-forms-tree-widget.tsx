@@ -1,15 +1,31 @@
-import { Emitter, ILogger } from "@theia/core";
-import { ExpandableTreeNode, TreeModel, ConfirmDialog } from "@theia/core/lib/browser";
-import { ContextMenuRenderer } from "@theia/core/lib/browser/context-menu-renderer";
-import { TreeNode } from "@theia/core/lib/browser/tree/tree";
-import { TreeProps, TreeWidget, NodeProps } from "@theia/core/lib/browser/tree/tree-widget";
-import { inject, injectable, postConstruct } from "inversify";
-import * as React from "react";
-import { v4 } from "uuid";
+/*!
+ * Copyright (C) 2019 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+import { Emitter, ILogger } from '@theia/core';
+import { ExpandableTreeNode, TreeModel, ConfirmDialog } from '@theia/core/lib/browser';
+import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
+import { TreeNode } from '@theia/core/lib/browser/tree/tree';
+import { TreeProps, TreeWidget, NodeProps } from '@theia/core/lib/browser/tree/tree-widget';
+import { inject, injectable, postConstruct } from 'inversify';
+import * as React from 'react';
+import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';
-import { JsonFormsTree } from "./json-forms-tree";
-import { JsonFormsTreeLabelProvider } from "./json-forms-tree-label-provider";
+import { JsonFormsTree } from './json-forms-tree';
+import { JsonFormsTreeLabelProvider } from './json-forms-tree-label-provider';
 import { JsonFormsTreeContextMenu, JsonFormsTreeAnchor } from './json-forms-tree-container';
 
 @injectable()
@@ -49,7 +65,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected init() {
     super.init();
 
-    this.addClass("tree-container");
+    this.addClass('tree-container');
 
     this.toDispose.push(this.onTreeWidgetSelectionEmitter);
     this.toDispose.push(
@@ -64,7 +80,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   /** Overrides method in TreeWidget */
   protected handleClickEvent(node: TreeNode | undefined, event: React.MouseEvent<HTMLElement>): void {
     const x = event.target as HTMLElement;
-    if (x.classList.contains("node-button")) {
+    if (x.classList.contains('node-button')) {
       // Don't do anything because the event is handled in the button's handler
       return;
     }
@@ -84,9 +100,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
     const addPlus = this.hasCreatableChildren(node.jsonforms.type);
     return (<React.Fragment>
       {deco}
-      <div className="node-buttons">
-        {addPlus ? <div className="node-button far fa-plus-square" onClick={this.createAddHandler(node)} /> : ''}
-        <div className="node-button far fa-minus-square" onClickCapture={this.createRemoveHandler(node)} />
+      <div className='node-buttons'>
+        {addPlus ? <div className='node-button far fa-plus-square' onClick={this.createAddHandler(node)} /> : ''}
+        <div className='node-button far fa-minus-square' onClickCapture={this.createRemoveHandler(node)} />
       </div>
     </React.Fragment>);
   }
@@ -100,7 +116,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    * @param node The tree node to create a remove handler for
    */
   private createRemoveHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
-    return _event => {
+    return event => {
       event.stopPropagation();
       const dialog = new ConfirmDialog({
         title: 'Delete Node?',
@@ -109,7 +125,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
       dialog.open().then(remove => {
         if (remove && node.parent && node.parent && JsonFormsTree.Node.is(node.parent)) {
           const prop = node.jsonforms.property;
-          console.log("Remove node " + node.name + " from parent property " + prop);
+          console.log('Remove node ' + node.name + ' from parent property ' + prop);
           if (node.jsonforms.index) {
             // multi ref
             // create remove command
@@ -120,7 +136,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
           // TODO send command to model server
         }
       });
-    }
+    };
   }
 
   private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
@@ -131,7 +147,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
         node: node
       };
       this.contextMenuRenderer.render(JsonFormsTreeContextMenu.ADD_MENU, treeAnchor);
-    }
+    };
   }
 
   public async setData(data: any) {
@@ -151,7 +167,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
-  get onSelectionChange(): import("@theia/core").Event<readonly Readonly<JsonFormsTree.Node>[]> {
+  get onSelectionChange(): import('@theia/core').Event<readonly Readonly<JsonFormsTree.Node>[]> {
     return this.onTreeWidgetSelectionEmitter.event;
   }
 
@@ -174,7 +190,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   protected defaultNode(): Pick<
     JsonFormsTree.Node,
-    "id" | "expanded" | "selected" | "parent" | "decorationData" | "children"
+    'id' | 'expanded' | 'selected' | 'parent' | 'decorationData' | 'children'
   > {
     return {
       id: v4(),
@@ -213,7 +229,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   ): JsonFormsTree.Node {
     if (!currentData) {
       // sanity check
-      this.logger.warn("mapData called without data");
+      this.logger.warn('mapData called without data');
       return undefined;
     }
     const node = {
@@ -235,25 +251,25 @@ export class JsonFormsTreeWidget extends TreeWidget {
     if (currentData.children) {
       // component types
       currentData.children.forEach((element, idx) => {
-        this.mapData(element, node, "children", undefined, idx);
+        this.mapData(element, node, 'children', undefined, idx);
       });
     }
     if (currentData.workflows) {
       // machine type
       currentData.workflows.forEach((element, idx) => {
-        this.mapData(element, node, "workflows", CoffeeModel.Type.Workflow, idx);
+        this.mapData(element, node, 'workflows', CoffeeModel.Type.Workflow, idx);
       });
     }
     if (currentData.nodes) {
       // workflow type
       currentData.nodes.forEach((element, idx) => {
-        this.mapData(element, node, "nodes", undefined, idx);
+        this.mapData(element, node, 'nodes', undefined, idx);
       });
     }
     if (currentData.flows) {
       // workflow type
       currentData.flows.forEach((element, idx) => {
-        this.mapData(element, node, "flows", undefined, idx);
+        this.mapData(element, node, 'flows', undefined, idx);
       });
     }
     return node;
@@ -295,13 +311,13 @@ export class JsonFormsTreeWidget extends TreeWidget {
 }
 
 export namespace JsonFormsTreeWidget {
-  export const WIDGET_ID = "json-forms-tree";
-  export const WIDGET_LABEL = "JSONForms Tree";
+  export const WIDGET_ID = 'json-forms-tree';
+  export const WIDGET_LABEL = 'JSONForms Tree';
 
   /**
    * CSS styles for the `JSONForms Hierarchy` widget.
    */
   export namespace Styles {
-    export const JSONFORMS_TREE_CLASS = "json-forms-tree";
+    export const JSONFORMS_TREE_CLASS = 'json-forms-tree';
   }
 }

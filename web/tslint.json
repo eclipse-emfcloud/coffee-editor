@@ -5,5 +5,8 @@
     "extends": [
         "./configs/errors.tslint.json",
         "./configs/warnings.tslint.json"
-    ]
+    ],
+    "rules": {
+        "no-any": false
+    }
 }
