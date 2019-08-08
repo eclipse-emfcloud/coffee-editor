@@ -16,9 +16,8 @@ public final class ModelServerClientUtil {
 	}
 	
 	public static EObject loadResource(URI uri) throws Exception {
-		try(ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL)) {
-			return client.get(Paths.get(uri).getFileName().toString(), FORMAT).get().body();
-		}
+		ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL);
+		return client.get(Paths.get(uri).getFileName().toString(), FORMAT).get().body();
 	}
 	
 	public static <T> Optional<T> loadResource(URI uri, Class<T> clazz) throws Exception {
