@@ -5,6 +5,7 @@ buildBackend='false'
 copyBackend='false'
 downloadServers='false'
 buildFrontend='false'
+forceFrontend='false'
 runFrontend='false'
 
 if [[ ${#1} -gt 2 ]]; then
@@ -23,6 +24,9 @@ if [[ ${#1} -gt 2 ]]; then
   if [[ "$1" == -*"r"* ]]; then
     runFrontend='true'
   fi
+  if [[ "$1" == -*"ff"* ]]; then
+    forceFrontend='true'
+  fi
 fi
 
 while [ "$1" != "" ]; do
@@ -35,6 +39,8 @@ while [ "$1" != "" ]; do
                       ;;
     -f | --frontend ) buildFrontend='true'
                       ;;
+    -ff | --forcefrontend ) forceFrontend='true'
+                      ;;
     -r | --run )      runFrontend='true'
                       ;;
   esac
@@ -44,6 +50,7 @@ done
 [[ "$buildBackend" == "true" ]] && echo "  Build Backend (-b)" || echo "  Do not build Backend (-b)"
 [[ "$copyBackend" == "true" ]] && echo "  Copy Backend (-c)" || echo "  Do not copy Backend (-c)"
 [[ "$downloadServers" == "true" ]] && echo "  Download Model & GLSP Servers (-d)" || echo "  Do not download Model & GLSP Servers (-d)"
+[[ "$forceFrontend" == "true" ]] && echo "  Remove yarn.lock (-ff)" || echo "  Do not remove yarn.lock  (-ff)"
 [[ "$buildFrontend" == "true" ]] && echo "  Build Frontend (-f)" || echo "  Do not build Frontend (-f)"
 [[ "$runFrontend" == "true" ]] && echo "  Run Frontend (-r)" || echo "  Do not run Frontend (-r)"
 
@@ -79,6 +86,12 @@ if [ "$downloadServers" == "true" ]; then
   cd ./web/coffee-server/scripts/
   ./download-server.sh
   cd ../../../
+fi
+
+if [ "$forceFrontend" == "true" ]; then
+  cd web/
+  rm -f ./yarn.lock
+  cd ..
 fi
 
 if [ "$buildFrontend" == "true" ]; then
