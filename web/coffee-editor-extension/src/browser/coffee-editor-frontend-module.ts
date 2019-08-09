@@ -21,12 +21,14 @@ import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
+import { CoffeeTreeNodeFactory } from './coffee/coffee-node-factory';
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 import {
   JsonFormsTreeEditorWidget,
   JsonFormsTreeEditorWidgetOptions,
 } from './json-forms-tree-editor/json-forms-tree-editor-widget';
 import { JSONFormsWidget } from './json-forms-tree-editor/json-forms-widget';
+import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
 import { createJsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-container';
 import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 import { JsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-widget';
@@ -42,6 +44,7 @@ export default new ContainerModule(bind => {
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
   bind(JsonFormsTreeEditorWidget).toSelf();
   bind(JsonFormsTreeLabelProvider).toSelf();
+  bind(JsonFormsTree.NodeFactory).to(CoffeeTreeNodeFactory);
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
     id: JsonFormsTreeEditorWidget.WIDGET_ID,
