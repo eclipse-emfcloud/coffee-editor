@@ -4,42 +4,104 @@
     <semanticElement uri="//@workflows.0"/>
     <elements xsi:type="wfnotation:Shape">
       <semanticElement uri="//@workflows.0/@nodes.0"/>
-      <position x="434.0" y="329.0"/>
+      <position x="-27.0" y="305.0"/>
       <size width="127.71875" height="52.0"/>
     </elements>
     <elements xsi:type="wfnotation:Shape">
       <semanticElement uri="//@workflows.0/@nodes.1"/>
-      <position x="204.0" y="315.0"/>
+      <position x="-11.0" y="405.0"/>
       <size width="103.359375" height="52.0"/>
     </elements>
     <elements xsi:type="wfnotation:Shape">
       <semanticElement uri="//@workflows.0/@nodes.7"/>
-      <position x="419.0" y="89.0"/>
-      <size width="32.0" height="32.0"/>
+      <position x="-118.0" y="22.0"/>
+      <size width="141.953125" height="52.0"/>
     </elements>
     <elements xsi:type="wfnotation:Shape">
       <semanticElement uri="//@workflows.0/@nodes.8"/>
-      <position x="149.0" y="193.0"/>
-      <size width="32.0" height="32.0"/>
+      <position x="5.0" y="-54.0"/>
+      <size width="30.953125" height="37.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.2"/>
+      <position x="39.109375" y="21.5"/>
+      <size width="161.9375" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.3"/>
+      <position x="161.109375" y="406.5"/>
+      <size width="105.015625" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.4"/>
+      <position x="-209.890625" y="-160.5"/>
+      <size width="101.90625" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.5"/>
+      <position x="-65.0" y="206.0"/>
+      <size width="200.5" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.7"/>
+      <position x="285.109375" y="35.75"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.8"/>
+      <position x="46.109375" y="208.75"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.6"/>
+      <position x="-58.0" y="-159.0"/>
+      <size width="176.640625" height="52.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.3"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.8"/>
+      <position x="51.109375" y="-125.25"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.4"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.5"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.6"/>
+    </elements>
+    <elements xsi:type="wfnotation:Shape">
+      <semanticElement uri="//@workflows.0/@nodes.9"/>
+      <position x="18.359375" y="120.75"/>
+      <size width="27.0" height="37.0"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.7"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.8"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.9"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.2"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.1"/>
     </elements>
     <elements xsi:type="wfnotation:Edge">
       <semanticElement uri="//@workflows.0/@flows.0"/>
     </elements>
-  </wfnotation:Diagram>
-  <wfnotation:Diagram>
-    <semanticElement uri="//@workflows.1"/>
-    <elements xsi:type="wfnotation:Shape">
-      <semanticElement uri="//@workflows.1/@nodes.0"/>
-      <position x="373.0" y="434.0"/>
-      <size width="143.9375" height="52.0"/>
-    </elements>
-    <elements xsi:type="wfnotation:Shape">
-      <semanticElement uri="//@workflows.1/@nodes.1"/>
-      <position x="383.0" y="328.0"/>
-      <size width="119.46875" height="52.0"/>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.7"/>
     </elements>
     <elements xsi:type="wfnotation:Edge">
-      <semanticElement uri="//@workflows.1/@flows.0"/>
+      <semanticElement uri="//@workflows.0/@flows.8"/>
+    </elements>
+    <elements xsi:type="wfnotation:Edge">
+      <semanticElement uri="//@workflows.0/@flows.9"/>
     </elements>
   </wfnotation:Diagram>
 </xmi:XMI>
