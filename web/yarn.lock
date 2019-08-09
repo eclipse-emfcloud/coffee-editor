@@ -115,12 +115,12 @@
     which "^1.3.1"
 
 "@glsp-examples/workflow-modelserver-theia@next":
-  version "0.2.0-next.21af1d02"
-  resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-modelserver-theia/-/workflow-modelserver-theia-0.2.0-next.21af1d02.tgz#6ff79079fcaccd41a457042c094ee51c39af4d7a"
-  integrity sha512-NZa6KLmsKXDKaJvIF8zkG8EYfTCZ6Yhx2X5KQkzoutzf/EuMFRHxbxEzsnecwPRP2NCPNUHo4GVIio7vAXitbg==
+  version "0.2.0-next.d67106f6"
+  resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-modelserver-theia/-/workflow-modelserver-theia-0.2.0-next.d67106f6.tgz#a79739161f31246866abab58a0008c5cef41b3ab"
+  integrity sha512-T0sG7ih1ZlxX+cLRAYjnuu6KntXQ7iBK+Jh3KYJiGXaEBiN8zgCHQOZAEGxX9JiBZ8no32WValTZOfEi4rBtyg==
   dependencies:
-    "@glsp-examples/workflow-sprotty" "0.2.0-next.21af1d02"
-    "@glsp/theia-integration" "0.2.0-next.21af1d02"
+    "@glsp-examples/workflow-sprotty" "0.2.0-next.d67106f6"
+    "@glsp/theia-integration" "0.2.0-next.d67106f6"
     "@modelserver/theia" next
     "@theia/core" "^0.7.1"
     "@theia/editor" "^0.7.1"
@@ -129,29 +129,29 @@
     "@theia/monaco" "^0.7.1"
     "@types/node" "^8.0.14"
 
-"@glsp-examples/workflow-sprotty@0.2.0-next.21af1d02":
-  version "0.2.0-next.21af1d02"
-  resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-sprotty/-/workflow-sprotty-0.2.0-next.21af1d02.tgz#e94f4feddc63774056d2daac9381d4bd875a1881"
-  integrity sha512-JeYkUwnmeUKoeqwQm/fwFaCpU3cLKuN480ZNN7hNmf4m91KkcwvbTt5QSiCQ0kXT0QwYilgZLuZxJDaBqscjiw==
+"@glsp-examples/workflow-sprotty@0.2.0-next.d67106f6":
+  version "0.2.0-next.d67106f6"
+  resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-sprotty/-/workflow-sprotty-0.2.0-next.d67106f6.tgz#e016ce5d623a9b7b918fa2227f05f2a41572e694"
+  integrity sha512-Vn4D/CSjHGAcDOH+UXVrdnrpK7Zk6zStKz+DzpVMcjoXQQyR8/XYaNSxXxjNB3ENiLUodSNJKrVQURCnn9Ejuw==
   dependencies:
-    "@glsp/sprotty-client" "0.2.0-next.21af1d02"
+    "@glsp/sprotty-client" "0.2.0-next.d67106f6"
     balloon-css "^0.5.0"
 
-"@glsp/sprotty-client@0.2.0-next.21af1d02":
-  version "0.2.0-next.21af1d02"
-  resolved "https://registry.yarnpkg.com/@glsp/sprotty-client/-/sprotty-client-0.2.0-next.21af1d02.tgz#2ead4adb6ee32fef915a8b788771af3f3a3d97bc"
-  integrity sha512-3yUWl/4tLqpWTv4UwA442G8o35BdF2vachikYijAHmmKpOZOJ4k49Ngcg3Lx3t/vmcnpd1KHUstREVU66Da1UA==
+"@glsp/sprotty-client@0.2.0-next.d67106f6":
+  version "0.2.0-next.d67106f6"
+  resolved "https://registry.yarnpkg.com/@glsp/sprotty-client/-/sprotty-client-0.2.0-next.d67106f6.tgz#e6e41a27d5199e3f30bfddca3fefef045e270d04"
+  integrity sha512-iaqmKbR6PdevX5ilCEP1OWtmofJ2jEI3USjiJIUAAGGrKBiv+S7CDF8I9Z9JZTkRxswL2ThZiXJ+Ix69apYSUw==
   dependencies:
     autocompleter "^4.0.2"
     sprotty "0.7.0-next.cea0e2b"
     vscode-ws-jsonrpc "^0.0.2-1"
 
-"@glsp/theia-integration@0.2.0-next.21af1d02":
-  version "0.2.0-next.21af1d02"
-  resolved "https://registry.yarnpkg.com/@glsp/theia-integration/-/theia-integration-0.2.0-next.21af1d02.tgz#62b21c2598e6c485e1786c382c41e507785b0932"
-  integrity sha512-kOznMOC/8w4yniVDrZ4i6Piu2LKwtwL/e7kGCVsBBjHEgG/zLh9ZYdqJd2CbPg6gusJ5W3Xb8kOE6YkxZAbCnA==
+"@glsp/theia-integration@0.2.0-next.d67106f6":
+  version "0.2.0-next.d67106f6"
+  resolved "https://registry.yarnpkg.com/@glsp/theia-integration/-/theia-integration-0.2.0-next.d67106f6.tgz#8efcca98c32c3cf729ac48af7d5671b892de5e63"
+  integrity sha512-EOt5ZDvR1FT2WU8FwX0PE9TQAdmrfsJnuS4ZrB7mFj7KQqT4NwpwWSAV78O++katjhy5SY8qf+Rn5HgmP0Cxyg==
   dependencies:
-    "@glsp/sprotty-client" "0.2.0-next.21af1d02"
+    "@glsp/sprotty-client" "0.2.0-next.d67106f6"
     "@theia/core" "^0.7.1"
     "@theia/editor" "^0.7.1"
     "@theia/filesystem" "^0.7.1"
@@ -1003,13 +1003,14 @@
     react-is "^16.8.6"
 
 "@modelserver/theia@next":
-  version "0.1.0-next.1b55b395"
-  resolved "https://registry.yarnpkg.com/@modelserver/theia/-/theia-0.1.0-next.1b55b395.tgz#d84c90af9918516a319f56d0cc5cb14a456f1c03"
-  integrity sha512-IBfrsQNzWmUnr/aw52c5qrMNkOyWZzzfEOmp2ETeUYObnnLGOmI13/QAKvNyy0cQPSw0eydmaOnwGNYEOa8LaQ==
+  version "0.1.0-next.3d82f044"
+  resolved "https://registry.yarnpkg.com/@modelserver/theia/-/theia-0.1.0-next.3d82f044.tgz#8b1fcd4b4fe6ba794be764dd3aed6ec220a5c0a3"
+  integrity sha512-SVBRv//Iso46Sg94q9s1P9jmrwU4twfAW1yZH6KAVUz91/hjh/1mC8pSQocOrpXaE6gbYbIZB97f296E2kbQsg==
   dependencies:
     "@theia/core" "^0.7.1"
     "@theia/workspace" "^0.7.1"
     node-fetch "2.6.0"
+    ws "7.1.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1808,9 +1809,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.4.1", "@types/react@^16.4.14":
-  version "16.8.25"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.25.tgz#0247613ab58b1b11ba10fed662e1947c5f2bb89c"
-  integrity sha512-ydAAkLnNTC4oYSxJ3zwK/4QcVmEecACJ4ZdxXITbxz/dhahBSDKY6OQ1uawAW6rE/7kfHccxulYLSAIZVrSq0A==
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.0.tgz#27434f16d889a335eb4626d1f1e67eda54039e5b"
+  integrity sha512-eOct1hyZI9YZf/eqNlYu7jxA9qyTw1EGXruAJhHhBDBpc00W0C1vwlnh+hkOf7UFZkNK+UxnFBpwAZe3d7XJhQ==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -2365,7 +2366,7 @@ async-each@^1.0.1:
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.3.tgz#b727dbf87d7651602f06f4d4ac387f47d91b0cbf"
   integrity sha512-z/WhQ5FPySLdvREByI2vZiTWwCnF0moMJ1hK9YQwDTHKh6I7/uSckMetoRGb5UBZPC1z0jlw+n/XCgjeH7y1AQ==
 
-async-limiter@~1.0.0:
+async-limiter@^1.0.0, async-limiter@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
@@ -3657,9 +3658,9 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     safe-buffer "^5.0.1"
 
 circular-dependency-plugin@^5.0.0:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/circular-dependency-plugin/-/circular-dependency-plugin-5.0.2.tgz#da168c0b37e7b43563fb9f912c1c007c213389ef"
-  integrity sha512-oC7/DVAyfcY3UWKm0sN/oVoDedQDQiw/vIiAnuTWTpE5s0zWf7l3WY417Xw/Fbi/QbAjctAkxgMiS9P0s3zkmA==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/circular-dependency-plugin/-/circular-dependency-plugin-5.1.0.tgz#5b170791f77a1710078ce3147b2a8922e9342275"
+  integrity sha512-O87Wn38kMHeNxfn3dbZpDCw8hJ1IMS9jQqnKCtYkT8dP2SbJtEJxi3eiv9JcDK06oL4EuYmR07tuyf/X8DfsZA==
 
 clap@^1.0.9:
   version "1.2.3"
@@ -4733,9 +4734,9 @@ electron-rebuild@^1.5.11:
     yargs "^13.2.2"
 
 electron-to-chromium@^1.2.7:
-  version "1.3.220"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.220.tgz#632fbf125fca4d69d7a140a66fe98572f67c0778"
-  integrity sha512-ZsaFWi+9J9Nsm4OmGM/BvZF3HEeZL4bte1+CcN9vHUcqdkOOVAXP4SeacPZ/W5uCQZEKPYBXg6yUjZx8/jpD0Q==
+  version "1.3.221"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.221.tgz#421a58ac8d1931c8df400d55c7f6fd621710da10"
+  integrity sha512-YbNA7KgCvLq9ZaEa7wpYP7IP4LrJ4+b36oeF1lYBSJ0zVGVN7uo3Ct9qDUm/M3VDOWj03RVgsMFF8PdL8UjhzA==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9341,14 +9342,14 @@ react-dnd@^7.4.5:
     shallowequal "^1.1.0"
 
 react-dom@^16.4.0, react-dom@^16.4.1:
-  version "16.8.6"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
-  integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
+  integrity sha512-YFT2rxO9hM70ewk9jq0y6sQk8cL02xm4+IzYBz75CQGlClQQ1Bxq0nhHF6OtSbit+AIahujJgb/CPRibFkMNJQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.6"
+    scheduler "^0.15.0"
 
 react-event-listener@^0.6.6:
   version "0.6.6"
@@ -9360,9 +9361,9 @@ react-event-listener@^0.6.6:
     warning "^4.0.1"
 
 react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.2, react-is@^16.8.6:
-  version "16.8.6"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
-  integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
+  integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -9422,14 +9423,13 @@ react-virtualized@^9.20.0:
     react-lifecycles-compat "^3.0.4"
 
 react@^16.4.0, react@^16.4.1:
-  version "16.8.6"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
-  integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
+  integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.6"
 
 read-chunk@^2.1.0:
   version "2.1.0"
@@ -9998,10 +9998,10 @@ sax@^1.2.4, sax@~1.2.1:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^0.13.6:
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
-  integrity sha512-IWnObHt413ucAYKsD9J1QShUKkbKLQQHdxRyw73sw4FN26iWr3DY/H34xGPe4nmL1DwXyWmSWmMrA9TfQbE/XQ==
+scheduler@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
+  integrity sha512-xAefmSfN6jqAa7Kuq7LIJY0bwAPG3xlCj0HMEBQk1lxYiDKZscY2xJ5U/61ZTrYbmNQbXa+gc7czPkVo11tnCg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -11756,6 +11756,13 @@ write-pkg@^3.1.0:
   dependencies:
     sort-keys "^2.0.0"
     write-json-file "^2.2.0"
+
+ws@7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.1.1.tgz#f9942dc868b6dffb72c14fd8f2ba05f77a4d5983"
+  integrity sha512-o41D/WmDeca0BqYhsr3nJzQyg9NF5X8l/UdnFNux9cS3lwB+swm8qGWX5rn+aD6xfBU3rGmtHij7g7x6LxFU3A==
+  dependencies:
+    async-limiter "^1.0.0"
 
 ws@^5.2.2:
   version "5.2.2"
