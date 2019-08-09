@@ -13,18 +13,20 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ModelServerClient, ModelServerSubscriptionService } from '@modelserver/theia/lib/common';
+import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
+import { ModelServerClient } from '@modelserver/theia/lib/common';
 import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
 import { inject, injectable } from 'inversify';
+import { isEqual } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { JsonFormsTree, JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { JsonFormsTreeWidget, JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
-import { JSONFormsWidget, JSONFormsWidget } from './json-forms-widget';
+import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
+import { JSONFormsWidget } from './json-forms-widget';
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
   'JsonFormsTreeEditorWidgetOptions'
@@ -76,28 +78,49 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.treeWidget.addClass('json-forms-tree-editor-tree');
     this.formWidget.addClass('json-forms-tree-editor-forms');
     this.formWidget.onChange(data => {
-      this.treeWidget.updateDataForNode(this.selectedNode, data);
-      if (!this.dirty) {
-        this.dirty = true;
-        this.onDirtyChangedEmitter.fire(undefined);
+      if (isEqual(this.selectedNode.jsonforms.data, data)) {
+        return;
       }
+      this.treeWidget.updateDataForNode(this.selectedNode, data);
+      this.modelServerApi.update(this.getModelIDToRequest(), this.instanceData);
     });
     this.toDispose.push(
       this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
     );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
-    this.suscriptionService.onDirtyStateListener(dirtyState =>
-      this.onDirtyChangedEmitter.fire()
-    );
+    this.suscriptionService.onDirtyStateListener(dirtyState => {
+      this.dirty = dirtyState;
+      this.onDirtyChangedEmitter.fire();
+    });
     this.suscriptionService.onFullUpdateListener(fullUpdate => {
       this.instanceData = fullUpdate;
+
       this.treeWidget
         .setData({ error: false, data: this.instanceData })
-        .then(() => this.treeWidget.select(this.selectedNode));
+        .then(() => this.treeWidget.select(this.getOldSelectedPath()));
+    });
+    this.suscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
+      // TODO handle incremental
+      this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
+        if (response.statusCode === 200) {
+          if (isEqual(this.instanceData, response.body)) {
+            return;
+          }
+          this.instanceData = response.body;
+          this.treeWidget
+            .setData({ error: false, data: this.instanceData })
+            .then(() => this.treeWidget.select(this.getOldSelectedPath()));
+          return;
+        }
+      });
+      console.log(incrementalUpdate);
     });
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
+        if (isEqual(this.instanceData, response.body)) {
+          return;
+        }
         this.instanceData = response.body;
         this.treeWidget
           .setData({ error: false, data: this.instanceData })
@@ -118,21 +141,27 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     });
     this.modelServerApi.subscribe(this.getModelIDToRequest());
   }
-
+  private getOldSelectedPath() {
+    const paths: string[] = [];
+    if (!this.selectedNode) {
+      return paths;
+    }
+    paths.push(this.selectedNode.name);
+    let parent = this.selectedNode.parent;
+    while (parent) {
+      paths.push(parent.name);
+      parent = parent.parent;
+    }
+    paths.splice(paths.length - 1, 1);
+    return paths;
+  }
   public uri(): URI {
     return this.options.uri;
   }
 
-  public save(): Promise<void> {
+  public save(): void {
     this.logger.info('Save data to server');
-    // this.logger.debug(this.instanceData);
-    return this.modelServerApi.save(this.getModelIDToRequest());
-    // .update(this.getModelIDToRequest(), JSON.stringify(this.instanceData))
-    // .then(() => {
-    // TODO check for success
-    // this.dirty = false;
-    // this.onDirtyChangedEmitter.fire();
-    // });
+    this.modelServerApi.save(this.getModelIDToRequest());
   }
 
   protected onResize(_msg: any) {
@@ -187,8 +216,8 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
   protected onActivateRequest() {
     if (this.splitPanel) {
       this.splitPanel.node.focus();
-      }
-      }
+    }
+  }
   dispose() {
     this.modelServerApi.unsubscribe(this.getModelIDToRequest());
     super.dispose();

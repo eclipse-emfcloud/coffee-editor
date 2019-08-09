@@ -185,8 +185,13 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
-  public select(node: JsonFormsTree.Node): void {
-    this.model.selectNode(node);
+  public select(paths: string[]): void {
+    if (paths.length === 0) {
+      return;
+    }
+    const rootNode = this.model.root as JsonFormsTree.Node;
+    const toSelect = paths.reduceRight((node, path) => node.children.find(value => value.name === path), rootNode) as JsonFormsTree.Node;
+    this.model.selectNode(toSelect);
     this.model.refresh();
   }
 

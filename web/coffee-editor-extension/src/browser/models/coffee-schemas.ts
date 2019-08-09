@@ -150,6 +150,45 @@ export const brewingView = {
   'text': 'Brewing Unit'
 };
 
+export const manualTaskView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Control',
+      'label': 'Name',
+      'scope': '#/properties/name',
+      'options': { focus: true }
+    },
+    {
+      'type': 'Control',
+      'label': 'Duration',
+      'scope': '#/properties/duration'
+    },
+    {
+      'type': 'Control',
+      'label': 'Actor',
+      'scope': '#/properties/actor'
+    }
+  ]
+};
+
+export const automaticTaskView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Control',
+      'label': 'Name',
+      'scope': '#/properties/name',
+      'options': { focus: true }
+    },
+    {
+      'type': 'Control',
+      'label': 'Duration',
+      'scope': '#/properties/duration'
+    }
+  ]
+};
+
 export const coffeeSchema = {
   'definitions': {
     'component': {

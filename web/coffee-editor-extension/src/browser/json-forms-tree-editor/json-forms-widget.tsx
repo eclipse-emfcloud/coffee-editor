@@ -26,7 +26,14 @@ import { combineReducers, createStore } from 'redux';
 
 import { CoffeeModel } from '../json-forms-tree/coffee-model';
 import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { brewingView, coffeeSchema, controlUnitView, machineView } from '../models/coffee-schemas';
+import {
+  automaticTaskView,
+  brewingView,
+  coffeeSchema,
+  controlUnitView,
+  machineView,
+  manualTaskView,
+} from '../models/coffee-schemas';
 
 @injectable()
 export class JSONFormsWidget extends BaseWidget {
@@ -119,6 +126,10 @@ export class JSONFormsWidget extends BaseWidget {
         return controlUnitView;
       case CoffeeModel.Type.BrewingUnit:
         return brewingView;
+      case CoffeeModel.Type.AutomaticTask:
+        return automaticTaskView;
+      case CoffeeModel.Type.ManualTask:
+        return manualTaskView;
       default:
         this.logger.warn("Can't find registered ui schema for type " + type);
         return undefined;
