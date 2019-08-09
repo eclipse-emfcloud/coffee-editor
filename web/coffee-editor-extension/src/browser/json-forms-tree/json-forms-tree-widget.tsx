@@ -24,7 +24,6 @@ import { v4 } from 'uuid';
 
 import { JsonFormsTree } from './json-forms-tree';
 import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-container';
-import { JsonFormsTreeLabelProvider } from './json-forms-tree-label-provider';
 
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
@@ -37,7 +36,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     @inject(TreeProps) readonly props: TreeProps,
     @inject(TreeModel) readonly model: TreeModel,
     @inject(ContextMenuRenderer) readonly contextMenuRenderer: ContextMenuRenderer,
-    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider,
+    @inject(JsonFormsTree.LabelProvider) readonly labelProvider: JsonFormsTree.LabelProvider,
     @inject(JsonFormsTree.NodeFactory) protected readonly nodeFactory: JsonFormsTree.NodeFactory
   ) {
     super(props, model, contextMenuRenderer);
