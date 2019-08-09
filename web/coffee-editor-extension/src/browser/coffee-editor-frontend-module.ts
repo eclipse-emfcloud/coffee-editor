@@ -22,6 +22,7 @@ import { ContainerModule } from 'inversify';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
 import { CoffeeTreeNodeFactory } from './coffee/coffee-node-factory';
+import { CoffeeTreeLabelProvider } from './coffee/coffee-tree-label-provider';
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 import {
   JsonFormsTreeEditorWidget,
@@ -30,7 +31,6 @@ import {
 import { JSONFormsWidget } from './json-forms-tree-editor/json-forms-widget';
 import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
 import { createJsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-container';
-import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 import { JsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-widget';
 
 export default new ContainerModule(bind => {
@@ -43,7 +43,7 @@ export default new ContainerModule(bind => {
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
   bind(JsonFormsTreeEditorWidget).toSelf();
-  bind(JsonFormsTreeLabelProvider).toSelf();
+  bind(JsonFormsTree.LabelProvider).to(CoffeeTreeLabelProvider);
   bind(JsonFormsTree.NodeFactory).to(CoffeeTreeNodeFactory);
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({

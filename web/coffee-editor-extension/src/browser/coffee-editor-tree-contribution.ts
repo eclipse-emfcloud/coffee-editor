@@ -19,19 +19,19 @@ import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
 
 import { JsonFormsTreeEditorWidget } from './json-forms-tree-editor/json-forms-tree-editor-widget';
+import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
 import {
   AddCommandHandler,
   JsonFormsTreeCommands,
   JsonFormsTreeContextMenu,
   OpenWorkflowDiagramCommandHandler,
 } from './json-forms-tree/json-forms-tree-container';
-import { JsonFormsTreeLabelProvider } from './json-forms-tree/json-forms-tree-label-provider';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
   @inject(ApplicationShell) protected shell: ApplicationShell;
   @inject(OpenerService) protected opener: OpenerService;
-  @inject(JsonFormsTreeLabelProvider) protected labelProvider: JsonFormsTreeLabelProvider;
+  @inject(JsonFormsTree.LabelProvider) protected labelProvider: JsonFormsTree.LabelProvider;
 
   readonly id = JsonFormsTreeEditorWidget.WIDGET_ID;
   readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;

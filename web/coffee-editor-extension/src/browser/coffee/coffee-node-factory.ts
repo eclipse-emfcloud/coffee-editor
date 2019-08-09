@@ -19,13 +19,12 @@ import { v4 } from 'uuid';
 
 import { CoffeeModel } from '../json-forms-tree/coffee-model';
 import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { JsonFormsTreeLabelProvider } from '../json-forms-tree/json-forms-tree-label-provider';
 
 @injectable()
 export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
 
     constructor(
-        @inject(JsonFormsTreeLabelProvider) private readonly labelProvider: JsonFormsTreeLabelProvider,
+        @inject(JsonFormsTree.LabelProvider) private readonly labelProvider: JsonFormsTree.LabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 

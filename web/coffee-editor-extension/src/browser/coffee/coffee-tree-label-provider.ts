@@ -17,8 +17,8 @@ import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
 
-import { CoffeeModel } from './coffee-model';
-import { JsonFormsTree } from './json-forms-tree';
+import { CoffeeModel } from '../json-forms-tree/coffee-model';
+import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
 
 const DEFAULT_COLOR = 'black';
 
@@ -49,7 +49,7 @@ const ICON_CLASSES: Map<string, string> = new Map([
 const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
-export class JsonFormsTreeLabelProvider {
+export class CoffeeTreeLabelProvider implements JsonFormsTree.LabelProvider {
 
   public getIconClass(node: TreeNode | string): string {
     let iconClass: string;

@@ -88,6 +88,23 @@ export namespace JsonFormsTree {
     hasCreatableChildren(node: Node): boolean;
   }
 
+  /**
+   * Label provider for the tree providing icons and display names for tree nodes.
+   */
+  export const LabelProvider = Symbol('LabelProvider');
+  export interface LabelProvider {
+    /**
+     * @param node The tree node or the node's type to get the icon css for
+     * @return the css class(es) specifying the tree node's icon
+     */
+    getIconClass(node: TreeNode | string): string;
+
+    /**
+     * @param data The display name for the given data
+     */
+    getName(data: any): string;
+  }
+
   export namespace Node {
     export function is(node: TreeNode | undefined): node is Node {
       if (!!node && 'jsonforms' in node) {
