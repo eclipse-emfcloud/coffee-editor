@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { Emitter, ILogger } from '@theia/core';
+import { Emitter } from '@theia/core';
 import { ConfirmDialog, ExpandableTreeNode, TreeModel } from '@theia/core/lib/browser';
 import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
@@ -22,7 +22,6 @@ import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 import { v4 } from 'uuid';
 
-import { CoffeeModel } from './coffee-model';
 import { JsonFormsTree } from './json-forms-tree';
 import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-container';
 import { JsonFormsTreeLabelProvider } from './json-forms-tree-label-provider';
@@ -32,19 +31,14 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
     readonly Readonly<JsonFormsTree.Node>[]
   >();
-  protected data: {
-    error: boolean;
-    data?: any;
-  };
+  protected data: JsonFormsTree.TreeData;
 
   constructor(
     @inject(TreeProps) readonly props: TreeProps,
     @inject(TreeModel) readonly model: TreeModel,
-    @inject(ContextMenuRenderer)
-    readonly contextMenuRenderer: ContextMenuRenderer,
-    @inject(JsonFormsTreeLabelProvider)
-    readonly labelProvider: JsonFormsTreeLabelProvider,
-    @inject(ILogger) private readonly logger: ILogger
+    @inject(ContextMenuRenderer) readonly contextMenuRenderer: ContextMenuRenderer,
+    @inject(JsonFormsTreeLabelProvider) readonly labelProvider: JsonFormsTreeLabelProvider,
+    @inject(JsonFormsTree.NodeFactory) protected readonly nodeFactory: JsonFormsTree.NodeFactory
   ) {
     super(props, model, contextMenuRenderer);
     this.id = JsonFormsTreeWidget.WIDGET_ID;
@@ -103,7 +97,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
       return deco;
     }
 
-    const addPlus = this.hasCreatableChildren(node.jsonforms.type);
+    const addPlus = this.nodeFactory.hasCreatableChildren(node);
     return (
       <React.Fragment>
         {deco}
@@ -123,10 +117,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
         </div>
       </React.Fragment>
     );
-  }
-
-  private hasCreatableChildren(type: string) {
-    return CoffeeModel.childrenMapping.get(type) !== undefined;
   }
 
   /**
@@ -204,18 +194,10 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected async refreshModelChildren(): Promise<void> {
     if (this.model.root && JsonFormsTree.RootNode.is(this.model.root)) {
       const newTree =
-        !this.data || this.data.error ? [] : this.mapDataToNodes();
+        !this.data || this.data.error ? [] : this.nodeFactory.mapDataToNodes(this.data);
       this.model.root.children = newTree;
       this.model.refresh();
     }
-  }
-
-  protected mapDataToNodes(): JsonFormsTree.Node[] {
-    const node = this.mapData(this.data.data);
-    if (node) {
-      return [node];
-    }
-    return [];
   }
 
   protected defaultNode(): Pick<
@@ -232,84 +214,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
     };
   }
 
-  protected getEClass(eClass: any, currentData: any) {
-    // FIXME: eClass should always be sent from server
-
-    if (eClass) {
-      // given eClass
-      return eClass;
-    }
-    if (currentData.eClass) {
-      // eClass of node
-      return currentData.eClass;
-    }
-    // guess
-    if (currentData.nodes) {
-      return CoffeeModel.Type.Workflow;
-    }
-    return undefined;
-  }
-
-  protected mapData(
-    currentData: any,
-    parent?: JsonFormsTree.Node,
-    property?: string,
-    eClass?: string,
-    index?: number
-  ): JsonFormsTree.Node {
-    if (!currentData) {
-      // sanity check
-      this.logger.warn('mapData called without data');
-      return undefined;
-    }
-    const node = {
-      ...this.defaultNode(),
-      name: this.labelProvider.getName(currentData),
-      parent: parent,
-      jsonforms: {
-        type: this.getEClass(eClass, currentData),
-        data: currentData,
-        property: property,
-        index: index ? index.toFixed(0) : undefined
-      }
-    };
-    // containments
-    if (parent) {
-      parent.children.push(node);
-      parent.expanded = true;
-    }
-    if (currentData.children) {
-      // component types
-      currentData.children.forEach((element, idx) => {
-        this.mapData(element, node, 'children', undefined, idx);
-      });
-    }
-    if (currentData.workflows) {
-      // machine type
-      currentData.workflows.forEach((element, idx) => {
-        this.mapData(
-          element,
-          node,
-          'workflows',
-          CoffeeModel.Type.Workflow,
-          idx
-        );
-      });
-    }
-    if (currentData.nodes) {
-      // workflow type
-      currentData.nodes.forEach((element, idx) => {
-        this.mapData(element, node, 'nodes', undefined, idx);
-      });
-    }
-    if (currentData.flows) {
-      // workflow type
-      currentData.flows.forEach((element, idx) => {
-        this.mapData(element, node, 'flows', undefined, idx);
-      });
-    }
-    return node;
-  }
 
   protected isExpandable(node: TreeNode): node is ExpandableTreeNode {
     return JsonFormsTree.Node.is(node) && node.children.length > 0;
@@ -342,7 +246,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    */
   public updateDataForSubtree(node: JsonFormsTree.Node, data: any) {
     Object.assign(node.jsonforms.data, data);
-    const newNode = this.mapData(data);
+    const newNode = this.nodeFactory.mapData(data);
     node.name = newNode.name;
     node.children = newNode.children;
     this.model.refresh();

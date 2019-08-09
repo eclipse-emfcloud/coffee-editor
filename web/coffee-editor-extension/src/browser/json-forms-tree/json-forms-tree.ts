@@ -45,6 +45,49 @@ export namespace JsonFormsTree {
     };
   }
 
+  export interface TreeData {
+    error: boolean;
+    data?: any;
+  }
+
+  /**
+   * Encapsulates logic to create the tree nodes from the tree's input data.
+   */
+  export const NodeFactory = Symbol('NodeFactory');
+  export interface NodeFactory {
+
+    /**
+     * Recursively creates the tree's nodes from the given data.
+     *
+     * @param treeData The tree's data
+     * @returns The tree's shown root nodes (not to confuse with the invisible RootNode)
+     */
+    mapDataToNodes(treeData: TreeData): Node[];
+
+    /**
+     * Creates the corresponding TreeNode for the given data.
+     *
+     * @param currentData The current instance data to map to a tree node
+     * @param parent This node's parent node
+     * @param property The JSON property which this node's data is contained in
+     * @param type The type of the node
+     * @param index The index which this node's data is contained in the parent property
+     */
+    mapData(
+      currentData: any,
+      parent?: Node,
+      property?: string,
+      eClass?: string,
+      index?: number
+    ): Node;
+
+    /**
+     * @param node The node to create a child for
+     * @returns true if child nodes can be created
+     */
+    hasCreatableChildren(node: Node): boolean;
+  }
+
   export namespace Node {
     export function is(node: TreeNode | undefined): node is Node {
       if (!!node && 'jsonforms' in node) {
