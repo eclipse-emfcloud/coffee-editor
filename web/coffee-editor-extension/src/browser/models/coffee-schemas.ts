@@ -189,6 +189,22 @@ export const automaticTaskView = {
   ]
 };
 
+export const workflowView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Label',
+      'text': 'Workflow'
+    },
+    {
+      'type': 'Control',
+      'label': 'Name',
+      'scope': '#/properties/name',
+      'options': { focus: true }
+    }
+  ]
+};
+
 export const coffeeSchema = {
   'definitions': {
     'component': {
