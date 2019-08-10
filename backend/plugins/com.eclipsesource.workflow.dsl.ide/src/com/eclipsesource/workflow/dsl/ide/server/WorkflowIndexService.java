@@ -23,7 +23,7 @@ import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.dsl.index.IWorkflowIndex;
 
 public class WorkflowIndexService implements WorkspaceService {
-	private static final String WORKFLOW_EXTENSION = "xmi";
+	private static final String WORKFLOW_EXTENSION = "coffee";
 	private static final String DOT_WORKFLOW_EXTENSION = "." + WORKFLOW_EXTENSION;
 
 	private IWorkflowIndex index;
