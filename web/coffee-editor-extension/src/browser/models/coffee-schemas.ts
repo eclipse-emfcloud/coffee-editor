@@ -189,6 +189,22 @@ export const automaticTaskView = {
   ]
 };
 
+export const workflowView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Label',
+      'text': 'Workflow'
+    },
+    {
+      'type': 'Control',
+      'label': 'Name',
+      'scope': '#/properties/name',
+      'options': { focus: true }
+    }
+  ]
+};
+
 export const coffeeSchema = {
   'definitions': {
     'component': {
@@ -473,6 +489,7 @@ export const coffeeSchema = {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Workflow'
         },
+        'name': { 'type': 'string' },
         'nodes': {
           'type': 'array',
           'items': {
@@ -629,7 +646,12 @@ export const coffeeSchema = {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WeightedFlow'
         },
         'probability': {
-          'type': 'number'
+          'type': 'string',
+          'enum': [
+            'low',
+            'medium',
+            'high'
+          ]
         }
         // Missing Source and Target
       },
@@ -637,34 +659,4 @@ export const coffeeSchema = {
     },
   },
   '$ref': '#/definitions/machine'
-};
-
-export const instance = {
-  'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine',
-  'children': [{
-    'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
-  }, {
-    'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit',
-    'processor': {
-      'clockSpeed': 5,
-      'numberOfCores': 10,
-      'socketconnectorType': 'Z51',
-      'thermalDesignPower': 100
-    },
-    'display': {
-      'width': 10,
-      'height': 20
-    }
-  }],
-  'name': 'Super Brewer 3000',
-  'workflows': [{
-    'nodes': [{
-      'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask',
-      'name': 'PreHeat',
-      'component': {
-        'eClass': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit',
-        '$ref': '//@children.0'
-      }
-    }]
-  }]
 };

@@ -33,6 +33,7 @@ import {
   controlUnitView,
   machineView,
   manualTaskView,
+  workflowView,
 } from '../models/coffee-schemas';
 
 @injectable()
@@ -108,10 +109,7 @@ export class JSONFormsWidget extends BaseWidget {
     }
     // there is no type, try to guess
     if (node.jsonforms.data.nodes) {
-      return {
-        type: 'Label',
-        text: 'Workflow'
-      };
+      return workflowView;
     }
     return undefined;
   }
