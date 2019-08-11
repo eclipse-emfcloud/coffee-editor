@@ -32,8 +32,8 @@ public class WorkflowParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, WorkflowGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getWorkflowConfigurationAccess().getGroup(), "rule__WorkflowConfiguration__Group__0");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getGroup_4(), "rule__WorkflowConfiguration__Group_4__0");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getGroup_4_2(), "rule__WorkflowConfiguration__Group_4_2__0");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getGroup_7(), "rule__WorkflowConfiguration__Group_7__0");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getGroup_7_2(), "rule__WorkflowConfiguration__Group_7_2__0");
 			builder.put(grammarAccess.getAssertionAccess().getGroup(), "rule__Assertion__Group__0");
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getGroup(), "rule__ProbabilityConfiguration__Group__0");
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getGroup_0(), "rule__ProbabilityConfiguration__Group_0__0");
@@ -42,10 +42,11 @@ public class WorkflowParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 			builder.put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 			builder.put(grammarAccess.getFloatAccess().getGroup(), "rule__Float__Group__0");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getModelAssignment_2(), "rule__WorkflowConfiguration__ModelAssignment_2");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getProbConfAssignment_3(), "rule__WorkflowConfiguration__ProbConfAssignment_3");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_4_1(), "rule__WorkflowConfiguration__AssertionsAssignment_4_1");
-			builder.put(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_4_2_1(), "rule__WorkflowConfiguration__AssertionsAssignment_4_2_1");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getMachineAssignment_2(), "rule__WorkflowConfiguration__MachineAssignment_2");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getModelAssignment_5(), "rule__WorkflowConfiguration__ModelAssignment_5");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getProbConfAssignment_6(), "rule__WorkflowConfiguration__ProbConfAssignment_6");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_7_1(), "rule__WorkflowConfiguration__AssertionsAssignment_7_1");
+			builder.put(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_7_2_1(), "rule__WorkflowConfiguration__AssertionsAssignment_7_2_1");
 			builder.put(grammarAccess.getAssertionAccess().getBeforeAssignment_0(), "rule__Assertion__BeforeAssignment_0");
 			builder.put(grammarAccess.getAssertionAccess().getAfterAssignment_2(), "rule__Assertion__AfterAssignment_2");
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getLowAssignment_0_3(), "rule__ProbabilityConfiguration__LowAssignment_0_3");

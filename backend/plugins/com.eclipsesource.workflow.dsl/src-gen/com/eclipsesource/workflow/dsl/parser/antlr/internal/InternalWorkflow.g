@@ -76,9 +76,9 @@ ruleWorkflowConfiguration returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='workflowModel'
+		otherlv_0='machine'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getWorkflowConfigurationAccess().getWorkflowModelKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getWorkflowConfigurationAccess().getMachineKeyword_0());
 		}
 		otherlv_1=':'
 		{
@@ -87,9 +87,36 @@ ruleWorkflowConfiguration returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0());
 				}
-				lv_model_2_0=ruleFQN
+				lv_machine_2_0=ruleFQN
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
+					}
+					set(
+						$current,
+						"machine",
+						lv_machine_2_0,
+						"com.eclipsesource.workflow.dsl.Workflow.FQN");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='workflow'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getWorkflowConfigurationAccess().getWorkflowKeyword_3());
+		}
+		otherlv_4=':'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getWorkflowConfigurationAccess().getColonKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0());
+				}
+				lv_model_5_0=ruleFQN
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
@@ -97,7 +124,7 @@ ruleWorkflowConfiguration returns [EObject current=null]
 					set(
 						$current,
 						"model",
-						lv_model_2_0,
+						lv_model_5_0,
 						"com.eclipsesource.workflow.dsl.Workflow.FQN");
 					afterParserOrEnumRuleCall();
 				}
@@ -106,9 +133,9 @@ ruleWorkflowConfiguration returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getProbConfProbabilityConfigurationParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getProbConfProbabilityConfigurationParserRuleCall_6_0());
 				}
-				lv_probConf_3_0=ruleProbabilityConfiguration
+				lv_probConf_6_0=ruleProbabilityConfiguration
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
@@ -116,23 +143,23 @@ ruleWorkflowConfiguration returns [EObject current=null]
 					set(
 						$current,
 						"probConf",
-						lv_probConf_3_0,
+						lv_probConf_6_0,
 						"com.eclipsesource.workflow.dsl.Workflow.ProbabilityConfiguration");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
 		(
-			otherlv_4='assertions'
+			otherlv_7='assertions'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getWorkflowConfigurationAccess().getAssertionsKeyword_4_0());
+				newLeafNode(otherlv_7, grammarAccess.getWorkflowConfigurationAccess().getAssertionsKeyword_7_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_1_0());
 					}
-					lv_assertions_5_0=ruleAssertion
+					lv_assertions_8_0=ruleAssertion
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
@@ -140,23 +167,23 @@ ruleWorkflowConfiguration returns [EObject current=null]
 						add(
 							$current,
 							"assertions",
-							lv_assertions_5_0,
+							lv_assertions_8_0,
 							"com.eclipsesource.workflow.dsl.Workflow.Assertion");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_6=','
+				otherlv_9=','
 				{
-					newLeafNode(otherlv_6, grammarAccess.getWorkflowConfigurationAccess().getCommaKeyword_4_2_0());
+					newLeafNode(otherlv_9, grammarAccess.getWorkflowConfigurationAccess().getCommaKeyword_7_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_4_2_1_0());
+							newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_2_1_0());
 						}
-						lv_assertions_7_0=ruleAssertion
+						lv_assertions_10_0=ruleAssertion
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
@@ -164,7 +191,7 @@ ruleWorkflowConfiguration returns [EObject current=null]
 							add(
 								$current,
 								"assertions",
-								lv_assertions_7_0,
+								lv_assertions_10_0,
 								"com.eclipsesource.workflow.dsl.Workflow.Assertion");
 							afterParserOrEnumRuleCall();
 						}

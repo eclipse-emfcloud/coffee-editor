@@ -27,10 +27,6 @@ public interface Assertion extends EObject
   /**
    * Returns the value of the '<em><b>Before</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Before</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Before</em>' attribute.
    * @see #setBefore(String)
@@ -53,10 +49,6 @@ public interface Assertion extends EObject
   /**
    * Returns the value of the '<em><b>After</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>After</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>After</em>' attribute.
    * @see #setAfter(String)

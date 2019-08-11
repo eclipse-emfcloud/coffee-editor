@@ -21,7 +21,9 @@ class WorkflowIdeContentProposalProvider extends IdeContentProposalProvider {
 		IIdeContentProposalAcceptor acceptor) {
 		val model = context.currentModel
 		switch (assignment) {
-			case workflowConfigurationAccess.modelAssignment_2:
+			case workflowConfigurationAccess.machineAssignment_2:
+				completeWorkflowConfigurationMachine(model, context, acceptor)
+			case workflowConfigurationAccess.modelAssignment_5:
 				completeWorkflowConfigurationModel(model, context, acceptor)
 				
 			case assertionAccess.beforeAssignment_0,
@@ -34,15 +36,22 @@ class WorkflowIdeContentProposalProvider extends IdeContentProposalProvider {
 		}
 	}
 
-	def completeWorkflowConfigurationModel(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
-		index.graphs.forEach[graph | 
+	def completeWorkflowConfigurationMachine(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
+		index.machines.forEach[graph | 
 			val proposal = proposalCreator.createProposal(graph.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]
 	}
 	
+	def completeWorkflowConfigurationModel(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
+		index.getWorkflows(model.workflowConfiguration.machine).forEach[workflow | 
+			val proposal = proposalCreator.createProposal(workflow.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
+			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
+		]
+	}
+	
 	def completeAssertionBeforeAfter(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
-		index.getTasks(model.workflowConfiguration.model).forEach[task | 
+		index.getTasks(model.workflowConfiguration.machine,model.workflowConfiguration.model).forEach[task | 
 			val proposal = proposalCreator.createProposal(task.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]

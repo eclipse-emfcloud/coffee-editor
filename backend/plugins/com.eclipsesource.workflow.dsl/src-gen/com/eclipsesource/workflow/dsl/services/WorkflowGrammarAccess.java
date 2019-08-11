@@ -24,71 +24,88 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 	public class WorkflowConfigurationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.WorkflowConfiguration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cWorkflowModelKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cMachineKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cModelAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cModelFQNParserRuleCall_2_0 = (RuleCall)cModelAssignment_2.eContents().get(0);
-		private final Assignment cProbConfAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cProbConfProbabilityConfigurationParserRuleCall_3_0 = (RuleCall)cProbConfAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cAssertionsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cAssertionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cAssertionsAssertionParserRuleCall_4_1_0 = (RuleCall)cAssertionsAssignment_4_1.eContents().get(0);
-		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
-		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
-		private final Assignment cAssertionsAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
-		private final RuleCall cAssertionsAssertionParserRuleCall_4_2_1_0 = (RuleCall)cAssertionsAssignment_4_2_1.eContents().get(0);
+		private final Assignment cMachineAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMachineFQNParserRuleCall_2_0 = (RuleCall)cMachineAssignment_2.eContents().get(0);
+		private final Keyword cWorkflowKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cModelAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cModelFQNParserRuleCall_5_0 = (RuleCall)cModelAssignment_5.eContents().get(0);
+		private final Assignment cProbConfAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cProbConfProbabilityConfigurationParserRuleCall_6_0 = (RuleCall)cProbConfAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cAssertionsKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cAssertionsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cAssertionsAssertionParserRuleCall_7_1_0 = (RuleCall)cAssertionsAssignment_7_1.eContents().get(0);
+		private final Group cGroup_7_2 = (Group)cGroup_7.eContents().get(2);
+		private final Keyword cCommaKeyword_7_2_0 = (Keyword)cGroup_7_2.eContents().get(0);
+		private final Assignment cAssertionsAssignment_7_2_1 = (Assignment)cGroup_7_2.eContents().get(1);
+		private final RuleCall cAssertionsAssertionParserRuleCall_7_2_1_0 = (RuleCall)cAssertionsAssignment_7_2_1.eContents().get(0);
 		
 		//WorkflowConfiguration:
-		//	'workflowModel' ':' model=FQN
+		//	'machine' ':' machine=FQN
+		//	'workflow' ':' model=FQN
 		//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'workflowModel' ':' model=FQN probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (','
-		//assertions+=Assertion)*)?
+		//'machine' ':' machine=FQN 'workflow' ':' model=FQN probConf=ProbabilityConfiguration? ('assertions'
+		//assertions+=Assertion (',' assertions+=Assertion)*)?
 		public Group getGroup() { return cGroup; }
 		
-		//'workflowModel'
-		public Keyword getWorkflowModelKeyword_0() { return cWorkflowModelKeyword_0; }
+		//'machine'
+		public Keyword getMachineKeyword_0() { return cMachineKeyword_0; }
 		
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//model=FQN
-		public Assignment getModelAssignment_2() { return cModelAssignment_2; }
+		//machine=FQN
+		public Assignment getMachineAssignment_2() { return cMachineAssignment_2; }
 		
 		//FQN
-		public RuleCall getModelFQNParserRuleCall_2_0() { return cModelFQNParserRuleCall_2_0; }
+		public RuleCall getMachineFQNParserRuleCall_2_0() { return cMachineFQNParserRuleCall_2_0; }
+		
+		//'workflow'
+		public Keyword getWorkflowKeyword_3() { return cWorkflowKeyword_3; }
+		
+		//':'
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+		
+		//model=FQN
+		public Assignment getModelAssignment_5() { return cModelAssignment_5; }
+		
+		//FQN
+		public RuleCall getModelFQNParserRuleCall_5_0() { return cModelFQNParserRuleCall_5_0; }
 		
 		//probConf=ProbabilityConfiguration?
-		public Assignment getProbConfAssignment_3() { return cProbConfAssignment_3; }
+		public Assignment getProbConfAssignment_6() { return cProbConfAssignment_6; }
 		
 		//ProbabilityConfiguration
-		public RuleCall getProbConfProbabilityConfigurationParserRuleCall_3_0() { return cProbConfProbabilityConfigurationParserRuleCall_3_0; }
+		public RuleCall getProbConfProbabilityConfigurationParserRuleCall_6_0() { return cProbConfProbabilityConfigurationParserRuleCall_6_0; }
 		
 		//('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_7() { return cGroup_7; }
 		
 		//'assertions'
-		public Keyword getAssertionsKeyword_4_0() { return cAssertionsKeyword_4_0; }
+		public Keyword getAssertionsKeyword_7_0() { return cAssertionsKeyword_7_0; }
 		
 		//assertions+=Assertion
-		public Assignment getAssertionsAssignment_4_1() { return cAssertionsAssignment_4_1; }
+		public Assignment getAssertionsAssignment_7_1() { return cAssertionsAssignment_7_1; }
 		
 		//Assertion
-		public RuleCall getAssertionsAssertionParserRuleCall_4_1_0() { return cAssertionsAssertionParserRuleCall_4_1_0; }
+		public RuleCall getAssertionsAssertionParserRuleCall_7_1_0() { return cAssertionsAssertionParserRuleCall_7_1_0; }
 		
 		//(',' assertions+=Assertion)*
-		public Group getGroup_4_2() { return cGroup_4_2; }
+		public Group getGroup_7_2() { return cGroup_7_2; }
 		
 		//','
-		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+		public Keyword getCommaKeyword_7_2_0() { return cCommaKeyword_7_2_0; }
 		
 		//assertions+=Assertion
-		public Assignment getAssertionsAssignment_4_2_1() { return cAssertionsAssignment_4_2_1; }
+		public Assignment getAssertionsAssignment_7_2_1() { return cAssertionsAssignment_7_2_1; }
 		
 		//Assertion
-		public RuleCall getAssertionsAssertionParserRuleCall_4_2_1_0() { return cAssertionsAssertionParserRuleCall_4_2_1_0; }
+		public RuleCall getAssertionsAssertionParserRuleCall_7_2_1_0() { return cAssertionsAssertionParserRuleCall_7_2_1_0; }
 	}
 	public class AssertionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.Assertion");
@@ -298,7 +315,8 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//WorkflowConfiguration:
-	//	'workflowModel' ':' model=FQN
+	//	'machine' ':' machine=FQN
+	//	'workflow' ':' model=FQN
 	//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 	public WorkflowConfigurationElements getWorkflowConfigurationAccess() {
 		return pWorkflowConfiguration;

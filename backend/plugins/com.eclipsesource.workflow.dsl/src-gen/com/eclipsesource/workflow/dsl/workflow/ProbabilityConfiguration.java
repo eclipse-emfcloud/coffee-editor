@@ -28,10 +28,6 @@ public interface ProbabilityConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>Low</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Low</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Low</em>' attribute.
    * @see #setLow(float)
@@ -54,10 +50,6 @@ public interface ProbabilityConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>Medium</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Medium</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Medium</em>' attribute.
    * @see #setMedium(float)
@@ -80,10 +72,6 @@ public interface ProbabilityConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>High</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>High</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>High</em>' attribute.
    * @see #setHigh(float)

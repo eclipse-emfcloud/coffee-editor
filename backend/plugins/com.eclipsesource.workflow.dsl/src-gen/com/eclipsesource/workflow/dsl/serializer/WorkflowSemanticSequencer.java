@@ -98,7 +98,7 @@ public class WorkflowSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     WorkflowConfiguration returns WorkflowConfiguration
 	 *
 	 * Constraint:
-	 *     (model=FQN probConf=ProbabilityConfiguration? (assertions+=Assertion assertions+=Assertion*)?)
+	 *     (machine=FQN model=FQN probConf=ProbabilityConfiguration? (assertions+=Assertion assertions+=Assertion*)?)
 	 */
 	protected void sequence_WorkflowConfiguration(ISerializationContext context, WorkflowConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
