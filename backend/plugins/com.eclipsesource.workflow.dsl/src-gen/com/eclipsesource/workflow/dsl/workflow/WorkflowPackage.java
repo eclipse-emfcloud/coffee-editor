@@ -68,13 +68,22 @@ public interface WorkflowPackage extends EPackage
   int WORKFLOW_CONFIGURATION = 0;
 
   /**
+   * The feature id for the '<em><b>Machine</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WORKFLOW_CONFIGURATION__MACHINE = 0;
+
+  /**
    * The feature id for the '<em><b>Model</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WORKFLOW_CONFIGURATION__MODEL = 0;
+  int WORKFLOW_CONFIGURATION__MODEL = 1;
 
   /**
    * The feature id for the '<em><b>Prob Conf</b></em>' containment reference.
@@ -83,7 +92,7 @@ public interface WorkflowPackage extends EPackage
    * @generated
    * @ordered
    */
-  int WORKFLOW_CONFIGURATION__PROB_CONF = 1;
+  int WORKFLOW_CONFIGURATION__PROB_CONF = 2;
 
   /**
    * The feature id for the '<em><b>Assertions</b></em>' containment reference list.
@@ -92,7 +101,7 @@ public interface WorkflowPackage extends EPackage
    * @generated
    * @ordered
    */
-  int WORKFLOW_CONFIGURATION__ASSERTIONS = 2;
+  int WORKFLOW_CONFIGURATION__ASSERTIONS = 3;
 
   /**
    * The number of structural features of the '<em>Configuration</em>' class.
@@ -101,7 +110,7 @@ public interface WorkflowPackage extends EPackage
    * @generated
    * @ordered
    */
-  int WORKFLOW_CONFIGURATION_FEATURE_COUNT = 3;
+  int WORKFLOW_CONFIGURATION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link com.eclipsesource.workflow.dsl.workflow.impl.AssertionImpl <em>Assertion</em>}' class.
@@ -196,6 +205,17 @@ public interface WorkflowPackage extends EPackage
    * @generated
    */
   EClass getWorkflowConfiguration();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration#getMachine <em>Machine</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Machine</em>'.
+   * @see com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration#getMachine()
+   * @see #getWorkflowConfiguration()
+   * @generated
+   */
+  EAttribute getWorkflowConfiguration_Machine();
 
   /**
    * Returns the meta object for the attribute '{@link com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration#getModel <em>Model</em>}'.
@@ -337,6 +357,14 @@ public interface WorkflowPackage extends EPackage
      * @generated
      */
     EClass WORKFLOW_CONFIGURATION = eINSTANCE.getWorkflowConfiguration();
+
+    /**
+     * The meta object literal for the '<em><b>Machine</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute WORKFLOW_CONFIGURATION__MACHINE = eINSTANCE.getWorkflowConfiguration_Machine();
 
     /**
      * The meta object literal for the '<em><b>Model</b></em>' attribute feature.

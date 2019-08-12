@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="workflow" nsURI="http://www.eclipsesource.com/workflow/dsl/Workflow"
     nsPrefix="workflow">
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="model" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="probConf" eType="#//ProbabilityConfiguration"
         containment="true"/>

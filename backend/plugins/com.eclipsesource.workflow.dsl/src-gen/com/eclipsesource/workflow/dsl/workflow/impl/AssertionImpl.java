@@ -95,6 +95,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getBefore()
   {
     return before;
@@ -105,6 +106,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setBefore(String newBefore)
   {
     String oldBefore = before;
@@ -118,6 +120,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getAfter()
   {
     return after;
@@ -128,6 +131,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setAfter(String newAfter)
   {
     String oldAfter = after;
@@ -222,7 +226,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (before: ");
     result.append(before);
     result.append(", after: ");

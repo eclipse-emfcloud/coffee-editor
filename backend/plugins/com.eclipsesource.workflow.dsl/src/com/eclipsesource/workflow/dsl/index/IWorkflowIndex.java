@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
 
 
 public interface IWorkflowIndex {
@@ -13,11 +14,15 @@ public interface IWorkflowIndex {
 
 	void removeGraph(String uri);
 
-	Collection<Machine> getGraphs();
+	Collection<Machine> getMachines();
 	
-	Optional<Machine> getGraph(String graphId);
+	Optional<Machine> getMachine(String machine);
 	
-	List<Task> getTasks(String graphId);
+	Collection<Workflow> getWorkflows(String machine);
 	
-	Optional<Task> getTaskByName(String graphId, String taskName);
+	Optional<Workflow> getWorkflow(String machine, String workflow);
+	
+	List<Task> getTasks(String machine, String workflow);
+	
+	Optional<Task> getTask(String machine, String workflow, String task);
 }

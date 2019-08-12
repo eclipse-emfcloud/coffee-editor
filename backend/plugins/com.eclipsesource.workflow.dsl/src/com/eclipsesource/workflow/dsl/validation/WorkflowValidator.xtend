@@ -27,33 +27,40 @@ class WorkflowValidator extends AbstractWorkflowValidator {
 	static val PROBABILITY_RANGE_ERROR = "The probability value for \"%s\" must be between 0.0 and 1.0"
 
 	static val INVALID_TASK_ID = "invalidTaskID"
-	static val INVALID_TASK_ID_MESSAGE = "The ID does not refer to a task of \"%s\"."
+	static val INVALID_TASK_ID_MESSAGE = "The ID does not refer to a task of \"%s\" in \"%s\"."
 
 	static val DUPLICATE_TASKS = "duplicateTasks"
 	static val DUPLICATE_TASKS_MESSAGE = "Before and After cannot be the same."
 
 	static val INVALID_MODEL_ID = "invalidModelID"
-	static val INVALID_MODEL_ID_MESSAGE = "The ID does not refer to an existing model."
+	static val INVALID_MODEL_ID_MESSAGE = "The ID does not refer to an existing model in \"%s\"."
+	
+	static val INVALID_MACHINE_ID = "invalidMachineID"
+	static val INVALID_MACHINE_ID_MESSAGE = "The ID does not refer to an existing machine."
 	
 	@Inject
 	IWorkflowIndex index;
 
 	@Check
 	def checkAssertion(WorkflowConfiguration workflowConfiguration) {
-		if(!index.getGraph(workflowConfiguration.model).isPresent) {
-			error(INVALID_MODEL_ID_MESSAGE,
+		if(!index.getMachine(workflowConfiguration.machine).isPresent) {
+			error(INVALID_MACHINE_ID_MESSAGE,
+				WorkflowPackage.Literals.WORKFLOW_CONFIGURATION__MACHINE, INVALID_MACHINE_ID);
+		}
+		if(!index.getWorkflow(workflowConfiguration.machine, workflowConfiguration.model).isPresent) {
+			error(String.format(INVALID_MODEL_ID_MESSAGE, workflowConfiguration.machine),
 				WorkflowPackage.Literals.WORKFLOW_CONFIGURATION__MODEL, INVALID_MODEL_ID);
 		}
 	}
 
 	@Check
 	def checkAssertion(Assertion assertion) {
-		if(!index.getTaskByName(assertion.workflowConfiguration.model, assertion.before).present) {
-			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model),
+		if(!index.getTask(assertion.workflowConfiguration.machine,assertion.workflowConfiguration.model, assertion.before).present) {
+			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model, assertion.workflowConfiguration.machine),
 				WorkflowPackage.Literals.ASSERTION__BEFORE, INVALID_TASK_ID);
 		}
-		if(!index.getTaskByName(assertion.workflowConfiguration.model, assertion.after).present) {
-			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model),
+		if(!index.getTask(assertion.workflowConfiguration.machine,assertion.workflowConfiguration.model, assertion.after).present) {
+			error(String.format(INVALID_TASK_ID_MESSAGE, assertion.workflowConfiguration.model, assertion.workflowConfiguration.machine),
 				WorkflowPackage.Literals.ASSERTION__AFTER, INVALID_TASK_ID);
 		}
 		if(assertion.after == assertion.before) {

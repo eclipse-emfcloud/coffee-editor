@@ -7,7 +7,7 @@
       <display width="10" height="20"/>
     </children>
   </children>
-  <workflows>
+  <workflows name="BrewingFlow">
     <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:AutomaticTask" name="Preheat"/>
     <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:AutomaticTask" name="Brew"/>
     <nodes xsi:type="com.eclipsesource.modelserver.coffee.model:ManualTask" name="Refill water"/>

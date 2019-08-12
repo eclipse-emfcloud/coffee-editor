@@ -54,11 +54,9 @@ public class AnalyzeWorkflow {
 	public AnalyzeWorkflow(Machine machine, WorkflowConfiguration config) {
 		analysis = new WorkflowAnalysisGeneric();
 		probabilities = getProbabilityConfiguration(config);
-		int workflowIndex = getWorkflowIndex(config);
-		if (workflowIndex < 0 || workflowIndex > machine.getWorkflows().size()) {
-			throw new IllegalArgumentException("No workflow with index " + workflowIndex + " in " + machine);
-		}
-		Workflow workflow = machine.getWorkflows().get(workflowIndex);
+		Workflow workflow = machine.getWorkflows().stream()
+					.filter(w-> w.getName().equals(config.getModel())).findFirst()
+					.orElseThrow(()->new IllegalArgumentException(String.format("No workflow with name %s in %s",config.getModel(),config.getMachine())));
 		workflow.getNodes().forEach(this::addToNodeMap);
 		workflow.getFlows().forEach(this::connectSourceAndTarget);
 		workflow.getNodes().forEach(this::setProbabilities);
@@ -73,10 +71,6 @@ public class AnalyzeWorkflow {
 			probabilities.setHigh(0.75f);
 		}
 		return probabilities;
-	}
-
-	private int getWorkflowIndex(WorkflowConfiguration config) {
-		return 0;
 	}
 
 	private void addToNodeMap(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {

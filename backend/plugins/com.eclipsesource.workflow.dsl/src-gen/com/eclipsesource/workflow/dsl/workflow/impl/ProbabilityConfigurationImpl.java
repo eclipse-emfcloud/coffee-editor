@@ -116,6 +116,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getLow()
   {
     return low;
@@ -126,6 +127,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setLow(float newLow)
   {
     float oldLow = low;
@@ -139,6 +141,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getMedium()
   {
     return medium;
@@ -149,6 +152,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setMedium(float newMedium)
   {
     float oldMedium = medium;
@@ -162,6 +166,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getHigh()
   {
     return high;
@@ -172,6 +177,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setHigh(float newHigh)
   {
     float oldHigh = high;
@@ -276,7 +282,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (low: ");
     result.append(low);
     result.append(", medium: ");

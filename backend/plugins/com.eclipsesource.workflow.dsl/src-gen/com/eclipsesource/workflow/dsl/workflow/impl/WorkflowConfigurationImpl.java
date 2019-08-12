@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.eclipsesource.workflow.dsl.workflow.impl.WorkflowConfigurationImpl#getMachine <em>Machine</em>}</li>
  *   <li>{@link com.eclipsesource.workflow.dsl.workflow.impl.WorkflowConfigurationImpl#getModel <em>Model</em>}</li>
  *   <li>{@link com.eclipsesource.workflow.dsl.workflow.impl.WorkflowConfigurationImpl#getProbConf <em>Prob Conf</em>}</li>
  *   <li>{@link com.eclipsesource.workflow.dsl.workflow.impl.WorkflowConfigurationImpl#getAssertions <em>Assertions</em>}</li>
@@ -41,6 +42,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container implements WorkflowConfiguration
 {
+  /**
+   * The default value of the '{@link #getMachine() <em>Machine</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMachine()
+   * @generated
+   * @ordered
+   */
+  protected static final String MACHINE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getMachine() <em>Machine</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMachine()
+   * @generated
+   * @ordered
+   */
+  protected String machine = MACHINE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getModel() <em>Model</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -107,6 +128,32 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public String getMachine()
+  {
+    return machine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMachine(String newMachine)
+  {
+    String oldMachine = machine;
+    machine = newMachine;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_CONFIGURATION__MACHINE, oldMachine, machine));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getModel()
   {
     return model;
@@ -117,6 +164,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setModel(String newModel)
   {
     String oldModel = model;
@@ -130,6 +178,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ProbabilityConfiguration getProbConf()
   {
     return probConf;
@@ -157,6 +206,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setProbConf(ProbabilityConfiguration newProbConf)
   {
     if (newProbConf != probConf)
@@ -178,6 +228,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Assertion> getAssertions()
   {
     if (assertions == null)
@@ -215,6 +266,8 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
+      case WorkflowPackage.WORKFLOW_CONFIGURATION__MACHINE:
+        return getMachine();
       case WorkflowPackage.WORKFLOW_CONFIGURATION__MODEL:
         return getModel();
       case WorkflowPackage.WORKFLOW_CONFIGURATION__PROB_CONF:
@@ -236,6 +289,9 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
+      case WorkflowPackage.WORKFLOW_CONFIGURATION__MACHINE:
+        setMachine((String)newValue);
+        return;
       case WorkflowPackage.WORKFLOW_CONFIGURATION__MODEL:
         setModel((String)newValue);
         return;
@@ -260,6 +316,9 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
+      case WorkflowPackage.WORKFLOW_CONFIGURATION__MACHINE:
+        setMachine(MACHINE_EDEFAULT);
+        return;
       case WorkflowPackage.WORKFLOW_CONFIGURATION__MODEL:
         setModel(MODEL_EDEFAULT);
         return;
@@ -283,6 +342,8 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
+      case WorkflowPackage.WORKFLOW_CONFIGURATION__MACHINE:
+        return MACHINE_EDEFAULT == null ? machine != null : !MACHINE_EDEFAULT.equals(machine);
       case WorkflowPackage.WORKFLOW_CONFIGURATION__MODEL:
         return MODEL_EDEFAULT == null ? model != null : !MODEL_EDEFAULT.equals(model);
       case WorkflowPackage.WORKFLOW_CONFIGURATION__PROB_CONF:
@@ -303,8 +364,10 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (model: ");
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (machine: ");
+    result.append(machine);
+    result.append(", model: ");
     result.append(model);
     result.append(')');
     return result.toString();

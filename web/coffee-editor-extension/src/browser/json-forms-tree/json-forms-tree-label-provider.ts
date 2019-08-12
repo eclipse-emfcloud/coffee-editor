@@ -81,7 +81,7 @@ export class JsonFormsTreeLabelProvider {
     }
     // guess
     if (data.nodes) {
-      return 'Workflow';
+      return data.name || 'Workflow';
     }
     return undefined;
   }

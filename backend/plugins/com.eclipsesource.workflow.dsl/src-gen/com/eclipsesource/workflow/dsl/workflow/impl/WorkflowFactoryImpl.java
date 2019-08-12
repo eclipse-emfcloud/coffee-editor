@@ -78,6 +78,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public WorkflowConfiguration createWorkflowConfiguration()
   {
     WorkflowConfigurationImpl workflowConfiguration = new WorkflowConfigurationImpl();
@@ -89,6 +90,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Assertion createAssertion()
   {
     AssertionImpl assertion = new AssertionImpl();
@@ -100,6 +102,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ProbabilityConfiguration createProbabilityConfiguration()
   {
     ProbabilityConfigurationImpl probabilityConfiguration = new ProbabilityConfigurationImpl();
@@ -111,6 +114,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public WorkflowPackage getWorkflowPackage()
   {
     return (WorkflowPackage)getEPackage();
