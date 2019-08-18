@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
-import { ModelServerClient } from '@modelserver/theia/lib/common';
+import { ModelServerClient, ModelServerCommand } from '@modelserver/theia/lib/common';
 import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
@@ -87,6 +87,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.toDispose.push(
       this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
     );
+    this.toDispose.push(
+      this.treeWidget.onDelete(node => this.deleteNode(node))
+    );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
     this.suscriptionService.onDirtyStateListener(dirtyState => {
@@ -141,7 +144,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     });
     this.modelServerApi.subscribe(this.getModelIDToRequest());
   }
-  private getOldSelectedPath() {
+  private getOldSelectedPath(): string[] {
     const paths: string[] = [];
     if (!this.selectedNode) {
       return paths;
@@ -202,6 +205,27 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       this.formWidget.setSelection(this.selectedNode);
     }
     this.update();
+  }
+  private deleteNode(node: Readonly<JsonFormsTree.Node>): void {
+    const getRefSegment = (n: JsonFormsTree.Node) => n.jsonforms.property ? (`@${n.jsonforms.property}` + (n.jsonforms.index ? `.${n.jsonforms.index}` : '')) : '';
+    let refToParent = '';
+    let parent = node.parent;
+    while (parent && JsonFormsTree.Node.is(parent)) {
+      const parentRefSeg = getRefSegment(parent);
+      refToParent = parentRefSeg === '' ? refToParent : ('/' + parentRefSeg + refToParent);
+      parent = parent.parent;
+    }
+    const ownerRef = `${this.workspaceService.workspace.uri}/${this.getModelIDToRequest()}#/${refToParent}`;
+    const removeCommand: ModelServerCommand = {
+      eClass: 'http://www.eclipsesource.com/schema/2019/modelserver/command#//Command',
+      type: 'remove',
+      owner: {
+        eClass: (node.parent as JsonFormsTree.Node).jsonforms.type, $ref: ownerRef.replace('file:///', 'file:/')
+      },
+      feature: node.jsonforms.property,
+      indices: node.jsonforms.index ? [Number(node.jsonforms.index)] : []
+    };
+    this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
   }
 
   protected onAfterAttach(msg: Message): void {

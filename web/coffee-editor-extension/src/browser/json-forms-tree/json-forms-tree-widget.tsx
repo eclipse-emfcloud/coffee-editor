@@ -30,6 +30,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
     readonly Readonly<JsonFormsTree.Node>[]
   >();
+  protected onDeleteEmitter = new Emitter<Readonly<JsonFormsTree.Node>>();
   protected data: JsonFormsTree.TreeData;
 
   constructor(
@@ -61,6 +62,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.addClass('tree-container');
 
     this.toDispose.push(this.onTreeWidgetSelectionEmitter);
+    this.toDispose.push(this.onDeleteEmitter);
     this.toDispose.push(
       this.model.onSelectionChanged(e => {
         this.onTreeWidgetSelectionEmitter.fire(e as readonly Readonly<
@@ -131,16 +133,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
       });
       dialog.open().then(remove => {
         if (remove && node.parent && node.parent && JsonFormsTree.Node.is(node.parent)) {
-          const prop = node.jsonforms.property;
-          console.log('Remove node ' + node.name + ' from parent property ' + prop);
-          if (node.jsonforms.index) {
-            // multi ref
-            // create remove command
-          } else {
-            // create remove command
-          }
-
-          // TODO send command to model server
+          this.onDeleteEmitter.fire(node);
         }
       });
     };
@@ -188,6 +181,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
     readonly Readonly<JsonFormsTree.Node>[]
     > {
     return this.onTreeWidgetSelectionEmitter.event;
+  }
+  get onDelete(): import('@theia/core').Event<Readonly<JsonFormsTree.Node>> {
+    return this.onDeleteEmitter.event;
   }
 
   protected async refreshModelChildren(): Promise<void> {
