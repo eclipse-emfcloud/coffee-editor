@@ -50,7 +50,7 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
                 type: this.getType(type, currentData),
                 data: currentData,
                 property: property,
-                index: index ? index.toFixed(0) : undefined
+                index: index !== undefined ? index.toFixed(0) : undefined
             }
         };
         // containments
