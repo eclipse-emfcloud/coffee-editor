@@ -25,12 +25,18 @@ import { v4 } from 'uuid';
 import { JsonFormsTree } from './json-forms-tree';
 import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-container';
 
+export interface AddCommandProperty {
+  node: JsonFormsTree.Node,
+  property: string,
+  eClass: string
+}
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
     readonly Readonly<JsonFormsTree.Node>[]
   >();
   protected onDeleteEmitter = new Emitter<Readonly<JsonFormsTree.Node>>();
+  protected onAddEmitter = new Emitter<Readonly<AddCommandProperty>>();
   protected data: JsonFormsTree.TreeData;
 
   constructor(
@@ -63,6 +69,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
     this.toDispose.push(this.onTreeWidgetSelectionEmitter);
     this.toDispose.push(this.onDeleteEmitter);
+    this.toDispose.push(this.onAddEmitter);
     this.toDispose.push(
       this.model.onSelectionChanged(e => {
         this.onTreeWidgetSelectionEmitter.fire(e as readonly Readonly<
@@ -141,10 +148,12 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return event => {
+      const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, eClass });
       const treeAnchor: JsonFormsTreeAnchor = {
         x: event.nativeEvent.x,
         y: event.nativeEvent.y,
-        node: node
+        node: node,
+        onClick: addHandler
       };
       this.contextMenuRenderer.render(JsonFormsTreeContextMenu.ADD_MENU, treeAnchor);
     };
@@ -185,6 +194,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
   get onDelete(): import('@theia/core').Event<Readonly<JsonFormsTree.Node>> {
     return this.onDeleteEmitter.event;
   }
+  get onAdd(): import('@theia/core').Event<Readonly<AddCommandProperty>> {
+    return this.onAddEmitter.event;
+  }
 
   protected async refreshModelChildren(): Promise<void> {
     if (this.model.root && JsonFormsTree.RootNode.is(this.model.root)) {
@@ -208,7 +220,6 @@ export class JsonFormsTreeWidget extends TreeWidget {
       children: []
     };
   }
-
 
   protected isExpandable(node: TreeNode): node is ExpandableTreeNode {
     return JsonFormsTree.Node.is(node) && node.children.length > 0;

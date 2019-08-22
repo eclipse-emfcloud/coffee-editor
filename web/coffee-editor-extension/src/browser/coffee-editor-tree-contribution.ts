@@ -35,12 +35,12 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
 
   readonly id = JsonFormsTreeEditorWidget.WIDGET_ID;
   readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;
-  private commandMap: Map<string, Command>;
+  private commandMap: Map<string, Map<string, Command>>;
 
   /**
-   * @returns maps EClass identifiers to their corresponding add command
+   * @returns maps property name to EClass identifiers to their corresponding add command
    */
-  private getCommandMap(): Map<string, Command> {
+  private getCommandMap(): Map<string, Map<string, Command>> {
     if (!this.commandMap) {
       this.commandMap = JsonFormsTreeCommands.generateAddCommands();
     }
@@ -61,8 +61,8 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
       JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM,
       new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
 
-    this.getCommandMap().forEach((value, key, _map) => {
-      commands.registerCommand(value, new AddCommandHandler(key));
+    this.getCommandMap().forEach((value, property, _map) => {
+      value.forEach((command, eClass) => commands.registerCommand(command, new AddCommandHandler(property, eClass)));
     });
   }
 
@@ -72,11 +72,13 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
       label: JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
     });
 
-    this.getCommandMap().forEach((value, key, _map) => {
-      menus.registerMenuAction(JsonFormsTreeContextMenu.ADD_MENU, {
-        commandId: value.id,
-        label: value.label,
-        icon: this.labelProvider.getIconClass(key)
+    this.getCommandMap().forEach((value, _property, _map) => {
+      value.forEach((command, eClass) => {
+        menus.registerMenuAction(JsonFormsTreeContextMenu.ADD_MENU, {
+          commandId: command.id,
+          label: command.label,
+          icon: this.labelProvider.getIconClass(eClass)
+        });
       });
     });
   }

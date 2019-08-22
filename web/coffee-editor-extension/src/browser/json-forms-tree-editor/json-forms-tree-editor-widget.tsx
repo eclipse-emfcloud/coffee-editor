@@ -15,7 +15,7 @@
  */
 import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
 import { ModelServerClient, ModelServerCommand } from '@modelserver/theia/lib/common';
-import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
+import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, TreeNode, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
@@ -25,7 +25,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import { JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
+import { AddCommandProperty, JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
 import { JSONFormsWidget } from './json-forms-widget';
 
 export const JsonFormsTreeEditorWidgetOptions = Symbol(
@@ -89,6 +89,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
     this.toDispose.push(
       this.treeWidget.onDelete(node => this.deleteNode(node))
+    );
+    this.toDispose.push(
+      this.treeWidget.onAdd(addProp => this.addNode(addProp))
     );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
@@ -206,26 +209,41 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     }
     this.update();
   }
-  private deleteNode(node: Readonly<JsonFormsTree.Node>): void {
+  private getNodeDescription(node: JsonFormsTree.Node): { eClass: string, $ref: string } {
     const getRefSegment = (n: JsonFormsTree.Node) => n.jsonforms.property ? (`@${n.jsonforms.property}` + (n.jsonforms.index ? `.${n.jsonforms.index}` : '')) : '';
-    let refToParent = '';
-    let parent = node.parent;
-    while (parent && JsonFormsTree.Node.is(parent)) {
-      const parentRefSeg = getRefSegment(parent);
-      refToParent = parentRefSeg === '' ? refToParent : ('/' + parentRefSeg + refToParent);
-      parent = parent.parent;
+    let refToNode = '';
+    let toCheck: TreeNode = node;
+    while (toCheck && JsonFormsTree.Node.is(toCheck)) {
+      const parentRefSeg = getRefSegment(toCheck);
+      refToNode = parentRefSeg === '' ? refToNode : ('/' + parentRefSeg + refToNode);
+      toCheck = toCheck.parent;
     }
-    const ownerRef = `${this.workspaceService.workspace.uri}/${this.getModelIDToRequest()}#/${refToParent}`;
+    const ownerRef = `${this.workspaceService.workspace.uri}/${this.getModelIDToRequest()}#/${refToNode}`;
+    return {
+      eClass: node.jsonforms.type, $ref: ownerRef.replace('file:///', 'file:/')
+    };
+  }
+  private deleteNode(node: Readonly<JsonFormsTree.Node>): void {
     const removeCommand: ModelServerCommand = {
       eClass: 'http://www.eclipsesource.com/schema/2019/modelserver/command#//Command',
       type: 'remove',
-      owner: {
-        eClass: (node.parent as JsonFormsTree.Node).jsonforms.type, $ref: ownerRef.replace('file:///', 'file:/')
-      },
+      owner: this.getNodeDescription(node.parent as JsonFormsTree.Node),
       feature: node.jsonforms.property,
       indices: node.jsonforms.index ? [Number(node.jsonforms.index)] : []
     };
     this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
+  }
+  private addNode({ node, eClass, property }: AddCommandProperty): void {
+    const addCommand: ModelServerCommand = {
+      eClass: 'http://www.eclipsesource.com/schema/2019/modelserver/command#//Command',
+      type: 'add',
+      owner: this.getNodeDescription(node),
+      feature: property,
+      objectValues: [{ eClass, $ref: '//@objectsToAdd.0' }],
+      objectsToAdd: [{ eClass }]
+
+    };
+    this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
   }
 
   protected onAfterAttach(msg: Message): void {

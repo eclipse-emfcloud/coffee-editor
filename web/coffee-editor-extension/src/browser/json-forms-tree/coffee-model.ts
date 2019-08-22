@@ -15,6 +15,8 @@
  */
 import URI from '@theia/core/lib/common/uri';
 
+import { ChildrenDescriptor } from './json-forms-tree-container';
+
 export namespace CoffeeModel {
     export namespace Type {
         export const AutomaticTask = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask';
@@ -139,8 +141,4 @@ export namespace CoffeeModel {
         ],
     ]);
 
-    export interface ChildrenDescriptor {
-        property: string;
-        children: string[];
-    }
 }
