@@ -24,6 +24,11 @@ import { CoffeeModel } from './coffee-model';
 import { JsonFormsTree } from './json-forms-tree';
 import { JsonFormsTreeWidget } from './json-forms-tree-widget';
 
+export interface ChildrenDescriptor {
+  property: string;
+  children: string[];
+}
+
 export namespace JsonFormsTreeContextMenu {
   export const CONTEXT_MENU: MenuPath = ['json-forms-tree-context-menu'];
   export const ADD_MENU: MenuPath = ['json-forms-tree-add-menu'];
@@ -35,25 +40,26 @@ export namespace JsonFormsTreeCommands {
     label: 'Open Workflow Diagram'
   };
 
-  export function generateAddCommands(): Map<string, Command> {
-    const creatableTypes: Set<string> = Array.from(CoffeeModel.childrenMapping, ([_key, value]) => value)
+  export function generateAddCommands(): Map<string, Map<string, Command>> {
+    const creatableTypes: Set<ChildrenDescriptor> = Array.from(CoffeeModel.childrenMapping, ([_key, value]) => value)
       // get flat array of child descriptors
       .reduce((acc, val) => acc.concat(val), [])
-      // map to creatable children types
-      .map(desc => desc.children)
-      // flatten to 1 dimensional array
-      .reduce((acc, val) => acc.concat(val), [])
       // unify by adding to set
-      .reduce((acc, val) => acc.add(val), new Set<string>());
+      .reduce((acc, val) => acc.add(val), new Set<ChildrenDescriptor>());
 
     // Create a command for every eclass which can be added to at least one model object
-    const commandMap: Map<string, Command> = new Map();
-    Array.from(creatableTypes).forEach(eclass => {
-      const name = CoffeeModel.Type.name(eclass);
-      commandMap.set(eclass, {
-        id: 'json-forms-tree.add.' + name,
-        label: name
+    const commandMap: Map<string, Map<string, Command>> = new Map();
+    Array.from(creatableTypes).forEach(desc => {
+      const classCommandMap: Map<string, Command> = new Map();
+      desc.children.forEach(eclass => {
+        const name = CoffeeModel.Type.name(eclass);
+        const command = {
+          id: 'json-forms-tree.add.' + name,
+          label: name
+        };
+        classCommandMap.set(eclass, command);
       });
+      commandMap.set(desc.property, classCommandMap);
     });
 
     return commandMap;
@@ -63,17 +69,17 @@ export namespace JsonFormsTreeCommands {
 export interface JsonFormsTreeAnchor {
   x: number,
   y: number,
-  node: JsonFormsTree.Node
+  node: JsonFormsTree.Node,
+  onClick: (property: string, eClass: string) => void
 }
 
 export class AddCommandHandler implements CommandHandler {
 
-  constructor(readonly eclass: string) {
+  constructor(private readonly property: string, private readonly eclass: string) {
   }
 
   execute(treeAnchor: JsonFormsTreeAnchor) {
-    // FIXME use treeAnchor.node to send command to model server
-    console.log('execute add ' + this.eclass);
+    treeAnchor.onClick(this.property, this.eclass);
   }
 
   isVisible(treeAnchor: JsonFormsTreeAnchor): boolean {
