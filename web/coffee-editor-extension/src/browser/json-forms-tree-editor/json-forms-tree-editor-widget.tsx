@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
-import { ModelServerClient, ModelServerCommand } from '@modelserver/theia/lib/common';
+import { ModelServerClient, ModelServerCommandUtil } from '@modelserver/theia/lib/common';
 import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, TreeNode, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
@@ -224,25 +224,12 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     };
   }
   private deleteNode(node: Readonly<JsonFormsTree.Node>): void {
-    const removeCommand: ModelServerCommand = {
-      eClass: 'http://www.eclipsesource.com/schema/2019/modelserver/command#//Command',
-      type: 'remove',
-      owner: this.getNodeDescription(node.parent as JsonFormsTree.Node),
-      feature: node.jsonforms.property,
-      indices: node.jsonforms.index ? [Number(node.jsonforms.index)] : []
-    };
+    const removeCommand = ModelServerCommandUtil.createRemoveCommand(
+      this.getNodeDescription(node.parent as JsonFormsTree.Node), node.jsonforms.property, node.jsonforms.index ? [Number(node.jsonforms.index)] : []);
     this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
   }
   private addNode({ node, eClass, property }: AddCommandProperty): void {
-    const addCommand: ModelServerCommand = {
-      eClass: 'http://www.eclipsesource.com/schema/2019/modelserver/command#//Command',
-      type: 'add',
-      owner: this.getNodeDescription(node),
-      feature: property,
-      objectValues: [{ eClass, $ref: '//@objectsToAdd.0' }],
-      objectsToAdd: [{ eClass }]
-
-    };
+    const addCommand = ModelServerCommandUtil.createAddCommand(this.getNodeDescription(node), property, [{ eClass }]);
     this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
   }
 
