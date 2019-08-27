@@ -69,7 +69,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     protected readonly workspaceService: WorkspaceService,
     @inject(ILogger) private readonly logger: ILogger,
     @inject(ModelServerSubscriptionService)
-    private readonly suscriptionService: ModelServerSubscriptionService
+    private readonly subscriptionService: ModelServerSubscriptionService
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -100,18 +100,18 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
-    this.suscriptionService.onDirtyStateListener(dirtyState => {
+    this.subscriptionService.onDirtyStateListener(dirtyState => {
       this.dirty = dirtyState;
       this.onDirtyChangedEmitter.fire();
     });
-    this.suscriptionService.onFullUpdateListener(fullUpdate => {
+    this.subscriptionService.onFullUpdateListener(fullUpdate => {
       this.instanceData = fullUpdate;
 
       this.treeWidget
         .setData({ error: false, data: this.instanceData })
         .then(() => this.treeWidget.select(this.getOldSelectedPath()));
     });
-    this.suscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
+    this.subscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
       const command = incrementalUpdate as ModelServerCommand;
       // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
       const ownerPropIndexPath = command.owner.$ref.substring(command.owner.$ref.indexOf('#/') + 3)
