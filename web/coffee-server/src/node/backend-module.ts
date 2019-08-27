@@ -20,8 +20,12 @@ import { join, resolve } from 'path';
 
 import { GLSPLaunchOptions, GLSPServerLauncher } from './glsp-server-launcher';
 
-export default new ContainerModule(bind => {
-    bind(LaunchOptions).to(CoffeeLaunchOptions).inSingletonScope();
+export default new ContainerModule((bind, _unbind, isBound, rebind) => {
+    if (isBound(LaunchOptions)) {
+        rebind(LaunchOptions).to(CoffeeLaunchOptions).inSingletonScope();
+    } else {
+        bind(LaunchOptions).to(CoffeeLaunchOptions).inSingletonScope();
+    }
     bind(GLSPLaunchOptions).to(CoffeeGlspLaunchOptions).inSingletonScope();
     bind(BackendApplicationContribution).to(GLSPServerLauncher);
 });
