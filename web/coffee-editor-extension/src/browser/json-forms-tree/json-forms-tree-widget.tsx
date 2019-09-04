@@ -274,6 +274,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
       index = currentValue.length;
     }
     data.map((d, i) => this.nodeFactory.mapData(d, node, property, d.eClass, index + i));
+    this.updateIndex(node, property);
     this.model.refresh();
   }
 
@@ -284,7 +285,15 @@ export class JsonFormsTreeWidget extends TreeWidget {
       indices.includes(Number(n.jsonforms.index))
     ).map(n => node.children.indexOf(n));
     toDelete.forEach(i => node.children.splice(i, 1));
+    this.updateIndex(node, property);
     this.model.refresh();
+  }
+  private updateIndex(node: JsonFormsTree.Node, property: string) {
+    node.children.forEach((n, i) => {
+      if (JsonFormsTree.Node.is(n) && n.jsonforms.property === property) {
+        n.jsonforms.index = i.toString();
+      }
+    });
   }
 }
 

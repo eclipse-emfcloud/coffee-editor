@@ -122,12 +122,15 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
           return { property: path.substring(1, indexSplitPos), index: path.substring(indexSplitPos + 1) };
         });
       const ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
+      const objectToModify = ownerPropIndexPath.reduce((data, path) => path.index === undefined ? data[path.property] : data[path.property][path.index], this.instanceData);
       switch (command.type) {
         case 'add': {
+          objectToModify[command.feature].push(command.objectsToAdd);
           this.treeWidget.addChildren(ownerNode, command.objectsToAdd, command.feature);
           break;
         }
         case 'remove': {
+          command.indices.forEach(i => objectToModify[command.feature].splice(i, 1));
           this.treeWidget.removeChildren(ownerNode, command.indices, command.feature);
           break;
         }
@@ -136,6 +139,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
           const data = clone(ownerNode.jsonforms.data);
           // FIXME handle array changes and references
           data[command.feature] = command.dataValues[0];
+          objectToModify[command.feature] = command.dataValues[0];
           this.treeWidget.updateDataForNode(ownerNode, data);
         }
         default: {
