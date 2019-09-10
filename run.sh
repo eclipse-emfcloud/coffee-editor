@@ -8,6 +8,14 @@ buildFrontend='false'
 forceFrontend='false'
 runFrontend='false'
 
+if [[ "$1" == "" ]]; then
+  buildBackend='true'
+  copyBackend='true'
+  downloadServers='true'
+  buildFrontend='true'
+  runFrontend='true'
+fi
+
 if [[ ${#1} -gt 2 ]]; then
   if [[ "$1" == -*"b"* ]]; then
     buildBackend='true'
