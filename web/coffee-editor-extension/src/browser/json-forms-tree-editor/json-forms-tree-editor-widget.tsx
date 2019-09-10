@@ -125,7 +125,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       const objectToModify = ownerPropIndexPath.reduce((data, path) => path.index === undefined ? data[path.property] : data[path.property][path.index], this.instanceData);
       switch (command.type) {
         case 'add': {
-          objectToModify[command.feature].push(command.objectsToAdd);
+          objectToModify[command.feature].push(...command.objectsToAdd);
           this.treeWidget.addChildren(ownerNode, command.objectsToAdd, command.feature);
           break;
         }

@@ -289,9 +289,11 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.model.refresh();
   }
   private updateIndex(node: JsonFormsTree.Node, property: string) {
+    let realIndex = 0;
     node.children.forEach((n, i) => {
       if (JsonFormsTree.Node.is(n) && n.jsonforms.property === property) {
-        n.jsonforms.index = i.toString();
+        n.jsonforms.index = realIndex.toString();
+        realIndex++;
       }
     });
   }
