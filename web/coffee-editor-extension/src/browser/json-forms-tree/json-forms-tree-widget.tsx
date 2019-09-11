@@ -13,6 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+import { ModelServerObject } from '@modelserver/theia';
 import { Emitter } from '@theia/core';
 import { ConfirmDialog, ExpandableTreeNode, TreeModel } from '@theia/core/lib/browser';
 import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
@@ -176,6 +177,14 @@ export class JsonFormsTreeWidget extends TreeWidget {
     }
   }
 
+  public findNode(propIndexPaths: { property: string, index?: string }[]): JsonFormsTree.Node {
+    const rootNode = this.model.root as JsonFormsTree.RootNode;
+    return propIndexPaths.reduce((parent, segment) => {
+      const fitting = parent.children.filter(n => JsonFormsTree.Node.is(n) && n.jsonforms.property === segment.property && n.jsonforms.index === segment.index);
+      return fitting[0] as JsonFormsTree.Node;
+    }, rootNode.children[0] as JsonFormsTree.Node);
+  }
+
   public select(paths: string[]): void {
     if (paths.length === 0) {
       return;
@@ -256,6 +265,37 @@ export class JsonFormsTreeWidget extends TreeWidget {
     node.name = newNode.name;
     node.children = newNode.children;
     this.model.refresh();
+  }
+
+  public addChildren(node: JsonFormsTree.Node, data: ModelServerObject[], property: string) {
+    const currentValue = node.jsonforms.data[property];
+    let index = 0;
+    if (Array.isArray(currentValue)) {
+      index = currentValue.length;
+    }
+    data.map((d, i) => this.nodeFactory.mapData(d, node, property, d.eClass, index + i));
+    this.updateIndex(node, property);
+    this.model.refresh();
+  }
+
+  public removeChildren(node: JsonFormsTree.Node, indices: number[], property: string) {
+    const toDelete = node.children.filter(n =>
+      JsonFormsTree.Node.is(n) &&
+      n.jsonforms.property === property &&
+      indices.includes(Number(n.jsonforms.index))
+    ).map(n => node.children.indexOf(n));
+    toDelete.forEach(i => node.children.splice(i, 1));
+    this.updateIndex(node, property);
+    this.model.refresh();
+  }
+  private updateIndex(node: JsonFormsTree.Node, property: string) {
+    let realIndex = 0;
+    node.children.forEach((n, i) => {
+      if (JsonFormsTree.Node.is(n) && n.jsonforms.property === property) {
+        n.jsonforms.index = realIndex.toString();
+        realIndex++;
+      }
+    });
   }
 }
 

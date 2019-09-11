@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Start Browser Backend",
-      "program": "${workspaceRoot}/browser-app/src-gen/backend/main.js",
+      "program": "${workspaceRoot}/web/browser-app/src-gen/backend/main.js",
       "args": [
         "--loglevel=debug",
         "--port=3000",
@@ -22,9 +22,9 @@
       },
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceRoot}/node_modules/@theia/*/lib/**/*.js",
-        "${workspaceRoot}/browser-app/lib/**/*.js",
-        "${workspaceRoot}/browser-app/src-gen/**/*.js"
+        "${workspaceRoot}/web/node_modules/@theia/*/lib/**/*.js",
+        "${workspaceRoot}/web/browser-app/lib/**/*.js",
+        "${workspaceRoot}/web/browser-app/src-gen/**/*.js"
       ],
       "smartStep": true,
       "internalConsoleOptions": "openOnSessionStart",
@@ -36,7 +36,7 @@
       "request": "launch",
       "url": "http://localhost:3000/",
       "sourceMaps": true,
-      "webRoot": "${workspaceRoot}/browser-app"
+      "webRoot": "${workspaceRoot}/web/browser-app"
     }
   ]
 }

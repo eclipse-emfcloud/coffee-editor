@@ -14,13 +14,18 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
-import { ModelServerClient, ModelServerCommandUtil } from '@modelserver/theia/lib/common';
+import {
+  ModelServerClient,
+  ModelServerCommand,
+  ModelServerCommandUtil,
+  ModelServerReferenceDescription,
+} from '@modelserver/theia/lib/common';
 import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, TreeNode, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
 import { inject, injectable } from 'inversify';
-import { isEqual } from 'lodash';
+import { clone, isEqual } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -64,7 +69,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     protected readonly workspaceService: WorkspaceService,
     @inject(ILogger) private readonly logger: ILogger,
     @inject(ModelServerSubscriptionService)
-    private readonly suscriptionService: ModelServerSubscriptionService
+    private readonly subscriptionService: ModelServerSubscriptionService
   ) {
     super();
     this.id = JsonFormsTreeEditorWidget.WIDGET_ID;
@@ -95,32 +100,52 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     );
 
     this.toDispose.push(this.onDirtyChangedEmitter);
-    this.suscriptionService.onDirtyStateListener(dirtyState => {
+    this.subscriptionService.onDirtyStateListener(dirtyState => {
       this.dirty = dirtyState;
       this.onDirtyChangedEmitter.fire();
     });
-    this.suscriptionService.onFullUpdateListener(fullUpdate => {
+    this.subscriptionService.onFullUpdateListener(fullUpdate => {
       this.instanceData = fullUpdate;
 
       this.treeWidget
         .setData({ error: false, data: this.instanceData })
         .then(() => this.treeWidget.select(this.getOldSelectedPath()));
     });
-    this.suscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
-      // TODO handle incremental
-      this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
-        if (response.statusCode === 200) {
-          if (isEqual(this.instanceData, response.body)) {
-            return;
-          }
-          this.instanceData = response.body;
-          this.treeWidget
-            .setData({ error: false, data: this.instanceData })
-            .then(() => this.treeWidget.select(this.getOldSelectedPath()));
-          return;
+    this.subscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
+      const command = incrementalUpdate as ModelServerCommand;
+      // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
+      const ownerPropIndexPath = command.owner.$ref.substring(command.owner.$ref.indexOf('#/') + 3)
+        .split('/')
+        .map(path => {
+          const indexSplitPos = path.indexOf('.');
+          // each property starts with an @ so we ignore it
+          return { property: path.substring(1, indexSplitPos), index: path.substring(indexSplitPos + 1) };
+        });
+      const ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
+      const objectToModify = ownerPropIndexPath.reduce((data, path) => path.index === undefined ? data[path.property] : data[path.property][path.index], this.instanceData);
+      switch (command.type) {
+        case 'add': {
+          objectToModify[command.feature].push(...command.objectsToAdd);
+          this.treeWidget.addChildren(ownerNode, command.objectsToAdd, command.feature);
+          break;
         }
-      });
-      console.log(incrementalUpdate);
+        case 'remove': {
+          command.indices.forEach(i => objectToModify[command.feature].splice(i, 1));
+          this.treeWidget.removeChildren(ownerNode, command.indices, command.feature);
+          break;
+        }
+        case 'set': {
+          // maybe we can directly manipulate the data?
+          const data = clone(ownerNode.jsonforms.data);
+          // FIXME handle array changes and references
+          data[command.feature] = command.dataValues[0];
+          objectToModify[command.feature] = command.dataValues[0];
+          this.treeWidget.updateDataForNode(ownerNode, data);
+        }
+        default: {
+
+        }
+      }
     });
     this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
       if (response.statusCode === 200) {
@@ -209,7 +234,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     }
     this.update();
   }
-  private getNodeDescription(node: JsonFormsTree.Node): { eClass: string, $ref: string } {
+  private getNodeDescription(node: JsonFormsTree.Node): ModelServerReferenceDescription {
     const getRefSegment = (n: JsonFormsTree.Node) => n.jsonforms.property ? (`@${n.jsonforms.property}` + (n.jsonforms.index ? `.${n.jsonforms.index}` : '')) : '';
     let refToNode = '';
     let toCheck: TreeNode = node;
