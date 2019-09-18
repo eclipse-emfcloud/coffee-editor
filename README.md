@@ -1,4 +1,5 @@
 # Coffee Editor IDE
+
 An example of how to build the Theia-based applications with the tree-editor-extension.
 The coffee-editor consists of a frontend and a backend.
 
@@ -7,11 +8,13 @@ The frontend is located in the `web/` folder and frontend specific documentation
 The backend is located in the `backend/` folder and backend specific documentation can be found in the [frontend README](web/README.md)
 
 ## Used Projects
+
 We are relying on a bunch of projects:
-* https://github.com/eclipsesource/jsonforms
-* https://github.com/eclipsesource/graphical-lsp
-* https://github.com/eclipsesource/modelserver
-* https://github.com/eclipsesource/modelserver-theia
+
+- https://github.com/eclipsesource/jsonforms
+- https://github.com/eclipsesource/graphical-lsp
+- https://github.com/eclipsesource/modelserver
+- https://github.com/eclipsesource/modelserver-theia
 
 If you encounter issues please report them in the corresponding project.
 This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
@@ -42,16 +45,17 @@ Clone and build the coffee-editor:
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
     ./run.sh -b -c -d -f
-    
+
 Run the built coffee-editor:
 
     ./run.sh -r
 
 Open http://localhost:3000 in the browser.
 
-On the `File Menu`, open a project and double click a `.coffee` file. This opens it in a tree master detail editor.
+In Theia open the example workspace `backend/examples/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
 
 ## The build and run script
+
 The `run.sh` script provides funtionality to build the coffee-editor, download used libraries, and run the IDE.
 Every part step can be executed independently from each other by using the corresponding paramater:
 
