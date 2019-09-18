@@ -214,19 +214,6 @@ export const coffeeSchema = {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Component'
         },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
-        },
         'workflows': {
           'type': 'array',
           'items': {
@@ -246,19 +233,6 @@ export const coffeeSchema = {
         'name': {
           'type': 'string'
         },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
-        },
         'workflows': {
           'type': 'array',
           'items': {
@@ -275,19 +249,6 @@ export const coffeeSchema = {
       'properties': {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit'
-        },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
         },
         'processor': {
           '$ref': '#/definitions/processor'
@@ -322,19 +283,6 @@ export const coffeeSchema = {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
         },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
-        }
       },
       'additionalProperties': false
     },
@@ -345,19 +293,6 @@ export const coffeeSchema = {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//DipTray'
         },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
-        }
       },
       'additionalProperties': false
     },
@@ -368,19 +303,6 @@ export const coffeeSchema = {
         'eClass': {
           'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WaterTank'
         },
-        'children': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              { '$ref': '#/definitions/component' },
-              { '$ref': '#/definitions/machine' },
-              { '$ref': '#/definitions/controlunit' },
-              { '$ref': '#/definitions/brewingunit' },
-              { '$ref': '#/definitions/diptray' },
-              { '$ref': '#/definitions/watertank' }
-            ]
-          }
-        }
       },
       'additionalProperties': false
     },
