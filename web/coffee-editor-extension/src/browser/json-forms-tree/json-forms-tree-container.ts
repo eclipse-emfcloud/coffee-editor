@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { Command, CommandHandler, MenuPath } from '@theia/core';
+import { Command, CommandHandler } from '@theia/core';
 import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import { createTreeContainer, defaultTreeProps, TreeProps, TreeWidget } from '@theia/core/lib/browser/tree';
 import URI from '@theia/core/lib/common/uri';
@@ -22,16 +22,11 @@ import { Container, interfaces } from 'inversify';
 import { JsonFormsTreeEditorWidget } from '../json-forms-tree-editor/json-forms-tree-editor-widget';
 import { CoffeeModel } from './coffee-model';
 import { JsonFormsTree } from './json-forms-tree';
-import { JsonFormsTreeWidget } from './json-forms-tree-widget';
+import { JsonFormsTreeWidget, JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-widget';
 
 export interface ChildrenDescriptor {
   property: string;
   children: string[];
-}
-
-export namespace JsonFormsTreeContextMenu {
-  export const CONTEXT_MENU: MenuPath = ['json-forms-tree-context-menu'];
-  export const ADD_MENU: MenuPath = ['json-forms-tree-add-menu'];
 }
 
 export namespace JsonFormsTreeCommands {
@@ -64,13 +59,6 @@ export namespace JsonFormsTreeCommands {
 
     return commandMap;
   }
-}
-
-export interface JsonFormsTreeAnchor {
-  x: number,
-  y: number,
-  node: JsonFormsTree.Node,
-  onClick: (property: string, eClass: string) => void
 }
 
 export class AddCommandHandler implements CommandHandler {

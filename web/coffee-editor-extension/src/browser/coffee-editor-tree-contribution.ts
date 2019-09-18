@@ -23,9 +23,9 @@ import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
 import {
   AddCommandHandler,
   JsonFormsTreeCommands,
-  JsonFormsTreeContextMenu,
   OpenWorkflowDiagramCommandHandler,
 } from './json-forms-tree/json-forms-tree-container';
+import { JsonFormsTreeContextMenu } from './json-forms-tree/json-forms-tree-widget';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
