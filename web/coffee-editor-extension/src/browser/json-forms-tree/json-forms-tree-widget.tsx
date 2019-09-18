@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { ModelServerObject } from '@modelserver/theia';
-import { Emitter } from '@theia/core';
+import { Emitter, MenuPath } from '@theia/core';
 import { ConfirmDialog, ExpandableTreeNode, TreeModel } from '@theia/core/lib/browser';
 import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
@@ -24,13 +24,25 @@ import * as React from 'react';
 import { v4 } from 'uuid';
 
 import { JsonFormsTree } from './json-forms-tree';
-import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './json-forms-tree-container';
 
 export interface AddCommandProperty {
   node: JsonFormsTree.Node,
   property: string,
   eClass: string
 }
+
+export interface JsonFormsTreeAnchor {
+  x: number,
+  y: number,
+  node: JsonFormsTree.Node,
+  onClick: (property: string, eClass: string) => void
+}
+
+export namespace JsonFormsTreeContextMenu {
+  export const CONTEXT_MENU: MenuPath = ['json-forms-tree-context-menu'];
+  export const ADD_MENU: MenuPath = ['json-forms-tree-add-menu'];
+}
+
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
