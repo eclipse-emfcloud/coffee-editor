@@ -6,7 +6,7 @@
         "vendor": "Test Vendor",
         "socketconnectorType": "A1T",
         "clockSpeed": 10,
-        "manufactoringProcess": "nm18",
+        "manufacturingProcess": "nm18",
         "numberOfCores": 4,
         "thermalDesignPower": 123
       },

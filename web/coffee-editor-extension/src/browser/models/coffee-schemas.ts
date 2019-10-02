@@ -333,7 +333,7 @@ export const coffeeSchema = {
         'thermalDesignPower': {
           'type': 'integer'
         },
-        'manufactoringProcess': {
+        'manufacturingProcess': {
           'type': 'string',
           'enum': [
             'nm18',
