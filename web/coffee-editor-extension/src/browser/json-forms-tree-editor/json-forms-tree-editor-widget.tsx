@@ -115,7 +115,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       const command = incrementalUpdate as ModelServerCommand;
       // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
       const ownerPropIndexPath = command.owner.$ref.substring(command.owner.$ref.indexOf('#/') + 3)
-        .split('/')
+        .split('/').filter(v => v.length !== 0)
         .map(path => {
           const indexSplitPos = path.indexOf('.');
           // each property starts with an @ so we ignore it
@@ -125,6 +125,9 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       const objectToModify = ownerPropIndexPath.reduce((data, path) => path.index === undefined ? data[path.property] : data[path.property][path.index], this.instanceData);
       switch (command.type) {
         case 'add': {
+          if (!objectToModify[command.feature]) {
+            objectToModify[command.feature] = [];
+          }
           objectToModify[command.feature].push(...command.objectsToAdd);
           this.treeWidget.addChildren(ownerNode, command.objectsToAdd, command.feature);
           break;
