@@ -89,7 +89,7 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       }
       const node = this.getNodeDescription(this.selectedNode);
       Object.keys(data).filter(key => key !== 'eClass').forEach(key => {
-        if (data[key] instanceof Object) {
+        if (data[key] instanceof Object && !isEqual(this.selectedNode.jsonforms.data[key], data[key])) {
           const eClass = data[key].eClass || this.getEClassFromKey(key);
           const setCommand = ModelServerCommandUtil.createSetCommand(node, key, []);
           const toAdd = clone(data[key]);

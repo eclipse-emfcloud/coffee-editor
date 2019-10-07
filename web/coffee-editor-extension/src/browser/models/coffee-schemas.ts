@@ -55,7 +55,7 @@ export const controlUnitView = {
                 {
                   'type': 'Control',
                   'label': 'Manufacturing Process',
-                  'scope': '#/properties/processor/properties/manufacturingProcess'
+                  'scope': '#/properties/processor/properties/manufactoringProcess'
                 },
                 {
                   'type': 'Control',
@@ -333,10 +333,10 @@ export const coffeeSchema = {
         'thermalDesignPower': {
           'type': 'integer'
         },
-        'manufacturingProcess': {
+        'manufactoringProcess': {
           'type': 'string',
           'enum': [
-            'nm18',
+            '18nm',
             'nm25'
           ]
         }
