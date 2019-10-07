@@ -29,6 +29,7 @@ import { clone, debounce, isEqual } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { CoffeeModel } from '../json-forms-tree/coffee-model';
 import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
 import { AddCommandProperty, JsonFormsTreeWidget } from '../json-forms-tree/json-forms-tree-widget';
 import { JSONFormsWidget } from './json-forms-widget';
@@ -86,11 +87,22 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
       if (!this.selectedNode || !this.selectedNode.jsonforms || isEqual(this.selectedNode.jsonforms.data, data)) {
         return;
       }
-      this.treeWidget.updateDataForNode(this.selectedNode, data);
       const node = this.getNodeDescription(this.selectedNode);
       Object.keys(data).filter(key => key !== 'eClass').forEach(key => {
-        const setCommand = ModelServerCommandUtil.createSetCommand(node, key, [data[key]]);
-        this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
+        if (data[key] instanceof Object) {
+          const eClass = data[key].eClass || this.getEClassFromKey(key);
+          const setCommand = ModelServerCommandUtil.createSetCommand(node, key, []);
+          const toAdd = clone(data[key]);
+          toAdd['eClass'] = eClass;
+          setCommand.objectsToAdd = [toAdd];
+          const ref = { eClass, $ref: '//@objectsToAdd.0' };
+          setCommand.objectValues = [ref];
+          this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
+        } else {
+          const setCommand = ModelServerCommandUtil.createSetCommand(node, key, [data[key]]);
+          this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
+        }
+
       });
     }, 250));
     this.toDispose.push(
@@ -144,9 +156,14 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
         case 'set': {
           // maybe we can directly manipulate the data?
           const data = clone(ownerNode.jsonforms.data);
-          // FIXME handle array changes and references
-          data[command.feature] = command.dataValues[0];
-          objectToModify[command.feature] = command.dataValues[0];
+          // FIXME handle array changes
+          if (command.dataValues) {
+            data[command.feature] = command.dataValues[0];
+            objectToModify[command.feature] = command.dataValues[0];
+          } else {
+            data[command.feature] = command.objectsToAdd[0];
+            objectToModify[command.feature] = command.objectsToAdd[0];
+          }
           this.treeWidget.updateDataForNode(ownerNode, data);
         }
         default: {
@@ -206,6 +223,10 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     if (this.splitPanel) {
       this.splitPanel.update();
     }
+  }
+
+  private getEClassFromKey(key: string): string {
+    return CoffeeModel.Type[key[0].toUpperCase() + key.slice(1)];
   }
 
   getModelIDToRequest(): string {
