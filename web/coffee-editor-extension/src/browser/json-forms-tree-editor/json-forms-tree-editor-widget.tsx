@@ -25,7 +25,7 @@ import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
 import { inject, injectable } from 'inversify';
-import { clone, isEqual } from 'lodash';
+import { clone, debounce, isEqual } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -82,13 +82,13 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.splitPanel.addClass('json-forms-tree-editor-sash');
     this.treeWidget.addClass('json-forms-tree-editor-tree');
     this.formWidget.addClass('json-forms-tree-editor-forms');
-    this.formWidget.onChange(data => {
+    this.formWidget.onChange(debounce(data => {
       if (isEqual(this.selectedNode.jsonforms.data, data)) {
         return;
       }
       this.treeWidget.updateDataForNode(this.selectedNode, data);
       this.modelServerApi.update(this.getModelIDToRequest(), this.instanceData);
-    });
+    }, 250));
     this.toDispose.push(
       this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))
     );

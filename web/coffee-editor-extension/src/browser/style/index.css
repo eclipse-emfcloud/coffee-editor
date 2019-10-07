@@ -6,21 +6,20 @@ button[type="button"] {
   padding: 0;
 }
 
-.json-forms-tree-editor,
-.json-forms-tree-editor-sash,
-.json-forms-tree-editor-tree,
-.json-forms-tree-editor-forms {
+.json-forms-tree-editor, .json-forms-tree-editor-sash, .json-forms-tree-editor-tree, .json-forms-tree-editor-forms {
   height: 100%;
 }
 
-.json-forms-tree-editor,
-.json-forms-tree-editor-sash {
+.json-forms-tree-editor, .json-forms-tree-editor-sash {
   width: 100%;
 }
 
-.json-forms-tree-editor-tree,
-.json-forms-tree-editor-forms {
+.json-forms-tree-editor-tree, .json-forms-tree-editor-forms {
   overflow-y: auto;
+}
+
+.json-forms-tree-editor-tree {
+  min-width: 250px;
 }
 
 .json-forms-tree-editor-tree .tree-icon-container {
@@ -62,8 +61,7 @@ button[type="button"] {
   background: var(--theia-layout-color1);
 }
 
-.json-forms-tree-editor .MuiTypography-root,
-.json-forms-tree-editor .MuiCardHeader-title {
+.json-forms-tree-editor .MuiTypography-root, .json-forms-tree-editor .MuiCardHeader-title {
   color: var(--theia-ui-font-color1);
 }
 
