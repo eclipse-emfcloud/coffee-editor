@@ -83,11 +83,15 @@ export class JsonFormsTreeEditorWidget extends BaseWidget
     this.treeWidget.addClass('json-forms-tree-editor-tree');
     this.formWidget.addClass('json-forms-tree-editor-forms');
     this.formWidget.onChange(debounce(data => {
-      if (isEqual(this.selectedNode.jsonforms.data, data)) {
+      if (!this.selectedNode || !this.selectedNode.jsonforms || isEqual(this.selectedNode.jsonforms.data, data)) {
         return;
       }
       this.treeWidget.updateDataForNode(this.selectedNode, data);
-      this.modelServerApi.update(this.getModelIDToRequest(), this.instanceData);
+      const node = this.getNodeDescription(this.selectedNode);
+      Object.keys(data).filter(key => key !== 'eClass').forEach(key => {
+        const setCommand = ModelServerCommandUtil.createSetCommand(node, key, [data[key]]);
+        this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
+      });
     }, 250));
     this.toDispose.push(
       this.treeWidget.onSelectionChange(ev => this.treeSelectionChanged(ev))

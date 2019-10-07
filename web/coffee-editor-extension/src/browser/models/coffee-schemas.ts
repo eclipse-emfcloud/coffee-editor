@@ -54,8 +54,8 @@ export const controlUnitView = {
                 },
                 {
                   'type': 'Control',
-                  'label': 'Manufactoring Process',
-                  'scope': '#/properties/processor/properties/manufactoringProcess'
+                  'label': 'Manufacturing Process',
+                  'scope': '#/properties/processor/properties/manufacturingProcess'
                 },
                 {
                   'type': 'Control',
