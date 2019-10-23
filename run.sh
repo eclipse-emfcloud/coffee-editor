@@ -11,7 +11,6 @@ runFrontend='false'
 if [[ "$1" == "" ]]; then
   buildBackend='true'
   copyBackend='true'
-  downloadServers='true'
   buildFrontend='true'
   runFrontend='true'
 fi
