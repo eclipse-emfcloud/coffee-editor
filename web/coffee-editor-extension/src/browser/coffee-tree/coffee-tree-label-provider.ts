@@ -16,9 +16,9 @@
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
+import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
 
-import { CoffeeModel } from '../json-forms-tree/coffee-model';
-import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { CoffeeModel } from './coffee-model';
 
 const DEFAULT_COLOR = 'black';
 

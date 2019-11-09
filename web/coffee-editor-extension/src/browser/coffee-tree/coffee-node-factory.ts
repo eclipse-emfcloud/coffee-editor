@@ -15,10 +15,10 @@
  */
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
+import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
 import { v4 } from 'uuid';
 
-import { CoffeeModel } from '../json-forms-tree/coffee-model';
-import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
+import { CoffeeModel } from './coffee-model';
 
 @injectable()
 export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {

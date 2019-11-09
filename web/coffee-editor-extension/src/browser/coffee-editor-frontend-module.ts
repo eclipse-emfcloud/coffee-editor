@@ -13,27 +13,28 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import '../../src/browser/style/index.css';
+import 'jsonforms-tree-extension/style/index.css';
 
 import { CommandContribution, MenuContribution } from '@theia/core';
 import { LabelProviderContribution, NavigatableWidgetOptions, OpenHandler, WidgetFactory } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
+import { JsonFormsTree } from 'jsonforms-tree-extension/lib//browser/tree/json-forms-tree';
+import { createJsonFormsTreeWidget } from 'jsonforms-tree-extension/lib//browser/util';
+import { JsonFormsTreeEditorWidgetOptions } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
+import { JSONFormsWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-widget';
+import { ModelService } from 'jsonforms-tree-extension/lib/browser/model-service';
+import { JsonFormsTreeWidget } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree-widget';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
-import { CoffeeTreeNodeFactory } from './coffee/coffee-node-factory';
-import { CoffeeTreeLabelProvider } from './coffee/coffee-tree-label-provider';
+import { CoffeeModelService } from './coffee-tree/coffee-model-service';
+import { CoffeeTreeNodeFactory } from './coffee-tree/coffee-node-factory';
+import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
+import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider';
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
-import {
-  JsonFormsTreeEditorWidget,
-  JsonFormsTreeEditorWidgetOptions,
-} from './json-forms-tree-editor/json-forms-tree-editor-widget';
-import { JSONFormsWidget } from './json-forms-tree-editor/json-forms-widget';
-import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
-import { createJsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-container';
-import { JsonFormsTreeWidget } from './json-forms-tree/json-forms-tree-widget';
 
 export default new ContainerModule(bind => {
+  bind(ModelService).to(CoffeeModelService);
   bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
   bind(JsonFormsTreeWidget).toDynamicValue(context =>
     createJsonFormsTreeWidget(context.container)
@@ -42,12 +43,12 @@ export default new ContainerModule(bind => {
   bind(OpenHandler).to(CoffeeTreeEditorContribution);
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
-  bind(JsonFormsTreeEditorWidget).toSelf();
+  bind(CoffeeTreeEditorWidget).toSelf();
   bind(JsonFormsTree.LabelProvider).to(CoffeeTreeLabelProvider);
   bind(JsonFormsTree.NodeFactory).to(CoffeeTreeNodeFactory);
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
-    id: JsonFormsTreeEditorWidget.WIDGET_ID,
+    id: CoffeeTreeEditorWidget.WIDGET_ID,
     createWidget: (options: NavigatableWidgetOptions) => {
       const { container } = context;
       const child = container.createChild();
@@ -61,7 +62,7 @@ export default new ContainerModule(bind => {
           uri: uri
         });
 
-      return child.get(JsonFormsTreeEditorWidget);
+      return child.get(CoffeeTreeEditorWidget);
     }
   }));
 });

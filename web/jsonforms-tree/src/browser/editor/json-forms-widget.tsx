@@ -16,7 +16,7 @@
 import { Actions, jsonformsReducer, JsonFormsState } from '@jsonforms/core';
 import { materialCells, materialRenderers } from '@jsonforms/material-renderers';
 import { JsonFormsDispatch, JsonFormsReduxContext } from '@jsonforms/react';
-import { Emitter, Event, ILogger } from '@theia/core';
+import { Emitter, Event } from '@theia/core';
 import { BaseWidget, Message } from '@theia/core/lib/browser';
 import { inject, injectable } from 'inversify';
 import * as React from 'react';
@@ -24,17 +24,8 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 
-import { CoffeeModel } from '../json-forms-tree/coffee-model';
-import { JsonFormsTree } from '../json-forms-tree/json-forms-tree';
-import {
-  automaticTaskView,
-  brewingView,
-  coffeeSchema,
-  controlUnitView,
-  machineView,
-  manualTaskView,
-  workflowView,
-} from '../models/coffee-schemas';
+import { ModelService } from '../model-service';
+import { JsonFormsTree } from '../tree/json-forms-tree';
 
 @injectable()
 export class JSONFormsWidget extends BaseWidget {
@@ -43,7 +34,7 @@ export class JSONFormsWidget extends BaseWidget {
 
   protected changeEmitter = new Emitter<Readonly<any>>();
 
-  constructor(@inject(ILogger) private readonly logger: ILogger) {
+  constructor(@inject(ModelService) private readonly modelService: ModelService) {
     super();
 
     this.store = this.initStore();
@@ -77,11 +68,8 @@ export class JSONFormsWidget extends BaseWidget {
     this.store.dispatch(
       Actions.init(
         this.selectedNode.jsonforms.data,
-        {
-          definitions: coffeeSchema.definitions,
-          ...this.getSchemaForNode(this.selectedNode)
-        },
-        this.getUiSchemaForNode(this.selectedNode),
+        this.modelService.getSchemaForNode(this.selectedNode),
+        this.modelService.getUiSchemaForNode(this.selectedNode),
         {
           refParserOptions: {
             dereference: { circular: 'ignore' }
@@ -90,64 +78,6 @@ export class JSONFormsWidget extends BaseWidget {
       )
     );
     this.renderForms();
-  }
-  protected getSchemaForNode(node: JsonFormsTree.Node) {
-    const schema = this.getSchemaForType(node.jsonforms.type);
-    if (schema) {
-      return schema;
-    }
-    // there is no type, try to guess
-    if (node.jsonforms.data.nodes) {
-      return coffeeSchema.definitions.workflow;
-    }
-    return undefined;
-  }
-  protected getUiSchemaForNode(node: JsonFormsTree.Node) {
-    const schema = this.getUiSchemaForType(node.jsonforms.type);
-    if (schema) {
-      return schema;
-    }
-    // there is no type, try to guess
-    if (node.jsonforms.data.nodes) {
-      return workflowView;
-    }
-    return undefined;
-  }
-  protected getUiSchemaForType(type: string) {
-    if (!type) {
-      return undefined;
-    }
-    switch (type) {
-      case CoffeeModel.Type.Machine:
-        return machineView;
-      case CoffeeModel.Type.ControlUnit:
-        return controlUnitView;
-      case CoffeeModel.Type.BrewingUnit:
-        return brewingView;
-      case CoffeeModel.Type.AutomaticTask:
-        return automaticTaskView;
-      case CoffeeModel.Type.ManualTask:
-        return manualTaskView;
-      default:
-        this.logger.warn("Can't find registered ui schema for type " + type);
-        return undefined;
-    }
-  }
-
-  protected getSchemaForType(type: string) {
-    if (!type) {
-      return undefined;
-    }
-    const schema = Object.entries(coffeeSchema.definitions)
-      .map(entry => entry[1])
-      .find(
-        definition =>
-          definition.properties && definition.properties.eClass.const === type
-      );
-    if (!schema) {
-      this.logger.warn("Can't find definition schema for type " + type);
-    }
-    return schema;
   }
 
   protected renderForms(): void {

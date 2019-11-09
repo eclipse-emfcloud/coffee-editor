@@ -1,9 +1,6 @@
 {
-  "name": "coffee-editor-extension",
-  "keywords": [
-    "theia-extension"
-  ],
-  "version": "1.0.0",
+  "name": "jsonforms-tree-extension",
+  "version": "0.1.0",
   "files": [
     "lib",
     "src"
@@ -23,8 +20,7 @@
     "react-redux": "^6.0.0",
     "recompose": "^0.27.1",
     "redux": "^3.7.2",
-    "uuid": "^3.3.2",
-    "jsonforms-tree-extension": "0.1.0"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "rimraf": "latest",
@@ -37,10 +33,5 @@
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc",
     "watch": "tsc -w"
-  },
-  "theiaExtensions": [
-    {
-      "frontend": "lib/browser/coffee-editor-frontend-module"
-    }
-  ]
+  }
 }
