@@ -16,6 +16,7 @@
     "coffee-workflow-analyzer-editors",
     "coffee-workspace-filesystem-storage-service",
     "coffee-workflow-generator",
+    "jsonforms-tree",
     "browser-app"
   ],
   "resolutions": {

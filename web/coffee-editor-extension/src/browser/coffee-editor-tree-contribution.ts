@@ -13,39 +13,33 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { Command, CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry } from '@theia/core';
-import { ApplicationShell, NavigatableWidgetOpenHandler, OpenerService } from '@theia/core/lib/browser';
+import { CommandRegistry, MenuModelRegistry } from '@theia/core';
+import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
+import { JsonFormsTreeEditorWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
+import { JsonFormsTreeEditorContribution } from 'jsonforms-tree-extension/lib/browser/json-forms-tree-contribution';
+import { ModelService } from 'jsonforms-tree-extension/lib/browser/model-service';
+import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
+import { JsonFormsTreeContextMenu } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree-widget';
 
-import { JsonFormsTreeEditorWidget } from './json-forms-tree-editor/json-forms-tree-editor-widget';
-import { JsonFormsTree } from './json-forms-tree/json-forms-tree';
-import {
-  AddCommandHandler,
-  JsonFormsTreeCommands,
-  OpenWorkflowDiagramCommandHandler,
-} from './json-forms-tree/json-forms-tree-container';
-import { JsonFormsTreeContextMenu } from './json-forms-tree/json-forms-tree-widget';
+import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
+import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
 
 @injectable()
-export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
+export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContribution {
   @inject(ApplicationShell) protected shell: ApplicationShell;
   @inject(OpenerService) protected opener: OpenerService;
-  @inject(JsonFormsTree.LabelProvider) protected labelProvider: JsonFormsTree.LabelProvider;
 
-  readonly id = JsonFormsTreeEditorWidget.WIDGET_ID;
-  readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;
-  private commandMap: Map<string, Map<string, Command>>;
-
-  /**
-   * @returns maps property name to EClass identifiers to their corresponding add command
-   */
-  private getCommandMap(): Map<string, Map<string, Command>> {
-    if (!this.commandMap) {
-      this.commandMap = JsonFormsTreeCommands.generateAddCommands();
-    }
-    return this.commandMap;
+  constructor(
+    @inject(JsonFormsTree.LabelProvider) labelProvider: JsonFormsTree.LabelProvider,
+    @inject(ModelService) modelService: ModelService
+  ) {
+    super(modelService, labelProvider);
   }
+
+  readonly id = CoffeeTreeEditorWidget.WIDGET_ID;
+  readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;
 
   canHandle(uri: URI): number {
     if (
@@ -58,29 +52,19 @@ export class CoffeeTreeEditorContribution extends NavigatableWidgetOpenHandler<J
 
   registerCommands(commands: CommandRegistry): void {
     commands.registerCommand(
-      JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM,
+      CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM,
       new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
 
-    this.getCommandMap().forEach((value, property, _map) => {
-      value.forEach((command, eClass) => commands.registerCommand(command, new AddCommandHandler(property, eClass)));
-    });
+    super.registerCommands(commands);
   }
 
   registerMenus(menus: MenuModelRegistry): void {
     menus.registerMenuAction(JsonFormsTreeContextMenu.CONTEXT_MENU, {
-      commandId: JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM.id,
-      label: JsonFormsTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
+      commandId: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.id,
+      label: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
     });
 
-    this.getCommandMap().forEach((value, _property, _map) => {
-      value.forEach((command, eClass) => {
-        menus.registerMenuAction(JsonFormsTreeContextMenu.ADD_MENU, {
-          commandId: command.id,
-          label: command.label,
-          icon: this.labelProvider.getIconClass(eClass)
-        });
-      });
-    });
+    super.registerMenus(menus);
   }
 
 }

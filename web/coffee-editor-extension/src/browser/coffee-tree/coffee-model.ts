@@ -14,8 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import URI from '@theia/core/lib/common/uri';
-
-import { ChildrenDescriptor } from './json-forms-tree-container';
+import { ChildrenDescriptor } from 'jsonforms-tree-extension/lib/browser/model-service';
 
 export namespace CoffeeModel {
     export namespace Type {
