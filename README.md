@@ -34,9 +34,13 @@ Install yarn.
 
     npm install -g yarn
 
+Install maven
+    
+    sudo apt-get install maven
+
 Install linux packages (if necessary).
 
-    sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev
+    sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev libxml2-utils
 
 ## Getting started
 
