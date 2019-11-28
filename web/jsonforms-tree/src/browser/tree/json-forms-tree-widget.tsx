@@ -27,7 +27,7 @@ import { JsonFormsTree } from './json-forms-tree';
 export interface AddCommandProperty {
   node: JsonFormsTree.Node,
   property: string,
-  eClass: string
+  type: string
 }
 
 export interface JsonFormsTreeAnchor {
@@ -160,7 +160,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return event => {
-      const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, eClass });
+      const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, type: eClass });
       const treeAnchor: JsonFormsTreeAnchor = {
         x: event.nativeEvent.x,
         y: event.nativeEvent.y,

@@ -196,11 +196,11 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     );
     this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
   }
-  protected addNode({ node, eClass, property }: AddCommandProperty): void {
+  protected addNode({ node, type, property }: AddCommandProperty): void {
     const addCommand = ModelServerCommandUtil.createAddCommand(
       this.getNodeDescription(node),
       property,
-      [{ eClass }]
+      [{ eClass: type }]
     );
     this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
   }

@@ -134,7 +134,7 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
   protected abstract deleteNode(node: Readonly<JsonFormsTree.Node>): void;
   protected abstract addNode({
     node,
-    eClass,
+    type,
     property
   }: AddCommandProperty): void;
 
