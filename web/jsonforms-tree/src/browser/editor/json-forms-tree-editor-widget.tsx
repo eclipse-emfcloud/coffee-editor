@@ -13,8 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ModelServerReferenceDescription } from '@modelserver/theia/lib/common';
-import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, TreeNode, Widget } from '@theia/core/lib/browser';
+import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
@@ -73,8 +72,7 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
         ) {
           return;
         }
-        const node = this.getNodeDescription(this.selectedNode);
-        this.handleFormUpdate(data, node);
+        this.handleFormUpdate(data, this.selectedNode);
       }, 250)
     );
     this.toDispose.push(
@@ -132,30 +130,7 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
     }
     this.update();
   }
-  protected getNodeDescription(
-    node: JsonFormsTree.Node
-  ): ModelServerReferenceDescription {
-    const getRefSegment = (n: JsonFormsTree.Node) =>
-      n.jsonforms.property
-        ? `@${n.jsonforms.property}` +
-          (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
-        : '';
-    let refToNode = '';
-    let toCheck: TreeNode = node;
-    while (toCheck && JsonFormsTree.Node.is(toCheck)) {
-      const parentRefSeg = getRefSegment(toCheck);
-      refToNode =
-        parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
-      toCheck = toCheck.parent;
-    }
-    const ownerRef = `${
-      this.workspaceService.workspace.uri
-    }/${this.getModelIDToRequest()}#/${refToNode}`;
-    return {
-      eClass: node.jsonforms.type,
-      $ref: ownerRef.replace('file:///', 'file:/')
-    };
-  }
+
   protected abstract deleteNode(node: Readonly<JsonFormsTree.Node>): void;
   protected abstract addNode({
     node,
@@ -177,9 +152,16 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
       this.splitPanel.node.focus();
     }
   }
+
+  /**
+   * Updates the data of a tree node.
+   *
+   * @param data The new data for the node
+   * @param node The tree node whose data will be updated
+   */
   protected abstract handleFormUpdate(
     data: any,
-    node: ModelServerReferenceDescription
+    node: JsonFormsTree.Node
   ): void;
 
   public save(): void {
