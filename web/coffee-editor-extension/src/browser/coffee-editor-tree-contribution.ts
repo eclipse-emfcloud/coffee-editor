@@ -25,6 +25,7 @@ import { JsonFormsTreeContextMenu } from 'jsonforms-tree-extension/lib/browser/t
 
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
 import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
+import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContribution {
@@ -32,7 +33,7 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
   @inject(OpenerService) protected opener: OpenerService;
 
   constructor(
-    @inject(JsonFormsTree.LabelProvider) labelProvider: JsonFormsTree.LabelProvider,
+    @inject(CoffeeTreeLabelProvider) labelProvider: JsonFormsTree.LabelProvider,
     @inject(ModelService) modelService: ModelService
   ) {
     super(modelService, labelProvider);
