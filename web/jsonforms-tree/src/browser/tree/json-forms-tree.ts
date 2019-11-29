@@ -70,13 +70,14 @@ export namespace JsonFormsTree {
      * @param data The instance data to map to a tree node
      * @param parent The created node's parent node
      * @param property The JSON property which this node's data is contained in
-     * @param index The index which this node's data is contained in the parent property
+     * @param indexOrKey If the data is inserted in an array property, this is the index it is inserted at.
+     *                   If the data is inserted into an object, this is the key the data is associated with.
      */
     mapData(
       data: any,
       parent?: Node,
       property?: string,
-      index?: number
+      indexOrKey?: number | string
     ): Node;
 
     /**

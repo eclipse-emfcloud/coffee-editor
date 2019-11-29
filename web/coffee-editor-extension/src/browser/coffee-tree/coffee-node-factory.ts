@@ -36,7 +36,7 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
         return [];
     }
 
-    mapData(data: any, parent?: JsonFormsTree.Node, property?: string, index?: number): JsonFormsTree.Node {
+    mapData(data: any, parent?: JsonFormsTree.Node, property?: string, indexOrKey?: number | string): JsonFormsTree.Node {
         if (!data) {
             // sanity check
             this.logger.warn('mapData called without data');
@@ -50,7 +50,7 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
                 type: this.getType(data.eClass, data),
                 data: data,
                 property: property,
-                index: index !== undefined ? index.toFixed(0) : undefined
+                index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
             }
         };
         // containments
