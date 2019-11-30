@@ -13,7 +13,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ModelServerObject } from '@modelserver/theia';
 import { Emitter, MenuPath } from '@theia/core';
 import { ConfirmDialog, ExpandableTreeNode, TreeModel } from '@theia/core/lib/browser';
 import { ContextMenuRenderer } from '@theia/core/lib/browser/context-menu-renderer';
@@ -28,7 +27,7 @@ import { JsonFormsTree } from './json-forms-tree';
 export interface AddCommandProperty {
   node: JsonFormsTree.Node,
   property: string,
-  eClass: string
+  type: string
 }
 
 export interface JsonFormsTreeAnchor {
@@ -161,7 +160,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
 
   private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return event => {
-      const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, eClass });
+      const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, type: eClass });
       const treeAnchor: JsonFormsTreeAnchor = {
         x: event.nativeEvent.x,
         y: event.nativeEvent.y,
@@ -279,13 +278,20 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.model.refresh();
   }
 
-  public addChildren(node: JsonFormsTree.Node, data: ModelServerObject[], property: string) {
+  /**
+   * Creates new tree nodes for the given data and adds them to the given node.
+   *
+   * @param node The node to add children to
+   * @param data The data array to generate the new tree nodes from
+   * @param property The property of the parent data which will contain the new nodes.
+   */
+  public addChildren(node: JsonFormsTree.Node, data: any[], property: string) {
     const currentValue = node.jsonforms.data[property];
     let index = 0;
     if (Array.isArray(currentValue)) {
       index = currentValue.length;
     }
-    data.map((d, i) => this.nodeFactory.mapData(d, node, property, d.eClass, index + i));
+    data.map((d, i) => this.nodeFactory.mapData(d, node, property, index + i));
     this.updateIndex(node, property);
     this.model.refresh();
   }

@@ -18,10 +18,19 @@ import { createTreeContainer, defaultTreeProps, TreeProps, TreeWidget } from '@t
 import { Container, interfaces } from 'inversify';
 
 import { ChildrenDescriptor, ModelService } from './model-service';
+import { JsonFormsTree } from './tree/json-forms-tree';
 import { JsonFormsTreeContextMenu, JsonFormsTreeWidget } from './tree/json-forms-tree-widget';
 
-function createJsonFormsTreeContainer(parent: interfaces.Container): Container {
+function createJsonFormsTreeContainer(
+    parent: interfaces.Container,
+    labelProvider: interfaces.Newable<JsonFormsTree.LabelProvider>,
+    nodeFactory: interfaces.Newable<JsonFormsTree.NodeFactory>
+): Container {
     const child = createTreeContainer(parent);
+
+    // bind the given label provider and node factory in the child container to inject them into the tree
+    child.bind(JsonFormsTree.LabelProvider).to(labelProvider);
+    child.bind(JsonFormsTree.NodeFactory).to(nodeFactory);
 
     child.unbind(TreeWidget);
     child.bind(JsonFormsTreeWidget).toSelf();
@@ -37,9 +46,11 @@ export const JSON_FORMS_TREE_PROPS = <TreeProps>{
 };
 
 export function createJsonFormsTreeWidget(
-    parent: interfaces.Container
+    parent: interfaces.Container,
+    labelProvider: interfaces.Newable<JsonFormsTree.LabelProvider>,
+    nodeFactory: interfaces.Newable<JsonFormsTree.NodeFactory>
 ): JsonFormsTreeWidget {
-    return createJsonFormsTreeContainer(parent).get(JsonFormsTreeWidget);
+    return createJsonFormsTreeContainer(parent, labelProvider, nodeFactory).get(JsonFormsTreeWidget);
 }
 
 export function generateAddCommands(modelService: ModelService): Map<string, Map<string, Command>> {

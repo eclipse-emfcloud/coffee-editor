@@ -19,7 +19,6 @@ import { CommandContribution, MenuContribution } from '@theia/core';
 import { LabelProviderContribution, NavigatableWidgetOptions, OpenHandler, WidgetFactory } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib//browser/tree/json-forms-tree';
 import { createJsonFormsTreeWidget } from 'jsonforms-tree-extension/lib//browser/util';
 import { JsonFormsTreeEditorWidgetOptions } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
 import { JSONFormsWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-widget';
@@ -36,22 +35,24 @@ import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 export default new ContainerModule(bind => {
   bind(ModelService).to(CoffeeModelService);
   bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
-  bind(JsonFormsTreeWidget).toDynamicValue(context =>
-    createJsonFormsTreeWidget(context.container)
-  );
   bind(JSONFormsWidget).toSelf();
   bind(OpenHandler).to(CoffeeTreeEditorContribution);
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
   bind(CoffeeTreeEditorWidget).toSelf();
-  bind(JsonFormsTree.LabelProvider).to(CoffeeTreeLabelProvider);
-  bind(JsonFormsTree.NodeFactory).to(CoffeeTreeNodeFactory);
+
+  // bind to self because we use it outside of the editor widget, too.
+  bind(CoffeeTreeLabelProvider).toSelf();
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
     id: CoffeeTreeEditorWidget.WIDGET_ID,
     createWidget: (options: NavigatableWidgetOptions) => {
       const { container } = context;
       const child = container.createChild();
+
+      // Create and bind tree widget only for this editor creation
+      const tree = createJsonFormsTreeWidget(context.container, CoffeeTreeLabelProvider, CoffeeTreeNodeFactory);
+      child.bind(JsonFormsTreeWidget).toConstantValue(tree);
 
       const uri = new URI(options.uri);
       child

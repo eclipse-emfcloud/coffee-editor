@@ -36,21 +36,21 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
         return [];
     }
 
-    mapData(currentData: any, parent?: JsonFormsTree.Node, property?: string, type?: string, index?: number): JsonFormsTree.Node {
-        if (!currentData) {
+    mapData(data: any, parent?: JsonFormsTree.Node, property?: string, indexOrKey?: number | string): JsonFormsTree.Node {
+        if (!data) {
             // sanity check
             this.logger.warn('mapData called without data');
             return undefined;
         }
         const node = {
             ...this.defaultNode(),
-            name: this.labelProvider.getName(currentData),
+            name: this.labelProvider.getName(data),
             parent: parent,
             jsonforms: {
-                type: this.getType(type, currentData),
-                data: currentData,
+                type: this.getType(data.eClass, data),
+                data: data,
                 property: property,
-                index: index !== undefined ? index.toFixed(0) : undefined
+                index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
             }
         };
         // containments
@@ -58,28 +58,29 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
             parent.children.push(node);
             parent.expanded = true;
         }
-        if (currentData.children) {
+        if (data.children) {
             // component types
-            currentData.children.forEach((element, idx) => {
-                this.mapData(element, node, 'children', undefined, idx);
+            data.children.forEach((element, idx) => {
+                this.mapData(element, node, 'children', idx);
             });
         }
-        if (currentData.workflows) {
+        if (data.workflows) {
             // machine type
-            currentData.workflows.forEach((element, idx) => {
-                this.mapData(element, node, 'workflows', CoffeeModel.Type.Workflow, idx);
+            data.workflows.forEach((element, idx) => {
+                element.eClass = CoffeeModel.Type.Workflow;
+                this.mapData(element, node, 'workflows', idx);
             });
         }
-        if (currentData.nodes) {
+        if (data.nodes) {
             // workflow type
-            currentData.nodes.forEach((element, idx) => {
-                this.mapData(element, node, 'nodes', undefined, idx);
+            data.nodes.forEach((element, idx) => {
+                this.mapData(element, node, 'nodes', idx);
             });
         }
-        if (currentData.flows) {
+        if (data.flows) {
             // workflow type
-            currentData.flows.forEach((element, idx) => {
-                this.mapData(element, node, 'flows', undefined, idx);
+            data.flows.forEach((element, idx) => {
+                this.mapData(element, node, 'flows', idx);
             });
         }
         return node;

@@ -20,6 +20,7 @@ import {
   ModelServerCommandUtil,
   ModelServerReferenceDescription,
 } from '@modelserver/theia/lib/common';
+import { TreeNode } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
@@ -149,11 +150,11 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
       this.treeWidget.setData({ error: response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
-          this.getModelIDToRequest() +
-          "' - Status " +
-          response.statusCode +
-          ' ' +
-          response.statusMessage
+        this.getModelIDToRequest() +
+        "' - Status " +
+        response.statusCode +
+        ' ' +
+        response.statusMessage
       );
       this.instanceData = undefined;
       return;
@@ -195,11 +196,11 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     );
     this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
   }
-  protected addNode({ node, eClass, property }: AddCommandProperty): void {
+  protected addNode({ node, type, property }: AddCommandProperty): void {
     const addCommand = ModelServerCommandUtil.createAddCommand(
       this.getNodeDescription(node),
       property,
-      [{ eClass }]
+      [{ eClass: type }]
     );
     this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
   }
@@ -209,17 +210,18 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     super.dispose();
   }
 
-  protected handleFormUpdate(data: any, node: ModelServerReferenceDescription) {
+  protected handleFormUpdate(data: any, node: JsonFormsTree.Node) {
+    const modelServerNode = this.getNodeDescription(node);
     Object.keys(data)
       .filter(key => key !== 'eClass')
       .forEach(key => {
         if (
           data[key] instanceof Object &&
-          !isEqual(this.selectedNode.jsonforms.data[key], data[key])
+          !isEqual(node.jsonforms.data[key], data[key])
         ) {
           const eClass = data[key].eClass || this.getEClassFromKey(key);
           const setCommand = ModelServerCommandUtil.createSetCommand(
-            node,
+            modelServerNode,
             key,
             []
           );
@@ -231,13 +233,40 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
           this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
         } else {
           const setCommand = ModelServerCommandUtil.createSetCommand(
-            node,
+            modelServerNode,
             key,
             [data[key]]
           );
           this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
         }
       });
+  }
+
+  /**
+   * Create the corresponding ModelServerReferenceDescription for the given tree node.
+   * @param node The tree node to convert
+   */
+  protected getNodeDescription(node: JsonFormsTree.Node): ModelServerReferenceDescription {
+    const getRefSegment = (n: JsonFormsTree.Node) =>
+      n.jsonforms.property
+        ? `@${n.jsonforms.property}` +
+        (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
+        : '';
+    let refToNode = '';
+    let toCheck: TreeNode = node;
+    while (toCheck && JsonFormsTree.Node.is(toCheck)) {
+      const parentRefSeg = getRefSegment(toCheck);
+      refToNode =
+        parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
+      toCheck = toCheck.parent;
+    }
+    const ownerRef = `${
+      this.workspaceService.workspace.uri
+      }/${this.getModelIDToRequest()}#/${refToNode}`;
+    return {
+      eClass: node.jsonforms.type,
+      $ref: ownerRef.replace('file:///', 'file:/')
+    };
   }
 }
 export namespace CoffeeTreeEditorWidget {
