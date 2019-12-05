@@ -16,7 +16,7 @@
 import { Command, CommandHandler } from '@theia/core';
 import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
+import { TreeEditor } from 'jsonforms-tree-extension';
 
 import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
@@ -57,20 +57,20 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     return undefined;
   }
 
-  getSelectedWorkflow(widget: CoffeeTreeEditorWidget): JsonFormsTree.Node | undefined {
-    if (widget && JsonFormsTree.Node.hasType(widget.selectedNode, CoffeeModel.Type.Workflow)) {
+  getSelectedWorkflow(widget: CoffeeTreeEditorWidget): TreeEditor.Node | undefined {
+    if (widget && TreeEditor.Node.hasType(widget.selectedNode, CoffeeModel.Type.Workflow)) {
       return widget.selectedNode;
     }
     return undefined;
   }
 
   getNotationUri(widget: CoffeeTreeEditorWidget): URI {
-    const coffeeUri = widget.uri();
+    const coffeeUri = widget.uri;
     const coffeeNotationUri = coffeeUri.parent.resolve(coffeeUri.displayName + 'notation');
     return coffeeNotationUri;
   }
 
-  createServerOptions(node: JsonFormsTree.Node) {
+  createServerOptions(node: TreeEditor.Node) {
     return {
       serverOptions: {
         workflowIndex: node.jsonforms.index

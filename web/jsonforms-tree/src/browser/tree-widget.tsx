@@ -22,10 +22,10 @@ import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 import { v4 } from 'uuid';
 
-import { JsonFormsTree } from './json-forms-tree';
+import { TreeEditor } from './interfaces';
 
 export interface AddCommandProperty {
-  node: JsonFormsTree.Node,
+  node: TreeEditor.Node,
   property: string,
   type: string
 }
@@ -33,7 +33,7 @@ export interface AddCommandProperty {
 export interface JsonFormsTreeAnchor {
   x: number,
   y: number,
-  node: JsonFormsTree.Node,
+  node: TreeEditor.Node,
   onClick: (property: string, eClass: string) => void
 }
 
@@ -45,18 +45,18 @@ export namespace JsonFormsTreeContextMenu {
 @injectable()
 export class JsonFormsTreeWidget extends TreeWidget {
   protected onTreeWidgetSelectionEmitter = new Emitter<
-    readonly Readonly<JsonFormsTree.Node>[]
+    readonly Readonly<TreeEditor.Node>[]
   >();
-  protected onDeleteEmitter = new Emitter<Readonly<JsonFormsTree.Node>>();
+  protected onDeleteEmitter = new Emitter<Readonly<TreeEditor.Node>>();
   protected onAddEmitter = new Emitter<Readonly<AddCommandProperty>>();
-  protected data: JsonFormsTree.TreeData;
+  protected data: TreeEditor.TreeData;
 
   constructor(
     @inject(TreeProps) readonly props: TreeProps,
     @inject(TreeModel) readonly model: TreeModel,
     @inject(ContextMenuRenderer) readonly contextMenuRenderer: ContextMenuRenderer,
-    @inject(JsonFormsTree.LabelProvider) readonly labelProvider: JsonFormsTree.LabelProvider,
-    @inject(JsonFormsTree.NodeFactory) protected readonly nodeFactory: JsonFormsTree.NodeFactory
+    @inject(TreeEditor.LabelProvider) readonly labelProvider: TreeEditor.LabelProvider,
+    @inject(TreeEditor.NodeFactory) protected readonly nodeFactory: TreeEditor.NodeFactory
   ) {
     super(props, model, contextMenuRenderer);
     this.id = JsonFormsTreeWidget.WIDGET_ID;
@@ -70,7 +70,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
       parent: undefined,
       visible: false,
       children: []
-    } as JsonFormsTree.RootNode;
+    } as TreeEditor.RootNode;
   }
 
   @postConstruct()
@@ -85,7 +85,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.toDispose.push(
       this.model.onSelectionChanged(e => {
         this.onTreeWidgetSelectionEmitter.fire(e as readonly Readonly<
-          JsonFormsTree.Node
+          TreeEditor.Node
         >[]);
       })
     );
@@ -113,7 +113,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
     props: NodeProps
   ): React.ReactNode {
     const deco = super.renderTailDecorations(node, props);
-    if (!JsonFormsTree.Node.is(node)) {
+    if (!TreeEditor.Node.is(node)) {
       return deco;
     }
 
@@ -143,7 +143,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    * Creates a handler for the delete button of a tree node.
    * @param node The tree node to create a remove handler for
    */
-  private createRemoveHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
+  private createRemoveHandler(node: TreeEditor.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return event => {
       event.stopPropagation();
       const dialog = new ConfirmDialog({
@@ -151,14 +151,14 @@ export class JsonFormsTreeWidget extends TreeWidget {
         msg: 'Are you sure you want to delete the selected node?'
       });
       dialog.open().then(remove => {
-        if (remove && node.parent && node.parent && JsonFormsTree.Node.is(node.parent)) {
+        if (remove && node.parent && node.parent && TreeEditor.Node.is(node.parent)) {
           this.onDeleteEmitter.fire(node);
         }
       });
     };
   }
 
-  private createAddHandler(node: JsonFormsTree.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
+  private createAddHandler(node: TreeEditor.Node): (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void {
     return event => {
       const addHandler = (property: string, eClass: string) => this.onAddEmitter.fire({ node, property, type: eClass });
       const treeAnchor: JsonFormsTreeAnchor = {
@@ -179,39 +179,39 @@ export class JsonFormsTreeWidget extends TreeWidget {
   public selectFirst(): void {
     if (
       this.model.root &&
-      JsonFormsTree.RootNode.is(this.model.root) &&
+      TreeEditor.RootNode.is(this.model.root) &&
       this.model.root.children.length > 0 &&
-      JsonFormsTree.Node.is(this.model.root.children[0])
+      TreeEditor.Node.is(this.model.root.children[0])
     ) {
-      this.model.selectNode(this.model.root.children[0] as JsonFormsTree.Node);
+      this.model.selectNode(this.model.root.children[0] as TreeEditor.Node);
       this.model.refresh();
     }
   }
 
-  public findNode(propIndexPaths: { property: string, index?: string }[]): JsonFormsTree.Node {
-    const rootNode = this.model.root as JsonFormsTree.RootNode;
+  public findNode(propIndexPaths: { property: string, index?: string }[]): TreeEditor.Node {
+    const rootNode = this.model.root as TreeEditor.RootNode;
     return propIndexPaths.reduce((parent, segment) => {
-      const fitting = parent.children.filter(n => JsonFormsTree.Node.is(n) && n.jsonforms.property === segment.property && n.jsonforms.index === segment.index);
-      return fitting[0] as JsonFormsTree.Node;
-    }, rootNode.children[0] as JsonFormsTree.Node);
+      const fitting = parent.children.filter(n => TreeEditor.Node.is(n) && n.jsonforms.property === segment.property && n.jsonforms.index === segment.index);
+      return fitting[0] as TreeEditor.Node;
+    }, rootNode.children[0] as TreeEditor.Node);
   }
 
   public select(paths: string[]): void {
     if (paths.length === 0) {
       return;
     }
-    const rootNode = this.model.root as JsonFormsTree.Node;
-    const toSelect = paths.reduceRight((node, path) => node.children.find(value => value.name === path), rootNode) as JsonFormsTree.Node;
+    const rootNode = this.model.root as TreeEditor.Node;
+    const toSelect = paths.reduceRight((node, path) => node.children.find(value => value.name === path), rootNode) as TreeEditor.Node;
     this.model.selectNode(toSelect);
     this.model.refresh();
   }
 
   get onSelectionChange(): import('@theia/core').Event<
-    readonly Readonly<JsonFormsTree.Node>[]
+    readonly Readonly<TreeEditor.Node>[]
     > {
     return this.onTreeWidgetSelectionEmitter.event;
   }
-  get onDelete(): import('@theia/core').Event<Readonly<JsonFormsTree.Node>> {
+  get onDelete(): import('@theia/core').Event<Readonly<TreeEditor.Node>> {
     return this.onDeleteEmitter.event;
   }
   get onAdd(): import('@theia/core').Event<Readonly<AddCommandProperty>> {
@@ -219,7 +219,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected async refreshModelChildren(): Promise<void> {
-    if (this.model.root && JsonFormsTree.RootNode.is(this.model.root)) {
+    if (this.model.root && TreeEditor.RootNode.is(this.model.root)) {
       const newTree =
         !this.data || this.data.error ? [] : this.nodeFactory.mapDataToNodes(this.data);
       this.model.root.children = newTree;
@@ -228,7 +228,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected defaultNode(): Pick<
-    JsonFormsTree.Node,
+    TreeEditor.Node,
     'id' | 'expanded' | 'selected' | 'parent' | 'decorationData' | 'children'
   > {
     return {
@@ -242,7 +242,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   }
 
   protected isExpandable(node: TreeNode): node is ExpandableTreeNode {
-    return JsonFormsTree.Node.is(node) && node.children.length > 0;
+    return TreeEditor.Node.is(node) && node.children.length > 0;
   }
 
   protected renderIcon(node: TreeNode): React.ReactNode {
@@ -258,7 +258,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    * Note that this method will only work properly if only data relevant for this node was changed.
    * If data of the subtree was changed too please call updateDataForSubtree instead.
    */
-  public updateDataForNode(node: JsonFormsTree.Node, data: any) {
+  public updateDataForNode(node: TreeEditor.Node, data: any) {
     Object.assign(node.jsonforms.data, data);
     const newName = this.labelProvider.getName(data);
     if (node.name !== newName) {
@@ -270,7 +270,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
   /**
    * Updates the data of the given node and recreates its whole subtree. Refreshes the tree.
    */
-  public updateDataForSubtree(node: JsonFormsTree.Node, data: any) {
+  public updateDataForSubtree(node: TreeEditor.Node, data: any) {
     Object.assign(node.jsonforms.data, data);
     const newNode = this.nodeFactory.mapData(data);
     node.name = newNode.name;
@@ -285,7 +285,7 @@ export class JsonFormsTreeWidget extends TreeWidget {
    * @param data The data array to generate the new tree nodes from
    * @param property The property of the parent data which will contain the new nodes.
    */
-  public addChildren(node: JsonFormsTree.Node, data: any[], property: string) {
+  public addChildren(node: TreeEditor.Node, data: any[], property: string) {
     const currentValue = node.jsonforms.data[property];
     let index = 0;
     if (Array.isArray(currentValue)) {
@@ -296,9 +296,9 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.model.refresh();
   }
 
-  public removeChildren(node: JsonFormsTree.Node, indices: number[], property: string) {
+  public removeChildren(node: TreeEditor.Node, indices: number[], property: string) {
     const toDelete = node.children.filter(n =>
-      JsonFormsTree.Node.is(n) &&
+      TreeEditor.Node.is(n) &&
       n.jsonforms.property === property &&
       indices.includes(Number(n.jsonforms.index))
     ).map(n => node.children.indexOf(n));
@@ -306,10 +306,10 @@ export class JsonFormsTreeWidget extends TreeWidget {
     this.updateIndex(node, property);
     this.model.refresh();
   }
-  private updateIndex(node: JsonFormsTree.Node, property: string) {
+  private updateIndex(node: TreeEditor.Node, property: string) {
     let realIndex = 0;
     node.children.forEach((n, i) => {
-      if (JsonFormsTree.Node.is(n) && n.jsonforms.property === property) {
+      if (TreeEditor.Node.is(n) && n.jsonforms.property === property) {
         n.jsonforms.index = realIndex.toString();
         realIndex++;
       }

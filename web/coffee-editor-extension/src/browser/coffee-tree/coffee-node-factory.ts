@@ -15,20 +15,20 @@
  */
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
+import { TreeEditor } from 'jsonforms-tree-extension';
 import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';
 
 @injectable()
-export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
+export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     constructor(
-        @inject(JsonFormsTree.LabelProvider) private readonly labelProvider: JsonFormsTree.LabelProvider,
+        @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 
-    mapDataToNodes(treeData: JsonFormsTree.TreeData): JsonFormsTree.Node[] {
+    mapDataToNodes(treeData: TreeEditor.TreeData): TreeEditor.Node[] {
         const node = this.mapData(treeData.data);
         if (node) {
             return [node];
@@ -36,7 +36,7 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
         return [];
     }
 
-    mapData(data: any, parent?: JsonFormsTree.Node, property?: string, indexOrKey?: number | string): JsonFormsTree.Node {
+    mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string): TreeEditor.Node {
         if (!data) {
             // sanity check
             this.logger.warn('mapData called without data');
@@ -86,12 +86,12 @@ export class CoffeeTreeNodeFactory implements JsonFormsTree.NodeFactory {
         return node;
     }
 
-    hasCreatableChildren(node: JsonFormsTree.Node): boolean {
+    hasCreatableChildren(node: TreeEditor.Node): boolean {
         return node ? CoffeeModel.childrenMapping.get(node.jsonforms.type) !== undefined : false;
     }
 
     protected defaultNode(): Pick<
-        JsonFormsTree.Node,
+        TreeEditor.Node,
         'id' | 'expanded' | 'selected' | 'parent' | 'decorationData' | 'children'
     > {
         return {

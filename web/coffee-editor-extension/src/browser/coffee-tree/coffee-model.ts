@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import URI from '@theia/core/lib/common/uri';
-import { ChildrenDescriptor } from 'jsonforms-tree-extension/lib/browser/model-service';
+import { TreeEditor } from 'jsonforms-tree-extension';
 
 export namespace CoffeeModel {
     export namespace Type {
@@ -69,7 +69,7 @@ export namespace CoffeeModel {
     ];
 
     /** Maps types to their creatable children */
-    export const childrenMapping: Map<string, ChildrenDescriptor[]> = new Map([
+    export const childrenMapping: Map<string, TreeEditor.ChildrenDescriptor[]> = new Map([
         [
             Type.BrewingUnit, [
                 {

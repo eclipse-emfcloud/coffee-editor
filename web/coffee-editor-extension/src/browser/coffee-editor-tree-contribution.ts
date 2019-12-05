@@ -14,15 +14,17 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { CommandRegistry, MenuModelRegistry } from '@theia/core';
-import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
+import { ApplicationShell, NavigatableWidgetOptions, OpenerService, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
-import { JsonFormsTreeEditorWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
-import { JsonFormsTreeEditorContribution } from 'jsonforms-tree-extension/lib/browser/json-forms-tree-contribution';
-import { ModelService } from 'jsonforms-tree-extension/lib/browser/model-service';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
-import { JsonFormsTreeContextMenu } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree-widget';
+import {
+  JsonFormsTreeContextMenu,
+  JsonFormsTreeEditorContribution,
+  JsonFormsTreeEditorWidget,
+  TreeEditor,
+} from 'jsonforms-tree-extension';
 
+import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
 import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
 import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider';
@@ -33,8 +35,8 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
   @inject(OpenerService) protected opener: OpenerService;
 
   constructor(
-    @inject(CoffeeTreeLabelProvider) labelProvider: JsonFormsTree.LabelProvider,
-    @inject(ModelService) modelService: ModelService
+    @inject(CoffeeTreeLabelProvider) labelProvider: TreeEditor.LabelProvider,
+    @inject(CoffeeModelService) modelService: TreeEditor.ModelService
   ) {
     super(modelService, labelProvider);
   }
@@ -66,6 +68,17 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
     });
 
     super.registerMenus(menus);
+  }
+
+  protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): NavigatableWidgetOptions {
+    return {
+      kind: 'navigatable',
+      uri: this.serializeUri(uri)
+    };
+  }
+
+  protected serializeUri(uri: URI): string {
+    return uri.withoutFragment().toString();
   }
 
 }

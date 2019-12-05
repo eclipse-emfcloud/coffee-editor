@@ -15,28 +15,12 @@
  */
 import { Command } from '@theia/core';
 import { createTreeContainer, defaultTreeProps, TreeProps, TreeWidget } from '@theia/core/lib/browser/tree';
-import { Container, interfaces } from 'inversify';
+import { interfaces } from 'inversify';
 
-import { ChildrenDescriptor, ModelService } from './model-service';
-import { JsonFormsTree } from './tree/json-forms-tree';
-import { JsonFormsTreeContextMenu, JsonFormsTreeWidget } from './tree/json-forms-tree-widget';
-
-function createJsonFormsTreeContainer(
-    parent: interfaces.Container,
-    labelProvider: interfaces.Newable<JsonFormsTree.LabelProvider>,
-    nodeFactory: interfaces.Newable<JsonFormsTree.NodeFactory>
-): Container {
-    const child = createTreeContainer(parent);
-
-    // bind the given label provider and node factory in the child container to inject them into the tree
-    child.bind(JsonFormsTree.LabelProvider).to(labelProvider);
-    child.bind(JsonFormsTree.NodeFactory).to(nodeFactory);
-
-    child.unbind(TreeWidget);
-    child.bind(JsonFormsTreeWidget).toSelf();
-    child.rebind(TreeProps).toConstantValue(JSON_FORMS_TREE_PROPS);
-    return child;
-}
+import { TreeEditor } from './interfaces';
+import { JSONFormsWidget } from './json-forms-widget';
+import { JsonFormsTreeEditorWidget } from './tree-editor-widget';
+import { JsonFormsTreeContextMenu, JsonFormsTreeWidget } from './tree-widget';
 
 export const JSON_FORMS_TREE_PROPS = <TreeProps>{
     ...defaultTreeProps,
@@ -45,27 +29,62 @@ export const JSON_FORMS_TREE_PROPS = <TreeProps>{
     search: false
 };
 
-export function createJsonFormsTreeWidget(
-    parent: interfaces.Container,
-    labelProvider: interfaces.Newable<JsonFormsTree.LabelProvider>,
-    nodeFactory: interfaces.Newable<JsonFormsTree.NodeFactory>
+function createJsonFormsTreeWidget(
+    parent: interfaces.Container
 ): JsonFormsTreeWidget {
-    return createJsonFormsTreeContainer(parent, labelProvider, nodeFactory).get(JsonFormsTreeWidget);
+    const treeContainer = createTreeContainer(parent);
+
+    treeContainer.unbind(TreeWidget);
+    treeContainer.bind(JsonFormsTreeWidget).toSelf();
+    treeContainer.rebind(TreeProps).toConstantValue(JSON_FORMS_TREE_PROPS);
+    return treeContainer.get(JsonFormsTreeWidget);
 }
 
-export function generateAddCommands(modelService: ModelService): Map<string, Map<string, Command>> {
-    const creatableTypes: Set<ChildrenDescriptor> = Array.from(modelService.getChildrenMapping(), ([_key, value]) => value)
+/**
+ * Creates a new inversify container to create tree editor widgets using the given customizations.
+ * If further services are needed than the given ones, these must either be bound in the parent container
+ * or to the returned container before a tree editor widget is requested.
+ *
+ * Note that this method does not create a singletion tree editor but returns a new instance whenever an instace is requested.
+ *
+ * @param parent The parent inversify container
+ * @param treeEditorWidget The concrete tree editor widget to create
+ * @param modelService The tree editor's model service
+ * @param labelProvider The tree editor's label provider
+ * @param nodeFactory The tree editor's node factory
+ */
+export function createBasicTreeContainter(
+    parent: interfaces.Container,
+    treeEditorWidget: interfaces.Newable<JsonFormsTreeEditorWidget>,
+    modelService: interfaces.Newable<TreeEditor.ModelService>,
+    labelProvider: interfaces.Newable<TreeEditor.LabelProvider>,
+    nodeFactory: interfaces.Newable<TreeEditor.NodeFactory>): interfaces.Container {
+
+    const container = parent.createChild();
+    container.bind(TreeEditor.ModelService).to(modelService);
+    container.bind(TreeEditor.LabelProvider).to(labelProvider);
+    container.bind(TreeEditor.NodeFactory).to(nodeFactory);
+    container.bind(JSONFormsWidget).toSelf();
+    container.bind(JsonFormsTreeWidget).toDynamicValue(context =>
+        createJsonFormsTreeWidget(context.container));
+    container.bind(treeEditorWidget).toSelf();
+
+    return container;
+}
+
+export function generateAddCommands(modelService: TreeEditor.ModelService): Map<string, Map<string, Command>> {
+    const creatableTypes: Set<TreeEditor.ChildrenDescriptor> = Array.from(modelService.getChildrenMapping(), ([_key, value]) => value)
         // get flat array of child descriptors
         .reduce((acc, val) => acc.concat(val), [])
         // unify by adding to set
-        .reduce((acc, val) => acc.add(val), new Set<ChildrenDescriptor>());
+        .reduce((acc, val) => acc.add(val), new Set<TreeEditor.ChildrenDescriptor>());
 
     // Create a command for every eclass which can be added to at least one model object
     const commandMap: Map<string, Map<string, Command>> = new Map();
     Array.from(creatableTypes).forEach(desc => {
         const classCommandMap: Map<string, Command> = new Map();
         desc.children.forEach(eclass => {
-            const name = modelService.getNameFromEClass(eclass);
+            const name = modelService.getNameForType(eclass);
             const command = {
                 id: 'json-forms-tree.add.' + name,
                 label: name

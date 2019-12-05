@@ -21,18 +21,17 @@ import {
     MenuContribution,
     MenuModelRegistry,
 } from '@theia/core';
-import { NavigatableWidgetOpenHandler } from '@theia/core/lib/browser';
+import { WidgetOpenHandler } from '@theia/core/lib/browser';
 
-import { JsonFormsTreeEditorWidget } from './editor/json-forms-tree-editor-widget';
-import { ModelService } from './model-service';
-import { JsonFormsTree } from './tree/json-forms-tree';
-import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './tree/json-forms-tree-widget';
+import { TreeEditor } from './interfaces';
+import { JsonFormsTreeEditorWidget } from './tree-editor-widget';
+import { JsonFormsTreeAnchor, JsonFormsTreeContextMenu } from './tree-widget';
 import { generateAddCommands } from './util';
 
-export abstract class JsonFormsTreeEditorContribution extends NavigatableWidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
+export abstract class JsonFormsTreeEditorContribution extends WidgetOpenHandler<JsonFormsTreeEditorWidget> implements CommandContribution, MenuContribution {
     private commandMap: Map<string, Map<string, Command>>;
 
-    constructor(private modelService: ModelService, private labelProvider: JsonFormsTree.LabelProvider) {
+    constructor(private modelService: TreeEditor.ModelService, private labelProvider: TreeEditor.LabelProvider) {
         super();
     }
     /**
@@ -64,11 +63,14 @@ export abstract class JsonFormsTreeEditorContribution extends NavigatableWidgetO
 
 class AddCommandHandler implements CommandHandler {
 
-    constructor(private readonly property: string, private readonly eclass: string, private modelService: ModelService) {
+    constructor(
+        private readonly property: string,
+        private readonly type: string,
+        private modelService: TreeEditor.ModelService) {
     }
 
     execute(treeAnchor: JsonFormsTreeAnchor) {
-        treeAnchor.onClick(this.property, this.eclass);
+        treeAnchor.onClick(this.property, this.type);
     }
 
     isVisible(treeAnchor: JsonFormsTreeAnchor): boolean {
@@ -79,6 +81,6 @@ class AddCommandHandler implements CommandHandler {
             .map(desc => desc.children)
             .reduce((acc, val) => acc.concat(val), [])
             .reduce((acc, val) => acc.add(val), new Set<string>())
-            .has(this.eclass);
+            .has(this.type);
     }
 }

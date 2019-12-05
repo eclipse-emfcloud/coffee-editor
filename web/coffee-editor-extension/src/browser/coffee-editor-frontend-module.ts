@@ -19,11 +19,7 @@ import { CommandContribution, MenuContribution } from '@theia/core';
 import { LabelProviderContribution, NavigatableWidgetOptions, OpenHandler, WidgetFactory } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
-import { createJsonFormsTreeWidget } from 'jsonforms-tree-extension/lib//browser/util';
-import { JsonFormsTreeEditorWidgetOptions } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
-import { JSONFormsWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-widget';
-import { ModelService } from 'jsonforms-tree-extension/lib/browser/model-service';
-import { JsonFormsTreeWidget } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree-widget';
+import { createBasicTreeContainter, NavigatableTreeEditorOptions } from 'jsonforms-tree-extension';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
@@ -33,37 +29,33 @@ import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provide
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 
 export default new ContainerModule(bind => {
-  bind(ModelService).to(CoffeeModelService);
+  // Bind Theia IDE contributions
   bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
-  bind(JSONFormsWidget).toSelf();
   bind(OpenHandler).to(CoffeeTreeEditorContribution);
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
-  bind(CoffeeTreeEditorWidget).toSelf();
 
-  // bind to self because we use it outside of the editor widget, too.
+  // bind to themselves because we use it outside of the editor widget, too.
+  bind(CoffeeModelService).toSelf();
   bind(CoffeeTreeLabelProvider).toSelf();
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
     id: CoffeeTreeEditorWidget.WIDGET_ID,
     createWidget: (options: NavigatableWidgetOptions) => {
-      const { container } = context;
-      const child = container.createChild();
 
-      // Create and bind tree widget only for this editor creation
-      const tree = createJsonFormsTreeWidget(context.container, CoffeeTreeLabelProvider, CoffeeTreeNodeFactory);
-      child.bind(JsonFormsTreeWidget).toConstantValue(tree);
+      const treeContainer = createBasicTreeContainter(
+        context.container,
+        CoffeeTreeEditorWidget,
+        CoffeeModelService,
+        CoffeeTreeLabelProvider,
+        CoffeeTreeNodeFactory
+      );
 
+      // Bind options
       const uri = new URI(options.uri);
-      child
-        .bind<JsonFormsTreeEditorWidgetOptions>(
-          JsonFormsTreeEditorWidgetOptions
-        )
-        .toConstantValue({
-          uri: uri
-        });
+      treeContainer.bind(NavigatableTreeEditorOptions).toConstantValue({ uri });
 
-      return child.get(CoffeeTreeEditorWidget);
+      return treeContainer.get(CoffeeTreeEditorWidget);
     }
   }));
 });
