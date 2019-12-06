@@ -68,7 +68,7 @@ export default new ContainerModule(bind => {
 
       // Our example tree editor needs additional options. So, we bind them in the container created before
       const uri = new URI(options.uri);
-      treeContainer.bind(JsonFormsTreeEditorWidgetOptions).toConstantValue({ uri });
+      treeContainer.bind(NavigatableTreeEditorWidgetOptions).toConstantValue({ uri });
 
       // Finally, we create a new editor by telling the container to retrieve an instance of our editor implementation
       return treeContainer.get(MyTreeEditorWidget);
