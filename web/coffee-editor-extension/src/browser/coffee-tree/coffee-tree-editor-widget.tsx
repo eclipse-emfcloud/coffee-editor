@@ -20,27 +20,26 @@ import {
   ModelServerCommandUtil,
   ModelServerReferenceDescription,
 } from '@modelserver/theia/lib/common';
-import { TreeNode } from '@theia/core/lib/browser';
+import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
-import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
 import { inject, injectable } from 'inversify';
 import {
+  AddCommandProperty,
   JsonFormsTreeEditorWidget,
-  JsonFormsTreeEditorWidgetOptions,
-} from 'jsonforms-tree-extension/lib/browser/editor/json-forms-tree-editor-widget';
-import { JSONFormsWidget } from 'jsonforms-tree-extension/lib/browser/editor/json-forms-widget';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
-import { AddCommandProperty, JsonFormsTreeWidget } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree-widget';
+  JsonFormsTreeWidget,
+  JSONFormsWidget,
+  NavigatableTreeEditorOptions,
+  NavigatableTreeEditorWidget,
+  TreeEditor,
+} from 'jsonforms-tree-extension';
 import { clone, isEqual } from 'lodash';
 
 import { CoffeeModel } from './coffee-model';
 
 @injectable()
-export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
+export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
   constructor(
-    @inject(JsonFormsTreeEditorWidgetOptions)
-    readonly options: JsonFormsTreeEditorWidgetOptions,
     @inject(JsonFormsTreeWidget)
     readonly treeWidget: JsonFormsTreeWidget,
     @inject(JSONFormsWidget)
@@ -48,18 +47,20 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     @inject(WorkspaceService)
     readonly workspaceService: WorkspaceService,
     @inject(ILogger) readonly logger: ILogger,
+    @inject(NavigatableTreeEditorOptions)
+    protected readonly options: NavigatableTreeEditorOptions,
     @inject(ModelServerClient)
     private readonly modelServerApi: ModelServerClient,
     @inject(ModelServerSubscriptionService)
     private readonly subscriptionService: ModelServerSubscriptionService
   ) {
     super(
-      options,
       treeWidget,
       formWidget,
       workspaceService,
       logger,
-      CoffeeTreeEditorWidget.WIDGET_ID
+      CoffeeTreeEditorWidget.WIDGET_ID,
+      options
     );
     this.subscriptionService.onDirtyStateListener(dirtyState => {
       this.dirty = dirtyState;
@@ -175,9 +176,6 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     paths.splice(paths.length - 1, 1);
     return paths;
   }
-  public uri(): URI {
-    return this.options.uri;
-  }
 
   public save(): void {
     this.logger.info('Save data to server');
@@ -188,9 +186,9 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     return CoffeeModel.Type[key[0].toUpperCase() + key.slice(1)];
   }
 
-  protected deleteNode(node: Readonly<JsonFormsTree.Node>): void {
+  protected deleteNode(node: Readonly<TreeEditor.Node>): void {
     const removeCommand = ModelServerCommandUtil.createRemoveCommand(
-      this.getNodeDescription(node.parent as JsonFormsTree.Node),
+      this.getNodeDescription(node.parent as TreeEditor.Node),
       node.jsonforms.property,
       node.jsonforms.index ? [Number(node.jsonforms.index)] : []
     );
@@ -210,7 +208,7 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
     super.dispose();
   }
 
-  protected handleFormUpdate(data: any, node: JsonFormsTree.Node) {
+  protected handleFormUpdate(data: any, node: TreeEditor.Node) {
     const modelServerNode = this.getNodeDescription(node);
     Object.keys(data)
       .filter(key => key !== 'eClass')
@@ -246,15 +244,15 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
    * Create the corresponding ModelServerReferenceDescription for the given tree node.
    * @param node The tree node to convert
    */
-  protected getNodeDescription(node: JsonFormsTree.Node): ModelServerReferenceDescription {
-    const getRefSegment = (n: JsonFormsTree.Node) =>
+  protected getNodeDescription(node: TreeEditor.Node): ModelServerReferenceDescription {
+    const getRefSegment = (n: TreeEditor.Node) =>
       n.jsonforms.property
         ? `@${n.jsonforms.property}` +
         (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
         : '';
     let refToNode = '';
     let toCheck: TreeNode = node;
-    while (toCheck && JsonFormsTree.Node.is(toCheck)) {
+    while (toCheck && TreeEditor.Node.is(toCheck)) {
       const parentRefSeg = getRefSegment(toCheck);
       refToNode =
         parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
@@ -267,6 +265,20 @@ export class CoffeeTreeEditorWidget extends JsonFormsTreeEditorWidget {
       eClass: node.jsonforms.type,
       $ref: ownerRef.replace('file:///', 'file:/')
     };
+  }
+
+  private getModelIDToRequest(): string {
+    const rootUriLength = this.workspaceService
+      .getWorkspaceRootUri(this.options.uri)
+      .toString().length;
+    return this.options.uri.toString().substring(rootUriLength + 1);
+  }
+
+  protected configureTitle(title: Title<Widget>): void {
+    title.label = this.options.uri.path.base;
+    title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
+    title.closable = true;
+    title.iconClass = 'fa coffee-icon dark-purple';
   }
 }
 export namespace CoffeeTreeEditorWidget {

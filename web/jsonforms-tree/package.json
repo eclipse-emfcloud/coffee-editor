@@ -1,6 +1,8 @@
 {
   "name": "jsonforms-tree-extension",
   "version": "0.1.0",
+  "main": "lib/browser/index.js",
+  "typings": "lib/browser/index.d.ts",
   "files": [
     "lib",
     "src"

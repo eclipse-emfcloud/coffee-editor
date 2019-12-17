@@ -13,21 +13,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { JsonSchema, UISchemaElement } from '@jsonforms/core';
+export * from './interfaces';
+export * from './json-forms-widget';
+export * from './tree-editor-contribution';
+export * from './tree-editor-widget';
+export * from './tree-widget';
+export * from './util';
 
-import { JsonFormsTree } from './tree/json-forms-tree';
-
-export interface ChildrenDescriptor {
-    property: string;
-    children: string[];
-}
-
-export const ModelService = Symbol('JsonFormsModelService');
-
-export interface ModelService {
-    getEClassFromKey(key: string): string;
-    getSchemaForNode(node: JsonFormsTree.Node): JsonSchema;
-    getUiSchemaForNode(node: JsonFormsTree.Node): UISchemaElement;
-    getChildrenMapping(): Map<string, ChildrenDescriptor[]>;
-    getNameFromEClass(eClass: string): string;
-}
+export * from './navigatable-tree-editor-widget';

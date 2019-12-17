@@ -16,7 +16,7 @@
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
+import { TreeEditor } from 'jsonforms-tree-extension';
 
 import { CoffeeModel } from './coffee-model';
 
@@ -50,13 +50,13 @@ const ICON_CLASSES: Map<string, string> = new Map([
 const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
-export class CoffeeTreeLabelProvider implements JsonFormsTree.LabelProvider {
+export class CoffeeTreeLabelProvider implements TreeEditor.LabelProvider {
 
   public getIconClass(node: TreeNode | string): string {
     let iconClass: string;
     if (typeof node === 'string') {
       iconClass = ICON_CLASSES.get(node);
-    } else if (JsonFormsTree.Node.is(node)) {
+    } else if (TreeEditor.Node.is(node)) {
       iconClass = ICON_CLASSES.get(node.jsonforms.type);
       if (!iconClass && node.jsonforms.property === 'flows') {
         iconClass = ICON_CLASSES.get(CoffeeModel.Type.Flow);

@@ -13,27 +13,22 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { BaseWidget, Message, Navigatable, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
+import { Title } from '@phosphor/widgets';
+import { BaseWidget, Message, Saveable, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
-import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
+import { injectable, postConstruct } from 'inversify';
 import { debounce, isEqual } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { JsonFormsTree } from '../tree/json-forms-tree';
-import { AddCommandProperty, JsonFormsTreeWidget } from '../tree/json-forms-tree-widget';
+import { TreeEditor } from './interfaces';
 import { JSONFormsWidget } from './json-forms-widget';
+import { AddCommandProperty, JsonFormsTreeWidget } from './tree-widget';
 
-export const JsonFormsTreeEditorWidgetOptions = Symbol(
-  'JsonFormsTreeEditorWidgetOptions'
-);
-export interface JsonFormsTreeEditorWidgetOptions {
-  uri: URI;
-}
-
+@injectable()
 export abstract class JsonFormsTreeEditorWidget extends BaseWidget
-  implements Navigatable, Saveable {
+  implements Saveable {
   public dirty: boolean = false;
   public autoSave: 'off';
   private splitPanel: SplitPanel;
@@ -43,12 +38,11 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
     return this.onDirtyChangedEmitter.event;
   }
 
-  public selectedNode: JsonFormsTree.Node;
+  public selectedNode: TreeEditor.Node;
 
   protected instanceData: any;
 
   constructor(
-    protected readonly options: JsonFormsTreeEditorWidgetOptions,
     protected readonly treeWidget: JsonFormsTreeWidget,
     protected readonly formWidget: JSONFormsWidget,
     protected readonly workspaceService: WorkspaceService,
@@ -57,7 +51,6 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
   ) {
     super();
     this.id = widget_id;
-    this.setTitle();
     this.splitPanel = new SplitPanel();
     this.addClass('json-forms-tree-editor');
     this.splitPanel.addClass('json-forms-tree-editor-sash');
@@ -87,29 +80,16 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
 
     this.toDispose.push(this.onDirtyChangedEmitter);
   }
-  public uri(): URI {
-    return this.options.uri;
+
+  @postConstruct()
+  protected init(): void {
+    this.configureTitle(this.title);
   }
 
   protected onResize(_msg: any) {
     if (this.splitPanel) {
       this.splitPanel.update();
     }
-  }
-
-  getModelIDToRequest(): string {
-    const rootUriLength = this.workspaceService
-      .getWorkspaceRootUri(this.options.uri)
-      .toString().length;
-    return this.options.uri.toString().substring(rootUriLength + 1);
-  }
-
-  getResourceUri(): URI | undefined {
-    return this.options.uri;
-  }
-
-  createMoveToUri(resourceUri: URI): URI | undefined {
-    return this.options.uri && this.options.uri.withPath(resourceUri.path);
   }
 
   protected renderError(errorMessage: string): void {
@@ -120,7 +100,7 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   protected treeSelectionChanged(
-    selectedNodes: readonly Readonly<JsonFormsTree.Node>[]
+    selectedNodes: readonly Readonly<TreeEditor.Node>[]
   ) {
     if (selectedNodes.length === 0) {
       this.selectedNode = undefined;
@@ -131,7 +111,19 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
     this.update();
   }
 
-  protected abstract deleteNode(node: Readonly<JsonFormsTree.Node>): void;
+  /**
+   * Delete the given node including its associated data from the tree.
+   *
+   * @param node The tree node to delete
+   */
+  protected abstract deleteNode(node: Readonly<TreeEditor.Node>): void;
+
+  /**
+   * Add a node to the tree.
+   * @param node The tree node to add
+   * @param type The type of the node's data
+   * @param property The property containing the node's data
+   */
   protected abstract addNode({
     node,
     type,
@@ -154,26 +146,28 @@ export abstract class JsonFormsTreeEditorWidget extends BaseWidget
   }
 
   /**
-   * Updates the data of a tree node.
+   * Called when the data in the detail was changed.
+   * Whether you need to manually apply the change to the tree node's referenced data
+   * depends on your implementation of method 'getDataForNode' of your ModelService.
    *
    * @param data The new data for the node
    * @param node The tree node whose data will be updated
    */
   protected abstract handleFormUpdate(
     data: any,
-    node: JsonFormsTree.Node
+    node: TreeEditor.Node
   ): void;
 
   public save(): void {
     // do nothing by default
   }
 
-  protected setTitle(): void {
-    this.title.label = this.options.uri.path.base;
-    this.title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
-    this.title.closable = true;
-    this.title.iconClass = 'fa coffee-icon dark-purple';
-  }
+  /**
+   * Configure this editor's title tab by configuring the given Title object.
+   *
+   * @param title The title object configuring this editor's title tab in Theia
+   */
+  protected abstract configureTitle(title: Title<Widget>): void;
 }
 
 export namespace JsonFormsTreeEditorWidget {

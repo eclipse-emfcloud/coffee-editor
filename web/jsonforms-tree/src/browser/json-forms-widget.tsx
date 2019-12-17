@@ -24,17 +24,16 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 
-import { ModelService } from '../model-service';
-import { JsonFormsTree } from '../tree/json-forms-tree';
+import { TreeEditor } from './interfaces';
 
 @injectable()
 export class JSONFormsWidget extends BaseWidget {
-  private selectedNode: JsonFormsTree.Node;
+  private selectedNode: TreeEditor.Node;
   private store: any;
 
   protected changeEmitter = new Emitter<Readonly<any>>();
 
-  constructor(@inject(ModelService) private readonly modelService: ModelService) {
+  constructor(@inject(TreeEditor.ModelService) private readonly modelService: TreeEditor.ModelService) {
     super();
 
     this.store = this.initStore();
@@ -62,12 +61,12 @@ export class JSONFormsWidget extends BaseWidget {
     );
   }
 
-  setSelection(selectedNode: JsonFormsTree.Node) {
+  setSelection(selectedNode: TreeEditor.Node) {
     this.selectedNode = selectedNode;
 
     this.store.dispatch(
       Actions.init(
-        this.selectedNode.jsonforms.data,
+        this.modelService.getDataForNode(this.selectedNode),
         this.modelService.getSchemaForNode(this.selectedNode),
         this.modelService.getUiSchemaForNode(this.selectedNode),
         {

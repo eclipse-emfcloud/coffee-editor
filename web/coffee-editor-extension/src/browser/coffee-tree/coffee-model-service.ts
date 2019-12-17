@@ -15,8 +15,7 @@
  */
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
-import { ChildrenDescriptor, ModelService } from 'jsonforms-tree-extension/lib/browser/model-service';
-import { JsonFormsTree } from 'jsonforms-tree-extension/lib/browser/tree/json-forms-tree';
+import { TreeEditor } from 'jsonforms-tree-extension';
 
 import { CoffeeModel } from './coffee-model';
 import {
@@ -30,22 +29,22 @@ import {
 } from './coffee-schemas';
 
 @injectable()
-export class CoffeeModelService implements ModelService {
+export class CoffeeModelService implements TreeEditor.ModelService {
 
     constructor(@inject(ILogger) private readonly logger: ILogger) { }
 
-    getEClassFromKey(key: string): string {
-        return CoffeeModel.Type[key[0].toUpperCase() + key.slice(1)];
+    getDataForNode(node: TreeEditor.Node) {
+        return node.jsonforms.data;
     }
 
-    getSchemaForNode(node: JsonFormsTree.Node) {
+    getSchemaForNode(node: TreeEditor.Node) {
         return {
             definitions: coffeeSchema.definitions,
             ...this.getSubSchemaForNode(node)
         };
     }
 
-    private getSubSchemaForNode(node: JsonFormsTree.Node) {
+    private getSubSchemaForNode(node: TreeEditor.Node) {
         const schema = this.getSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -71,7 +70,7 @@ export class CoffeeModelService implements ModelService {
         }
         return schema;
     }
-    getUiSchemaForNode(node: JsonFormsTree.Node) {
+    getUiSchemaForNode(node: TreeEditor.Node) {
         const schema = this.getUiSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -104,11 +103,11 @@ export class CoffeeModelService implements ModelService {
         }
     }
 
-    getChildrenMapping(): Map<string, ChildrenDescriptor[]> {
+    getChildrenMapping(): Map<string, TreeEditor.ChildrenDescriptor[]> {
         return CoffeeModel.childrenMapping;
     }
 
-    getNameFromEClass(eClass: string): string {
+    getNameForType(eClass: string): string {
         return CoffeeModel.Type.name(eClass);
     }
 }
