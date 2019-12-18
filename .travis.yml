@@ -25,7 +25,7 @@ matrix:
       before_install:
         - dpkg --compare-versions `npm -v` ge 5.8 || npm i -g npm@^5.8
       script:
-        - cd web/ && yarn --network-concurrency 1
+        - cd web/ && travis_wait yarn --network-concurrency 1
     - language: java
       jdk: oraclejdk8
       dist: trusty
