@@ -22,7 +22,7 @@ import {
   JsonFormsTreeEditorContribution,
   JsonFormsTreeEditorWidget,
   TreeEditor,
-} from 'jsonforms-tree-extension';
+} from 'theia-tree-editor';
 
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';

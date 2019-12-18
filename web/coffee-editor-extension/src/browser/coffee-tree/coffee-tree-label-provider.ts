@@ -16,7 +16,7 @@
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
-import { TreeEditor } from 'jsonforms-tree-extension';
+import { TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModel } from './coffee-model';
 

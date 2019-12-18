@@ -24,6 +24,7 @@ import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
 import { inject, injectable } from 'inversify';
+import { clone, isEqual } from 'lodash';
 import {
   AddCommandProperty,
   JsonFormsTreeEditorWidget,
@@ -32,8 +33,7 @@ import {
   NavigatableTreeEditorOptions,
   NavigatableTreeEditorWidget,
   TreeEditor,
-} from 'jsonforms-tree-extension';
-import { clone, isEqual } from 'lodash';
+} from 'theia-tree-editor';
 
 import { CoffeeModel } from './coffee-model';
 

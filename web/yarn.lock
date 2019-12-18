@@ -10718,6 +10718,26 @@ textextensions@^2.4.0:
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.5.0.tgz#e21d3831dafa37513dd80666dff541414e314293"
   integrity sha512-1IkVr355eHcomgK7fgj1Xsokturx6L5S2JRT5WcRdA6v5shk9sxWuO/w/VbpQexwkXJMQIa/j1dBi3oo7+HhcA==
 
+theia-tree-editor@latest:
+  version "0.2.0-next.301376d"
+  resolved "https://registry.yarnpkg.com/theia-tree-editor/-/theia-tree-editor-0.2.0-next.301376d.tgz#5b126dd0d7c14aa0361115636f4c9559d9de0885"
+  integrity sha512-ombFpjDuAj/4h98SmE0VzWMkEmlbRaOmSBgNj3dLc76SxyTOaOweTQh8pL6ZBt0lsM1hqbr5y7r/WnzXIr7nSQ==
+  dependencies:
+    "@jsonforms/core" "2.3.1"
+    "@jsonforms/material-renderers" "2.3.1"
+    "@jsonforms/react" "2.3.1"
+    "@material-ui/core" "^4.3.0"
+    "@material-ui/icons" "^4.2.0"
+    "@theia/core" "0.7.1"
+    "@theia/filesystem" "0.7.1"
+    "@theia/workspace" "0.7.1"
+    react "^16.4.0"
+    react-dom "^16.4.0"
+    react-redux "^6.0.0"
+    recompose "^0.27.1"
+    redux "^3.7.2"
+    uuid "^3.3.2"
+
 thenify-all@^1.0.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"

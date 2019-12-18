@@ -15,7 +15,7 @@
  */
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
-import { TreeEditor } from 'jsonforms-tree-extension';
+import { TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModel } from './coffee-model';
 import {
