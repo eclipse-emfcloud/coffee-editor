@@ -24,7 +24,7 @@
     "recompose": "^0.27.1",
     "redux": "^3.7.2",
     "uuid": "^3.3.2",
-    "jsonforms-tree-extension": "0.1.0"
+    "theia-tree-editor": "latest"
   },
   "devDependencies": {
     "rimraf": "latest",

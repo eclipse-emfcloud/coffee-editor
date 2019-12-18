@@ -16,7 +16,7 @@
 import { Command, CommandHandler } from '@theia/core';
 import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
-import { TreeEditor } from 'jsonforms-tree-extension';
+import { TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
