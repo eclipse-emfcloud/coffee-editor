@@ -54,8 +54,10 @@ export class PreferencesTreeEditorWidget extends JsonFormsTreeEditorWidget {
 
   protected handleFormUpdate(data: any, node: TreeEditor.Node): void {
     // Set the preference value. This automatically saves the change
-    if (node.jsonforms.data && node.jsonforms.data.name) {
-      this.provider.setPreference(node.jsonforms.data.name, data);
+    if (data && node.jsonforms.data) {
+      Object.keys(node.jsonforms.data.properties).forEach(key => {
+        this.provider.setPreference(node.name + '.' + key, data[key]);
+      });
     }
   }
 

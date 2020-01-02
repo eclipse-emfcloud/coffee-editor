@@ -17,10 +17,10 @@ import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import { injectable } from 'inversify';
 import { TreeEditor } from 'theia-tree-editor';
 
-const DEFAULT_COLOR = 'black';
+// const DEFAULT_COLOR = 'black';
 
 /* Icon for unknown types */
-const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
+// const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
 export class PreferencesTreeLabelProvider implements TreeEditor.LabelProvider {
@@ -28,7 +28,8 @@ export class PreferencesTreeLabelProvider implements TreeEditor.LabelProvider {
   public getIconClass(node: TreeNode | string): string {
     // TODO return proper icon
 
-    return 'far ' + UNKNOWN_ICON;
+    // return 'far ' + UNKNOWN_ICON;
+    return 'fa fa-cog black';
   }
 
   public getName(data: any): string {

@@ -23,9 +23,18 @@ export class PreferenceModelService implements TreeEditor.ModelService {
     constructor(@inject(PreferenceProvider) @named(PreferenceScope.User) private provider: PreferenceProvider) { }
 
     getDataForNode(node: TreeEditor.Node): any {
-        const prefName = node.jsonforms.data.name;
-        this.provider.onDidPreferencesChanged(e => console.log(e));
-        return this.provider.get(prefName);
+        // const prefName = node.jsonforms.data.name;
+        // this.provider.onDidPreferencesChanged(e => console.log(e));
+        // return this.provider.getPreferences();
+        const prefs = this.provider.getPreferences();
+        const subPrefs = Object.keys(prefs).filter(key => key.startsWith(node.name))
+            .reduce((acc, key) => {
+                acc[key.substr(node.name.length + 1)] = prefs[key];
+                return acc;
+            }, {});
+        // const result = {};
+        // result[node.name] = subPrefs;
+        return subPrefs;
     }
 
     getSchemaForNode(node: TreeEditor.Node): JsonSchema {
@@ -35,6 +44,13 @@ export class PreferenceModelService implements TreeEditor.ModelService {
 
     getUiSchemaForNode(node: TreeEditor.Node): UISchemaElement {
         // TODO implement method
+        // create custom vertical layout with controls. The scope must be derived from node.name + node.jsonforms.data.properties
+        // const result = Generate.uiSchema(node.jsonforms.data) as VerticalLayout;
+        // result.elements.forEach(e => {
+        //     const control = e as ControlElement;
+        //     control.scope = control.scope.replace('#/properties/', '#/properties/' + node.name + '.');
+        // });
+        // return result;
         return undefined;
     }
 

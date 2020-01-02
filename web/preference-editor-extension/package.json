@@ -11,6 +11,7 @@
   "dependencies": {
     "@jsonforms/core": "2.3.1",
     "@jsonforms/react": "2.3.1",
+    "@jsonforms/vanilla-renderers": "2.3.1",
     "@theia/core": "0.7.1",
     "@theia/filesystem": "0.7.1",
     "@theia/workspace": "0.7.1",

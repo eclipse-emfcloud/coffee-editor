@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ILogger } from '@theia/core';
+import { ILogger, LogLevel } from '@theia/core';
 import { inject, injectable } from 'inversify';
 import { TreeEditor } from 'theia-tree-editor';
 import { v4 } from 'uuid';
@@ -22,48 +22,54 @@ import { v4 } from 'uuid';
 export class PreferencesTreeNodeFactory implements TreeEditor.NodeFactory {
 
     constructor(
-        @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
+        // @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 
     mapDataToNodes(treeData: TreeEditor.TreeData): TreeEditor.Node[] {
-        const node = this.mapData(treeData.data);
-        if (node) {
-            return [node];
+        const data = treeData.data;
+        if (!data) {
+            this.logger.log(LogLevel.ERROR, 'No valid data provided!');
+            return undefined;
+        }
+        if (typeof data.properties === 'object' && data.properties !== null) {
+            // extract root properties
+            // ['foo.bar', 'foo.bar2', 'bar.foo'] => ['foo', 'bar']
+            // create nodes per root property including fake schema
+            // add nodes to parent and return
+
+            const nodes = Object.keys(data.properties).reduce((acc, cur) => {
+                const indexOfDot = cur.indexOf('.');
+                if (indexOfDot !== -1) {
+                    const dotSplit = cur.substring(0, indexOfDot);
+                    const afterDot = cur.substring(indexOfDot + 1);
+                    if (!acc.hasOwnProperty(dotSplit)) {
+                        const newNode: TreeEditor.Node = {
+                            ...this.defaultNode(),
+                            name: dotSplit,
+                            jsonforms: {
+                                type: undefined,
+                                // in the pref editor the data is used as schema
+                                data: {
+                                    type: 'object',
+                                    properties: {}
+                                },
+                                property: undefined
+                            }
+                        };
+                        acc[dotSplit] = newNode;
+                    }
+                    const interNode = acc[dotSplit];
+                    interNode.jsonforms.data.properties[afterDot] = data.properties[cur];
+                }
+                return acc;
+            }, {});
+            return Object.values(nodes);
         }
         return [];
     }
-
     mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string): TreeEditor.Node {
-        if (!data) {
-            // sanity check
-            this.logger.warn('mapData called without data');
-            return undefined;
-        }
-        const node = {
-            ...this.defaultNode(),
-            name: this.labelProvider.getName(data),
-            parent: parent,
-            jsonforms: {
-                type: this.getType(data),
-                data: data,
-                property: property,
-                index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
-            }
-        };
-        // add to parent node if present
-        if (parent) {
-            parent.children.push(node);
-            parent.expanded = true;
-        }
-        if (typeof data.properties === 'object' && data.properties !== null) {
-            Object.keys(data.properties).forEach(key => {
-                // TODO is there a better way to store the property name?!
-                data.properties[key].name = key;
-                this.mapData(data.properties[key], node, 'properties');
-            });
-        }
-        return node;
+        return undefined;
     }
 
     hasCreatableChildren(node: TreeEditor.Node): boolean {
