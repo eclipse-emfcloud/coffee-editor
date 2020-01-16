@@ -36,7 +36,7 @@ export class CoffeeLaunchOptions implements LaunchOptions {
     baseURL: string = 'api/v1/';
     serverPort: number = 8081;
     hostname: string = 'localhost';
-    jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.modelserver.example-0.0.1-SNAPSHOT-standalone.jar'));
+    jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar'));
     additionalArgs = ['--errorsOnly'];
 }
 
@@ -45,5 +45,5 @@ export class CoffeeGlspLaunchOptions implements GLSPLaunchOptions {
     isRunning: false;
     serverPort: 5008;
     hostname: 'localhost';
-    jarPath = resolve(join(__dirname, '..', '..', 'build', 'workflow-modelserver-example-1.2.0-SNAPSHOT-glsp.jar'));
+    jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.workflow.glsp.server-0.0.1-SNAPSHOT-glsp.jar'));
 }
