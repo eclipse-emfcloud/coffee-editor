@@ -31,6 +31,10 @@ public interface WorkflowConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>Machine</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Machine</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Machine</em>' attribute.
    * @see #setMachine(String)
@@ -53,6 +57,10 @@ public interface WorkflowConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>Model</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Model</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Model</em>' attribute.
    * @see #setModel(String)
@@ -75,6 +83,10 @@ public interface WorkflowConfiguration extends EObject
   /**
    * Returns the value of the '<em><b>Prob Conf</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Prob Conf</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prob Conf</em>' containment reference.
    * @see #setProbConf(ProbabilityConfiguration)
@@ -98,6 +110,10 @@ public interface WorkflowConfiguration extends EObject
    * Returns the value of the '<em><b>Assertions</b></em>' containment reference list.
    * The list contents are of type {@link com.eclipsesource.workflow.dsl.workflow.Assertion}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Assertions</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Assertions</em>' containment reference list.
    * @see com.eclipsesource.workflow.dsl.workflow.WorkflowPackage#getWorkflowConfiguration_Assertions()
