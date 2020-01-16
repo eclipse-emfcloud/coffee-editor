@@ -16,10 +16,10 @@
     "coffee-workflow-analyzer-editors",
     "coffee-workspace-filesystem-storage-service",
     "coffee-workflow-generator",
+    "coffee-workflow-glsp-editor",
     "browser-app"
   ],
   "resolutions": {
-    "**/@theia/*": "0.7.1",
     "**/@theia/editor": "0.7.1",
     "**/@theia/filesystem": "0.7.1",
     "**/@theia/languages": "0.7.1",
@@ -43,6 +43,9 @@
     "**/@theia/console": "0.7.1",
     "**/@theia/preferences": "0.7.1",
     "**/@theia/core": "0.7.1",
-    "**/sprotty": "0.7.0-next.cea0e2b"
+    "**/sprotty": "0.7.0-next.cea0e2b",
+    "**/@glsp/sprotty-client": "0.2.0-next.2402c9fc",
+    "**/@glsp/theia-integration": "0.2.0-next.2402c9fc",
+    "**/@glsp-examples/workflow-sprotty": "0.2.0-next.2402c9fc"
   }
 }
