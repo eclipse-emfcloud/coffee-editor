@@ -11,3 +11,5 @@ docs
 
 server/
 .DS_Store
+
+coffee-server/build/

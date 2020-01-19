@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2019 EclipseSource and others.&#xA;&#xA;This program and the accompanying materials are made available under the&#xA;terms of the Eclipse Public License v. 2.0 which is available at&#xA;http://www.eclipse.org/legal/epl-2.0.&#xA;&#xA;This Source Code may also be made available under the following Secondary&#xA;Licenses when the conditions for such availability set forth in the Eclipse&#xA;Public License v. 2.0 are satisfied: GNU General Public License, version 2&#xA;with the GNU Classpath Exception which is available at&#xA;https://www.gnu.org/software/classpath/license.html.&#xA;&#xA;SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0"
+    modelDirectory="/workflow-modelserver-example/src/main/java-gen" editDirectory=""
+    editorDirectory="" modelPluginID="" modelName="Workflow-notation" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="8.0"
+    copyrightFields="false" publicConstructors="true" editPluginID="" editorPluginID=""
+    runtimeVersion="2.15" operationReflection="true" importOrganizing="true" pluginKey="">
+  <foreignModel>workflow-notation.ecore</foreignModel>
+  <genPackages prefix="Wfnotation" basePackage="com.eclipsesource.glsp.example.modelserver.workflow"
+      disposableProviderFactory="true" ecorePackage="workflow-notation.ecore#/">
+    <genClasses image="false" ecoreClass="workflow-notation.ecore#//DiagramElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//DiagramElement/semanticElement"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow-notation.ecore#//Diagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//Diagram/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow-notation.ecore#//SemanticProxy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow-notation.ecore#//SemanticProxy/uri"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//SemanticProxy/resolvedElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="workflow-notation.ecore#//Shape">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//Shape/position"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//Shape/size"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow-notation.ecore#//Edge">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow-notation.ecore#//Edge/bendPoints"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow-notation.ecore#//Point">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow-notation.ecore#//Point/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow-notation.ecore#//Point/y"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow-notation.ecore#//Dimension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow-notation.ecore#//Dimension/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow-notation.ecore#//Dimension/height"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

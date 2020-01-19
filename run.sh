@@ -3,7 +3,6 @@
 echo "$(date +"[%T.%3N]") Evaluate Options... "
 buildBackend='false'
 copyBackend='false'
-downloadServers='false'
 buildFrontend='false'
 forceFrontend='false'
 runFrontend='false'
@@ -22,9 +21,7 @@ if [[ ${#1} -gt 2 ]]; then
   if [[ "$1" == -*"c"* ]]; then
     copyBackend='true'
   fi
-  if [[ "$1" == -*"d"* ]]; then
-    downloadServers='true'
-  fi
+
   if [[ "$1" == -*"f"* ]]; then
     buildFrontend='true'
   fi
@@ -40,9 +37,7 @@ while [ "$1" != "" ]; do
   case $1 in
     -b | --backend )  buildBackend='true'
                       ;;
-    -c | --copy )     copyBackend='true'
-                      ;;
-    -d | --download ) downloadServers='true'
+    -c | --copy )     copyBackend='true'      
                       ;;
     -f | --frontend ) buildFrontend='true'
                       ;;
@@ -56,7 +51,6 @@ done
 
 [[ "$buildBackend" == "true" ]] && echo "  Build Backend (-b)" || echo "  Do not build Backend (-b)"
 [[ "$copyBackend" == "true" ]] && echo "  Copy Backend (-c)" || echo "  Do not copy Backend (-c)"
-[[ "$downloadServers" == "true" ]] && echo "  Download Model & GLSP Servers (-d)" || echo "  Do not download Model & GLSP Servers (-d)"
 [[ "$forceFrontend" == "true" ]] && echo "  Remove yarn.lock (-ff)" || echo "  Do not remove yarn.lock  (-ff)"
 [[ "$buildFrontend" == "true" ]] && echo "  Build Frontend (-f)" || echo "  Do not build Frontend (-f)"
 [[ "$runFrontend" == "true" ]] && echo "  Run Frontend (-r)" || echo "  Do not run Frontend (-r)"
@@ -64,7 +58,7 @@ done
 if [ "$buildBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Build backend products"
   cd backend/releng/com.eclipsesource.coffee.parent/
-  mvn clean install
+  mvn clean install -Pfatjar
   cd ../../../
 fi
 
@@ -85,6 +79,17 @@ if [ "$copyBackend" == "true" ]; then
   outputWorkflowDSL=web/coffee-workflow-analyzer-editors/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
   rm -rf $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
+
+  inputWorkflowGLSP=backend/plugins/com.eclipsesource.workflow.glsp.server/target/com.eclipsesource.workflow.glsp.server-0.0.1-SNAPSHOT-glsp.jar
+  outputWorkflowGLSP=web/coffee-server/build
+  echo "  $(date +"[%T.%3N]") Copy WorkflowGLSPServer to '$outputWorkflowGLSP'."
+  rm -rf $outputWorkflowGLSP && mkdir -p $outputWorkflowGLSP && cp -rf $inputWorkflowGLSP $outputWorkflowGLSP
+
+  inputCoffeeMS=backend/plugins/com.eclipsesource.coffee.modelserver/target/com.eclipsesource.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar
+  outputCoffeeMS=web/coffee-server/build
+  echo "  $(date +"[%T.%3N]") Copy CoffeeModelServer to '$outputCoffeeMS'."
+  cp -rf $inputCoffeeMS $outputCoffeeMS
+
 
   echo "$(date +"[%T.%3N]") Copy finished."
 fi

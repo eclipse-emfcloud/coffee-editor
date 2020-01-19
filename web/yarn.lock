@@ -116,22 +116,7 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@glsp-examples/workflow-modelserver-theia@next":
-  version "0.2.0-next.2402c9fc"
-  resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-modelserver-theia/-/workflow-modelserver-theia-0.2.0-next.2402c9fc.tgz#a635f20908439bcb5647f16c48fa4b3d848d70ba"
-  integrity sha512-9DW5+bzzxhFe0H8ipRr7V2blqZxVWqK3zxUSH8jPxEKjR72PeDLnReK5bIRg1l7j/NZCugSiCwDLg8LDLEiYyQ==
-  dependencies:
-    "@glsp-examples/workflow-sprotty" "0.2.0-next.2402c9fc"
-    "@glsp/theia-integration" "0.2.0-next.2402c9fc"
-    "@modelserver/theia" next
-    "@theia/core" "^0.7.1"
-    "@theia/editor" "^0.7.1"
-    "@theia/filesystem" "^0.7.1"
-    "@theia/languages" "^0.7.1"
-    "@theia/monaco" "^0.7.1"
-    "@types/node" "^8.0.14"
-
-"@glsp-examples/workflow-sprotty@0.2.0-next.2402c9fc":
+"@glsp-examples/workflow-sprotty@0.2.0-next.2402c9fc", "@glsp-examples/workflow-sprotty@next":
   version "0.2.0-next.2402c9fc"
   resolved "https://registry.yarnpkg.com/@glsp-examples/workflow-sprotty/-/workflow-sprotty-0.2.0-next.2402c9fc.tgz#1905cfbc2112521785cc9060fe501ab1cc661164"
   integrity sha512-R2SU6GN9aNj2pk7usJYzZELzmbHUoOOkkbYOJRimHUBHR7ENGp51QvJMYrKjEA8QZK3jW9jxs6ToBzLUc54prA==
@@ -139,7 +124,7 @@
     "@glsp/sprotty-client" "0.2.0-next.2402c9fc"
     balloon-css "^0.5.0"
 
-"@glsp/sprotty-client@0.2.0-next.2402c9fc":
+"@glsp/sprotty-client@0.2.0-next.2402c9fc", "@glsp/sprotty-client@next":
   version "0.2.0-next.2402c9fc"
   resolved "https://registry.yarnpkg.com/@glsp/sprotty-client/-/sprotty-client-0.2.0-next.2402c9fc.tgz#8f2b10f83855afa294c2dbdc0acd760b2912f141"
   integrity sha512-MFbnox/Vtvg1GyUZXL/yzqhHNZnmk81VXiCt0T607ibEwhNNonGLa6AOpkk4spk77lVJ0gaaiU4RauVIqezC3w==
@@ -148,7 +133,7 @@
     sprotty "0.7.0-next.797c619"
     vscode-ws-jsonrpc "^0.0.2-1"
 
-"@glsp/theia-integration@0.2.0-next.2402c9fc":
+"@glsp/theia-integration@0.2.0-next.2402c9fc", "@glsp/theia-integration@next":
   version "0.2.0-next.2402c9fc"
   resolved "https://registry.yarnpkg.com/@glsp/theia-integration/-/theia-integration-0.2.0-next.2402c9fc.tgz#494229f774a173ac1516a1516d9f8df19d3b1c6c"
   integrity sha512-sZfvkePNMVwjK8ZB4vRYCtI16GqwKXILZHmfycIMkQDgReULnIp1BfAZiQBwBJyIkXbsmapVzDxevTDTkjZJjA==
@@ -1222,7 +1207,7 @@
     "@theia/monaco" "^0.7.1"
     anser "^1.4.7"
 
-"@theia/core@0.7.1", "@theia/core@^0.7.1", "@theia/core@next":
+"@theia/core@0.7.1", "@theia/core@^0.7.1", "@theia/core@latest", "@theia/core@next":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/core/-/core-0.7.1.tgz#808fde21d7a6907fed25b9ea52f64d7d42a03439"
   integrity sha512-qcojP+lmPIw5xrq72+GWVsSrR3UzcOrTiw2SJOAvG4leQqEr+K6Z53ZisozSG8Io73ULe0fBm/3Odt9ASSiY8Q==
@@ -1292,7 +1277,7 @@
     unzip-stream "^0.3.0"
     vscode-debugprotocol "^1.32.0"
 
-"@theia/editor@0.7.1", "@theia/editor@^0.7.1", "@theia/editor@next":
+"@theia/editor@0.7.1", "@theia/editor@^0.7.1", "@theia/editor@latest", "@theia/editor@next":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/editor/-/editor-0.7.1.tgz#885ce32bbce773119700e6622feeb532b4de403f"
   integrity sha512-AXCqAoNZHlBnDxFo0kNu7DPEqN2jYpgjRh8cy5aZw+nZJok4p5CvsuUyFX4SXxMBKOhfG5qUq2kYHHYZ4KOXZA==
@@ -1314,7 +1299,7 @@
     "@theia/monaco" "^0.7.1"
     editorconfig "^0.15.0"
 
-"@theia/filesystem@0.7.1", "@theia/filesystem@^0.7.1", "@theia/filesystem@next":
+"@theia/filesystem@0.7.1", "@theia/filesystem@^0.7.1", "@theia/filesystem@latest", "@theia/filesystem@next":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/filesystem/-/filesystem-0.7.1.tgz#8afb3c1758d0632b3d2e833f1ecbdac21eb6360a"
   integrity sha512-ugBZhPoRoUKQdacg2Ime2lMdoKqSw0JNpEVtH4osRAoB37AKvyWQeQ1Hc4BtuTtD5bdMPDOOQtiuHCjdb3EGFA==
@@ -1376,7 +1361,7 @@
     "@theia/monaco" "^0.7.1"
     vscode-json-languageserver "^1.0.1"
 
-"@theia/languages@0.7.1", "@theia/languages@^0.7.1", "@theia/languages@next":
+"@theia/languages@0.7.1", "@theia/languages@^0.7.1", "@theia/languages@latest", "@theia/languages@next":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/languages/-/languages-0.7.1.tgz#59b8067b4d94cbf9ec6fe2886e13bcc3a3ed280f"
   integrity sha512-mzOnbEUV4/pRsCKWoYbWFHJsv7sz04juFq1S3NhakTchub09D8KnRthoZsOirTDlsIxcIdCsUC2SwpYvdTQerg==
@@ -1420,7 +1405,7 @@
     mime-types "^2.1.18"
     pdfobject "^2.0.201604172"
 
-"@theia/monaco@0.7.1", "@theia/monaco@^0.7.1", "@theia/monaco@next":
+"@theia/monaco@0.7.1", "@theia/monaco@^0.7.1", "@theia/monaco@latest", "@theia/monaco@next":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/monaco/-/monaco-0.7.1.tgz#c82eba5ef4983ba677e2eec78843e62a4159be6b"
   integrity sha512-quIzTic5+rtSQZvjJ6fjzA24aYJgUcZ6ch7uNNRA5Tf3pdCIB2Uf0Nkd190/bhxAsiLdK7jaOnbVBrdnBhlcyg==
@@ -1546,7 +1531,7 @@
   dependencies:
     "@theia/core" "^0.7.1"
 
-"@theia/workspace@0.7.1", "@theia/workspace@^0.7.1":
+"@theia/workspace@0.7.1", "@theia/workspace@^0.7.1", "@theia/workspace@latest":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@theia/workspace/-/workspace-0.7.1.tgz#c0e21206340710c99448ba8f070db456e8846e74"
   integrity sha512-+v+A0dB7z+quBu5Wf42tUryuVPbqnKr2M/zQTp7+a0bpVqZ02gvK6OJ4HrXhXY95Ok9Dzs3iDRCyIEtuPM6bsA==
@@ -1701,6 +1686,11 @@
   version "8.10.54"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.54.tgz#1c88eb253ac1210f1a5876953fb70f7cc4928402"
   integrity sha512-kaYyLYf6ICn6/isAyD4K1MyWWd5Q3JgH6bnMN089LUx88+s4W8GvK9Q6JMBVu5vsFFp7pMdSxdKmlBXwH/VFRg==
+
+"@types/node@latest":
+  version "13.1.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.7.tgz#db51d28b8dfacfe4fb2d0da88f5eb0a2eca00675"
+  integrity sha512-HU0q9GXazqiKwviVxg9SI/+t/nAsGkvLDkIdxz+ObejG2nX6Si00TeLqHMoS+a/1tjH7a8YpKVQwtgHuMQsldg==
 
 "@types/object-hash@^1.3.0":
   version "1.3.0"
@@ -10986,6 +10976,11 @@ typescript-language-server@^0.3.8:
     tempy "^0.2.1"
     vscode-languageserver "^4.4.0"
     vscode-uri "^1.0.5"
+
+typescript@3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.3.tgz#0eb320e4ace9b10eadf5bc6103286b0f8b7c224f"
+  integrity sha512-FFgHdPt4T/duxx6Ndf7hwgMZZjZpB+U0nMNGVCYPq0rEzWKjEDobm4J6yb3CS7naZ0yURFqdw9Gwc7UOh/P9oQ==
 
 typescript@latest:
   version "3.6.3"
