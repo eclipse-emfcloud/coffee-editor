@@ -53,11 +53,17 @@ export class PreferencesTreeEditorWidget extends JsonFormsTreeEditorWidget {
   }
 
   protected handleFormUpdate(data: any, node: TreeEditor.Node): void {
-    // Set the preference value. This automatically saves the change
+    // Set the preference values for the given node. This automatically saves the change
     if (data && node.jsonforms.data) {
-      Object.keys(node.jsonforms.data.properties).forEach(key => {
-        this.provider.setPreference(node.name + '.' + key, data[key]);
-      });
+      this.setPreferences(data, node);
+    }
+  }
+
+  async setPreferences(data: any, node: TreeEditor.Node) {
+    for (const key of Object.keys(node.jsonforms.data.properties)) {
+      // Need to wait for each set to avoid out-of-sync filesystem
+      // TODO this could cause bad performance.
+      await this.provider.setPreference(node.name + '.' + key, data[key]);
     }
   }
 
