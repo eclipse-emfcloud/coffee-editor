@@ -18,11 +18,13 @@ import { inject, injectable } from 'inversify';
 import { TreeEditor } from 'theia-tree-editor';
 import { v4 } from 'uuid';
 
+import { PreferencesTreeLabelProvider } from './preferences-tree-label-provider';
+
 @injectable()
 export class PreferencesTreeNodeFactory implements TreeEditor.NodeFactory {
 
     constructor(
-        // @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
+        @inject(TreeEditor.LabelProvider) private readonly labelProvider: PreferencesTreeLabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 
@@ -46,7 +48,7 @@ export class PreferencesTreeNodeFactory implements TreeEditor.NodeFactory {
                     if (!acc.hasOwnProperty(dotSplit)) {
                         const newNode: TreeEditor.Node = {
                             ...this.defaultNode(),
-                            name: dotSplit,
+                            name: this.labelProvider.getName({ name: dotSplit }),
                             jsonforms: {
                                 type: undefined,
                                 // in the pref editor the data is used as schema
@@ -54,7 +56,7 @@ export class PreferencesTreeNodeFactory implements TreeEditor.NodeFactory {
                                     type: 'object',
                                     properties: {}
                                 },
-                                property: undefined
+                                property: dotSplit
                             }
                         };
                         acc[dotSplit] = newNode;

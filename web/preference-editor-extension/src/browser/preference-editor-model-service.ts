@@ -27,9 +27,9 @@ export class PreferenceModelService implements TreeEditor.ModelService {
         // this.provider.onDidPreferencesChanged(e => console.log(e));
         // return this.provider.getPreferences();
         const prefs = this.provider.getPreferences();
-        const subPrefs = Object.keys(prefs).filter(key => key.startsWith(node.name))
+        const subPrefs = Object.keys(prefs).filter(key => key.startsWith(node.jsonforms.property))
             .reduce((acc, key) => {
-                acc[key.substr(node.name.length + 1)] = prefs[key];
+                acc[key.substr(node.jsonforms.property.length + 1)] = prefs[key];
                 return acc;
             }, {});
         // const result = {};

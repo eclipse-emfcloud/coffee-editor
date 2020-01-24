@@ -63,7 +63,7 @@ export class PreferencesTreeEditorWidget extends JsonFormsTreeEditorWidget {
     for (const key of Object.keys(node.jsonforms.data.properties)) {
       // Need to wait for each set to avoid out-of-sync filesystem
       // TODO this could cause bad performance.
-      await this.provider.setPreference(node.name + '.' + key, data[key]);
+      await this.provider.setPreference(node.jsonforms.property + '.' + key, data[key]);
     }
   }
 

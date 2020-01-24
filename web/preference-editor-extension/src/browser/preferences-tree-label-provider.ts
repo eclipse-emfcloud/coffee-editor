@@ -15,30 +15,25 @@
  */
 import { TreeNode } from '@theia/core/lib/browser/tree/tree';
 import { injectable } from 'inversify';
+import * as _ from 'lodash';
 import { TreeEditor } from 'theia-tree-editor';
-
-// const DEFAULT_COLOR = 'black';
-
-/* Icon for unknown types */
-// const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
 export class PreferencesTreeLabelProvider implements TreeEditor.LabelProvider {
 
   public getIconClass(node: TreeNode | string): string {
-    // TODO return proper icon
-
-    // return 'far ' + UNKNOWN_ICON;
     return 'fa fa-cog black';
   }
 
   public getName(data: any): string {
-    // TODO return proper names
+    if (typeof data === 'string') {
+      return _.startCase(data);
+    }
     if (data.title) {
-      return data.title;
+      return _.startCase(data.title);
     }
     if (data.name) {
-      return data.name;
+      return _.startCase(data.name);
     }
 
     return 'PLACEHOLDER';

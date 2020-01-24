@@ -22,7 +22,8 @@
     "recompose": "^0.27.1",
     "redux": "^3.7.2",
     "uuid": "^3.3.2",
-    "theia-tree-editor": "latest"
+    "theia-tree-editor": "latest",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "rimraf": "latest",
