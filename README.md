@@ -52,7 +52,7 @@ Clone and build the coffee-editor:
 
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
-    ./run.sh -b -c -d -f
+    ./run.sh
 
 Run the built coffee-editor:
 
