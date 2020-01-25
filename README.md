@@ -72,8 +72,6 @@ Every part step can be executed independently from each other by using the corre
 
 `-c`: Integrates the built backend artifacts in the coffee-editor IDE
 
-`-d`: Downloads the current version of the Model and GLSP servers. These are not required for building the coffee-editor but are used at runtime
-
 `-f`: Builds the frontend shown in the web browser
 
 `-r`: Runs the coffee-editor and exposes it at http://localhost:3000
