@@ -45,6 +45,7 @@ On Ubuntu you can use:
     sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev libxml2-utils
 ### Install python (needed from theia dependencies):
 Please check the installation description [here](https://github.com/nodejs/node-gyp#installation).
+
 On Windows the most reliable way seems to be to install Python and set ` npm config set python "C:\Path\To\python.exe"`.
 ## Getting started
 
