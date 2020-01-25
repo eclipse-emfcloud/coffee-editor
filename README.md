@@ -21,26 +21,30 @@ This project should not contain much code and should mostly consist of 'glue' co
 
 ## Prerequisites
 
-Install [nvm](https://github.com/creationix/nvm#install-script).
+### Install [nvm](https://github.com/creationix/nvm#install-script).
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 
-Install npm and node.
+### Install npm and node.
 
     nvm install 10
     nvm use 10
 
-Install yarn.
+### Install yarn.
 
     npm install -g yarn
 
-Install maven
-    
-    sudo apt-get install maven
+### Install maven
+Please check the installation documentation for [maven](http://maven.apache.org/install.html).
 
-Install linux packages (if necessary).
+On Ubuntu you can use:
+`sudo apt-get install maven`
+
+### Install linux packages (if necessary).
 
     sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev libxml2-utils
+### Install python (needed from theia dependencies):
+Please check the installation description [here](https://github.com/nodejs/node-gyp#installation).
 
 ## Getting started
 
