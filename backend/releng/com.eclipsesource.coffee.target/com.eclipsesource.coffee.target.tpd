@@ -1,4 +1,4 @@
-target "Coffee 2019-03" with source, requirements
+target "Coffee 2019-12" with source, requirements
 
 
 location "http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repository" orbit-release {
@@ -7,7 +7,7 @@ location "http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repos
 	org.apache.commons.io [2.2.0,2.3.0)
 }
 
-location "http://download.eclipse.org/releases/2019-03/" eclipse-2019-03 {
+location "http://download.eclipse.org/releases/2019-12/" eclipse-2019-12 {
 	org.eclipse.jdt.feature.group
     org.eclipse.platform.feature.group
     org.eclipse.pde.feature.group
@@ -17,15 +17,12 @@ location "http://download.eclipse.org/releases/2019-03/" eclipse-2019-03 {
     org.eclipse.xtend
     org.eclipse.xtend.typesystem.emf
 	org.eclipse.emf.mwe2.launcher.feature.group
+	org.eclipse.xtext.sdk.feature.group
 }
 
-location "http://download.eclipse.org/eclipse/updates/4.11/" eclipse-4.11 {
+location "http://download.eclipse.org/eclipse/updates/4.14/" eclipse-4.14 {
 	org.eclipse.e4.rcp.feature.group lazy
 	org.eclipse.equinox.executable.feature.group lazy
-}
-
-location "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.1/" xtext {
-	org.eclipse.xtext.sdk.feature.group
 }
 
 location "http://download.eclipse.org/lsp4j/updates/releases/" {

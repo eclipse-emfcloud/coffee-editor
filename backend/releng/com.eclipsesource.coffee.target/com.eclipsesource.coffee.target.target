@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2019-03" sequenceNumber="1565115442">
+<target name="Coffee 2019-12" sequenceNumber="1579983691">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
@@ -10,35 +10,32 @@
       <repository id="orbit-release" location="http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.jdt.feature.group" version="3.17.0.v20190307-0500"/>
-      <unit id="org.eclipse.platform.feature.group" version="4.11.0.v20190307-0500"/>
-      <unit id="org.eclipse.pde.feature.group" version="3.13.400.v20190307-0943"/>
+      <unit id="org.eclipse.jdt.feature.group" version="3.18.200.v20191210-0610"/>
+      <unit id="org.eclipse.platform.feature.group" version="4.14.0.v20191210-0610"/>
+      <unit id="org.eclipse.pde.feature.group" version="3.14.200.v20191210-0610"/>
       <unit id="org.eclipse.draw2d.feature.group" version="3.10.100.201606061308"/>
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.17.0.v20190301-1325"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.20.0.v20191028-0905"/>
       <unit id="org.eclipse.xpand" version="2.2.0.v201605260315"/>
       <unit id="org.eclipse.xtend" version="2.2.0.v201605260315"/>
       <unit id="org.eclipse.xtend.typesystem.emf" version="2.2.0.v201605260315"/>
-      <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="2.10.0"/>
-      <repository id="eclipse-2019-03" location="http://download.eclipse.org/releases/2019-03/"/>
+      <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="2.11.1.v20191121-1148"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.20.0.v20191202-1256"/>
+      <repository id="eclipse-2019-12" location="http://download.eclipse.org/releases/2019-12/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.e4.rcp.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
-      <repository id="eclipse-4.11" location="http://download.eclipse.org/eclipse/updates/4.11/"/>
+      <repository id="eclipse-4.14" location="http://download.eclipse.org/eclipse/updates/4.14/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.17.1.v20190403-0733"/>
-      <repository id="xtext" location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.1/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.7.2.v20190528-0935"/>
+      <unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.8.0.v20190822-0801"/>
       <repository location="http://download.eclipse.org/lsp4j/updates/releases/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.eclipsesource.modelserver.coffee.model" version="0.0.0"/>
       <unit id="com.eclipsesource.modelserver.client" version="0.0.0"/>
       <unit id="com.eclipsesource.modelserver.common" version="0.0.0"/>
-      <unit id="com.squareup.okhttp3" version="0.0.1.201908061628"/>
+      <unit id="com.squareup.okhttp3" version="0.0.1.201912301217"/>
       <repository location="https://dl.bintray.com/eclipsesource/modelserver/nightly/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
