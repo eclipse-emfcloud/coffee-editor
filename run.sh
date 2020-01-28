@@ -55,6 +55,25 @@ done
 [[ "$buildFrontend" == "true" ]] && echo "  Build Frontend (-f)" || echo "  Do not build Frontend (-f)"
 [[ "$runFrontend" == "true" ]] && echo "  Run Frontend (-r)" || echo "  Do not run Frontend (-r)"
 
+productPath=''
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	productPath='linux/gtk'
+	echo "Running on Linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+	productPath='macosx\cocoa'
+	echo "Running on Mac"
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        # POSIX compatibility layer and Linux environment emulation for Windows
+	productPath='win32\win32'
+	echo "Running on Windows with Cygwin"
+elif [[ "$OSTYPE" == "msys" ]]; then
+        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+	productPath='win32\win32'
+	echo "Running on Windows with Msys"
+fi
+echo "$productPath"
+
 if [ "$buildBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Build backend products"
   cd backend/releng/com.eclipsesource.coffee.parent/
@@ -65,17 +84,17 @@ fi
 if [ "$copyBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Copy built products..."
 
-  inputCodeGen=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.codegen/linux/gtk/x86_64
+  inputCodeGen=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.codegen/$productPath/x86_64
   outputCodeGen=web/coffee-java-extension/server
   echo "  $(date +"[%T.%3N]") Copy CodeGen to '$outputCodeGen'."
   rm -rf $outputCodeGen && mkdir -p $outputCodeGen && cp -rf $inputCodeGen $outputCodeGen
 
-  inputWorkflowAnalyzer=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.analyzer/linux/gtk/x86_64
+  inputWorkflowAnalyzer=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.analyzer/$productPath/x86_64
   outputWorkflowAnalyzer=web/coffee-workflow-analyzer/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowAnalyzer to '$outputWorkflowAnalyzer'."
   rm -rf $outputWorkflowAnalyzer && mkdir -p $outputWorkflowAnalyzer && cp -rf $inputWorkflowAnalyzer $outputWorkflowAnalyzer
 
-  inputWorkflowDSL=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.dsl/linux/gtk/x86_64
+  inputWorkflowDSL=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.dsl/$productPath/x86_64
   outputWorkflowDSL=web/coffee-workflow-analyzer-editors/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
   rm -rf $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
