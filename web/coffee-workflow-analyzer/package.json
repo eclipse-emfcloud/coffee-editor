@@ -9,10 +9,10 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "0.7.1",
-    "@theia/mini-browser": "0.7.1",
-    "@theia/editor": "0.7.1",
-    "@theia/process": "0.7.1",
+    "@theia/core": "latest",
+    "@theia/mini-browser": "latest",
+    "@theia/editor": "latest",
+    "@theia/process": "latest",
     "express": "4.17.1",
     "glob": "7.1.4",
     "vscode-jsonrpc": "4.0.0",

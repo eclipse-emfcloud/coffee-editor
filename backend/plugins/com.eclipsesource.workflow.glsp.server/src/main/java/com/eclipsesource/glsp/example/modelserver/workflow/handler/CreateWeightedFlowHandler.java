@@ -15,8 +15,8 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
-import com.eclipsesource.glsp.example.workflow.utils.ModelTypes;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.glsp.example.workflow.utils.ModelTypes;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 
 public class CreateWeightedFlowHandler extends AbstractCreateEdgeHandler {
 

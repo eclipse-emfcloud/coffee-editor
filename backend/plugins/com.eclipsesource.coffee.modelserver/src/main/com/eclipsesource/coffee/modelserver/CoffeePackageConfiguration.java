@@ -17,8 +17,9 @@ package com.eclipsesource.coffee.modelserver;
 
 import java.util.Collection;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.emf.configuration.EPackageConfiguration;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
+
 import com.google.common.collect.Lists;
 
 public class CoffeePackageConfiguration implements EPackageConfiguration {

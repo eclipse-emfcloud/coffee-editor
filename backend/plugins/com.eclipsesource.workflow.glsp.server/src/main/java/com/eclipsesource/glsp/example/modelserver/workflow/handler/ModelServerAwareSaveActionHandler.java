@@ -1,15 +1,17 @@
 package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.SaveModelAction;
-import com.eclipsesource.glsp.api.jsonrpc.GLSPServerException;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.SaveModelAction;
+import org.eclipse.glsp.api.jsonrpc.GLSPServerException;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.server.actionhandler.AbstractActionHandler;
+
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
-import com.eclipsesource.glsp.server.actionhandler.AbstractActionHandler;
 
 public class ModelServerAwareSaveActionHandler extends AbstractActionHandler {
 
@@ -20,7 +22,7 @@ public class ModelServerAwareSaveActionHandler extends AbstractActionHandler {
 	}
 
 	@Override
-	protected Optional<Action> execute(Action action, GraphicalModelState modelState) {
+	protected List<Action> execute(Action action, GraphicalModelState modelState) {
 		try {
 			if (action instanceof SaveModelAction) {
 				SaveModelAction saveAction = (SaveModelAction) action;
@@ -37,7 +39,7 @@ public class ModelServerAwareSaveActionHandler extends AbstractActionHandler {
 		} catch (ExecutionException | InterruptedException e) {
 			throw new GLSPServerException("Could not execute save action: " + action.toString(), e);
 		}
-		return Optional.empty();
+		return Collections.emptyList();
 	}
 
 }

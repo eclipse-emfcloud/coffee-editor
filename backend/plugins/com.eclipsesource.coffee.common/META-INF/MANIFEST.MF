@@ -6,6 +6,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Automatic-Module-Name: com.eclipsesource.coffee.common
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: com.eclipsesource.modelserver.client;bundle-version="0.0.1",
- com.eclipsesource.modelserver.common;bundle-version="0.0.1"
+Require-Bundle: org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
+ org.eclipse.emfcloud.modelserver.common;bundle-version="0.7.0",
+ org.eclipse.emf.ecore;bundle-version="2.20.0"
 Export-Package: com.eclipsesource.coffee.common

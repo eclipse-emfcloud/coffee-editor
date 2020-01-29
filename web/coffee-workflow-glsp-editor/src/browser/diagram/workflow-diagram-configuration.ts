@@ -15,18 +15,29 @@
  ********************************************************************************/
 import 'sprotty-theia/css/theia-sprotty.css';
 
-import { createWorkflowDiagramContainer } from '@glsp-examples/workflow-sprotty/lib';
-import { registerDefaultTools, TYPES } from '@glsp/sprotty-client/lib';
-import { GLSPTheiaDiagramServer } from '@glsp/theia-integration/lib/browser';
+import { createWorkflowDiagramContainer } from '@eclipse-glsp-examples/workflow-sprotty/lib';
+import {
+    CommandPalette,
+    DelKeyDeleteTool,
+    EdgeEditTool,
+    GLSP_TYPES,
+    IActionDispatcher,
+    MouseDeleteTool,
+    ToolManager,
+    TYPES,
+} from '@eclipse-glsp/client/lib';
+import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
 import { SelectionService } from '@theia/core';
 import { Container, inject, injectable } from 'inversify';
 import { DiagramConfiguration, TheiaDiagramServer, TheiaSprottySelectionForwarder } from 'sprotty-theia/lib';
+import { TheiaContextMenuService } from 'sprotty-theia/lib/sprotty/theia-sprotty-context-menu-service';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
 
 @injectable()
 export class WorkflowDiagramConfiguration implements DiagramConfiguration {
     @inject(SelectionService) protected selectionService: SelectionService;
+    @inject(TheiaContextMenuService) protected readonly contextMenuService: TheiaContextMenuService;
     diagramType: string = WorkflowNotationLanguage.DiagramType;
 
     createContainer(widgetId: string): Container {
@@ -36,7 +47,21 @@ export class WorkflowDiagramConfiguration implements DiagramConfiguration {
         // container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
         container.bind(TYPES.IActionHandlerInitializer).to(TheiaSprottySelectionForwarder);
         container.bind(SelectionService).toConstantValue(this.selectionService);
-        registerDefaultTools(container);
+        container.rebind(CommandPalette).to(TheiaCommandPalette);
+        container.bind(GLSP_TYPES.IContextMenuService).toConstantValue(this.contextMenuService);
+        if (this.contextMenuService instanceof TheiaContextMenuService) {
+            this.contextMenuService.connect(container.get<IActionDispatcher>(TYPES.IActionDispatcher));
+        }
+
+        // Temporary workaround: for default tool registration
+
+        const toolManager: ToolManager = container.get(TYPES.IToolManager);
+        toolManager.registerDefaultTools(
+            container.resolve(EdgeEditTool),
+            container.resolve(DelKeyDeleteTool));
+        toolManager.registerTools(container.resolve(MouseDeleteTool));
+        toolManager.enableDefaultTools();
+
         return container;
     }
 }

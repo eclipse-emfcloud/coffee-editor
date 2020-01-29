@@ -18,10 +18,10 @@ package com.eclipsesource.glsp.example.modelserver.workflow;
 import org.apache.log4j.BasicConfigurator;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 
-import com.eclipsesource.glsp.layout.ElkLayoutEngine;
-import com.eclipsesource.glsp.server.launch.DefaultGLSPServerLauncher;
-import com.eclipsesource.glsp.server.launch.GLSPServerLauncher;
-import com.eclipsesource.modelserver.command.CCommandPackage;
+import org.eclipse.glsp.layout.ElkLayoutEngine;
+import org.eclipse.glsp.server.launch.DefaultGLSPServerLauncher;
+import org.eclipse.glsp.server.launch.GLSPServerLauncher;
+import org.eclipse.emfcloud.modelserver.command.CCommandPackage;
 
 public class WorkflowModelServerGLSPServerLauncher {
 	public static void main(String[] args) {

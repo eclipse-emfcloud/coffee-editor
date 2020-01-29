@@ -9,9 +9,9 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "0.7.1",
-    "@theia/languages": "0.7.1",
-    "@theia/process": "0.7.1",
+    "@theia/core": "latest",
+    "@theia/languages": "latest",
+    "@theia/process": "latest",
     "glob": "7.1.4"
   },
   "devDependencies": {

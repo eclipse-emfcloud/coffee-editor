@@ -39,18 +39,18 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import com.eclipsesource.glsp.api.jsonrpc.GLSPServerException;
+import org.eclipse.glsp.api.jsonrpc.GLSPServerException;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.WfnotationPackage;
-import com.eclipsesource.glsp.graph.GNode;
-import com.eclipsesource.modelserver.client.ModelServerClient;
-import com.eclipsesource.modelserver.client.Response;
-import com.eclipsesource.modelserver.client.NotificationSubscriptionListener;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.command.CCommand;
-import com.eclipsesource.modelserver.common.codecs.EncodingException;
-import com.eclipsesource.modelserver.edit.CommandCodec;
+import org.eclipse.glsp.graph.GNode;
+import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.client.NotificationSubscriptionListener;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.common.codecs.EncodingException;
+import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
 import com.google.common.base.Preconditions;
 
 public class WorkflowModelServerAccess {

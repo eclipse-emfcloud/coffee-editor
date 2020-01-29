@@ -15,9 +15,9 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow;
 
-import com.eclipsesource.glsp.example.workflow.WorfklowDiagramConfiguration;
+import org.eclipse.glsp.example.workflow.WorkflowDiagramConfiguration;
 
-public class WorfklowDiagramNotationConfiguration extends WorfklowDiagramConfiguration {
+public class WorfklowDiagramNotationConfiguration extends WorkflowDiagramConfiguration {
 
 	@Override
 	public String getDiagramType() {

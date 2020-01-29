@@ -92,15 +92,16 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     protected defaultNode(): Pick<
         TreeEditor.Node,
-        'id' | 'expanded' | 'selected' | 'parent' | 'decorationData' | 'children'
+        'children' | 'name' | 'jsonforms' | 'id' | 'icon' | 'description' | 'visible' | 'parent' | 'previousSibling' | 'nextSibling' | 'expanded' | 'selected' | 'focus'
     > {
         return {
             id: v4(),
             expanded: false,
             selected: false,
             parent: undefined,
-            decorationData: {},
-            children: []
+            children: [],
+            name: undefined,
+            jsonforms: undefined
         };
     }
 

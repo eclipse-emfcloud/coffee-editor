@@ -7,9 +7,8 @@ Bundle-Vendor: EclipseSource
 Require-Bundle: com.eclipsesource.workflow.generator.java,
  org.eclipse.equinox.app,
  org.eclipse.emf.ecore,
- com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1",
- com.eclipsesource.modelserver.client;bundle-version="0.0.1",
- com.eclipsesource.coffee.common;bundle-version="0.1.0"
+ com.eclipsesource.coffee.common;bundle-version="0.1.0",
+ com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1"
 Automatic-Module-Name: com.eclipsesource.codegen
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.eclipsesource.coffee.codegen.java

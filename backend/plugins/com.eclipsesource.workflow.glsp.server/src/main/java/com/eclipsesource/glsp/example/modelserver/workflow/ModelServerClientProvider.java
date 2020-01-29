@@ -17,7 +17,7 @@ package com.eclipsesource.glsp.example.modelserver.workflow;
 
 import java.util.Optional;
 
-import com.eclipsesource.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import com.google.inject.Singleton;
 
 @Singleton

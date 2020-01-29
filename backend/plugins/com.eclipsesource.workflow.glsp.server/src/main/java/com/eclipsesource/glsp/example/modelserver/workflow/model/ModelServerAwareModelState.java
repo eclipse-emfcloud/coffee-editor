@@ -15,8 +15,8 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.model;
 
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
-import com.eclipsesource.glsp.server.model.ModelStateImpl;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.server.model.ModelStateImpl;
 
 public class ModelServerAwareModelState extends ModelStateImpl {
 

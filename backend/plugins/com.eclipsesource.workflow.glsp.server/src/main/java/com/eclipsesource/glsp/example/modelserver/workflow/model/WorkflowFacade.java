@@ -28,10 +28,10 @@ import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Edge;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.SemanticProxy;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Shape;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.WfnotationFactory;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Machine;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
 
 public class WorkflowFacade {
 

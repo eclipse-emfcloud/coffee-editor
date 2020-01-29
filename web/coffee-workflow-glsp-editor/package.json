@@ -15,10 +15,10 @@
     "name": "EclipseSource"
   },
   "dependencies": {
-    "@glsp-examples/workflow-sprotty": "next",
-    "@glsp/theia-integration": "next",
-    "@glsp/sprotty-client": "next",
-    "@modelserver/theia": "next",
+    "@eclipse-glsp/client": "next",
+    "@eclipse-glsp-examples/workflow-sprotty": "next",
+    "@eclipse-glsp/theia-integration": "next",
+    "@eclipse-emfcloud/modelserver-theia": "next",
     "@theia/core": "latest",
     "@theia/editor": "latest",
     "@theia/filesystem": "latest",

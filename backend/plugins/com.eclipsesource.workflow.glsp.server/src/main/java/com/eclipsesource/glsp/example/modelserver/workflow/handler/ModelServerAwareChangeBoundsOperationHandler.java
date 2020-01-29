@@ -17,21 +17,21 @@ package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
 import java.util.Optional;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.ChangeBoundsOperationAction;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
-import com.eclipsesource.glsp.api.types.ElementAndBounds;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.ChangeBoundsOperationAction;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.types.ElementAndBounds;
+
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ShapeUtil;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.DiagramElement;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Shape;
-import com.eclipsesource.glsp.graph.GBounds;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
 
-public class ChangeBoundsOperationHandler implements OperationHandler {
+public class ModelServerAwareChangeBoundsOperationHandler implements OperationHandler {
 
 	@Override
 	public Class<? extends Action> handlesActionType() {
@@ -47,21 +47,21 @@ public class ChangeBoundsOperationHandler implements OperationHandler {
 	public void execute(AbstractOperationAction action, GraphicalModelState modelState) {
 		ChangeBoundsOperationAction changeBoundsAction = (ChangeBoundsOperationAction) action;
 		for (ElementAndBounds element : changeBoundsAction.getNewBounds()) {
-			changeElementBounds(element.getElementId(), element.getNewBounds(), modelState);
+			changeElementBounds(element, modelState);
 		}
 	}
 
-	private void changeElementBounds(String elementId, GBounds newBounds, GraphicalModelState modelState) {
+	private void changeElementBounds(ElementAndBounds element, GraphicalModelState modelState) {
 		WorkflowModelServerAccess modelAccess = ModelServerAwareModelState.getModelAccess(modelState);
-		Node node = modelAccess.getNodeById(elementId);
-		Optional<DiagramElement> element = modelAccess.getWorkflowFacade().findDiagramElement(node);
-		if (element.isEmpty() || !(element.get() instanceof Shape)) {
-			throw new IllegalArgumentException("Could not find shape for node " + elementId);
+		Node node = modelAccess.getNodeById(element.getElementId());
+		Optional<DiagramElement> diagramElement = modelAccess.getWorkflowFacade().findDiagramElement(node);
+		if (diagramElement.isEmpty() || !(diagramElement.get() instanceof Shape)) {
+			throw new IllegalArgumentException("Could not find shape for node " + element.getElementId());
 		}
 
-		Shape shape = (Shape) element.get();
-		shape.setPosition(ShapeUtil.point(newBounds.getX(), newBounds.getY()));
-		shape.setSize(ShapeUtil.dimension(newBounds.getWidth(), newBounds.getHeight()));
+		Shape shape = (Shape) diagramElement.get();
+		shape.setPosition(ShapeUtil.point(element.getNewPosition().getX(), element.getNewPosition().getY()));
+		shape.setSize(ShapeUtil.dimension(element.getNewSize().getWidth(), element.getNewSize().getHeight()));
 	}
 
 }

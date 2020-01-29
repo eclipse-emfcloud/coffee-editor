@@ -1,65 +1,32 @@
+/********************************************************************************
+ * Copyright (c) 2020 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
 package com.eclipsesource.coffee.modelserver;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.UnrecognizedOptionException;
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.eclipse.emfcloud.modelserver.emf.launch.ModelServerLauncher;
 
-import com.eclipsesource.modelserver.emf.launch.CLIParser;
-import com.eclipsesource.modelserver.emf.launch.ModelServerLauncher;
 import com.google.common.collect.Lists;
 
 public class CoffeeModelServerLauncher {
-	private static Logger LOG = Logger.getLogger(CoffeeModelServerLauncher.class.getSimpleName());
-	private static String PROCESS_NAME = "java -jar com.eclipsesource.coffee.modelserver--X.X.X";
 
 	public static void main(String[] args) throws ParseException {
-		BasicConfigurator.configure();
-		try {
-			CLIParser.create(args, CLIParser.getDefaultCLIOptions());
-		} catch (UnrecognizedOptionException e) {
-			LOG.error("Unrecognized command line argument(s) used!\n");
-			CLIParser.printHelp(PROCESS_NAME, CLIParser.getDefaultCLIOptions());
-			return;
-		}
-
-		if (!CLIParser.getInstance().optionExists("r")) {
-			// No workspace root was specified, use test workspace
-			final File workspaceRoot = new File(".temp/root/");
-			clean(workspaceRoot);
-			args = Arrays.copyOf(args, args.length + 1);
-			args[args.length - 1] = "--root=" + workspaceRoot.toURI();
-			CLIParser.create(args, CLIParser.getDefaultCLIOptions());
-		}
-
-		if (CLIParser.getInstance().optionExists("h"))
-
-		{
-			CLIParser.getInstance().printHelp(PROCESS_NAME);
-			return;
-		}
+		ModelServerLauncher.configureLogger();
 
 		final ModelServerLauncher launcher = new ModelServerLauncher(args);
 		launcher.addEPackageConfigurations(Lists.newArrayList(CoffeePackageConfiguration.class));
 		launcher.start();
-
 	}
-
-	private static void clean(final File workspaceRoot) {
-		try {
-			if (workspaceRoot.exists()) {
-				FileUtils.deleteDirectory(workspaceRoot);
-			} else {
-				workspaceRoot.mkdirs();
-			}
-		} catch (IOException e) {
-			LOG.warn(e);
-		}
-	}
-
 }

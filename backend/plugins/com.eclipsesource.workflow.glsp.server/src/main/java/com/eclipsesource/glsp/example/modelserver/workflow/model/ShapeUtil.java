@@ -3,7 +3,7 @@ package com.eclipsesource.glsp.example.modelserver.workflow.model;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Dimension;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Point;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.WfnotationFactory;
-import com.eclipsesource.glsp.graph.GPoint;
+import org.eclipse.glsp.graph.GPoint;
 
 public class ShapeUtil {
 

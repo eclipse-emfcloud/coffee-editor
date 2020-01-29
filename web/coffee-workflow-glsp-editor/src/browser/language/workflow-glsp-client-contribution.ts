@@ -13,8 +13,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { BaseGLSPClientContribution } from '@glsp/theia-integration/lib/browser';
-import { ModelServerClient } from '@modelserver/theia/lib/common';
+import { ModelServerClient } from '@eclipse-emfcloud/modelserver-theia/lib/common';
+import { BaseGLSPClientContribution } from '@eclipse-glsp/theia-integration/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { inject, injectable } from 'inversify';
 

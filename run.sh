@@ -55,33 +55,32 @@ done
 [[ "$buildFrontend" == "true" ]] && echo "  Build Frontend (-f)" || echo "  Do not build Frontend (-f)"
 [[ "$runFrontend" == "true" ]] && echo "  Run Frontend (-r)" || echo "  Do not run Frontend (-r)"
 
-productPath=''
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	productPath='linux/gtk'
-	echo "Running on Linux"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-        # Mac OSX
-	productPath='macosx\cocoa'
-	echo "Running on Mac"
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-        # POSIX compatibility layer and Linux environment emulation for Windows
-	productPath='win32\win32'
-	echo "Running on Windows with Cygwin"
-elif [[ "$OSTYPE" == "msys" ]]; then
-        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-	productPath='win32\win32'
-	echo "Running on Windows with Msys"
-fi
-echo "$productPath"
-
 if [ "$buildBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Build backend products"
   cd backend/releng/com.eclipsesource.coffee.parent/
-  mvn clean install -Pfatjar
+  mvn clean install -Pfatjar -U
   cd ../../../
 fi
 
 if [ "$copyBackend" == "true" ]; then
+  productPath=''
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	productPath='linux/gtk'
+	echo "Running on Linux"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+	productPath='macosx\cocoa'
+	echo "Running on Mac"
+  elif [[ "$OSTYPE" == "cygwin" ]]; then
+        # POSIX compatibility layer and Linux environment emulation for Windows
+	productPath='win32\win32'
+	echo "Running on Windows with Cygwin"
+  elif [[ "$OSTYPE" == "msys" ]]; then
+        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+	productPath='win32\win32'
+	echo "Running on Windows with Msys"
+  fi
+  echo "$productPath"
   echo "$(date +"[%T.%3N]") Copy built products..."
 
   inputCodeGen=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.codegen/$productPath/x86_64
