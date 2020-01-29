@@ -15,14 +15,14 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.model;
 
-import com.eclipsesource.glsp.example.workflow.utils.ModelTypes;
-import com.eclipsesource.modelserver.coffee.model.coffee.AutomaticTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.Decision;
-import com.eclipsesource.modelserver.coffee.model.coffee.Fork;
-import com.eclipsesource.modelserver.coffee.model.coffee.Join;
-import com.eclipsesource.modelserver.coffee.model.coffee.ManualTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.Merge;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.example.workflow.utils.ModelTypes;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.AutomaticTask;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Decision;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Fork;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Join;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.ManualTask;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Merge;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 
 public final class CoffeeTypeUtil {
 	public static final String FORK_NODE = "activityNode:fork";

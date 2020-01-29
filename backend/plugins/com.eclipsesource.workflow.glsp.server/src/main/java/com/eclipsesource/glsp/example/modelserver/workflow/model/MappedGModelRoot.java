@@ -17,9 +17,9 @@ package com.eclipsesource.glsp.example.modelserver.workflow.model;
 
 import java.util.Map;
 
-import com.eclipsesource.glsp.graph.GModelRoot;
-import com.eclipsesource.glsp.graph.GNode;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.graph.GModelRoot;
+import org.eclipse.glsp.graph.GNode;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 
 public class MappedGModelRoot {
 

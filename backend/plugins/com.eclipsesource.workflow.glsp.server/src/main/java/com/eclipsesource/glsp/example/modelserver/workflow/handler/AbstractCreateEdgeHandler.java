@@ -19,18 +19,18 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.command.AddCommand;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.CreateConnectionOperationAction;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.CreateConnectionOperationAction;
+import org.eclipse.glsp.api.model.GraphicalModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowFacade;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Edge;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.WfnotationFactory;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeeFactory;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeeFactory;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
 
 public abstract class AbstractCreateEdgeHandler implements ModelStateAwareOperationHandler {
 

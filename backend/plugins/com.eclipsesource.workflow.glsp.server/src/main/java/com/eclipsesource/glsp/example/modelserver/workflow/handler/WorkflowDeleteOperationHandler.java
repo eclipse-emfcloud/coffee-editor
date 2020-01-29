@@ -22,21 +22,21 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.DeleteOperationAction;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.DeleteOperationAction;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.model.GraphicalModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.DiagramElement;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Shape;
-import com.eclipsesource.glsp.graph.GEdge;
-import com.eclipsesource.glsp.graph.GModelElement;
-import com.eclipsesource.glsp.graph.GNode;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.graph.GEdge;
+import org.eclipse.glsp.graph.GModelElement;
+import org.eclipse.glsp.graph.GNode;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 
-public class DeleteOperationHandler implements OperationHandler {
+public class WorkflowDeleteOperationHandler implements OperationHandler {
 
 	private Set<EObject> toDelete;
 

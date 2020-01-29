@@ -14,50 +14,49 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<repositories>
+		<repository>
+
+			<id>sonatype</id>
+			<name>Sonatype</name>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+		</repository>
+
+	</repositories>
 	<dependencies>
-		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>glsp-api</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>glsp-server</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
+			<groupId>org.eclipse.glsp</groupId>
+			<artifactId>org.eclipse.glsp.server</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>glsp-graph</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
+			<groupId>org.eclipse.glsp</groupId>
+			<artifactId>org.eclipse.glsp.layout</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>glsp-server-websocket</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
+			<groupId>org.eclipse.glsp.example</groupId>
+			<artifactId>org.eclipse.glsp.example.workflow</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.eclipsesource.coffee</groupId> -->
+<!-- 			<artifactId>com.eclipsesource.coffee.model</artifactId> -->
+<!-- 			<version>0.1.0-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+<dependency>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.coffee.model</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>glsp-layout</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.eclipsesource.glsp</groupId>
-			<artifactId>workflow-example</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.eclipsesource.modelserver</groupId>
-			<artifactId>com.eclipsesource.modelserver.coffee.model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.eclipsesource.modelserver</groupId>
-			<artifactId>com.eclipsesource.modelserver.client</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.client</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

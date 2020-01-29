@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { LaunchOptions } from '@modelserver/theia';
+import { LaunchOptions } from '@eclipse-emfcloud/modelserver-theia';
 import { LanguageServerContribution } from '@theia/languages/lib/node';
 import { ContainerModule, injectable } from 'inversify';
 import { join, resolve } from 'path';

@@ -15,7 +15,7 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.model;
 
-import static com.eclipsesource.glsp.api.utils.ServerStatusUtil.getDetails;
+import static org.eclipse.glsp.api.utils.ServerStatusUtil.getDetails;
 import static com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerModelFactory.OPTION_WORKFLOW_INDEX;
 import static com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerModelFactory.WORKFLOW_INDEX_DEFAULT;
 
@@ -30,20 +30,20 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.jetbrains.annotations.NotNull;
 
-import com.eclipsesource.glsp.api.action.ActionProcessor;
-import com.eclipsesource.glsp.api.action.kind.RequestBoundsAction;
-import com.eclipsesource.glsp.api.action.kind.ServerStatusAction;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
-import com.eclipsesource.glsp.api.types.ServerStatus;
-import com.eclipsesource.glsp.api.types.ServerStatus.Severity;
-import com.eclipsesource.glsp.api.utils.ClientOptions;
+import org.eclipse.glsp.api.action.ActionProcessor;
+import org.eclipse.glsp.api.action.kind.RequestBoundsAction;
+import org.eclipse.glsp.api.action.kind.ServerStatusAction;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.types.ServerStatus;
+import org.eclipse.glsp.api.types.ServerStatus.Severity;
+import org.eclipse.glsp.api.utils.ClientOptions;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.DiagramElement;
-import com.eclipsesource.modelserver.client.ModelServerNotification;
-import com.eclipsesource.modelserver.client.Response;
-import com.eclipsesource.modelserver.client.XmiToEObjectSubscriptionListener;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.command.CCommand;
-import com.eclipsesource.modelserver.common.codecs.DecodingException;
+import org.eclipse.emfcloud.modelserver.client.ModelServerNotification;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.client.XmiToEObjectSubscriptionListener;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Machine;
+import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 import com.google.common.collect.Lists;
 
 public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscriptionListener {

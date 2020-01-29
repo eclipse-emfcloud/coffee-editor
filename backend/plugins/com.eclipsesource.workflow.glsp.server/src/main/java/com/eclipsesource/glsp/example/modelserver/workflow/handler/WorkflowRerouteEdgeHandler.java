@@ -15,30 +15,33 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
+import static org.eclipse.glsp.api.jsonrpc.GLSPServerException.getOrThrow;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.RerouteConnectionOperationAction;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.ChangeRoutingPointsOperationAction;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.types.ElementAndRoutingPoints;
+import org.eclipse.glsp.graph.GEdge;
+import org.eclipse.glsp.graph.GModelIndex;
+
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ShapeUtil;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
-import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.DiagramElement;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Edge;
 import com.eclipsesource.glsp.example.modelserver.workflow.wfnotation.Point;
-import com.eclipsesource.glsp.graph.GEdge;
-import com.eclipsesource.glsp.graph.GModelIndex;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
 
-public class RerouteEdgeHandler implements OperationHandler {
+public class WorkflowRerouteEdgeHandler implements OperationHandler {
 
 	@Override
 	public Class<?> handlesActionType() {
-		return RerouteConnectionOperationAction.class;
+		return ChangeRoutingPointsOperationAction.class;
 	}
 
 	@Override
@@ -48,37 +51,29 @@ public class RerouteEdgeHandler implements OperationHandler {
 
 	@Override
 	public void execute(AbstractOperationAction operationAction, GraphicalModelState modelState) {
-		if (!(operationAction instanceof RerouteConnectionOperationAction)) {
+		if (!(operationAction instanceof ChangeRoutingPointsOperationAction)) {
 			throw new IllegalArgumentException("Unexpected action " + operationAction);
 		}
 
-		// check for null-values
-		final RerouteConnectionOperationAction action = (RerouteConnectionOperationAction) operationAction;
-		if (action.getConnectionElementId() == null || action.getRoutingPoints() == null) {
-			throw new IllegalArgumentException("Incomplete reconnect connection action");
-		}
-
-		// check for existence of matching elements
+		final ChangeRoutingPointsOperationAction action = (ChangeRoutingPointsOperationAction) operationAction;
 		GModelIndex index = modelState.getIndex();
-		Optional<GEdge> gEdge = index.findElementByClass(action.getConnectionElementId(), GEdge.class);
-		if (!gEdge.isPresent()) {
-			throw new IllegalArgumentException("Invalid edge: edge ID " + action.getConnectionElementId());
-		}
+		action.getNewRoutingPoints().forEach(ear-> applyRoutingPointsChange(ear,modelState));
+	}
 
+	private void applyRoutingPointsChange(ElementAndRoutingPoints ear, GraphicalModelState modelState) {
+		GEdge gEdge = getOrThrow(modelState.getIndex().findElementByClass(ear.getElementId(), GEdge.class),
+				"Invalid edge: edge ID " + ear.getElementId());
 		// reroute
 		WorkflowModelServerAccess modelAccess = ModelServerAwareModelState.getModelAccess(modelState);
-		Node sourceNode = modelAccess.getNodeById(gEdge.get().getSourceId());
-		Node targetNode = modelAccess.getNodeById(gEdge.get().getTargetId());
+		Node sourceNode = modelAccess.getNodeById(gEdge.getSourceId());
+		Node targetNode = modelAccess.getNodeById(gEdge.getTargetId());
 		Optional<Flow> flow = modelAccess.getFlow(sourceNode, targetNode);
-		Optional<DiagramElement> maybeEdge = flow.flatMap(f -> modelAccess.getWorkflowFacade().findDiagramElement(f));
-		if (maybeEdge.isEmpty() || !(maybeEdge.get() instanceof Edge)) {
-			throw new IllegalArgumentException("Cannot find edge for GEdge ID " + action.getConnectionElementId());
-		}
+		Edge edge = getOrThrow(flow.flatMap(f -> modelAccess.getWorkflowFacade().findDiagramElement(f, Edge.class)),
+				"Cannot find edge for GEdge ID " + ear.getElementId());
 
-		Edge edge2 = (Edge) maybeEdge.get();
-		List<Point> bendPoints = action.getRoutingPoints().stream().map(ShapeUtil::point).collect(Collectors.toList());
-		edge2.getBendPoints().clear();
-		edge2.getBendPoints().addAll(bendPoints);
+		List<Point> bendPoints = ear.getNewRoutingPoints().stream().map(ShapeUtil::point).collect(Collectors.toList());
+		edge.getBendPoints().clear();
+		edge.getBendPoints().addAll(bendPoints);
 	}
 
 }

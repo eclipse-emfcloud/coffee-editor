@@ -22,9 +22,9 @@ import org.apache.log4j.Logger;
 
 import com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServerGLSPServer.InitializeOptions;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
-import com.eclipsesource.glsp.server.jsonrpc.DefaultGLSPServer;
-import com.eclipsesource.modelserver.client.ModelServerClient;
-import com.eclipsesource.modelserver.client.Response;
+import org.eclipse.glsp.server.jsonrpc.DefaultGLSPServer;
+import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.client.Response;
 import com.google.inject.Inject;
 
 public class WorkflowModelServerGLSPServer extends DefaultGLSPServer<InitializeOptions> {

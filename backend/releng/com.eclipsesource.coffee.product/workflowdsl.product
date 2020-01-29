@@ -27,10 +27,7 @@
 
    <plugins>
       <plugin id="com.eclipsesource.coffee.common"/>
-      <plugin id="com.eclipsesource.modelserver.client"/>
       <plugin id="com.eclipsesource.modelserver.coffee.model"/>
-      <plugin id="com.eclipsesource.modelserver.common"/>
-      <plugin id="com.eclipsesource.modelserver.edit"/>
       <plugin id="com.eclipsesource.workflow"/>
       <plugin id="com.eclipsesource.workflow.dsl"/>
       <plugin id="com.eclipsesource.workflow.dsl.ide"/>
@@ -40,7 +37,6 @@
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
-      <plugin id="com.squareup.okhttp3"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.antlr.runtime"/>
@@ -61,6 +57,10 @@
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.client"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.common"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.edit"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.lib"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.launcher"/>

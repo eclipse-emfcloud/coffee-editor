@@ -21,19 +21,19 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.ApplyLabelEditOperationAction;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.ApplyLabelEditOperationAction;
+import org.eclipse.glsp.api.model.GraphicalModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
-import com.eclipsesource.glsp.graph.GLabel;
-import com.eclipsesource.glsp.graph.GModelElement;
-import com.eclipsesource.glsp.graph.GNode;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import org.eclipse.glsp.graph.GLabel;
+import org.eclipse.glsp.graph.GModelElement;
+import org.eclipse.glsp.graph.GNode;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
 
-public class ApplyLabelEditOperationHandler implements ModelStateAwareOperationHandler {
+public class WorkflowApplyLabelEditOperationHandler implements ModelStateAwareOperationHandler {
 
 	@Override
 	public Class<? extends Action> handlesActionType() {

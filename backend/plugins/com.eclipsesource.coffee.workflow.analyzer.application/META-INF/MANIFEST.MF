@@ -7,12 +7,12 @@ Bundle-Vendor: EclipseSource
 Require-Bundle: org.eclipse.core.runtime,
  com.google.gson;bundle-version="2.7.0",
  org.eclipse.lsp4j.jsonrpc,
- com.eclipsesource.modelserver.client,
+ org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  com.eclipsesource.coffee.workflow.analyzer.coffee,
  com.eclipsesource.coffee.common,
  com.eclipsesource.modelserver.coffee.model
 Automatic-Module-Name: com.eclipsesource.workflow.analyzer.application
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.eclipsesource.workflow.analyzer.application
 Import-Package: org.apache.commons.logging,
  org.apache.log4j;version="1.2.15"

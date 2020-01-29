@@ -17,10 +17,10 @@ package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
 import org.eclipse.emf.ecore.EClass;
 
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
 import com.google.common.base.Preconditions;
 
 public abstract class AbstractCreateTaskHandler extends AbstractCreateNodeHandler {

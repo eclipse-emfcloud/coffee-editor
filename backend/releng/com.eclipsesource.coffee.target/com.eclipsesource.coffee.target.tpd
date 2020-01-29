@@ -8,16 +8,16 @@ location "http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repos
 }
 
 location "http://download.eclipse.org/releases/2019-12/" eclipse-2019-12 {
-	org.eclipse.jdt.feature.group
-    org.eclipse.platform.feature.group
-    org.eclipse.pde.feature.group
-    org.eclipse.draw2d.feature.group
-    org.eclipse.emf.sdk.feature.group
-    org.eclipse.xpand
-    org.eclipse.xtend
-    org.eclipse.xtend.typesystem.emf
-	org.eclipse.emf.mwe2.launcher.feature.group
-	org.eclipse.xtext.sdk.feature.group
+	org.eclipse.jdt.feature.group lazy
+    org.eclipse.platform.feature.group lazy
+    org.eclipse.pde.feature.group lazy
+    org.eclipse.draw2d.feature.group lazy
+    org.eclipse.emf.sdk.feature.group lazy
+    org.eclipse.xpand lazy
+    org.eclipse.xtend lazy
+    org.eclipse.xtend.typesystem.emf lazy
+	org.eclipse.emf.mwe2.launcher.feature.group lazy
+	org.eclipse.xtext.sdk.feature.group lazy
 }
 
 location "http://download.eclipse.org/eclipse/updates/4.14/" eclipse-4.14 {
@@ -25,15 +25,16 @@ location "http://download.eclipse.org/eclipse/updates/4.14/" eclipse-4.14 {
 	org.eclipse.equinox.executable.feature.group lazy
 }
 
-location "http://download.eclipse.org/lsp4j/updates/releases/" {
-	org.eclipse.lsp4j.sdk.feature.group
+location "http://download.eclipse.org/lsp4j/updates/releases/0.8.1" {
+	org.eclipse.lsp4j.sdk.feature.group lazy
 }
-location "https://dl.bintray.com/eclipsesource/modelserver/nightly/" {
-	com.eclipsesource.modelserver.coffee.model lazy
-	com.eclipsesource.modelserver.client lazy
-	com.eclipsesource.modelserver.common lazy
-	com.squareup.okhttp3
+location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/" {
+	org.eclipse.emfcloud.modelserver.client lazy
+	org.eclipse.emfcloud.modelserver.common lazy
 }
 location "http://ghillairet.github.io/p2" {
-	org.emfjson.jackson
+	org.emfjson.jackson lazy
+}
+location "http://dl.bintray.com/eclipsesource/modelserver/snapshots/0.0.1.20190927.153154-70/" {
+	com.eclipsesource.modelserver.coffee.model lazy
 }

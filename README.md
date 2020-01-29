@@ -35,6 +35,7 @@ This project should not contain much code and should mostly consist of 'glue' co
     npm install -g yarn
 
 ### Install maven
+
 Please check the installation documentation for [maven](http://maven.apache.org/install.html).
 
 On Ubuntu you can use:
@@ -43,10 +44,13 @@ On Ubuntu you can use:
 ### Install linux packages (if necessary).
 
     sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev libxml2-utils
+
 ### Install python (needed from theia dependencies):
+
 Please check the installation description [here](https://github.com/nodejs/node-gyp#installation).
 
-On Windows the most reliable way seems to be to install Python and set ` npm config set python "C:\Path\To\python.exe"`.
+On Windows the most reliable way seems to be to install Python and set `npm config set python "C:\Path\To\python.exe"`.
+
 ## Getting started
 
 Clone and build the coffee-editor:
@@ -85,3 +89,44 @@ Create a npm user and login to the npm registry, [more on npm publishing](https:
 Publish packages with lerna to update versions properly across local packages, [more on publishing with lerna](https://github.com/lerna/lerna#publish).
 
     npx lerna publish
+
+## Debug the application
+
+### Debug Backend
+
+- Install Eclipse
+- Import projects from `backend`
+- Set target `com.eclipsesource.coffee.target.target`
+
+#### Code Generation
+
+You cannot debug the code generation. In order to debug it, you need to execute the `com.eclipsesource.coffee.product.codegen` with the correct parameters.
+
+#### Workflow Analyzer
+
+In order to debug, start the `com.eclipsesource.coffee.product.workflow.analyzer` product in debug mode. The root application is : `com.eclipsesource.workflow.analyzer.application.Application`.
+
+#### Workflow DSL
+
+In order to debug, start the `com.eclipsesource.coffee.product.workflow.dsl` product in debug mode.
+
+#### Coffee Model Server
+
+Use the `com.eclipsesource.coffee.modelserver.CoffeeModelServerLauncher` class to start the Model Server.
+
+#### Coffee GLSP Server
+
+Use the `com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServerGLSPServerLauncher` class to start the GLSP Server.
+
+### Debug Frontend
+
+- Install VSCode
+- Import projects from `web`
+
+#### Debug Theia Backend
+
+Use the `Start Browser Backend` launch config inside VSCode.
+
+#### Debug Theia Frontend
+
+Use the `Launch Browser Frontend` launch config inside VSCode. This will open Chrome and attach a debug listener.

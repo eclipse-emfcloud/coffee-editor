@@ -15,16 +15,18 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
-import com.eclipsesource.glsp.api.provider.OperationHandlerProvider;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.provider.OperationHandlerProvider;
+import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
+
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
-import com.eclipsesource.glsp.server.actionhandler.OperationActionHandler;
 import com.google.inject.Inject;
 
 public class ModelServerAwareOperationActionHandler extends OperationActionHandler {
@@ -33,7 +35,7 @@ public class ModelServerAwareOperationActionHandler extends OperationActionHandl
 	private OperationHandlerProvider operationHandlerProvider;
 
 	@Override
-	public Optional<Action> doHandle(AbstractOperationAction action, GraphicalModelState modelState) {
+	public List<Action> doHandle(AbstractOperationAction action, GraphicalModelState modelState) {
 		if (operationHandlerProvider.isHandled(action)) {
 			OperationHandler handler = operationHandlerProvider.getHandler(action).get();
 			handler.execute(action, modelState);
@@ -44,6 +46,6 @@ public class ModelServerAwareOperationActionHandler extends OperationActionHandl
 				modelAccess.update();				
 			}
 		}
-		return Optional.empty();
+		return Collections.emptyList();
 	}
 }

@@ -16,9 +16,9 @@ Require-Bundle: com.eclipsesource.workflow.dsl,
  org.eclipse.equinox.app,
  org.apache.commons.io;bundle-version="2.2.0",
  com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1",
- com.eclipsesource.modelserver.client;bundle-version="0.0.1",
+ org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  com.eclipsesource.coffee.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.eclipsesource.workflow.dsl.ide,
  com.eclipsesource.workflow.dsl.ide.contentassist,
  com.eclipsesource.workflow.dsl.ide.contentassist.antlr,

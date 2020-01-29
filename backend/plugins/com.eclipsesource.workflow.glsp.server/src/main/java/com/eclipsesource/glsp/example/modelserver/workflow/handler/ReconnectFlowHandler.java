@@ -17,17 +17,17 @@ package com.eclipsesource.glsp.example.modelserver.workflow.handler;
 
 import java.util.Optional;
 
-import com.eclipsesource.glsp.api.action.Action;
-import com.eclipsesource.glsp.api.action.kind.AbstractOperationAction;
-import com.eclipsesource.glsp.api.action.kind.ReconnectConnectionOperationAction;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.action.Action;
+import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
+import org.eclipse.glsp.api.action.kind.ReconnectConnectionOperationAction;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.model.GraphicalModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelState;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerAccess;
-import com.eclipsesource.glsp.graph.GEdge;
-import com.eclipsesource.glsp.graph.GModelElement;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.glsp.graph.GEdge;
+import org.eclipse.glsp.graph.GModelElement;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
+import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 
 public class ReconnectFlowHandler implements OperationHandler {
 

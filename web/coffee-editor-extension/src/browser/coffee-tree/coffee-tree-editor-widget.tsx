@@ -13,13 +13,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { ModelServerSubscriptionService } from '@modelserver/theia/lib/browser';
+import { ModelServerSubscriptionService } from '@eclipse-emfcloud/modelserver-theia/lib/browser';
 import {
   ModelServerClient,
   ModelServerCommand,
   ModelServerCommandUtil,
   ModelServerReferenceDescription,
-} from '@modelserver/theia/lib/common';
+} from '@eclipse-emfcloud/modelserver-theia/lib/common';
 import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
@@ -151,11 +151,11 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
       this.treeWidget.setData({ error: response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
-        this.getModelIDToRequest() +
-        "' - Status " +
-        response.statusCode +
-        ' ' +
-        response.statusMessage
+          this.getModelIDToRequest() +
+          "' - Status " +
+          response.statusCode +
+          ' ' +
+          response.statusMessage
       );
       this.instanceData = undefined;
       return;
@@ -244,11 +244,13 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
    * Create the corresponding ModelServerReferenceDescription for the given tree node.
    * @param node The tree node to convert
    */
-  protected getNodeDescription(node: TreeEditor.Node): ModelServerReferenceDescription {
+  protected getNodeDescription(
+    node: TreeEditor.Node
+  ): ModelServerReferenceDescription {
     const getRefSegment = (n: TreeEditor.Node) =>
       n.jsonforms.property
         ? `@${n.jsonforms.property}` +
-        (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
+          (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
         : '';
     let refToNode = '';
     let toCheck: TreeNode = node;
@@ -260,7 +262,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
     const ownerRef = `${
       this.workspaceService.workspace.uri
-      }/${this.getModelIDToRequest()}#/${refToNode}`;
+    }/${this.getModelIDToRequest()}#/${refToNode}`;
     return {
       eClass: node.jsonforms.type,
       $ref: ownerRef.replace('file:///', 'file:/')

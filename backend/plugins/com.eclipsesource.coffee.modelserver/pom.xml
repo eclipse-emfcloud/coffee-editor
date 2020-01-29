@@ -26,16 +26,14 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>com.eclipsesource.modelserver</groupId>
-			<artifactId>com.eclipsesource.modelserver.emf</artifactId>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.emf</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.eclipsesource.modelserver</groupId>
 			<artifactId>com.eclipsesource.modelserver.coffee.model</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

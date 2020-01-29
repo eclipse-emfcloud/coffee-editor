@@ -15,40 +15,41 @@
  ******************************************************************************/
 package com.eclipsesource.glsp.example.modelserver.workflow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
+import org.eclipse.emfcloud.modelserver.edit.DefaultCommandCodec;
+import org.eclipse.glsp.api.di.MultiBindings;
+import org.eclipse.glsp.api.diagram.DiagramConfiguration;
+import org.eclipse.glsp.api.factory.ModelFactory;
+import org.eclipse.glsp.api.handler.ActionHandler;
+import org.eclipse.glsp.api.handler.OperationHandler;
+import org.eclipse.glsp.api.jsonrpc.GLSPServer;
+import org.eclipse.glsp.api.model.ModelStateProvider;
+import org.eclipse.glsp.example.workflow.WorkflowGLSPModule;
+import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
+import org.eclipse.glsp.server.actionhandler.SaveModelActionHandler;
+import org.eclipse.glsp.server.actionhandler.UndoRedoActionHandler;
+import org.eclipse.glsp.server.operationhandler.ApplyLabelEditOperationHandler;
+import org.eclipse.glsp.server.operationhandler.ChangeBoundsOperationHandler;
+import org.eclipse.glsp.server.operationhandler.DeleteOperationHandler;
+import org.eclipse.glsp.server.operationhandler.ReconnectEdgeHandler;
 
-import com.eclipsesource.glsp.api.diagram.DiagramConfiguration;
-import com.eclipsesource.glsp.api.factory.ModelFactory;
-import com.eclipsesource.glsp.api.handler.ActionHandler;
-import com.eclipsesource.glsp.api.handler.OperationHandler;
-import com.eclipsesource.glsp.api.jsonrpc.GLSPServer;
-import com.eclipsesource.glsp.api.model.ModelStateProvider;
-import com.eclipsesource.glsp.example.modelserver.workflow.handler.ApplyLabelEditOperationHandler;
-import com.eclipsesource.glsp.example.modelserver.workflow.handler.ChangeBoundsOperationHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateAutomatedTaskHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateDecisionNodeHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateFlowHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateManualTaskHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateMergeNodeHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.CreateWeightedFlowHandler;
-import com.eclipsesource.glsp.example.modelserver.workflow.handler.DeleteOperationHandler;
+import com.eclipsesource.glsp.example.modelserver.workflow.handler.ModelServerAwareChangeBoundsOperationHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.ModelServerAwareOperationActionHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.ModelServerAwareSaveActionHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.handler.ReconnectFlowHandler;
-import com.eclipsesource.glsp.example.modelserver.workflow.handler.RerouteEdgeHandler;
+import com.eclipsesource.glsp.example.modelserver.workflow.handler.WorkflowApplyLabelEditOperationHandler;
+import com.eclipsesource.glsp.example.modelserver.workflow.handler.WorkflowDeleteOperationHandler;
+import com.eclipsesource.glsp.example.modelserver.workflow.handler.WorkflowRerouteEdgeHandler;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.ModelServerAwareModelStateProvider;
 import com.eclipsesource.glsp.example.modelserver.workflow.model.WorkflowModelServerModelFactory;
-import com.eclipsesource.glsp.example.workflow.WorkflowGLSPModule;
-import com.eclipsesource.glsp.server.actionhandler.OperationActionHandler;
-import com.eclipsesource.glsp.server.actionhandler.SaveModelActionHandler;
-import com.eclipsesource.glsp.server.actionhandler.UndoRedoActionHandler;
-import com.eclipsesource.modelserver.edit.CommandCodec;
-import com.eclipsesource.modelserver.edit.DefaultCommandCodec;
 
 @SuppressWarnings("serial")
 public class WorkflowModelServerGLSPModule extends WorkflowGLSPModule {
@@ -68,44 +69,42 @@ public class WorkflowModelServerGLSPModule extends WorkflowGLSPModule {
 		return WorkflowModelServerGLSPServer.class;
 	}
 
+	
 	@Override
-	protected Collection<Class<? extends ActionHandler>> bindActionHandlers() {
-		Collection<Class<? extends ActionHandler>> defaultHandlers = super.bindActionHandlers();
-		// remove bindings that we are about to overwrite
-		defaultHandlers.remove(OperationActionHandler.class);
-		defaultHandlers.remove(SaveModelActionHandler.class);
-		defaultHandlers.remove(UndoRedoActionHandler.class);
-		// add bindings in place of the above
-		defaultHandlers.add(ModelServerAwareOperationActionHandler.class);
-		defaultHandlers.add(ModelServerAwareSaveActionHandler.class);
+	protected void configureActionHandlers(MultiBindings<ActionHandler> bindings) {
+		super.configureActionHandlers(bindings);
+		bindings.rebind(OperationActionHandler.class,ModelServerAwareOperationActionHandler.class);
+		bindings.rebind(SaveModelActionHandler.class, ModelServerAwareSaveActionHandler.class);
+		bindings.remove(UndoRedoActionHandler.class);
 		// TODO inject own undo/redo once incremental model server is ready
-		return defaultHandlers;
-	}
-
-	@Override
-	protected Collection<Class<? extends OperationHandler>> bindOperationHandlers() {
-		return new ArrayList<Class<? extends OperationHandler>>() {
-			{
-				add(CreateAutomatedTaskHandler.class);
-				add(CreateManualTaskHandler.class);
-				add(CreateDecisionNodeHandler.class);
-				add(CreateMergeNodeHandler.class);
-				add(CreateFlowHandler.class);
-				add(CreateWeightedFlowHandler.class);
-				add(ReconnectFlowHandler.class);
-				add(ChangeBoundsOperationHandler.class);
-				add(DeleteOperationHandler.class);
-				add(ApplyLabelEditOperationHandler.class);
-				add(RerouteEdgeHandler.class);
-			}
-		};
-	}
-
-	@Override
-	protected Collection<Class<? extends DiagramConfiguration>> bindDiagramConfigurations() {
-		return Arrays.asList(WorfklowDiagramNotationConfiguration.class);
 	}
 	
+
+	@Override
+	protected void configureOperationHandlers(MultiBindings<OperationHandler> bindings) {
+		super.configureOperationHandlers(bindings);
+		bindings.add(CreateAutomatedTaskHandler.class);
+		bindings.add(CreateManualTaskHandler.class);
+		bindings.add(CreateDecisionNodeHandler.class);
+		bindings.add(CreateMergeNodeHandler.class);
+		bindings.add(CreateFlowHandler.class);
+		bindings.add(CreateWeightedFlowHandler.class);
+		bindings.rebind(ReconnectEdgeHandler.class, ReconnectFlowHandler.class);
+		bindings.rebind(ChangeBoundsOperationHandler.class, ModelServerAwareChangeBoundsOperationHandler.class);
+		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
+		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class);
+		bindings.rebind(ChangeBoundsOperationHandler.class, WorkflowRerouteEdgeHandler.class);
+		
+	}
+
+
+
+	@Override
+	protected void configureDiagramConfigurations(MultiBindings<DiagramConfiguration> bindings) {
+		super.configureDiagramConfigurations(bindings);
+		bindings.add(WorfklowDiagramNotationConfiguration.class);
+	}
+
 	@Override
 	protected void configure() {
 		super.configure();

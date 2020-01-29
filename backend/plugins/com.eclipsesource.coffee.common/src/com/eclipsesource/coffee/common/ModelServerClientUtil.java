@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.eclipsesource.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 
 public final class ModelServerClientUtil {
 	private static final String FORMAT = "xmi";
