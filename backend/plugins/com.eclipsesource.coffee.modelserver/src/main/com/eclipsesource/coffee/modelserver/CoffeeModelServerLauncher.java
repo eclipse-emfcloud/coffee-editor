@@ -16,6 +16,8 @@
 package com.eclipsesource.coffee.modelserver;
 
 import org.apache.commons.cli.ParseException;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.emfcloud.modelserver.emf.launch.ModelServerLauncher;
 
 import com.google.common.collect.Lists;
@@ -24,7 +26,7 @@ public class CoffeeModelServerLauncher {
 
 	public static void main(String[] args) throws ParseException {
 		ModelServerLauncher.configureLogger();
-
+		Logger.getRootLogger().setLevel(Level.INFO);
 		final ModelServerLauncher launcher = new ModelServerLauncher(args);
 		launcher.addEPackageConfigurations(Lists.newArrayList(CoffeePackageConfiguration.class));
 		launcher.start();

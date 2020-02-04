@@ -16,16 +16,7 @@
 import 'sprotty-theia/css/theia-sprotty.css';
 
 import { createWorkflowDiagramContainer } from '@eclipse-glsp-examples/workflow-sprotty/lib';
-import {
-    CommandPalette,
-    DelKeyDeleteTool,
-    EdgeEditTool,
-    GLSP_TYPES,
-    IActionDispatcher,
-    MouseDeleteTool,
-    ToolManager,
-    TYPES,
-} from '@eclipse-glsp/client/lib';
+import { CommandPalette, GLSP_TYPES, IActionDispatcher, registerDefaultTools, TYPES } from '@eclipse-glsp/client/lib';
 import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
 import { SelectionService } from '@theia/core';
 import { Container, inject, injectable } from 'inversify';
@@ -52,15 +43,7 @@ export class WorkflowDiagramConfiguration implements DiagramConfiguration {
         if (this.contextMenuService instanceof TheiaContextMenuService) {
             this.contextMenuService.connect(container.get<IActionDispatcher>(TYPES.IActionDispatcher));
         }
-
-        // Temporary workaround: for default tool registration
-
-        const toolManager: ToolManager = container.get(TYPES.IToolManager);
-        toolManager.registerDefaultTools(
-            container.resolve(EdgeEditTool),
-            container.resolve(DelKeyDeleteTool));
-        toolManager.registerTools(container.resolve(MouseDeleteTool));
-        toolManager.enableDefaultTools();
+        registerDefaultTools(container);
 
         return container;
     }
