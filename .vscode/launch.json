@@ -16,6 +16,7 @@
         "--WORKFLOW_NOTATION_LSP=5008",
         "--WF_LSP=5017",
         "--WF_ANALYZER=5083",
+        "--app-project-path=${workspaceRoot}/web/browser-app",
       ],
       "env": {
         "NODE_ENV": "development"
@@ -24,7 +25,8 @@
       "outFiles": [
         "${workspaceRoot}/web/node_modules/@theia/*/lib/**/*.js",
         "${workspaceRoot}/web/browser-app/lib/**/*.js",
-        "${workspaceRoot}/web/browser-app/src-gen/**/*.js"
+        "${workspaceRoot}/web/browser-app/src-gen/backend/*.js",
+        "${workspaceRoot}/web/packages/*/lib/**/*.js",
       ],
       "smartStep": true,
       "internalConsoleOptions": "openOnSessionStart",
