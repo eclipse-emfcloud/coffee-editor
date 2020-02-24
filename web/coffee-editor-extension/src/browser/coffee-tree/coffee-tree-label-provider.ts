@@ -25,7 +25,6 @@ const DEFAULT_COLOR = 'black';
 const ICON_CLASSES: Map<string, string> = new Map([
   [CoffeeModel.Type.AutomaticTask, 'fa-cog ' + DEFAULT_COLOR],
   [CoffeeModel.Type.BrewingUnit, 'fa-fire ' + DEFAULT_COLOR],
-  [CoffeeModel.Type.Component, 'fa-cube ' + DEFAULT_COLOR],
   [CoffeeModel.Type.ControlUnit, 'fa-server ' + DEFAULT_COLOR],
   [CoffeeModel.Type.Decision, 'fa-chevron-up ' + DEFAULT_COLOR],
   [CoffeeModel.Type.Dimension, 'fa-arrows-alt ' + DEFAULT_COLOR],
