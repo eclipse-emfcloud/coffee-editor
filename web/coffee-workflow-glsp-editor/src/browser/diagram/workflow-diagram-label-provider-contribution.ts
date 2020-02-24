@@ -40,6 +40,7 @@ export class WorkflowDiagramLabelProviderContribution implements LabelProviderCo
     }
 
     // Do not need to specify getName() because the default uri label provider handles this
+        // tslint:disable-next-line: deprecation
 
     getLongName(uri: URI): string {
         return uri.path.toString();
