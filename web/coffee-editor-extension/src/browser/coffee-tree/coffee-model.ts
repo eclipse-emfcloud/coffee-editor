@@ -20,7 +20,6 @@ export namespace CoffeeModel {
     export namespace Type {
         export const AutomaticTask = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask';
         export const BrewingUnit = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit';
-        export const Component = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Component';
         export const ControlUnit = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit';
         export const Decision = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Decision';
         export const Dimension = 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Dimension';
@@ -46,7 +45,6 @@ export namespace CoffeeModel {
     }
 
     const components = [
-        Type.Component,
         Type.Machine,
         Type.ControlUnit,
         Type.BrewingUnit,
@@ -75,18 +73,6 @@ export namespace CoffeeModel {
                 {
                     property: 'children',
                     children: components
-                }
-            ]
-        ],
-        [
-            Type.Component, [
-                {
-                    property: 'children',
-                    children: components
-                },
-                {
-                    property: 'workflows',
-                    children: [Type.Workflow]
                 }
             ]
         ],

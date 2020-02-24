@@ -88,14 +88,24 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             index: path.substring(indexSplitPos + 1)
           };
         });
-      const ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
-      const objectToModify = ownerPropIndexPath.reduce(
-        (data, path) =>
-          path.index === undefined
-            ? data[path.property]
-            : data[path.property][path.index],
-        this.instanceData
-      );
+      let ownerNode;
+      if (ownerPropIndexPath.length !== 0) {
+        ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
+      } else {
+        // TODO should be done in findNode
+        ownerNode = (this.treeWidget.model.root as TreeEditor.RootNode)
+          .children[0];
+      }
+      const objectToModify =
+        ownerPropIndexPath.length === 0
+          ? this.instanceData
+          : ownerPropIndexPath.reduce(
+              (data, path) =>
+                path.index === undefined
+                  ? data[path.property]
+                  : data[path.property][path.index],
+              this.instanceData
+            );
       switch (command.type) {
         case 'add': {
           if (!objectToModify[command.feature]) {
