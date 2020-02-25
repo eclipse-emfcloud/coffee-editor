@@ -171,6 +171,8 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
       return;
     });
     this.modelServerApi.subscribe(this.getModelIDToRequest());
+    // see https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+    window.onbeforeunload = () => this.dispose();
   }
   private getOldSelectedPath(): string[] {
     const paths: string[] = [];
