@@ -32,6 +32,9 @@ import { clone, isEqual } from 'lodash';
 
 import { CoffeeModel } from './coffee-model';
 
+const sortByIndex = (a: ModelServerCommand, b: ModelServerCommand) =>
+  b.indices[0] - a.indices[0];
+
 @injectable()
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
   private delayedRefresh = false;
@@ -75,114 +78,122 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
       });
       this.subscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
           const command = incrementalUpdate as ModelServerCommand;
-          // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
-          const ownerPropIndexPath = command.owner.$ref
-              .substring(command.owner.$ref.indexOf('#/') + 3)
-              .split('/')
-              .filter(v => v.length !== 0)
-              .map(path => {
-                  const indexSplitPos = path.indexOf('.');
-                  // each property starts with an @ so we ignore it
-                  return {
-                      property: path.substring(1, indexSplitPos),
-                      index: path.substring(indexSplitPos + 1)
-                  };
-              });
-          let ownerNode;
-          if (ownerPropIndexPath.length !== 0) {
-              ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
-          } else {
-              // TODO should be done in findNode
-              ownerNode = (this.treeWidget.model.root as TreeEditor.RootNode)
-                  .children[0];
-          }
-          const objectToModify =
-        ownerPropIndexPath.length === 0
-            ? this.instanceData
-            : ownerPropIndexPath.reduce(
-                (data, path) =>
-                    path.index === undefined
-                        ? data[path.property]
-                        : data[path.property][path.index],
-                this.instanceData
-            );
-          switch (command.type) {
-              case 'add': {
-                  if (!objectToModify[command.feature]) {
-                      objectToModify[command.feature] = [];
-                  }
-                  objectToModify[command.feature].push(...command.objectsToAdd);
-                  this.treeWidget.addChildren(
-                      ownerNode,
-                      command.objectsToAdd,
-                      command.feature
-                  );
-                  if (!this.isVisible) {
-                      this.delayedRefresh = true;
-                  }
-                  break;
-              }
-              case 'remove': {
-                  command.indices.forEach(i =>
-                      objectToModify[command.feature].splice(i, 1)
-                  );
-                  this.treeWidget.removeChildren(
-                      ownerNode,
-                      command.indices,
-                      command.feature
-                  );
-                  if (!this.isVisible) {
-                      this.delayedRefresh = true;
-                  }
-                  break;
-              }
-              case 'set': {
-                  // maybe we can directly manipulate the data?
-                  const data = clone(ownerNode.jsonforms.data);
-                  // FIXME handle array changes
-                  if (command.dataValues) {
-                      data[command.feature] = command.dataValues[0];
-                  } else {
-                      data[command.feature] = command.objectsToAdd[0];
-                  }
-                  this.treeWidget.updateDataForNode(ownerNode, data);
-                  if (!this.isVisible) {
-                      this.delayedRefresh = true;
-                  }
-                  if(this.selectedNode === ownerNode) {
-                    this.formWidget.setSelection(this.selectedNode);
-                  }
-                  break;
-              }
-              default: { /** */}
-          }
-      });
-      this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
-          if (response.statusCode === 200) {
-              if (isEqual(this.instanceData, response.body)) {
-                  return;
-              }
-              this.instanceData = response.body;
-              this.treeWidget
-                  .setData({ error: false, data: this.instanceData })
-                  .then(() => this.treeWidget.selectFirst());
-              return;
-          }
-          this.treeWidget.setData({ error: !!response.statusMessage });
-          this.renderError(
-              "An error occurred when requesting '" +
+      if (command.commands !== undefined) {
+        command.commands.forEach(c => this.handleCommand(c));
+      } else {
+        this.handleCommand(command);
+      }
+    });
+    this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
+      if (response.statusCode === 200) {
+        if (isEqual(this.instanceData, response.body)) {
+          return;
+        }
+        this.instanceData = response.body;
+        this.treeWidget
+          .setData({ error: false, data: this.instanceData })
+          .then(() => this.treeWidget.selectFirst());
+        return;
+      }
+      this.treeWidget.setData({ error: !!response.statusMessage });
+      this.renderError(
+        "An error occurred when requesting '" +
           this.getModelIDToRequest() +
           "' - Status " +
           response.statusCode +
           ' ' +
           response.statusMessage
-          );
-          this.instanceData = undefined;
-          return;
+      );
+      this.instanceData = undefined;
+      return;
+    });
+    this.modelServerApi.subscribe(this.getModelIDToRequest());
+    // see https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
+    window.onbeforeunload = () => this.dispose();
+  }
+  private handleCommand(command: ModelServerCommand) {
+    // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
+    const ownerPropIndexPath = command.owner.$ref
+      .substring(command.owner.$ref.indexOf('#/') + 3)
+      .split('/')
+      .filter(v => v.length !== 0)
+      .map(path => {
+        const indexSplitPos = path.indexOf('.');
+        // each property starts with an @ so we ignore it
+        return {
+          property: path.substring(1, indexSplitPos),
+          index: path.substring(indexSplitPos + 1)
+        };
       });
-      this.modelServerApi.subscribe(this.getModelIDToRequest());
-      // see https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload
-      window.onbeforeunload = () => this.dispose();
+    let ownerNode;
+    if (ownerPropIndexPath.length !== 0) {
+      ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
+    } else {
+      // TODO should be done in findNode
+      ownerNode = (this.treeWidget.model.root as TreeEditor.RootNode)
+        .children[0];
+    }
+    const objectToModify =
+      ownerPropIndexPath.length === 0
+        ? this.instanceData
+        : ownerPropIndexPath.reduce(
+            (data, path) =>
+              path.index === undefined
+                ? data[path.property]
+                : data[path.property][path.index],
+            this.instanceData
+          );
+    switch (command.type) {
+      case 'add': {
+        if (!objectToModify[command.feature]) {
+          objectToModify[command.feature] = [];
+        }
+        objectToModify[command.feature].push(...command.objectsToAdd);
+        this.treeWidget.addChildren(
+          ownerNode,
+          command.objectsToAdd,
+          command.feature
+        );
+                  if (!this.isVisible) {
+                      this.delayedRefresh = true;
+                  }
+        break;
+      }
+      case 'remove': {
+        command.indices.forEach(i =>
+          objectToModify[command.feature].splice(i, 1)
+        );
+        this.treeWidget.removeChildren(
+          ownerNode,
+          command.indices,
+          command.feature
+        );
+                  if (!this.isVisible) {
+                      this.delayedRefresh = true;
+                  }
+        break;
+      }
+      case 'set': {
+        // maybe we can directly manipulate the data?
+        const data = clone(ownerNode.jsonforms.data);
+        // FIXME handle array changes
+        if (command.dataValues) {
+          data[command.feature] = command.dataValues[0];
+        } else {
+          data[command.feature] = command.objectsToAdd[0];
+        }
+        this.treeWidget.updateDataForNode(ownerNode, data);
+        if (!this.isVisible) {
+          this.delayedRefresh = true;
+                  }
+                  if(this.selectedNode === ownerNode) {
+                    this.formWidget.setSelection(this.selectedNode);
+        }
+                  break;
+      }
+              default: { /** */}
+    }
+    
   }
   private getOldSelectedPath(): string[] {
       const paths: string[] = [];
@@ -209,12 +220,68 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
   }
 
   protected deleteNode(node: Readonly<TreeEditor.Node>): void {
+    const elements = this.collectElementsToDelete(node);
+    const compoundCommand = {
+      eClass:
+        'http://www.eclipsesource.com/schema/2019/modelserver/command#//CompoundCommand',
+      type: 'compound',
+      commands: []
+    };
+    let edges = [];
+    let nodes = [];
+    elements.edges.forEach(e => {
       const removeCommand = ModelServerCommandUtil.createRemoveCommand(
-          this.getNodeDescription(node.parent as TreeEditor.Node),
-          node.jsonforms.property,
-          node.jsonforms.index ? [Number(node.jsonforms.index)] : []
+        this.getNodeDescription(e.parent as TreeEditor.Node),
+        e.jsonforms.property,
+        e.jsonforms.index ? [Number(e.jsonforms.index)] : []
       );
-      this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
+      edges.push(removeCommand);
+    });
+    elements.nodes.forEach(e => {
+      const removeCommand = ModelServerCommandUtil.createRemoveCommand(
+        this.getNodeDescription(e.parent as TreeEditor.Node),
+        e.jsonforms.property,
+        e.jsonforms.index ? [Number(e.jsonforms.index)] : []
+      );
+      nodes.push(removeCommand);
+    });
+    edges = edges.sort(sortByIndex);
+    nodes = nodes.sort(sortByIndex);
+    compoundCommand.commands.push(...edges);
+    compoundCommand.commands.push(...nodes);
+    this.modelServerApi.edit(
+      this.getModelIDToRequest(),
+      compoundCommand as ModelServerCommand
+    );
+  }
+  private collectElementsToDelete(
+    node: Readonly<TreeEditor.Node>
+  ): { nodes: TreeEditor.Node[]; edges: TreeEditor.Node[] } {
+    const result = { nodes: [], edges: [] };
+    switch (node.jsonforms.type) {
+      case CoffeeModel.Type.AutomaticTask:
+      case CoffeeModel.Type.ManualTask:
+        result.nodes.push(node);
+        result.edges.push(...this.findEdges(node));
+        break;
+      case CoffeeModel.Type.WeightedFlow:
+      case CoffeeModel.Type.Flow:
+        result.edges.push(node);
+        break;
+    }
+    return result;
+  }
+  private findEdges(node: Readonly<TreeEditor.Node>): TreeEditor.Node[] {
+    const parent = node.parent as TreeEditor.Node;
+    const flows: any[] = parent.children.filter(
+      c => (c as TreeEditor.Node).jsonforms.property === 'flows'
+    );
+    const ref = `//@workflows.0/@nodes.${node.jsonforms.index}`;
+    return flows.filter(
+      f =>
+        f.jsonforms.data.source.$ref === ref ||
+        f.jsonforms.data.target.$ref === ref
+      );
   }
   protected addNode({ node, type, property }: AddCommandProperty): void {
       const addCommand = ModelServerCommandUtil.createAddCommand(

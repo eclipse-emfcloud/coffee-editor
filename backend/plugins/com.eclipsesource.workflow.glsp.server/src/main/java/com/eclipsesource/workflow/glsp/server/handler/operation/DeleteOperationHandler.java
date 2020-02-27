@@ -10,12 +10,22 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.glsp.api.model.GraphicalModelState;
@@ -23,22 +33,73 @@ import org.eclipse.glsp.api.operation.kind.DeleteOperation;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
-import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 
-public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperation> {
+public class DeleteOperationHandler extends ModelServerAwareBasicOperationHandler<DeleteOperation> {
 
-	private Set<EObject> toDelete;
+	private Set<EObject> toDeleteNodes;
+	private Set<EObject> toDeleteEdges;
+	private Set<DiagramElement> toDeleteLocal;
 
 	@Override
-	public void executeOperation(DeleteOperation operation, GraphicalModelState modelState) {
-		toDelete = new HashSet<>();
+	public void executeOperation(DeleteOperation operation, GraphicalModelState modelState,
+			WorkflowModelServerAccess modelAccess) throws Exception {
+		toDeleteNodes = new HashSet<>();
+		toDeleteEdges = new HashSet<>();
+		toDeleteLocal = new HashSet<>();
 		operation.getElementIds().forEach(id -> collectElementsToDelete(id, modelState));
-		toDelete.forEach(e -> EcoreUtil.delete(e, true));
+		toDeleteLocal.forEach(e -> EcoreUtil.delete(e, true));
+
+		List<Command> deleteEdges = delete(toDeleteEdges, modelAccess);
+		List<Command> deleteNodes = delete(toDeleteNodes, modelAccess);
+		List<Command> unifiedToDelete = new ArrayList<>();
+		Comparator<Command> sortByIndex = new Comparator<Command>() {
+
+			@Override
+			public int compare(Command o1, Command o2) {
+				if (!(o1 instanceof RemoveCommand))
+					return 1;
+				if (!(o2 instanceof RemoveCommand))
+					return -1;
+				RemoveCommand rc1 = (RemoveCommand) o1;
+				RemoveCommand rc2 = (RemoveCommand) o2;
+				CommandParameter.Indices cp2 = (CommandParameter.Indices) rc2.getCollection().iterator().next();
+				CommandParameter.Indices cp1 = (CommandParameter.Indices) rc1.getCollection().iterator().next();
+				return cp2.getIndices()[0] - cp1.getIndices()[0];
+
+			}
+		};
+		// need to sort as otherwise the index is not correct when commands are applied.
+		Collections.sort(deleteEdges, sortByIndex);
+		Collections.sort(deleteNodes, sortByIndex);
+		unifiedToDelete.addAll(deleteEdges);
+		unifiedToDelete.addAll(deleteNodes);
+
+		CompoundCommand cc = new CompoundCommand(unifiedToDelete);
+		if (!modelAccess.edit(cc).thenApply(res -> res.body()).get()) {
+			throw new IllegalAccessError("Could not execute command: " + cc);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Command> delete(Set<EObject> eObjects, final WorkflowModelServerAccess modelAccess) {
+		List<Command> result = new ArrayList<>();
+		for (EObject e : eObjects) {
+			EObject container = e.eContainer();
+			EStructuralFeature containingFeature = e.eContainingFeature();
+			// use index as object id cannot be used due to glsp -> modelserver -> glsp
+			// communication
+			int index = ((EList<EObject>) container.eGet(containingFeature)).indexOf(e);
+			Command removeEdgesCommand = RemoveCommand.create(modelAccess.getEditingDomain(), container,
+					containingFeature, index);
+			result.add(removeEdgesCommand);
+
+		}
+		return result;
 	}
 
 	protected void collectElementsToDelete(String id, GraphicalModelState modelState) {
@@ -55,11 +116,11 @@ public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperatio
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
 		if (element instanceof GNode) {
 			Node node = modelAccess.getNodeById(element.getId());
-			toDelete.add(node);
+			toDeleteNodes.add(node);
 
 			Optional<DiagramElement> diagramElement = modelAccess.getWorkflowFacade().findDiagramElement(node);
 			if (!diagramElement.isEmpty() && diagramElement.get() instanceof Shape) {
-				toDelete.add(diagramElement.get());
+				toDeleteLocal.add(diagramElement.get());
 			}
 
 			modelState.getIndex().getIncomingEdges(element)
@@ -74,14 +135,14 @@ public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperatio
 			if (maybeFlow.isEmpty()) {
 				return;
 			}
-			toDelete.add(maybeFlow.get());
+			toDeleteEdges.add(maybeFlow.get());
 
 			Optional<DiagramElement> edge = maybeFlow
 					.flatMap(flow -> modelAccess.getWorkflowFacade().findDiagramElement(flow));
 			if (edge.isEmpty()) {
 				return;
 			}
-			toDelete.add(edge.get());
+			toDeleteLocal.add(edge.get());
 		}
 	}
 
