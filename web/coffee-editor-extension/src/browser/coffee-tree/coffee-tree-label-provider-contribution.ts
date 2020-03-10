@@ -13,12 +13,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { TreeNode } from '@theia/core/lib/browser/tree/tree';
+import { LabelProviderContribution } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
 import { TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModel } from './coffee-model';
+import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
 
 const DEFAULT_COLOR = 'black';
 
@@ -49,15 +50,26 @@ const ICON_CLASSES: Map<string, string> = new Map([
 const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
-export class CoffeeTreeLabelProvider implements TreeEditor.LabelProvider {
+export class CoffeeTreeLabelProviderContribution implements LabelProviderContribution {
 
-  public getIconClass(node: TreeNode | string): string {
+  public canHandle(element: object): number {
+    if ((TreeEditor.Node.is(element) || TreeEditor.CommandIconInfo.is(element))
+      && element.editorId === CoffeeTreeEditorWidget.EDITOR_ID) {
+      return 1000;
+    }
+    return 0;
+  }
+
+  public getIcon(element: object): string | undefined {
     let iconClass: string;
-    if (typeof node === 'string') {
-      iconClass = ICON_CLASSES.get(node);
-    } else if (TreeEditor.Node.is(node)) {
-      iconClass = ICON_CLASSES.get(node.jsonforms.type);
-      if (!iconClass && node.jsonforms.property === 'flows') {
+    // if (typeof element === 'string') {
+    //   iconClass = ICON_CLASSES.get(element);
+    // } else
+    if (TreeEditor.CommandIconInfo.is(element)) {
+      iconClass = ICON_CLASSES.get(element.type);
+    } else if (TreeEditor.Node.is(element)) {
+      iconClass = ICON_CLASSES.get(element.jsonforms.type);
+      if (!iconClass && element.jsonforms.property === 'flows') {
         iconClass = ICON_CLASSES.get(CoffeeModel.Type.Flow);
       }
     }
@@ -65,7 +77,8 @@ export class CoffeeTreeLabelProvider implements TreeEditor.LabelProvider {
     return iconClass ? 'fa ' + iconClass : 'far ' + UNKNOWN_ICON;
   }
 
-  public getName(data: any): string {
+  public getName(element: object): string | undefined {
+    const data = TreeEditor.Node.is(element) ? element.jsonforms.data : element;
     if (data.eClass) {
       switch (data.eClass) {
         case CoffeeModel.Type.Task:

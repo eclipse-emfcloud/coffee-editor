@@ -37,9 +37,5 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
         return 'coffee-icon dark-purple';
     }
 
-    // Do not need to specify getName() because the default uri label provider handles this
-
-    getLongName(uri: URI): string {
-        return uri.path.toString();
-    }
+    // Do not need to specify getName() nor getLongName() because the default uri label provider handles this
 }

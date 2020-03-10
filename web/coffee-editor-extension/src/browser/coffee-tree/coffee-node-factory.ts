@@ -14,17 +14,19 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { ILogger } from '@theia/core';
+import { LabelProvider } from '@theia/core/lib/browser';
 import { inject, injectable } from 'inversify';
 import { TreeEditor } from 'theia-tree-editor';
 import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';
+import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
 
 @injectable()
 export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     constructor(
-        @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
+        @inject(LabelProvider) private readonly labelProvider: LabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 
@@ -42,9 +44,10 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             this.logger.warn('mapData called without data');
             return undefined;
         }
-        const node = {
+        const node: TreeEditor.Node = {
             ...this.defaultNode(),
-            name: this.labelProvider.getName(data),
+            editorId: CoffeeTreeEditorWidget.EDITOR_ID,
+            name: this.labelProvider.getName(data), // TODO correct? name even necessary?
             parent: parent,
             jsonforms: {
                 type: this.getType(data.eClass, data),
