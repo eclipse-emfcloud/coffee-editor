@@ -3,9 +3,8 @@
 An example of how to build the Theia-based applications with the tree-editor-extension.
 The coffee-editor consists of a frontend and a backend.
 
-The frontend is located in the `web/` folder and frontend specific documentation can be found in the [backend README](backend/README.md)
-
-The backend is located in the `backend/` folder and backend specific documentation can be found in the [frontend README](web/README.md)
+The frontend is located in the `web/` folder and frontend specific documentation can be found in the [frontend README](web/README.md)
+The backend is located in the `backend/` folder and backend specific documentation can be found in the [backend README](backend/README.md)
 
 ## Used Projects
 
