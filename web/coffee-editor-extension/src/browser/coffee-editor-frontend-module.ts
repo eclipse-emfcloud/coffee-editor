@@ -25,7 +25,7 @@ import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution'
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeNodeFactory } from './coffee-tree/coffee-node-factory';
 import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
-import { CoffeeTreeLabelProviderContribution } from './coffee-tree/coffee-tree-label-provider-contribution';
+import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 
 export default new ContainerModule(bind => {
@@ -34,11 +34,11 @@ export default new ContainerModule(bind => {
   bind(OpenHandler).to(CoffeeTreeEditorContribution);
   bind(MenuContribution).to(CoffeeTreeEditorContribution);
   bind(CommandContribution).to(CoffeeTreeEditorContribution);
-  bind(LabelProviderContribution).to(CoffeeTreeLabelProviderContribution);
+  bind(LabelProviderContribution).to(CoffeeTreeLabelProvider);
 
   // bind to themselves because we use it outside of the editor widget, too.
-  bind(CoffeeModelService).toSelf();
-  bind(CoffeeTreeLabelProviderContribution).toSelf();
+  bind(CoffeeModelService).toSelf().inSingletonScope();
+  bind(CoffeeTreeLabelProvider).toSelf().inSingletonScope();
 
   bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
     id: CoffeeTreeEditorWidget.WIDGET_ID,

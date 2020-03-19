@@ -27,7 +27,7 @@ import {
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
 import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
-import { CoffeeTreeLabelProviderContribution } from './coffee-tree/coffee-tree-label-provider-contribution';
+import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContribution {
@@ -36,7 +36,7 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
 
   constructor(
     @inject(CoffeeModelService) modelService: TreeEditor.ModelService,
-    @inject(CoffeeTreeLabelProviderContribution) labelProvider: CoffeeTreeLabelProviderContribution
+    @inject(CoffeeTreeLabelProvider) labelProvider: CoffeeTreeLabelProvider
   ) {
     super(CoffeeTreeEditorWidget.EDITOR_ID, modelService, labelProvider);
   }

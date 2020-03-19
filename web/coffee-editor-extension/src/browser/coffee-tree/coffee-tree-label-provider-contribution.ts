@@ -50,7 +50,7 @@ const ICON_CLASSES: Map<string, string> = new Map([
 const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
 
 @injectable()
-export class CoffeeTreeLabelProviderContribution implements LabelProviderContribution {
+export class CoffeeTreeLabelProvider implements LabelProviderContribution {
 
   public canHandle(element: object): number {
     if ((TreeEditor.Node.is(element) || TreeEditor.CommandIconInfo.is(element))
@@ -62,9 +62,6 @@ export class CoffeeTreeLabelProviderContribution implements LabelProviderContrib
 
   public getIcon(element: object): string | undefined {
     let iconClass: string;
-    // if (typeof element === 'string') {
-    //   iconClass = ICON_CLASSES.get(element);
-    // } else
     if (TreeEditor.CommandIconInfo.is(element)) {
       iconClass = ICON_CLASSES.get(element.type);
     } else if (TreeEditor.Node.is(element)) {
