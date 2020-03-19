@@ -95,7 +95,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     protected defaultNode(): Pick<
         TreeEditor.Node,
-        'children' | 'name' | 'jsonforms' | 'id' | 'icon' | 'description' | 'visible' | 'parent' | 'previousSibling' | 'nextSibling' | 'expanded' | 'selected' | 'focus'
+        'children' | 'name' | 'jsonforms' | 'id' | 'icon' | 'description' | 'visible' | 'parent' | 'previousSibling' | 'nextSibling' | 'expanded' | 'selected' | 'focus' | 'decorationData'
     > {
         return {
             id: v4(),
@@ -103,6 +103,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             selected: false,
             parent: undefined,
             children: [],
+            decorationData: {},
             name: undefined,
             jsonforms: undefined
         };
