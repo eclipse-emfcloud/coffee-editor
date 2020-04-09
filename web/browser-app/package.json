@@ -37,7 +37,8 @@
     "coffee-workflow-analyzer": "0.0.0",
     "coffee-workflow-analyzer-editors": "0.0.0",
     "coffee-java-extension": "0.0.0",
-    "coffee-server": "0.0.0"
+    "coffee-server": "0.0.0",
+    "coffee-welcome-page": "0.0.0"
   },
   "devDependencies": {
     "@theia/cli": "latest"
@@ -74,6 +75,5 @@
     "vscode-builtin-xml": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/xml-1.39.1-prel.vsix",
     "java-debug": "https://github.com/microsoft/vscode-java-debug/releases/download/0.22.0/vscode-java-debug-0.22.0.vsix",
     "java-lsp": "https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.50.0-1825.vsix"
-    
   }
 }
