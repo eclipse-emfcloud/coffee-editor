@@ -13,6 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+import { FrontendApplication } from '@theia/core/lib/browser';
 import { BaseLanguageClientContribution, LanguageClientFactory, Languages, Workspace } from '@theia/languages/lib/browser';
 import { inject, injectable } from 'inversify';
 
@@ -36,6 +37,11 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
             '**/*.wf',
             '**/*.xmi'
         ];
+    }
+
+    waitForActivation(app: FrontendApplication): Promise<any> {
+        // do not wait until document for this language was opened
+        return this.workspace.ready;
     }
 }
 
