@@ -19,12 +19,14 @@ import { TreeEditor } from 'theia-tree-editor';
 import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';
+import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
+import { CoffeeTreeLabelProvider } from './coffee-tree-label-provider-contribution';
 
 @injectable()
 export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     constructor(
-        @inject(TreeEditor.LabelProvider) private readonly labelProvider: TreeEditor.LabelProvider,
+        @inject(CoffeeTreeLabelProvider) private readonly labelProvider: CoffeeTreeLabelProvider,
         @inject(ILogger) private readonly logger: ILogger) {
     }
 
@@ -42,8 +44,9 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             this.logger.warn('mapData called without data');
             return undefined;
         }
-        const node = {
+        const node: TreeEditor.Node = {
             ...this.defaultNode(),
+            editorId: CoffeeTreeEditorWidget.EDITOR_ID,
             name: this.labelProvider.getName(data),
             parent: parent,
             jsonforms: {
@@ -92,7 +95,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
 
     protected defaultNode(): Pick<
         TreeEditor.Node,
-        'children' | 'name' | 'jsonforms' | 'id' | 'icon' | 'description' | 'visible' | 'parent' | 'previousSibling' | 'nextSibling' | 'expanded' | 'selected' | 'focus'
+        'children' | 'name' | 'jsonforms' | 'id' | 'icon' | 'description' | 'visible' | 'parent' | 'previousSibling' | 'nextSibling' | 'expanded' | 'selected' | 'focus' | 'decorationData'
     > {
         return {
             id: v4(),
@@ -100,6 +103,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             selected: false,
             parent: undefined,
             children: [],
+            decorationData: {},
             name: undefined,
             jsonforms: undefined
         };

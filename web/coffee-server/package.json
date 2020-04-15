@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eclipsesource/cofee-editor.git"
+    "url": "https://github.com/eclipsesource/coffee-editor.git"
   },
   "dependencies": {
     "@theia/core": "latest",

@@ -13,7 +13,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { MaybePromise } from '@theia/core';
 import { LabelProviderContribution } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { FileStat } from '@theia/filesystem/lib/common';
@@ -36,13 +35,11 @@ export class WorkflowDiagramLabelProviderContribution implements LabelProviderCo
         return 0;
     }
 
-    getIcon(): MaybePromise<string> {
+    getIcon(): string {
         return 'fa fa-project-diagram';
     }
 
-    getName(uri: URI): string {
-        return uri.displayName;
-    }
+    // Do not need to specify getName() because the default uri label provider handles this
 
     getLongName(uri: URI): string {
         return uri.path.toString();
