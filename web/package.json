@@ -17,6 +17,7 @@
     "coffee-workspace-filesystem-storage-service",
     "coffee-workflow-generator",
     "coffee-workflow-glsp-editor",
+    "coffee-welcome-page",
     "browser-app"
   ],
   "resolutions": {
