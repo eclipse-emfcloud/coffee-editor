@@ -10,7 +10,7 @@ This will create the image as `coffee-editor:latest`
 
 ## Run
 
-`docker run -p 0.0.0.0:3000:3000 -p 0.0.0.0:8081:8081 -d coffee-editor`
+`docker run -p 0.0.0.0:3000:3000 -d coffee-editor`
 
 Go to [http://localhost:3000](URL)
 

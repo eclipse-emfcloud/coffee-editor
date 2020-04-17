@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: coffee-editor-demo
+  labels:
+    app: coffee-editor
+  namespace: coffee
+spec:
+  backoffLimit: 1
+#  activeDeadlineSeconds: 60
+  ttlSecondsAfterFinished: 0
+  template:
+    metadata:
+      labels:
+        app: coffee-editor
+    spec:
+      containers:
+      - name: coffee-editor-demo
+        image: eu.gcr.io/kubernetes-238012/coffee-editor:0.7.5
+        ports:
+        - containerPort: 3000
+      restartPolicy: Never
+

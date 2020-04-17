@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-editor-deployment
+  labels:
+    app: coffee-editor-launcher
+  namespace: coffee
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: coffee-editor-launcher
+  template:
+    metadata:
+      labels:
+        app: coffee-editor-launcher
+    spec:
+      serviceAccountName: api-service-account
+      containers:
+      - name: coffee-editor-deployment
+        envFrom:
+          - configMapRef:
+              name: coffee-config
+        resources:
+          limits:
+            memory: 768Mi
+          requests:
+            memory: 256Mi
+        image: eu.gcr.io/kubernetes-238012/coffee-editor-example
+        ports:
+        - containerPort: 9091
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-editor-deployment-service
+  labels:
+    app: coffee-editor-launcher
+  namespace: coffee
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 9091
+    protocol: TCP
+    targetPort: 9091
+  selector:
+    app: coffee-editor-launcher
+  sessionAffinity: None
+  type: LoadBalancer
+

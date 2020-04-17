@@ -1,0 +1,26 @@
+target "Coffee Editor k8s Example" with source configurePhase
+
+location "http://download.eclipse.org/eclipse/updates/4.13/" {
+    org.eclipse.sdk.ide
+    org.eclipse.equinox.executable.feature.group
+}
+
+location "http://download.eclipse.org/releases/2019-09/" {
+    org.eclipse.emf.sdk.feature.group
+}
+
+location "http://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository/" {
+    javax.ws.rs
+    com.google.gson
+    org.apache.commons.io
+    org.objenesis
+}
+
+location "http://hstaudacher.github.io/osgi-jax-rs-connector" {
+    com.eclipsesource.jaxrs.provider.gson.feature.feature.group
+    com.eclipsesource.jaxrs.connector.feature.feature.group
+}
+
+location "http://build.eclipse.org/rt/rap/base-platforms/3.1/extra-dependencies/" {
+    org.mockito.mockito-core-hamcrest-modified
+}

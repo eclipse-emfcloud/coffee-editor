@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="CORSFilter">
+   <service>
+      <provide interface="javax.ws.rs.container.ContainerResponseFilter"/>
+   </service>
+   <implementation class="org.eclipse.emfcloud.coffee.internal.example.k8s.CORSFilter"/>
+</scr:component>

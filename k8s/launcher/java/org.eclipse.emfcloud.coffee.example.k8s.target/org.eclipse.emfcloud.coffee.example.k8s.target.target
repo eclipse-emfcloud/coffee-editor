@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="Coffee Editor k8s Example" sequenceNumber="1574955901">
+  <locations>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
+      <unit id="org.eclipse.sdk.ide" version="4.13.0.I20190916-1045"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.500.v20190907-0428"/>
+      <repository location="http://download.eclipse.org/eclipse/updates/4.13/"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.19.0.v20190824-1315"/>
+      <repository location="http://download.eclipse.org/releases/2019-09/"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
+      <unit id="javax.ws.rs" version="2.0.1.v201504171603"/>
+      <unit id="com.google.gson" version="2.8.2.v20180104-1110"/>
+      <unit id="org.apache.commons.io" version="2.6.0.v20190123-2029"/>
+      <unit id="org.objenesis" version="2.6.0.v20180420-1519"/>
+      <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository/"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
+      <unit id="com.eclipsesource.jaxrs.provider.gson.feature.feature.group" version="2.3.0.201602281253"/>
+      <unit id="com.eclipsesource.jaxrs.connector.feature.feature.group" version="5.3.1.201602281253"/>
+      <repository location="http://hstaudacher.github.io/osgi-jax-rs-connector"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="true" type="InstallableUnit">
+      <unit id="org.mockito.mockito-core-hamcrest-modified" version="1.9.5"/>
+      <repository location="http://build.eclipse.org/rt/rap/base-platforms/3.1/extra-dependencies/"/>
+    </location>
+  </locations>
+</target>

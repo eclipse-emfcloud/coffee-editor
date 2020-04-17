@@ -1,6 +1,6 @@
 #!/bin/bash
 echo [~] CLEAN-UP [~]
-rm -f com.eclipsesource.modelserver.example-0.0.1-20190731.133707-35-standalone.jar
+#rm -f com.eclipsesource.modelserver.example-0.0.1-20190731.133707-35-standalone.jar
 
 echo [~] BUILDING COFFEE-EDITOR [~]
 cd ..

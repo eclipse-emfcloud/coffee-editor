@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="init" immediate="true" name="ExampleServer">
+   <service>
+      <provide interface="org.eclipse.emfcloud.coffee.internal.example.k8s.ExampleServer"/>
+   </service>
+   <implementation class="org.eclipse.emfcloud.coffee.internal.example.k8s.ExampleServer"/>
+</scr:component>
