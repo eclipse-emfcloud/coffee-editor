@@ -40,7 +40,8 @@
   },
   "theiaExtensions": [
     {
-      "backend": "lib/node/backend-module"
+      "backend": "lib/node/backend-module",
+      "frontend": "lib/browser/coffee-server-frontend-module"
     }
   ]
 }
