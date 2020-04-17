@@ -12,6 +12,12 @@ Setup kubectl to point to our cluster.
 
 `docker push eu.gcr.io/kubernetes-238012/coffee-editor-example`
 
+`cd coffee-editor-launcher-vue && docker build -t coffee-editor-vue . && cd ..`
+
+`docker tag coffee-editor-vue:latest eu.gcr.io/kubernetes-238012/coffee-editor-vue`
+
+`docker push eu.gcr.io/kubernetes-238012/coffee-editor-vue`
+
 `kubectl create serviceaccount api-service-account`
 
 `kubectl create -f namespaces/coffee.json`

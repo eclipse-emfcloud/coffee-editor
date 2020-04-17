@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-editor-vue
+  labels:
+    app: coffee-editor-vue-launcher
+  namespace: coffee
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: coffee-editor-vue-launcher
+  template:
+    metadata:
+      labels:
+        app: coffee-editor-vue-launcher
+    spec:
+      containers:
+      - name: coffee-editor-vue
+        resources:
+          limits:
+            memory: 768Mi
+          requests:
+            memory: 256Mi
+        image: eu.gcr.io/kubernetes-238012/coffee-editor-vue
+        ports:
+        - containerPort: 9091
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-editor-vue-service
+  labels:
+    app: coffee-editor-vue-launcher
+  namespace: coffee
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: coffee-editor-vue-launcher
+  sessionAffinity: None
+  type: LoadBalancer
+
