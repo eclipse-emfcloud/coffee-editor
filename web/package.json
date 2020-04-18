@@ -52,8 +52,8 @@
     "**/@theia/workspace": "1.0.0",
     "**/sprotty": "0.8.0-next.666cfe0",
     "**/sprotty-theia": "0.8.0-next.a3b3621",
-    "**/@eclipse-glsp/client": "0.8.0-rc-01",
-    "**/@eclipse-glsp/theia-integration": "0.8.0-rc-01",
-    "**/@eclipse-glsp-examples/workflow-sprotty": "0.8.0-rc-01"
+    "**/@eclipse-glsp/client": "0.8.0-rc-02",
+    "**/@eclipse-glsp/theia-integration": "0.8.0-rc-02",
+    "**/@eclipse-glsp-examples/workflow-sprotty": "0.8.0-rc-02"
   }
 }
