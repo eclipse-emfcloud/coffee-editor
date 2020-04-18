@@ -39,7 +39,8 @@ export class CoffeeWelcomePageContribution extends AbstractViewContribution<Welc
             widgetId: WelcomePageWidget.ID,
             widgetName: WelcomePageWidget.LABEL,
             defaultWidgetOptions: {
-                area: 'main',
+                area: 'right',
+                rank: 1000
             }
         });
     }

@@ -51,6 +51,7 @@ export class WelcomePageWidget extends ReactWidget {
         this.title.label = WelcomePageWidget.LABEL;
         this.title.caption = WelcomePageWidget.LABEL;
         this.title.closable = true;
+        this.title.iconClass = 'fa fa-info';
 
         this.applicationInfo = await this.appServer.getApplicationInfo();
         this.update();
