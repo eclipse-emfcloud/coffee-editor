@@ -18,12 +18,10 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import java.util.Optional;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.ChangeBoundsOperationAction;
-import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.ChangeBoundsOperation;
 import org.eclipse.glsp.api.types.ElementAndBounds;
+import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -31,22 +29,11 @@ import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 
-public class ChangeBoundsOperationHandler implements OperationHandler {
+public class ChangeBoundsOperationHandler extends BasicOperationHandler<ChangeBoundsOperation> {
 
 	@Override
-	public Class<? extends Action> handlesActionType() {
-		return ChangeBoundsOperationAction.class;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Move or resize element";
-	}
-
-	@Override
-	public void execute(AbstractOperationAction action, GraphicalModelState modelState) {
-		ChangeBoundsOperationAction changeBoundsAction = (ChangeBoundsOperationAction) action;
-		for (ElementAndBounds element : changeBoundsAction.getNewBounds()) {
+	public void executeOperation(ChangeBoundsOperation operation, GraphicalModelState modelState) {
+		for (ElementAndBounds element : operation.getNewBounds()) {
 			changeElementBounds(element, modelState);
 		}
 	}

@@ -25,4 +25,9 @@ public class CreateManualTaskHandler extends AbstractCreateTaskHandler {
 		super(ModelTypes.MANUAL_TASK, CoffeePackage.Literals.MANUAL_TASK);
 	}
 
+	@Override
+	public String getLabel() {
+		return "Manual Task";
+	}
+
 }

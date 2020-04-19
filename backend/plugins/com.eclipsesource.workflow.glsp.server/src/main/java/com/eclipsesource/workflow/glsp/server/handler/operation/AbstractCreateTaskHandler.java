@@ -18,7 +18,6 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
 import org.eclipse.glsp.api.model.GraphicalModelState;
 
 import com.google.common.base.Preconditions;
@@ -27,11 +26,6 @@ public abstract class AbstractCreateTaskHandler extends AbstractCreateNodeHandle
 
 	public AbstractCreateTaskHandler(String type, EClass eClass) {
 		super(type, eClass);
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Create task";
 	}
 
 	@Override

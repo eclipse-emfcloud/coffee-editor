@@ -24,59 +24,38 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.CreateConnectionOperationAction;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.CreateEdgeOperation;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowFacade;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;
 import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationFactory;
 
-public abstract class AbstractCreateEdgeHandler implements ModelStateAwareOperationHandler {
+public abstract class AbstractCreateEdgeHandler
+		extends ModelServerAwareBasicCreateOperationHandler<CreateEdgeOperation> {
 
-	protected String type;
 	private EClass eClass;
 
 	public AbstractCreateEdgeHandler(String type, EClass eClass) {
-		super();
-		this.type = type;
+		super(type);
 		this.eClass = eClass;
 	}
 
 	@Override
-	public Class<? extends Action> handlesActionType() {
-		return CreateConnectionOperationAction.class;
-	}
-
-	@Override
-	public boolean handles(AbstractOperationAction action) {
-		return ModelStateAwareOperationHandler.super.handles(action)
-				? ((CreateConnectionOperationAction) action).getElementTypeId().equals(type)
-				: false;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Create edge";
-	}
-
-	@Override
-	public void doExecute(AbstractOperationAction action, GraphicalModelState modelState,
+	public void executeOperation(CreateEdgeOperation operation, GraphicalModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
-		CreateConnectionOperationAction createConnectionAction = (CreateConnectionOperationAction) action;
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
 		Workflow workflow = workflowFacade.getCurrentWorkflow();
 
 		Flow flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
-		flow.setSource(modelAccess.getNodeById(createConnectionAction.getSourceElementId()));
-		flow.setTarget(modelAccess.getNodeById(createConnectionAction.getTargetElementId()));
+		flow.setSource(modelAccess.getNodeById(operation.getSourceElementId()));
+		flow.setTarget(modelAccess.getNodeById(operation.getTargetElementId()));
 
 		Command addCommand = AddCommand.create(modelAccess.getEditingDomain(), workflow,
 				CoffeePackage.Literals.WORKFLOW__FLOWS, flow);
 
-		createDiagramElement(workflowFacade, workflow, flow, createConnectionAction);
+		createDiagramElement(workflowFacade, workflow, flow, operation);
 
 		if (!modelAccess.edit(addCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + addCommand);
@@ -84,7 +63,7 @@ public abstract class AbstractCreateEdgeHandler implements ModelStateAwareOperat
 	}
 
 	protected void createDiagramElement(WorkflowFacade facace, Workflow workflow, Flow flow,
-			CreateConnectionOperationAction createNodeOperationAction) {
+			CreateEdgeOperation operation) {
 		workflow.getFlows().add(flow);
 
 		facace.findDiagram(workflow).ifPresent(diagram -> {
@@ -93,11 +72,11 @@ public abstract class AbstractCreateEdgeHandler implements ModelStateAwareOperat
 			edge.setSemanticElement(facace.createProxy(flow));
 			diagram.getElements().add(edge);
 		});
-		
+
 		workflow.getFlows().remove(flow);
 	}
 
-	protected  String generateId() {
+	protected String generateId() {
 		return UUID.randomUUID().toString();
 	}
 

@@ -19,35 +19,22 @@ import java.util.Optional;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.ReconnectConnectionOperationAction;
-import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.ReconnectEdgeOperation;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelElement;
+import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 
-public class ReconnectFlowHandler implements OperationHandler {
+public class ReconnectFlowHandler extends BasicOperationHandler<ReconnectEdgeOperation> {
 
 	@Override
-	public Class<? extends Action> handlesActionType() {
-		return ReconnectConnectionOperationAction.class;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Reconnect flow";
-	}
-
-	@Override
-	public void execute(AbstractOperationAction action, GraphicalModelState modelState) {
-		ReconnectConnectionOperationAction reconnectAction = (ReconnectConnectionOperationAction) action;
+	public void executeOperation(ReconnectEdgeOperation operation, GraphicalModelState modelState) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
 
-		Optional<GModelElement> maybeEdge = modelState.getIndex().get(reconnectAction.getConnectionElementId());
+		Optional<GModelElement> maybeEdge = modelState.getIndex().get(operation.getConnectionElementId());
 		if (maybeEdge.isEmpty() && !(maybeEdge.get() instanceof GEdge)) {
 			throw new IllegalArgumentException();
 		}
@@ -56,8 +43,8 @@ public class ReconnectFlowHandler implements OperationHandler {
 		Node oldSourceNode = modelAccess.getNodeById(oldEdge.getSourceId());
 		Node oldTargetNode = modelAccess.getNodeById(oldEdge.getTargetId());
 
-		Node newSourceNode = modelAccess.getNodeById(reconnectAction.getSourceElementId());
-		Node newTargetNode = modelAccess.getNodeById(reconnectAction.getTargetElementId());
+		Node newSourceNode = modelAccess.getNodeById(operation.getSourceElementId());
+		Node newTargetNode = modelAccess.getNodeById(operation.getTargetElementId());
 
 		Optional<Flow> maybeFlow = modelAccess.getFlow(oldSourceNode, oldTargetNode);
 		if (maybeFlow.isEmpty()) {

@@ -24,4 +24,9 @@ public class CreateFlowHandler extends AbstractCreateEdgeHandler {
 		super(DefaultTypes.EDGE, CoffeePackage.Literals.FLOW);
 	}
 
+	@Override
+	public String getLabel() {
+		return "Flow";
+	}
+
 }

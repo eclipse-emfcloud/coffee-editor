@@ -15,6 +15,8 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
+import static org.eclipse.glsp.graph.util.GraphUtil.point;
+
 import java.util.UUID;
 
 import org.eclipse.emf.common.command.Command;
@@ -24,10 +26,8 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.CreateNodeOperationAction;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.CreateNodeOperation;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowFacade;
@@ -35,38 +35,19 @@ import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationFactory;
 
-public abstract class AbstractCreateNodeHandler implements ModelStateAwareOperationHandler {
+public abstract class AbstractCreateNodeHandler
+		extends ModelServerAwareBasicCreateOperationHandler<CreateNodeOperation> {
 
-	protected String type;
 	private EClass eClass;
 
 	public AbstractCreateNodeHandler(String type, EClass eClass) {
-		super();
-		this.type = type;
+		super(type);
 		this.eClass = eClass;
 	}
 
 	@Override
-	public Class<? extends Action> handlesActionType() {
-		return CreateNodeOperationAction.class;
-	}
-
-	@Override
-	public boolean handles(AbstractOperationAction action) {
-		return ModelStateAwareOperationHandler.super.handles(action)
-				? ((CreateNodeOperationAction) action).getElementTypeId().equals(type)
-				: false;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Create node";
-	}
-
-	@Override
-	public void doExecute(AbstractOperationAction action, GraphicalModelState modelState,
+	public void executeOperation(CreateNodeOperation operation, GraphicalModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
-		CreateNodeOperationAction createNodeOperationAction = (CreateNodeOperationAction) action;
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
 		Workflow workflow = workflowFacade.getCurrentWorkflow();
 
@@ -75,27 +56,27 @@ public abstract class AbstractCreateNodeHandler implements ModelStateAwareOperat
 		Command addCommand = AddCommand.create(modelAccess.getEditingDomain(), workflow,
 				CoffeePackage.Literals.WORKFLOW__NODES, node);
 
-		createDiagramElement(workflowFacade, workflow, node, createNodeOperationAction);
+		createDiagramElement(workflowFacade, workflow, node, operation);
 
 		if (!modelAccess.edit(addCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + addCommand);
 		}
 
 	}
-	
+
 	protected String generateId() {
 		return UUID.randomUUID().toString();
 	}
 
 	protected void createDiagramElement(WorkflowFacade facace, Workflow workflow, Node node,
-			CreateNodeOperationAction createNodeOperationAction) {
+			CreateNodeOperation operation) {
 		workflow.getNodes().add(node);
 
 		facace.findDiagram(workflow).ifPresent(diagram -> {
 			Shape shape = WfnotationFactory.eINSTANCE.createShape();
 			shape.setGraphicId(generateId());
 			shape.setSemanticElement(facace.createProxy(node));
-			shape.setPosition(ShapeUtil.point(createNodeOperationAction.getLocation()));
+			shape.setPosition(ShapeUtil.point(operation.getLocation().orElse(point(0, 0))));
 			diagram.getElements().add(shape);
 		});
 

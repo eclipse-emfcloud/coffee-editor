@@ -1926,7 +1926,7 @@
     "@theia/monaco" "^1.0.0"
     anser "^1.4.7"
 
-"@theia/core@1.0.0", "@theia/core@^1.0.0", "@theia/core@latest", "@theia/core@next":
+"@theia/core@1.0.0", "@theia/core@^1.0.0", "@theia/core@latest":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theia/core/-/core-1.0.0.tgz#d69c94c3923da37ea466d94da10decdb14bd90d0"
   integrity sha512-rqg+N/NXeRmqRoxvQspKbspwomX3rQrxFFbxjKAKjfuNLsxWzC51jUI/adUb5veJ1UnbjfLWnpGKFivdTOpClw==
@@ -2003,7 +2003,7 @@
     unzip-stream "^0.3.0"
     vscode-debugprotocol "^1.32.0"
 
-"@theia/editor@1.0.0", "@theia/editor@^1.0.0", "@theia/editor@latest", "@theia/editor@next":
+"@theia/editor@1.0.0", "@theia/editor@^1.0.0", "@theia/editor@latest":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theia/editor/-/editor-1.0.0.tgz#f73df4e6409a98d53be301e3500e4d5e6a63ae17"
   integrity sha512-kZZMe//OrLH8BgVNoRYGQ6M3zbYFBcpfKi+0CpPUd4Aq8/B7vMTGCIdRjxO+GrFgOztjHSnm5IJ+lI8pmgGNbw==
@@ -2027,7 +2027,7 @@
     fuzzy "^0.1.3"
     vscode-ripgrep "^1.2.4"
 
-"@theia/filesystem@1.0.0", "@theia/filesystem@^1.0.0", "@theia/filesystem@latest", "@theia/filesystem@next":
+"@theia/filesystem@1.0.0", "@theia/filesystem@^1.0.0", "@theia/filesystem@latest":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theia/filesystem/-/filesystem-1.0.0.tgz#b448171b323a421315b1330dd5e142c7e2f2ec65"
   integrity sha512-VLAJN7jte8M0tpnV6q2XC07+LcrwwV0HLBEt+u/BBAuCO8n36Wgorj6onS/rlIJJQONQdn17MJ/m6GngfwI7ug==
@@ -2079,7 +2079,7 @@
     jsonc-parser "^2.0.2"
     lodash.debounce "^4.0.8"
 
-"@theia/languages@1.0.0", "@theia/languages@^1.0.0", "@theia/languages@latest", "@theia/languages@next":
+"@theia/languages@1.0.0", "@theia/languages@^1.0.0", "@theia/languages@latest":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theia/languages/-/languages-1.0.0.tgz#30b87fcd67cc0d36b339e003a221e1f3f76755a8"
   integrity sha512-z7793MdwPQNL50JRlwpyTTwie6FHE2qOCndIlICcFUDa30abjgwcGq0UmKbRqZfaw4HJqHS7UpuQqxO5WTtTPg==
@@ -2135,7 +2135,7 @@
     mime-types "^2.1.18"
     pdfobject "^2.0.201604172"
 
-"@theia/monaco@1.0.0", "@theia/monaco@^1.0.0", "@theia/monaco@latest", "@theia/monaco@next":
+"@theia/monaco@1.0.0", "@theia/monaco@^1.0.0", "@theia/monaco@latest":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theia/monaco/-/monaco-1.0.0.tgz#8e953d0ac8fd258e7b8c430c1ba00a337417e416"
   integrity sha512-LFuN/CrntomL4S7TvFIR711TzjgQ+zgoX6c/ggSSgPmkoxNE6MJi2pUlBHtre+U0SXrUCRzBc1e5fI943RgVig==
@@ -12044,22 +12044,22 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sprotty-theia@0.8.0-next.a3b3621, sprotty-theia@0.9.0-next.72ba049:
-  version "0.8.0-next.a3b3621"
-  resolved "https://registry.yarnpkg.com/sprotty-theia/-/sprotty-theia-0.8.0-next.a3b3621.tgz#5fa561b45e578def564c1b91f8cced47ee342dc7"
-  integrity sha512-6XeQeGqwXHPEz1Dc8RGY9hz5NfdZERupEFcdg+ToyvSjflNahPQtwKDW4GuAiTdy10ZXc1CfjWj9EO0rZnHf1g==
+sprotty-theia@0.9.0-next.72ba049:
+  version "0.9.0-next.72ba049"
+  resolved "https://registry.yarnpkg.com/sprotty-theia/-/sprotty-theia-0.9.0-next.72ba049.tgz#bc75767a7bd8927fc934d476236f6a9e03e99042"
+  integrity sha512-Ipr8MYz+zoL/q4y45RoOjWznVASeO318+4b1HqQ0w25D6k46kSZWwjXVy+ShaQ2oTWwO0AWYyFjYzq8Kyik/bA==
   dependencies:
-    "@theia/core" next
-    "@theia/editor" next
-    "@theia/filesystem" next
-    "@theia/languages" next
-    "@theia/monaco" next
+    "@theia/core" "1.0.0"
+    "@theia/editor" "1.0.0"
+    "@theia/filesystem" "1.0.0"
+    "@theia/languages" "1.0.0"
+    "@theia/monaco" "1.0.0"
     sprotty next
 
-sprotty@0.8.0-next.666cfe0, sprotty@0.9.0-next.7028f2a, sprotty@next:
-  version "0.8.0-next.666cfe0"
-  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.8.0-next.666cfe0.tgz#a28991e7601bb466857ca076570a2b16db851a55"
-  integrity sha512-Yh04DIYMCEKHWBk44TWxZduBeDlQWTldddiFjvpjyrFS2r2VJk68RM2s1FI2vmMtGRdB4XTuLQ3ICznqiyqghg==
+sprotty@0.9.0-next.7028f2a, sprotty@next:
+  version "0.9.0-next.7028f2a"
+  resolved "https://registry.yarnpkg.com/sprotty/-/sprotty-0.9.0-next.7028f2a.tgz#48bae07b119f561b225159d66c43ada8174fb6f3"
+  integrity sha512-XiI/8WXqjJM8KXu68wujwJRC8V2hqusgyTHu2XdAANLngbpWPRYhFCqvmtMiH7lsFLSHSdv1JYp5KvUaI3YoWA==
   dependencies:
     autocompleter "5.1.0"
     file-saver "2.0.2"

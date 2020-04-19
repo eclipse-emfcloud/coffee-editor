@@ -23,28 +23,20 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.ApplyLabelEditOperationAction;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.ApplyLabelEditOperation;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 
-public class ApplyLabelEditOperationHandler implements ModelStateAwareOperationHandler {
+public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperationHandler<ApplyLabelEditOperation> {
 
 	@Override
-	public Class<? extends Action> handlesActionType() {
-		return ApplyLabelEditOperationAction.class;
-	}
-
-	@Override
-	public void doExecute(AbstractOperationAction action, GraphicalModelState modelState,
+	public void executeOperation(ApplyLabelEditOperation operation, GraphicalModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
-		ApplyLabelEditOperationAction editLabelAction = (ApplyLabelEditOperationAction) action;
-		Optional<GModelElement> element = modelState.getIndex().get(editLabelAction.getLabelId());
+		Optional<GModelElement> element = modelState.getIndex().get(operation.getLabelId());
 		if (!element.isPresent() && !(element.get() instanceof GLabel)) {
 			throw new IllegalArgumentException("Element with provided ID cannot be found or is not a GLabel");
 		}
@@ -54,9 +46,10 @@ public class ApplyLabelEditOperationHandler implements ModelStateAwareOperationH
 		if (!(node instanceof Task)) {
 			throw new IllegalAccessError("Edited label isn't label representing a task");
 		}
-		
-		Command setCommand = SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME, editLabelAction.getText());
-		if(!modelAccess.edit(setCommand).thenApply(res -> res.body()).get()) {
+
+		Command setCommand = SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
+				operation.getText());
+		if (!modelAccess.edit(setCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + setCommand);
 		}
 	}
@@ -70,11 +63,6 @@ public class ApplyLabelEditOperationHandler implements ModelStateAwareOperationH
 			throw new IllegalArgumentException("Cannot find node parent of label");
 		}
 		return (GNode) parent;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Apply label";
 	}
 
 }
