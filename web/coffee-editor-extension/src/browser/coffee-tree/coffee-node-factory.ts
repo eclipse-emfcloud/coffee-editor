@@ -38,7 +38,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         return [];
     }
 
-    mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string): TreeEditor.Node {
+    mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string, defaultType?: string): TreeEditor.Node {
         if (!data) {
             // sanity check
             this.logger.warn('mapData called without data');
@@ -50,7 +50,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             name: this.labelProvider.getName(data),
             parent: parent,
             jsonforms: {
-                type: this.getType(data.eClass, data),
+                type: this.getType(data.eClass || defaultType, data),
                 data: data,
                 property: property,
                 index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
@@ -83,7 +83,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         if (data.flows) {
             // workflow type
             data.flows.forEach((element, idx) => {
-                this.mapData(element, node, 'flows', idx);
+                this.mapData(element, node, 'flows', idx, CoffeeModel.Type.Flow);
             });
         }
         return node;

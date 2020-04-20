@@ -23,8 +23,14 @@ import {
     brewingView,
     coffeeSchema,
     controlUnitView,
+    decisionView,
+    dipTrayView,
+    flowView,
     machineView,
     manualTaskView,
+    mergeView,
+    waterTankView,
+    weightedFlowView,
     workflowView,
 } from './coffee-schemas';
 
@@ -97,6 +103,18 @@ export class CoffeeModelService implements TreeEditor.ModelService {
                 return automaticTaskView;
             case CoffeeModel.Type.ManualTask:
                 return manualTaskView;
+            case CoffeeModel.Type.DipTray:
+                return dipTrayView;
+            case CoffeeModel.Type.WaterTank:
+                return waterTankView;
+            case CoffeeModel.Type.Flow:
+                return flowView;
+            case CoffeeModel.Type.WeightedFlow:
+                return weightedFlowView;
+            case CoffeeModel.Type.Decision:
+                return decisionView;
+            case CoffeeModel.Type.Merge:
+                return mergeView;
             default:
                 this.logger.warn("Can't find registered ui schema for type " + type);
                 return undefined;
