@@ -18,10 +18,16 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 
 import com.eclipsesource.workflow.glsp.server.util.ModelTypes;
+
 public class CreateDecisionNodeHandler extends AbstractCreateNodeHandler {
 
 	public CreateDecisionNodeHandler() {
 		super(ModelTypes.DECISION_NODE, CoffeePackage.Literals.DECISION);
+	}
+
+	@Override
+	public String getLabel() {
+		return "Decision Node";
 	}
 
 }

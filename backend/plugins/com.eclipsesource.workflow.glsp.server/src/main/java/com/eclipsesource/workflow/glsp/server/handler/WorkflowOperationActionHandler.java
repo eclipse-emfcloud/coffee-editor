@@ -15,39 +15,36 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
 import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.provider.OperationHandlerProvider;
+import org.eclipse.glsp.api.operation.Operation;
+import org.eclipse.glsp.api.registry.OperationHandlerRegistry;
 import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
 
-import com.eclipsesource.workflow.glsp.server.handler.operation.ModelStateAwareOperationHandler;
+import com.eclipsesource.workflow.glsp.server.handler.operation.ModelserverAwareOperationHandler;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.google.inject.Inject;
 
 public class WorkflowOperationActionHandler extends OperationActionHandler {
-
 	@Inject
-	private OperationHandlerProvider operationHandlerProvider;
+	protected OperationHandlerRegistry operationHandlerRegistry;
 
 	@Override
-	public List<Action> doHandle(AbstractOperationAction action, GraphicalModelState modelState) {
-		if (operationHandlerProvider.isHandled(action)) {
-			OperationHandler handler = operationHandlerProvider.getHandler(action).get();
-			handler.execute(action, modelState);
-			if (!(handler instanceof ModelStateAwareOperationHandler)) {
-				// if the handler is not model state aware, we simply update the whole model
-				// this can be removed as soon as we ensure that all handlers that make updates,
-				// update accordingly
-				WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-				modelAccess.update();
-			}
+	protected List<Action> executeHandler(final Operation operation, final OperationHandler handler,
+			final GraphicalModelState modelState) {
+		handler.execute(operation, modelState);
+		if (!(handler instanceof ModelserverAwareOperationHandler)) {
+			// if the handler is not model server aware, we simply update the whole model
+			// this can be removed as soon as we ensure that all handlers that make updates,
+			// update accordingly
+			WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
+			modelAccess.update();
 		}
-		return Collections.emptyList();
+		return none();
 	}
+
 }

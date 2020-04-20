@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
 import org.eclipse.emfcloud.modelserver.edit.DefaultCommandCodec;
 import org.eclipse.glsp.api.configuration.ServerConfiguration;
-import org.eclipse.glsp.api.di.MultiBindings;
 import org.eclipse.glsp.api.diagram.DiagramConfiguration;
 import org.eclipse.glsp.api.factory.ModelFactory;
 import org.eclipse.glsp.api.handler.ActionHandler;
@@ -35,11 +34,13 @@ import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
 import org.eclipse.glsp.server.actionhandler.SaveModelActionHandler;
 import org.eclipse.glsp.server.actionhandler.UndoRedoActionHandler;
 import org.eclipse.glsp.server.di.DefaultGLSPModule;
+import org.eclipse.glsp.server.di.MultiBindConfig;
 
 import com.eclipsesource.workflow.glsp.server.handler.WorkflowOperationActionHandler;
 import com.eclipsesource.workflow.glsp.server.handler.WorkflowSaveModelActionHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.ApplyLabelEditOperationHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.ChangeBoundsOperationHandler;
+import com.eclipsesource.workflow.glsp.server.handler.operation.ChangeRoutingPointsOperationHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.CreateAutomatedTaskHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.CreateDecisionNodeHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.CreateFlowHandler;
@@ -48,7 +49,6 @@ import com.eclipsesource.workflow.glsp.server.handler.operation.CreateMergeNodeH
 import com.eclipsesource.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.DeleteOperationHandler;
 import com.eclipsesource.workflow.glsp.server.handler.operation.ReconnectFlowHandler;
-import com.eclipsesource.workflow.glsp.server.handler.operation.ChangeRoutingPointsOperationHandler;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelFactory;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelStateProvider;
 
@@ -75,16 +75,16 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
-	protected void configureActionHandlers(MultiBindings<ActionHandler> bindings) {
+	protected void configureActionHandlers(MultiBindConfig<ActionHandler> bindings) {
 		super.configureActionHandlers(bindings);
-		bindings.rebind(OperationActionHandler.class,WorkflowOperationActionHandler.class);
-		bindings.rebind(SaveModelActionHandler.class,WorkflowSaveModelActionHandler.class);
+		bindings.rebind(OperationActionHandler.class, WorkflowOperationActionHandler.class);
+		bindings.rebind(SaveModelActionHandler.class, WorkflowSaveModelActionHandler.class);
 		// TODO inject own undo/redo once incremental model server is ready
 		bindings.remove(UndoRedoActionHandler.class);
 	}
 
 	@Override
-	protected void configureOperationHandlers(MultiBindings<OperationHandler> bindings) {
+	protected void configureOperationHandlers(MultiBindConfig<OperationHandler> bindings) {
 		bindings.add(CreateAutomatedTaskHandler.class);
 		bindings.add(CreateManualTaskHandler.class);
 		bindings.add(CreateDecisionNodeHandler.class);
@@ -105,7 +105,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
-	protected void configureDiagramConfigurations(MultiBindings<DiagramConfiguration> bindings) {
+	protected void configureDiagramConfigurations(MultiBindConfig<DiagramConfiguration> bindings) {
 		bindings.add(WorfklowDiagramNotationConfiguration.class);
 	}
 
@@ -125,7 +125,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
-	protected void configure() {
+	public void configure() {
 		super.configure();
 		bind(AdapterFactory.class).toInstance(new ComposedAdapterFactory());
 		bind(CommandCodec.class).toInstance(new DefaultCommandCodec());

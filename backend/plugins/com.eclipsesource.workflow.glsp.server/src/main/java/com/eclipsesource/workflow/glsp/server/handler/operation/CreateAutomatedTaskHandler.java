@@ -25,4 +25,9 @@ public class CreateAutomatedTaskHandler extends AbstractCreateTaskHandler {
 		super(ModelTypes.AUTOMATED_TASK, CoffeePackage.Literals.AUTOMATIC_TASK);
 	}
 
+	@Override
+	public String getLabel() {
+		return "Automated Task";
+	}
+
 }

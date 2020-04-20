@@ -38,4 +38,5 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
     }
 
     // Do not need to specify getName() nor getLongName() because the default uri label provider handles this
+        // tslint:disable-next-line: deprecation
 }

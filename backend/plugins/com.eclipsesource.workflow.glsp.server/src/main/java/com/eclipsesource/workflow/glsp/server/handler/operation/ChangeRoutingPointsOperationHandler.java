@@ -23,12 +23,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.ChangeRoutingPointsOperationAction;
-import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.ChangeRoutingPointsOperation;
 import org.eclipse.glsp.api.types.ElementAndRoutingPoints;
 import org.eclipse.glsp.graph.GEdge;
+import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -36,26 +35,11 @@ import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Point;
 
-public class ChangeRoutingPointsOperationHandler implements OperationHandler {
+public class ChangeRoutingPointsOperationHandler extends BasicOperationHandler<ChangeRoutingPointsOperation> {
 
 	@Override
-	public Class<?> handlesActionType() {
-		return ChangeRoutingPointsOperationAction.class;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Change routing points";
-	}
-
-	@Override
-	public void execute(AbstractOperationAction operationAction, GraphicalModelState modelState) {
-		if (!(operationAction instanceof ChangeRoutingPointsOperationAction)) {
-			throw new IllegalArgumentException("Unexpected action " + operationAction);
-		}
-
-		final ChangeRoutingPointsOperationAction action = (ChangeRoutingPointsOperationAction) operationAction;
-		action.getNewRoutingPoints().forEach(ear-> applyRoutingPointsChange(ear,modelState));
+	public void executeOperation(ChangeRoutingPointsOperation operation, GraphicalModelState modelState) {
+		operation.getNewRoutingPoints().forEach(ear -> applyRoutingPointsChange(ear, modelState));
 	}
 
 	private void applyRoutingPointsChange(ElementAndRoutingPoints ear, GraphicalModelState modelState) {
@@ -73,5 +57,4 @@ public class ChangeRoutingPointsOperationHandler implements OperationHandler {
 		edge.getBendPoints().clear();
 		edge.getBendPoints().addAll(bendPoints);
 	}
-
 }

@@ -15,29 +15,14 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
 import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.Operation;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
-import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 
-public interface ModelStateAwareOperationHandler extends OperationHandler {
-	@Override
-	default public void execute(AbstractOperationAction action, GraphicalModelState modelState) {
-		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-		try {
-			doExecute(action, modelState, modelAccess);
-		} catch(Exception ex) {
-			if(ex instanceof RuntimeException) {
-				// simply re-throw
-				throw (RuntimeException)ex;				
-			} else {
-				// wrap
-				throw new RuntimeException(ex);
-			}
-		}
-	}
-	
-	public void doExecute(AbstractOperationAction action, GraphicalModelState modelState, WorkflowModelServerAccess modelAccess) throws Exception;
+public interface ModelserverAwareOperationHandler<T extends Operation> extends OperationHandler {
+
+	public void executeOperation(T operation, GraphicalModelState modelState, WorkflowModelServerAccess modelAccess)
+			throws Exception;
 }

@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019 EclipseSource and others.
+ * Copyright (c) 2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,7 +13,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GLSPDiagramManager, GLSPTheiaSprottyConnector } from '@eclipse-glsp/theia-integration/lib/browser';
+import {
+    GLSPDiagramManager,
+    GLSPNotificationManager,
+    GLSPTheiaSprottyConnector,
+} from '@eclipse-glsp/theia-integration/lib/browser';
 import { MessageService } from '@theia/core';
 import { WidgetManager, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
@@ -38,9 +42,18 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         @inject(TheiaFileSaver) fileSaver: TheiaFileSaver,
         @inject(WidgetManager) widgetManager: WidgetManager,
         @inject(EditorManager) editorManager: EditorManager,
-        @inject(MessageService) messageService: MessageService) {
+        @inject(MessageService) messageService: MessageService,
+        @inject(GLSPNotificationManager) notificationManager: GLSPNotificationManager) {
         super();
-        this._diagramConnector = new GLSPTheiaSprottyConnector({ diagramClient, fileSaver, editorManager, widgetManager, diagramManager: this, messageService });
+        this._diagramConnector = new GLSPTheiaSprottyConnector({
+            diagramClient,
+            fileSaver,
+            editorManager,
+            widgetManager,
+            diagramManager: this,
+            messageService,
+            notificationManager
+        });
     }
 
     protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): Object {

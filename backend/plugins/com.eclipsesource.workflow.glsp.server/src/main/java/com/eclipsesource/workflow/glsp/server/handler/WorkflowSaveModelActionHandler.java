@@ -8,32 +8,24 @@ import org.eclipse.glsp.api.action.kind.SaveModelAction;
 import org.eclipse.glsp.api.action.kind.SetDirtyStateAction;
 import org.eclipse.glsp.api.jsonrpc.GLSPServerException;
 import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.server.actionhandler.AbstractActionHandler;
+import org.eclipse.glsp.server.actionhandler.BasicActionHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 
-public class WorkflowSaveModelActionHandler extends AbstractActionHandler {
+public class WorkflowSaveModelActionHandler extends BasicActionHandler<SaveModelAction> {
 
 	@Override
-	public boolean handles(Action action) {
-		return action instanceof SaveModelAction;
-	}
-
-	@Override
-	protected List<Action> execute(Action action, GraphicalModelState modelState) {
+	protected List<Action> executeAction(SaveModelAction action, GraphicalModelState modelState) {
 		try {
-			if (action instanceof SaveModelAction) {
-				SaveModelAction saveAction = (SaveModelAction) action;
-				if (saveAction != null) {
-					WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-					String modelURI = modelAccess.getWorkflowFacade().getSemanticResource().getURI().toString();
-					if (!modelAccess.getModelServerClient().save(modelURI).thenApply(res -> res.body()).get()) {
-						throw new GLSPServerException("Could not execute save action: " + action.toString());
-					}
-
-					modelAccess.save();
+			if (action != null) {
+				WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
+				String modelURI = modelAccess.getWorkflowFacade().getSemanticResource().getURI().toString();
+				if (!modelAccess.getModelServerClient().save(modelURI).thenApply(res -> res.body()).get()) {
+					throw new GLSPServerException("Could not execute save action: " + action.toString());
 				}
+
+				modelAccess.save();
 			}
 		} catch (ExecutionException | InterruptedException e) {
 			throw new GLSPServerException("Could not execute save action: " + action.toString(), e);

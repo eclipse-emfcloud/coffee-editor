@@ -25,4 +25,9 @@ public class CreateMergeNodeHandler extends AbstractCreateNodeHandler {
 		super(ModelTypes.MERGE_NODE, CoffeePackage.Literals.MERGE);
 	}
 
+	@Override
+	public String getLabel() {
+		return "Merge Node";
+	}
+
 }

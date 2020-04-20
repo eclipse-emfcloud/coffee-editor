@@ -23,38 +23,26 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.action.kind.AbstractOperationAction;
-import org.eclipse.glsp.api.action.kind.DeleteOperationAction;
-import org.eclipse.glsp.api.handler.OperationHandler;
 import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.api.operation.kind.DeleteOperation;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
+import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 
-public class DeleteOperationHandler implements OperationHandler {
+public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperation> {
 
 	private Set<EObject> toDelete;
 
 	@Override
-	public boolean handles(AbstractOperationAction action) {
-		return action instanceof DeleteOperationAction;
-	}
-
-	@Override
-	public String getLabel(AbstractOperationAction action) {
-		return "Delete elements";
-	}
-
-	@Override
-	public void execute(AbstractOperationAction action, GraphicalModelState modelState) {
-		DeleteOperationAction deleteAction = (DeleteOperationAction) action;
+	public void executeOperation(DeleteOperation operation, GraphicalModelState modelState) {
 		toDelete = new HashSet<>();
-		deleteAction.getElementIds().forEach(id -> collectElementsToDelete(id, modelState));
+		operation.getElementIds().forEach(id -> collectElementsToDelete(id, modelState));
 		toDelete.forEach(e -> EcoreUtil.delete(e, true));
 	}
 

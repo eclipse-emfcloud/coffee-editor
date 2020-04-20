@@ -17,7 +17,7 @@ package com.eclipsesource.workflow.glsp.server.model;
 
 import static com.eclipsesource.workflow.glsp.server.model.WorkflowModelFactory.OPTION_WORKFLOW_INDEX;
 import static com.eclipsesource.workflow.glsp.server.model.WorkflowModelFactory.WORKFLOW_INDEX_DEFAULT;
-import static org.eclipse.glsp.api.utils.ServerStatusUtil.getDetails;
+import static org.eclipse.glsp.api.utils.ServerMessageUtil.error;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -40,7 +40,7 @@ import org.eclipse.glsp.api.action.kind.ServerStatusAction;
 import org.eclipse.glsp.api.action.kind.SetDirtyStateAction;
 import org.eclipse.glsp.api.model.GraphicalModelState;
 import org.eclipse.glsp.api.types.ServerStatus;
-import org.eclipse.glsp.api.types.ServerStatus.Severity;
+import org.eclipse.glsp.api.types.Severity;
 import org.eclipse.glsp.api.utils.ClientOptions;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,13 +54,13 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	private WorkflowModelServerAccess modelServerAccess;
 	private GraphicalModelState modelState;
 
-	public WorkflowModelServerSubscriptionListener(GraphicalModelState modelState, WorkflowModelServerAccess modelServerAccess,
-			ActionProcessor actionProcessor) {
+	public WorkflowModelServerSubscriptionListener(GraphicalModelState modelState,
+			WorkflowModelServerAccess modelServerAccess, ActionProcessor actionProcessor) {
 		this.actionProcessor = actionProcessor;
 		this.modelServerAccess = modelServerAccess;
 		this.modelState = modelState;
 	}
-	
+
 	@Override
 	public void onIncrementalUpdate(CCommand command) {
 		LOG.debug("Incremental update from model server received: " + command);
@@ -71,7 +71,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 			commandResource = createCommandResource(domain, command);
 			Command cmd = modelServerAccess.getCommandCodec().decode(domain, command);
 			domain.getCommandStack().execute(cmd);
-			
+
 			// update notation resource
 			WorkflowFacade facade = modelServerAccess.getWorkflowFacade();
 			Resource notationResource = facade.getNotationResource();
@@ -80,12 +80,12 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 			LOG.error("Could not decode command: " + command, ex);
 			throw new RuntimeException(ex);
 		} finally {
-			if(commandResource != null) {
+			if (commandResource != null) {
 				commandResource.getResourceSet().getResources().remove(commandResource);
 			}
 		}
 	}
-	
+
 	@Override
 	public void onFullUpdate(EObject root) {
 		LOG.debug("Full update from model server received");
@@ -94,7 +94,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 		Resource semanticResource = facade.getSemanticResource();
 		semanticResource.getContents().clear();
 		semanticResource.getContents().add(root);
-		
+
 		Resource notationResource = facade.getNotationResource();
 		updateNotationResource(facade, notationResource);
 	}
@@ -111,8 +111,8 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 		facade.setCurrentWorkflowIndex(workflowIndex);
 
 		// Re-populate GModel and initiate a client model update
-		MappedGModelRoot mappedGModelRoot = WorkflowModelFactory
-				.populate(modelServerAccess.getWorkflowFacade(), modelState);
+		MappedGModelRoot mappedGModelRoot = WorkflowModelFactory.populate(modelServerAccess.getWorkflowFacade(),
+				modelState);
 		modelServerAccess.setNodeMapping(mappedGModelRoot.getMapping());
 		modelState.setRoot(mappedGModelRoot.getRoot());
 		actionProcessor.send(modelState.getClientId(), new RequestBoundsAction(modelState.getRoot()));
@@ -123,33 +123,34 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 		resource.getContents().add(command);
 		return resource;
 	}
-	
+
 	@Override
 	public void onDirtyChange(boolean isDirty) {
 		LOG.debug("Dirty State Changed: " + isDirty);
 		actionProcessor.send(modelState.getClientId(), new SetDirtyStateAction(isDirty));
 	}
-	
+
 	@Override
 	public void onUnknown(ModelServerNotification notification) {
 		// Try to see if we have an update if the notification type is not set properly
 		EObject data = notification.getData().flatMap(WorkflowModelServerSubscriptionListener::decode).orElse(null);
-		if(data instanceof CCommand) {
-			onIncrementalUpdate((CCommand)data);
-		} else if(data instanceof Machine) {
-			onFullUpdate((Machine)data);
+		if (data instanceof CCommand) {
+			onIncrementalUpdate((CCommand) data);
+		} else if (data instanceof Machine) {
+			onFullUpdate(data);
 		} else {
-			LOG.warn("Unknown notification received: " + notification);			
+			LOG.warn("Unknown notification received: " + notification);
 		}
 	}
-	
+
 	@Override
 	public void onError(Optional<String> message) {
 		String errorMsg = message.orElse("Error occurred on model server!");
-		actionProcessor.send(modelState.getClientId(), new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg)));
+		actionProcessor.send(modelState.getClientId(),
+				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg)));
 		LOG.error(errorMsg);
 	}
-	
+
 	@Override
 	public void onSuccess(Optional<String> messasge) {
 		messasge.ifPresent(LOG::debug);
@@ -158,11 +159,10 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onFailure(Throwable t) {
 		String errorMsg = "Subscribtion connection to modelserver failed!";
-		actionProcessor.send(modelState.getClientId(),
-				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg, getDetails(t))));
+		actionProcessor.send(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
-	
+
 	@Override
 	public void onClosing(int code, @NotNull String reason) {
 	}
@@ -178,8 +178,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onFailure(Throwable t, Response<String> response) {
 		String errorMsg = "Subscribtion connection to modelserver failed:" + "\n" + response;
-		actionProcessor.send(modelState.getClientId(),
-				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg, getDetails(t))));
+		actionProcessor.send(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
 

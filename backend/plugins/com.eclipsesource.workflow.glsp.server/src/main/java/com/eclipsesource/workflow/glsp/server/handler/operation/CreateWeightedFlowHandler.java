@@ -18,10 +18,16 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 
 import com.eclipsesource.workflow.glsp.server.util.ModelTypes;
+
 public class CreateWeightedFlowHandler extends AbstractCreateEdgeHandler {
 
 	public CreateWeightedFlowHandler() {
 		super(ModelTypes.WEIGHTED_EDGE, CoffeePackage.Literals.WEIGHTED_FLOW);
+	}
+
+	@Override
+	public String getLabel() {
+		return "Weighted Edge";
 	}
 
 }

@@ -25,8 +25,6 @@ import static com.eclipsesource.workflow.glsp.server.util.ModelTypes.LABEL_TEXT;
 import static com.eclipsesource.workflow.glsp.server.util.ModelTypes.MANUAL_TASK;
 import static com.eclipsesource.workflow.glsp.server.util.ModelTypes.MERGE_NODE;
 import static com.eclipsesource.workflow.glsp.server.util.ModelTypes.WEIGHTED_EDGE;
-import static org.eclipse.glsp.api.operations.Operation.Kind.CREATE_CONNECTION;
-import static org.eclipse.glsp.api.operations.Operation.Kind.CREATE_NODE;
 import static org.eclipse.glsp.graph.DefaultTypes.EDGE;
 
 import java.util.ArrayList;
@@ -36,8 +34,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.glsp.api.diagram.DiagramConfiguration;
-import org.eclipse.glsp.api.operations.Group;
-import org.eclipse.glsp.api.operations.Operation;
 import org.eclipse.glsp.api.types.EdgeTypeHint;
 import org.eclipse.glsp.api.types.ShapeTypeHint;
 import org.eclipse.glsp.graph.DefaultTypes;
@@ -50,20 +46,6 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 	@Override
 	public String getDiagramType() {
 		return "workflow-diagram-notation";
-	}
-
-	@Override
-	public List<Operation> getOperations() {
-		Group nodeGroup = new Group("workflow.nodes", "Nodes");
-		Group edgeGroup = new Group("workflow.edges", "Edges");
-		Operation createAutomatedTask = new Operation("Automated Task", AUTOMATED_TASK, CREATE_NODE, nodeGroup);
-		Operation createManualTask = new Operation("Manual Task", MANUAL_TASK, CREATE_NODE, nodeGroup);
-		Operation createDecisionNode = new Operation("Decision Node", DECISION_NODE, CREATE_NODE, nodeGroup);
-		Operation createMergeNode = new Operation("Merge Node", MERGE_NODE, CREATE_NODE, nodeGroup);
-		Operation createWeightedEdge = new Operation("Weighted Edge", WEIGHTED_EDGE, CREATE_CONNECTION, edgeGroup);
-		Operation createEdge = new Operation("Edge", EDGE, CREATE_CONNECTION, edgeGroup);
-		return Arrays.asList(createAutomatedTask, createManualTask, createDecisionNode, createMergeNode,
-				createWeightedEdge, createEdge);
 	}
 
 	@Override
@@ -106,10 +88,8 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 	@Override
 	public EdgeTypeHint createDefaultEdgeTypeHint(final String elementId) {
 		EdgeTypeHint hint = DiagramConfiguration.super.createDefaultEdgeTypeHint(elementId);
-		hint.setSourceElementTypeIds(
-				Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
-		hint.setTargetElementTypeIds(
-				Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
+		hint.setSourceElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
+		hint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
 		return hint;
 	}
 }
