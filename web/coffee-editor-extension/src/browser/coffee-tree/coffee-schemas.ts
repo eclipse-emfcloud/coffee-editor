@@ -18,6 +18,10 @@ export const controlUnitView = {
   'type': 'VerticalLayout',
   'elements': [
     {
+      'type': 'Label',
+      'text': 'Control Unit'
+    },
+    {
       'type': 'Group',
       'label': 'Processor',
       'elements': [
@@ -138,6 +142,10 @@ export const machineView = {
   'type': 'VerticalLayout',
   'elements': [
     {
+      'type': 'Label',
+      'text': 'Machine'
+    },
+    {
       'type': 'Control',
       'label': 'Name',
       'scope': '#/properties/name'
@@ -149,10 +157,49 @@ export const brewingView = {
   'type': 'Label',
   'text': 'Brewing Unit'
 };
+export const dipTrayView = {
+  'type': 'Label',
+  'text': 'Dip Tray'
+};
+
+export const waterTankView = {
+  'type': 'Label',
+  'text': 'Water Tank'
+};
+export const flowView = {
+  'type': 'Label',
+  'text': 'Flow'
+};
+export const weightedFlowView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Label',
+      'text': 'Weighted Flow'
+    },
+    {
+      'type': 'Control',
+      'scope': '#/properties/probability',
+      'options': { focus: true }
+    },
+  ]
+};
+export const mergeView = {
+  'type': 'Label',
+  'text': 'Merge'
+};
+export const decisionView = {
+  'type': 'Label',
+  'text': 'Decision'
+};
 
 export const manualTaskView = {
   'type': 'VerticalLayout',
   'elements': [
+    {
+      'type': 'Label',
+      'text': 'Manual Task'
+    },
     {
       'type': 'Control',
       'label': 'Name',
@@ -175,6 +222,10 @@ export const manualTaskView = {
 export const automaticTaskView = {
   'type': 'VerticalLayout',
   'elements': [
+    {
+      'type': 'Label',
+      'text': 'Automatic Task'
+    },
     {
       'type': 'Control',
       'label': 'Name',
