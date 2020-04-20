@@ -39,6 +39,7 @@ import { CoffeeModel } from './coffee-model';
 
 @injectable()
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
+  private delayedRefresh = false;
   constructor(
     @inject(JsonFormsTreeWidget)
     readonly treeWidget: JsonFormsTreeWidget,
@@ -72,6 +73,10 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
       this.treeWidget
         .setData({ error: false, data: this.instanceData })
         .then(() => this.treeWidget.select(this.getOldSelectedPath()));
+
+      if (!this.isVisible) {
+        this.delayedRefresh = true;
+      }
     });
     this.subscriptionService.onIncrementalUpdateListener(incrementalUpdate => {
       const command = incrementalUpdate as ModelServerCommand;
@@ -117,6 +122,9 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             command.objectsToAdd,
             command.feature
           );
+          if (!this.isVisible) {
+            this.delayedRefresh = true;
+          }
           break;
         }
         case 'remove': {
@@ -128,6 +136,9 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             command.indices,
             command.feature
           );
+          if (!this.isVisible) {
+            this.delayedRefresh = true;
+          }
           break;
         }
         case 'set': {
@@ -136,12 +147,13 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
           // FIXME handle array changes
           if (command.dataValues) {
             data[command.feature] = command.dataValues[0];
-            objectToModify[command.feature] = command.dataValues[0];
           } else {
             data[command.feature] = command.objectsToAdd[0];
-            objectToModify[command.feature] = command.objectsToAdd[0];
           }
           this.treeWidget.updateDataForNode(ownerNode, data);
+          if (!this.isVisible) {
+            this.delayedRefresh = true;
+          }
         }
         default: {
         }
@@ -293,6 +305,14 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
     title.closable = true;
     title.iconClass = 'fa coffee-icon dark-purple';
+  }
+
+  show(): void {
+    super.show();
+    if (this.delayedRefresh) {
+      this.delayedRefresh = false;
+      this.treeWidget.model.refresh();
+    }
   }
 }
 export namespace CoffeeTreeEditorWidget {
