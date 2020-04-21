@@ -1,5 +1,5 @@
 /*!
- * Copyright (C) 2019 EclipseSource and others.
+ * Copyright (C) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -52,7 +52,7 @@ export class AnalysisService {
             this.logger.info('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile);
             const urlWithQuery = htmlFile + '?json=' + escape(jsonFile);
             this.logger.info('[WorkflowAnalyzer] Open Analysis Result');
-            await this.openHandler.open(new URI(undefined), { name: 'Workflow Analysis', startPage: urlWithQuery, toolbar: 'hide' });
+            await this.openHandler.open(new URI(undefined), { name: 'Workflow Analysis', startPage: urlWithQuery, toolbar: 'hide', iconClass: 'fa fa-pie-chart' });
         } catch (error) {
             this.messageService.error('The workflow analysis failed', 'Show details')
                 .then(result => {
