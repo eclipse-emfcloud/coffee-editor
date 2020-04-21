@@ -1,5 +1,5 @@
 /*!
- * Copyright (C) 2019 EclipseSource and others.
+ * Copyright (C) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 import { CommandContribution, MenuContribution } from '@theia/core';
-import { OpenHandler, WebSocketConnectionProvider } from '@theia/core/lib/browser';
+import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
 import { LocationMapper } from '@theia/mini-browser/lib/browser/location-mapper-service';
 import { ContainerModule, injectable } from 'inversify';
 
@@ -22,7 +22,7 @@ import { filePath, IFileClient, IFileServer } from '../common/request-file-proto
 import { WorkflowAnalyzer, workflowServicePath } from '../common/workflow-analyze-protocol';
 import { AnalysisService, WorkflowAnalysisClientImpl } from './analysis-service';
 import { WorkflowCommandContribution } from './command-contribution';
-import { AnalysisEditorOpenHandler, WorkflowFileLocationMapper } from './editor-contribution';
+import { WorkflowFileLocationMapper } from './location-mapper';
 
 export default new ContainerModule(bind => {
     bind(AnalysisService).toSelf().inSingletonScope();
@@ -42,7 +42,6 @@ export default new ContainerModule(bind => {
         return connection.createProxy<WorkflowAnalyzer>(workflowServicePath, client);
     }).inSingletonScope();
 
-    bind(OpenHandler).to(AnalysisEditorOpenHandler);
     bind(LocationMapper).to(WorkflowFileLocationMapper);
 
     [CommandContribution, MenuContribution].forEach(s => bind(s).to(WorkflowCommandContribution));
