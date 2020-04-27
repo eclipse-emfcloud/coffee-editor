@@ -3,7 +3,7 @@
     <v-expansion-panels dark flat>
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="expand">
-          <h1>Coffee Editor Terms and Conditions, Privacy Policy</h1>
+          <h1>By launching the coffee editor, I agree to the following coffee editor terms, conditions and privacy policy (click to expand)</h1>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           <h3>1. Terms</h3>
@@ -25,7 +25,7 @@
           <ul>
             <li>
               Permission is granted to use the Coffee Editor in order to explore
-              the features of this online modeling application.
+              the features of this online modeling application. Any other usage is prohibited.
             </li>
             <li>
               The IDE will be brought down after 30 minutes of use. Any data
