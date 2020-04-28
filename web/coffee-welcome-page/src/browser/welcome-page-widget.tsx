@@ -176,16 +176,16 @@ export class WelcomePageWidget extends ReactWidget {
         </div>;
     }
 
-    protected openDiagram = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/SuperBrewer3000/superbrewer3000.coffeenotation`));
-    protected openTreeEditor = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/SuperBrewer3000/superbrewer3000.coffee`));
-    protected openTextualDSL = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/SuperBrewer3000/superbrewer3000.wfconfig`));
+    protected openDiagram = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffeenotation`));
+    protected openTreeEditor = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffee`));
+    protected openTextualDSL = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.wfconfig`));
     protected runModelAnalysis = () => {
-        open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/SuperBrewer3000/superbrewer3000.wfconfig`))
+        open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.wfconfig`))
             .then(() => { this.commandRegistry.executeCommand(ANALYZE_COMMAND.id); });
 
     }
     protected runCodeGenerator = () => {
-        open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/SuperBrewer3000/superbrewer3000.coffee`))
+        open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffee`))
             .then(() => { this.commandRegistry.executeCommand(CODEGEN_COMMAND.id); });
     }
 }
