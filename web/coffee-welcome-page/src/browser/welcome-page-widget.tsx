@@ -20,8 +20,9 @@ import { injectable, inject, postConstruct } from 'inversify';
 import { ReactWidget } from '@theia/core/lib/browser/widgets/react-widget';
 import { CommandRegistry } from '@theia/core/lib/common';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
-import { OpenerService, open } from '@theia/core/lib/browser';
+import { OpenerService, open, ApplicationShell, SelectableTreeNode } from '@theia/core/lib/browser';
 import { ApplicationInfo, ApplicationServer } from '@theia/core/lib/common/application-protocol';
+import { EXPLORER_VIEW_CONTAINER_ID, FileNavigatorWidget, FILE_NAVIGATOR_ID } from '@theia/navigator/lib/browser';
 import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { CODEGEN_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
 
@@ -45,6 +46,8 @@ export class WelcomePageWidget extends ReactWidget {
     @inject(OpenerService)
     protected readonly openerService: OpenerService;
 
+    @inject(ApplicationShell) protected readonly shell: ApplicationShell;
+
     @postConstruct()
     protected async init(): Promise<void> {
         this.id = WelcomePageWidget.ID;
@@ -64,7 +67,7 @@ export class WelcomePageWidget extends ReactWidget {
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Diagram Editor', 'fa fa-project-diagram', (
-                    <p>The example diagram editor allows specifying the behavior of a coffee maching using a flow chart like notation.
+                    <p>The example diagram editor allows specifying the behavior of a coffee machine using a flow chart like notation.
                     The diagram editor is based on <a href='https://www.eclipse.org/glsp/'>the graphical language server platform
                     (Eclipse GLSP)</a>. Double click the file "superbrewer3000.coffeenotation"&quot;" in the coffee editor or click
                         the header try out the diagram editor!</p>), this.openDiagram)}
@@ -83,7 +86,7 @@ export class WelcomePageWidget extends ReactWidget {
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Textual DSL', 'fas fa-indent', (
-                        <p>The textual DSL editor allows you to specify model constraints and supports syntaxt highlighting
+                        <p>The textual DSL editor allows you to specify model constraints and supports syntax highlighting
                             and auto completion. It is based on <a href='https://www.eclipse.org/Xtext/'>Xtext</a>. Double click
                             the file "superbrewer3000.wfconfig" in the coffee editor or click the header to try out the textual DSl!'</p>)
                             , this.openTextualDSL)}
@@ -95,7 +98,7 @@ export class WelcomePageWidget extends ReactWidget {
                     <p>Based on the constraints described in the textual DSL, the coffee editor provides an example model analysis.
                         The result is visualized as a "sun burst" chart. The analysis is an external component written in Kotlin, the
                         chart is based on D3. Select the file "superbrewer3000.wfconfig" in the coffee editor, press F1, type "Analyze
-                        workflow model" and hit enter to see the model analysis in action. Alternativly do a right click in the open
+                        workflow model" and hit enter to see the model analysis in action. Alternatively do a right click in the open
                         textual DSL editor or click the header above.</p>), this.runModelAnalysis)}
                 </div>
             </div>
@@ -126,7 +129,8 @@ export class WelcomePageWidget extends ReactWidget {
         return <div className='gs-header'>
             <h1>Coffee Editor <span className='gs-sub-header'>Getting Started</span></h1>
             <p>The "coffee editor" is a comprehensive example of a web-based modeling tool based on <a href='https://www.eclipse.org/emfcloud/'>EMF.cloud</a> and Eclipse Theia.
-            Please see the sections below to get an overview of the available features and use the links to directly see them in action. Alternativly, open the file explorer to
+            Please see the sections below to get an overview of the available features and use the links to directly see them in action.
+            Alternatively, <a href='#' onClick={() => this.openFileExplorer()}>open the file explorer</a> to
             the left and browse the example workspace. See the "Help and more information" section below for further pointers.</p>
         </div>;
     }
@@ -179,13 +183,22 @@ export class WelcomePageWidget extends ReactWidget {
     protected openDiagram = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffeenotation`));
     protected openTreeEditor = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffee`));
     protected openTextualDSL = () => open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.wfconfig`));
+    protected openFileExplorer = () => this.shell.revealWidget(EXPLORER_VIEW_CONTAINER_ID);
     protected runModelAnalysis = () => {
         open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.wfconfig`))
             .then(() => { this.commandRegistry.executeCommand(ANALYZE_COMMAND.id); });
 
     }
     protected runCodeGenerator = () => {
-        open(this.openerService, new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffee`))
-            .then(() => { this.commandRegistry.executeCommand(CODEGEN_COMMAND.id); });
+        this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
+            const { model } = widget as FileNavigatorWidget;
+            const uri = new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.coffee`);
+            model.revealFile(uri).then(node => {
+                if (SelectableTreeNode.is(node)) {
+                    model.selectNode(node);
+                }
+                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_COMMAND.id, uri), 1000);
+            });
+        });
     }
 }
