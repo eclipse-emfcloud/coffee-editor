@@ -20,7 +20,7 @@ import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 
 @injectable()
-export class TimeoutDialogProps extends DialogProps {}
+export class TimeoutDialogProps extends DialogProps { }
 
 @injectable()
 export class TimeoutDialog extends ReactDialog<void> {
@@ -47,10 +47,10 @@ export class TimeoutDialog extends ReactDialog<void> {
         <div>
           Connection to the server has been lost.
           <br />
-          You probably have reached the usage timeout.
+          You probably have reached the online demo usage timeout (30 minutes).
           <p>
             Please go to the{' '}
-            <a href='https://github.com/eclipsesource/coffee-editor/'>
+            <a href='https://eclipsesource.com/coffee-editor'>
               starting page
             </a>{' '}
             to start a new session.
