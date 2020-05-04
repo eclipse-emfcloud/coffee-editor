@@ -68,7 +68,7 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Diagram Editor', 'fa fa-project-diagram', (
                     <p>The example diagram editor allows specifying the behavior of a coffee machine using a flow chart like notation.
-                    The diagram editor is based on <a href='https://www.eclipse.org/glsp/'>the graphical language server platform
+                    The diagram editor is based on <a href='https://www.eclipse.org/glsp/' target='_blank'>the graphical language server platform
                     (Eclipse GLSP)</a>. Double click the file "superbrewer3000.coffeenotation"&quot;" in the coffee editor or click
                         the header try out the diagram editor!</p>), this.openDiagram)}
                 </div>
@@ -78,7 +78,7 @@ export class WelcomePageWidget extends ReactWidget {
                     {this.renderFeatureSection('Form/Tree Editor', 'fab fa-wpforms', (
                         <p>This editor allows to edit elements in a form-based view along with a tree showing the
                         hierarchy of the model instances. This allows to efficiently browse the model and enter
-                        data. The form editor is based on <a href='https://jsonforms.io'>JSON Forms</a>. Double
+                        data. The form editor is based on <a href='https://jsonforms.io' target='_blank'>JSON Forms</a>. Double
                          click the file "superbrewer3000.coffee" in the coffee editor or click the header to try
                           out the editor!</p>), this.openTreeEditor)}
                 </div>
@@ -87,7 +87,7 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Textual DSL', 'fas fa-indent', (
                         <p>The textual DSL editor allows you to specify model constraints and supports syntax highlighting
-                            and auto completion. It is based on <a href='https://www.eclipse.org/Xtext/'>Xtext</a>. Double click
+                            and auto completion. It is based on <a href='https://www.eclipse.org/Xtext/' target='_blank'>Xtext</a>. Double click
                             the file "superbrewer3000.wfconfig" in the coffee editor or click the header to try out the textual DSl!'</p>)
                             , this.openTextualDSL)}
                 </div>
@@ -128,7 +128,8 @@ export class WelcomePageWidget extends ReactWidget {
     protected renderHeader(): React.ReactNode {
         return <div className='gs-header'>
             <h1>Coffee Editor <span className='gs-sub-header'>Getting Started</span></h1>
-            <p>The "coffee editor" is a comprehensive example of a web-based modeling tool based on <a href='https://www.eclipse.org/emfcloud/'>EMF.cloud</a> and Eclipse Theia.
+            <p>The "coffee editor" is a comprehensive example of a web-based modeling tool based on <a href='https://www.eclipse.org/emfcloud/' target='_blank'>EMF.cloud
+            </a> and Eclipse Theia.
             Please see the sections below to get an overview of the available features and use the links to directly see them in action.
             Alternatively, <a href='#' onClick={() => this.openFileExplorer()}>open the file explorer</a> to
             the left and browse the example workspace. See the "Help and more information" section below for further pointers.</p>
