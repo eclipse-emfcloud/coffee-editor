@@ -16,10 +16,11 @@
 
 import { injectable, inject } from 'inversify';
 import { WelcomePageWidget } from './welcome-page-widget';
-import { CommandRegistry, MenuModelRegistry } from '@theia/core/lib/common';
+import { CommandRegistry, MenuModelRegistry, MaybePromise } from '@theia/core/lib/common';
 import { CommonMenus, AbstractViewContribution, FrontendApplicationContribution, FrontendApplication } from '@theia/core/lib/browser';
 import { FrontendApplicationStateService } from '@theia/core/lib/browser/frontend-application-state';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
+import { FileNavigatorContribution } from '@theia/navigator/lib/browser/navigator-contribution';
 
 export const WelcomePageCommand = {
     id: WelcomePageWidget.ID,
@@ -33,6 +34,9 @@ export class CoffeeWelcomePageContribution extends AbstractViewContribution<Welc
 
     @inject(WorkspaceService)
     protected readonly workspaceService: WorkspaceService;
+
+    @inject(FileNavigatorContribution)
+    protected readonly fileNavigatorContribution: FileNavigatorContribution;
 
     constructor() {
         super({
@@ -49,6 +53,10 @@ export class CoffeeWelcomePageContribution extends AbstractViewContribution<Welc
         this.stateService.reachedState('ready').then(
             a => this.openView({ reveal: true })
         );
+    }
+
+    initializeLayout(app: FrontendApplication): MaybePromise<void> {
+        this.fileNavigatorContribution.openView({ reveal: true });
     }
 
     registerCommands(registry: CommandRegistry): void {
