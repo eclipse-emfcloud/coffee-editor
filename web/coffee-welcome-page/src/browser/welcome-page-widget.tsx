@@ -69,7 +69,7 @@ export class WelcomePageWidget extends ReactWidget {
                     {this.renderFeatureSection('Diagram Editor', 'fa fa-project-diagram', (
                     <p>The example diagram editor allows specifying the behavior of a coffee machine using a flow chart like notation.
                     The diagram editor is based on <a href='https://www.eclipse.org/glsp/' target='_blank'>the graphical language server platform
-                    (Eclipse GLSP)</a>. Double click the file "superbrewer3000.coffeenotation"&quot;" in the coffee editor or click
+                    (Eclipse GLSP)</a>. Double click the file "superbrewer3000.coffeenotation" in the file explorer or click
                         the header try out the diagram editor!</p>), this.openDiagram)}
                 </div>
             </div>
@@ -79,7 +79,7 @@ export class WelcomePageWidget extends ReactWidget {
                         <p>This editor allows to edit elements in a form-based view along with a tree showing the
                         hierarchy of the model instances. This allows to efficiently browse the model and enter
                         data. The form editor is based on <a href='https://jsonforms.io' target='_blank'>JSON Forms</a>. Double
-                         click the file "superbrewer3000.coffee" in the coffee editor or click the header to try
+                         click the file "superbrewer3000.coffee" in the file explorer or click the header to try
                           out the editor!</p>), this.openTreeEditor)}
                 </div>
             </div>
@@ -88,7 +88,7 @@ export class WelcomePageWidget extends ReactWidget {
                     {this.renderFeatureSection('Textual DSL', 'fas fa-indent', (
                         <p>The textual DSL editor allows you to specify model constraints and supports syntax highlighting
                             and auto completion. It is based on <a href='https://www.eclipse.org/Xtext/' target='_blank'>Xtext</a>. Double click
-                            the file "superbrewer3000.wfconfig" in the coffee editor or click the header to try out the textual DSl!'</p>)
+                            the file "superbrewer3000.wfconfig" in the file explorer or click the header to try out the textual DSl!'</p>)
                             , this.openTextualDSL)}
                 </div>
             </div>
@@ -97,7 +97,7 @@ export class WelcomePageWidget extends ReactWidget {
                     {this.renderFeatureSection('Model Analysis', 'fas fa-chart-pie', (
                     <p>Based on the constraints described in the textual DSL, the coffee editor provides an example model analysis.
                         The result is visualized as a "sun burst" chart. The analysis is an external component written in Kotlin, the
-                        chart is based on D3. Select the file "superbrewer3000.wfconfig" in the coffee editor, press F1, type "Analyze
+                        chart is based on D3. Select the file "superbrewer3000.wfconfig" in the file explorer, press F1, type "Analyze
                         workflow model" and hit enter to see the model analysis in action. Alternatively do a right click in the open
                         textual DSL editor or click the header above.</p>), this.runModelAnalysis)}
                 </div>
@@ -106,7 +106,7 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Code Generator', 'fas fa-cogs', (
                     <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
-                        using Xtend. Right click the file "superbrewer3000.coffee" in the coffee editor and select "Generate Workflow code".
+                        using Xtend. Right click the file "superbrewer3000.coffee" in the file explorer and select "Generate Workflow code".
                         Browse the generated code in the "src" and "src-gen" folder, the coffee editor also provides extensive language support
                         for Java!</p>), this.runCodeGenerator)}
                 </div>
@@ -165,7 +165,7 @@ export class WelcomePageWidget extends ReactWidget {
                 <a href='https://github.com/eclipsesource/coffee-editor/issues' target='_blank'>Report an issue</a>
             </div>
             <div className='gs-action-container'>
-                <a href='https://github.com/eclipsesource/coffee-editor/' target='_blank'>Browse the source code</a>
+                <a href='https://github.com/eclipsesource/coffee-editor/' target='_blank'>Github project with code and more info</a>
             </div>
             <div className='gs-action-container'>
                 <a href='https://eclipsesource.com/technology/eclipse-theia/' target='_blank'>Get support for building your own custom tool based on Eclipse Theia</a>
