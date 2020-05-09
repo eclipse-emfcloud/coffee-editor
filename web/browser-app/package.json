@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "browser-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "@theia/callhierarchy": "latest",
     "@theia/console": "latest",
