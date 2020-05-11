@@ -27,9 +27,9 @@ import { inject, injectable } from 'inversify';
 import { clone, isEqual } from 'lodash';
 import {
   AddCommandProperty,
-  JsonFormsTreeEditorWidget,
-  JsonFormsTreeWidget,
-  JSONFormsWidget,
+  BaseTreeEditorWidget,
+  DetailFormWidget,
+  MasterTreeWidget,
   NavigatableTreeEditorOptions,
   NavigatableTreeEditorWidget,
   TreeEditor,
@@ -41,10 +41,10 @@ import { CoffeeModel } from './coffee-model';
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
   private delayedRefresh = false;
   constructor(
-    @inject(JsonFormsTreeWidget)
-    readonly treeWidget: JsonFormsTreeWidget,
-    @inject(JSONFormsWidget)
-    readonly formWidget: JSONFormsWidget,
+    @inject(MasterTreeWidget)
+    readonly treeWidget: MasterTreeWidget,
+    @inject(DetailFormWidget)
+    readonly formWidget: DetailFormWidget,
     @inject(WorkspaceService)
     readonly workspaceService: WorkspaceService,
     @inject(ILogger) readonly logger: ILogger,
@@ -170,7 +170,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
           .then(() => this.treeWidget.selectFirst());
         return;
       }
-      this.treeWidget.setData({ error: response.statusMessage });
+      this.treeWidget.setData({ error: !!response.statusMessage });
       this.renderError(
         "An error occurred when requesting '" +
           this.getModelIDToRequest() +
@@ -302,7 +302,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
 
   protected configureTitle(title: Title<Widget>): void {
     title.label = this.options.uri.path.base;
-    title.caption = JsonFormsTreeEditorWidget.WIDGET_LABEL;
+    title.caption = BaseTreeEditorWidget.WIDGET_LABEL;
     title.closable = true;
     title.iconClass = 'fa coffee-icon dark-purple';
   }

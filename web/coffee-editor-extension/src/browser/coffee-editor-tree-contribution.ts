@@ -17,12 +17,7 @@ import { CommandRegistry, MenuModelRegistry } from '@theia/core';
 import { ApplicationShell, NavigatableWidgetOptions, OpenerService, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
-import {
-  JsonFormsTreeContextMenu,
-  JsonFormsTreeEditorContribution,
-  JsonFormsTreeEditorWidget,
-  TreeEditor,
-} from 'theia-tree-editor';
+import { BaseTreeEditorContribution, BaseTreeEditorWidget, TreeContextMenu, TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
@@ -30,7 +25,7 @@ import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget'
 import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
 
 @injectable()
-export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContribution {
+export class CoffeeTreeEditorContribution extends BaseTreeEditorContribution {
   @inject(ApplicationShell) protected shell: ApplicationShell;
   @inject(OpenerService) protected opener: OpenerService;
 
@@ -42,7 +37,7 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
   }
 
   readonly id = CoffeeTreeEditorWidget.WIDGET_ID;
-  readonly label = JsonFormsTreeEditorWidget.WIDGET_LABEL;
+  readonly label = BaseTreeEditorWidget.WIDGET_LABEL;
 
   canHandle(uri: URI): number {
     if (
@@ -62,7 +57,7 @@ export class CoffeeTreeEditorContribution extends JsonFormsTreeEditorContributio
   }
 
   registerMenus(menus: MenuModelRegistry): void {
-    menus.registerMenuAction(JsonFormsTreeContextMenu.CONTEXT_MENU, {
+    menus.registerMenuAction(TreeContextMenu.CONTEXT_MENU, {
       commandId: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.id,
       label: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
     });
