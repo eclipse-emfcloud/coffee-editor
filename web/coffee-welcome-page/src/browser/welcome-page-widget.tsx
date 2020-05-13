@@ -25,6 +25,7 @@ import { ApplicationInfo, ApplicationServer } from '@theia/core/lib/common/appli
 import { EXPLORER_VIEW_CONTAINER_ID, FileNavigatorWidget, FILE_NAVIGATOR_ID } from '@theia/navigator/lib/browser';
 import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { CODEGEN_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
+import { DebugCommands } from '@theia/debug/lib/browser/debug-frontend-application-contribution';
 
 @injectable()
 export class WelcomePageWidget extends ReactWidget {
@@ -64,6 +65,11 @@ export class WelcomePageWidget extends ReactWidget {
         return <div className='gs-container'>
             {this.renderHeader()}
             <hr className='gs-hr' />
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderHelp()}
+                </div>
+            </div>
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Diagram Editor', 'fa fa-project-diagram', (
@@ -111,10 +117,25 @@ export class WelcomePageWidget extends ReactWidget {
                         for Java!</p>), this.runCodeGenerator)}
                 </div>
             </div>
-
             <div className='flex-grid'>
                 <div className='col'>
-                    {this.renderHelp()}
+                    {this.renderFeatureSection('Code Editing', 'fab fa-java', (
+                    <p>The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion.
+                        This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you
+                        have generated the code first (see above). Then, open any Java file
+                        in the src folder (or click above) and start modifying the code, e.g. by adding "sysout" statements.
+                        </p>), this.openJavaCode)}
+                </div>
+            </div>
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderFeatureSection('Debugging', 'fas fa-bug', (
+                    <p>The coffee editor allows executing and debugging Java code by integrating the debug adapter protocol (DAP).
+                        Make sure you have generated the code (see above) and set a break point in any Java file by double
+                        clicking on the left border of the code editor. Press "F5" or click above to start debugging the example.
+                        This will automatically open the integrated debug view and show
+                        all outputs of the example code in the console!
+                        </p>), this.startDebug)}
                 </div>
             </div>
             <div className='flex-grid'>
@@ -201,5 +222,21 @@ export class WelcomePageWidget extends ReactWidget {
                 setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_COMMAND.id, uri), 1000);
             });
         });
+    }
+
+    protected openJavaCode = () => {
+        this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
+            const { model } = widget as FileNavigatorWidget;
+            const uri = new URI(`${this.workspaceService.workspace?.uri}/src/SuperBrewer3000/tests/SuperBrewer3000Runner.java`);
+            model.revealFile(uri).then(node => {
+                if (SelectableTreeNode.is(node)) {
+                    model.openNode(node);
+                }
+            });
+       });
+    }
+
+    protected startDebug = () => {
+        this.commandRegistry.executeCommand(DebugCommands.START.id);
     }
 }
