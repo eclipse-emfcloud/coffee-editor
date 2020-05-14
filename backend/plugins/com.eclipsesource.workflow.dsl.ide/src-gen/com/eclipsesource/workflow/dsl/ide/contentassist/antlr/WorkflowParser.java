@@ -39,8 +39,6 @@ public class WorkflowParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getGroup_0(), "rule__ProbabilityConfiguration__Group_0__0");
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getGroup_1(), "rule__ProbabilityConfiguration__Group_1__0");
 			builder.put(grammarAccess.getProbabilityConfigurationAccess().getGroup_2(), "rule__ProbabilityConfiguration__Group_2__0");
-			builder.put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
-			builder.put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 			builder.put(grammarAccess.getFloatAccess().getGroup(), "rule__Float__Group__0");
 			builder.put(grammarAccess.getWorkflowConfigurationAccess().getMachineAssignment_2(), "rule__WorkflowConfiguration__MachineAssignment_2");
 			builder.put(grammarAccess.getWorkflowConfigurationAccess().getModelAssignment_5(), "rule__WorkflowConfiguration__ModelAssignment_5");
