@@ -124,31 +124,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleFQN
-entryRuleFQN
-:
-{ before(grammarAccess.getFQNRule()); }
-	 ruleFQN
-{ after(grammarAccess.getFQNRule()); } 
-	 EOF 
-;
-
-// Rule FQN
-ruleFQN 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getFQNAccess().getGroup()); }
-		(rule__FQN__Group__0)
-		{ after(grammarAccess.getFQNAccess().getGroup()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleFloat
 entryRuleFloat
 :
@@ -957,114 +932,6 @@ finally {
 }
 
 
-rule__FQN__Group__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FQN__Group__0__Impl
-	rule__FQN__Group__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); }
-	RULE_ID
-	{ after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FQN__Group__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFQNAccess().getGroup_1()); }
-	(rule__FQN__Group_1__0)*
-	{ after(grammarAccess.getFQNAccess().getGroup_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__FQN__Group_1__0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FQN__Group_1__0__Impl
-	rule__FQN__Group_1__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group_1__0__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); }
-	'.'
-	{ after(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group_1__1
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__FQN__Group_1__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FQN__Group_1__1__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); }
-	RULE_ID
-	{ after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
 rule__Float__Group__0
 	@init {
 		int stackSize = keepStackSize();
@@ -1152,9 +1019,9 @@ rule__WorkflowConfiguration__MachineAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0()); }
-		ruleFQN
-		{ after(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0()); }
+		{ before(grammarAccess.getWorkflowConfigurationAccess().getMachineSTRINGTerminalRuleCall_2_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getWorkflowConfigurationAccess().getMachineSTRINGTerminalRuleCall_2_0()); }
 	)
 ;
 finally {
@@ -1167,9 +1034,9 @@ rule__WorkflowConfiguration__ModelAssignment_5
 	}
 :
 	(
-		{ before(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0()); }
-		ruleFQN
-		{ after(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0()); }
+		{ before(grammarAccess.getWorkflowConfigurationAccess().getModelSTRINGTerminalRuleCall_5_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getWorkflowConfigurationAccess().getModelSTRINGTerminalRuleCall_5_0()); }
 	)
 ;
 finally {
@@ -1227,9 +1094,9 @@ rule__Assertion__BeforeAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0()); }
-		ruleFQN
-		{ after(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0()); }
+		{ before(grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -1242,9 +1109,9 @@ rule__Assertion__AfterAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0()); }
-		ruleFQN
-		{ after(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0()); }
+		{ before(grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0()); }
 	)
 ;
 finally {

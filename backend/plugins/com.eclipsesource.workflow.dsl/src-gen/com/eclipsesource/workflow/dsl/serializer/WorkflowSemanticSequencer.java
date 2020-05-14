@@ -53,7 +53,7 @@ public class WorkflowSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Assertion returns Assertion
 	 *
 	 * Constraint:
-	 *     (before=FQN after=FQN)
+	 *     (before=STRING after=STRING)
 	 */
 	protected void sequence_Assertion(ISerializationContext context, Assertion semanticObject) {
 		if (errorAcceptor != null) {
@@ -63,8 +63,8 @@ public class WorkflowSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WorkflowPackage.Literals.ASSERTION__AFTER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0(), semanticObject.getBefore());
-		feeder.accept(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0(), semanticObject.getAfter());
+		feeder.accept(grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0(), semanticObject.getBefore());
+		feeder.accept(grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0(), semanticObject.getAfter());
 		feeder.finish();
 	}
 	
@@ -98,7 +98,7 @@ public class WorkflowSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     WorkflowConfiguration returns WorkflowConfiguration
 	 *
 	 * Constraint:
-	 *     (machine=FQN model=FQN probConf=ProbabilityConfiguration? (assertions+=Assertion assertions+=Assertion*)?)
+	 *     (machine=STRING model=STRING probConf=ProbabilityConfiguration? (assertions+=Assertion assertions+=Assertion*)?)
 	 */
 	protected void sequence_WorkflowConfiguration(ISerializationContext context, WorkflowConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalWorkflowLexer extends Lexer {
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
@@ -24,7 +24,7 @@ public class InternalWorkflowLexer extends Lexer {
     public static final int T__13=13;
     public static final int T__14=14;
     public static final int EOF=-1;
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
@@ -278,10 +278,10 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:454:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalWorkflow.g:454:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalWorkflow.g:410:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalWorkflow.g:410:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalWorkflow.g:454:11: ( '^' )?
+            // InternalWorkflow.g:410:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -290,7 +290,7 @@ public class InternalWorkflowLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalWorkflow.g:454:11: '^'
+                    // InternalWorkflow.g:410:11: '^'
                     {
                     match('^'); 
 
@@ -308,7 +308,7 @@ public class InternalWorkflowLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalWorkflow.g:454:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalWorkflow.g:410:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -357,10 +357,10 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:456:10: ( ( '0' .. '9' )+ )
-            // InternalWorkflow.g:456:12: ( '0' .. '9' )+
+            // InternalWorkflow.g:412:10: ( ( '0' .. '9' )+ )
+            // InternalWorkflow.g:412:12: ( '0' .. '9' )+
             {
-            // InternalWorkflow.g:456:12: ( '0' .. '9' )+
+            // InternalWorkflow.g:412:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -374,7 +374,7 @@ public class InternalWorkflowLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalWorkflow.g:456:13: '0' .. '9'
+            	    // InternalWorkflow.g:412:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -406,10 +406,10 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:458:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalWorkflow.g:458:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalWorkflow.g:414:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalWorkflow.g:414:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalWorkflow.g:458:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalWorkflow.g:414:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -427,10 +427,10 @@ public class InternalWorkflowLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalWorkflow.g:458:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalWorkflow.g:414:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalWorkflow.g:458:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalWorkflow.g:414:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -446,7 +446,7 @@ public class InternalWorkflowLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalWorkflow.g:458:21: '\\\\' .
+                    	    // InternalWorkflow.g:414:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -454,7 +454,7 @@ public class InternalWorkflowLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalWorkflow.g:458:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalWorkflow.g:414:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -479,10 +479,10 @@ public class InternalWorkflowLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalWorkflow.g:458:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalWorkflow.g:414:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalWorkflow.g:458:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalWorkflow.g:414:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -498,7 +498,7 @@ public class InternalWorkflowLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalWorkflow.g:458:54: '\\\\' .
+                    	    // InternalWorkflow.g:414:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -506,7 +506,7 @@ public class InternalWorkflowLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalWorkflow.g:458:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalWorkflow.g:414:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -549,12 +549,12 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:460:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalWorkflow.g:460:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalWorkflow.g:416:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalWorkflow.g:416:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalWorkflow.g:460:24: ( options {greedy=false; } : . )*
+            // InternalWorkflow.g:416:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -579,7 +579,7 @@ public class InternalWorkflowLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalWorkflow.g:460:52: .
+            	    // InternalWorkflow.g:416:52: .
             	    {
             	    matchAny(); 
 
@@ -609,12 +609,12 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:462:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalWorkflow.g:462:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalWorkflow.g:418:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalWorkflow.g:418:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalWorkflow.g:462:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalWorkflow.g:418:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -627,7 +627,7 @@ public class InternalWorkflowLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalWorkflow.g:462:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalWorkflow.g:418:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -647,7 +647,7 @@ public class InternalWorkflowLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalWorkflow.g:462:40: ( ( '\\r' )? '\\n' )?
+            // InternalWorkflow.g:418:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -656,9 +656,9 @@ public class InternalWorkflowLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalWorkflow.g:462:41: ( '\\r' )? '\\n'
+                    // InternalWorkflow.g:418:41: ( '\\r' )? '\\n'
                     {
-                    // InternalWorkflow.g:462:41: ( '\\r' )?
+                    // InternalWorkflow.g:418:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -667,7 +667,7 @@ public class InternalWorkflowLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalWorkflow.g:462:41: '\\r'
+                            // InternalWorkflow.g:418:41: '\\r'
                             {
                             match('\r'); 
 
@@ -699,10 +699,10 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:464:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalWorkflow.g:464:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalWorkflow.g:420:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalWorkflow.g:420:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalWorkflow.g:464:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalWorkflow.g:420:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -756,8 +756,8 @@ public class InternalWorkflowLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalWorkflow.g:466:16: ( . )
-            // InternalWorkflow.g:466:18: .
+            // InternalWorkflow.g:422:16: ( . )
+            // InternalWorkflow.g:422:18: .
             {
             matchAny(); 
 

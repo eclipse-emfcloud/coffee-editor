@@ -35,7 +35,8 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
         return [
             '**/*.wfconfig',
             '**/*.wf',
-            '**/*.xmi'
+            '**/*.xmi',
+            '**/*.coffee'
         ];
     }
 

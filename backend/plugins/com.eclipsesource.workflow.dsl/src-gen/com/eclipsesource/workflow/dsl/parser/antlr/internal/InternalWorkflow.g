@@ -86,20 +86,19 @@ ruleWorkflowConfiguration returns [EObject current=null]
 		}
 		(
 			(
+				lv_machine_2_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0());
+					newLeafNode(lv_machine_2_0, grammarAccess.getWorkflowConfigurationAccess().getMachineSTRINGTerminalRuleCall_2_0());
 				}
-				lv_machine_2_0=ruleFQN
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
+						$current = createModelElement(grammarAccess.getWorkflowConfigurationRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"machine",
 						lv_machine_2_0,
-						"com.eclipsesource.workflow.dsl.Workflow.FQN");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
@@ -113,20 +112,19 @@ ruleWorkflowConfiguration returns [EObject current=null]
 		}
 		(
 			(
+				lv_model_5_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0());
+					newLeafNode(lv_model_5_0, grammarAccess.getWorkflowConfigurationAccess().getModelSTRINGTerminalRuleCall_5_0());
 				}
-				lv_model_5_0=ruleFQN
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getWorkflowConfigurationRule());
+						$current = createModelElement(grammarAccess.getWorkflowConfigurationRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"model",
 						lv_model_5_0,
-						"com.eclipsesource.workflow.dsl.Workflow.FQN");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
@@ -220,20 +218,19 @@ ruleAssertion returns [EObject current=null]
 	(
 		(
 			(
+				lv_before_0_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0());
+					newLeafNode(lv_before_0_0, grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0());
 				}
-				lv_before_0_0=ruleFQN
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAssertionRule());
+						$current = createModelElement(grammarAccess.getAssertionRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"before",
 						lv_before_0_0,
-						"com.eclipsesource.workflow.dsl.Workflow.FQN");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
@@ -243,20 +240,19 @@ ruleAssertion returns [EObject current=null]
 		}
 		(
 			(
+				lv_after_2_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0());
+					newLeafNode(lv_after_2_0, grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0());
 				}
-				lv_after_2_0=ruleFQN
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAssertionRule());
+						$current = createModelElement(grammarAccess.getAssertionRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"after",
 						lv_after_2_0,
-						"com.eclipsesource.workflow.dsl.Workflow.FQN");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
@@ -370,46 +366,6 @@ ruleProbabilityConfiguration returns [EObject current=null]
 				)
 			)
 		)
-	)
-;
-
-// Entry rule entryRuleFQN
-entryRuleFQN returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getFQNRule()); }
-	iv_ruleFQN=ruleFQN
-	{ $current=$iv_ruleFQN.current.getText(); }
-	EOF;
-
-// Rule FQN
-ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		this_ID_0=RULE_ID
-		{
-			$current.merge(this_ID_0);
-		}
-		{
-			newLeafNode(this_ID_0, grammarAccess.getFQNAccess().getIDTerminalRuleCall_0());
-		}
-		(
-			kw='.'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getFQNAccess().getFullStopKeyword_1_0());
-			}
-			this_ID_2=RULE_ID
-			{
-				$current.merge(this_ID_2);
-			}
-			{
-				newLeafNode(this_ID_2, grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1());
-			}
-		)*
 	)
 ;
 

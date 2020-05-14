@@ -22,9 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalWorkflowParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'machine'", "':'", "'workflow'", "'assertions'", "','", "'=>'", "'probabilities'", "'low'", "'medium'", "'high'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'machine'", "':'", "'workflow'", "'assertions'", "','", "'=>'", "'probabilities'", "'low'", "'medium'", "'high'", "'.'"
     };
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=5;
     public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
@@ -36,10 +36,10 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
     public static final int T__13=13;
     public static final int T__14=14;
     public static final int EOF=-1;
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=5;
+    public static final int RULE_INT=4;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__20=20;
     public static final int T__21=21;
@@ -310,89 +310,12 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "ruleProbabilityConfiguration"
 
 
-    // $ANTLR start "entryRuleFQN"
-    // InternalWorkflow.g:128:1: entryRuleFQN : ruleFQN EOF ;
-    public final void entryRuleFQN() throws RecognitionException {
-        try {
-            // InternalWorkflow.g:129:1: ( ruleFQN EOF )
-            // InternalWorkflow.g:130:1: ruleFQN EOF
-            {
-             before(grammarAccess.getFQNRule()); 
-            pushFollow(FOLLOW_1);
-            ruleFQN();
-
-            state._fsp--;
-
-             after(grammarAccess.getFQNRule()); 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleFQN"
-
-
-    // $ANTLR start "ruleFQN"
-    // InternalWorkflow.g:137:1: ruleFQN : ( ( rule__FQN__Group__0 ) ) ;
-    public final void ruleFQN() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:141:2: ( ( ( rule__FQN__Group__0 ) ) )
-            // InternalWorkflow.g:142:2: ( ( rule__FQN__Group__0 ) )
-            {
-            // InternalWorkflow.g:142:2: ( ( rule__FQN__Group__0 ) )
-            // InternalWorkflow.g:143:3: ( rule__FQN__Group__0 )
-            {
-             before(grammarAccess.getFQNAccess().getGroup()); 
-            // InternalWorkflow.g:144:3: ( rule__FQN__Group__0 )
-            // InternalWorkflow.g:144:4: rule__FQN__Group__0
-            {
-            pushFollow(FOLLOW_2);
-            rule__FQN__Group__0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getFQNAccess().getGroup()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleFQN"
-
-
     // $ANTLR start "entryRuleFloat"
-    // InternalWorkflow.g:153:1: entryRuleFloat : ruleFloat EOF ;
+    // InternalWorkflow.g:128:1: entryRuleFloat : ruleFloat EOF ;
     public final void entryRuleFloat() throws RecognitionException {
         try {
-            // InternalWorkflow.g:154:1: ( ruleFloat EOF )
-            // InternalWorkflow.g:155:1: ruleFloat EOF
+            // InternalWorkflow.g:129:1: ( ruleFloat EOF )
+            // InternalWorkflow.g:130:1: ruleFloat EOF
             {
              before(grammarAccess.getFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -418,21 +341,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleFloat"
-    // InternalWorkflow.g:162:1: ruleFloat : ( ( rule__Float__Group__0 ) ) ;
+    // InternalWorkflow.g:137:1: ruleFloat : ( ( rule__Float__Group__0 ) ) ;
     public final void ruleFloat() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:166:2: ( ( ( rule__Float__Group__0 ) ) )
-            // InternalWorkflow.g:167:2: ( ( rule__Float__Group__0 ) )
+            // InternalWorkflow.g:141:2: ( ( ( rule__Float__Group__0 ) ) )
+            // InternalWorkflow.g:142:2: ( ( rule__Float__Group__0 ) )
             {
-            // InternalWorkflow.g:167:2: ( ( rule__Float__Group__0 ) )
-            // InternalWorkflow.g:168:3: ( rule__Float__Group__0 )
+            // InternalWorkflow.g:142:2: ( ( rule__Float__Group__0 ) )
+            // InternalWorkflow.g:143:3: ( rule__Float__Group__0 )
             {
              before(grammarAccess.getFloatAccess().getGroup()); 
-            // InternalWorkflow.g:169:3: ( rule__Float__Group__0 )
-            // InternalWorkflow.g:169:4: rule__Float__Group__0
+            // InternalWorkflow.g:144:3: ( rule__Float__Group__0 )
+            // InternalWorkflow.g:144:4: rule__Float__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Float__Group__0();
@@ -465,14 +388,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__0"
-    // InternalWorkflow.g:177:1: rule__WorkflowConfiguration__Group__0 : rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1 ;
+    // InternalWorkflow.g:152:1: rule__WorkflowConfiguration__Group__0 : rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1 ;
     public final void rule__WorkflowConfiguration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:181:1: ( rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1 )
-            // InternalWorkflow.g:182:2: rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1
+            // InternalWorkflow.g:156:1: ( rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1 )
+            // InternalWorkflow.g:157:2: rule__WorkflowConfiguration__Group__0__Impl rule__WorkflowConfiguration__Group__1
             {
             pushFollow(FOLLOW_3);
             rule__WorkflowConfiguration__Group__0__Impl();
@@ -503,17 +426,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__0__Impl"
-    // InternalWorkflow.g:189:1: rule__WorkflowConfiguration__Group__0__Impl : ( 'machine' ) ;
+    // InternalWorkflow.g:164:1: rule__WorkflowConfiguration__Group__0__Impl : ( 'machine' ) ;
     public final void rule__WorkflowConfiguration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:193:1: ( ( 'machine' ) )
-            // InternalWorkflow.g:194:1: ( 'machine' )
+            // InternalWorkflow.g:168:1: ( ( 'machine' ) )
+            // InternalWorkflow.g:169:1: ( 'machine' )
             {
-            // InternalWorkflow.g:194:1: ( 'machine' )
-            // InternalWorkflow.g:195:2: 'machine'
+            // InternalWorkflow.g:169:1: ( 'machine' )
+            // InternalWorkflow.g:170:2: 'machine'
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getMachineKeyword_0()); 
             match(input,11,FOLLOW_2); 
@@ -540,14 +463,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__1"
-    // InternalWorkflow.g:204:1: rule__WorkflowConfiguration__Group__1 : rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2 ;
+    // InternalWorkflow.g:179:1: rule__WorkflowConfiguration__Group__1 : rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2 ;
     public final void rule__WorkflowConfiguration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:208:1: ( rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2 )
-            // InternalWorkflow.g:209:2: rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2
+            // InternalWorkflow.g:183:1: ( rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2 )
+            // InternalWorkflow.g:184:2: rule__WorkflowConfiguration__Group__1__Impl rule__WorkflowConfiguration__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__WorkflowConfiguration__Group__1__Impl();
@@ -578,17 +501,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__1__Impl"
-    // InternalWorkflow.g:216:1: rule__WorkflowConfiguration__Group__1__Impl : ( ':' ) ;
+    // InternalWorkflow.g:191:1: rule__WorkflowConfiguration__Group__1__Impl : ( ':' ) ;
     public final void rule__WorkflowConfiguration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:220:1: ( ( ':' ) )
-            // InternalWorkflow.g:221:1: ( ':' )
+            // InternalWorkflow.g:195:1: ( ( ':' ) )
+            // InternalWorkflow.g:196:1: ( ':' )
             {
-            // InternalWorkflow.g:221:1: ( ':' )
-            // InternalWorkflow.g:222:2: ':'
+            // InternalWorkflow.g:196:1: ( ':' )
+            // InternalWorkflow.g:197:2: ':'
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getColonKeyword_1()); 
             match(input,12,FOLLOW_2); 
@@ -615,14 +538,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__2"
-    // InternalWorkflow.g:231:1: rule__WorkflowConfiguration__Group__2 : rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3 ;
+    // InternalWorkflow.g:206:1: rule__WorkflowConfiguration__Group__2 : rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3 ;
     public final void rule__WorkflowConfiguration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:235:1: ( rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3 )
-            // InternalWorkflow.g:236:2: rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3
+            // InternalWorkflow.g:210:1: ( rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3 )
+            // InternalWorkflow.g:211:2: rule__WorkflowConfiguration__Group__2__Impl rule__WorkflowConfiguration__Group__3
             {
             pushFollow(FOLLOW_5);
             rule__WorkflowConfiguration__Group__2__Impl();
@@ -653,21 +576,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__2__Impl"
-    // InternalWorkflow.g:243:1: rule__WorkflowConfiguration__Group__2__Impl : ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) ) ;
+    // InternalWorkflow.g:218:1: rule__WorkflowConfiguration__Group__2__Impl : ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) ) ;
     public final void rule__WorkflowConfiguration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:247:1: ( ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) ) )
-            // InternalWorkflow.g:248:1: ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) )
+            // InternalWorkflow.g:222:1: ( ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) ) )
+            // InternalWorkflow.g:223:1: ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) )
             {
-            // InternalWorkflow.g:248:1: ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) )
-            // InternalWorkflow.g:249:2: ( rule__WorkflowConfiguration__MachineAssignment_2 )
+            // InternalWorkflow.g:223:1: ( ( rule__WorkflowConfiguration__MachineAssignment_2 ) )
+            // InternalWorkflow.g:224:2: ( rule__WorkflowConfiguration__MachineAssignment_2 )
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getMachineAssignment_2()); 
-            // InternalWorkflow.g:250:2: ( rule__WorkflowConfiguration__MachineAssignment_2 )
-            // InternalWorkflow.g:250:3: rule__WorkflowConfiguration__MachineAssignment_2
+            // InternalWorkflow.g:225:2: ( rule__WorkflowConfiguration__MachineAssignment_2 )
+            // InternalWorkflow.g:225:3: rule__WorkflowConfiguration__MachineAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__MachineAssignment_2();
@@ -700,14 +623,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__3"
-    // InternalWorkflow.g:258:1: rule__WorkflowConfiguration__Group__3 : rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4 ;
+    // InternalWorkflow.g:233:1: rule__WorkflowConfiguration__Group__3 : rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4 ;
     public final void rule__WorkflowConfiguration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:262:1: ( rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4 )
-            // InternalWorkflow.g:263:2: rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4
+            // InternalWorkflow.g:237:1: ( rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4 )
+            // InternalWorkflow.g:238:2: rule__WorkflowConfiguration__Group__3__Impl rule__WorkflowConfiguration__Group__4
             {
             pushFollow(FOLLOW_3);
             rule__WorkflowConfiguration__Group__3__Impl();
@@ -738,17 +661,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__3__Impl"
-    // InternalWorkflow.g:270:1: rule__WorkflowConfiguration__Group__3__Impl : ( 'workflow' ) ;
+    // InternalWorkflow.g:245:1: rule__WorkflowConfiguration__Group__3__Impl : ( 'workflow' ) ;
     public final void rule__WorkflowConfiguration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:274:1: ( ( 'workflow' ) )
-            // InternalWorkflow.g:275:1: ( 'workflow' )
+            // InternalWorkflow.g:249:1: ( ( 'workflow' ) )
+            // InternalWorkflow.g:250:1: ( 'workflow' )
             {
-            // InternalWorkflow.g:275:1: ( 'workflow' )
-            // InternalWorkflow.g:276:2: 'workflow'
+            // InternalWorkflow.g:250:1: ( 'workflow' )
+            // InternalWorkflow.g:251:2: 'workflow'
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getWorkflowKeyword_3()); 
             match(input,13,FOLLOW_2); 
@@ -775,14 +698,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__4"
-    // InternalWorkflow.g:285:1: rule__WorkflowConfiguration__Group__4 : rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5 ;
+    // InternalWorkflow.g:260:1: rule__WorkflowConfiguration__Group__4 : rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5 ;
     public final void rule__WorkflowConfiguration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:289:1: ( rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5 )
-            // InternalWorkflow.g:290:2: rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5
+            // InternalWorkflow.g:264:1: ( rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5 )
+            // InternalWorkflow.g:265:2: rule__WorkflowConfiguration__Group__4__Impl rule__WorkflowConfiguration__Group__5
             {
             pushFollow(FOLLOW_4);
             rule__WorkflowConfiguration__Group__4__Impl();
@@ -813,17 +736,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__4__Impl"
-    // InternalWorkflow.g:297:1: rule__WorkflowConfiguration__Group__4__Impl : ( ':' ) ;
+    // InternalWorkflow.g:272:1: rule__WorkflowConfiguration__Group__4__Impl : ( ':' ) ;
     public final void rule__WorkflowConfiguration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:301:1: ( ( ':' ) )
-            // InternalWorkflow.g:302:1: ( ':' )
+            // InternalWorkflow.g:276:1: ( ( ':' ) )
+            // InternalWorkflow.g:277:1: ( ':' )
             {
-            // InternalWorkflow.g:302:1: ( ':' )
-            // InternalWorkflow.g:303:2: ':'
+            // InternalWorkflow.g:277:1: ( ':' )
+            // InternalWorkflow.g:278:2: ':'
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getColonKeyword_4()); 
             match(input,12,FOLLOW_2); 
@@ -850,14 +773,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__5"
-    // InternalWorkflow.g:312:1: rule__WorkflowConfiguration__Group__5 : rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6 ;
+    // InternalWorkflow.g:287:1: rule__WorkflowConfiguration__Group__5 : rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6 ;
     public final void rule__WorkflowConfiguration__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:316:1: ( rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6 )
-            // InternalWorkflow.g:317:2: rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6
+            // InternalWorkflow.g:291:1: ( rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6 )
+            // InternalWorkflow.g:292:2: rule__WorkflowConfiguration__Group__5__Impl rule__WorkflowConfiguration__Group__6
             {
             pushFollow(FOLLOW_6);
             rule__WorkflowConfiguration__Group__5__Impl();
@@ -888,21 +811,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__5__Impl"
-    // InternalWorkflow.g:324:1: rule__WorkflowConfiguration__Group__5__Impl : ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) ) ;
+    // InternalWorkflow.g:299:1: rule__WorkflowConfiguration__Group__5__Impl : ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) ) ;
     public final void rule__WorkflowConfiguration__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:328:1: ( ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) ) )
-            // InternalWorkflow.g:329:1: ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) )
+            // InternalWorkflow.g:303:1: ( ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) ) )
+            // InternalWorkflow.g:304:1: ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) )
             {
-            // InternalWorkflow.g:329:1: ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) )
-            // InternalWorkflow.g:330:2: ( rule__WorkflowConfiguration__ModelAssignment_5 )
+            // InternalWorkflow.g:304:1: ( ( rule__WorkflowConfiguration__ModelAssignment_5 ) )
+            // InternalWorkflow.g:305:2: ( rule__WorkflowConfiguration__ModelAssignment_5 )
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getModelAssignment_5()); 
-            // InternalWorkflow.g:331:2: ( rule__WorkflowConfiguration__ModelAssignment_5 )
-            // InternalWorkflow.g:331:3: rule__WorkflowConfiguration__ModelAssignment_5
+            // InternalWorkflow.g:306:2: ( rule__WorkflowConfiguration__ModelAssignment_5 )
+            // InternalWorkflow.g:306:3: rule__WorkflowConfiguration__ModelAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__ModelAssignment_5();
@@ -935,14 +858,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__6"
-    // InternalWorkflow.g:339:1: rule__WorkflowConfiguration__Group__6 : rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7 ;
+    // InternalWorkflow.g:314:1: rule__WorkflowConfiguration__Group__6 : rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7 ;
     public final void rule__WorkflowConfiguration__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:343:1: ( rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7 )
-            // InternalWorkflow.g:344:2: rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7
+            // InternalWorkflow.g:318:1: ( rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7 )
+            // InternalWorkflow.g:319:2: rule__WorkflowConfiguration__Group__6__Impl rule__WorkflowConfiguration__Group__7
             {
             pushFollow(FOLLOW_6);
             rule__WorkflowConfiguration__Group__6__Impl();
@@ -973,20 +896,20 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__6__Impl"
-    // InternalWorkflow.g:351:1: rule__WorkflowConfiguration__Group__6__Impl : ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? ) ;
+    // InternalWorkflow.g:326:1: rule__WorkflowConfiguration__Group__6__Impl : ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? ) ;
     public final void rule__WorkflowConfiguration__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:355:1: ( ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? ) )
-            // InternalWorkflow.g:356:1: ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? )
+            // InternalWorkflow.g:330:1: ( ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? ) )
+            // InternalWorkflow.g:331:1: ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? )
             {
-            // InternalWorkflow.g:356:1: ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? )
-            // InternalWorkflow.g:357:2: ( rule__WorkflowConfiguration__ProbConfAssignment_6 )?
+            // InternalWorkflow.g:331:1: ( ( rule__WorkflowConfiguration__ProbConfAssignment_6 )? )
+            // InternalWorkflow.g:332:2: ( rule__WorkflowConfiguration__ProbConfAssignment_6 )?
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getProbConfAssignment_6()); 
-            // InternalWorkflow.g:358:2: ( rule__WorkflowConfiguration__ProbConfAssignment_6 )?
+            // InternalWorkflow.g:333:2: ( rule__WorkflowConfiguration__ProbConfAssignment_6 )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -995,7 +918,7 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
             }
             switch (alt1) {
                 case 1 :
-                    // InternalWorkflow.g:358:3: rule__WorkflowConfiguration__ProbConfAssignment_6
+                    // InternalWorkflow.g:333:3: rule__WorkflowConfiguration__ProbConfAssignment_6
                     {
                     pushFollow(FOLLOW_2);
                     rule__WorkflowConfiguration__ProbConfAssignment_6();
@@ -1031,14 +954,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__7"
-    // InternalWorkflow.g:366:1: rule__WorkflowConfiguration__Group__7 : rule__WorkflowConfiguration__Group__7__Impl ;
+    // InternalWorkflow.g:341:1: rule__WorkflowConfiguration__Group__7 : rule__WorkflowConfiguration__Group__7__Impl ;
     public final void rule__WorkflowConfiguration__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:370:1: ( rule__WorkflowConfiguration__Group__7__Impl )
-            // InternalWorkflow.g:371:2: rule__WorkflowConfiguration__Group__7__Impl
+            // InternalWorkflow.g:345:1: ( rule__WorkflowConfiguration__Group__7__Impl )
+            // InternalWorkflow.g:346:2: rule__WorkflowConfiguration__Group__7__Impl
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__Group__7__Impl();
@@ -1064,20 +987,20 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group__7__Impl"
-    // InternalWorkflow.g:377:1: rule__WorkflowConfiguration__Group__7__Impl : ( ( rule__WorkflowConfiguration__Group_7__0 )? ) ;
+    // InternalWorkflow.g:352:1: rule__WorkflowConfiguration__Group__7__Impl : ( ( rule__WorkflowConfiguration__Group_7__0 )? ) ;
     public final void rule__WorkflowConfiguration__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:381:1: ( ( ( rule__WorkflowConfiguration__Group_7__0 )? ) )
-            // InternalWorkflow.g:382:1: ( ( rule__WorkflowConfiguration__Group_7__0 )? )
+            // InternalWorkflow.g:356:1: ( ( ( rule__WorkflowConfiguration__Group_7__0 )? ) )
+            // InternalWorkflow.g:357:1: ( ( rule__WorkflowConfiguration__Group_7__0 )? )
             {
-            // InternalWorkflow.g:382:1: ( ( rule__WorkflowConfiguration__Group_7__0 )? )
-            // InternalWorkflow.g:383:2: ( rule__WorkflowConfiguration__Group_7__0 )?
+            // InternalWorkflow.g:357:1: ( ( rule__WorkflowConfiguration__Group_7__0 )? )
+            // InternalWorkflow.g:358:2: ( rule__WorkflowConfiguration__Group_7__0 )?
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getGroup_7()); 
-            // InternalWorkflow.g:384:2: ( rule__WorkflowConfiguration__Group_7__0 )?
+            // InternalWorkflow.g:359:2: ( rule__WorkflowConfiguration__Group_7__0 )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1086,7 +1009,7 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
             }
             switch (alt2) {
                 case 1 :
-                    // InternalWorkflow.g:384:3: rule__WorkflowConfiguration__Group_7__0
+                    // InternalWorkflow.g:359:3: rule__WorkflowConfiguration__Group_7__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__WorkflowConfiguration__Group_7__0();
@@ -1122,14 +1045,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__0"
-    // InternalWorkflow.g:393:1: rule__WorkflowConfiguration__Group_7__0 : rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1 ;
+    // InternalWorkflow.g:368:1: rule__WorkflowConfiguration__Group_7__0 : rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1 ;
     public final void rule__WorkflowConfiguration__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:397:1: ( rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1 )
-            // InternalWorkflow.g:398:2: rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1
+            // InternalWorkflow.g:372:1: ( rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1 )
+            // InternalWorkflow.g:373:2: rule__WorkflowConfiguration__Group_7__0__Impl rule__WorkflowConfiguration__Group_7__1
             {
             pushFollow(FOLLOW_4);
             rule__WorkflowConfiguration__Group_7__0__Impl();
@@ -1160,17 +1083,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__0__Impl"
-    // InternalWorkflow.g:405:1: rule__WorkflowConfiguration__Group_7__0__Impl : ( 'assertions' ) ;
+    // InternalWorkflow.g:380:1: rule__WorkflowConfiguration__Group_7__0__Impl : ( 'assertions' ) ;
     public final void rule__WorkflowConfiguration__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:409:1: ( ( 'assertions' ) )
-            // InternalWorkflow.g:410:1: ( 'assertions' )
+            // InternalWorkflow.g:384:1: ( ( 'assertions' ) )
+            // InternalWorkflow.g:385:1: ( 'assertions' )
             {
-            // InternalWorkflow.g:410:1: ( 'assertions' )
-            // InternalWorkflow.g:411:2: 'assertions'
+            // InternalWorkflow.g:385:1: ( 'assertions' )
+            // InternalWorkflow.g:386:2: 'assertions'
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getAssertionsKeyword_7_0()); 
             match(input,14,FOLLOW_2); 
@@ -1197,14 +1120,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__1"
-    // InternalWorkflow.g:420:1: rule__WorkflowConfiguration__Group_7__1 : rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2 ;
+    // InternalWorkflow.g:395:1: rule__WorkflowConfiguration__Group_7__1 : rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2 ;
     public final void rule__WorkflowConfiguration__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:424:1: ( rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2 )
-            // InternalWorkflow.g:425:2: rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2
+            // InternalWorkflow.g:399:1: ( rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2 )
+            // InternalWorkflow.g:400:2: rule__WorkflowConfiguration__Group_7__1__Impl rule__WorkflowConfiguration__Group_7__2
             {
             pushFollow(FOLLOW_7);
             rule__WorkflowConfiguration__Group_7__1__Impl();
@@ -1235,21 +1158,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__1__Impl"
-    // InternalWorkflow.g:432:1: rule__WorkflowConfiguration__Group_7__1__Impl : ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) ) ;
+    // InternalWorkflow.g:407:1: rule__WorkflowConfiguration__Group_7__1__Impl : ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) ) ;
     public final void rule__WorkflowConfiguration__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:436:1: ( ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) ) )
-            // InternalWorkflow.g:437:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) )
+            // InternalWorkflow.g:411:1: ( ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) ) )
+            // InternalWorkflow.g:412:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) )
             {
-            // InternalWorkflow.g:437:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) )
-            // InternalWorkflow.g:438:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 )
+            // InternalWorkflow.g:412:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 ) )
+            // InternalWorkflow.g:413:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 )
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_7_1()); 
-            // InternalWorkflow.g:439:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 )
-            // InternalWorkflow.g:439:3: rule__WorkflowConfiguration__AssertionsAssignment_7_1
+            // InternalWorkflow.g:414:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_1 )
+            // InternalWorkflow.g:414:3: rule__WorkflowConfiguration__AssertionsAssignment_7_1
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__AssertionsAssignment_7_1();
@@ -1282,14 +1205,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__2"
-    // InternalWorkflow.g:447:1: rule__WorkflowConfiguration__Group_7__2 : rule__WorkflowConfiguration__Group_7__2__Impl ;
+    // InternalWorkflow.g:422:1: rule__WorkflowConfiguration__Group_7__2 : rule__WorkflowConfiguration__Group_7__2__Impl ;
     public final void rule__WorkflowConfiguration__Group_7__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:451:1: ( rule__WorkflowConfiguration__Group_7__2__Impl )
-            // InternalWorkflow.g:452:2: rule__WorkflowConfiguration__Group_7__2__Impl
+            // InternalWorkflow.g:426:1: ( rule__WorkflowConfiguration__Group_7__2__Impl )
+            // InternalWorkflow.g:427:2: rule__WorkflowConfiguration__Group_7__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__Group_7__2__Impl();
@@ -1315,20 +1238,20 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7__2__Impl"
-    // InternalWorkflow.g:458:1: rule__WorkflowConfiguration__Group_7__2__Impl : ( ( rule__WorkflowConfiguration__Group_7_2__0 )* ) ;
+    // InternalWorkflow.g:433:1: rule__WorkflowConfiguration__Group_7__2__Impl : ( ( rule__WorkflowConfiguration__Group_7_2__0 )* ) ;
     public final void rule__WorkflowConfiguration__Group_7__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:462:1: ( ( ( rule__WorkflowConfiguration__Group_7_2__0 )* ) )
-            // InternalWorkflow.g:463:1: ( ( rule__WorkflowConfiguration__Group_7_2__0 )* )
+            // InternalWorkflow.g:437:1: ( ( ( rule__WorkflowConfiguration__Group_7_2__0 )* ) )
+            // InternalWorkflow.g:438:1: ( ( rule__WorkflowConfiguration__Group_7_2__0 )* )
             {
-            // InternalWorkflow.g:463:1: ( ( rule__WorkflowConfiguration__Group_7_2__0 )* )
-            // InternalWorkflow.g:464:2: ( rule__WorkflowConfiguration__Group_7_2__0 )*
+            // InternalWorkflow.g:438:1: ( ( rule__WorkflowConfiguration__Group_7_2__0 )* )
+            // InternalWorkflow.g:439:2: ( rule__WorkflowConfiguration__Group_7_2__0 )*
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getGroup_7_2()); 
-            // InternalWorkflow.g:465:2: ( rule__WorkflowConfiguration__Group_7_2__0 )*
+            // InternalWorkflow.g:440:2: ( rule__WorkflowConfiguration__Group_7_2__0 )*
             loop3:
             do {
                 int alt3=2;
@@ -1341,7 +1264,7 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalWorkflow.g:465:3: rule__WorkflowConfiguration__Group_7_2__0
+            	    // InternalWorkflow.g:440:3: rule__WorkflowConfiguration__Group_7_2__0
             	    {
             	    pushFollow(FOLLOW_8);
             	    rule__WorkflowConfiguration__Group_7_2__0();
@@ -1380,14 +1303,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7_2__0"
-    // InternalWorkflow.g:474:1: rule__WorkflowConfiguration__Group_7_2__0 : rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1 ;
+    // InternalWorkflow.g:449:1: rule__WorkflowConfiguration__Group_7_2__0 : rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1 ;
     public final void rule__WorkflowConfiguration__Group_7_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:478:1: ( rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1 )
-            // InternalWorkflow.g:479:2: rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1
+            // InternalWorkflow.g:453:1: ( rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1 )
+            // InternalWorkflow.g:454:2: rule__WorkflowConfiguration__Group_7_2__0__Impl rule__WorkflowConfiguration__Group_7_2__1
             {
             pushFollow(FOLLOW_4);
             rule__WorkflowConfiguration__Group_7_2__0__Impl();
@@ -1418,17 +1341,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7_2__0__Impl"
-    // InternalWorkflow.g:486:1: rule__WorkflowConfiguration__Group_7_2__0__Impl : ( ',' ) ;
+    // InternalWorkflow.g:461:1: rule__WorkflowConfiguration__Group_7_2__0__Impl : ( ',' ) ;
     public final void rule__WorkflowConfiguration__Group_7_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:490:1: ( ( ',' ) )
-            // InternalWorkflow.g:491:1: ( ',' )
+            // InternalWorkflow.g:465:1: ( ( ',' ) )
+            // InternalWorkflow.g:466:1: ( ',' )
             {
-            // InternalWorkflow.g:491:1: ( ',' )
-            // InternalWorkflow.g:492:2: ','
+            // InternalWorkflow.g:466:1: ( ',' )
+            // InternalWorkflow.g:467:2: ','
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getCommaKeyword_7_2_0()); 
             match(input,15,FOLLOW_2); 
@@ -1455,14 +1378,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7_2__1"
-    // InternalWorkflow.g:501:1: rule__WorkflowConfiguration__Group_7_2__1 : rule__WorkflowConfiguration__Group_7_2__1__Impl ;
+    // InternalWorkflow.g:476:1: rule__WorkflowConfiguration__Group_7_2__1 : rule__WorkflowConfiguration__Group_7_2__1__Impl ;
     public final void rule__WorkflowConfiguration__Group_7_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:505:1: ( rule__WorkflowConfiguration__Group_7_2__1__Impl )
-            // InternalWorkflow.g:506:2: rule__WorkflowConfiguration__Group_7_2__1__Impl
+            // InternalWorkflow.g:480:1: ( rule__WorkflowConfiguration__Group_7_2__1__Impl )
+            // InternalWorkflow.g:481:2: rule__WorkflowConfiguration__Group_7_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__Group_7_2__1__Impl();
@@ -1488,21 +1411,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__Group_7_2__1__Impl"
-    // InternalWorkflow.g:512:1: rule__WorkflowConfiguration__Group_7_2__1__Impl : ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) ) ;
+    // InternalWorkflow.g:487:1: rule__WorkflowConfiguration__Group_7_2__1__Impl : ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) ) ;
     public final void rule__WorkflowConfiguration__Group_7_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:516:1: ( ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) ) )
-            // InternalWorkflow.g:517:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) )
+            // InternalWorkflow.g:491:1: ( ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) ) )
+            // InternalWorkflow.g:492:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) )
             {
-            // InternalWorkflow.g:517:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) )
-            // InternalWorkflow.g:518:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 )
+            // InternalWorkflow.g:492:1: ( ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 ) )
+            // InternalWorkflow.g:493:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 )
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssignment_7_2_1()); 
-            // InternalWorkflow.g:519:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 )
-            // InternalWorkflow.g:519:3: rule__WorkflowConfiguration__AssertionsAssignment_7_2_1
+            // InternalWorkflow.g:494:2: ( rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 )
+            // InternalWorkflow.g:494:3: rule__WorkflowConfiguration__AssertionsAssignment_7_2_1
             {
             pushFollow(FOLLOW_2);
             rule__WorkflowConfiguration__AssertionsAssignment_7_2_1();
@@ -1535,14 +1458,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__0"
-    // InternalWorkflow.g:528:1: rule__Assertion__Group__0 : rule__Assertion__Group__0__Impl rule__Assertion__Group__1 ;
+    // InternalWorkflow.g:503:1: rule__Assertion__Group__0 : rule__Assertion__Group__0__Impl rule__Assertion__Group__1 ;
     public final void rule__Assertion__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:532:1: ( rule__Assertion__Group__0__Impl rule__Assertion__Group__1 )
-            // InternalWorkflow.g:533:2: rule__Assertion__Group__0__Impl rule__Assertion__Group__1
+            // InternalWorkflow.g:507:1: ( rule__Assertion__Group__0__Impl rule__Assertion__Group__1 )
+            // InternalWorkflow.g:508:2: rule__Assertion__Group__0__Impl rule__Assertion__Group__1
             {
             pushFollow(FOLLOW_9);
             rule__Assertion__Group__0__Impl();
@@ -1573,21 +1496,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__0__Impl"
-    // InternalWorkflow.g:540:1: rule__Assertion__Group__0__Impl : ( ( rule__Assertion__BeforeAssignment_0 ) ) ;
+    // InternalWorkflow.g:515:1: rule__Assertion__Group__0__Impl : ( ( rule__Assertion__BeforeAssignment_0 ) ) ;
     public final void rule__Assertion__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:544:1: ( ( ( rule__Assertion__BeforeAssignment_0 ) ) )
-            // InternalWorkflow.g:545:1: ( ( rule__Assertion__BeforeAssignment_0 ) )
+            // InternalWorkflow.g:519:1: ( ( ( rule__Assertion__BeforeAssignment_0 ) ) )
+            // InternalWorkflow.g:520:1: ( ( rule__Assertion__BeforeAssignment_0 ) )
             {
-            // InternalWorkflow.g:545:1: ( ( rule__Assertion__BeforeAssignment_0 ) )
-            // InternalWorkflow.g:546:2: ( rule__Assertion__BeforeAssignment_0 )
+            // InternalWorkflow.g:520:1: ( ( rule__Assertion__BeforeAssignment_0 ) )
+            // InternalWorkflow.g:521:2: ( rule__Assertion__BeforeAssignment_0 )
             {
              before(grammarAccess.getAssertionAccess().getBeforeAssignment_0()); 
-            // InternalWorkflow.g:547:2: ( rule__Assertion__BeforeAssignment_0 )
-            // InternalWorkflow.g:547:3: rule__Assertion__BeforeAssignment_0
+            // InternalWorkflow.g:522:2: ( rule__Assertion__BeforeAssignment_0 )
+            // InternalWorkflow.g:522:3: rule__Assertion__BeforeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Assertion__BeforeAssignment_0();
@@ -1620,14 +1543,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__1"
-    // InternalWorkflow.g:555:1: rule__Assertion__Group__1 : rule__Assertion__Group__1__Impl rule__Assertion__Group__2 ;
+    // InternalWorkflow.g:530:1: rule__Assertion__Group__1 : rule__Assertion__Group__1__Impl rule__Assertion__Group__2 ;
     public final void rule__Assertion__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:559:1: ( rule__Assertion__Group__1__Impl rule__Assertion__Group__2 )
-            // InternalWorkflow.g:560:2: rule__Assertion__Group__1__Impl rule__Assertion__Group__2
+            // InternalWorkflow.g:534:1: ( rule__Assertion__Group__1__Impl rule__Assertion__Group__2 )
+            // InternalWorkflow.g:535:2: rule__Assertion__Group__1__Impl rule__Assertion__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__Assertion__Group__1__Impl();
@@ -1658,17 +1581,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__1__Impl"
-    // InternalWorkflow.g:567:1: rule__Assertion__Group__1__Impl : ( '=>' ) ;
+    // InternalWorkflow.g:542:1: rule__Assertion__Group__1__Impl : ( '=>' ) ;
     public final void rule__Assertion__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:571:1: ( ( '=>' ) )
-            // InternalWorkflow.g:572:1: ( '=>' )
+            // InternalWorkflow.g:546:1: ( ( '=>' ) )
+            // InternalWorkflow.g:547:1: ( '=>' )
             {
-            // InternalWorkflow.g:572:1: ( '=>' )
-            // InternalWorkflow.g:573:2: '=>'
+            // InternalWorkflow.g:547:1: ( '=>' )
+            // InternalWorkflow.g:548:2: '=>'
             {
              before(grammarAccess.getAssertionAccess().getEqualsSignGreaterThanSignKeyword_1()); 
             match(input,16,FOLLOW_2); 
@@ -1695,14 +1618,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__2"
-    // InternalWorkflow.g:582:1: rule__Assertion__Group__2 : rule__Assertion__Group__2__Impl ;
+    // InternalWorkflow.g:557:1: rule__Assertion__Group__2 : rule__Assertion__Group__2__Impl ;
     public final void rule__Assertion__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:586:1: ( rule__Assertion__Group__2__Impl )
-            // InternalWorkflow.g:587:2: rule__Assertion__Group__2__Impl
+            // InternalWorkflow.g:561:1: ( rule__Assertion__Group__2__Impl )
+            // InternalWorkflow.g:562:2: rule__Assertion__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Assertion__Group__2__Impl();
@@ -1728,21 +1651,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__Group__2__Impl"
-    // InternalWorkflow.g:593:1: rule__Assertion__Group__2__Impl : ( ( rule__Assertion__AfterAssignment_2 ) ) ;
+    // InternalWorkflow.g:568:1: rule__Assertion__Group__2__Impl : ( ( rule__Assertion__AfterAssignment_2 ) ) ;
     public final void rule__Assertion__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:597:1: ( ( ( rule__Assertion__AfterAssignment_2 ) ) )
-            // InternalWorkflow.g:598:1: ( ( rule__Assertion__AfterAssignment_2 ) )
+            // InternalWorkflow.g:572:1: ( ( ( rule__Assertion__AfterAssignment_2 ) ) )
+            // InternalWorkflow.g:573:1: ( ( rule__Assertion__AfterAssignment_2 ) )
             {
-            // InternalWorkflow.g:598:1: ( ( rule__Assertion__AfterAssignment_2 ) )
-            // InternalWorkflow.g:599:2: ( rule__Assertion__AfterAssignment_2 )
+            // InternalWorkflow.g:573:1: ( ( rule__Assertion__AfterAssignment_2 ) )
+            // InternalWorkflow.g:574:2: ( rule__Assertion__AfterAssignment_2 )
             {
              before(grammarAccess.getAssertionAccess().getAfterAssignment_2()); 
-            // InternalWorkflow.g:600:2: ( rule__Assertion__AfterAssignment_2 )
-            // InternalWorkflow.g:600:3: rule__Assertion__AfterAssignment_2
+            // InternalWorkflow.g:575:2: ( rule__Assertion__AfterAssignment_2 )
+            // InternalWorkflow.g:575:3: rule__Assertion__AfterAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Assertion__AfterAssignment_2();
@@ -1775,14 +1698,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__0"
-    // InternalWorkflow.g:609:1: rule__ProbabilityConfiguration__Group__0 : rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1 ;
+    // InternalWorkflow.g:584:1: rule__ProbabilityConfiguration__Group__0 : rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1 ;
     public final void rule__ProbabilityConfiguration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:613:1: ( rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1 )
-            // InternalWorkflow.g:614:2: rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1
+            // InternalWorkflow.g:588:1: ( rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1 )
+            // InternalWorkflow.g:589:2: rule__ProbabilityConfiguration__Group__0__Impl rule__ProbabilityConfiguration__Group__1
             {
             pushFollow(FOLLOW_10);
             rule__ProbabilityConfiguration__Group__0__Impl();
@@ -1813,21 +1736,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__0__Impl"
-    // InternalWorkflow.g:621:1: rule__ProbabilityConfiguration__Group__0__Impl : ( ( rule__ProbabilityConfiguration__Group_0__0 ) ) ;
+    // InternalWorkflow.g:596:1: rule__ProbabilityConfiguration__Group__0__Impl : ( ( rule__ProbabilityConfiguration__Group_0__0 ) ) ;
     public final void rule__ProbabilityConfiguration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:625:1: ( ( ( rule__ProbabilityConfiguration__Group_0__0 ) ) )
-            // InternalWorkflow.g:626:1: ( ( rule__ProbabilityConfiguration__Group_0__0 ) )
+            // InternalWorkflow.g:600:1: ( ( ( rule__ProbabilityConfiguration__Group_0__0 ) ) )
+            // InternalWorkflow.g:601:1: ( ( rule__ProbabilityConfiguration__Group_0__0 ) )
             {
-            // InternalWorkflow.g:626:1: ( ( rule__ProbabilityConfiguration__Group_0__0 ) )
-            // InternalWorkflow.g:627:2: ( rule__ProbabilityConfiguration__Group_0__0 )
+            // InternalWorkflow.g:601:1: ( ( rule__ProbabilityConfiguration__Group_0__0 ) )
+            // InternalWorkflow.g:602:2: ( rule__ProbabilityConfiguration__Group_0__0 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getGroup_0()); 
-            // InternalWorkflow.g:628:2: ( rule__ProbabilityConfiguration__Group_0__0 )
-            // InternalWorkflow.g:628:3: rule__ProbabilityConfiguration__Group_0__0
+            // InternalWorkflow.g:603:2: ( rule__ProbabilityConfiguration__Group_0__0 )
+            // InternalWorkflow.g:603:3: rule__ProbabilityConfiguration__Group_0__0
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_0__0();
@@ -1860,14 +1783,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__1"
-    // InternalWorkflow.g:636:1: rule__ProbabilityConfiguration__Group__1 : rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2 ;
+    // InternalWorkflow.g:611:1: rule__ProbabilityConfiguration__Group__1 : rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2 ;
     public final void rule__ProbabilityConfiguration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:640:1: ( rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2 )
-            // InternalWorkflow.g:641:2: rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2
+            // InternalWorkflow.g:615:1: ( rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2 )
+            // InternalWorkflow.g:616:2: rule__ProbabilityConfiguration__Group__1__Impl rule__ProbabilityConfiguration__Group__2
             {
             pushFollow(FOLLOW_11);
             rule__ProbabilityConfiguration__Group__1__Impl();
@@ -1898,21 +1821,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__1__Impl"
-    // InternalWorkflow.g:648:1: rule__ProbabilityConfiguration__Group__1__Impl : ( ( rule__ProbabilityConfiguration__Group_1__0 ) ) ;
+    // InternalWorkflow.g:623:1: rule__ProbabilityConfiguration__Group__1__Impl : ( ( rule__ProbabilityConfiguration__Group_1__0 ) ) ;
     public final void rule__ProbabilityConfiguration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:652:1: ( ( ( rule__ProbabilityConfiguration__Group_1__0 ) ) )
-            // InternalWorkflow.g:653:1: ( ( rule__ProbabilityConfiguration__Group_1__0 ) )
+            // InternalWorkflow.g:627:1: ( ( ( rule__ProbabilityConfiguration__Group_1__0 ) ) )
+            // InternalWorkflow.g:628:1: ( ( rule__ProbabilityConfiguration__Group_1__0 ) )
             {
-            // InternalWorkflow.g:653:1: ( ( rule__ProbabilityConfiguration__Group_1__0 ) )
-            // InternalWorkflow.g:654:2: ( rule__ProbabilityConfiguration__Group_1__0 )
+            // InternalWorkflow.g:628:1: ( ( rule__ProbabilityConfiguration__Group_1__0 ) )
+            // InternalWorkflow.g:629:2: ( rule__ProbabilityConfiguration__Group_1__0 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getGroup_1()); 
-            // InternalWorkflow.g:655:2: ( rule__ProbabilityConfiguration__Group_1__0 )
-            // InternalWorkflow.g:655:3: rule__ProbabilityConfiguration__Group_1__0
+            // InternalWorkflow.g:630:2: ( rule__ProbabilityConfiguration__Group_1__0 )
+            // InternalWorkflow.g:630:3: rule__ProbabilityConfiguration__Group_1__0
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_1__0();
@@ -1945,14 +1868,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__2"
-    // InternalWorkflow.g:663:1: rule__ProbabilityConfiguration__Group__2 : rule__ProbabilityConfiguration__Group__2__Impl ;
+    // InternalWorkflow.g:638:1: rule__ProbabilityConfiguration__Group__2 : rule__ProbabilityConfiguration__Group__2__Impl ;
     public final void rule__ProbabilityConfiguration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:667:1: ( rule__ProbabilityConfiguration__Group__2__Impl )
-            // InternalWorkflow.g:668:2: rule__ProbabilityConfiguration__Group__2__Impl
+            // InternalWorkflow.g:642:1: ( rule__ProbabilityConfiguration__Group__2__Impl )
+            // InternalWorkflow.g:643:2: rule__ProbabilityConfiguration__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group__2__Impl();
@@ -1978,21 +1901,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group__2__Impl"
-    // InternalWorkflow.g:674:1: rule__ProbabilityConfiguration__Group__2__Impl : ( ( rule__ProbabilityConfiguration__Group_2__0 ) ) ;
+    // InternalWorkflow.g:649:1: rule__ProbabilityConfiguration__Group__2__Impl : ( ( rule__ProbabilityConfiguration__Group_2__0 ) ) ;
     public final void rule__ProbabilityConfiguration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:678:1: ( ( ( rule__ProbabilityConfiguration__Group_2__0 ) ) )
-            // InternalWorkflow.g:679:1: ( ( rule__ProbabilityConfiguration__Group_2__0 ) )
+            // InternalWorkflow.g:653:1: ( ( ( rule__ProbabilityConfiguration__Group_2__0 ) ) )
+            // InternalWorkflow.g:654:1: ( ( rule__ProbabilityConfiguration__Group_2__0 ) )
             {
-            // InternalWorkflow.g:679:1: ( ( rule__ProbabilityConfiguration__Group_2__0 ) )
-            // InternalWorkflow.g:680:2: ( rule__ProbabilityConfiguration__Group_2__0 )
+            // InternalWorkflow.g:654:1: ( ( rule__ProbabilityConfiguration__Group_2__0 ) )
+            // InternalWorkflow.g:655:2: ( rule__ProbabilityConfiguration__Group_2__0 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getGroup_2()); 
-            // InternalWorkflow.g:681:2: ( rule__ProbabilityConfiguration__Group_2__0 )
-            // InternalWorkflow.g:681:3: rule__ProbabilityConfiguration__Group_2__0
+            // InternalWorkflow.g:656:2: ( rule__ProbabilityConfiguration__Group_2__0 )
+            // InternalWorkflow.g:656:3: rule__ProbabilityConfiguration__Group_2__0
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_2__0();
@@ -2025,14 +1948,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__0"
-    // InternalWorkflow.g:690:1: rule__ProbabilityConfiguration__Group_0__0 : rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1 ;
+    // InternalWorkflow.g:665:1: rule__ProbabilityConfiguration__Group_0__0 : rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1 ;
     public final void rule__ProbabilityConfiguration__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:694:1: ( rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1 )
-            // InternalWorkflow.g:695:2: rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1
+            // InternalWorkflow.g:669:1: ( rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1 )
+            // InternalWorkflow.g:670:2: rule__ProbabilityConfiguration__Group_0__0__Impl rule__ProbabilityConfiguration__Group_0__1
             {
             pushFollow(FOLLOW_12);
             rule__ProbabilityConfiguration__Group_0__0__Impl();
@@ -2063,17 +1986,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__0__Impl"
-    // InternalWorkflow.g:702:1: rule__ProbabilityConfiguration__Group_0__0__Impl : ( 'probabilities' ) ;
+    // InternalWorkflow.g:677:1: rule__ProbabilityConfiguration__Group_0__0__Impl : ( 'probabilities' ) ;
     public final void rule__ProbabilityConfiguration__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:706:1: ( ( 'probabilities' ) )
-            // InternalWorkflow.g:707:1: ( 'probabilities' )
+            // InternalWorkflow.g:681:1: ( ( 'probabilities' ) )
+            // InternalWorkflow.g:682:1: ( 'probabilities' )
             {
-            // InternalWorkflow.g:707:1: ( 'probabilities' )
-            // InternalWorkflow.g:708:2: 'probabilities'
+            // InternalWorkflow.g:682:1: ( 'probabilities' )
+            // InternalWorkflow.g:683:2: 'probabilities'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getProbabilitiesKeyword_0_0()); 
             match(input,17,FOLLOW_2); 
@@ -2100,14 +2023,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__1"
-    // InternalWorkflow.g:717:1: rule__ProbabilityConfiguration__Group_0__1 : rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2 ;
+    // InternalWorkflow.g:692:1: rule__ProbabilityConfiguration__Group_0__1 : rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2 ;
     public final void rule__ProbabilityConfiguration__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:721:1: ( rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2 )
-            // InternalWorkflow.g:722:2: rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2
+            // InternalWorkflow.g:696:1: ( rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2 )
+            // InternalWorkflow.g:697:2: rule__ProbabilityConfiguration__Group_0__1__Impl rule__ProbabilityConfiguration__Group_0__2
             {
             pushFollow(FOLLOW_3);
             rule__ProbabilityConfiguration__Group_0__1__Impl();
@@ -2138,17 +2061,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__1__Impl"
-    // InternalWorkflow.g:729:1: rule__ProbabilityConfiguration__Group_0__1__Impl : ( 'low' ) ;
+    // InternalWorkflow.g:704:1: rule__ProbabilityConfiguration__Group_0__1__Impl : ( 'low' ) ;
     public final void rule__ProbabilityConfiguration__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:733:1: ( ( 'low' ) )
-            // InternalWorkflow.g:734:1: ( 'low' )
+            // InternalWorkflow.g:708:1: ( ( 'low' ) )
+            // InternalWorkflow.g:709:1: ( 'low' )
             {
-            // InternalWorkflow.g:734:1: ( 'low' )
-            // InternalWorkflow.g:735:2: 'low'
+            // InternalWorkflow.g:709:1: ( 'low' )
+            // InternalWorkflow.g:710:2: 'low'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getLowKeyword_0_1()); 
             match(input,18,FOLLOW_2); 
@@ -2175,14 +2098,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__2"
-    // InternalWorkflow.g:744:1: rule__ProbabilityConfiguration__Group_0__2 : rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3 ;
+    // InternalWorkflow.g:719:1: rule__ProbabilityConfiguration__Group_0__2 : rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3 ;
     public final void rule__ProbabilityConfiguration__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:748:1: ( rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3 )
-            // InternalWorkflow.g:749:2: rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3
+            // InternalWorkflow.g:723:1: ( rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3 )
+            // InternalWorkflow.g:724:2: rule__ProbabilityConfiguration__Group_0__2__Impl rule__ProbabilityConfiguration__Group_0__3
             {
             pushFollow(FOLLOW_13);
             rule__ProbabilityConfiguration__Group_0__2__Impl();
@@ -2213,17 +2136,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__2__Impl"
-    // InternalWorkflow.g:756:1: rule__ProbabilityConfiguration__Group_0__2__Impl : ( ':' ) ;
+    // InternalWorkflow.g:731:1: rule__ProbabilityConfiguration__Group_0__2__Impl : ( ':' ) ;
     public final void rule__ProbabilityConfiguration__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:760:1: ( ( ':' ) )
-            // InternalWorkflow.g:761:1: ( ':' )
+            // InternalWorkflow.g:735:1: ( ( ':' ) )
+            // InternalWorkflow.g:736:1: ( ':' )
             {
-            // InternalWorkflow.g:761:1: ( ':' )
-            // InternalWorkflow.g:762:2: ':'
+            // InternalWorkflow.g:736:1: ( ':' )
+            // InternalWorkflow.g:737:2: ':'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_0_2()); 
             match(input,12,FOLLOW_2); 
@@ -2250,14 +2173,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__3"
-    // InternalWorkflow.g:771:1: rule__ProbabilityConfiguration__Group_0__3 : rule__ProbabilityConfiguration__Group_0__3__Impl ;
+    // InternalWorkflow.g:746:1: rule__ProbabilityConfiguration__Group_0__3 : rule__ProbabilityConfiguration__Group_0__3__Impl ;
     public final void rule__ProbabilityConfiguration__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:775:1: ( rule__ProbabilityConfiguration__Group_0__3__Impl )
-            // InternalWorkflow.g:776:2: rule__ProbabilityConfiguration__Group_0__3__Impl
+            // InternalWorkflow.g:750:1: ( rule__ProbabilityConfiguration__Group_0__3__Impl )
+            // InternalWorkflow.g:751:2: rule__ProbabilityConfiguration__Group_0__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_0__3__Impl();
@@ -2283,21 +2206,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_0__3__Impl"
-    // InternalWorkflow.g:782:1: rule__ProbabilityConfiguration__Group_0__3__Impl : ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) ) ;
+    // InternalWorkflow.g:757:1: rule__ProbabilityConfiguration__Group_0__3__Impl : ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) ) ;
     public final void rule__ProbabilityConfiguration__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:786:1: ( ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) ) )
-            // InternalWorkflow.g:787:1: ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) )
+            // InternalWorkflow.g:761:1: ( ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) ) )
+            // InternalWorkflow.g:762:1: ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) )
             {
-            // InternalWorkflow.g:787:1: ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) )
-            // InternalWorkflow.g:788:2: ( rule__ProbabilityConfiguration__LowAssignment_0_3 )
+            // InternalWorkflow.g:762:1: ( ( rule__ProbabilityConfiguration__LowAssignment_0_3 ) )
+            // InternalWorkflow.g:763:2: ( rule__ProbabilityConfiguration__LowAssignment_0_3 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getLowAssignment_0_3()); 
-            // InternalWorkflow.g:789:2: ( rule__ProbabilityConfiguration__LowAssignment_0_3 )
-            // InternalWorkflow.g:789:3: rule__ProbabilityConfiguration__LowAssignment_0_3
+            // InternalWorkflow.g:764:2: ( rule__ProbabilityConfiguration__LowAssignment_0_3 )
+            // InternalWorkflow.g:764:3: rule__ProbabilityConfiguration__LowAssignment_0_3
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__LowAssignment_0_3();
@@ -2330,14 +2253,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__0"
-    // InternalWorkflow.g:798:1: rule__ProbabilityConfiguration__Group_1__0 : rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1 ;
+    // InternalWorkflow.g:773:1: rule__ProbabilityConfiguration__Group_1__0 : rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1 ;
     public final void rule__ProbabilityConfiguration__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:802:1: ( rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1 )
-            // InternalWorkflow.g:803:2: rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1
+            // InternalWorkflow.g:777:1: ( rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1 )
+            // InternalWorkflow.g:778:2: rule__ProbabilityConfiguration__Group_1__0__Impl rule__ProbabilityConfiguration__Group_1__1
             {
             pushFollow(FOLLOW_3);
             rule__ProbabilityConfiguration__Group_1__0__Impl();
@@ -2368,17 +2291,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__0__Impl"
-    // InternalWorkflow.g:810:1: rule__ProbabilityConfiguration__Group_1__0__Impl : ( 'medium' ) ;
+    // InternalWorkflow.g:785:1: rule__ProbabilityConfiguration__Group_1__0__Impl : ( 'medium' ) ;
     public final void rule__ProbabilityConfiguration__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:814:1: ( ( 'medium' ) )
-            // InternalWorkflow.g:815:1: ( 'medium' )
+            // InternalWorkflow.g:789:1: ( ( 'medium' ) )
+            // InternalWorkflow.g:790:1: ( 'medium' )
             {
-            // InternalWorkflow.g:815:1: ( 'medium' )
-            // InternalWorkflow.g:816:2: 'medium'
+            // InternalWorkflow.g:790:1: ( 'medium' )
+            // InternalWorkflow.g:791:2: 'medium'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getMediumKeyword_1_0()); 
             match(input,19,FOLLOW_2); 
@@ -2405,14 +2328,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__1"
-    // InternalWorkflow.g:825:1: rule__ProbabilityConfiguration__Group_1__1 : rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2 ;
+    // InternalWorkflow.g:800:1: rule__ProbabilityConfiguration__Group_1__1 : rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2 ;
     public final void rule__ProbabilityConfiguration__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:829:1: ( rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2 )
-            // InternalWorkflow.g:830:2: rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2
+            // InternalWorkflow.g:804:1: ( rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2 )
+            // InternalWorkflow.g:805:2: rule__ProbabilityConfiguration__Group_1__1__Impl rule__ProbabilityConfiguration__Group_1__2
             {
             pushFollow(FOLLOW_13);
             rule__ProbabilityConfiguration__Group_1__1__Impl();
@@ -2443,17 +2366,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__1__Impl"
-    // InternalWorkflow.g:837:1: rule__ProbabilityConfiguration__Group_1__1__Impl : ( ':' ) ;
+    // InternalWorkflow.g:812:1: rule__ProbabilityConfiguration__Group_1__1__Impl : ( ':' ) ;
     public final void rule__ProbabilityConfiguration__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:841:1: ( ( ':' ) )
-            // InternalWorkflow.g:842:1: ( ':' )
+            // InternalWorkflow.g:816:1: ( ( ':' ) )
+            // InternalWorkflow.g:817:1: ( ':' )
             {
-            // InternalWorkflow.g:842:1: ( ':' )
-            // InternalWorkflow.g:843:2: ':'
+            // InternalWorkflow.g:817:1: ( ':' )
+            // InternalWorkflow.g:818:2: ':'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_1_1()); 
             match(input,12,FOLLOW_2); 
@@ -2480,14 +2403,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__2"
-    // InternalWorkflow.g:852:1: rule__ProbabilityConfiguration__Group_1__2 : rule__ProbabilityConfiguration__Group_1__2__Impl ;
+    // InternalWorkflow.g:827:1: rule__ProbabilityConfiguration__Group_1__2 : rule__ProbabilityConfiguration__Group_1__2__Impl ;
     public final void rule__ProbabilityConfiguration__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:856:1: ( rule__ProbabilityConfiguration__Group_1__2__Impl )
-            // InternalWorkflow.g:857:2: rule__ProbabilityConfiguration__Group_1__2__Impl
+            // InternalWorkflow.g:831:1: ( rule__ProbabilityConfiguration__Group_1__2__Impl )
+            // InternalWorkflow.g:832:2: rule__ProbabilityConfiguration__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_1__2__Impl();
@@ -2513,21 +2436,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_1__2__Impl"
-    // InternalWorkflow.g:863:1: rule__ProbabilityConfiguration__Group_1__2__Impl : ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) ) ;
+    // InternalWorkflow.g:838:1: rule__ProbabilityConfiguration__Group_1__2__Impl : ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) ) ;
     public final void rule__ProbabilityConfiguration__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:867:1: ( ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) ) )
-            // InternalWorkflow.g:868:1: ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) )
+            // InternalWorkflow.g:842:1: ( ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) ) )
+            // InternalWorkflow.g:843:1: ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) )
             {
-            // InternalWorkflow.g:868:1: ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) )
-            // InternalWorkflow.g:869:2: ( rule__ProbabilityConfiguration__MediumAssignment_1_2 )
+            // InternalWorkflow.g:843:1: ( ( rule__ProbabilityConfiguration__MediumAssignment_1_2 ) )
+            // InternalWorkflow.g:844:2: ( rule__ProbabilityConfiguration__MediumAssignment_1_2 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getMediumAssignment_1_2()); 
-            // InternalWorkflow.g:870:2: ( rule__ProbabilityConfiguration__MediumAssignment_1_2 )
-            // InternalWorkflow.g:870:3: rule__ProbabilityConfiguration__MediumAssignment_1_2
+            // InternalWorkflow.g:845:2: ( rule__ProbabilityConfiguration__MediumAssignment_1_2 )
+            // InternalWorkflow.g:845:3: rule__ProbabilityConfiguration__MediumAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__MediumAssignment_1_2();
@@ -2560,14 +2483,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__0"
-    // InternalWorkflow.g:879:1: rule__ProbabilityConfiguration__Group_2__0 : rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1 ;
+    // InternalWorkflow.g:854:1: rule__ProbabilityConfiguration__Group_2__0 : rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1 ;
     public final void rule__ProbabilityConfiguration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:883:1: ( rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1 )
-            // InternalWorkflow.g:884:2: rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1
+            // InternalWorkflow.g:858:1: ( rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1 )
+            // InternalWorkflow.g:859:2: rule__ProbabilityConfiguration__Group_2__0__Impl rule__ProbabilityConfiguration__Group_2__1
             {
             pushFollow(FOLLOW_3);
             rule__ProbabilityConfiguration__Group_2__0__Impl();
@@ -2598,17 +2521,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__0__Impl"
-    // InternalWorkflow.g:891:1: rule__ProbabilityConfiguration__Group_2__0__Impl : ( 'high' ) ;
+    // InternalWorkflow.g:866:1: rule__ProbabilityConfiguration__Group_2__0__Impl : ( 'high' ) ;
     public final void rule__ProbabilityConfiguration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:895:1: ( ( 'high' ) )
-            // InternalWorkflow.g:896:1: ( 'high' )
+            // InternalWorkflow.g:870:1: ( ( 'high' ) )
+            // InternalWorkflow.g:871:1: ( 'high' )
             {
-            // InternalWorkflow.g:896:1: ( 'high' )
-            // InternalWorkflow.g:897:2: 'high'
+            // InternalWorkflow.g:871:1: ( 'high' )
+            // InternalWorkflow.g:872:2: 'high'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getHighKeyword_2_0()); 
             match(input,20,FOLLOW_2); 
@@ -2635,14 +2558,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__1"
-    // InternalWorkflow.g:906:1: rule__ProbabilityConfiguration__Group_2__1 : rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2 ;
+    // InternalWorkflow.g:881:1: rule__ProbabilityConfiguration__Group_2__1 : rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2 ;
     public final void rule__ProbabilityConfiguration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:910:1: ( rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2 )
-            // InternalWorkflow.g:911:2: rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2
+            // InternalWorkflow.g:885:1: ( rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2 )
+            // InternalWorkflow.g:886:2: rule__ProbabilityConfiguration__Group_2__1__Impl rule__ProbabilityConfiguration__Group_2__2
             {
             pushFollow(FOLLOW_13);
             rule__ProbabilityConfiguration__Group_2__1__Impl();
@@ -2673,17 +2596,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__1__Impl"
-    // InternalWorkflow.g:918:1: rule__ProbabilityConfiguration__Group_2__1__Impl : ( ':' ) ;
+    // InternalWorkflow.g:893:1: rule__ProbabilityConfiguration__Group_2__1__Impl : ( ':' ) ;
     public final void rule__ProbabilityConfiguration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:922:1: ( ( ':' ) )
-            // InternalWorkflow.g:923:1: ( ':' )
+            // InternalWorkflow.g:897:1: ( ( ':' ) )
+            // InternalWorkflow.g:898:1: ( ':' )
             {
-            // InternalWorkflow.g:923:1: ( ':' )
-            // InternalWorkflow.g:924:2: ':'
+            // InternalWorkflow.g:898:1: ( ':' )
+            // InternalWorkflow.g:899:2: ':'
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_2_1()); 
             match(input,12,FOLLOW_2); 
@@ -2710,14 +2633,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__2"
-    // InternalWorkflow.g:933:1: rule__ProbabilityConfiguration__Group_2__2 : rule__ProbabilityConfiguration__Group_2__2__Impl ;
+    // InternalWorkflow.g:908:1: rule__ProbabilityConfiguration__Group_2__2 : rule__ProbabilityConfiguration__Group_2__2__Impl ;
     public final void rule__ProbabilityConfiguration__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:937:1: ( rule__ProbabilityConfiguration__Group_2__2__Impl )
-            // InternalWorkflow.g:938:2: rule__ProbabilityConfiguration__Group_2__2__Impl
+            // InternalWorkflow.g:912:1: ( rule__ProbabilityConfiguration__Group_2__2__Impl )
+            // InternalWorkflow.g:913:2: rule__ProbabilityConfiguration__Group_2__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__Group_2__2__Impl();
@@ -2743,21 +2666,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__Group_2__2__Impl"
-    // InternalWorkflow.g:944:1: rule__ProbabilityConfiguration__Group_2__2__Impl : ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) ) ;
+    // InternalWorkflow.g:919:1: rule__ProbabilityConfiguration__Group_2__2__Impl : ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) ) ;
     public final void rule__ProbabilityConfiguration__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:948:1: ( ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) ) )
-            // InternalWorkflow.g:949:1: ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) )
+            // InternalWorkflow.g:923:1: ( ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) ) )
+            // InternalWorkflow.g:924:1: ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) )
             {
-            // InternalWorkflow.g:949:1: ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) )
-            // InternalWorkflow.g:950:2: ( rule__ProbabilityConfiguration__HighAssignment_2_2 )
+            // InternalWorkflow.g:924:1: ( ( rule__ProbabilityConfiguration__HighAssignment_2_2 ) )
+            // InternalWorkflow.g:925:2: ( rule__ProbabilityConfiguration__HighAssignment_2_2 )
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getHighAssignment_2_2()); 
-            // InternalWorkflow.g:951:2: ( rule__ProbabilityConfiguration__HighAssignment_2_2 )
-            // InternalWorkflow.g:951:3: rule__ProbabilityConfiguration__HighAssignment_2_2
+            // InternalWorkflow.g:926:2: ( rule__ProbabilityConfiguration__HighAssignment_2_2 )
+            // InternalWorkflow.g:926:3: rule__ProbabilityConfiguration__HighAssignment_2_2
             {
             pushFollow(FOLLOW_2);
             rule__ProbabilityConfiguration__HighAssignment_2_2();
@@ -2789,333 +2712,15 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__ProbabilityConfiguration__Group_2__2__Impl"
 
 
-    // $ANTLR start "rule__FQN__Group__0"
-    // InternalWorkflow.g:960:1: rule__FQN__Group__0 : rule__FQN__Group__0__Impl rule__FQN__Group__1 ;
-    public final void rule__FQN__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:964:1: ( rule__FQN__Group__0__Impl rule__FQN__Group__1 )
-            // InternalWorkflow.g:965:2: rule__FQN__Group__0__Impl rule__FQN__Group__1
-            {
-            pushFollow(FOLLOW_14);
-            rule__FQN__Group__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__FQN__Group__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group__0"
-
-
-    // $ANTLR start "rule__FQN__Group__0__Impl"
-    // InternalWorkflow.g:972:1: rule__FQN__Group__0__Impl : ( RULE_ID ) ;
-    public final void rule__FQN__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:976:1: ( ( RULE_ID ) )
-            // InternalWorkflow.g:977:1: ( RULE_ID )
-            {
-            // InternalWorkflow.g:977:1: ( RULE_ID )
-            // InternalWorkflow.g:978:2: RULE_ID
-            {
-             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group__0__Impl"
-
-
-    // $ANTLR start "rule__FQN__Group__1"
-    // InternalWorkflow.g:987:1: rule__FQN__Group__1 : rule__FQN__Group__1__Impl ;
-    public final void rule__FQN__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:991:1: ( rule__FQN__Group__1__Impl )
-            // InternalWorkflow.g:992:2: rule__FQN__Group__1__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__FQN__Group__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group__1"
-
-
-    // $ANTLR start "rule__FQN__Group__1__Impl"
-    // InternalWorkflow.g:998:1: rule__FQN__Group__1__Impl : ( ( rule__FQN__Group_1__0 )* ) ;
-    public final void rule__FQN__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:1002:1: ( ( ( rule__FQN__Group_1__0 )* ) )
-            // InternalWorkflow.g:1003:1: ( ( rule__FQN__Group_1__0 )* )
-            {
-            // InternalWorkflow.g:1003:1: ( ( rule__FQN__Group_1__0 )* )
-            // InternalWorkflow.g:1004:2: ( rule__FQN__Group_1__0 )*
-            {
-             before(grammarAccess.getFQNAccess().getGroup_1()); 
-            // InternalWorkflow.g:1005:2: ( rule__FQN__Group_1__0 )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
-
-                if ( (LA4_0==21) ) {
-                    alt4=1;
-                }
-
-
-                switch (alt4) {
-            	case 1 :
-            	    // InternalWorkflow.g:1005:3: rule__FQN__Group_1__0
-            	    {
-            	    pushFollow(FOLLOW_15);
-            	    rule__FQN__Group_1__0();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
-
-             after(grammarAccess.getFQNAccess().getGroup_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group__1__Impl"
-
-
-    // $ANTLR start "rule__FQN__Group_1__0"
-    // InternalWorkflow.g:1014:1: rule__FQN__Group_1__0 : rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1 ;
-    public final void rule__FQN__Group_1__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:1018:1: ( rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1 )
-            // InternalWorkflow.g:1019:2: rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1
-            {
-            pushFollow(FOLLOW_4);
-            rule__FQN__Group_1__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__FQN__Group_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group_1__0"
-
-
-    // $ANTLR start "rule__FQN__Group_1__0__Impl"
-    // InternalWorkflow.g:1026:1: rule__FQN__Group_1__0__Impl : ( '.' ) ;
-    public final void rule__FQN__Group_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:1030:1: ( ( '.' ) )
-            // InternalWorkflow.g:1031:1: ( '.' )
-            {
-            // InternalWorkflow.g:1031:1: ( '.' )
-            // InternalWorkflow.g:1032:2: '.'
-            {
-             before(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
-            match(input,21,FOLLOW_2); 
-             after(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group_1__0__Impl"
-
-
-    // $ANTLR start "rule__FQN__Group_1__1"
-    // InternalWorkflow.g:1041:1: rule__FQN__Group_1__1 : rule__FQN__Group_1__1__Impl ;
-    public final void rule__FQN__Group_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:1045:1: ( rule__FQN__Group_1__1__Impl )
-            // InternalWorkflow.g:1046:2: rule__FQN__Group_1__1__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__FQN__Group_1__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group_1__1"
-
-
-    // $ANTLR start "rule__FQN__Group_1__1__Impl"
-    // InternalWorkflow.g:1052:1: rule__FQN__Group_1__1__Impl : ( RULE_ID ) ;
-    public final void rule__FQN__Group_1__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalWorkflow.g:1056:1: ( ( RULE_ID ) )
-            // InternalWorkflow.g:1057:1: ( RULE_ID )
-            {
-            // InternalWorkflow.g:1057:1: ( RULE_ID )
-            // InternalWorkflow.g:1058:2: RULE_ID
-            {
-             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FQN__Group_1__1__Impl"
-
-
     // $ANTLR start "rule__Float__Group__0"
-    // InternalWorkflow.g:1068:1: rule__Float__Group__0 : rule__Float__Group__0__Impl rule__Float__Group__1 ;
+    // InternalWorkflow.g:935:1: rule__Float__Group__0 : rule__Float__Group__0__Impl rule__Float__Group__1 ;
     public final void rule__Float__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1072:1: ( rule__Float__Group__0__Impl rule__Float__Group__1 )
-            // InternalWorkflow.g:1073:2: rule__Float__Group__0__Impl rule__Float__Group__1
+            // InternalWorkflow.g:939:1: ( rule__Float__Group__0__Impl rule__Float__Group__1 )
+            // InternalWorkflow.g:940:2: rule__Float__Group__0__Impl rule__Float__Group__1
             {
             pushFollow(FOLLOW_14);
             rule__Float__Group__0__Impl();
@@ -3146,17 +2751,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Float__Group__0__Impl"
-    // InternalWorkflow.g:1080:1: rule__Float__Group__0__Impl : ( RULE_INT ) ;
+    // InternalWorkflow.g:947:1: rule__Float__Group__0__Impl : ( RULE_INT ) ;
     public final void rule__Float__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1084:1: ( ( RULE_INT ) )
-            // InternalWorkflow.g:1085:1: ( RULE_INT )
+            // InternalWorkflow.g:951:1: ( ( RULE_INT ) )
+            // InternalWorkflow.g:952:1: ( RULE_INT )
             {
-            // InternalWorkflow.g:1085:1: ( RULE_INT )
-            // InternalWorkflow.g:1086:2: RULE_INT
+            // InternalWorkflow.g:952:1: ( RULE_INT )
+            // InternalWorkflow.g:953:2: RULE_INT
             {
              before(grammarAccess.getFloatAccess().getINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -3183,14 +2788,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Float__Group__1"
-    // InternalWorkflow.g:1095:1: rule__Float__Group__1 : rule__Float__Group__1__Impl rule__Float__Group__2 ;
+    // InternalWorkflow.g:962:1: rule__Float__Group__1 : rule__Float__Group__1__Impl rule__Float__Group__2 ;
     public final void rule__Float__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1099:1: ( rule__Float__Group__1__Impl rule__Float__Group__2 )
-            // InternalWorkflow.g:1100:2: rule__Float__Group__1__Impl rule__Float__Group__2
+            // InternalWorkflow.g:966:1: ( rule__Float__Group__1__Impl rule__Float__Group__2 )
+            // InternalWorkflow.g:967:2: rule__Float__Group__1__Impl rule__Float__Group__2
             {
             pushFollow(FOLLOW_13);
             rule__Float__Group__1__Impl();
@@ -3221,17 +2826,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Float__Group__1__Impl"
-    // InternalWorkflow.g:1107:1: rule__Float__Group__1__Impl : ( '.' ) ;
+    // InternalWorkflow.g:974:1: rule__Float__Group__1__Impl : ( '.' ) ;
     public final void rule__Float__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1111:1: ( ( '.' ) )
-            // InternalWorkflow.g:1112:1: ( '.' )
+            // InternalWorkflow.g:978:1: ( ( '.' ) )
+            // InternalWorkflow.g:979:1: ( '.' )
             {
-            // InternalWorkflow.g:1112:1: ( '.' )
-            // InternalWorkflow.g:1113:2: '.'
+            // InternalWorkflow.g:979:1: ( '.' )
+            // InternalWorkflow.g:980:2: '.'
             {
              before(grammarAccess.getFloatAccess().getFullStopKeyword_1()); 
             match(input,21,FOLLOW_2); 
@@ -3258,14 +2863,14 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Float__Group__2"
-    // InternalWorkflow.g:1122:1: rule__Float__Group__2 : rule__Float__Group__2__Impl ;
+    // InternalWorkflow.g:989:1: rule__Float__Group__2 : rule__Float__Group__2__Impl ;
     public final void rule__Float__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1126:1: ( rule__Float__Group__2__Impl )
-            // InternalWorkflow.g:1127:2: rule__Float__Group__2__Impl
+            // InternalWorkflow.g:993:1: ( rule__Float__Group__2__Impl )
+            // InternalWorkflow.g:994:2: rule__Float__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Float__Group__2__Impl();
@@ -3291,17 +2896,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Float__Group__2__Impl"
-    // InternalWorkflow.g:1133:1: rule__Float__Group__2__Impl : ( RULE_INT ) ;
+    // InternalWorkflow.g:1000:1: rule__Float__Group__2__Impl : ( RULE_INT ) ;
     public final void rule__Float__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1137:1: ( ( RULE_INT ) )
-            // InternalWorkflow.g:1138:1: ( RULE_INT )
+            // InternalWorkflow.g:1004:1: ( ( RULE_INT ) )
+            // InternalWorkflow.g:1005:1: ( RULE_INT )
             {
-            // InternalWorkflow.g:1138:1: ( RULE_INT )
-            // InternalWorkflow.g:1139:2: RULE_INT
+            // InternalWorkflow.g:1005:1: ( RULE_INT )
+            // InternalWorkflow.g:1006:2: RULE_INT
             {
              before(grammarAccess.getFloatAccess().getINTTerminalRuleCall_2()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -3328,25 +2933,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__MachineAssignment_2"
-    // InternalWorkflow.g:1149:1: rule__WorkflowConfiguration__MachineAssignment_2 : ( ruleFQN ) ;
+    // InternalWorkflow.g:1016:1: rule__WorkflowConfiguration__MachineAssignment_2 : ( RULE_STRING ) ;
     public final void rule__WorkflowConfiguration__MachineAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1153:1: ( ( ruleFQN ) )
-            // InternalWorkflow.g:1154:2: ( ruleFQN )
+            // InternalWorkflow.g:1020:1: ( ( RULE_STRING ) )
+            // InternalWorkflow.g:1021:2: ( RULE_STRING )
             {
-            // InternalWorkflow.g:1154:2: ( ruleFQN )
-            // InternalWorkflow.g:1155:3: ruleFQN
+            // InternalWorkflow.g:1021:2: ( RULE_STRING )
+            // InternalWorkflow.g:1022:3: RULE_STRING
             {
-             before(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_2);
-            ruleFQN();
-
-            state._fsp--;
-
-             after(grammarAccess.getWorkflowConfigurationAccess().getMachineFQNParserRuleCall_2_0()); 
+             before(grammarAccess.getWorkflowConfigurationAccess().getMachineSTRINGTerminalRuleCall_2_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getWorkflowConfigurationAccess().getMachineSTRINGTerminalRuleCall_2_0()); 
 
             }
 
@@ -3369,25 +2970,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__ModelAssignment_5"
-    // InternalWorkflow.g:1164:1: rule__WorkflowConfiguration__ModelAssignment_5 : ( ruleFQN ) ;
+    // InternalWorkflow.g:1031:1: rule__WorkflowConfiguration__ModelAssignment_5 : ( RULE_STRING ) ;
     public final void rule__WorkflowConfiguration__ModelAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1168:1: ( ( ruleFQN ) )
-            // InternalWorkflow.g:1169:2: ( ruleFQN )
+            // InternalWorkflow.g:1035:1: ( ( RULE_STRING ) )
+            // InternalWorkflow.g:1036:2: ( RULE_STRING )
             {
-            // InternalWorkflow.g:1169:2: ( ruleFQN )
-            // InternalWorkflow.g:1170:3: ruleFQN
+            // InternalWorkflow.g:1036:2: ( RULE_STRING )
+            // InternalWorkflow.g:1037:3: RULE_STRING
             {
-             before(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_2);
-            ruleFQN();
-
-            state._fsp--;
-
-             after(grammarAccess.getWorkflowConfigurationAccess().getModelFQNParserRuleCall_5_0()); 
+             before(grammarAccess.getWorkflowConfigurationAccess().getModelSTRINGTerminalRuleCall_5_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getWorkflowConfigurationAccess().getModelSTRINGTerminalRuleCall_5_0()); 
 
             }
 
@@ -3410,17 +3007,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__ProbConfAssignment_6"
-    // InternalWorkflow.g:1179:1: rule__WorkflowConfiguration__ProbConfAssignment_6 : ( ruleProbabilityConfiguration ) ;
+    // InternalWorkflow.g:1046:1: rule__WorkflowConfiguration__ProbConfAssignment_6 : ( ruleProbabilityConfiguration ) ;
     public final void rule__WorkflowConfiguration__ProbConfAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1183:1: ( ( ruleProbabilityConfiguration ) )
-            // InternalWorkflow.g:1184:2: ( ruleProbabilityConfiguration )
+            // InternalWorkflow.g:1050:1: ( ( ruleProbabilityConfiguration ) )
+            // InternalWorkflow.g:1051:2: ( ruleProbabilityConfiguration )
             {
-            // InternalWorkflow.g:1184:2: ( ruleProbabilityConfiguration )
-            // InternalWorkflow.g:1185:3: ruleProbabilityConfiguration
+            // InternalWorkflow.g:1051:2: ( ruleProbabilityConfiguration )
+            // InternalWorkflow.g:1052:3: ruleProbabilityConfiguration
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getProbConfProbabilityConfigurationParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
@@ -3451,17 +3048,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__AssertionsAssignment_7_1"
-    // InternalWorkflow.g:1194:1: rule__WorkflowConfiguration__AssertionsAssignment_7_1 : ( ruleAssertion ) ;
+    // InternalWorkflow.g:1061:1: rule__WorkflowConfiguration__AssertionsAssignment_7_1 : ( ruleAssertion ) ;
     public final void rule__WorkflowConfiguration__AssertionsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1198:1: ( ( ruleAssertion ) )
-            // InternalWorkflow.g:1199:2: ( ruleAssertion )
+            // InternalWorkflow.g:1065:1: ( ( ruleAssertion ) )
+            // InternalWorkflow.g:1066:2: ( ruleAssertion )
             {
-            // InternalWorkflow.g:1199:2: ( ruleAssertion )
-            // InternalWorkflow.g:1200:3: ruleAssertion
+            // InternalWorkflow.g:1066:2: ( ruleAssertion )
+            // InternalWorkflow.g:1067:3: ruleAssertion
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_1_0()); 
             pushFollow(FOLLOW_2);
@@ -3492,17 +3089,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__WorkflowConfiguration__AssertionsAssignment_7_2_1"
-    // InternalWorkflow.g:1209:1: rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 : ( ruleAssertion ) ;
+    // InternalWorkflow.g:1076:1: rule__WorkflowConfiguration__AssertionsAssignment_7_2_1 : ( ruleAssertion ) ;
     public final void rule__WorkflowConfiguration__AssertionsAssignment_7_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1213:1: ( ( ruleAssertion ) )
-            // InternalWorkflow.g:1214:2: ( ruleAssertion )
+            // InternalWorkflow.g:1080:1: ( ( ruleAssertion ) )
+            // InternalWorkflow.g:1081:2: ( ruleAssertion )
             {
-            // InternalWorkflow.g:1214:2: ( ruleAssertion )
-            // InternalWorkflow.g:1215:3: ruleAssertion
+            // InternalWorkflow.g:1081:2: ( ruleAssertion )
+            // InternalWorkflow.g:1082:3: ruleAssertion
             {
              before(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -3533,25 +3130,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__BeforeAssignment_0"
-    // InternalWorkflow.g:1224:1: rule__Assertion__BeforeAssignment_0 : ( ruleFQN ) ;
+    // InternalWorkflow.g:1091:1: rule__Assertion__BeforeAssignment_0 : ( RULE_STRING ) ;
     public final void rule__Assertion__BeforeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1228:1: ( ( ruleFQN ) )
-            // InternalWorkflow.g:1229:2: ( ruleFQN )
+            // InternalWorkflow.g:1095:1: ( ( RULE_STRING ) )
+            // InternalWorkflow.g:1096:2: ( RULE_STRING )
             {
-            // InternalWorkflow.g:1229:2: ( ruleFQN )
-            // InternalWorkflow.g:1230:3: ruleFQN
+            // InternalWorkflow.g:1096:2: ( RULE_STRING )
+            // InternalWorkflow.g:1097:3: RULE_STRING
             {
-             before(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_2);
-            ruleFQN();
-
-            state._fsp--;
-
-             after(grammarAccess.getAssertionAccess().getBeforeFQNParserRuleCall_0_0()); 
+             before(grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getAssertionAccess().getBeforeSTRINGTerminalRuleCall_0_0()); 
 
             }
 
@@ -3574,25 +3167,21 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Assertion__AfterAssignment_2"
-    // InternalWorkflow.g:1239:1: rule__Assertion__AfterAssignment_2 : ( ruleFQN ) ;
+    // InternalWorkflow.g:1106:1: rule__Assertion__AfterAssignment_2 : ( RULE_STRING ) ;
     public final void rule__Assertion__AfterAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1243:1: ( ( ruleFQN ) )
-            // InternalWorkflow.g:1244:2: ( ruleFQN )
+            // InternalWorkflow.g:1110:1: ( ( RULE_STRING ) )
+            // InternalWorkflow.g:1111:2: ( RULE_STRING )
             {
-            // InternalWorkflow.g:1244:2: ( ruleFQN )
-            // InternalWorkflow.g:1245:3: ruleFQN
+            // InternalWorkflow.g:1111:2: ( RULE_STRING )
+            // InternalWorkflow.g:1112:3: RULE_STRING
             {
-             before(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_2);
-            ruleFQN();
-
-            state._fsp--;
-
-             after(grammarAccess.getAssertionAccess().getAfterFQNParserRuleCall_2_0()); 
+             before(grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getAssertionAccess().getAfterSTRINGTerminalRuleCall_2_0()); 
 
             }
 
@@ -3615,17 +3204,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__LowAssignment_0_3"
-    // InternalWorkflow.g:1254:1: rule__ProbabilityConfiguration__LowAssignment_0_3 : ( ruleFloat ) ;
+    // InternalWorkflow.g:1121:1: rule__ProbabilityConfiguration__LowAssignment_0_3 : ( ruleFloat ) ;
     public final void rule__ProbabilityConfiguration__LowAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1258:1: ( ( ruleFloat ) )
-            // InternalWorkflow.g:1259:2: ( ruleFloat )
+            // InternalWorkflow.g:1125:1: ( ( ruleFloat ) )
+            // InternalWorkflow.g:1126:2: ( ruleFloat )
             {
-            // InternalWorkflow.g:1259:2: ( ruleFloat )
-            // InternalWorkflow.g:1260:3: ruleFloat
+            // InternalWorkflow.g:1126:2: ( ruleFloat )
+            // InternalWorkflow.g:1127:3: ruleFloat
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getLowFloatParserRuleCall_0_3_0()); 
             pushFollow(FOLLOW_2);
@@ -3656,17 +3245,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__MediumAssignment_1_2"
-    // InternalWorkflow.g:1269:1: rule__ProbabilityConfiguration__MediumAssignment_1_2 : ( ruleFloat ) ;
+    // InternalWorkflow.g:1136:1: rule__ProbabilityConfiguration__MediumAssignment_1_2 : ( ruleFloat ) ;
     public final void rule__ProbabilityConfiguration__MediumAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1273:1: ( ( ruleFloat ) )
-            // InternalWorkflow.g:1274:2: ( ruleFloat )
+            // InternalWorkflow.g:1140:1: ( ( ruleFloat ) )
+            // InternalWorkflow.g:1141:2: ( ruleFloat )
             {
-            // InternalWorkflow.g:1274:2: ( ruleFloat )
-            // InternalWorkflow.g:1275:3: ruleFloat
+            // InternalWorkflow.g:1141:2: ( ruleFloat )
+            // InternalWorkflow.g:1142:3: ruleFloat
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getMediumFloatParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -3697,17 +3286,17 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ProbabilityConfiguration__HighAssignment_2_2"
-    // InternalWorkflow.g:1284:1: rule__ProbabilityConfiguration__HighAssignment_2_2 : ( ruleFloat ) ;
+    // InternalWorkflow.g:1151:1: rule__ProbabilityConfiguration__HighAssignment_2_2 : ( ruleFloat ) ;
     public final void rule__ProbabilityConfiguration__HighAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWorkflow.g:1288:1: ( ( ruleFloat ) )
-            // InternalWorkflow.g:1289:2: ( ruleFloat )
+            // InternalWorkflow.g:1155:1: ( ( ruleFloat ) )
+            // InternalWorkflow.g:1156:2: ( ruleFloat )
             {
-            // InternalWorkflow.g:1289:2: ( ruleFloat )
-            // InternalWorkflow.g:1290:3: ruleFloat
+            // InternalWorkflow.g:1156:2: ( ruleFloat )
+            // InternalWorkflow.g:1157:3: ruleFloat
             {
              before(grammarAccess.getProbabilityConfigurationAccess().getHighFloatParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_2);
@@ -3744,7 +3333,7 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000024000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000008000L});
@@ -3753,8 +3342,7 @@ public class InternalWorkflowParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000200002L});
 
 }

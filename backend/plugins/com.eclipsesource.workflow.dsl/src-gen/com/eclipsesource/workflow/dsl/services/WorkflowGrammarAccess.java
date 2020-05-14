@@ -27,11 +27,11 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMachineKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cMachineAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMachineFQNParserRuleCall_2_0 = (RuleCall)cMachineAssignment_2.eContents().get(0);
+		private final RuleCall cMachineSTRINGTerminalRuleCall_2_0 = (RuleCall)cMachineAssignment_2.eContents().get(0);
 		private final Keyword cWorkflowKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cModelAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cModelFQNParserRuleCall_5_0 = (RuleCall)cModelAssignment_5.eContents().get(0);
+		private final RuleCall cModelSTRINGTerminalRuleCall_5_0 = (RuleCall)cModelAssignment_5.eContents().get(0);
 		private final Assignment cProbConfAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cProbConfProbabilityConfigurationParserRuleCall_6_0 = (RuleCall)cProbConfAssignment_6.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
@@ -44,12 +44,12 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssertionsAssertionParserRuleCall_7_2_1_0 = (RuleCall)cAssertionsAssignment_7_2_1.eContents().get(0);
 		
 		//WorkflowConfiguration:
-		//	'machine' ':' machine=FQN
-		//	'workflow' ':' model=FQN
+		//	'machine' ':' machine=STRING
+		//	'workflow' ':' model=STRING
 		//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'machine' ':' machine=FQN 'workflow' ':' model=FQN probConf=ProbabilityConfiguration? ('assertions'
+		//'machine' ':' machine=STRING 'workflow' ':' model=STRING probConf=ProbabilityConfiguration? ('assertions'
 		//assertions+=Assertion (',' assertions+=Assertion)*)?
 		public Group getGroup() { return cGroup; }
 		
@@ -59,11 +59,11 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//machine=FQN
+		//machine=STRING
 		public Assignment getMachineAssignment_2() { return cMachineAssignment_2; }
 		
-		//FQN
-		public RuleCall getMachineFQNParserRuleCall_2_0() { return cMachineFQNParserRuleCall_2_0; }
+		//STRING
+		public RuleCall getMachineSTRINGTerminalRuleCall_2_0() { return cMachineSTRINGTerminalRuleCall_2_0; }
 		
 		//'workflow'
 		public Keyword getWorkflowKeyword_3() { return cWorkflowKeyword_3; }
@@ -71,11 +71,11 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
 		
-		//model=FQN
+		//model=STRING
 		public Assignment getModelAssignment_5() { return cModelAssignment_5; }
 		
-		//FQN
-		public RuleCall getModelFQNParserRuleCall_5_0() { return cModelFQNParserRuleCall_5_0; }
+		//STRING
+		public RuleCall getModelSTRINGTerminalRuleCall_5_0() { return cModelSTRINGTerminalRuleCall_5_0; }
 		
 		//probConf=ProbabilityConfiguration?
 		public Assignment getProbConfAssignment_6() { return cProbConfAssignment_6; }
@@ -111,32 +111,32 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.Assertion");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cBeforeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cBeforeFQNParserRuleCall_0_0 = (RuleCall)cBeforeAssignment_0.eContents().get(0);
+		private final RuleCall cBeforeSTRINGTerminalRuleCall_0_0 = (RuleCall)cBeforeAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAfterAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAfterFQNParserRuleCall_2_0 = (RuleCall)cAfterAssignment_2.eContents().get(0);
+		private final RuleCall cAfterSTRINGTerminalRuleCall_2_0 = (RuleCall)cAfterAssignment_2.eContents().get(0);
 		
 		//Assertion:
-		//	before=FQN '=>' after=FQN;
+		//	before=STRING '=>' after=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//before=FQN '=>' after=FQN
+		//before=STRING '=>' after=STRING
 		public Group getGroup() { return cGroup; }
 		
-		//before=FQN
+		//before=STRING
 		public Assignment getBeforeAssignment_0() { return cBeforeAssignment_0; }
 		
-		//FQN
-		public RuleCall getBeforeFQNParserRuleCall_0_0() { return cBeforeFQNParserRuleCall_0_0; }
+		//STRING
+		public RuleCall getBeforeSTRINGTerminalRuleCall_0_0() { return cBeforeSTRINGTerminalRuleCall_0_0; }
 		
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 		
-		//after=FQN
+		//after=STRING
 		public Assignment getAfterAssignment_2() { return cAfterAssignment_2; }
 		
-		//FQN
-		public RuleCall getAfterFQNParserRuleCall_2_0() { return cAfterFQNParserRuleCall_2_0; }
+		//STRING
+		public RuleCall getAfterSTRINGTerminalRuleCall_2_0() { return cAfterSTRINGTerminalRuleCall_2_0; }
 	}
 	public class ProbabilityConfigurationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.ProbabilityConfiguration");
@@ -213,33 +213,6 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		//Float
 		public RuleCall getHighFloatParserRuleCall_2_2_0() { return cHighFloatParserRuleCall_2_2_0; }
 	}
-	public class FQNElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.FQN");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		
-		//FQN:
-		//	ID ("." ID)*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ID ("." ID)*
-		public Group getGroup() { return cGroup; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
-		
-		//("." ID)*
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//"."
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
-	}
 	public class FloatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.eclipsesource.workflow.dsl.Workflow.Float");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -268,7 +241,6 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 	private final WorkflowConfigurationElements pWorkflowConfiguration;
 	private final AssertionElements pAssertion;
 	private final ProbabilityConfigurationElements pProbabilityConfiguration;
-	private final FQNElements pFQN;
 	private final FloatElements pFloat;
 	
 	private final Grammar grammar;
@@ -283,7 +255,6 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 		this.pWorkflowConfiguration = new WorkflowConfigurationElements();
 		this.pAssertion = new AssertionElements();
 		this.pProbabilityConfiguration = new ProbabilityConfigurationElements();
-		this.pFQN = new FQNElements();
 		this.pFloat = new FloatElements();
 	}
 	
@@ -315,8 +286,8 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//WorkflowConfiguration:
-	//	'machine' ':' machine=FQN
-	//	'workflow' ':' model=FQN
+	//	'machine' ':' machine=STRING
+	//	'workflow' ':' model=STRING
 	//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 	public WorkflowConfigurationElements getWorkflowConfigurationAccess() {
 		return pWorkflowConfiguration;
@@ -327,7 +298,7 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Assertion:
-	//	before=FQN '=>' after=FQN;
+	//	before=STRING '=>' after=STRING;
 	public AssertionElements getAssertionAccess() {
 		return pAssertion;
 	}
@@ -344,16 +315,6 @@ public class WorkflowGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getProbabilityConfigurationRule() {
 		return getProbabilityConfigurationAccess().getRule();
-	}
-	
-	//FQN:
-	//	ID ("." ID)*;
-	public FQNElements getFQNAccess() {
-		return pFQN;
-	}
-	
-	public ParserRule getFQNRule() {
-		return getFQNAccess().getRule();
 	}
 	
 	//Float ecore::EFloat:

@@ -38,21 +38,21 @@ class WorkflowIdeContentProposalProvider extends IdeContentProposalProvider {
 
 	def completeWorkflowConfigurationMachine(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
 		index.machines.forEach[graph | 
-			val proposal = proposalCreator.createProposal(graph.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
+			val proposal = proposalCreator.createProposal(graph.name.quoteString, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]
 	}
 	
 	def completeWorkflowConfigurationModel(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
 		index.getWorkflows(model.workflowConfiguration.machine).forEach[workflow | 
-			val proposal = proposalCreator.createProposal(workflow.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
+			val proposal = proposalCreator.createProposal(workflow.name.quoteString, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]
 	}
 	
 	def completeAssertionBeforeAfter(EObject model, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
 		index.getTasks(model.workflowConfiguration.machine,model.workflowConfiguration.model).forEach[task | 
-			val proposal = proposalCreator.createProposal(task.name, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
+			val proposal = proposalCreator.createProposal(task.name.quoteString, "", context, ContentAssistEntry.KIND_UNKNOWN, null)
 			acceptor.accept(proposal, proposalPriorities.getDefaultPriority(proposal))
 		]
 	}
@@ -69,4 +69,7 @@ class WorkflowIdeContentProposalProvider extends IdeContentProposalProvider {
 		}
 	}
 
+	def static quoteString(String text) {
+		return "\"" + text + "\"";
+	}
 }

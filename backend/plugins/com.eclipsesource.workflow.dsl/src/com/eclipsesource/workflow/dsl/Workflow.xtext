@@ -4,19 +4,16 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate workflow "http://www.eclipsesource.com/workflow/dsl/Workflow"
 
 WorkflowConfiguration:
-	'machine' ':' machine=FQN
-	'workflow' ':' model=FQN
+	'machine' ':' machine=STRING
+	'workflow' ':' model=STRING
 	(probConf=ProbabilityConfiguration)?
 	('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 
 Assertion:
-	before=FQN '=>' after=FQN;
+	before=STRING '=>' after=STRING;
 
 ProbabilityConfiguration:
 	('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float);
-
-FQN returns ecore::EString:
-	ID ("." ID)*;
 
 Float returns ecore::EFloat:
 	INT '.' INT;
