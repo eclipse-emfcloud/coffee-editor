@@ -28,7 +28,7 @@ import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
 
 import { WorkflowAnalysisClient, WorkflowAnalyzer } from '../common/workflow-analyze-protocol';
 
-const DEFAULT_PORT = 8024;
+// const DEFAULT_PORT = 8024;
 
 @injectable()
 export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicationContribution {
@@ -42,14 +42,26 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
         @inject(ILogger) private readonly logger: ILogger) { }
 
     initialize(): void {
-        let port = this.getPort();
-        if (!port && !this.startedServer) {
-            this.startServer(DEFAULT_PORT).then(() => this.connect(DEFAULT_PORT));
+        const port = this.getPort();
+        if (port && !this.startedServer) {
+            this.startServer(port).then(() => this.connect(port));
+        } else if (port) {
+            this.connect(port);
+        } else {
+            const command = 'java';
+
+            const jarPath = this.getJarPath();
+            const args: string[] = ['-jar', jarPath];
+            this.spawnProcessAsync(command, args).then(process => {
+                // const connection = createStreamConnection(process.outputStream, process.inputStream, () => {
+                //     this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
+                //     process.kill();
+                // });
+
+                this.connection = rpc.createMessageConnection(process.outputStream, process.inputStream);
+                this.connection.listen();
+            });
         }
-        if (!port) {
-            port = DEFAULT_PORT;
-        }
-        this.connect(port);
     }
 
     private getPort(): number | undefined {
@@ -60,18 +72,22 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
             return Number.parseInt(arg.substring('--WF_ANALYZER='.length), 10);
         }
     }
-
-    private async startServer(port: number) {
+    private getJarPath() {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
         const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
         if (jarPaths.length === 0) {
-            throw new Error('The workflow analysis server launcher is not found.');
+            throw new Error('[WorkflowAnalyzer] Server launcher not found.');
         }
         const jarPath = path.resolve(serverPath, jarPaths[0]);
+        return jarPath;
+    }
+
+    private async startServer(port: number) {
         const command = 'java';
+        const jarPath = this.getJarPath();
         const args: string[] = [];
         args.push('-jar', jarPath);
-        args.push('-host', 'localhost', '-port', DEFAULT_PORT.toString());
+        args.push('-host', 'localhost', '-port', port.toString());
         this.logger.info('[WorkflowAnalyzer] Spawn Process with command ' + command + ' and arguments ' + args);
         const process = await this.spawnProcessAsync(command, args);
         this.logger.info('[WorkflowAnalyzer] Spawned process, waiting for server to be ready');

@@ -7,7 +7,6 @@ import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.Channels;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,29 +15,38 @@ import org.eclipse.lsp4j.jsonrpc.Launcher;
 
 public class WorkflowAnalyzerServerLauncher {
 
-	private ServerThread serverThread;
+	private SocketServerThread socketServerThread;
+	private StreamServerThread streamServerThread;
 
-	public void start(final String hostName, final int port) {
-		serverThread = new ServerThread(hostName, port);
-		serverThread.start();
+	public void start(final String hostName, final Integer port) {
+		if (hostName != null && port != null) {
+			socketServerThread = new SocketServerThread(hostName, port);
+			socketServerThread.run();
+		} else {
+			streamServerThread = new StreamServerThread();
+			streamServerThread.run();
+		}
+
 	}
 
 	public void shutdown() {
-		if (serverThread != null) {
-			serverThread.shutdown();
+		if (socketServerThread != null) {
+			socketServerThread.shutdown();
+		}
+		if (streamServerThread != null) {
+			streamServerThread.shutdown();
 		}
 	}
 
-	private final class ServerThread extends Thread {
+	private final class SocketServerThread extends Thread {
 
 		private final String host;
 		private final int port;
 
 		private ExecutorService threadPool;
-		private boolean shouldRun = true;
 		private AsynchronousSocketChannel socketChannel;
 
-		ServerThread(final String host, final int port) {
+		SocketServerThread(final String host, final int port) {
 			super("Workflow Analyzer Server");
 			this.host = host;
 			this.port = port;
@@ -49,19 +57,16 @@ public class WorkflowAnalyzerServerLauncher {
 			threadPool = Executors.newCachedThreadPool();
 			try (AsynchronousServerSocketChannel serverSocket = AsynchronousServerSocketChannel.open()
 					.bind(new InetSocketAddress(host, port))) {
-				while (shouldRun) {
-					System.out.println("[WorkflowAnalysisServer] Ready to accept client requests");
-					socketChannel = serverSocket.accept().get();
-					final WorkflowAnalyzerServerImpl server = new WorkflowAnalyzerServerImpl();
-					final InputStream input = Channels.newInputStream(socketChannel);
-					final OutputStream output = Channels.newOutputStream(socketChannel);
-					final Launcher<WorkflowAnalysisClient> launcher = Launcher.createIoLauncher(server,
-							WorkflowAnalysisClient.class, input, output, threadPool, msg -> msg);
-					final WorkflowAnalysisClient client = launcher.getRemoteProxy();
-					server.connect(client);
-					CompletableFuture.supplyAsync(() -> startLauncher(launcher)).thenRun(server::dispose);
-					System.out.println("[WorkflowAnalysisServer] Connected client " + socketChannel.getRemoteAddress());
-				}
+				System.out.println("[WorkflowAnalysisServer] Ready to accept client requests");
+				socketChannel = serverSocket.accept().get();
+				final WorkflowAnalyzerServerImpl server = new WorkflowAnalyzerServerImpl();
+				final InputStream input = Channels.newInputStream(socketChannel);
+				final OutputStream output = Channels.newOutputStream(socketChannel);
+				final Launcher<WorkflowAnalysisClient> launcher = Launcher.createIoLauncher(server,
+						WorkflowAnalysisClient.class, input, output, threadPool, msg -> msg);
+				final WorkflowAnalysisClient client = launcher.getRemoteProxy();
+				server.connect(client);
+				startLauncher(launcher);
 			} catch (IOException | InterruptedException | ExecutionException e) {
 				System.err.println("[WorkflowAnalysisServer] Encountered an error at accepting new client");
 				e.printStackTrace();
@@ -80,7 +85,6 @@ public class WorkflowAnalyzerServerLauncher {
 		}
 
 		private void shutdown() {
-			this.shouldRun = false;
 			if (socketChannel != null) {
 				try {
 					socketChannel.close();
@@ -92,6 +96,44 @@ public class WorkflowAnalyzerServerLauncher {
 				if (threadPool != null) {
 					threadPool.shutdownNow();
 				}
+			}
+		}
+	}
+
+	private final class StreamServerThread extends Thread {
+
+		private ExecutorService threadPool;
+
+		StreamServerThread() {
+			super("Workflow Analyzer Stream Server");
+		}
+
+		@Override
+		public void run() {
+			threadPool = Executors.newCachedThreadPool();
+			final WorkflowAnalyzerServerImpl server = new WorkflowAnalyzerServerImpl();
+			final InputStream input = System.in;
+			final OutputStream output = System.out;
+			final Launcher<WorkflowAnalysisClient> launcher = Launcher.createLauncher(server,
+					WorkflowAnalysisClient.class, input, output, threadPool, msg -> msg);
+			final WorkflowAnalysisClient client = launcher.getRemoteProxy();
+			server.connect(client);
+			startLauncher(launcher);
+		}
+
+		private Void startLauncher(final Launcher<WorkflowAnalysisClient> launcher) {
+			try {
+				return launcher.startListening().get();
+			} catch (InterruptedException | ExecutionException e) {
+				System.err.println("Workflow Analysis Server encountered an error at accepting new client");
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		private void shutdown() {
+			if (threadPool != null) {
+				threadPool.shutdownNow();
 			}
 		}
 	}
