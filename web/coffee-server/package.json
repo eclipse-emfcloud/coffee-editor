@@ -6,7 +6,7 @@
   ],
   "homepage": "https://github.com/eclipsesource/coffee-editor",
   "bugs": "https://github.com/eclipsesource/coffee-editor/issues",
-  "version": "0.0.0",
+  "version": "0.7.0",
   "files": [
     "build",
     "lib",
