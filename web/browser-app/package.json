@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "browser-app",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "dependencies": {
     "@theia/callhierarchy": "latest",
     "@theia/console": "latest",
@@ -32,13 +32,13 @@
     "@theia/userstorage": "latest",
     "@theia/variable-resolver": "latest",
     "@theia/workspace": "latest",
-    "coffee-workflow-glsp-editor": "0.1.0",
-    "coffee-editor-extension": "1.0.0",
-    "coffee-workflow-analyzer": "0.0.0",
-    "coffee-workflow-analyzer-editors": "0.0.0",
-    "coffee-java-extension": "0.0.0",
-    "coffee-server": "0.0.0",
-    "coffee-welcome-page": "0.0.0"
+    "coffee-workflow-glsp-editor": "0.7.0",
+    "coffee-editor-extension": "0.7.0",
+    "coffee-workflow-analyzer": "0.7.0",
+    "coffee-workflow-analyzer-editors": "0.7.0",
+    "coffee-java-extension": "0.7.0",
+    "coffee-server": "0.7.0",
+    "coffee-welcome-page": "0.7.0"
   },
   "devDependencies": {
     "@theia/cli": "latest"

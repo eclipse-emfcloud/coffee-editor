@@ -3,7 +3,7 @@
   "keywords": [
     "theia-extension"
   ],
-  "version": "0.0.0",
+  "version": "0.7.0",
   "files": [
     "lib",
     "src"
@@ -17,7 +17,7 @@
     "glob": "7.1.4",
     "vscode-jsonrpc": "4.0.0",
     "vscode-ws-jsonrpc": "0.1.0",
-    "coffee-workflow-analyzer-editors": "0.0.0"
+    "coffee-workflow-analyzer-editors": "0.7.0"
   },
   "devDependencies": {
     "rimraf": "latest",

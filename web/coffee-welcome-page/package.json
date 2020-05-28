@@ -3,7 +3,7 @@
   "keywords": [
     "theia-extension"
   ],
-  "version": "0.0.0",
+  "version": "0.7.0",
   "files": [
     "lib",
     "src"
@@ -15,8 +15,8 @@
     "@theia/filesystem": "latest",
     "@theia/navigator": "latest",
     "@theia/debug": "latest",
-    "coffee-workflow-analyzer": "0.0.0",
-    "coffee-java-extension": "0.0.0"
+    "coffee-workflow-analyzer": "0.7.0",
+    "coffee-java-extension": "0.7.0"
   },
   "devDependencies": {
     "rimraf": "latest",
