@@ -1,1 +1,1 @@
-/// <reference types='@typefox/monaco-editor-core/monaco'/>
+/// <reference types='@theia/monaco-editor-core/monaco'/>
