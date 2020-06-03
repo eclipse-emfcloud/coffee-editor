@@ -11,9 +11,10 @@ The backend is located in the `backend/` folder and backend specific documentati
 We are relying on a bunch of projects:
 
 - https://github.com/eclipsesource/jsonforms
-- https://github.com/eclipsesource/graphical-lsp
-- https://github.com/eclipsesource/modelserver
-- https://github.com/eclipsesource/modelserver-theia
+- https://github.com/eclipse-glsp/glsp
+- https://github.com/eclipse-emfcloud/emfcloud-modelserver
+- https://github.com/eclipse-emfcloud/emfcloud-modelserver-theia
+- https://github.com/eclipse-emfcloud/theia-tree-editor
 
 If you encounter issues please report them in the corresponding project.
 This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
