@@ -53,11 +53,6 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
             const jarPath = this.getJarPath();
             const args: string[] = ['-jar', jarPath];
             this.spawnProcessAsync(command, args).then(process => {
-                // const connection = createStreamConnection(process.outputStream, process.inputStream, () => {
-                //     this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
-                //     process.kill();
-                // });
-
                 this.connection = rpc.createMessageConnection(process.outputStream, process.inputStream);
                 this.connection.listen();
             });

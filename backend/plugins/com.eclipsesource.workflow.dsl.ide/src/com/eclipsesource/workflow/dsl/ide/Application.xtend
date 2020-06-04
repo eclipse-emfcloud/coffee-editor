@@ -22,14 +22,14 @@ class Application implements IApplication {
 
 	override start(IApplicationContext context) throws Exception {
 		
-		if(isDebug(context))
+		if(startSocketServer(context))
 			new Thread(new RunSocketServer()).run()
 		else 
 			new Thread(new RunStreamServer()).run()
 		return null;
 	}
 	
-	def isDebug(IApplicationContext context) {
+	def startSocketServer(IApplicationContext context) {
 		val args = context.getArguments().get(IApplicationContext.APPLICATION_ARGS) as String[];
 		for (var i = 0; i < args.length; i++) {
 			val arg = args.get(i);

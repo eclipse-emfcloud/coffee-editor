@@ -71,22 +71,21 @@ public class WorkflowIndexService implements WorkspaceService {
 				continue;
 			}
 			switch (event.getType()) {
-			case Created:
-				workflowFileCreated(uri);
-				break;
-			case Changed:
-				workflowFileChanged(uri);
-				break;
-			case Deleted:
-				workflowFileDeleted(uri);
-				break;
+				case Created:
+					workflowFileCreated(uri);
+					break;
+				case Changed:
+					workflowFileChanged(uri);
+					break;
+				case Deleted:
+					workflowFileDeleted(uri);
+					break;
 			}
 		}
 	}
 
 	private void workspaceFolderAdded(String folderUri) {
 		try {
-//			System.out.println("[WorkflowDSL] Folder " + folderUri + " added.");
 			File rootFolder = new File(new URI(folderUri));
 			FileUtils.iterateFiles(rootFolder, new String[] { WORKFLOW_EXTENSION }, true)
 					.forEachRemaining(file -> workflowFileCreated(file.toURI().toString()));
@@ -97,7 +96,6 @@ public class WorkflowIndexService implements WorkspaceService {
 
 	private void workspaceFolderDeleted(String folderUri) {
 		try {
-//			System.out.println("[WorkflowDSL] Folder " + folderUri + " deleted.");
 			File rootFolder = new File(new URI(folderUri));
 			FileUtils.iterateFiles(rootFolder, new String[] { WORKFLOW_EXTENSION }, true)
 					.forEachRemaining(file -> workflowFileDeleted(file.toURI().toString()));
@@ -109,7 +107,6 @@ public class WorkflowIndexService implements WorkspaceService {
 	private void workflowFileCreated(String uri) {
 		try {
 			index.putGraph(uri, getContent(uri));
-//			System.out.println("[WorkflowDSL] File " + uri + " added to index.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,7 +116,6 @@ public class WorkflowIndexService implements WorkspaceService {
 		try {
 			// changed: simply re-parse the whole graph
 			index.putGraph(uri, getContent(uri));
-//			System.out.println("[WorkflowDSL] File " + uri + " changed in index.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,7 +123,6 @@ public class WorkflowIndexService implements WorkspaceService {
 
 	private void workflowFileDeleted(String uri) {
 		index.removeGraph(uri);
-//		System.out.println("[WorkflowDSL] File " + uri + " deleted from index.");
 	}
 
 	private static Machine getContent(String uri) throws IllegalArgumentException, Exception {

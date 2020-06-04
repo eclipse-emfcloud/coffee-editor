@@ -25,7 +25,6 @@
 <setEntry value="com.fasterxml.jackson.core.jackson-annotations@default:default"/>
 <setEntry value="com.fasterxml.jackson.core.jackson-core@default:default"/>
 <setEntry value="com.fasterxml.jackson.core.jackson-databind@default:default"/>
-<setEntry value="com.google.gson*2.7.0.v20170129-0911@default:default"/>
 <setEntry value="com.google.gson*2.8.2.v20180104-1110@default:default"/>
 <setEntry value="com.google.guava@default:default"/>
 <setEntry value="com.google.inject@default:default"/>
@@ -41,9 +40,6 @@
 <setEntry value="org.apache.commons.io*2.6.0.v20190123-2029@default:default"/>
 <setEntry value="org.apache.commons.jxpath@default:default"/>
 <setEntry value="org.apache.commons.logging@default:default"/>
-<setEntry value="org.apache.felix.gogo.command@default:default"/>
-<setEntry value="org.apache.felix.gogo.runtime@default:default"/>
-<setEntry value="org.apache.felix.gogo.shell@default:default"/>
 <setEntry value="org.apache.felix.scr@1:true"/>
 <setEntry value="org.apache.log4j@default:default"/>
 <setEntry value="org.apache.xmlgraphics@default:default"/>
@@ -107,7 +103,6 @@
 <setEntry value="org.eclipse.osgi.services@default:default"/>
 <setEntry value="org.eclipse.osgi.util@default:default"/>
 <setEntry value="org.eclipse.osgi@-1:true"/>
-<setEntry value="org.eclipse.pde.ds.lib@default:default"/>
 <setEntry value="org.eclipse.swt.gtk.linux.x86_64@default:false"/>
 <setEntry value="org.eclipse.swt@default:default"/>
 <setEntry value="org.eclipse.team.core@default:default"/>
