@@ -23,7 +23,7 @@
 <stringAttribute key="location" value="${workspace_loc}/../runtime-WorkflowAnalyzer"/>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-11-openjdk-amd64"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog --port 5083 --host 127.0.0.1"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -port 5083 -host 127.0.0.1"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
@@ -411,11 +411,6 @@
 <setEntry value="com.eclipsesource.coffee.workflow.analyzer.coffee@default:default"/>
 <setEntry value="com.eclipsesource.coffee.workflow.analyzer@default:default"/>
 <setEntry value="com.eclipsesource.workflow.dsl@default:default"/>
-<setEntry value="org.eclipse.glsp.api@default:default"/>
-<setEntry value="org.eclipse.glsp.graph@default:default"/>
-<setEntry value="org.eclipse.glsp.layout@default:default"/>
-<setEntry value="org.eclipse.glsp.server.websocket@default:default"/>
-<setEntry value="org.eclipse.glsp.server@default:default"/>
 </setAttribute>
 <booleanAttribute key="show_selected_only" value="false"/>
 <stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>

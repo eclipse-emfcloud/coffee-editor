@@ -33,7 +33,6 @@ import { WorkflowAnalysisClient, WorkflowAnalyzer } from '../common/workflow-ana
 @injectable()
 export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicationContribution {
 
-    private startedServer: boolean = false;
     private connection?: rpc.MessageConnection;
     private client?: WorkflowAnalysisClient;
 
@@ -43,9 +42,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
 
     initialize(): void {
         const port = this.getPort();
-        if (port && !this.startedServer) {
-            this.startServer(port).then(() => this.connect(port));
-        } else if (port) {
+        if (port) {
             this.connect(port);
         } else {
             const command = 'java';
@@ -75,20 +72,6 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
         }
         const jarPath = path.resolve(serverPath, jarPaths[0]);
         return jarPath;
-    }
-
-    private async startServer(port: number) {
-        const command = 'java';
-        const jarPath = this.getJarPath();
-        const args: string[] = [];
-        args.push('-jar', jarPath);
-        args.push('-host', 'localhost', '-port', port.toString());
-        this.logger.info('[WorkflowAnalyzer] Spawn Process with command ' + command + ' and arguments ' + args);
-        const process = await this.spawnProcessAsync(command, args);
-        this.logger.info('[WorkflowAnalyzer] Spawned process, waiting for server to be ready');
-        await this.waitUntilServerReady(process);
-        this.logger.info('[WorkflowAnalyzer] Server communicated to be ready');
-        this.startedServer = true;
     }
 
     private async connect(port: number) {
@@ -144,19 +127,6 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
             }
         }
     }
-
-    private waitUntilServerReady(process: RawProcess): Promise<any> {
-        return new Promise<any>(resolve =>
-            process.outputStream.on('data', data => {
-                const message = String.fromCharCode.apply(null, data);
-                this.logger.info('[WorkflowAnalyzer] Server output: ' + message);
-                if (message.includes('Ready')) {
-                    return resolve(data);
-                }
-            })
-        );
-    }
-
     setClient(client: WorkflowAnalysisClient): void {
         this.client = client;
     }

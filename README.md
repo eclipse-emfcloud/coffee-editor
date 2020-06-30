@@ -108,10 +108,14 @@ In order to debug, start the `com.eclipsesource.coffee.product.workflow.analyzer
 
 Please make sure to set the `--WF_ANALYZER=5083` parameter to the browser app. In the backend you need to pass `-port` and `-host` with parameters as application arguments.
 
+You can also simply use the predefined `WorkflowAnalyzerServer.launch` run config.
+
 #### Workflow DSL
 
 In order to debug, start the `com.eclipsesource.coffee.product.workflow.dsl` product in debug mode.
 Please make sure to add `--WF_LSP=5017` parameter to the browser app. In the backend you need to pass `-startSocket` as an application argument.
+
+You can also use the predefined `RunSocketServer-Headless.launch` run config.
 
 #### Coffee Model Server
 
@@ -128,7 +132,7 @@ Use the `com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServer
 
 #### Debug Theia Backend
 
-Use the `Start Browser Backend` launch config inside VSCode.
+Use the `Debug Browser Backend` launch config inside VSCode.
 
 #### Debug Theia Frontend
 

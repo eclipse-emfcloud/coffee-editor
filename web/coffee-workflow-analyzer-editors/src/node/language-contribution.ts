@@ -15,7 +15,6 @@
  */
 import { ILogger } from '@theia/core';
 import { BaseLanguageServerContribution, IConnection } from '@theia/languages/lib/node';
-import { RawProcess } from '@theia/process/lib/node/raw-process';
 import * as glob from 'glob';
 import { inject, injectable } from 'inversify';
 import * as net from 'net';
@@ -25,7 +24,6 @@ import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
 @injectable()
 export class WorkflowContribution extends BaseLanguageServerContribution {
 
-    private startedServer: boolean = false;
     @inject(ILogger) private readonly logger: ILogger;
 
     readonly description = {
@@ -52,9 +50,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
     async start(clientConnection: IConnection): Promise<void> {
         this.logger.info('[WorkflowDSL] Start Server for Client Connection.');
         const socketPort = this.getPort();
-        if (socketPort && !this.startedServer) {
-            this.startServer().then(() => this.connect(clientConnection, socketPort));
-        } else if (socketPort) {
+        if (socketPort) {
             this.connect(clientConnection, socketPort);
         } else {
             const command = 'java';
@@ -74,19 +70,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
         socket.connect(socketPort);
         this.forward(clientConnection, serverConnection);
     }
-    private async startServer() {
-        const jarPath = this.getJarPath();
-        const command = 'java';
-        const args: string[] = [];
-        args.push('-jar', jarPath);
-        args.push('-startSocket');
-        this.logger.info('[WorkflowDSL] Spawn Process with command ' + command + ' and arguments ' + args);
-        const process = await this.spawnProcessAsync(command, args);
-        this.logger.info('[WorkflowDSL] Spawned process, waiting for server to be ready');
-        await this.waitUntilServerReady(process);
-        this.logger.info('[WorkflowDSL] Server communicated to be ready');
-        this.startedServer = true;
-    }
+
     private getJarPath() {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
         const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
@@ -97,15 +81,4 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
         return jarPath;
     }
 
-    private waitUntilServerReady(process: RawProcess): Promise<any> {
-        return new Promise<any>(resolve =>
-            process.outputStream.on('data', data => {
-                const message = String.fromCharCode.apply(undefined, data);
-                this.logger.info('[WorkflowDSL] Server output: ' + message);
-                if (message.includes('Ready')) {
-                    return resolve(data);
-                }
-            })
-        );
-    }
 }
