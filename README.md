@@ -21,6 +21,9 @@ This project should not contain much code and should mostly consist of 'glue' co
 
 ## Prerequisites
 
+### Java
+You need Java 11 to build the Coffee Editor.
+
 ### Install [nvm](https://github.com/creationix/nvm#install-script).
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
