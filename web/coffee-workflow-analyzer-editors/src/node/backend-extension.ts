@@ -13,14 +13,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import { BackendApplicationContribution } from '@theia/core/lib/node';
 import { LanguageServerContribution } from '@theia/languages/lib/node';
 import { ContainerModule } from 'inversify';
 
 import { WorkflowContribution } from './language-contribution';
-import { WorkflowLSPServerLauncher } from './workflow-lsp-launcher';
 
 export default new ContainerModule(bind => {
-    bind(BackendApplicationContribution).to(WorkflowLSPServerLauncher).inSingletonScope();
     bind(LanguageServerContribution).to(WorkflowContribution).inSingletonScope();
 });
