@@ -1,6 +1,9 @@
 # Coffee Editor IDE
 
-An example of how to build the Theia-based applications with the tree-editor-extension.
+An example of how to build the Theia-based tools including graphical editos, form-based editors, tree-based editors, textual DSLs, model analyisis, debugging and more. The coffee editor is part of the [emf.cloud](https://www.eclipse.org/emfcloud/) project.
+Please visit the [emf.cloud home page](https://www.eclipse.org/emfcloud/#coffeeeditoroverview) for an overview of all features and an [online live demonstration](https://eclipsesource.com/coffee-editor)!
+
+## Project Structure
 The coffee-editor consists of a frontend and a backend.
 
 The frontend is located in the `web/` folder and frontend specific documentation can be found in the [frontend README](web/README.md)
