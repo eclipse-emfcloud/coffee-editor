@@ -13,9 +13,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
-import { TreeEditor } from 'theia-tree-editor';
 import { v4 } from 'uuid';
 
 import { CoffeeModel } from './coffee-model';

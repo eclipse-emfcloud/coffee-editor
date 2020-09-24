@@ -13,11 +13,16 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+import {
+  BaseTreeEditorContribution,
+  BaseTreeEditorWidget,
+  TreeContextMenu,
+  TreeEditor,
+} from '@eclipse-emfcloud/theia-tree-editor';
 import { CommandRegistry, MenuModelRegistry } from '@theia/core';
 import { ApplicationShell, NavigatableWidgetOptions, OpenerService, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
-import { BaseTreeEditorContribution, BaseTreeEditorWidget, TreeContextMenu, TreeEditor } from 'theia-tree-editor';
 
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
