@@ -810,6 +810,22 @@
     node-fetch "2.6.0"
     ws "7.1.1"
 
+"@eclipse-emfcloud/theia-tree-editor@latest":
+  version "0.7.0-next.821321b"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/theia-tree-editor/-/theia-tree-editor-0.7.0-next.821321b.tgz#d7390d769222d363db409f3f7c6949adf3357bcc"
+  integrity sha512-X3rrHvid+XJVhNqr26ln3GWoYLHUanaa5dbqkENYwigIATPUeTQoliiJKhhRySshEw8i1zqKuWZSjkE71MmcwQ==
+  dependencies:
+    "@jsonforms/core" "2.4.0"
+    "@jsonforms/react" "2.4.0"
+    "@jsonforms/vanilla-renderers" "2.4.0"
+    "@theia/core" "^1.0.0"
+    "@theia/workspace" "^1.0.0"
+    react "^16.9.13"
+    react-dom "^16.9.13"
+    react-redux "^7.1.5"
+    redux "^4.0.4"
+    uuid "^3.3.2"
+
 "@eclipse-glsp-examples/workflow-sprotty@0.8.0-rc-02", "@eclipse-glsp-examples/workflow-sprotty@next":
   version "0.8.0-rc-02"
   resolved "https://registry.yarnpkg.com/@eclipse-glsp-examples/workflow-sprotty/-/workflow-sprotty-0.8.0-rc-02.tgz#6bea4678a1d3d0d061b465b9928ffcff564afed1"
@@ -918,10 +934,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@jsonforms/core@2.4.0-beta.0":
-  version "2.4.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-2.4.0-beta.0.tgz#4e744418fc07af4572fe86b2844c4836857aacde"
-  integrity sha512-IInDFyCzYsIsJLZTU61EUlYMQkta9i3RrIK1LmFB1cNeglsWq21M6JOxff+P3qmS935LlEm62bbfdZM/rcsfkQ==
+"@jsonforms/core@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-2.4.0.tgz#81d2f51f2cf0cc520f4817144358736aea5308a5"
+  integrity sha512-x/3aCScsGa/QyTuQC2EO6uleGqf8SkMRcvpH209Jg+NE8poaq3ZOnOoygnQRmql4ay/ciwOJiaidImESjcDPrg==
   dependencies:
     "@types/json-schema" "^7.0.3"
     ajv "^6.10.2"
@@ -930,10 +946,10 @@
     uri-js "^4.2.2"
     uuid "^3.3.3"
 
-"@jsonforms/react@2.4.0-beta.0":
-  version "2.4.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/react/-/react-2.4.0-beta.0.tgz#3f99c4cda87eb5eb81eb81a52673b3e463d55dc4"
-  integrity sha512-OC120AK6sIDsFyV7nvsqmeDG7muVtsYdRNyRTn4r7yl3zQstgBcU5KJHYpod69Luv9TsILSoYvcOimmMWHfHMQ==
+"@jsonforms/react@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/react/-/react-2.4.0.tgz#17b20ddfba85540687bc76c7464f29408d44fd10"
+  integrity sha512-JPJU9+YO4wBtw5lYkh6zzbXPB+n0x1b9XoX4aTHZnFKndab2djEHjkY/WKlTxW+bYFVkFbNtyggoCL26iX0DkQ==
   dependencies:
     "@types/object-hash" "^1.3.0"
     "@types/react" "^16.9.13"
@@ -941,10 +957,10 @@
     lodash "^4.17.15"
     object-hash "^2.0.0"
 
-"@jsonforms/vanilla-renderers@2.4.0-beta.0":
-  version "2.4.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vanilla-renderers/-/vanilla-renderers-2.4.0-beta.0.tgz#3a9ef948f5ff93c25a29a4d560eabb80d4fce2ea"
-  integrity sha512-EIfXZQyxqpiqoFFWM704fwNMtJjw2Zyp8cKwss2DlKYXFB/9x4X/E1BofF3WB8pBiiqW2mlVdg93HmS3Tkugug==
+"@jsonforms/vanilla-renderers@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vanilla-renderers/-/vanilla-renderers-2.4.0.tgz#bd50659f921ec4a8875d2b035628b88ba5e04156"
+  integrity sha512-LNUtTq6O0IFsWAOsXczpuHNa4OjLkX68JzZmpU+YBmcOGFpikl3ZTP/OqXld0HydMcocHBVrxR0rcxUJEym+wA==
 
 "@lerna/add@3.21.0":
   version "3.21.0"
@@ -12805,23 +12821,6 @@ textextensions@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.6.0.tgz#d7e4ab13fe54e32e08873be40d51b74229b00fc4"
   integrity sha512-49WtAWS+tcsy93dRt6P0P3AMD2m5PvXRhuEA0kaXos5ZLlujtYmpmFsB+QvWUSxE1ZsstmYXfQ7L40+EcQgpAQ==
-
-theia-tree-editor@latest:
-  version "0.7.0-next.c6fd059"
-  resolved "https://registry.yarnpkg.com/theia-tree-editor/-/theia-tree-editor-0.7.0-next.c6fd059.tgz#51ecefbc6f5ee5dce73bc3dbc1182a65fcb748dc"
-  integrity sha512-55+y8CofPNzXToYfW0fXsVvdkmwrrChovMyOsiDdPffZJjvWMpu4FmyGIJvqELa/pRcp8bp/KI7stBky/ny94A==
-  dependencies:
-    "@jsonforms/core" "2.4.0-beta.0"
-    "@jsonforms/react" "2.4.0-beta.0"
-    "@jsonforms/vanilla-renderers" "2.4.0-beta.0"
-    "@theia/core" "^1.0.0"
-    "@theia/workspace" "^1.0.0"
-    react "^16.9.13"
-    react-dom "^16.9.13"
-    react-redux "^7.1.5"
-    recompose "^0.27.1"
-    redux "^4.0.4"
-    uuid "^3.3.2"
 
 thenify-all@^1.0.0:
   version "1.6.0"

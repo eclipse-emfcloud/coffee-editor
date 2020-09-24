@@ -13,14 +13,14 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-import 'theia-tree-editor/style/forms.css';
-import 'theia-tree-editor/style/index.css';
+import '@eclipse-emfcloud/theia-tree-editor/style/forms.css';
+import '@eclipse-emfcloud/theia-tree-editor/style/index.css';
 
+import { createBasicTreeContainter, NavigatableTreeEditorOptions } from '@eclipse-emfcloud/theia-tree-editor';
 import { CommandContribution, MenuContribution } from '@theia/core';
 import { LabelProviderContribution, NavigatableWidgetOptions, OpenHandler, WidgetFactory } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
-import { createBasicTreeContainter, NavigatableTreeEditorOptions } from 'theia-tree-editor';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
