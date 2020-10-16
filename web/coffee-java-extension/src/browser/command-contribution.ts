@@ -21,7 +21,7 @@ import {
     CommandService,
     MenuContribution,
     MenuModelRegistry,
-    SelectionService,
+    SelectionService
 } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { UriAwareCommandHandler, UriCommandHandler } from '@theia/core/lib/common/uri-command-handler';
@@ -76,7 +76,7 @@ export class JavaGenerationCommandContribution implements CommandContribution, M
         registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
             execute: uri => this.generateCodeService.generateCode(uri),
             isVisible: uri => this.generateCodeService.isWorkflowFile(uri),
-            isEnabled: uri => this.generateCodeService.isWorkflowFile(uri),
+            isEnabled: uri => this.generateCodeService.isWorkflowFile(uri)
         }));
         registry.registerCommand(TEST_CODE_COMMAND, this.newUriAwareCommandHandler({
             execute: uri => this.junitRunService.runTest(uri),

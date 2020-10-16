@@ -53,7 +53,7 @@ export class GenerateCodeService {
         ).then(progress => this.doGenerateCode(uri, progress));
     }
 
-    private doGenerateCode(uri: URI, progress: Progress) {
+    private doGenerateCode(uri: URI, progress: Progress): void {
         const generationDirectory = uri.parent;
         const packageName = generationDirectory.path.name;
         const sourceFile = uri.toString();

@@ -25,38 +25,38 @@ import { ContainerModule } from 'inversify';
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeNodeFactory } from './coffee-tree/coffee-node-factory';
-import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
+import { CoffeeTreeEditorConstants, CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
 import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
 import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 
 export default new ContainerModule(bind => {
-  // Bind Theia IDE contributions
-  bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
-  bind(OpenHandler).to(CoffeeTreeEditorContribution);
-  bind(MenuContribution).to(CoffeeTreeEditorContribution);
-  bind(CommandContribution).to(CoffeeTreeEditorContribution);
-  bind(LabelProviderContribution).to(CoffeeTreeLabelProvider);
+    // Bind Theia IDE contributions
+    bind(LabelProviderContribution).to(CoffeeLabelProviderContribution);
+    bind(OpenHandler).to(CoffeeTreeEditorContribution);
+    bind(MenuContribution).to(CoffeeTreeEditorContribution);
+    bind(CommandContribution).to(CoffeeTreeEditorContribution);
+    bind(LabelProviderContribution).to(CoffeeTreeLabelProvider);
 
-  // bind to themselves because we use it outside of the editor widget, too.
-  bind(CoffeeModelService).toSelf().inSingletonScope();
-  bind(CoffeeTreeLabelProvider).toSelf().inSingletonScope();
+    // bind to themselves because we use it outside of the editor widget, too.
+    bind(CoffeeModelService).toSelf().inSingletonScope();
+    bind(CoffeeTreeLabelProvider).toSelf().inSingletonScope();
 
-  bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
-    id: CoffeeTreeEditorWidget.WIDGET_ID,
-    createWidget: (options: NavigatableWidgetOptions) => {
+    bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
+        id: CoffeeTreeEditorConstants.WIDGET_ID,
+        createWidget: (options: NavigatableWidgetOptions) => {
 
-      const treeContainer = createBasicTreeContainter(
-        context.container,
-        CoffeeTreeEditorWidget,
-        CoffeeModelService,
-        CoffeeTreeNodeFactory
-      );
+            const treeContainer = createBasicTreeContainter(
+                context.container,
+                CoffeeTreeEditorWidget,
+                CoffeeModelService,
+                CoffeeTreeNodeFactory
+            );
 
-      // Bind options
-      const uri = new URI(options.uri);
-      treeContainer.bind(NavigatableTreeEditorOptions).toConstantValue({ uri });
+            // Bind options
+            const uri = new URI(options.uri);
+            treeContainer.bind(NavigatableTreeEditorOptions).toConstantValue({ uri });
 
-      return treeContainer.get(CoffeeTreeEditorWidget);
-    }
-  }));
+            return treeContainer.get(CoffeeTreeEditorWidget);
+        }
+    }));
 });

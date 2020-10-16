@@ -20,7 +20,7 @@ import { CommandPalette, TYPES } from '@eclipse-glsp/client/lib';
 import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
 import {
     connectTheiaDiagramService,
-    TheiaContextMenuServiceFactory,
+    TheiaContextMenuServiceFactory
 } from '@eclipse-glsp/theia-integration/lib/browser/diagram/glsp-theia-context-menu-service';
 import { SelectionService } from '@theia/core';
 import { Container, inject, injectable } from 'inversify';

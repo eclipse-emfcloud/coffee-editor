@@ -14,9 +14,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 export namespace WorkflowNotationLanguage {
-    export const Id: string = 'WorkflowNotation';
-    export const Name: string = 'Workflow Notation';
-    export const Label: string = 'Workflow Notation diagram';
-    export const DiagramType: string = 'workflow-diagram-notation';
-    export const FileExtension: string = '.coffeenotation';
+    export const Id = 'WorkflowNotation';
+    export const Name = 'Workflow Notation';
+    export const Label = 'Workflow Notation diagram';
+    export const DiagramType = 'workflow-diagram-notation';
+    export const FileExtension = '.coffeenotation';
 }

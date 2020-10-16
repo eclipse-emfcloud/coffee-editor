@@ -19,7 +19,7 @@ export const WorkflowAnalyzer = Symbol('WorkflowAnalyzer');
 export const workflowServicePath = '/services/workflowAnalyzer';
 
 export interface WorkflowAnalyzer extends JsonRpcServer<WorkflowAnalysisClient> {
-    analyze(wfFileUri: string, wfConfigFileUri: string): Promise<string>
+    analyze(wfFileUri: string, wfConfigFileUri: string): Promise<string>;
 }
 
 export interface WorkflowAnalysisStatus {

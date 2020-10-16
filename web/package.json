@@ -3,7 +3,8 @@
   "scripts": {
     "prepare": "lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
-    "watch": "lerna run --parallel watch"
+    "watch": "lerna run --parallel watch",
+    "lint": "lerna run lint"
   },
   "devDependencies": {
     "lerna": "^3.13.0"

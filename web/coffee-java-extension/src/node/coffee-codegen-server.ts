@@ -98,7 +98,7 @@ export class CoffeeCodeGenServer implements CodeGenServer, BackendApplicationCon
         this.logger.error(error);
     }
 
-    protected logError(data: string | Buffer) {
+    protected logError(data: string | Buffer): void {
         if (data) {
             this.logger.error(`Code Gen: ${data}`);
         }

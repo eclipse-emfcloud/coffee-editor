@@ -27,7 +27,7 @@ export class WorkflowLSPServerLauncher implements BackendApplicationContribution
     @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory;
     @inject(ILogger) private readonly logger: ILogger;
 
-    initialize() {
+    initialize(): void {
         const command = 'java';
 
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
@@ -70,13 +70,13 @@ export class WorkflowLSPServerLauncher implements BackendApplicationContribution
         this.logError(error.message);
     }
 
-    protected logError(data: string | Buffer) {
+    protected logError(data: string | Buffer): void {
         if (data) {
             this.logger.error(`ModelServerBackendContribution: ${data}`);
         }
     }
 
-    protected logInfo(data: string | Buffer) {
+    protected logInfo(data: string | Buffer): void {
         if (data) {
             this.logger.info(`ModelServerBackendContribution: ${data}`);
         }

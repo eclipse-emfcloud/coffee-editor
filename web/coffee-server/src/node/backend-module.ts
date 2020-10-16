@@ -33,9 +33,9 @@ export default new ContainerModule((bind, _unbind, isBound, rebind) => {
 @injectable()
 export class CoffeeLaunchOptions implements LaunchOptions {
     isRunning = false;
-    baseURL: string = 'api/v1/';
-    serverPort: number = 8081;
-    hostname: string = 'localhost';
+    baseURL = 'api/v1/';
+    serverPort = 8081;
+    hostname = 'localhost';
     jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar'));
     additionalArgs = ['--errorsOnly'];
 }

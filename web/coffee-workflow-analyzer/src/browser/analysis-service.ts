@@ -19,7 +19,7 @@ import URI from '@theia/core/lib/common/uri';
 import { MiniBrowserOpenHandler } from '@theia/mini-browser/lib/browser/mini-browser-open-handler';
 import { inject, injectable } from 'inversify';
 
-import { FileTypes, IFileServer } from '../common/request-file-protocol';
+import { FileServer, FileTypes } from '../common/request-file-protocol';
 import { WorkflowAnalysisClient, WorkflowAnalysisStatus, WorkflowAnalyzer } from '../common/workflow-analyze-protocol';
 
 @injectable()
@@ -27,7 +27,7 @@ export class AnalysisService {
 
     constructor(
         @inject(MiniBrowserOpenHandler) private readonly openHandler: MiniBrowserOpenHandler,
-        @inject(IFileServer) private readonly fileServer: IFileServer,
+        @inject(FileServer) private readonly fileServer: FileServer,
         @inject(WorkflowAnalyzer) private readonly workflowAnalyzer: WorkflowAnalyzer,
         @inject(MessageService) protected readonly messageService: MessageService,
         @inject(ILogger) private readonly logger: ILogger
@@ -40,7 +40,7 @@ export class AnalysisService {
         ).then(progress => this.runAnalysis(uri, progress));
     }
 
-    private async runAnalysis(uri: URI, progress: Progress) {
+    private async runAnalysis(uri: URI, progress: Progress): Promise<void> {
         const configFilePath = uri.toString();
         const wfFilePath = uri.toString().replace('.wfconfig', '.coffee');
         this.logger.info('[WorkflowAnalyzer] Analyze ' + wfFilePath + ' with ' + configFilePath);
@@ -77,7 +77,7 @@ export class WorkflowAnalysisClientImpl implements WorkflowAnalysisClient {
     }
 }
 
-export function showErrorDialog(error: Error) {
+export function showErrorDialog(error: Error): void {
     new ConfirmDialog({
         title: error.name,
         msg: getDetails(error)

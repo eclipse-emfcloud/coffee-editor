@@ -57,7 +57,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
     }
 
     private getPort(): number | undefined {
-        const arg = process.argv.filter(arg => arg.startsWith('--WF_ANALYZER='))[0];
+        const arg = process.argv.filter(a => a.startsWith('--WF_ANALYZER='))[0];
         if (!arg) {
             return undefined;
         } else {
@@ -74,7 +74,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
         return jarPath;
     }
 
-    private async connect(port: number) {
+    private async connect(port: number): Promise<void> {
         const socket = new net.Socket();
         const connection = createSocketConnection(socket, socket, () => {
             this.logger.info('[WorkflowAnalyzer] Socket connection disposed');
@@ -120,7 +120,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
         }
     }
 
-    protected showError(data: string | Buffer) {
+    protected showError(data: string | Buffer): void {
         if (data) {
             if (this.client) {
                 this.client.reportStatus({ status: 'error', message: data.toString() });
