@@ -16,11 +16,11 @@
 import { injectable } from 'inversify';
 import * as path from 'path';
 
-import { FileTypes, IFileClient, IFileServer, TypeNotFound } from '../common/request-file-protocol';
+import { FileClient, FileServer, FileTypes, TypeNotFound } from '../common/request-file-protocol';
 
 @injectable()
-export class WorkflowFileServer implements IFileServer {
-    protected client?: IFileClient;
+export class WorkflowFileServer implements FileServer {
+    protected client?: FileClient;
 
     requestFile(type: string): Promise<string> {
         if (type === FileTypes.WORKFLOW_ANALYSIS_HTML) {
@@ -32,7 +32,7 @@ export class WorkflowFileServer implements IFileServer {
     dispose(): void {
         // no-op
     }
-    setClient(client?: IFileClient): void {
+    setClient(client?: FileClient): void {
         this.client = client;
     }
 }

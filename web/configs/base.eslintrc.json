@@ -1,0 +1,43 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "header",
+    "import",
+    "no-null",
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "0.53"
+    }
+  },
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "es6": true
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "*.d.ts"
+  ]
+}

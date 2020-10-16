@@ -31,7 +31,7 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
         super(workspace, languages, languageClientFactory);
     }
 
-    protected get globPatterns() {
+    protected get globPatterns(): string[] {
         return [
             '**/*.wfconfig',
             '**/*.wf',
@@ -49,7 +49,7 @@ export class WorkflowClientContribution extends BaseLanguageClientContribution {
 // register language with monaco on first load
 registerDSL();
 
-export function registerDSL() {
+export function registerDSL(): void {
     // initialize monaco
     monaco.languages.register({
         id: 'wfconfig',
@@ -73,7 +73,7 @@ export function registerDSL() {
                 close: ')'
             }]
     });
-    monaco.languages.setMonarchTokensProvider('wfconfig', <any>{
+    monaco.languages.setMonarchTokensProvider('wfconfig', {
         // Set defaultToken to invalid to see what you do not tokenize yet
         // defaultToken: 'invalid',
 
@@ -90,7 +90,7 @@ export function registerDSL() {
         ],
 
         // we include these common regular expressions
-        symbols: /[=><!~?:&|+\-*\/\^%]+/,
+        symbols: /[=><!~?:&|+\-*/^%]+/,
         escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
 
         // The main tokenizer for our languages
@@ -104,13 +104,13 @@ export function registerDSL() {
                         '@default': 'identifier'
                     }
                 }],
-                [/[A-Z][\w\$]*/, 'type.identifier'],  // to show class names nicely
+                [/[A-Z][\w$]*/, 'type.identifier'],  // to show class names nicely
 
                 // whitespace
                 { include: '@whitespace' },
 
                 // delimiters and operators
-                [/[{}()\[\]]/, '@brackets'],
+                [/[{}()[\]]/, '@brackets'],
                 [/[<>](?!@symbols)/, '@brackets'],
                 [/@symbols/, {
                     cases: {
@@ -123,14 +123,14 @@ export function registerDSL() {
             whitespace: [
                 [/[ \t\r\n]+/, 'white'],
                 [/\/\*/, 'comment', '@comment'],
-                [/\/\/.*$/, 'comment'],
+                [/\/\/.*$/, 'comment']
             ],
 
             comment: [
-                [/[^\/*]+/, 'comment'],
+                [/[^/*]+/, 'comment'],
                 [/\/\*/, 'comment.invalid'],
-                ['\\*/', 'comment', '@pop'],
-                [/[\/*]/, 'comment']
+                [/\\*/, 'comment', '@pop'],
+                [/[/*]/, 'comment']
             ],
 
             string: [
@@ -138,7 +138,7 @@ export function registerDSL() {
                 [/@escapes/, 'string.escape'],
                 [/\\./, 'string.escape.invalid'],
                 [/"/, 'string', '@pop']
-            ],
-        },
+            ]
+        }
     });
 }

@@ -28,9 +28,9 @@ export default new ContainerModule(bind => {
 @injectable()
 export class ModelServerLaunchOptions implements LaunchOptions {
     isRunning = false;
-    baseURL: string = 'api/v1/';
-    serverPort: number = 8081;
-    hostname: string = 'localhost';
+    baseURL = 'api/v1/';
+    serverPort = 8081;
+    hostname = 'localhost';
     jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.modelserver.example-0.0.1-SNAPSHOT-standalone.jar'));
     additionalArgs = ['--errorsOnly'];
 }

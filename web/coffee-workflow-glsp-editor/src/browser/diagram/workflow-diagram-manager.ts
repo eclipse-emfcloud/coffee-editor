@@ -16,7 +16,7 @@
 import {
     GLSPDiagramManager,
     GLSPNotificationManager,
-    GLSPTheiaSprottyConnector,
+    GLSPTheiaSprottyConnector
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { MessageService } from '@theia/core';
 import { WidgetManager, WidgetOpenerOptions } from '@theia/core/lib/browser';
@@ -56,41 +56,41 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         });
     }
 
-    protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): Object {
+    protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): Record<string, any> {
         const widgetOptions = super.createWidgetOptions(uri.withoutQuery(), options);
         const queryOptions = this.createQueryOptions(uri);
         const serverOptions = this.createServerOptions(options);
         return {
             ...widgetOptions,
             ...queryOptions,
-            ...serverOptions,
+            ...serverOptions
         };
     }
 
-    protected createServerOptions(options?: WidgetOpenerOptions): Object {
+    protected createServerOptions(options?: WidgetOpenerOptions): Record<string, any> {
         if (WorkflowGLSPServerOpenerOptions.is(options)) {
             return options.serverOptions;
         }
-        return <Object>{};
+        return {};
     }
 
-    protected createQueryOptions(uri: URI): Object {
-        const queryOptions = <Object>{};
+    protected createQueryOptions(uri: URI): Record<string, any> {
+        const queryOptions: Record<string, any> = {};
         if (!uri.query || uri.query.indexOf('=') < 0) {
             return queryOptions;
         }
         const keyValuePairs = uri.query.split('&');
         for (const keyValuePair of keyValuePairs) {
             const keyValue = keyValuePair.split('=');
-            (<any>queryOptions)[keyValue[0]] = keyValue[1];
+            queryOptions[keyValue[0]] = keyValue[1];
         }
         return queryOptions;
     }
 
-    get fileExtensions() {
+    get fileExtensions(): string[] {
         return [WorkflowNotationLanguage.FileExtension];
     }
-    get diagramConnector() {
+    get diagramConnector(): GLSPTheiaSprottyConnector | undefined {
         return this._diagramConnector;
     }
 }

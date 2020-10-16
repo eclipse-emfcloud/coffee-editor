@@ -26,59 +26,59 @@ import { inject, injectable } from 'inversify';
 
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
-import { CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
+import { CoffeeTreeEditorConstants } from './coffee-tree/coffee-tree-editor-widget';
 import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
 
 @injectable()
 export class CoffeeTreeEditorContribution extends BaseTreeEditorContribution {
-  @inject(ApplicationShell) protected shell: ApplicationShell;
-  @inject(OpenerService) protected opener: OpenerService;
+    @inject(ApplicationShell) protected shell: ApplicationShell;
+    @inject(OpenerService) protected opener: OpenerService;
 
-  constructor(
-    @inject(CoffeeModelService) modelService: TreeEditor.ModelService,
-    @inject(CoffeeTreeLabelProvider) labelProvider: CoffeeTreeLabelProvider
-  ) {
-    super(CoffeeTreeEditorWidget.EDITOR_ID, modelService, labelProvider);
-  }
-
-  readonly id = CoffeeTreeEditorWidget.WIDGET_ID;
-  readonly label = BaseTreeEditorWidget.WIDGET_LABEL;
-
-  canHandle(uri: URI): number {
-    if (
-      uri.path.ext === '.coffee'
+    constructor(
+        @inject(CoffeeModelService) modelService: TreeEditor.ModelService,
+        @inject(CoffeeTreeLabelProvider) labelProvider: CoffeeTreeLabelProvider
     ) {
-      return 1000;
+        super(CoffeeTreeEditorConstants.EDITOR_ID, modelService, labelProvider);
     }
-    return 0;
-  }
 
-  registerCommands(commands: CommandRegistry): void {
-    commands.registerCommand(
-      CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM,
-      new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
+    readonly id = CoffeeTreeEditorConstants.WIDGET_ID;
+    readonly label = BaseTreeEditorWidget.WIDGET_LABEL;
 
-    super.registerCommands(commands);
-  }
+    canHandle(uri: URI): number {
+        if (
+            uri.path.ext === '.coffee'
+        ) {
+            return 1000;
+        }
+        return 0;
+    }
 
-  registerMenus(menus: MenuModelRegistry): void {
-    menus.registerMenuAction(TreeContextMenu.CONTEXT_MENU, {
-      commandId: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.id,
-      label: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
-    });
+    registerCommands(commands: CommandRegistry): void {
+        commands.registerCommand(
+            CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM,
+            new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
 
-    super.registerMenus(menus);
-  }
+        super.registerCommands(commands);
+    }
 
-  protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): NavigatableWidgetOptions {
-    return {
-      kind: 'navigatable',
-      uri: this.serializeUri(uri)
-    };
-  }
+    registerMenus(menus: MenuModelRegistry): void {
+        menus.registerMenuAction(TreeContextMenu.CONTEXT_MENU, {
+            commandId: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.id,
+            label: CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM.label
+        });
 
-  protected serializeUri(uri: URI): string {
-    return uri.withoutFragment().toString();
-  }
+        super.registerMenus(menus);
+    }
+
+    protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): NavigatableWidgetOptions {
+        return {
+            kind: 'navigatable',
+            uri: this.serializeUri(uri)
+        };
+    }
+
+    protected serializeUri(uri: URI): string {
+        return uri.withoutFragment().toString();
+    }
 
 }

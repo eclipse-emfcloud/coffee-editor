@@ -16,18 +16,17 @@
 import { JsonRpcServer } from '@theia/core/lib/common/messaging';
 
 export const TypeNotFound = '!fileTypeNotFound';
-export const IFileServer = Symbol('IFileServer');
+export const FileServer = Symbol('FileServer');
 export const filePath = '/services/filerequest';
 
-export interface IFileServer extends JsonRpcServer<IFileClient> {
-    requestFile(type: string): Promise<string>
+export interface FileServer extends JsonRpcServer<FileClient> {
+    requestFile(type: string): Promise<string>;
 }
 
-export const IFileClient = Symbol('IFileClient');
+export const FileClient = Symbol('FileClient');
 
-export interface IFileClient {
-
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface FileClient { }
 
 export namespace FileTypes {
     export const WORKFLOW_ANALYSIS_HTML = 'wfanalysis';

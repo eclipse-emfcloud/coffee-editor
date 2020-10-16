@@ -18,7 +18,7 @@ import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
 import { LocationMapper } from '@theia/mini-browser/lib/browser/location-mapper-service';
 import { ContainerModule, injectable } from 'inversify';
 
-import { filePath, IFileClient, IFileServer } from '../common/request-file-protocol';
+import { FileClient, filePath, FileServer } from '../common/request-file-protocol';
 import { WorkflowAnalyzer, workflowServicePath } from '../common/workflow-analyze-protocol';
 import { AnalysisService, WorkflowAnalysisClientImpl } from './analysis-service';
 import { WorkflowCommandContribution } from './command-contribution';
@@ -29,10 +29,10 @@ export default new ContainerModule(bind => {
     bind(WorkflowCommandContribution).toSelf().inSingletonScope();
 
     bind(WorkflowFileClient).toSelf();
-    bind(IFileServer).toDynamicValue(ctx => {
+    bind(FileServer).toDynamicValue(ctx => {
         const connection = ctx.container.get(WebSocketConnectionProvider);
         const client = ctx.container.get(WorkflowFileClient);
-        return connection.createProxy<IFileServer>(filePath, client);
+        return connection.createProxy<FileServer>(filePath, client);
     }).inSingletonScope();
 
     bind(WorkflowAnalysisClientImpl).toSelf().inSingletonScope();
@@ -48,6 +48,6 @@ export default new ContainerModule(bind => {
 
 });
 @injectable()
-export class WorkflowFileClient implements IFileClient {
+export class WorkflowFileClient implements FileClient {
 
 }

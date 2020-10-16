@@ -23,10 +23,10 @@ import { inject, injectable, optional } from 'inversify';
 
 export const GLSPLaunchOptions = Symbol.for('LaunchOptions');
 export interface GLSPLaunchOptions {
-    isRunning: boolean
-    serverPort: number
-    hostname: string
-    jarPath?: string
+    isRunning: boolean;
+    serverPort: number;
+    hostname: string;
+    jarPath?: string;
     additionalArgs?: string[];
 }
 
@@ -37,7 +37,7 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
     @inject(ProcessManager) protected readonly processManager: ProcessManager;
     @inject(ILogger) private readonly logger: ILogger;
 
-    initialize() {
+    initialize(): void {
         if (!this.launchOptions.isRunning && !this.start()) {
             this.logError('Error during model server startup');
         }
@@ -86,13 +86,13 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
         this.logError(error.message);
     }
 
-    protected logError(data: string | Buffer) {
+    protected logError(data: string | Buffer): void {
         if (data) {
             this.logger.error(`ModelServerBackendContribution: ${data}`);
         }
     }
 
-    protected logInfo(data: string | Buffer) {
+    protected logInfo(data: string | Buffer): void {
         if (data) {
             this.logger.info(`ModelServerBackendContribution: ${data}`);
         }

@@ -21,7 +21,7 @@ import { inject, injectable } from 'inversify';
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
 
 export interface WorkflowInitializeOptions {
-    timestamp: Date,
+    timestamp: Date;
     modelserverURL: string;
     workspaceRoot?: string;
 }

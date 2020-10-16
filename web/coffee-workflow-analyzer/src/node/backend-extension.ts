@@ -17,16 +17,16 @@ import { ConnectionHandler, JsonRpcConnectionHandler } from '@theia/core';
 import { BackendApplicationContribution } from '@theia/core/lib/node';
 import { ContainerModule } from 'inversify';
 
-import { filePath, IFileClient, IFileServer } from '../common/request-file-protocol';
+import { FileClient, filePath, FileServer } from '../common/request-file-protocol';
 import { WorkflowAnalysisClient, workflowServicePath } from '../common/workflow-analyze-protocol';
 import { WorkflowFileServer } from './file-server';
 import { WorkflowAnalysisServer } from './workflow-analysis-server';
 
 export default new ContainerModule(bind => {
-    bind(IFileServer).to(WorkflowFileServer).inSingletonScope();
+    bind(FileServer).to(WorkflowFileServer).inSingletonScope();
     bind(ConnectionHandler).toDynamicValue(ctx =>
-        new JsonRpcConnectionHandler<IFileClient>(filePath, client => {
-            const fileServer = ctx.container.get<IFileServer>(IFileServer);
+        new JsonRpcConnectionHandler<FileClient>(filePath, client => {
+            const fileServer = ctx.container.get<FileServer>(FileServer);
             fileServer.setClient(client);
             return fileServer;
         })

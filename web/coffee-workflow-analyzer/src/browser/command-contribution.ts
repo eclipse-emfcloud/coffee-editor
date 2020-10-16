@@ -19,7 +19,7 @@ import {
     CommandRegistry,
     MenuContribution,
     MenuModelRegistry,
-    SelectionService,
+    SelectionService
 } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { UriAwareCommandHandler, UriCommandHandler } from '@theia/core/lib/common/uri-command-handler';
@@ -38,7 +38,7 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
 
     constructor(
         @inject(SelectionService) private readonly selectionService: SelectionService,
-        @inject(AnalysisService) private readonly analysisService: AnalysisService,
+        @inject(AnalysisService) private readonly analysisService: AnalysisService
     ) { }
 
     registerMenus(menus: MenuModelRegistry): void {
@@ -52,7 +52,7 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
             execute: (uri: URI) => this.analysisService.analyze(uri),
             isVisible: (uri: URI) => uri.toString().endsWith('wfconfig'),
             isEnabled: (uri: URI) => uri.toString().endsWith('wfconfig')
-        }),
+        })
         );
     }
 

@@ -27,7 +27,7 @@ export class WorkflowFileLocationMapper implements LocationMapper {
         return this.toURL(location);
     }
 
-    toURL(uri: String, endpointPath: string = 'mini-browser'): MaybePromise<string> {
+    toURL(uri: string, endpointPath = 'mini-browser'): MaybePromise<string> {
         if (!uri.startsWith('file://')) {
             throw new Error(`Only URIs with 'file' scheme can be mapped to an URL. URI was: ${uri}.`);
         }

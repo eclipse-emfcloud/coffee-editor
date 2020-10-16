@@ -16,7 +16,7 @@
 import { ConnectionStatus, ConnectionStatusService } from '@theia/core/lib/browser/connection-status-service';
 import {
     DefaultFrontendApplicationContribution,
-    FrontendApplicationContribution,
+    FrontendApplicationContribution
 } from '@theia/core/lib/browser/frontend-application';
 import { ContainerModule, inject, injectable } from 'inversify';
 

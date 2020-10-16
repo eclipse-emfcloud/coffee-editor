@@ -18,7 +18,7 @@ import {
     FrontendApplicationContribution,
     LabelProviderContribution,
     OpenHandler,
-    WidgetFactory,
+    WidgetFactory
 } from '@theia/core/lib/browser';
 import { ContainerModule, interfaces } from 'inversify';
 import { DiagramConfiguration, DiagramManager, DiagramManagerProvider } from 'sprotty-theia/lib';

@@ -7,10 +7,15 @@
   "typescriptHero.imports.organizeOnSave": true,
   "typescriptHero.imports.disableImportsSorting": false,
   "typescriptHero.imports.stringQuoteStyle": "'",
-  "tslint.alwaysShowRuleFailuresAsWarnings": false,
+  "typescriptHero.imports.insertSemicolons": true,
+  "typescriptHero.imports.multiLineTrailingComma": false,
+  "typescriptHero.imports.ignoredFromRemoval": [
+    "react",
+    "snabbdom-jsx"
+  ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true
+    "source.fixAll.eslint": true
   },
   "search.exclude": {
     "**/node_modules": true,
@@ -24,10 +29,12 @@
     "editor.tabSize": 2
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "files.exclude": {
-    "**/.classpath": true,
-    "**/.project": true,
-    "**/.settings": true,
-    "**/.factorypath": true
-  }
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "typescript",
+    "typescriptreact"
+  ]
 }

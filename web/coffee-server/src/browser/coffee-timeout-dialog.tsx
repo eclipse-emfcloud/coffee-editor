@@ -29,43 +29,43 @@ export class TimeoutDialog extends ReactDialog<void> {
   constructor(
     @inject(TimeoutDialogProps) protected readonly props: TimeoutDialogProps
   ) {
-    super(props);
-    this.appendAcceptButton('Ok');
+      super(props);
+      this.appendAcceptButton('Ok');
   }
 
   @postConstruct()
   protected async init(): Promise<void> {
-    this.update();
+      this.update();
   }
 
   protected render(): React.ReactNode {
-    return (
-      <div>
-        <h1>
+      return (
+          <div>
+              <h1>
           Your session has <b>Timed Out</b>!
-        </h1>
-        <div>
+              </h1>
+              <div>
           Connection to the server has been lost.
-          <br />
+                  <br />
           You probably have reached the online demo usage timeout (30 minutes).
-          <p>
+                  <p>
             Please go to the{' '}
-            <a href='https://eclipsesource.com/coffee-editor'>
+                      <a href='https://eclipsesource.com/coffee-editor'>
               starting page
-            </a>{' '}
+                      </a>{' '}
             to start a new session.
-          </p>
-        </div>
-      </div>
-    );
+                  </p>
+              </div>
+          </div>
+      );
   }
 
   protected onAfterAttach(msg: Message): void {
-    super.onAfterAttach(msg);
-    this.update();
+      super.onAfterAttach(msg);
+      this.update();
   }
 
   get value(): undefined {
-    return undefined;
+      return undefined;
   }
 }

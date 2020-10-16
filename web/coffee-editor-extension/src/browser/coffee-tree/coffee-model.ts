@@ -123,7 +123,7 @@ export namespace CoffeeModel {
                     children: nodes
                 }
             ]
-        ],
+        ]
     ]);
 
 }

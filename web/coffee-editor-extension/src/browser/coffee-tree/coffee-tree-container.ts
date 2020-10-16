@@ -22,59 +22,59 @@ import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
 
 export namespace CoffeeTreeCommands {
-  export const OPEN_WORKFLOW_DIAGRAM: Command = {
-    id: 'workflow.open',
-    label: 'Open Workflow Diagram'
-  };
+    export const OPEN_WORKFLOW_DIAGRAM: Command = {
+        id: 'workflow.open',
+        label: 'Open Workflow Diagram'
+    };
 
 }
 
 export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
-  constructor(protected readonly shell: ApplicationShell,
-    protected readonly openerService: OpenerService) {
-  }
-
-  execute() {
-    const editorWidget = this.getTreeEditorWidget();
-    if (editorWidget) {
-      const workflowNode = this.getSelectedWorkflow(editorWidget);
-      if (workflowNode) {
-        const notationUri = this.getNotationUri(editorWidget);
-        this.openerService.getOpener(notationUri).then(opener => opener.open(notationUri, this.createServerOptions(workflowNode)));
-      }
+    constructor(protected readonly shell: ApplicationShell,
+        protected readonly openerService: OpenerService) {
     }
-  }
 
-  isVisible(): boolean {
-    return this.getSelectedWorkflow(this.getTreeEditorWidget()) !== undefined;
-  }
-
-  getTreeEditorWidget(): CoffeeTreeEditorWidget | undefined {
-    const currentWidget = this.shell.currentWidget;
-    if (currentWidget instanceof CoffeeTreeEditorWidget) {
-      return currentWidget;
+    execute(): void {
+        const editorWidget = this.getTreeEditorWidget();
+        if (editorWidget) {
+            const workflowNode = this.getSelectedWorkflow(editorWidget);
+            if (workflowNode) {
+                const notationUri = this.getNotationUri(editorWidget);
+                this.openerService.getOpener(notationUri).then(opener => opener.open(notationUri, this.createServerOptions(workflowNode)));
+            }
+        }
     }
-    return undefined;
-  }
 
-  getSelectedWorkflow(widget: CoffeeTreeEditorWidget): TreeEditor.Node | undefined {
-    if (widget && TreeEditor.Node.hasType(widget.selectedNode, CoffeeModel.Type.Workflow)) {
-      return widget.selectedNode;
+    isVisible(): boolean {
+        return this.getSelectedWorkflow(this.getTreeEditorWidget()) !== undefined;
     }
-    return undefined;
-  }
 
-  getNotationUri(widget: CoffeeTreeEditorWidget): URI {
-    const coffeeUri = widget.uri;
-    const coffeeNotationUri = coffeeUri.parent.resolve(coffeeUri.displayName + 'notation');
-    return coffeeNotationUri;
-  }
+    getTreeEditorWidget(): CoffeeTreeEditorWidget | undefined {
+        const currentWidget = this.shell.currentWidget;
+        if (currentWidget instanceof CoffeeTreeEditorWidget) {
+            return currentWidget;
+        }
+        return undefined;
+    }
 
-  createServerOptions(node: TreeEditor.Node) {
-    return {
-      serverOptions: {
-        workflowIndex: node.jsonforms.index
-      }
-    };
-  }
+    getSelectedWorkflow(widget: CoffeeTreeEditorWidget): TreeEditor.Node | undefined {
+        if (widget && TreeEditor.Node.hasType(widget.selectedNode, CoffeeModel.Type.Workflow)) {
+            return widget.selectedNode;
+        }
+        return undefined;
+    }
+
+    getNotationUri(widget: CoffeeTreeEditorWidget): URI {
+        const coffeeUri = widget.uri;
+        const coffeeNotationUri = coffeeUri.parent.resolve(coffeeUri.displayName + 'notation');
+        return coffeeNotationUri;
+    }
+
+    createServerOptions(node: TreeEditor.Node): any {
+        return {
+            serverOptions: {
+                workflowIndex: node.jsonforms.index
+            }
+        };
+    }
 }

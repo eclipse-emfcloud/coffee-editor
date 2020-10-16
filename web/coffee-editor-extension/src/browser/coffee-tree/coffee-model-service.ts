@@ -31,7 +31,7 @@ import {
     mergeView,
     waterTankView,
     weightedFlowView,
-    workflowView,
+    workflowView
 } from './coffee-schemas';
 
 @injectable()
@@ -39,18 +39,18 @@ export class CoffeeModelService implements TreeEditor.ModelService {
 
     constructor(@inject(ILogger) private readonly logger: ILogger) { }
 
-    getDataForNode(node: TreeEditor.Node) {
+    getDataForNode(node: TreeEditor.Node): void {
         return node.jsonforms.data;
     }
 
-    getSchemaForNode(node: TreeEditor.Node) {
+    getSchemaForNode(node: TreeEditor.Node): any {
         return {
             definitions: coffeeSchema.definitions,
             ...this.getSubSchemaForNode(node)
         };
     }
 
-    private getSubSchemaForNode(node: TreeEditor.Node) {
+    private getSubSchemaForNode(node: TreeEditor.Node): any {
         const schema = this.getSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -61,7 +61,7 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         }
         return undefined;
     }
-    private getSchemaForType(type: string) {
+    private getSchemaForType(type: string): any {
         if (!type) {
             return undefined;
         }
@@ -76,7 +76,7 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         }
         return schema;
     }
-    getUiSchemaForNode(node: TreeEditor.Node) {
+    getUiSchemaForNode(node: TreeEditor.Node): any {
         const schema = this.getUiSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -88,7 +88,7 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         return undefined;
     }
 
-    private getUiSchemaForType(type: string) {
+    private getUiSchemaForType(type: string): any {
         if (!type) {
             return undefined;
         }
