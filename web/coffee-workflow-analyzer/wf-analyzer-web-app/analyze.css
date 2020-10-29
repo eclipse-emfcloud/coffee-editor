@@ -45,7 +45,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  background-color: #fff;
   width: 960px;
   height: 700px;
   margin-top: 10px;
@@ -78,7 +77,6 @@ body {
 
 #sequence text, #legend text {
   font-weight: 400;
-  fill: #fff;
 }
 
 #chart {
@@ -95,7 +93,7 @@ body {
   left: 205px;
   width: 140px;
   text-align: center;
-  color: #666;
+  color: #888;
   z-index: -1;
 }
 
