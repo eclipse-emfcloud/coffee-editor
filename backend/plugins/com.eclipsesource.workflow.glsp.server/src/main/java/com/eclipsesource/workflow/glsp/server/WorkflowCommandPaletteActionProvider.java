@@ -50,12 +50,12 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 						"fa-plus-square"),
 				new LabeledAction("Create Manual Task",
 						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition, "fa-plus-square"))),
+								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)), "fa-plus-square"),
 				new LabeledAction("Create Merge Node",
 						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition, "fa-plus-square"))),
+								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)), "fa-plus-square"),
 				new LabeledAction("Create Decision Node", Lists.newArrayList(
-						new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition, "fa-plus-square")))));
+						new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition)), "fa-plus-square")));
 
 		// Create edge actions between two nodes
 		if (selectedElements.size() == 1) {
