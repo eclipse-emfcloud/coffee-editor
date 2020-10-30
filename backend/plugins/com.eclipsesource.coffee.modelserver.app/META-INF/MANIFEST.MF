@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ModelServer App
+Bundle-SymbolicName: com.eclipsesource.coffee.modelserver.app;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: ECLIPSESOURCE
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emfcloud.modelserver.emf;bundle-version="0.7.0",
+ com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1",
+ org.apache.log4j;bundle-version="1.2.15"
+Automatic-Module-Name: com.eclipsesource.coffee.modelserver.app
+Bundle-RequiredExecutionEnvironment: JavaSE-11

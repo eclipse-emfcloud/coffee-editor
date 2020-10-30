@@ -54,7 +54,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
             const command = 'java';
 
             const jarPath = this.getJarPath();
-            const args: string[] = ['-jar', jarPath, '-startSocket'];
+            const args: string[] = ['-jar', jarPath];
             const serverConnection = await this.createProcessStreamConnectionAsync(command, args);
             this.forward(clientConnection, serverConnection);
         }

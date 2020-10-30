@@ -56,6 +56,14 @@
 							<id>com.eclipsesource.coffee.product.workflow.dsl</id>
 							<attachId>WorkflowDSL</attachId>
 						</product>
+						<product>
+							<id>com.eclipsesource.coffee.product.workflow.glsp.server</id>
+							<attachId>WorkflowGLSPServer</attachId>
+						</product>
+						<product>
+							<id>com.eclipsesource.coffee.product.modelserver</id>
+							<attachId>CoffeeModelServer</attachId>
+						</product>
 					</products>
 				</configuration>
 			</plugin>
