@@ -58,7 +58,7 @@ done
 if [ "$buildBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Build backend products"
   cd backend/releng/com.eclipsesource.coffee.parent/
-  mvn clean install -Pfatjar -U
+  mvn clean install
   cd ../../../
 fi
 
@@ -98,15 +98,15 @@ if [ "$copyBackend" == "true" ]; then
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
   rm -rf $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
 
-  inputWorkflowGLSP=backend/plugins/com.eclipsesource.workflow.glsp.server/target/com.eclipsesource.workflow.glsp.server-0.0.1-SNAPSHOT-glsp.jar
-  outputWorkflowGLSP=web/coffee-server/build
+  inputWorkflowGLSP=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.glsp.server/$productPath/x86_64
+  outputWorkflowGLSP=web/coffee-server/server/glsp
   echo "  $(date +"[%T.%3N]") Copy WorkflowGLSPServer to '$outputWorkflowGLSP'."
   rm -rf $outputWorkflowGLSP && mkdir -p $outputWorkflowGLSP && cp -rf $inputWorkflowGLSP $outputWorkflowGLSP
 
-  inputCoffeeMS=backend/plugins/com.eclipsesource.coffee.modelserver/target/com.eclipsesource.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar
-  outputCoffeeMS=web/coffee-server/build
+  inputCoffeeMS=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.modelserver/$productPath/x86_64
+  outputCoffeeMS=web/coffee-server/server/model
   echo "  $(date +"[%T.%3N]") Copy CoffeeModelServer to '$outputCoffeeMS'."
-  cp -rf $inputCoffeeMS $outputCoffeeMS
+  rm -rf $outputCoffeeMS && mkdir -p $outputCoffeeMS && cp -rf $inputCoffeeMS $outputCoffeeMS
 
 
   echo "$(date +"[%T.%3N]") Copy finished."

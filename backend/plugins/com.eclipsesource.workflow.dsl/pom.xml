@@ -22,6 +22,28 @@
 	<packaging>eclipse-plugin</packaging>
 
 	<build>
+		<sourceDirectory>src, src-gen, xtend-gen</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>**/*.xtend</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>xtend-gen</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src-gen</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

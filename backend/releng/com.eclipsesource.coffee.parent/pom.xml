@@ -260,8 +260,8 @@
 		<module>../../plugins/com.eclipsesource.workflow.analyzer.coffee</module>
 		<module>../../plugins/com.eclipsesource.workflow.dsl</module>
 		<module>../../plugins/com.eclipsesource.workflow.dsl.ide</module>
-		<module>../../plugins/com.eclipsesource.workflow.glsp.server</module>
-		<module>../../plugins/com.eclipsesource.coffee.modelserver</module>
+		<module>../../plugins/com.eclipsesource.coffee.modelserver.app</module>
+		<module>../../plugins/com.eclipsesource.workflow.glsp.server.app</module>
 	</modules>
 
 	<repositories>
