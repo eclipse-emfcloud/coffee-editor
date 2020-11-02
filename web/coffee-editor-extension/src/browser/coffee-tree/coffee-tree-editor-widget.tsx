@@ -13,7 +13,7 @@ import {
     ModelServerClient,
     ModelServerCommand,
     ModelServerCommandUtil,
-    ModelServerReferenceDescription
+    ModelServerReferenceDescription,
 } from '@eclipse-emfcloud/modelserver-theia/lib/common';
 import {
     AddCommandProperty,
@@ -22,7 +22,7 @@ import {
     MasterTreeWidget,
     NavigatableTreeEditorOptions,
     NavigatableTreeEditorWidget,
-    TreeEditor
+    TreeEditor,
 } from '@eclipse-emfcloud/theia-tree-editor';
 import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
@@ -148,6 +148,9 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                   this.treeWidget.updateDataForNode(ownerNode, data);
                   if (!this.isVisible) {
                       this.delayedRefresh = true;
+                  }
+                  if(this.selectedNode === ownerNode) {
+                    this.formWidget.setSelection(this.selectedNode);
                   }
                   break;
               }
