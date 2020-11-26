@@ -44,14 +44,49 @@ pipeline {
         CHROME_BIN="/usr/bin/google-chrome"
     }
     stages {
+        stage('Build server') {
+            steps {
+                container('ci') {
+                    timeout(30){
+                        dir('backend/releng/com.eclipsesource.coffee.parent') {
+                            sh 'mvn clean install -Pfatjar -U --batch-mode -Dmaven.repo.local=/home/jenkins/.m2/repository'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Copy server') {
+            steps {
+                container('ci') {
+                    timeout(30){
+                        dir('.') {
+                            sh './run.sh -c'
+                        }
+                    }
+                }
+            }
+        }
         stage('Build client') {
             steps {
                 container('ci') {
                     timeout(30){
                         dir('.') {
-                            sh './run.sh -bcf'
+                            sh './run.sh -f'
                         }
                     }
+                }
+            }
+        }
+
+        stage('Store artefacts') {
+            when { branch 'master' }
+            steps {
+                container('ci') {
+                    archiveArtifacts artifacts: 'backend/releng/com.eclipsesource.coffee.product/target/products/*.zip' , fingerprint: true
+                    script{
+                    zip zipFile: 'app.zip', archive: false, dir: 'web/browser-app'
+                    }
+                    archiveArtifacts artifacts: 'app.zip', fingerprint: true
                 }
             }
         }
