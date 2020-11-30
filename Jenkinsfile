@@ -79,14 +79,11 @@ pipeline {
         }
 
         stage('Store artefacts') {
-            when { branch 'master' }
+            // when { branch 'master' }
             steps {
                 container('ci') {
                     archiveArtifacts artifacts: 'backend/releng/com.eclipsesource.coffee.product/target/products/*.zip' , fingerprint: true
-                    script{
-                    zip zipFile: 'app.zip', archive: false, dir: 'web/browser-app'
-                    }
-                    archiveArtifacts artifacts: 'app.zip', fingerprint: true
+                    archiveArtifacts artifacts: 'web/browser-app/**', fingerprint: true
                 }
             }
         }
