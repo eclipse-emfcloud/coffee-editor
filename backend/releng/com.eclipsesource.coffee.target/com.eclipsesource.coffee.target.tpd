@@ -1,23 +1,23 @@
-#-------------------------------------------------------------------------------
-# Copyright (c) 2019-2020 EclipseSource and others.
-# 
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0 which is available at
-# https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
-# available at https://opensource.org/licenses/MIT.
-# 
-# SPDX-License-Identifier: EPL-2.0 OR MIT
-#-------------------------------------------------------------------------------
-target "Coffee 2019-12" with source, requirements
+//#-------------------------------------------------------------------------------
+//# Copyright (c) 2019-2020 EclipseSource and others.
+//# 
+//# This program and the accompanying materials are made available under the
+//# terms of the Eclipse Public License v. 2.0 which is available at
+//# https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+//# available at https://opensource.org/licenses/MIT.
+//# 
+//# SPDX-License-Identifier: EPL-2.0 OR MIT
+//#-------------------------------------------------------------------------------
+target "Coffee 2020-09" with source, requirements
 
 
-location "http://download.eclipse.org/tools/orbit/R-builds/R20190226160451/repository" orbit-release {
+location "http://download.eclipse.org/tools/orbit/R-builds/R20200831200620/repository" orbit-release {
 	com.google.gson [2.7.0,2.8.0)
 	org.apache.commons.lang
 	org.apache.commons.io [2.2.0,2.3.0)
 }
 
-location "http://download.eclipse.org/releases/2019-12/" eclipse-2019-12 {
+location "http://download.eclipse.org/releases/2020-09/" eclipse-2020-09 {
 	org.eclipse.jdt.feature.group lazy
     org.eclipse.platform.feature.group lazy
     org.eclipse.pde.feature.group lazy
@@ -28,17 +28,17 @@ location "http://download.eclipse.org/releases/2019-12/" eclipse-2019-12 {
     org.eclipse.xtend.typesystem.emf lazy
 	org.eclipse.emf.mwe2.launcher.feature.group lazy
 	org.eclipse.xtext.sdk.feature.group lazy
-}
-
-location "http://download.eclipse.org/eclipse/updates/4.14/" eclipse-4.14 {
-	org.eclipse.e4.rcp.feature.group lazy
 	org.eclipse.equinox.executable.feature.group lazy
 }
 
-location "http://download.eclipse.org/lsp4j/updates/releases/0.8.1" {
+location "http://download.eclipse.org/eclipse/updates/4.17/" eclipse-4.17 {
+	org.eclipse.e4.rcp.feature.group lazy
+}
+
+location "http://download.eclipse.org/lsp4j/updates/releases/0.9.0" {
 	org.eclipse.lsp4j.sdk.feature.group lazy
 }
-location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/" {
+location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202101081124/" {
 	org.eclipse.emfcloud.modelserver.client lazy
 	org.eclipse.emfcloud.modelserver.common lazy
 }
@@ -47,4 +47,7 @@ location "http://ghillairet.github.io/p2" {
 }
 location "http://dl.bintray.com/eclipsesource/modelserver/snapshots/0.0.1.20190927.153154-70/" {
 	com.eclipsesource.modelserver.coffee.model lazy
+}
+location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.34.v20201102/" {
+	org.eclipse.jetty.server
 }

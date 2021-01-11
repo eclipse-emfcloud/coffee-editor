@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow.impl;
 
 import com.eclipsesource.workflow.dsl.workflow.Assertion;
@@ -81,7 +81,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
+   *
    * <p>This method is used to initialize {@link WorkflowPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -96,7 +96,8 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
     if (isInited) return (WorkflowPackage)EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI);
 
     // Obtain or create and register package
-    WorkflowPackageImpl theWorkflowPackage = (WorkflowPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof WorkflowPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new WorkflowPackageImpl());
+    Object registeredWorkflowPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    WorkflowPackageImpl theWorkflowPackage = registeredWorkflowPackage instanceof WorkflowPackageImpl ? (WorkflowPackageImpl)registeredWorkflowPackage : new WorkflowPackageImpl();
 
     isInited = true;
 
@@ -109,7 +110,6 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
     // Mark meta-data to indicate it can't be changed
     theWorkflowPackage.freeze();
 
-  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(WorkflowPackage.eNS_URI, theWorkflowPackage);
     return theWorkflowPackage;
@@ -120,6 +120,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getWorkflowConfiguration()
   {
     return workflowConfigurationEClass;
@@ -130,6 +131,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getWorkflowConfiguration_Machine()
   {
     return (EAttribute)workflowConfigurationEClass.getEStructuralFeatures().get(0);
@@ -140,6 +142,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getWorkflowConfiguration_Model()
   {
     return (EAttribute)workflowConfigurationEClass.getEStructuralFeatures().get(1);
@@ -150,6 +153,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getWorkflowConfiguration_ProbConf()
   {
     return (EReference)workflowConfigurationEClass.getEStructuralFeatures().get(2);
@@ -160,6 +164,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getWorkflowConfiguration_Assertions()
   {
     return (EReference)workflowConfigurationEClass.getEStructuralFeatures().get(3);
@@ -170,6 +175,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getAssertion()
   {
     return assertionEClass;
@@ -180,6 +186,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getAssertion_Before()
   {
     return (EAttribute)assertionEClass.getEStructuralFeatures().get(0);
@@ -190,6 +197,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getAssertion_After()
   {
     return (EAttribute)assertionEClass.getEStructuralFeatures().get(1);
@@ -200,6 +208,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getProbabilityConfiguration()
   {
     return probabilityConfigurationEClass;
@@ -210,6 +219,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getProbabilityConfiguration_Low()
   {
     return (EAttribute)probabilityConfigurationEClass.getEStructuralFeatures().get(0);
@@ -220,6 +230,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getProbabilityConfiguration_Medium()
   {
     return (EAttribute)probabilityConfigurationEClass.getEStructuralFeatures().get(1);
@@ -230,6 +241,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getProbabilityConfiguration_High()
   {
     return (EAttribute)probabilityConfigurationEClass.getEStructuralFeatures().get(2);
@@ -240,6 +252,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public WorkflowFactory getWorkflowFactory()
   {
     return (WorkflowFactory)getEFactoryInstance();

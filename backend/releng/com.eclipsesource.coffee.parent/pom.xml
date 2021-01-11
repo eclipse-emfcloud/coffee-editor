@@ -35,7 +35,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho-version>1.6.0</tycho-version>
-		<xtext.version>2.20.0</xtext.version>
+		<xtext.version>2.23.0</xtext.version>
 		<xtend.version>${xtext.version}</xtend.version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>

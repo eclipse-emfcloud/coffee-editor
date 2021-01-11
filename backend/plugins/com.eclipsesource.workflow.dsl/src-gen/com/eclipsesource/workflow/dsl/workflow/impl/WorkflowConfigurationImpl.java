@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow.impl;
 
 import com.eclipsesource.workflow.dsl.workflow.Assertion;
@@ -135,6 +135,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getMachine()
   {
     return machine;
@@ -145,6 +146,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setMachine(String newMachine)
   {
     String oldMachine = machine;
@@ -158,6 +160,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getModel()
   {
     return model;
@@ -168,6 +171,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setModel(String newModel)
   {
     String oldModel = model;
@@ -181,6 +185,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ProbabilityConfiguration getProbConf()
   {
     return probConf;
@@ -208,6 +213,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setProbConf(ProbabilityConfiguration newProbConf)
   {
     if (newProbConf != probConf)
@@ -229,6 +235,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Assertion> getAssertions()
   {
     if (assertions == null)
@@ -364,7 +371,7 @@ public class WorkflowConfigurationImpl extends MinimalEObjectImpl.Container impl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (machine: ");
     result.append(machine);
     result.append(", model: ");

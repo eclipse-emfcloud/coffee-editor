@@ -8,5 +8,5 @@ Automatic-Module-Name: com.eclipsesource.coffee.common
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  org.eclipse.emfcloud.modelserver.common;bundle-version="0.7.0",
- org.eclipse.emf.ecore;bundle-version="2.20.0"
+ org.eclipse.emf.ecore;bundle-version="[2.23.0,3.0.0)"
 Export-Package: com.eclipsesource.coffee.common

@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow;
 
 import org.eclipse.emf.ecore.EObject;
@@ -34,10 +34,6 @@ public interface Assertion extends EObject
   /**
    * Returns the value of the '<em><b>Before</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Before</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Before</em>' attribute.
    * @see #setBefore(String)
@@ -60,10 +56,6 @@ public interface Assertion extends EObject
   /**
    * Returns the value of the '<em><b>After</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>After</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>After</em>' attribute.
    * @see #setAfter(String)

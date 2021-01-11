@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
- * 
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0 which is available at
- * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
- * available at https://opensource.org/licenses/MIT.
- * 
- * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
 package com.eclipsesource.workflow.dsl.parser.antlr.internal;
 
 import org.eclipse.xtext.*;
@@ -28,6 +18,16 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+/*******************************************************************************
+ * Copyright (c) 2019-2021 EclipseSource and others.
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ * 
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ ******************************************************************************/
 @SuppressWarnings("all")
 public class InternalWorkflowParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
@@ -93,7 +93,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleWorkflowConfiguration"
-    // InternalWorkflow.g:64:1: entryRuleWorkflowConfiguration returns [EObject current=null] : iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF ;
+    // InternalWorkflow.g:71:1: entryRuleWorkflowConfiguration returns [EObject current=null] : iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF ;
     public final EObject entryRuleWorkflowConfiguration() throws RecognitionException {
         EObject current = null;
 
@@ -101,8 +101,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWorkflow.g:64:62: (iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF )
-            // InternalWorkflow.g:65:2: iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF
+            // InternalWorkflow.g:71:62: (iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF )
+            // InternalWorkflow.g:72:2: iv_ruleWorkflowConfiguration= ruleWorkflowConfiguration EOF
             {
              newCompositeNode(grammarAccess.getWorkflowConfigurationRule()); 
             pushFollow(FOLLOW_1);
@@ -129,7 +129,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWorkflowConfiguration"
-    // InternalWorkflow.g:71:1: ruleWorkflowConfiguration returns [EObject current=null] : (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? ) ;
+    // InternalWorkflow.g:78:1: ruleWorkflowConfiguration returns [EObject current=null] : (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? ) ;
     public final EObject ruleWorkflowConfiguration() throws RecognitionException {
         EObject current = null;
 
@@ -152,11 +152,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWorkflow.g:77:2: ( (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? ) )
-            // InternalWorkflow.g:78:2: (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? )
+            // InternalWorkflow.g:84:2: ( (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? ) )
+            // InternalWorkflow.g:85:2: (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? )
             {
-            // InternalWorkflow.g:78:2: (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? )
-            // InternalWorkflow.g:79:3: otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )?
+            // InternalWorkflow.g:85:2: (otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )? )
+            // InternalWorkflow.g:86:3: otherlv_0= 'machine' otherlv_1= ':' ( (lv_machine_2_0= RULE_STRING ) ) otherlv_3= 'workflow' otherlv_4= ':' ( (lv_model_5_0= RULE_STRING ) ) ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )? (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )?
             {
             otherlv_0=(Token)match(input,11,FOLLOW_3); 
 
@@ -166,11 +166,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getWorkflowConfigurationAccess().getColonKeyword_1());
             		
-            // InternalWorkflow.g:87:3: ( (lv_machine_2_0= RULE_STRING ) )
-            // InternalWorkflow.g:88:4: (lv_machine_2_0= RULE_STRING )
+            // InternalWorkflow.g:94:3: ( (lv_machine_2_0= RULE_STRING ) )
+            // InternalWorkflow.g:95:4: (lv_machine_2_0= RULE_STRING )
             {
-            // InternalWorkflow.g:88:4: (lv_machine_2_0= RULE_STRING )
-            // InternalWorkflow.g:89:5: lv_machine_2_0= RULE_STRING
+            // InternalWorkflow.g:95:4: (lv_machine_2_0= RULE_STRING )
+            // InternalWorkflow.g:96:5: lv_machine_2_0= RULE_STRING
             {
             lv_machine_2_0=(Token)match(input,RULE_STRING,FOLLOW_5); 
 
@@ -200,11 +200,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getWorkflowConfigurationAccess().getColonKeyword_4());
             		
-            // InternalWorkflow.g:113:3: ( (lv_model_5_0= RULE_STRING ) )
-            // InternalWorkflow.g:114:4: (lv_model_5_0= RULE_STRING )
+            // InternalWorkflow.g:120:3: ( (lv_model_5_0= RULE_STRING ) )
+            // InternalWorkflow.g:121:4: (lv_model_5_0= RULE_STRING )
             {
-            // InternalWorkflow.g:114:4: (lv_model_5_0= RULE_STRING )
-            // InternalWorkflow.g:115:5: lv_model_5_0= RULE_STRING
+            // InternalWorkflow.g:121:4: (lv_model_5_0= RULE_STRING )
+            // InternalWorkflow.g:122:5: lv_model_5_0= RULE_STRING
             {
             lv_model_5_0=(Token)match(input,RULE_STRING,FOLLOW_6); 
 
@@ -226,7 +226,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWorkflow.g:131:3: ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )?
+            // InternalWorkflow.g:138:3: ( (lv_probConf_6_0= ruleProbabilityConfiguration ) )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -235,10 +235,10 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalWorkflow.g:132:4: (lv_probConf_6_0= ruleProbabilityConfiguration )
+                    // InternalWorkflow.g:139:4: (lv_probConf_6_0= ruleProbabilityConfiguration )
                     {
-                    // InternalWorkflow.g:132:4: (lv_probConf_6_0= ruleProbabilityConfiguration )
-                    // InternalWorkflow.g:133:5: lv_probConf_6_0= ruleProbabilityConfiguration
+                    // InternalWorkflow.g:139:4: (lv_probConf_6_0= ruleProbabilityConfiguration )
+                    // InternalWorkflow.g:140:5: lv_probConf_6_0= ruleProbabilityConfiguration
                     {
 
                     					newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getProbConfProbabilityConfigurationParserRuleCall_6_0());
@@ -268,7 +268,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWorkflow.g:150:3: (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )?
+            // InternalWorkflow.g:157:3: (otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )* )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -277,17 +277,17 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalWorkflow.g:151:4: otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )*
+                    // InternalWorkflow.g:158:4: otherlv_7= 'assertions' ( (lv_assertions_8_0= ruleAssertion ) ) (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )*
                     {
                     otherlv_7=(Token)match(input,14,FOLLOW_4); 
 
                     				newLeafNode(otherlv_7, grammarAccess.getWorkflowConfigurationAccess().getAssertionsKeyword_7_0());
                     			
-                    // InternalWorkflow.g:155:4: ( (lv_assertions_8_0= ruleAssertion ) )
-                    // InternalWorkflow.g:156:5: (lv_assertions_8_0= ruleAssertion )
+                    // InternalWorkflow.g:162:4: ( (lv_assertions_8_0= ruleAssertion ) )
+                    // InternalWorkflow.g:163:5: (lv_assertions_8_0= ruleAssertion )
                     {
-                    // InternalWorkflow.g:156:5: (lv_assertions_8_0= ruleAssertion )
-                    // InternalWorkflow.g:157:6: lv_assertions_8_0= ruleAssertion
+                    // InternalWorkflow.g:163:5: (lv_assertions_8_0= ruleAssertion )
+                    // InternalWorkflow.g:164:6: lv_assertions_8_0= ruleAssertion
                     {
 
                     						newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_1_0());
@@ -314,7 +314,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWorkflow.g:174:4: (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )*
+                    // InternalWorkflow.g:181:4: (otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) ) )*
                     loop2:
                     do {
                         int alt2=2;
@@ -327,17 +327,17 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // InternalWorkflow.g:175:5: otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) )
+                    	    // InternalWorkflow.g:182:5: otherlv_9= ',' ( (lv_assertions_10_0= ruleAssertion ) )
                     	    {
                     	    otherlv_9=(Token)match(input,15,FOLLOW_4); 
 
                     	    					newLeafNode(otherlv_9, grammarAccess.getWorkflowConfigurationAccess().getCommaKeyword_7_2_0());
                     	    				
-                    	    // InternalWorkflow.g:179:5: ( (lv_assertions_10_0= ruleAssertion ) )
-                    	    // InternalWorkflow.g:180:6: (lv_assertions_10_0= ruleAssertion )
+                    	    // InternalWorkflow.g:186:5: ( (lv_assertions_10_0= ruleAssertion ) )
+                    	    // InternalWorkflow.g:187:6: (lv_assertions_10_0= ruleAssertion )
                     	    {
-                    	    // InternalWorkflow.g:180:6: (lv_assertions_10_0= ruleAssertion )
-                    	    // InternalWorkflow.g:181:7: lv_assertions_10_0= ruleAssertion
+                    	    // InternalWorkflow.g:187:6: (lv_assertions_10_0= ruleAssertion )
+                    	    // InternalWorkflow.g:188:7: lv_assertions_10_0= ruleAssertion
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getWorkflowConfigurationAccess().getAssertionsAssertionParserRuleCall_7_2_1_0());
@@ -402,7 +402,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAssertion"
-    // InternalWorkflow.g:204:1: entryRuleAssertion returns [EObject current=null] : iv_ruleAssertion= ruleAssertion EOF ;
+    // InternalWorkflow.g:211:1: entryRuleAssertion returns [EObject current=null] : iv_ruleAssertion= ruleAssertion EOF ;
     public final EObject entryRuleAssertion() throws RecognitionException {
         EObject current = null;
 
@@ -410,8 +410,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWorkflow.g:204:50: (iv_ruleAssertion= ruleAssertion EOF )
-            // InternalWorkflow.g:205:2: iv_ruleAssertion= ruleAssertion EOF
+            // InternalWorkflow.g:211:50: (iv_ruleAssertion= ruleAssertion EOF )
+            // InternalWorkflow.g:212:2: iv_ruleAssertion= ruleAssertion EOF
             {
              newCompositeNode(grammarAccess.getAssertionRule()); 
             pushFollow(FOLLOW_1);
@@ -438,7 +438,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssertion"
-    // InternalWorkflow.g:211:1: ruleAssertion returns [EObject current=null] : ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) ) ;
+    // InternalWorkflow.g:218:1: ruleAssertion returns [EObject current=null] : ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) ) ;
     public final EObject ruleAssertion() throws RecognitionException {
         EObject current = null;
 
@@ -450,17 +450,17 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWorkflow.g:217:2: ( ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) ) )
-            // InternalWorkflow.g:218:2: ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) )
+            // InternalWorkflow.g:224:2: ( ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) ) )
+            // InternalWorkflow.g:225:2: ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) )
             {
-            // InternalWorkflow.g:218:2: ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) )
-            // InternalWorkflow.g:219:3: ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) )
+            // InternalWorkflow.g:225:2: ( ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) ) )
+            // InternalWorkflow.g:226:3: ( (lv_before_0_0= RULE_STRING ) ) otherlv_1= '=>' ( (lv_after_2_0= RULE_STRING ) )
             {
-            // InternalWorkflow.g:219:3: ( (lv_before_0_0= RULE_STRING ) )
-            // InternalWorkflow.g:220:4: (lv_before_0_0= RULE_STRING )
+            // InternalWorkflow.g:226:3: ( (lv_before_0_0= RULE_STRING ) )
+            // InternalWorkflow.g:227:4: (lv_before_0_0= RULE_STRING )
             {
-            // InternalWorkflow.g:220:4: (lv_before_0_0= RULE_STRING )
-            // InternalWorkflow.g:221:5: lv_before_0_0= RULE_STRING
+            // InternalWorkflow.g:227:4: (lv_before_0_0= RULE_STRING )
+            // InternalWorkflow.g:228:5: lv_before_0_0= RULE_STRING
             {
             lv_before_0_0=(Token)match(input,RULE_STRING,FOLLOW_9); 
 
@@ -486,11 +486,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getAssertionAccess().getEqualsSignGreaterThanSignKeyword_1());
             		
-            // InternalWorkflow.g:241:3: ( (lv_after_2_0= RULE_STRING ) )
-            // InternalWorkflow.g:242:4: (lv_after_2_0= RULE_STRING )
+            // InternalWorkflow.g:248:3: ( (lv_after_2_0= RULE_STRING ) )
+            // InternalWorkflow.g:249:4: (lv_after_2_0= RULE_STRING )
             {
-            // InternalWorkflow.g:242:4: (lv_after_2_0= RULE_STRING )
-            // InternalWorkflow.g:243:5: lv_after_2_0= RULE_STRING
+            // InternalWorkflow.g:249:4: (lv_after_2_0= RULE_STRING )
+            // InternalWorkflow.g:250:5: lv_after_2_0= RULE_STRING
             {
             lv_after_2_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -535,7 +535,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleProbabilityConfiguration"
-    // InternalWorkflow.g:263:1: entryRuleProbabilityConfiguration returns [EObject current=null] : iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF ;
+    // InternalWorkflow.g:270:1: entryRuleProbabilityConfiguration returns [EObject current=null] : iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF ;
     public final EObject entryRuleProbabilityConfiguration() throws RecognitionException {
         EObject current = null;
 
@@ -543,8 +543,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWorkflow.g:263:65: (iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF )
-            // InternalWorkflow.g:264:2: iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF
+            // InternalWorkflow.g:270:65: (iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF )
+            // InternalWorkflow.g:271:2: iv_ruleProbabilityConfiguration= ruleProbabilityConfiguration EOF
             {
              newCompositeNode(grammarAccess.getProbabilityConfigurationRule()); 
             pushFollow(FOLLOW_1);
@@ -571,7 +571,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProbabilityConfiguration"
-    // InternalWorkflow.g:270:1: ruleProbabilityConfiguration returns [EObject current=null] : ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) ) ;
+    // InternalWorkflow.g:277:1: ruleProbabilityConfiguration returns [EObject current=null] : ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) ) ;
     public final EObject ruleProbabilityConfiguration() throws RecognitionException {
         EObject current = null;
 
@@ -593,14 +593,14 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWorkflow.g:276:2: ( ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) ) )
-            // InternalWorkflow.g:277:2: ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) )
+            // InternalWorkflow.g:283:2: ( ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) ) )
+            // InternalWorkflow.g:284:2: ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) )
             {
-            // InternalWorkflow.g:277:2: ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) )
-            // InternalWorkflow.g:278:3: (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) )
+            // InternalWorkflow.g:284:2: ( (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) ) )
+            // InternalWorkflow.g:285:3: (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) ) (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) ) (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) )
             {
-            // InternalWorkflow.g:278:3: (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) )
-            // InternalWorkflow.g:279:4: otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) )
+            // InternalWorkflow.g:285:3: (otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) ) )
+            // InternalWorkflow.g:286:4: otherlv_0= 'probabilities' otherlv_1= 'low' otherlv_2= ':' ( (lv_low_3_0= ruleFloat ) )
             {
             otherlv_0=(Token)match(input,17,FOLLOW_10); 
 
@@ -614,11 +614,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             				newLeafNode(otherlv_2, grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_0_2());
             			
-            // InternalWorkflow.g:291:4: ( (lv_low_3_0= ruleFloat ) )
-            // InternalWorkflow.g:292:5: (lv_low_3_0= ruleFloat )
+            // InternalWorkflow.g:298:4: ( (lv_low_3_0= ruleFloat ) )
+            // InternalWorkflow.g:299:5: (lv_low_3_0= ruleFloat )
             {
-            // InternalWorkflow.g:292:5: (lv_low_3_0= ruleFloat )
-            // InternalWorkflow.g:293:6: lv_low_3_0= ruleFloat
+            // InternalWorkflow.g:299:5: (lv_low_3_0= ruleFloat )
+            // InternalWorkflow.g:300:6: lv_low_3_0= ruleFloat
             {
 
             						newCompositeNode(grammarAccess.getProbabilityConfigurationAccess().getLowFloatParserRuleCall_0_3_0());
@@ -648,8 +648,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWorkflow.g:311:3: (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) )
-            // InternalWorkflow.g:312:4: otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) )
+            // InternalWorkflow.g:318:3: (otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) ) )
+            // InternalWorkflow.g:319:4: otherlv_4= 'medium' otherlv_5= ':' ( (lv_medium_6_0= ruleFloat ) )
             {
             otherlv_4=(Token)match(input,19,FOLLOW_3); 
 
@@ -659,11 +659,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             				newLeafNode(otherlv_5, grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_1_1());
             			
-            // InternalWorkflow.g:320:4: ( (lv_medium_6_0= ruleFloat ) )
-            // InternalWorkflow.g:321:5: (lv_medium_6_0= ruleFloat )
+            // InternalWorkflow.g:327:4: ( (lv_medium_6_0= ruleFloat ) )
+            // InternalWorkflow.g:328:5: (lv_medium_6_0= ruleFloat )
             {
-            // InternalWorkflow.g:321:5: (lv_medium_6_0= ruleFloat )
-            // InternalWorkflow.g:322:6: lv_medium_6_0= ruleFloat
+            // InternalWorkflow.g:328:5: (lv_medium_6_0= ruleFloat )
+            // InternalWorkflow.g:329:6: lv_medium_6_0= ruleFloat
             {
 
             						newCompositeNode(grammarAccess.getProbabilityConfigurationAccess().getMediumFloatParserRuleCall_1_2_0());
@@ -693,8 +693,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWorkflow.g:340:3: (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) )
-            // InternalWorkflow.g:341:4: otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) )
+            // InternalWorkflow.g:347:3: (otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) ) )
+            // InternalWorkflow.g:348:4: otherlv_7= 'high' otherlv_8= ':' ( (lv_high_9_0= ruleFloat ) )
             {
             otherlv_7=(Token)match(input,20,FOLLOW_3); 
 
@@ -704,11 +704,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
             				newLeafNode(otherlv_8, grammarAccess.getProbabilityConfigurationAccess().getColonKeyword_2_1());
             			
-            // InternalWorkflow.g:349:4: ( (lv_high_9_0= ruleFloat ) )
-            // InternalWorkflow.g:350:5: (lv_high_9_0= ruleFloat )
+            // InternalWorkflow.g:356:4: ( (lv_high_9_0= ruleFloat ) )
+            // InternalWorkflow.g:357:5: (lv_high_9_0= ruleFloat )
             {
-            // InternalWorkflow.g:350:5: (lv_high_9_0= ruleFloat )
-            // InternalWorkflow.g:351:6: lv_high_9_0= ruleFloat
+            // InternalWorkflow.g:357:5: (lv_high_9_0= ruleFloat )
+            // InternalWorkflow.g:358:6: lv_high_9_0= ruleFloat
             {
 
             						newCompositeNode(grammarAccess.getProbabilityConfigurationAccess().getHighFloatParserRuleCall_2_2_0());
@@ -761,7 +761,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFloat"
-    // InternalWorkflow.g:373:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
+    // InternalWorkflow.g:380:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
     public final String entryRuleFloat() throws RecognitionException {
         String current = null;
 
@@ -769,8 +769,8 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWorkflow.g:373:45: (iv_ruleFloat= ruleFloat EOF )
-            // InternalWorkflow.g:374:2: iv_ruleFloat= ruleFloat EOF
+            // InternalWorkflow.g:380:45: (iv_ruleFloat= ruleFloat EOF )
+            // InternalWorkflow.g:381:2: iv_ruleFloat= ruleFloat EOF
             {
              newCompositeNode(grammarAccess.getFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -797,7 +797,7 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFloat"
-    // InternalWorkflow.g:380:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
+    // InternalWorkflow.g:387:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleFloat() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -809,11 +809,11 @@ public class InternalWorkflowParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWorkflow.g:386:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
-            // InternalWorkflow.g:387:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalWorkflow.g:393:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
+            // InternalWorkflow.g:394:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
             {
-            // InternalWorkflow.g:387:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
-            // InternalWorkflow.g:388:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
+            // InternalWorkflow.g:394:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalWorkflow.g:395:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
             {
             this_INT_0=(Token)match(input,RULE_INT,FOLLOW_14); 
 

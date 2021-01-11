@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow.impl;
 
 import com.eclipsesource.workflow.dsl.workflow.*;
@@ -85,6 +85,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public WorkflowConfiguration createWorkflowConfiguration()
   {
     WorkflowConfigurationImpl workflowConfiguration = new WorkflowConfigurationImpl();
@@ -96,6 +97,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Assertion createAssertion()
   {
     AssertionImpl assertion = new AssertionImpl();
@@ -107,6 +109,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ProbabilityConfiguration createProbabilityConfiguration()
   {
     ProbabilityConfigurationImpl probabilityConfiguration = new ProbabilityConfigurationImpl();
@@ -118,6 +121,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public WorkflowPackage getWorkflowPackage()
   {
     return (WorkflowPackage)getEPackage();

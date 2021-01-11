@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow.impl;
 
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration;
@@ -123,6 +123,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getLow()
   {
     return low;
@@ -133,6 +134,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setLow(float newLow)
   {
     float oldLow = low;
@@ -146,6 +148,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getMedium()
   {
     return medium;
@@ -156,6 +159,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setMedium(float newMedium)
   {
     float oldMedium = medium;
@@ -169,6 +173,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public float getHigh()
   {
     return high;
@@ -179,6 +184,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setHigh(float newHigh)
   {
     float oldHigh = high;
@@ -283,7 +289,7 @@ public class ProbabilityConfigurationImpl extends MinimalEObjectImpl.Container i
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (low: ");
     result.append(low);
     result.append(", medium: ");
