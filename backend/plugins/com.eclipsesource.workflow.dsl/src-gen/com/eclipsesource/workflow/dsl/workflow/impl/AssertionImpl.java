@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+/**
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ******************************************************************************/
+ */
 package com.eclipsesource.workflow.dsl.workflow.impl;
 
 import com.eclipsesource.workflow.dsl.workflow.Assertion;
@@ -102,6 +102,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getBefore()
   {
     return before;
@@ -112,6 +113,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setBefore(String newBefore)
   {
     String oldBefore = before;
@@ -125,6 +127,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getAfter()
   {
     return after;
@@ -135,6 +138,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setAfter(String newAfter)
   {
     String oldAfter = after;
@@ -229,7 +233,7 @@ public class AssertionImpl extends MinimalEObjectImpl.Container implements Asser
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (before: ");
     result.append(before);
     result.append(", after: ");

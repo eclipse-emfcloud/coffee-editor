@@ -5,7 +5,7 @@ Bundle-SymbolicName: com.eclipsesource.coffee.workflow.analyzer.application;sing
 Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Require-Bundle: org.eclipse.core.runtime,
- com.google.gson;bundle-version="2.7.0",
+ com.google.gson;bundle-version="2.8.2",
  org.eclipse.lsp4j.jsonrpc,
  org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  com.eclipsesource.coffee.workflow.analyzer.coffee,
