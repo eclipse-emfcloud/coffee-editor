@@ -20,6 +20,7 @@ import {
 } from '@theia/core/lib/browser/frontend-application';
 import { ContainerModule, inject, injectable } from 'inversify';
 
+import { CoffeeModelServerFrontendContribution } from './coffee-frontend-contribution';
 import { TimeoutDialog, TimeoutDialogProps } from './coffee-timeout-dialog';
 
 export default new ContainerModule(bind => {
@@ -27,7 +28,8 @@ export default new ContainerModule(bind => {
     bind(TimeoutDialog).toSelf().inSingletonScope();
     bind(BackendWatcher).toSelf().inSingletonScope();
     bind(FrontendApplicationContribution).toService(BackendWatcher);
-
+    bind(CoffeeModelServerFrontendContribution).toSelf().inSingletonScope();
+    bind(FrontendApplicationContribution).toService(CoffeeModelServerFrontendContribution);
 });
 
 @injectable()

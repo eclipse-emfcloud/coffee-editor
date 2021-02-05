@@ -33,7 +33,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.emfcloud.modelserver</groupId>
@@ -41,12 +41,81 @@
 			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.eclipsesource.modelserver</groupId>
-			<artifactId>com.eclipsesource.modelserver.coffee.model</artifactId>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.coffee.model</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.common</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.edit</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.emf</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emfcloud.modelserver</groupId>
+			<artifactId>org.eclipse.emfcloud.modelserver.lib</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			 <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			 <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-multibindings</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.edit</artifactId>
+			<version>2.15.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+			 <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+			 <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.0.pr1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.emfjson</groupId>
+			<artifactId>emfjson-jackson</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			 <scope>provided</scope>
+		</dependency>
 	</dependencies>
-
 	<profiles>
 		<profile>
 			<id>fatjar</id>

@@ -13,24 +13,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { LaunchOptions } from '@eclipse-emfcloud/modelserver-theia';
 import { LanguageServerContribution } from '@theia/languages/lib/node';
-import { ContainerModule, injectable } from 'inversify';
-import { join, resolve } from 'path';
+import { ContainerModule } from 'inversify';
 
 import { WorkflowNotationGLServerContribution } from './workflow-glsp-server-contribution';
 
 export default new ContainerModule(bind => {
     bind(LanguageServerContribution).to(WorkflowNotationGLServerContribution).inSingletonScope();
-    bind(LaunchOptions).to(ModelServerLaunchOptions).inSingletonScope();
 });
-
-@injectable()
-export class ModelServerLaunchOptions implements LaunchOptions {
-    isRunning = false;
-    baseURL = 'api/v1/';
-    serverPort = 8081;
-    hostname = 'localhost';
-    jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.modelserver.example-0.0.1-SNAPSHOT-standalone.jar'));
-    additionalArgs = ['--errorsOnly'];
-}
