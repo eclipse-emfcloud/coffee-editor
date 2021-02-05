@@ -17,17 +17,16 @@ import { GLSPLaunchOptions, GLSPServerLauncher } from './glsp-server-launcher';
 
 export default new ContainerModule((bind, _unbind, isBound, rebind) => {
     if (isBound(LaunchOptions)) {
-        rebind(LaunchOptions).to(CoffeeLaunchOptions).inSingletonScope();
+        rebind(LaunchOptions).to(CoffeeModelServerLaunchOptions).inSingletonScope();
     } else {
-        bind(LaunchOptions).to(CoffeeLaunchOptions).inSingletonScope();
+        bind(LaunchOptions).to(CoffeeModelServerLaunchOptions).inSingletonScope();
     }
     bind(GLSPLaunchOptions).to(CoffeeGlspLaunchOptions).inSingletonScope();
     bind(BackendApplicationContribution).to(GLSPServerLauncher);
 });
 
 @injectable()
-export class CoffeeLaunchOptions implements LaunchOptions {
-    isRunning = false;
+export class CoffeeModelServerLaunchOptions implements LaunchOptions {
     baseURL = 'api/v1/';
     serverPort = 8081;
     hostname = 'localhost';
@@ -37,8 +36,8 @@ export class CoffeeLaunchOptions implements LaunchOptions {
 
 @injectable()
 export class CoffeeGlspLaunchOptions implements GLSPLaunchOptions {
-    isRunning: false;
-    serverPort: 5008;
-    hostname: 'localhost';
+    isRunning = false;
+    serverPort = 5008;
+    hostname = 'localhost';
     jarPath = resolve(join(__dirname, '..', '..', 'build', 'com.eclipsesource.workflow.glsp.server-0.0.1-SNAPSHOT-glsp.jar'));
 }

@@ -67,6 +67,21 @@
 			<artifactId>org.eclipse.elk.alg.layered</artifactId>
 			<version>0.5.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.edit</artifactId>
+			<version>2.15.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.0.pr1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
