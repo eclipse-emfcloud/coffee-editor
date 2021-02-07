@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@eclipse-glsp/client": "next",
-    "@eclipse-glsp-examples/workflow-glsp": "next",
     "@eclipse-glsp/theia-integration": "next",
     "@eclipse-emfcloud/modelserver-theia": "next",
     "@theia/core": "latest",
@@ -25,7 +24,8 @@
     "@theia/languages": "latest",
     "@theia/monaco": "latest",
     "@theia/workspace": "latest",
-    "@types/node": "latest"
+    "@types/node": "latest",
+    "coffee-workflow-sprotty": "0.7.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

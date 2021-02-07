@@ -10,6 +10,7 @@
     "coffee-welcome-page/src",
     "coffee-workflow-analyzer/src",
     "coffee-workflow-analyzer-editors/src",
+    "coffee-workflow-sprotty/src",
     "coffee-workflow-glsp-editor/src",
   ],
   "exclude": [

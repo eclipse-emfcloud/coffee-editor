@@ -1,0 +1,43 @@
+{
+  "name": "coffee-workflow-sprotty",
+  "version": "0.7.0",
+  "description": "GLSP sprotty diagrams for the Workflow DSL",
+  "license": "(EPL-2.0 OR MIT)",
+  "author": "EclipseSource",
+  "keywords": [
+    "sprotty",
+    "workflow",
+    "diagram"
+  ],
+  "dependencies": {
+    "@eclipse-glsp/client": "next",
+    "balloon-css": "^0.5.0",
+    "inversify": "^5.0.1"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-header": "^3.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-react": "^7.20.3",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
+    "watch": "tsc -w"
+  },
+  "files": [
+    "lib",
+    "src",
+    "build",
+    "css"
+  ],
+  "main": "lib/index",
+  "types": "lib/index"
+}
