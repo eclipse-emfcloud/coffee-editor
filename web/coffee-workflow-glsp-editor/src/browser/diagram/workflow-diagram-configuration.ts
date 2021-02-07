@@ -15,14 +15,14 @@
  ********************************************************************************/
 import 'sprotty-theia/css/theia-sprotty.css';
 
-import { createWorkflowDiagramContainer } from '@eclipse-glsp-examples/workflow-glsp/lib';
 import { CommandPalette, TYPES } from '@eclipse-glsp/client/lib';
 import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
 import {
     connectTheiaContextMenuService,
-    TheiaContextMenuServiceFactory
+    TheiaContextMenuServiceFactory,
 } from '@eclipse-glsp/theia-integration/lib/browser/diagram/glsp-theia-context-menu-service';
 import { SelectionService } from '@theia/core';
+import { createWorkflowDiagramContainer } from 'coffee-workflow-sprotty';
 import { Container, inject, injectable } from 'inversify';
 import { DiagramConfiguration, TheiaDiagramServer, TheiaSprottySelectionForwarder } from 'sprotty-theia/lib';
 import { TheiaContextMenuService } from 'sprotty-theia/lib/sprotty/theia-sprotty-context-menu-service';
