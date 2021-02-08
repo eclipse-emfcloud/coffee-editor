@@ -10,7 +10,7 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import static org.eclipse.glsp.api.jsonrpc.GLSPServerException.getOrThrow;
+import static org.eclipse.glsp.server.protocol.GLSPServerException.getOrThrow;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.ChangeRoutingPointsOperation;
-import org.eclipse.glsp.api.types.ElementAndRoutingPoints;
 import org.eclipse.glsp.graph.GEdge;
-import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.BasicOperationHandler;
+import org.eclipse.glsp.server.operations.ChangeRoutingPointsOperation;
+import org.eclipse.glsp.server.types.ElementAndRoutingPoints;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -33,11 +33,11 @@ import com.eclipsesource.workflow.glsp.server.wfnotation.Point;
 public class ChangeRoutingPointsOperationHandler extends BasicOperationHandler<ChangeRoutingPointsOperation> {
 
 	@Override
-	public void executeOperation(ChangeRoutingPointsOperation operation, GraphicalModelState modelState) {
+	public void executeOperation(ChangeRoutingPointsOperation operation, GModelState modelState) {
 		operation.getNewRoutingPoints().forEach(ear -> applyRoutingPointsChange(ear, modelState));
 	}
 
-	private void applyRoutingPointsChange(ElementAndRoutingPoints ear, GraphicalModelState modelState) {
+	private void applyRoutingPointsChange(ElementAndRoutingPoints ear, GModelState modelState) {
 		GEdge gEdge = getOrThrow(modelState.getIndex().findElementByClass(ear.getElementId(), GEdge.class),
 				"Invalid edge: edge ID " + ear.getElementId());
 		// reroute

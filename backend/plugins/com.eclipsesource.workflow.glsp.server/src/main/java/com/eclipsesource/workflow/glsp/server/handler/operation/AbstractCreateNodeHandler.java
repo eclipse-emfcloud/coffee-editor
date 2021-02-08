@@ -21,8 +21,8 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.CreateNodeOperation;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.CreateNodeOperation;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowFacade;
@@ -41,7 +41,7 @@ public abstract class AbstractCreateNodeHandler
 	}
 
 	@Override
-	public void executeOperation(CreateNodeOperation operation, GraphicalModelState modelState,
+	public void executeOperation(CreateNodeOperation operation, GModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
 		Workflow workflow = workflowFacade.getCurrentWorkflow();
@@ -78,7 +78,7 @@ public abstract class AbstractCreateNodeHandler
 		workflow.getNodes().remove(node);
 	}
 
-	protected Node initializeNode(Node node, GraphicalModelState modelState) {
+	protected Node initializeNode(Node node, GModelState modelState) {
 		return node;
 	}
 }

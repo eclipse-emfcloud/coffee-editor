@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@eclipse-glsp/client": "next",
-    "@eclipse-glsp-examples/workflow-sprotty": "next",
+    "@eclipse-glsp-examples/workflow-glsp": "next",
     "@eclipse-glsp/theia-integration": "next",
     "@eclipse-emfcloud/modelserver-theia": "next",
     "@theia/core": "latest",

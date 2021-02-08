@@ -10,14 +10,14 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import org.eclipse.glsp.api.handler.OperationHandler;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.Operation;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.Operation;
+import org.eclipse.glsp.server.operations.OperationHandler;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 
 public interface ModelserverAwareOperationHandler<T extends Operation> extends OperationHandler {
 
-	public void executeOperation(T operation, GraphicalModelState modelState, WorkflowModelServerAccess modelAccess)
+	public void executeOperation(T operation, GModelState modelState, WorkflowModelServerAccess modelAccess)
 			throws Exception;
 }

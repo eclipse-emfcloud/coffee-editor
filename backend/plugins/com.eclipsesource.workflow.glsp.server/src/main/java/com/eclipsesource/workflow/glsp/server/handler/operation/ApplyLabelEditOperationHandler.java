@@ -18,18 +18,18 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.ApplyLabelEditOperation;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
+import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
+import org.eclipse.glsp.server.model.GModelState;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 
 public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperationHandler<ApplyLabelEditOperation> {
 
 	@Override
-	public void executeOperation(ApplyLabelEditOperation operation, GraphicalModelState modelState,
+	public void executeOperation(ApplyLabelEditOperation operation, GModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
 		Optional<GModelElement> element = modelState.getIndex().get(operation.getLabelId());
 		if (!element.isPresent() && !(element.get() instanceof GLabel)) {

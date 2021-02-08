@@ -10,14 +10,14 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.model;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.server.model.ModelStateImpl;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.model.GModelStateImpl;
 
-public class WorkflowModelState extends ModelStateImpl {
+public class WorkflowModelState extends GModelStateImpl {
 
 	private WorkflowModelServerAccess modelAccess;
 
-	public static WorkflowModelServerAccess getModelAccess(GraphicalModelState state) {
+	public static WorkflowModelServerAccess getModelAccess(GModelState state) {
 		if (!(state instanceof WorkflowModelState)) {
 			throw new IllegalArgumentException("Argument must be a ModelServerAwareModelState");
 		}

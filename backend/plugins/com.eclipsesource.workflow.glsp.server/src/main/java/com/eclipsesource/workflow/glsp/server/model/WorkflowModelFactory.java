@@ -24,17 +24,21 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.WeightedFlow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
 import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
-import org.eclipse.glsp.api.action.ActionProcessor;
-import org.eclipse.glsp.api.action.kind.RequestModelAction;
-import org.eclipse.glsp.api.factory.ModelFactory;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.utils.ClientOptions;
 import org.eclipse.glsp.graph.DefaultTypes;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelRoot;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.graph.builder.impl.GEdgeBuilder;
 import org.eclipse.glsp.graph.builder.impl.GGraphBuilder;
+import org.eclipse.glsp.server.actions.ActionDispatcher;
+import org.eclipse.glsp.server.features.core.model.ModelFactory;
+import org.eclipse.glsp.server.features.core.model.RequestModelAction;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.model.ModelStateProvider;
+import org.eclipse.glsp.server.protocol.ClientSessionListener;
+import org.eclipse.glsp.server.protocol.ClientSessionManager;
+import org.eclipse.glsp.server.protocol.GLSPClient;
+import org.eclipse.glsp.server.utils.ClientOptions;
 
 import com.eclipsesource.workflow.glsp.server.ModelServerClientProvider;
 import com.eclipsesource.workflow.glsp.server.util.WorkflowBuilder.ActivityNodeBuilder;
@@ -48,7 +52,7 @@ import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 import com.google.inject.Inject;
 
-public class WorkflowModelFactory implements ModelFactory {
+public class WorkflowModelFactory implements ModelFactory, ClientSessionListener {
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelFactory.class);
 	private static final String ROOT_ID = "sprotty";
 	public static final String OPTION_WORKFLOW_INDEX = "workflowIndex";
@@ -58,7 +62,13 @@ public class WorkflowModelFactory implements ModelFactory {
 	private ModelServerClientProvider modelServerClientProvider;
 
 	@Inject
-	private ActionProcessor actionProcessor;
+	private ModelStateProvider modelStateProvider;
+	
+	@Inject
+	private ClientSessionManager clientSessionManager;
+
+	@Inject
+	private ActionDispatcher actionProcessor;
 
 	@Inject
 	private AdapterFactory adapterFactory;
@@ -67,7 +77,7 @@ public class WorkflowModelFactory implements ModelFactory {
 	private CommandCodec commandCodec;
 
 	@Override
-	public GModelRoot loadModel(RequestModelAction action, GraphicalModelState modelState) {
+	public GModelRoot loadModel(RequestModelAction action, GModelState modelState) {
 		// 1. Load models and create workflow facade
 		Optional<String> sourceURI = ClientOptions.getValue(action.getOptions(), ClientOptions.SOURCE_URI);
 		if (sourceURI.isEmpty()) {
@@ -86,6 +96,7 @@ public class WorkflowModelFactory implements ModelFactory {
 
 		if (modelState instanceof WorkflowModelState) {
 			((WorkflowModelState) modelState).setModelAccess(modelAccess);
+			this.clientSessionManager.addListener(this);
 		}
 
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
@@ -113,7 +124,16 @@ public class WorkflowModelFactory implements ModelFactory {
 		return mappedGModelRoot.getRoot();
 	}
 
-	public static MappedGModelRoot populate(WorkflowFacade workflowFacade, GraphicalModelState modelState) {
+	@Override
+	public void sessionClosed(String clientId, GLSPClient client) {
+		Optional<GModelState> modelState = modelStateProvider.getModelState(clientId);
+		if(modelState.isPresent() && modelState.get() instanceof WorkflowModelState) {
+			((WorkflowModelState) modelState.get()).getModelAccess().unsubscribe();
+			this.clientSessionManager.removeListener(this);
+		}
+	}
+
+	public static MappedGModelRoot populate(WorkflowFacade workflowFacade, GModelState modelState) {
 		Workflow workflow = workflowFacade.getCurrentWorkflow();
 
 		GModelRoot root = createEmptyRoot();
@@ -145,15 +165,14 @@ public class WorkflowModelFactory implements ModelFactory {
 				.build();
 	}
 
-	private static Optional<GEdge> toGEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping,
-			GraphicalModelState modelState) {
+	private static Optional<GEdge> toGEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping, GModelState modelState) {
 		GEdge gedge = flow instanceof WeightedFlow
 				? createWeightedEdge((WeightedFlow) flow, edge, nodeMapping, modelState)
 				: createEdge(flow, edge, nodeMapping, modelState);
 		return Optional.ofNullable(gedge);
 	}
 
-	private static Optional<GNode> toGNode(Node node, DiagramElement shape, GraphicalModelState modelState) {
+	private static Optional<GNode> toGNode(Node node, DiagramElement shape, GModelState modelState) {
 		GNode gnode = node instanceof Task //
 				? createTaskNode((Task) node, (Shape) shape, modelState)
 				: createActivityNode(node, (Shape) shape, modelState);
@@ -161,7 +180,7 @@ public class WorkflowModelFactory implements ModelFactory {
 	}
 
 	private static WeightedEdge createWeightedEdge(WeightedFlow flow, Edge edge, Map<Node, GNode> nodeMapping,
-			GraphicalModelState modelState) {
+			GModelState modelState) {
 		WeightedEdgeBuilder builder = new WeightedEdgeBuilder() //
 				.probability(flow.getProbability().getName()) //
 				.source(nodeMapping.get(flow.getSource())) //
@@ -171,8 +190,7 @@ public class WorkflowModelFactory implements ModelFactory {
 		return builder.build();
 	}
 
-	private static GEdge createEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping,
-			GraphicalModelState modelState) {
+	private static GEdge createEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping, GModelState modelState) {
 		GEdgeBuilder builder = new GEdgeBuilder();
 		builder.source(nodeMapping.get(flow.getSource()));
 		builder.target(nodeMapping.get(flow.getTarget()));
@@ -181,7 +199,7 @@ public class WorkflowModelFactory implements ModelFactory {
 		return builder.build();
 	}
 
-	private static TaskNode createTaskNode(Task task, Shape shape, GraphicalModelState modelState) {
+	private static TaskNode createTaskNode(Task task, Shape shape, GModelState modelState) {
 		String type = CoffeeTypeUtil.toType(task);
 		String nodeType = CoffeeTypeUtil.toNodeType(task);
 		TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
@@ -196,7 +214,7 @@ public class WorkflowModelFactory implements ModelFactory {
 		return builder.build();
 	}
 
-	private static ActivityNode createActivityNode(Node node, Shape shape, GraphicalModelState modelState) {
+	private static ActivityNode createActivityNode(Node node, Shape shape, GModelState modelState) {
 		String type = CoffeeTypeUtil.toType(node);
 		String nodeType = CoffeeTypeUtil.toNodeType(node);
 		ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);

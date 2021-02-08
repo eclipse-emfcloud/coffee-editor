@@ -10,15 +10,15 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.model;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
 import org.eclipse.glsp.server.model.DefaultModelStateProvider;
+import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.inject.Singleton;
 
 @Singleton
 public class WorkflowModelStateProvider extends DefaultModelStateProvider {
 	@Override
-	protected GraphicalModelState createModelState() {
+	protected GModelState createModelState() {
 		return new WorkflowModelState();
 	}
 }

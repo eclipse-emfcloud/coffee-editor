@@ -19,8 +19,8 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Workflow;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.CreateEdgeOperation;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.CreateEdgeOperation;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowFacade;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -38,7 +38,7 @@ public abstract class AbstractCreateEdgeHandler
 	}
 
 	@Override
-	public void executeOperation(CreateEdgeOperation operation, GraphicalModelState modelState,
+	public void executeOperation(CreateEdgeOperation operation, GModelState modelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
 		Workflow workflow = workflowFacade.getCurrentWorkflow();

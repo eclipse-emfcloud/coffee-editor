@@ -13,12 +13,12 @@ package com.eclipsesource.workflow.glsp.server.handler;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.action.kind.SaveModelAction;
-import org.eclipse.glsp.api.action.kind.SetDirtyStateAction;
-import org.eclipse.glsp.api.jsonrpc.GLSPServerException;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.server.actionhandler.BasicActionHandler;
+import org.eclipse.glsp.server.actions.Action;
+import org.eclipse.glsp.server.actions.BasicActionHandler;
+import org.eclipse.glsp.server.actions.SaveModelAction;
+import org.eclipse.glsp.server.actions.SetDirtyStateAction;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
@@ -26,7 +26,7 @@ import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 public class WorkflowSaveModelActionHandler extends BasicActionHandler<SaveModelAction> {
 
 	@Override
-	protected List<Action> executeAction(SaveModelAction action, GraphicalModelState modelState) {
+	protected List<Action> executeAction(SaveModelAction action, GModelState modelState) {
 		try {
 			if (action != null) {
 				WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);

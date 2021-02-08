@@ -10,14 +10,14 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
 import org.eclipse.glsp.graph.GGraph;
 import org.eclipse.glsp.layout.ElkLayoutEngine;
 import org.eclipse.glsp.layout.GLSPLayoutConfigurator;
+import org.eclipse.glsp.server.model.GModelState;
 
 public class WorkflowLayoutEngine extends ElkLayoutEngine {
    @Override
-   public void layout(final GraphicalModelState modelState) {
+   public void layout(final GModelState modelState) {
       if (modelState.getRoot() instanceof GGraph) {
          GLSPLayoutConfigurator configurator = new GLSPLayoutConfigurator();
          configurator.configureByType("graph");

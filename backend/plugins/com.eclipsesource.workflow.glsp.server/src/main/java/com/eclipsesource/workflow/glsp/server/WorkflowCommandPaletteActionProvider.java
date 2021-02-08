@@ -17,17 +17,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.CreateEdgeOperation;
-import org.eclipse.glsp.api.operation.kind.CreateNodeOperation;
-import org.eclipse.glsp.api.operation.kind.DeleteOperation;
-import org.eclipse.glsp.api.provider.CommandPaletteActionProvider;
-import org.eclipse.glsp.api.types.EditorContext;
-import org.eclipse.glsp.api.types.LabeledAction;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GModelIndex;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.graph.GPoint;
+import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
+import org.eclipse.glsp.server.features.directediting.LabeledAction;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.CreateEdgeOperation;
+import org.eclipse.glsp.server.operations.CreateNodeOperation;
+import org.eclipse.glsp.server.operations.DeleteOperation;
+import org.eclipse.glsp.server.types.EditorContext;
 
 import com.eclipsesource.workflow.glsp.server.util.ModelTypes;
 import com.eclipsesource.workflow.glsp.server.wfgraph.TaskNode;
@@ -37,7 +37,7 @@ import com.google.common.collect.Sets;
 public class WorkflowCommandPaletteActionProvider implements CommandPaletteActionProvider {
 
 	@Override
-	public List<LabeledAction> getActions(EditorContext editorContext, GraphicalModelState modelState) {
+	public List<LabeledAction> getActions(EditorContext editorContext, GModelState modelState) {
 		List<LabeledAction> actions = Lists.newArrayList();
 
 		GModelIndex index = modelState.getIndex();

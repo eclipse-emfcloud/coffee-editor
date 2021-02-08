@@ -13,15 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GLSPClientContribution } from '@eclipse-glsp/theia-integration/lib/browser';
-import {
-    FrontendApplicationContribution,
-    LabelProviderContribution,
-    OpenHandler,
-    WidgetFactory
-} from '@theia/core/lib/browser';
+import { GLSPClientContribution, registerDiagramManager } from '@eclipse-glsp/theia-integration/lib/browser';
+import { LabelProviderContribution } from '@theia/core/lib/browser';
 import { ContainerModule, interfaces } from 'inversify';
-import { DiagramConfiguration, DiagramManager, DiagramManagerProvider } from 'sprotty-theia/lib';
+import { DiagramConfiguration } from 'sprotty-theia/lib';
 
 import { WorkflowDiagramConfiguration } from './diagram/workflow-diagram-configuration';
 import { WorkflowDiagramLabelProviderContribution } from './diagram/workflow-diagram-label-provider-contribution';
@@ -32,20 +27,8 @@ import { WorkflowGLSPClientContribution } from './language/workflow-glsp-client-
 export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
     bind(WorkflowGLSPClientContribution).toSelf().inSingletonScope();
     bind(GLSPClientContribution).toService(WorkflowGLSPClientContribution);
-
-    bind(WorkflowGLSPDiagramClient).toSelf().inSingletonScope();
-
     bind(DiagramConfiguration).to(WorkflowDiagramConfiguration).inSingletonScope();
-    bind(WorkflowDiagramManager).toSelf().inSingletonScope();
-    bind(FrontendApplicationContribution).toService(WorkflowDiagramManager);
-    bind(OpenHandler).toService(WorkflowDiagramManager);
-    bind(WidgetFactory).toService(WorkflowDiagramManager);
-    bind(DiagramManagerProvider).toProvider<DiagramManager>(context =>
-        () =>
-            new Promise<DiagramManager>(resolve => {
-                const diagramManager = context.container.get<WorkflowDiagramManager>(WorkflowDiagramManager);
-                resolve(diagramManager);
-            }));
+    bind(WorkflowGLSPDiagramClient).toSelf().inSingletonScope();
+    registerDiagramManager(bind, WorkflowDiagramManager);
     bind(LabelProviderContribution).to(WorkflowDiagramLabelProviderContribution);
-
 });

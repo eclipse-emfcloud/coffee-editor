@@ -10,10 +10,10 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server;
 
-import org.eclipse.glsp.api.configuration.ServerConfiguration;
-import org.eclipse.glsp.api.layout.ServerLayoutKind;
+import org.eclipse.glsp.server.layout.ServerLayoutConfiguration;
+import org.eclipse.glsp.server.layout.ServerLayoutKind;
 
-public class WorkflowServerConfiguration implements ServerConfiguration{
+public class WorkflowServerLayoutConfiguration implements ServerLayoutConfiguration {
 
 	@Override
 	public ServerLayoutKind getLayoutKind() {

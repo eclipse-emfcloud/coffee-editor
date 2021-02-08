@@ -19,7 +19,6 @@ import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.glsp.server.jsonrpc.DefaultGLSPServer;
 
 import com.eclipsesource.workflow.glsp.server.WorkflowGLSPServer.InitializeOptions;
-import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 import com.google.inject.Inject;
 
 public class WorkflowGLSPServer extends DefaultGLSPServer<InitializeOptions> {
@@ -37,29 +36,17 @@ public class WorkflowGLSPServer extends DefaultGLSPServer<InitializeOptions> {
 			Log.debug(String.format("[%s] Pinging modelserver at: '%s'", options.getTimestamp(),
 					options.getModelserverURL()));
 			try {
-				@SuppressWarnings("resource")
 				ModelServerClient client = new ModelServerClient(options.getModelserverURL());
 				boolean alive = client.ping().thenApply(Response<Boolean>::body).get();
 				if (alive) {
 					modelServerClientProvider.setModelServerClient(client);
 					return CompletableFuture.completedFuture(true);
 				}
-
 			} catch (Exception e) {
 				Log.error("Error during initialization of modelserver connection", e);
 			}
 		}
 		return CompletableFuture.completedFuture(false);
-	}
-
-	@Override
-	public void exit(String clientId) {
-		modelStateProvider.getModelState(clientId).ifPresent(ms -> {
-			if (ms instanceof WorkflowModelState) {
-				((WorkflowModelState) ms).getModelAccess().unsubscribe();
-			}
-		});
-		super.exit(clientId);
 	}
 
 	public class InitializeOptions {

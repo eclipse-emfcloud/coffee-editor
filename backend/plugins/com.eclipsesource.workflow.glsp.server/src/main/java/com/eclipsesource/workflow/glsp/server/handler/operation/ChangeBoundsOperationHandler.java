@@ -13,10 +13,10 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import java.util.Optional;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.ChangeBoundsOperation;
-import org.eclipse.glsp.api.types.ElementAndBounds;
-import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.BasicOperationHandler;
+import org.eclipse.glsp.server.operations.ChangeBoundsOperation;
+import org.eclipse.glsp.server.types.ElementAndBounds;
 
 import com.eclipsesource.workflow.glsp.server.model.ShapeUtil;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -27,13 +27,13 @@ import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 public class ChangeBoundsOperationHandler extends BasicOperationHandler<ChangeBoundsOperation> {
 
 	@Override
-	public void executeOperation(ChangeBoundsOperation operation, GraphicalModelState modelState) {
+	public void executeOperation(ChangeBoundsOperation operation, GModelState modelState) {
 		for (ElementAndBounds element : operation.getNewBounds()) {
 			changeElementBounds(element, modelState);
 		}
 	}
 
-	private void changeElementBounds(ElementAndBounds element, GraphicalModelState modelState) {
+	private void changeElementBounds(ElementAndBounds element, GModelState modelState) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
 		Node node = modelAccess.getNodeById(element.getElementId());
 		Optional<DiagramElement> diagramElement = modelAccess.getWorkflowFacade().findDiagramElement(node);

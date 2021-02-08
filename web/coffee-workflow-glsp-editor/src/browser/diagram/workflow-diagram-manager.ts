@@ -14,9 +14,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import {
+    DiagramWidgetOptions,
     GLSPDiagramManager,
     GLSPNotificationManager,
-    GLSPTheiaSprottyConnector
+    GLSPTheiaSprottyConnector,
+    GLSPWidgetOpenerOptions,
+    GLSPWidgetOptions
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { MessageService } from '@theia/core';
 import { WidgetManager, WidgetOpenerOptions } from '@theia/core/lib/browser';
@@ -56,7 +59,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         });
     }
 
-    protected createWidgetOptions(uri: URI, options?: WidgetOpenerOptions): Record<string, any> {
+    protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): DiagramWidgetOptions & GLSPWidgetOptions {
         const widgetOptions = super.createWidgetOptions(uri.withoutQuery(), options);
         const queryOptions = this.createQueryOptions(uri);
         const serverOptions = this.createServerOptions(options);
