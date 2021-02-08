@@ -14,22 +14,22 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
 import org.eclipse.emfcloud.modelserver.edit.DefaultCommandCodec;
-import org.eclipse.glsp.api.configuration.ServerConfiguration;
-import org.eclipse.glsp.api.diagram.DiagramConfiguration;
-import org.eclipse.glsp.api.factory.ModelFactory;
-import org.eclipse.glsp.api.handler.ActionHandler;
-import org.eclipse.glsp.api.handler.OperationHandler;
-import org.eclipse.glsp.api.jsonrpc.GLSPServer;
-import org.eclipse.glsp.api.layout.ILayoutEngine;
-import org.eclipse.glsp.api.model.ModelStateProvider;
-import org.eclipse.glsp.api.provider.CommandPaletteActionProvider;
-import org.eclipse.glsp.api.provider.ContextMenuItemProvider;
 import org.eclipse.glsp.graph.GraphExtension;
-import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
-import org.eclipse.glsp.server.actionhandler.SaveModelActionHandler;
-import org.eclipse.glsp.server.actionhandler.UndoRedoActionHandler;
+import org.eclipse.glsp.server.actions.ActionHandler;
+import org.eclipse.glsp.server.actions.SaveModelActionHandler;
 import org.eclipse.glsp.server.di.DefaultGLSPModule;
-import org.eclipse.glsp.server.di.MultiBindConfig;
+import org.eclipse.glsp.server.diagram.DiagramConfiguration;
+import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
+import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
+import org.eclipse.glsp.server.features.core.model.ModelFactory;
+import org.eclipse.glsp.server.features.undoredo.UndoRedoActionHandler;
+import org.eclipse.glsp.server.layout.ILayoutEngine;
+import org.eclipse.glsp.server.layout.ServerLayoutConfiguration;
+import org.eclipse.glsp.server.model.ModelStateProvider;
+import org.eclipse.glsp.server.operations.OperationActionHandler;
+import org.eclipse.glsp.server.operations.OperationHandler;
+import org.eclipse.glsp.server.protocol.GLSPServer;
+import org.eclipse.glsp.server.utils.MultiBinding;
 
 import com.eclipsesource.workflow.glsp.server.handler.WorkflowOperationActionHandler;
 import com.eclipsesource.workflow.glsp.server.handler.WorkflowSaveModelActionHandler;
@@ -53,10 +53,10 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	protected Class<? extends ModelFactory> bindModelFactory() {
 		return WorkflowModelFactory.class;
 	}
-
+	
 	@Override
-	protected Class<? extends ServerConfiguration> bindServerConfiguration() {
-		return WorkflowServerConfiguration.class;
+	protected Class<? extends ServerLayoutConfiguration> bindServerLayoutConfiguration() {
+		return WorkflowServerLayoutConfiguration.class;
 	}
 
 	@Override
@@ -65,12 +65,13 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	protected Class<? extends GLSPServer> bindGLSPServer() {
 		return WorkflowGLSPServer.class;
 	}
 
 	@Override
-	protected void configureActionHandlers(MultiBindConfig<ActionHandler> bindings) {
+	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
 		super.configureActionHandlers(bindings);
 		bindings.rebind(OperationActionHandler.class, WorkflowOperationActionHandler.class);
 		bindings.rebind(SaveModelActionHandler.class, WorkflowSaveModelActionHandler.class);
@@ -79,7 +80,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
-	protected void configureOperationHandlers(MultiBindConfig<OperationHandler> bindings) {
+	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
 		bindings.add(CreateAutomatedTaskHandler.class);
 		bindings.add(CreateManualTaskHandler.class);
 		bindings.add(CreateDecisionNodeHandler.class);
@@ -100,7 +101,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	}
 
 	@Override
-	protected void configureDiagramConfigurations(MultiBindConfig<DiagramConfiguration> bindings) {
+	protected void configureDiagramConfigurations(MultiBinding<DiagramConfiguration> bindings) {
 		bindings.add(WorfklowDiagramNotationConfiguration.class);
 	}
 

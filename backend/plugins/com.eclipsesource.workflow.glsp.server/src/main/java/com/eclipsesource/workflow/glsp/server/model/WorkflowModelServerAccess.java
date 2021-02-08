@@ -42,8 +42,8 @@ import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.common.codecs.EncodingException;
 import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
-import org.eclipse.glsp.api.jsonrpc.GLSPServerException;
 import org.eclipse.glsp.graph.GNode;
+import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationPackage;
 import com.google.common.base.Preconditions;

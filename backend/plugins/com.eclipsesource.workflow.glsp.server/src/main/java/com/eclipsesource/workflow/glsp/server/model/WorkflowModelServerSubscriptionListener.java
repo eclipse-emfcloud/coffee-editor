@@ -12,7 +12,7 @@ package com.eclipsesource.workflow.glsp.server.model;
 
 import static com.eclipsesource.workflow.glsp.server.model.WorkflowModelFactory.OPTION_WORKFLOW_INDEX;
 import static com.eclipsesource.workflow.glsp.server.model.WorkflowModelFactory.WORKFLOW_INDEX_DEFAULT;
-import static org.eclipse.glsp.api.utils.ServerMessageUtil.error;
+import static org.eclipse.glsp.server.utils.ServerMessageUtil.error;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -29,14 +29,14 @@ import org.eclipse.emfcloud.modelserver.client.XmiToEObjectSubscriptionListener;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Machine;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
-import org.eclipse.glsp.api.action.ActionProcessor;
-import org.eclipse.glsp.api.action.kind.RequestBoundsAction;
-import org.eclipse.glsp.api.action.kind.ServerStatusAction;
-import org.eclipse.glsp.api.action.kind.SetDirtyStateAction;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.types.ServerStatus;
-import org.eclipse.glsp.api.types.Severity;
-import org.eclipse.glsp.api.utils.ClientOptions;
+import org.eclipse.glsp.server.actions.ActionDispatcher;
+import org.eclipse.glsp.server.actions.ServerStatusAction;
+import org.eclipse.glsp.server.actions.SetDirtyStateAction;
+import org.eclipse.glsp.server.features.core.model.RequestBoundsAction;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.types.ServerStatus;
+import org.eclipse.glsp.server.types.Severity;
+import org.eclipse.glsp.server.utils.ClientOptions;
 import org.jetbrains.annotations.NotNull;
 
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
@@ -45,12 +45,12 @@ import com.google.common.collect.Lists;
 public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscriptionListener {
 	private static final String TEMP_COMMAND_RESOURCE_URI = "command$1.command";
 	private static Logger LOG = Logger.getLogger(WorkflowModelServerSubscriptionListener.class);
-	private ActionProcessor actionProcessor;
+	private ActionDispatcher actionProcessor;
 	private WorkflowModelServerAccess modelServerAccess;
-	private GraphicalModelState modelState;
+	private GModelState modelState;
 
-	public WorkflowModelServerSubscriptionListener(GraphicalModelState modelState,
-			WorkflowModelServerAccess modelServerAccess, ActionProcessor actionProcessor) {
+	public WorkflowModelServerSubscriptionListener(GModelState modelState,
+			WorkflowModelServerAccess modelServerAccess, ActionDispatcher actionProcessor) {
 		this.actionProcessor = actionProcessor;
 		this.modelServerAccess = modelServerAccess;
 		this.modelState = modelState;
@@ -110,7 +110,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 				modelState);
 		modelServerAccess.setNodeMapping(mappedGModelRoot.getMapping());
 		modelState.setRoot(mappedGModelRoot.getRoot());
-		actionProcessor.send(modelState.getClientId(), new RequestBoundsAction(modelState.getRoot()));
+		actionProcessor.dispatch(modelState.getClientId(), new RequestBoundsAction(modelState.getRoot()));
 	}
 
 	private Resource createCommandResource(EditingDomain domain, CCommand command) {
@@ -122,7 +122,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onDirtyChange(boolean isDirty) {
 		LOG.debug("Dirty State Changed: " + isDirty);
-		actionProcessor.send(modelState.getClientId(), new SetDirtyStateAction(isDirty));
+		actionProcessor.dispatch(modelState.getClientId(), new SetDirtyStateAction(isDirty));
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onError(Optional<String> message) {
 		String errorMsg = message.orElse("Error occurred on model server!");
-		actionProcessor.send(modelState.getClientId(),
+		actionProcessor.dispatch(modelState.getClientId(),
 				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg)));
 		LOG.error(errorMsg);
 	}
@@ -154,7 +154,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onFailure(Throwable t) {
 		String errorMsg = "Subscribtion connection to modelserver failed!";
-		actionProcessor.send(modelState.getClientId(), error(errorMsg, t));
+		actionProcessor.dispatch(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
 
@@ -165,7 +165,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onClosed(int code, @NotNull String reason) {
 		String errorMsg = "Subscribtion connection to modelserver has been closed!";
-		actionProcessor.send(modelState.getClientId(),
+		actionProcessor.dispatch(modelState.getClientId(),
 				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg, reason)));
 		LOG.error(errorMsg + "\n" + reason);
 	}
@@ -173,7 +173,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	@Override
 	public void onFailure(Throwable t, Response<String> response) {
 		String errorMsg = "Subscribtion connection to modelserver failed:" + "\n" + response;
-		actionProcessor.send(modelState.getClientId(), error(errorMsg, t));
+		actionProcessor.dispatch(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
 

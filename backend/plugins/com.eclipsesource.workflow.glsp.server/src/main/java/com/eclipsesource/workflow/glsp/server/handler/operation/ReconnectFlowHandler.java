@@ -14,11 +14,11 @@ import java.util.Optional;
 
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Flow;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.ReconnectEdgeOperation;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelElement;
-import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.BasicOperationHandler;
+import org.eclipse.glsp.server.operations.ReconnectEdgeOperation;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
@@ -26,10 +26,10 @@ import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
 public class ReconnectFlowHandler extends BasicOperationHandler<ReconnectEdgeOperation> {
 
 	@Override
-	public void executeOperation(ReconnectEdgeOperation operation, GraphicalModelState modelState) {
+	public void executeOperation(ReconnectEdgeOperation operation, GModelState modelState) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
 
-		Optional<GModelElement> maybeEdge = modelState.getIndex().get(operation.getConnectionElementId());
+		Optional<GModelElement> maybeEdge = modelState.getIndex().get(operation.getEdgeElementId());
 		if (maybeEdge.isEmpty() && !(maybeEdge.get() instanceof GEdge)) {
 			throw new IllegalArgumentException();
 		}

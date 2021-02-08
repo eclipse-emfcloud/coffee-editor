@@ -17,11 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.kind.CreateNodeOperation;
-import org.eclipse.glsp.api.provider.ContextMenuItemProvider;
-import org.eclipse.glsp.api.types.MenuItem;
 import org.eclipse.glsp.graph.GPoint;
+import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
+import org.eclipse.glsp.server.features.contextmenu.MenuItem;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.CreateNodeOperation;
 
 import com.google.common.collect.Lists;
 
@@ -29,7 +29,7 @@ public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider 
 
 	@Override
 	public List<MenuItem> getItems(List<String> selectedElementIds, GPoint position, Map<String, String> args,
-			GraphicalModelState modelState) {
+			GModelState modelState) {
 		MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
 				Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
 		MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",

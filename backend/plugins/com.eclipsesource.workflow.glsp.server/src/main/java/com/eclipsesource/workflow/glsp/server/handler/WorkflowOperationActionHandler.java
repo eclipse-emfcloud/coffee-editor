@@ -12,12 +12,12 @@ package com.eclipsesource.workflow.glsp.server.handler;
 
 import java.util.List;
 
-import org.eclipse.glsp.api.action.Action;
-import org.eclipse.glsp.api.handler.OperationHandler;
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.Operation;
-import org.eclipse.glsp.api.registry.OperationHandlerRegistry;
-import org.eclipse.glsp.server.actionhandler.OperationActionHandler;
+import org.eclipse.glsp.server.actions.Action;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.Operation;
+import org.eclipse.glsp.server.operations.OperationActionHandler;
+import org.eclipse.glsp.server.operations.OperationHandler;
+import org.eclipse.glsp.server.operations.OperationHandlerRegistry;
 
 import com.eclipsesource.workflow.glsp.server.handler.operation.ModelserverAwareOperationHandler;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
@@ -30,7 +30,7 @@ public class WorkflowOperationActionHandler extends OperationActionHandler {
 
 	@Override
 	protected List<Action> executeHandler(final Operation operation, final OperationHandler handler,
-			final GraphicalModelState modelState) {
+			final GModelState modelState) {
 		handler.execute(operation, modelState);
 		if (!(handler instanceof ModelserverAwareOperationHandler)) {
 			// if the handler is not model server aware, we simply update the whole model

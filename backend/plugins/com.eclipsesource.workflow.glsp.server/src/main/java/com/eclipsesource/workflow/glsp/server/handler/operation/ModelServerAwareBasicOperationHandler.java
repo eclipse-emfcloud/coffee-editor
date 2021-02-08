@@ -10,10 +10,10 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import org.eclipse.glsp.api.model.GraphicalModelState;
-import org.eclipse.glsp.api.operation.Operation;
-import org.eclipse.glsp.api.utils.GenericsUtil;
-import org.eclipse.glsp.server.operationhandler.BasicOperationHandler;
+import org.eclipse.glsp.server.internal.util.GenericsUtil;
+import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.glsp.server.operations.BasicOperationHandler;
+import org.eclipse.glsp.server.operations.Operation;
 
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelState;
@@ -29,7 +29,7 @@ public abstract class ModelServerAwareBasicOperationHandler<T extends Operation>
 	}
 
 	@Override
-	public void executeOperation(final T operation, final GraphicalModelState modelState) {
+	public void executeOperation(final T operation, final GModelState modelState) {
 		if (handles(operation)) {
 			try {
 				WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);

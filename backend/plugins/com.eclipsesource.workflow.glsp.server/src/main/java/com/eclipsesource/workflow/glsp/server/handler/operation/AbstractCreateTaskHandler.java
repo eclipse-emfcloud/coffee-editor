@@ -13,7 +13,7 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Node;
 import org.eclipse.emfcloud.modelserver.coffee.model.coffee.Task;
-import org.eclipse.glsp.api.model.GraphicalModelState;
+import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.common.base.Preconditions;
 
@@ -24,7 +24,7 @@ public abstract class AbstractCreateTaskHandler extends AbstractCreateNodeHandle
 	}
 
 	@Override
-	protected Node initializeNode(Node node, GraphicalModelState modelState) {
+	protected Node initializeNode(Node node, GModelState modelState) {
 		Preconditions.checkArgument(node instanceof Task);
 		((Task) node).setName("NewTask");
 		return node;
