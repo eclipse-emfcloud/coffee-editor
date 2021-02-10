@@ -34,7 +34,6 @@ import org.eclipse.glsp.server.actions.ActionDispatcher;
 import org.eclipse.glsp.server.features.core.model.ModelFactory;
 import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 import org.eclipse.glsp.server.model.GModelState;
-import org.eclipse.glsp.server.model.ModelStateProvider;
 import org.eclipse.glsp.server.protocol.ClientSessionListener;
 import org.eclipse.glsp.server.protocol.ClientSessionManager;
 import org.eclipse.glsp.server.protocol.GLSPClient;
@@ -52,7 +51,7 @@ import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 import com.google.inject.Inject;
 
-public class WorkflowModelFactory implements ModelFactory, ClientSessionListener {
+public class WorkflowModelFactory implements ModelFactory {
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelFactory.class);
 	private static final String ROOT_ID = "sprotty";
 	public static final String OPTION_WORKFLOW_INDEX = "workflowIndex";
@@ -61,9 +60,6 @@ public class WorkflowModelFactory implements ModelFactory, ClientSessionListener
 	@Inject
 	private ModelServerClientProvider modelServerClientProvider;
 
-	@Inject
-	private ModelStateProvider modelStateProvider;
-	
 	@Inject
 	private ClientSessionManager clientSessionManager;
 
@@ -93,10 +89,16 @@ public class WorkflowModelFactory implements ModelFactory, ClientSessionListener
 		WorkflowModelServerAccess modelAccess = new WorkflowModelServerAccess(sourceURI.get(), modelServerClient.get(),
 				adapterFactory, commandCodec);
 		modelAccess.subscribe(new WorkflowModelServerSubscriptionListener(modelState, modelAccess, actionProcessor));
+		this.clientSessionManager.addListener(new ClientSessionListener() {
+			@Override
+			public void sessionClosed(String clientId, GLSPClient client) {
+				modelAccess.unsubscribe();
+				clientSessionManager.removeListener(this);
+			}
+		});
 
 		if (modelState instanceof WorkflowModelState) {
 			((WorkflowModelState) modelState).setModelAccess(modelAccess);
-			this.clientSessionManager.addListener(this);
 		}
 
 		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
@@ -122,15 +124,6 @@ public class WorkflowModelFactory implements ModelFactory, ClientSessionListener
 		modelAccess.setNodeMapping(mappedGModelRoot.getMapping());
 
 		return mappedGModelRoot.getRoot();
-	}
-
-	@Override
-	public void sessionClosed(String clientId, GLSPClient client) {
-		Optional<GModelState> modelState = modelStateProvider.getModelState(clientId);
-		if(modelState.isPresent() && modelState.get() instanceof WorkflowModelState) {
-			((WorkflowModelState) modelState.get()).getModelAccess().unsubscribe();
-			this.clientSessionManager.removeListener(this);
-		}
 	}
 
 	public static MappedGModelRoot populate(WorkflowFacade workflowFacade, GModelState modelState) {
