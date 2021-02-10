@@ -28,6 +28,11 @@ import org.eclipse.glsp.server.layout.ServerLayoutConfiguration;
 import org.eclipse.glsp.server.model.ModelStateProvider;
 import org.eclipse.glsp.server.operations.OperationActionHandler;
 import org.eclipse.glsp.server.operations.OperationHandler;
+import org.eclipse.glsp.server.operations.gmodel.ChangeRoutingPointsHandler;
+import org.eclipse.glsp.server.operations.gmodel.CutOperationHandler;
+import org.eclipse.glsp.server.operations.gmodel.LayoutOperationHandler;
+import org.eclipse.glsp.server.operations.gmodel.PasteOperationHandler;
+import org.eclipse.glsp.server.operations.gmodel.ReconnectEdgeOperationHandler;
 import org.eclipse.glsp.server.protocol.GLSPServer;
 import org.eclipse.glsp.server.utils.MultiBinding;
 
@@ -81,18 +86,27 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 
 	@Override
 	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
+		super.configureOperationHandlers(bindings);
+		
+		// model server-aware operation handlers
+		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.ChangeBoundsOperationHandler.class, ChangeBoundsOperationHandler.class);
+		bindings.rebind(org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler.class, ApplyLabelEditOperationHandler.class);
+		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.DeleteOperationHandler.class, DeleteOperationHandler.class);
+		bindings.rebind(ChangeRoutingPointsHandler.class, ChangeRoutingPointsOperationHandler.class);
+		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class);
+		
+		// unsupported operation handlers
+		bindings.remove(CutOperationHandler.class);
+		bindings.remove(PasteOperationHandler.class);
+		bindings.remove(LayoutOperationHandler.class);
+		
+		// custom workflow operation handlers
 		bindings.add(CreateAutomatedTaskHandler.class);
 		bindings.add(CreateManualTaskHandler.class);
 		bindings.add(CreateDecisionNodeHandler.class);
 		bindings.add(CreateMergeNodeHandler.class);
 		bindings.add(CreateFlowHandler.class);
 		bindings.add(CreateWeightedFlowHandler.class);
-		bindings.add(ReconnectFlowHandler.class);
-		bindings.add(ChangeBoundsOperationHandler.class);
-		bindings.add(DeleteOperationHandler.class);
-		bindings.add(ApplyLabelEditOperationHandler.class);
-		bindings.add(ChangeRoutingPointsOperationHandler.class);
-
 	}
 
 	@Override

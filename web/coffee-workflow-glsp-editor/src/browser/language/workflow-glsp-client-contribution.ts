@@ -14,6 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import { ModelServerClient } from '@eclipse-emfcloud/modelserver-theia/lib/common';
+import { GLSPClient } from '@eclipse-glsp/protocol';
 import { BaseGLSPClientContribution } from '@eclipse-glsp/theia-integration/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { inject, injectable } from 'inversify';
@@ -43,5 +44,11 @@ export class WorkflowGLSPClientContribution extends BaseGLSPClientContribution {
             modelserverURL: `http://${options.hostname}:${options.serverPort}/${options.baseURL}`,
             workspaceRoot
         };
+    }
+
+    protected onReady(languageClient: GLSPClient): void {
+        this._glspClient = languageClient;
+        this.resolveReady(this._glspClient);
+        // only resolve ready once and do not re-generate the ready promise
     }
 }

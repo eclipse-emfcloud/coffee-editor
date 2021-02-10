@@ -13,11 +13,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { LanguageServerContribution } from '@theia/languages/lib/node';
+import { GLSPServerContribution } from '@eclipse-glsp/theia-integration/lib/node';
 import { ContainerModule } from 'inversify';
 
 import { WorkflowNotationGLServerContribution } from './workflow-glsp-server-contribution';
 
 export default new ContainerModule(bind => {
-    bind(LanguageServerContribution).to(WorkflowNotationGLServerContribution).inSingletonScope();
+    bind(GLSPServerContribution).to(WorkflowNotationGLServerContribution).inSingletonScope();
 });
