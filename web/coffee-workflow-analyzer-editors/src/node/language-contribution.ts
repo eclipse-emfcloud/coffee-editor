@@ -21,24 +21,27 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
 
     @inject(ILogger) private readonly logger: ILogger;
 
+    private static readonly ID = 'wfconfig';
+    private static readonly NAME = 'WFCONFIG';
+
     readonly description = {
-        id: this.id,
-        name: this.name,
+        id: WorkflowContribution.ID,
+        name: WorkflowContribution.NAME,
         documentSelector: ['wfconfig'],
         fileEvents: [
             '**/*.wfconfig'
         ]
     };
 
-    readonly id = 'wfconfig';
-    readonly name = 'WFCONFIG';
+    readonly id = WorkflowContribution.ID;
+    readonly name = WorkflowContribution.NAME;
 
     getPort(): number | undefined {
         const arg = process.argv.filter(argument => argument.startsWith('--WF_LSP='))[0];
         if (!arg) {
             return undefined;
         } else {
-            return Number.parseInt(arg.substring('--WF_LSP='.length));
+            return Number.parseInt(arg.substring('--WF_LSP='.length), 10);
         }
     }
 
@@ -51,12 +54,13 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
             const command = 'java';
 
             const jarPath = this.getJarPath();
-            const args: string[] = ['-jar', jarPath];
+            const args: string[] = ['-jar', jarPath, '-startSocket'];
             const serverConnection = await this.createProcessStreamConnectionAsync(command, args);
             this.forward(clientConnection, serverConnection);
         }
     }
-    private async connect(clientConnection: IConnection, socketPort: number) {
+
+    private async connect(clientConnection: IConnection, socketPort: number): Promise<void> {
         const socket = new net.Socket();
         const serverConnection = createSocketConnection(socket, socket, () => {
             this.logger.info('[WorkflowDSL] Socket connection disposed');
@@ -66,7 +70,7 @@ export class WorkflowContribution extends BaseLanguageServerContribution {
         this.forward(clientConnection, serverConnection);
     }
 
-    private getJarPath() {
+    private getJarPath(): string {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
         const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
         if (jarPaths.length === 0) {

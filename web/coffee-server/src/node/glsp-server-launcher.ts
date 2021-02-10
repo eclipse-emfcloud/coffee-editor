@@ -39,7 +39,9 @@ export class GLSPServerLauncher implements BackendApplicationContribution {
 
     initialize(): void {
         if (!this.launchOptions.isRunning && !this.start()) {
-            this.logError('Error during model server startup');
+            this.logError('Error during GLSP server startup');
+        } else {
+            this.logInfo('GLSP Server is already running');
         }
     }
 

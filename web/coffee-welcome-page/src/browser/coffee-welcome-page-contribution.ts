@@ -13,14 +13,18 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-import { injectable, inject } from 'inversify';
-import { WelcomePageWidget } from './welcome-page-widget';
-import { CommandRegistry, MenuModelRegistry, MaybePromise } from '@theia/core/lib/common';
-import { CommonMenus, AbstractViewContribution, FrontendApplicationContribution, FrontendApplication } from '@theia/core/lib/browser';
+import {
+    AbstractViewContribution,
+    CommonMenus,
+    FrontendApplication,
+    FrontendApplicationContribution
+} from '@theia/core/lib/browser';
 import { FrontendApplicationStateService } from '@theia/core/lib/browser/frontend-application-state';
-import { WorkspaceService } from '@theia/workspace/lib/browser';
+import { CommandRegistry, MaybePromise, MenuModelRegistry } from '@theia/core/lib/common';
 import { FileNavigatorContribution } from '@theia/navigator/lib/browser/navigator-contribution';
+import { inject, injectable } from 'inversify';
+
+import { WelcomePageWidget } from './welcome-page-widget';
 
 export const WelcomePageCommand = {
     id: WelcomePageWidget.ID,
@@ -31,9 +35,6 @@ export const WelcomePageCommand = {
 export class CoffeeWelcomePageContribution extends AbstractViewContribution<WelcomePageWidget> implements FrontendApplicationContribution {
     @inject(FrontendApplicationStateService)
     protected readonly stateService: FrontendApplicationStateService;
-
-    @inject(WorkspaceService)
-    protected readonly workspaceService: WorkspaceService;
 
     @inject(FileNavigatorContribution)
     protected readonly fileNavigatorContribution: FileNavigatorContribution;
@@ -61,7 +62,7 @@ export class CoffeeWelcomePageContribution extends AbstractViewContribution<Welc
 
     registerCommands(registry: CommandRegistry): void {
         registry.registerCommand(WelcomePageCommand, {
-            execute: () => this.openView({ reveal: true }),
+            execute: () => this.openView({ reveal: true })
         });
     }
 
@@ -69,7 +70,7 @@ export class CoffeeWelcomePageContribution extends AbstractViewContribution<Welc
         menus.registerMenuAction(CommonMenus.HELP, {
             commandId: WelcomePageCommand.id,
             label: WelcomePageCommand.label,
-            order: 'a10'
+            order: 'a11'
         });
     }
 }

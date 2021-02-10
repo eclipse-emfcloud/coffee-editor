@@ -40,7 +40,7 @@
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
     "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
-    "build": "tsc",
+    "build": "tsc && yarn run lint",
     "watch": "tsc -w",
     "download-server": "cd ./scripts && ./download-server.sh"
   },

@@ -130,6 +130,7 @@ Use the `com.eclipsesource.coffee.modelserver.CoffeeModelServerLauncher` class t
 #### Coffee GLSP Server
 
 Use the `com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServerGLSPServerLauncher` class to start the GLSP Server.
+On the client side, set the `isRunning` flag of the [CoffeeGlspLaunchOptions](web/coffee-server/src/node/backend-module.ts) to `true`.
 
 ### Debug Frontend
 
@@ -138,7 +139,7 @@ Use the `com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServer
 
 #### Debug Theia Backend
 
-Use the `Debug Browser Backend` launch config inside VSCode.
+Use the `Launch Browser Backend` launch config inside VSCode.
 
 #### Debug Theia Frontend
 

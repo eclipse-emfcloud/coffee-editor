@@ -59,7 +59,7 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
             return Number.parseInt(arg.substring('--WF_ANALYZER='.length), 10);
         }
     }
-    private getJarPath() {
+    private getJarPath(): string {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
         const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
         if (jarPaths.length === 0) {

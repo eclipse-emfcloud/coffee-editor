@@ -29,9 +29,19 @@
       "problemMatcher": []
     },
     {
-      "label": "Coffee: Start Browser Backend",
+      "label": "Coffee: Start Browser Backend along with server JARs",
       "type": "shell",
       "command": "cd browser-app && yarn start",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Coffee: Start Browser Backend (expecting server products to run)",
+      "type": "shell",
+      "command": "cd browser-app && yarn debug",
       "presentation": {
         "reveal": "always",
         "panel": "new"
