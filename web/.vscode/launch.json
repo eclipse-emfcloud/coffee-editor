@@ -17,7 +17,7 @@
         "--WF_LSP=5017",
         "--WF_ANALYZER=5083",
         "--app-project-path=${workspaceRoot}/browser-app",
-        "--plugins=${workspaceRoot}/browser-app/plugins"
+        "--plugins=local-dir:${workspaceRoot}/browser-app/plugins"
       ],
       "env": {
         "NODE_ENV": "development"

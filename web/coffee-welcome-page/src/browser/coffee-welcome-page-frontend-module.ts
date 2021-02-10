@@ -13,26 +13,23 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+import '../../src/browser/style/index.css';
+
+import { bindViewContribution, FrontendApplicationContribution, WidgetFactory } from '@theia/core/lib/browser';
+import { ContainerModule } from 'inversify';
+
+import { CoffeeWelcomePageContribution } from './coffee-welcome-page-contribution';
+import { WelcomePageWidget } from './welcome-page-widget';
 
 /**
  * Generated using theia-extension-generator
  */
-import { CoffeeWelcomePageContribution } from './coffee-welcome-page-contribution';
-import { ContainerModule } from 'inversify';
-import { WelcomePageWidget } from './welcome-page-widget';
-import { WidgetFactory, FrontendApplicationContribution, bindViewContribution } from '@theia/core/lib/browser';
-import { CommandContribution, MenuContribution } from '@theia/core';
-
-import '../../src/browser/style/index.css';
-
 export default new ContainerModule(bind => {
     bindViewContribution(bind, CoffeeWelcomePageContribution);
-    bind(CommandContribution).toService(CoffeeWelcomePageContribution);
-    bind(MenuContribution).toService(CoffeeWelcomePageContribution);
     bind(FrontendApplicationContribution).toService(CoffeeWelcomePageContribution);
     bind(WelcomePageWidget).toSelf();
     bind(WidgetFactory).toDynamicValue(context => ({
         id: WelcomePageWidget.ID,
-        createWidget: () => context.container.get<WelcomePageWidget>(WelcomePageWidget),
+        createWidget: () => context.container.get<WelcomePageWidget>(WelcomePageWidget)
     })).inSingletonScope();
 });

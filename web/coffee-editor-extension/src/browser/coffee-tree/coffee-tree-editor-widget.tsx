@@ -281,8 +281,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
             toCheck = toCheck.parent;
         }
-        const ownerRef = `${this.workspaceService.workspace.uri
-            }/${this.getModelIDToRequest()}#/${refToNode}`;
+        const ownerRef = `${this.workspaceService.workspace.uri}/${this.getModelIDToRequest()}#/${refToNode}`;
         return {
             eClass: node.jsonforms.type,
             $ref: ownerRef.replace('file:///', 'file:/')
