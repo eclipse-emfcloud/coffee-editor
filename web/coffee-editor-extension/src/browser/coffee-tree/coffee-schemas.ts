@@ -258,7 +258,7 @@ export const coffeeSchema = {
             'title': 'Component',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Component'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Component'
                 },
                 'workflows': {
                     'type': 'array',
@@ -274,7 +274,7 @@ export const coffeeSchema = {
             'title': 'Machine',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Machine'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Machine'
                 },
                 'name': {
                     'type': 'string'
@@ -294,7 +294,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ControlUnit'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//ControlUnit'
                 },
                 'processor': {
                     '$ref': '#/definitions/processor'
@@ -327,7 +327,7 @@ export const coffeeSchema = {
             'title': 'Brewing Unit',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//BrewingUnit'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//BrewingUnit'
                 }
             },
             'additionalProperties': false
@@ -337,7 +337,7 @@ export const coffeeSchema = {
             'title': 'Dip Tray',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//DipTray'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//DipTray'
                 }
             },
             'additionalProperties': false
@@ -347,7 +347,7 @@ export const coffeeSchema = {
             'title': 'Water Tank',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WaterTank'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WaterTank'
                 }
             },
             'additionalProperties': false
@@ -358,7 +358,7 @@ export const coffeeSchema = {
             'title': 'Processor',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Processor'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Processor'
                 },
                 'vendor': {
                     'type': 'string'
@@ -395,7 +395,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Dimension'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Dimension'
                 },
                 'width': {
                     'type': 'integer'
@@ -415,7 +415,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//RAM'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
                 },
                 'clockSpeed': {
                     'type': 'integer'
@@ -439,7 +439,7 @@ export const coffeeSchema = {
             'title': 'Display',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Display'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Display'
                 },
                 'width': {
                     'type': 'integer'
@@ -455,7 +455,7 @@ export const coffeeSchema = {
             'title': 'Workflow',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Workflow'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Workflow'
                 },
                 'name': { 'type': 'string' },
                 'nodes': {
@@ -489,7 +489,7 @@ export const coffeeSchema = {
             'title': 'Node',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Node'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Node'
                 }
             },
             'additionalProperties': false
@@ -500,7 +500,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Task'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Task'
                 },
                 'name': {
                     'type': 'string'
@@ -517,7 +517,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//AutomaticTask'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//AutomaticTask'
                 },
                 'name': {
                     'type': 'string'
@@ -535,7 +535,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//ManualTask'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//ManualTask'
                 },
                 'name': {
                     'type': 'string'
@@ -555,7 +555,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Fork'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Fork'
                 }
             },
             'additionalProperties': false
@@ -566,7 +566,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Join'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Join'
                 }
             },
             'additionalProperties': false
@@ -577,7 +577,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Decision'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Decision'
                 }
             },
             'additionalProperties': false
@@ -588,7 +588,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Merge'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Merge'
                 }
             },
             'additionalProperties': false
@@ -599,7 +599,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//Flow'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Flow'
                 }
                 // Missing Source and Target
             }
@@ -611,7 +611,7 @@ export const coffeeSchema = {
             'type': 'object',
             'properties': {
                 'eClass': {
-                    'const': 'http://www.eclipsesource.com/modelserver/example/coffeemodel#//WeightedFlow'
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WeightedFlow'
                 },
                 'probability': {
                     'type': 'string',

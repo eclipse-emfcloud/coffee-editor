@@ -10,12 +10,18 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfnotation.util;
 
-import com.eclipsesource.workflow.glsp.server.wfnotation.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
+
+import com.eclipsesource.workflow.glsp.server.wfnotation.Diagram;
+import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
+import com.eclipsesource.workflow.glsp.server.wfnotation.Dimension;
+import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;
+import com.eclipsesource.workflow.glsp.server.wfnotation.Point;
+import com.eclipsesource.workflow.glsp.server.wfnotation.SemanticProxy;
+import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
+import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationPackage;
 
 /**
  * <!-- begin-user-doc -->

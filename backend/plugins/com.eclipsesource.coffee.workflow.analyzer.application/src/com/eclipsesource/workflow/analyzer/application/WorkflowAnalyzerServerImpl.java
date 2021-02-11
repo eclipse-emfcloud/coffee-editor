@@ -15,10 +15,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 
+import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.lsp4j.jsonrpc.CompletableFutures;
 
 import com.eclipsesource.coffee.common.ModelServerClientUtil;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.analyzer.coffee.AnalyzeWorkflow;
 
 public class WorkflowAnalyzerServerImpl implements WorkflowAnalyzerServer {

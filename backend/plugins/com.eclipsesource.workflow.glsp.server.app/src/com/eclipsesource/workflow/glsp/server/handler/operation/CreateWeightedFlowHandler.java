@@ -10,7 +10,8 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
+
+import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 import com.eclipsesource.workflow.glsp.server.util.ModelTypes;
 

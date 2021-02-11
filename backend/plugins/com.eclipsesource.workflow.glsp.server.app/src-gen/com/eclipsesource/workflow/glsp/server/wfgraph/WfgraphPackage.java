@@ -13,7 +13,6 @@ package com.eclipsesource.workflow.glsp.server.wfgraph;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.glsp.graph.GraphPackage;
 
 /**

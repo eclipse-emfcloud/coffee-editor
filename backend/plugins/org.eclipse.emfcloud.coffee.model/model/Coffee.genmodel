@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2021 EclipseSource and others.&#xA;&#xA;This program and the accompanying materials are made available under the&#xA;terms of the Eclipse Public License v. 2.0 which is available at&#xA;https://www.eclipse.org/legal/epl-2.0.&#xA;&#xA;This Source Code may also be made available under the following Secondary&#xA;Licenses when the conditions for such availability set forth in the Eclipse&#xA;Public License v. 2.0 are satisfied: GNU General Public License, version 2&#xA;with the GNU Classpath Exception which is available at&#xA;https://www.gnu.org/software/classpath/license.html.&#xA;&#xA;SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0"
+    modelDirectory="/org.eclipse.emfcloud.coffee.model/src" modelPluginID="org.eclipse.emfcloud.coffee.model"
+    modelName="Coffee" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Coffee.ecore</foreignModel>
+  <genPackages prefix="Coffee" basePackage="org.eclipse.emfcloud" disposableProviderFactory="true"
+      ecorePackage="Coffee.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Coffee.ecore#//SocketConnectorType">
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//SocketConnectorType/A1T"/>
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//SocketConnectorType/Z51"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Coffee.ecore#//ManufactoringProcess">
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//ManufactoringProcess/nm18"/>
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//ManufactoringProcess/nm25"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Coffee.ecore#//RamType">
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//RamType/SODIMM"/>
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//RamType/SIDIMM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Coffee.ecore#//Probability">
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/low"/>
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/medium"/>
+      <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/high"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="Coffee.ecore#//Component">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Component/children"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Coffee.ecore#//Component/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Machine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Machine/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Machine/workflows"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//ControlUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//ControlUnit/processor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//ControlUnit/dimension"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//ControlUnit/ram"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//ControlUnit/display"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//ControlUnit/userDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//BrewingUnit"/>
+    <genClasses ecoreClass="Coffee.ecore#//DipTray"/>
+    <genClasses ecoreClass="Coffee.ecore#//WaterTank"/>
+    <genClasses ecoreClass="Coffee.ecore#//Processor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/vendor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/clockSpeed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/numberOfCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/socketconnectorType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/thermalDesignPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Processor/manufactoringProcess"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Dimension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Dimension/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Dimension/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Dimension/length"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//RAM">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/clockSpeed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Display">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Display/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Display/height"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Workflow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Workflow/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Workflow/nodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Workflow/flows"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Coffee.ecore#//Node"/>
+    <genClasses image="false" ecoreClass="Coffee.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Task/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Task/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//AutomaticTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//AutomaticTask/component"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//ManualTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//ManualTask/actor"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Fork"/>
+    <genClasses ecoreClass="Coffee.ecore#//Join"/>
+    <genClasses ecoreClass="Coffee.ecore#//Decision"/>
+    <genClasses ecoreClass="Coffee.ecore#//Merge"/>
+    <genClasses ecoreClass="Coffee.ecore#//Flow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//Flow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//Flow/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//WeightedFlow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//WeightedFlow/probability"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

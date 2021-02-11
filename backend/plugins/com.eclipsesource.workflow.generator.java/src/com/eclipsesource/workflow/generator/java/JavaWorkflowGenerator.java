@@ -15,8 +15,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.Task;
+
 import com.eclipsesource.workflow.generator.GeneratedFile;
 
 public class JavaWorkflowGenerator {

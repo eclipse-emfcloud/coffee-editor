@@ -10,20 +10,18 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfgraph.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.glsp.graph.GraphPackage;
+
 import com.eclipsesource.workflow.glsp.server.wfgraph.ActivityNode;
 import com.eclipsesource.workflow.glsp.server.wfgraph.Icon;
 import com.eclipsesource.workflow.glsp.server.wfgraph.TaskNode;
 import com.eclipsesource.workflow.glsp.server.wfgraph.WeightedEdge;
 import com.eclipsesource.workflow.glsp.server.wfgraph.WfgraphFactory;
 import com.eclipsesource.workflow.glsp.server.wfgraph.WfgraphPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.glsp.graph.GraphPackage;
 
 /**
  * <!-- begin-user-doc -->

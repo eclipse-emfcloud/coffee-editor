@@ -12,9 +12,9 @@ package com.eclipsesource.coffee.modelserver.app;
 
 import java.util.Collection;
 
+import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
 import com.google.common.collect.Lists;
 
 public class CoffeePackageConfiguration implements EPackageConfiguration {

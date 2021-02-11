@@ -28,4 +28,4 @@ Require-Bundle: com.eclipsesource.workflow.dsl,
  org.hamcrest.core,
  org.opentest4j,
  org.apiguardian,
- com.eclipsesource.modelserver.coffee.model
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"

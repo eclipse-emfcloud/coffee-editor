@@ -10,7 +10,7 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
+import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.glsp.graph.DefaultTypes;
 
 public class CreateFlowHandler extends AbstractCreateEdgeHandler {

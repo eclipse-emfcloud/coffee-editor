@@ -10,15 +10,10 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfgraph.util;
 
-import com.eclipsesource.workflow.glsp.server.wfgraph.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.glsp.graph.GBoundsAware;
 import org.eclipse.glsp.graph.GCompartment;
 import org.eclipse.glsp.graph.GEdge;
@@ -27,6 +22,12 @@ import org.eclipse.glsp.graph.GLayouting;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.graph.GShapeElement;
+
+import com.eclipsesource.workflow.glsp.server.wfgraph.ActivityNode;
+import com.eclipsesource.workflow.glsp.server.wfgraph.Icon;
+import com.eclipsesource.workflow.glsp.server.wfgraph.TaskNode;
+import com.eclipsesource.workflow.glsp.server.wfgraph.WeightedEdge;
+import com.eclipsesource.workflow.glsp.server.wfgraph.WfgraphPackage;
 
 /**
  * <!-- begin-user-doc -->

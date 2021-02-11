@@ -27,7 +27,7 @@
 
    <plugins>
       <plugin id="com.eclipsesource.coffee.common"/>
-      <plugin id="com.eclipsesource.modelserver.coffee.model"/>
+      <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="com.eclipsesource.workflow"/>
       <plugin id="com.eclipsesource.workflow.dsl"/>
       <plugin id="com.eclipsesource.workflow.dsl.ide"/>

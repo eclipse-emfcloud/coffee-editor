@@ -10,13 +10,15 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.glsp.server.model;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.AutomaticTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.Decision;
-import com.eclipsesource.modelserver.coffee.model.coffee.Fork;
-import com.eclipsesource.modelserver.coffee.model.coffee.Join;
-import com.eclipsesource.modelserver.coffee.model.coffee.ManualTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.Merge;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+
+
+import org.eclipse.emfcloud.coffee.AutomaticTask;
+import org.eclipse.emfcloud.coffee.Decision;
+import org.eclipse.emfcloud.coffee.Fork;
+import org.eclipse.emfcloud.coffee.Join;
+import org.eclipse.emfcloud.coffee.ManualTask;
+import org.eclipse.emfcloud.coffee.Merge;
+import org.eclipse.emfcloud.coffee.Node;
 
 import com.eclipsesource.workflow.glsp.server.util.ModelTypes;
 public final class CoffeeTypeUtil {

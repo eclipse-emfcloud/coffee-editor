@@ -28,7 +28,7 @@
       <plugin id="com.eclipsesource.coffee.workflow.analyzer"/>
       <plugin id="com.eclipsesource.coffee.workflow.analyzer.application"/>
       <plugin id="com.eclipsesource.coffee.workflow.analyzer.coffee"/>
-      <plugin id="com.eclipsesource.modelserver.coffee.model"/>
+      <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="com.eclipsesource.workflow"/>
       <plugin id="com.eclipsesource.workflow.dsl"/>
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>

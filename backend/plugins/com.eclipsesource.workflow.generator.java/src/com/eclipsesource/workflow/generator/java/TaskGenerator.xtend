@@ -10,11 +10,12 @@
  ******************************************************************************/
 package com.eclipsesource.workflow.generator.java
 
-import com.eclipsesource.modelserver.coffee.model.coffee.AutomaticTask
-import com.eclipsesource.modelserver.coffee.model.coffee.ManualTask
-import com.eclipsesource.modelserver.coffee.model.coffee.Task
+
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import org.eclipse.emfcloud.coffee.Task
+import org.eclipse.emfcloud.coffee.ManualTask
+import org.eclipse.emfcloud.coffee.AutomaticTask
 
 class TaskGenerator {
 	String sourceDirectory
