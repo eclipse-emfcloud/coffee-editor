@@ -41,4 +41,4 @@ matrix:
       before_install:
         - sh -e /etc/init.d/xvfb start - sleep 10
       script:
-        - cd backend/releng/com.eclipsesource.coffee.parent && mvn clean verify -U 
+        - cd backend/releng/org.eclipse.emfcloud.coffee.parent && mvn clean verify -U 

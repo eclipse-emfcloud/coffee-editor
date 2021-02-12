@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Workflow Analyzer" uid="org.eclipse.emfcloud.coffee.product.workflow.analyzer" id="org.eclipse.emfcloud.coffee.workflow.analyzer.application.product" application="org.eclipse.emfcloud.coffee.workflow.analyzer.application.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
+
+   <configIni use="default"></configIni>
+
+   <launcherArgs>
+      <programArgs>-consoleLog
+      </programArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <launcher>
+      <win useIco="false">
+         <bmp />
+      </win>
+   </launcher>
+
+   <vm>
+      <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
+   </vm>
+
+   <plugins>
+      <plugin id="org.eclipse.emfcloud.coffee.common" />
+      <plugin id="org.eclipse.emfcloud.coffee.workflow.analyzer" />
+      <plugin id="org.eclipse.emfcloud.coffee.workflow.analyzer.application" />
+      <plugin id="org.eclipse.emfcloud.coffee.workflow.analyzer.coffee" />
+      <plugin id="org.eclipse.emfcloud.coffee.model" />
+      <plugin id="org.eclipse.emfcloud.coffee.workflow" />
+      <plugin id="org.eclipse.emfcloud.coffee.workflow.dsl" />
+      <plugin id="com.fasterxml.jackson.core.jackson-annotations" />
+      <plugin id="com.fasterxml.jackson.core.jackson-core" />
+      <plugin id="com.fasterxml.jackson.core.jackson-databind" />
+      <plugin id="com.google.gson" />
+      <plugin id="com.google.guava" />
+      <plugin id="com.google.inject" />
+      <plugin id="javax.annotation" />
+      <plugin id="javax.inject" />
+      <plugin id="org.antlr.runtime" />
+      <plugin id="org.apache.commons.lang" />
+      <plugin id="org.apache.commons.logging" />
+      <plugin id="org.apache.log4j" />
+      <plugin id="org.apiguardian" />
+      <plugin id="org.eclipse.core.contenttype" />
+      <plugin id="org.eclipse.core.jobs" />
+      <plugin id="org.eclipse.core.runtime" />
+      <plugin id="org.eclipse.emf.common" />
+      <plugin id="org.eclipse.emf.ecore" />
+      <plugin id="org.eclipse.emf.ecore.xmi" />
+      <plugin id="org.eclipse.emf.edit" />
+      <plugin id="org.eclipse.emfcloud.modelserver.client" />
+      <plugin id="org.eclipse.emfcloud.modelserver.common" />
+      <plugin id="org.eclipse.emfcloud.modelserver.edit" />
+      <plugin id="org.eclipse.emfcloud.modelserver.lib" />
+      <plugin id="org.eclipse.equinox.app" />
+      <plugin id="org.eclipse.equinox.common" />
+      <plugin id="org.eclipse.equinox.launcher" />
+      <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86_64" fragment="true" />
+      <plugin id="org.eclipse.equinox.preferences" />
+      <plugin id="org.eclipse.equinox.registry" />
+      <plugin id="org.eclipse.lsp4j.jsonrpc" />
+      <plugin id="org.eclipse.osgi" />
+      <plugin id="org.eclipse.osgi.compatibility.state" fragment="true" />
+      <plugin id="org.eclipse.osgi.services" />
+      <plugin id="org.eclipse.osgi.util" />
+      <plugin id="org.eclipse.pde.ds.lib" />
+      <plugin id="org.eclipse.xtend.lib" />
+      <plugin id="org.eclipse.xtend.lib.macro" />
+      <plugin id="org.eclipse.xtext" />
+      <plugin id="org.eclipse.xtext.common.types" />
+      <plugin id="org.eclipse.xtext.logging" fragment="true" />
+      <plugin id="org.eclipse.xtext.util" />
+      <plugin id="org.eclipse.xtext.xbase" />
+      <plugin id="org.eclipse.xtext.xbase.lib" />
+      <plugin id="org.emfjson.jackson" />
+      <plugin id="org.hamcrest.core" />
+      <plugin id="org.junit" />
+      <plugin id="org.junit.jupiter.api" />
+      <plugin id="org.junit.jupiter.engine" />
+      <plugin id="org.junit.jupiter.migrationsupport" />
+      <plugin id="org.junit.jupiter.params" />
+      <plugin id="org.junit.platform.commons" />
+      <plugin id="org.junit.platform.engine" />
+      <plugin id="org.junit.platform.launcher" />
+      <plugin id="org.junit.platform.runner" />
+      <plugin id="org.junit.platform.suite.api" />
+      <plugin id="org.junit.vintage.engine" />
+      <plugin id="org.objectweb.asm" />
+      <plugin id="org.opentest4j" />
+   </plugins>
+
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+   </configurations>
+
+</product>

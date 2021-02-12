@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Workflow Model
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.emfcloud.coffee.workflow,
+ org.eclipse.emfcloud.coffee.workflow.impl
+Require-Bundle: com.google.gson

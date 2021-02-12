@@ -48,7 +48,7 @@ pipeline {
             steps {
                 container('ci') {
                     timeout(30){
-                        dir('backend/releng/com.eclipsesource.coffee.parent') {
+                        dir('backend/releng/org.eclipse.emfcloud.coffee.parent') {
                             sh 'mvn clean install -Pfatjar -U --batch-mode -Dmaven.repo.local=/home/jenkins/.m2/repository'
                         }
                     }
@@ -82,7 +82,7 @@ pipeline {
             // when { branch 'master' }
             steps {
                 container('ci') {
-                    archiveArtifacts artifacts: 'backend/releng/com.eclipsesource.coffee.product/target/products/*.zip' , fingerprint: true
+                    archiveArtifacts artifacts: 'backend/releng/org.eclipse.emfcloud.coffee.product/target/products/*.zip' , fingerprint: true
                     archiveArtifacts artifacts: 'web/browser-app/**', fingerprint: true
                 }
             }

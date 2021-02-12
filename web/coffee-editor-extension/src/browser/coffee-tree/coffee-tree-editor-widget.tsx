@@ -312,5 +312,5 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
 }
 export namespace CoffeeTreeEditorConstants {
     export const WIDGET_ID = 'json-forms-tree-editor';
-    export const EDITOR_ID = 'com.eclipsesource.coffee.editor';
+    export const EDITOR_ID = 'org.eclipse.emfcloud.coffee.editor';
 }

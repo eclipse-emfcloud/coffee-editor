@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Codegen Application
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.codegen.java.application;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Require-Bundle: org.eclipse.emfcloud.coffee.workflow.generator.java,
+ org.eclipse.equinox.app,
+ org.eclipse.emf.ecore,
+ org.eclipse.emfcloud.coffee.common;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.codegen
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.eclipse.emfcloud.coffee.codegen.java

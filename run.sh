@@ -57,7 +57,7 @@ done
 
 if [ "$buildBackend" == "true" ]; then
   echo "$(date +"[%T.%3N]") Build backend products"
-  cd backend/releng/com.eclipsesource.coffee.parent/
+  cd backend/releng/org.eclipse.emfcloud.coffee.parent/
   mvn clean install
   cd ../../../
 fi
@@ -83,27 +83,27 @@ if [ "$copyBackend" == "true" ]; then
   echo "$productPath"
   echo "$(date +"[%T.%3N]") Copy built products..."
 
-  inputCodeGen=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.codegen/$productPath/x86_64
+  inputCodeGen=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen/$productPath/x86_64
   outputCodeGen=web/coffee-java-extension/server
   echo "  $(date +"[%T.%3N]") Copy CodeGen to '$outputCodeGen'."
   rm -rf $outputCodeGen && mkdir -p $outputCodeGen && cp -rf $inputCodeGen $outputCodeGen
 
-  inputWorkflowAnalyzer=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.analyzer/$productPath/x86_64
+  inputWorkflowAnalyzer=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.analyzer/$productPath/x86_64
   outputWorkflowAnalyzer=web/coffee-workflow-analyzer/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowAnalyzer to '$outputWorkflowAnalyzer'."
   rm -rf $outputWorkflowAnalyzer && mkdir -p $outputWorkflowAnalyzer && cp -rf $inputWorkflowAnalyzer $outputWorkflowAnalyzer
 
-  inputWorkflowDSL=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.dsl/$productPath/x86_64
+  inputWorkflowDSL=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.dsl/$productPath/x86_64
   outputWorkflowDSL=web/coffee-workflow-analyzer-editors/server
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
   rm -rf $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
 
-  inputWorkflowGLSP=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.workflow.glsp.server/$productPath/x86_64
+  inputWorkflowGLSP=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.glsp.server/$productPath/x86_64
   outputWorkflowGLSP=web/coffee-server/server/glsp
   echo "  $(date +"[%T.%3N]") Copy WorkflowGLSPServer to '$outputWorkflowGLSP'."
   rm -rf $outputWorkflowGLSP && mkdir -p $outputWorkflowGLSP && cp -rf $inputWorkflowGLSP $outputWorkflowGLSP
 
-  inputCoffeeMS=backend/releng/com.eclipsesource.coffee.product/target/products/com.eclipsesource.coffee.product.modelserver/$productPath/x86_64
+  inputCoffeeMS=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.modelserver/$productPath/x86_64
   outputCoffeeMS=web/coffee-server/server/model
   echo "  $(date +"[%T.%3N]") Copy CoffeeModelServer to '$outputCoffeeMS'."
   rm -rf $outputCoffeeMS && mkdir -p $outputCoffeeMS && cp -rf $inputCoffeeMS $outputCoffeeMS

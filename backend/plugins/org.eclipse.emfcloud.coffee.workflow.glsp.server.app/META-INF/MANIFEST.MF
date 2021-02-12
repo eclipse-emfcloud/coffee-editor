@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GLSP Server
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow.glsp.server.app;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: ECLIPSESOURCE
+Require-Bundle: org.eclipse.core.runtime,
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.glsp.server;bundle-version="0.8.0",
+ org.eclipse.glsp.layout;bundle-version="0.8.0",
+ org.eclipse.elk.alg.layered;bundle-version="0.8.0",
+ org.eclipse.emfcloud.modelserver.edit;bundle-version="0.7.0",
+ org.eclipse.elk.core;bundle-version="0.8.0",
+ org.eclipse.emf.edit;bundle-version="2.16.0",
+ org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
+ org.eclipse.elk.graph;bundle-version="0.8.0",
+ org.eclipse.emfcloud.modelserver.common;bundle-version="0.7.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.16.0",
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow.glsp.server.app
+Bundle-RequiredExecutionEnvironment: JavaSE-11
