@@ -69,7 +69,7 @@ if [ "$copyBackend" == "true" ]; then
 	echo "Running on Linux"
   elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
-	productPath='macosx\cocoa'
+	productPath='macosx/cocoa'
 	echo "Running on Mac"
   elif [[ "$OSTYPE" == "cygwin" ]]; then
         # POSIX compatibility layer and Linux environment emulation for Windows
