@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "$(date +"[%T.%3N]") Evaluate Options... "
 buildBackend='false'
