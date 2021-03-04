@@ -44,10 +44,6 @@
       <repository location="http://ghillairet.github.io/p2"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="com.eclipsesource.modelserver.coffee.model" version="0.0.0"/>
-      <repository location="http://dl.bintray.com/eclipsesource/modelserver/snapshots/0.0.1.20190927.153154-70/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.glsp.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.glsp.layout" version="0.0.0"/>
       <unit id="org.eclipse.glsp.server" version="0.0.0"/>

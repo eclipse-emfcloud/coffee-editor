@@ -6,7 +6,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="[2.23.0,3.0.0)",
- com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1"
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
 Export-Package: com.eclipsesource.workflow.generator,
  com.eclipsesource.workflow.generator.java
 Automatic-Module-Name: com.eclipsesource.workflow.generator.java

@@ -10,21 +10,18 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfnotation.impl;
 
-import com.eclipsesource.workflow.glsp.server.wfnotation.Diagram;
-import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
-import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationPackage;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.eclipsesource.workflow.glsp.server.wfnotation.Diagram;
+import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
+import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationPackage;
 
 /**
  * <!-- begin-user-doc -->

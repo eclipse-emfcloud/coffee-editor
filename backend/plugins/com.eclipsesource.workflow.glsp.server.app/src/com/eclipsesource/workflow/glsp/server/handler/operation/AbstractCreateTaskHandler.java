@@ -11,8 +11,8 @@
 package com.eclipsesource.workflow.glsp.server.handler.operation;
 
 import org.eclipse.emf.ecore.EClass;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
+import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.common.base.Preconditions;

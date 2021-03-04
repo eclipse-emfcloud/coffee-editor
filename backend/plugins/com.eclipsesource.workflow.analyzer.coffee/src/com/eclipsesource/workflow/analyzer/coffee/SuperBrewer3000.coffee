@@ -3,8 +3,8 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:com.eclipsesource.modelserver.coffee.model="http://www.eclipsesource.com/modelserver/example/coffeemodel"
-    xsi:schemaLocation="http://www.eclipsesource.com/modelserver/example/coffeemodel Coffee.ecore"
+    xmlns:com.eclipsesource.modelserver.coffee.model="http://www.eclipse.org/emfcloud/coffee/model"
+    xsi:schemaLocation="http://www.eclipse.org/emfcloud/coffee/model Coffee.ecore"
     name="Super Brewer 3000">
   <children
       xsi:type="com.eclipsesource.modelserver.coffee.model:BrewingUnit"/>

@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emfcloud.coffee.AutomaticTask;
+import org.eclipse.emfcloud.coffee.CoffeePackage;
+import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.ManualTask;
+import org.eclipse.emfcloud.coffee.Probability;
+import org.eclipse.emfcloud.coffee.WeightedFlow;
+import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.AutomaticTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.ManualTask;
-import com.eclipsesource.modelserver.coffee.model.coffee.Probability;
-import com.eclipsesource.modelserver.coffee.model.coffee.WeightedFlow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
 import com.eclipsesource.workflow.dsl.WorkflowStandaloneSetup;
 import com.eclipsesource.workflow.dsl.workflow.ProbabilityConfiguration;
 import com.eclipsesource.workflow.dsl.workflow.WorkflowConfiguration;
@@ -49,8 +49,8 @@ import workflowanalyzer.Task;
 
 public class AnalyzeWorkflow {
 	private ProbabilityConfiguration probabilities;
-	private Map<com.eclipsesource.modelserver.coffee.model.coffee.Node, Node> nodeMap = new LinkedHashMap<>();
-	private Map<com.eclipsesource.modelserver.coffee.model.coffee.Node, Set<WeightedFlow>> weightedEdgeMap = new LinkedHashMap<>();
+	private Map<org.eclipse.emfcloud.coffee.Node, Node> nodeMap = new LinkedHashMap<>();
+	private Map<org.eclipse.emfcloud.coffee.Node, Set<WeightedFlow>> weightedEdgeMap = new LinkedHashMap<>();
 	private WorkflowAnalysisGeneric analysis;
 
 	public AnalyzeWorkflow(String machine, String config) throws IOException {
@@ -83,20 +83,20 @@ public class AnalyzeWorkflow {
 		return probabilities;
 	}
 
-	private void addToNodeMap(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
-		if (node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Decision) {
+	private void addToNodeMap(org.eclipse.emfcloud.coffee.Node node) {
+		if (node instanceof org.eclipse.emfcloud.coffee.Decision) {
 			nodeMap.put(node, createDecision(node));
-		} else if (node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Merge) {
+		} else if (node instanceof org.eclipse.emfcloud.coffee.Merge) {
 			nodeMap.put(node, createMerge(node));
-		} else if (node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Fork
-				|| node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Join) {
+		} else if (node instanceof org.eclipse.emfcloud.coffee.Fork
+				|| node instanceof org.eclipse.emfcloud.coffee.Join) {
 			nodeMap.put(node, createForkOrJoin(node));
-		} else if (node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Task) {
-			nodeMap.put(node, createTask((com.eclipsesource.modelserver.coffee.model.coffee.Task) node));
+		} else if (node instanceof org.eclipse.emfcloud.coffee.Task) {
+			nodeMap.put(node, createTask((org.eclipse.emfcloud.coffee.Task) node));
 		}
 	}
 
-	private Task createTask(com.eclipsesource.modelserver.coffee.model.coffee.Task node) {
+	private Task createTask(org.eclipse.emfcloud.coffee.Task node) {
 		Task task = new Task(node.getName(), new Performer("unkown"), node.getDuration());
 		if (node instanceof AutomaticTask) {
 			analysis.addTask(task, "automatic");
@@ -106,25 +106,25 @@ public class AnalyzeWorkflow {
 		return task;
 	}
 
-	private Node createDecision(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
+	private Node createDecision(org.eclipse.emfcloud.coffee.Node node) {
 		return new Decision(getId(node), new HashMap<>());
 	}
 
-	private Node createMerge(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
+	private Node createMerge(org.eclipse.emfcloud.coffee.Node node) {
 		return new Merge(getId(node));
 	}
 
-	private Node createForkOrJoin(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
+	private Node createForkOrJoin(org.eclipse.emfcloud.coffee.Node node) {
 		return new ForkOrJoin(getId(node));
 	}
 
-	private String getId(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
+	private String getId(org.eclipse.emfcloud.coffee.Node node) {
 		return node.eResource().getURIFragment(node);
 	}
 
 	private void connectSourceAndTarget(Flow flow) {
-		com.eclipsesource.modelserver.coffee.model.coffee.Node source = flow.getSource();
-		com.eclipsesource.modelserver.coffee.model.coffee.Node target = flow.getTarget();
+		org.eclipse.emfcloud.coffee.Node source = flow.getSource();
+		org.eclipse.emfcloud.coffee.Node target = flow.getTarget();
 		Node sourceNode = nodeMap.get(source);
 		Node targetNode = nodeMap.get(target);
 		sourceNode.connectTo(targetNode);
@@ -134,8 +134,8 @@ public class AnalyzeWorkflow {
 		}
 	}
 
-	private void setProbabilities(com.eclipsesource.modelserver.coffee.model.coffee.Node node) {
-		if(node instanceof com.eclipsesource.modelserver.coffee.model.coffee.Decision) {
+	private void setProbabilities(org.eclipse.emfcloud.coffee.Node node) {
+		if(node instanceof org.eclipse.emfcloud.coffee.Decision) {
 			Decision decision = (Decision) nodeMap.get(node);
 			for (WeightedFlow flow : weightedEdgeMap.get(node)) {
 				Probability probability = flow.getProbability();

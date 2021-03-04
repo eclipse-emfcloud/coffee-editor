@@ -15,13 +15,13 @@ import java.util.UUID;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emfcloud.coffee.CoffeeFactory;
+import org.eclipse.emfcloud.coffee.CoffeePackage;
+import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.CreateEdgeOperation;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeeFactory;
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeePackage;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowFacade;
 import com.eclipsesource.workflow.glsp.server.model.WorkflowModelServerAccess;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Edge;

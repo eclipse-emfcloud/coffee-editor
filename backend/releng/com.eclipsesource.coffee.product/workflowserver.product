@@ -18,7 +18,7 @@
    </vm>
 
    <plugins>
-      <plugin id="com.eclipsesource.modelserver.coffee.model"/>
+      <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="com.eclipsesource.workflow.glsp.server.app"/>
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
       <plugin id="com.fasterxml.jackson.core.jackson-core"/>

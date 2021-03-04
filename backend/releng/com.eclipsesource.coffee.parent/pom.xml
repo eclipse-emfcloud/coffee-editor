@@ -262,6 +262,7 @@
 		<module>../../plugins/com.eclipsesource.workflow.dsl.ide</module>
 		<module>../../plugins/com.eclipsesource.coffee.modelserver.app</module>
 		<module>../../plugins/com.eclipsesource.workflow.glsp.server.app</module>
+		<module>../../plugins/org.eclipse.emfcloud.coffee.model</module>
 	</modules>
 
 	<repositories>

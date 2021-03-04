@@ -10,16 +10,13 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfgraph.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.glsp.graph.impl.GNodeImpl;
+
 import com.eclipsesource.workflow.glsp.server.wfgraph.ActivityNode;
 import com.eclipsesource.workflow.glsp.server.wfgraph.WfgraphPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.glsp.graph.impl.GNodeImpl;
 
 /**
  * <!-- begin-user-doc -->

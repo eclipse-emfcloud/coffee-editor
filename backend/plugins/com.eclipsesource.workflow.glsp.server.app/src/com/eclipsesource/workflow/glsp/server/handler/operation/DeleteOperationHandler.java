@@ -16,8 +16,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;

@@ -48,9 +48,6 @@ location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0
 location "http://ghillairet.github.io/p2" {
 	org.emfjson.jackson lazy
 }
-location "http://dl.bintray.com/eclipsesource/modelserver/snapshots/0.0.1.20190927.153154-70/" {
-	com.eclipsesource.modelserver.coffee.model lazy
-}
 location "https://download.eclipse.org/glsp/server/p2/releases/0.8.0" {
 	 org.eclipse.glsp.feature.feature.group lazy
 	 org.eclipse.glsp.layout lazy

@@ -20,10 +20,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.CoffeeFactory;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.CoffeeFactory;
+import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.Task;
+import org.eclipse.emfcloud.coffee.Workflow;
+
 import com.google.inject.Singleton;
 
 @Singleton

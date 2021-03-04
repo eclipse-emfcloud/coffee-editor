@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.Workflow;
 
 import com.eclipsesource.workflow.glsp.server.wfnotation.Diagram;
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;

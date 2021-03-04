@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.Flow;
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.BasicOperationHandler;

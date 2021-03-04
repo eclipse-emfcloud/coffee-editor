@@ -12,7 +12,7 @@ package com.eclipsesource.workflow.glsp.server.model;
 
 import java.util.Map;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.glsp.graph.GModelRoot;
 import org.eclipse.glsp.graph.GNode;
 

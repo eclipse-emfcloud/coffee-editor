@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="[2.23.0,3.0.0)",
  org.eclipse.emf.common,
- com.eclipsesource.modelserver.coffee.model;bundle-version="0.0.1"
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.eclipsesource.workflow.dsl,
  com.eclipsesource.workflow.dsl.formatting2,

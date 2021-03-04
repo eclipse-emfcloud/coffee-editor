@@ -19,11 +19,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 
+import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
 import com.eclipsesource.coffee.common.ModelServerClientUtil;
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
 import com.eclipsesource.workflow.generator.GeneratedFile;
 import com.eclipsesource.workflow.generator.java.JavaWorkflowGenerator;
 

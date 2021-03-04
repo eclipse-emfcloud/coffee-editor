@@ -10,6 +10,12 @@
 */
 package com.eclipsesource.workflow.glsp.server.wfnotation.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import com.eclipsesource.workflow.glsp.server.wfnotation.Diagram;
 import com.eclipsesource.workflow.glsp.server.wfnotation.DiagramElement;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Dimension;
@@ -19,13 +25,6 @@ import com.eclipsesource.workflow.glsp.server.wfnotation.SemanticProxy;
 import com.eclipsesource.workflow.glsp.server.wfnotation.Shape;
 import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationFactory;
 import com.eclipsesource.workflow.glsp.server.wfnotation.WfnotationPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->

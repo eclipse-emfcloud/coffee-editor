@@ -12,7 +12,7 @@ package com.eclipsesource.workflow.glsp.server.handler.operation;
 
 import java.util.Optional;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.Node;
+import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.BasicOperationHandler;
 import org.eclipse.glsp.server.operations.ChangeBoundsOperation;

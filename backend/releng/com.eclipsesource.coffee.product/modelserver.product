@@ -27,7 +27,7 @@
       <plugin id="ch.qos.logback.core"/>
       <plugin id="ch.qos.logback.slf4j" fragment="true"/>
       <plugin id="com.eclipsesource.coffee.modelserver.app"/>
-      <plugin id="com.eclipsesource.modelserver.coffee.model"/>
+      <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
       <plugin id="com.fasterxml.jackson.core.jackson-core"/>
       <plugin id="com.fasterxml.jackson.core.jackson-databind"/>

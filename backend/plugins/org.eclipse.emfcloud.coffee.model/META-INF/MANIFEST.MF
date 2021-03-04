@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.model;singleton:=true
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.model
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.eclipse.emfcloud.coffee,
+ org.eclipse.emfcloud.coffee.impl,
+ org.eclipse.emfcloud.coffee.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy

@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  com.eclipsesource.coffee.workflow.analyzer.coffee,
  com.eclipsesource.coffee.common,
- com.eclipsesource.modelserver.coffee.model
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
 Automatic-Module-Name: com.eclipsesource.workflow.analyzer.application
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.eclipsesource.workflow.analyzer.application

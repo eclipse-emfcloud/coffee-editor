@@ -14,9 +14,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import com.eclipsesource.modelserver.coffee.model.coffee.Machine;
-import com.eclipsesource.modelserver.coffee.model.coffee.Task;
-import com.eclipsesource.modelserver.coffee.model.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.Task;
+import org.eclipse.emfcloud.coffee.Workflow;
+
 
 
 public interface IWorkflowIndex {
