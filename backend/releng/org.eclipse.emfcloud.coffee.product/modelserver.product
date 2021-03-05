@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Coffee Model Server" uid="org.eclipse.emfcloud.coffee.product.modelserver" id="org.eclipse.emfcloud.coffee.modelserver.app.product" application="org.eclipse.emfcloud.coffee.modelserver.app.application" version="0.1.0.qualifier" useFeatures="false" includeLaunchers="true">
+
+   <configIni use="default"></configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages />
+
+   <launcher>
+      <win useIco="false">
+         <bmp />
+      </win>
+   </launcher>
+
+   <vm></vm>
+
+   <plugins>
+      <plugin id="ch.qos.logback.classic" />
+      <plugin id="ch.qos.logback.core" />
+      <plugin id="ch.qos.logback.slf4j" fragment="true" />
+      <plugin id="org.eclipse.emfcloud.coffee.modelserver.app" />
+      <plugin id="org.eclipse.emfcloud.coffee.model" />
+      <plugin id="com.fasterxml.jackson.core.jackson-annotations" />
+      <plugin id="com.fasterxml.jackson.core.jackson-core" />
+      <plugin id="com.fasterxml.jackson.core.jackson-databind" />
+      <plugin id="com.google.guava" />
+      <plugin id="com.google.inject" />
+      <plugin id="com.google.inject.multibindings" fragment="true" />
+      <plugin id="javax.inject" />
+      <plugin id="javax.servlet" />
+      <plugin id="org.apache.log4j" />
+      <plugin id="org.eclipse.core.contenttype" />
+      <plugin id="org.eclipse.core.jobs" />
+      <plugin id="org.eclipse.core.runtime" />
+      <plugin id="org.eclipse.emf.common" />
+      <plugin id="org.eclipse.emf.ecore" />
+      <plugin id="org.eclipse.emf.ecore.xmi" />
+      <plugin id="org.eclipse.emf.edit" />
+      <plugin id="org.eclipse.emfcloud.modelserver.common" />
+      <plugin id="org.eclipse.emfcloud.modelserver.edit" />
+      <plugin id="org.eclipse.emfcloud.modelserver.emf" />
+      <plugin id="org.eclipse.emfcloud.modelserver.lib" />
+      <plugin id="org.eclipse.equinox.app" />
+      <plugin id="org.eclipse.equinox.common" />
+      <plugin id="org.eclipse.equinox.preferences" />
+      <plugin id="org.eclipse.equinox.registry" />
+      <plugin id="org.eclipse.jetty.http" />
+      <plugin id="org.eclipse.jetty.io" />
+      <plugin id="org.eclipse.jetty.security" />
+      <plugin id="org.eclipse.jetty.server" />
+      <plugin id="org.eclipse.jetty.servlet" />
+      <plugin id="org.eclipse.jetty.util" />
+      <plugin id="org.eclipse.jetty.websocket.api" />
+      <plugin id="org.eclipse.jetty.websocket.common" />
+      <plugin id="org.eclipse.jetty.websocket.server" />
+      <plugin id="org.eclipse.jetty.websocket.servlet" />
+      <plugin id="org.eclipse.osgi" />
+      <plugin id="org.eclipse.osgi.compatibility.state" fragment="true" />
+      <plugin id="org.eclipse.xtext.logging" fragment="true" />
+      <plugin id="org.emfjson.jackson" />
+      <plugin id="org.slf4j.api" />
+   </plugins>
+
+   <configurations>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
+   </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false" />
+   </preferencesInfo>
+
+   <cssInfo></cssInfo>
+
+</product>

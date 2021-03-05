@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension id="application" point="org.eclipse.core.runtime.applications">
+      <application>
+         <run class="org.eclipse.emfcloud.coffee.modelserver.app.Application"></run>
+      </application>
+   </extension>
+   <extension id="product" point="org.eclipse.core.runtime.products">
+      <product application="org.eclipse.emfcloud.coffee.modelserver.app.application" name="Coffee Model Server">
+         <property name="appName" value="Coffee Model Server"></property>
+      </product>
+   </extension>
+</plugin>

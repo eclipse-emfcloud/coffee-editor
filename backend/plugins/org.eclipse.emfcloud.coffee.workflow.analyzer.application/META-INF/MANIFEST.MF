@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Workflow Analyzer Application
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow.analyzer.application;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Require-Bundle: org.eclipse.core.runtime,
+ com.google.gson;bundle-version="2.8.2",
+ org.eclipse.lsp4j.jsonrpc,
+ org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
+ org.eclipse.emfcloud.coffee.workflow.analyzer.coffee,
+ org.eclipse.emfcloud.coffee.common,
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow.analyzer.application
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.eclipse.emfcloud.coffee.workflow.analyzer.application
+Import-Package: org.apache.commons.logging,
+ org.apache.log4j;version="1.2.15"

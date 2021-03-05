@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Workflow Code Generator Model
-Bundle-SymbolicName: com.eclipsesource.workflow.generator
-Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: EclipseSource
-Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: com.eclipsesource.workflow.generator.impl
-Automatic-Module-Name: com.eclipsesource.workflow.generator

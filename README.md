@@ -102,15 +102,15 @@ Publish packages with lerna to update versions properly across local packages, [
 
 - Install Eclipse
 - Import projects from `backend`
-- Set target `com.eclipsesource.coffee.target.target`
+- Set target `org.eclipse.emfcloud.coffee.target.target`
 
 #### Code Generation
 
-You cannot debug the code generation. In order to debug it, you need to execute the `com.eclipsesource.coffee.product.codegen` with the correct parameters.
+You cannot debug the code generation. In order to debug it, you need to execute the `org.eclipse.emfcloud.coffee.product.codegen` with the correct parameters.
 
 #### Workflow Analyzer
 
-In order to debug, start the `com.eclipsesource.coffee.product.workflow.analyzer` product in debug mode. The root application is : `com.eclipsesource.workflow.analyzer.application.Application`.
+In order to debug, start the `org.eclipse.emfcloud.coffee.product.workflow.analyzer` product in debug mode. The root application is : `org.eclipse.emfcloud.coffee.workflow.analyzer.application.Application`.
 
 Please make sure to set the `--WF_ANALYZER=5083` parameter to the browser app. In the backend you need to pass `-port` and `-host` with parameters as application arguments.
 
@@ -118,18 +118,18 @@ You can also simply use the predefined `WorkflowAnalyzerServer.launch` run confi
 
 #### Workflow DSL
 
-In order to debug, start the `com.eclipsesource.coffee.product.workflow.dsl` product in debug mode.
+In order to debug, start the `org.eclipse.emfcloud.coffee.product.workflow.dsl` product in debug mode.
 Please make sure to add `--WF_LSP=5017` parameter to the browser app. In the backend you need to pass `-startSocket` as an application argument.
 
 You can also use the predefined `RunSocketServer-Headless.launch` run config.
 
 #### Coffee Model Server
 
-Use the `com.eclipsesource.coffee.modelserver.CoffeeModelServerLauncher` class to start the Model Server.
+Use the `org.eclipse.emfcloud.coffee.modelserver.CoffeeModelServerLauncher` class to start the Model Server.
 
 #### Coffee GLSP Server
 
-Use the `com.eclipsesource.glsp.example.modelserver.workflow.WorkflowModelServerGLSPServerLauncher` class to start the GLSP Server.
+Use the `org.eclipse.emfcloud.coffee.glsp.example.modelserver.workflow.WorkflowModelServerGLSPServerLauncher` class to start the GLSP Server.
 On the client side, set the `isRunning` flag of the [CoffeeGlspLaunchOptions](web/coffee-server/src/node/backend-module.ts) to `true`.
 
 ### Debug Frontend
