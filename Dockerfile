@@ -20,15 +20,11 @@ EXPOSE 3000
 
 USER theia
 
-RUN /coffee-editor/run.sh -f && \
-	mkdir web/browser-app/plugins && \
+RUN rm -rf /coffee-editor/web/browser-app/node_modules && \
+	/coffee-editor/run.sh -f && \
 	cd /coffee-editor/backend/examples/SuperBrewer3000 && \
 	mvn clean verify && \
 	rm -r target && \
-	cd /coffee-editor/web/browser-app/plugins && \
-	wget https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/java-1.39.1-prel.vsix && \
-	wget https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.50.0-1825.vsix && \
-	wget https://github.com/microsoft/vscode-java-debug/releases/download/0.22.0/vscode-java-debug-0.22.0.vsix && \
 	cp /coffee-editor/web/favicon.ico /coffee-editor/web/browser-app/lib && \
 	sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' /coffee-editor/web/browser-app/lib/index.html
 
