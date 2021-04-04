@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -27,6 +27,7 @@ public class JavaWorkflowGenerator {
 	private WorkflowTaskGenerator workflowTaskGen = new WorkflowTaskGenerator(SRC_GEN_FOLDER);
 	private AutomaticWorkflowTaskGenerator automaticWorkflowTaskGen = new AutomaticWorkflowTaskGenerator(SRC_GEN_FOLDER);
 	private ManualWorkflowTaskGenerator manualWorkflowTaskGen = new ManualWorkflowTaskGenerator(SRC_GEN_FOLDER);
+	private MenuSelectionWorkflowTaskGenerator menuSelectionWorkflowTaskGen = new MenuSelectionWorkflowTaskGenerator(SRC_GEN_FOLDER);
 	
 	// testing library
 //	private JUnitUserTaskTestGenerator junitTestGen = new JUnitUserTaskTestGenerator(SRC_FOLDER);
@@ -79,6 +80,11 @@ public class JavaWorkflowGenerator {
 		result.add(new GeneratedFile(
 				manualWorkflowTaskGen.toFileName(packageName), 
 				manualWorkflowTaskGen.toFileContent(packageName),
+				false));
+		
+		result.add(new GeneratedFile(
+				menuSelectionWorkflowTaskGen.toFileName(packageName), 
+				menuSelectionWorkflowTaskGen.toFileContent(packageName),
 				false));
 	}
 }

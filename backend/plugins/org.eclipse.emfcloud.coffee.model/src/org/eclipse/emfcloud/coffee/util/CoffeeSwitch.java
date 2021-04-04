@@ -220,6 +220,15 @@ public class CoffeeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CoffeePackage.MENU_SELECTION_TASK: {
+				MenuSelectionTask menuSelectionTask = (MenuSelectionTask)theEObject;
+				T result = caseMenuSelectionTask(menuSelectionTask);
+				if (result == null) result = caseManualTask(menuSelectionTask);
+				if (result == null) result = caseTask(menuSelectionTask);
+				if (result == null) result = caseNode(menuSelectionTask);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -536,6 +545,21 @@ public class CoffeeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseWeightedFlow(WeightedFlow object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Menu Selection Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Menu Selection Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMenuSelectionTask(MenuSelectionTask object) {
 		return null;
 	}
 

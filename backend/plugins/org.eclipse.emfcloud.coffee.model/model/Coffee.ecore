@@ -97,4 +97,22 @@
     <eLiterals name="medium" value="1" literal="medium"/>
     <eLiterals name="high" value="2" literal="high"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuSelectionTask" eSuperTypes="#//ManualTask">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An interaction with the operator, requesting a selection from a menu.&#xA;The selection optionally times out, in which case the time-out flow is&#xA;triggered. Otherwise, the selection flow is triggered.&#xA;&#xA;@see &lt;a href=&quot;https://github.com/eclipsesource/coffee-editor/issues/315&quot;>Issue 315&lt;/a>"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prompt" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="menu" lowerBound="2" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Optional time-out, in seconds. This supersedes the inherited {@link Task#getDuration() duration}&#xA;attribute, which is unused as manual tasks are generally open-ended."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectionFlow" lowerBound="1"
+        eType="#//Flow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeoutFlow" eType="#//Flow"/>
+  </eClassifiers>
 </ecore:EPackage>

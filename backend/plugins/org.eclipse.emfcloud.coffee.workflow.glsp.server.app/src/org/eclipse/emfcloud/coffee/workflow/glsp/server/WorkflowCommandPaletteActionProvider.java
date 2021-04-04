@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -51,6 +51,9 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 				new LabeledAction("Create Manual Task",
 						Lists.newArrayList(
 								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)), "fa-plus-square"),
+				new LabeledAction("Create Menu Selection Task",
+						Lists.newArrayList(
+								new CreateNodeOperation(ModelTypes.MENU_SELECTION_TASK, lastMousePosition)), "fa-plus-square"),
 				new LabeledAction("Create Merge Node",
 						Lists.newArrayList(
 								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)), "fa-plus-square"),

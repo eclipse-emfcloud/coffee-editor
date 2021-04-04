@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -23,10 +23,11 @@ import {
     flowView,
     machineView,
     manualTaskView,
+    menuSelectionTaskView,
     mergeView,
     waterTankView,
     weightedFlowView,
-    workflowView
+    workflowView,
 } from './coffee-schemas';
 
 @injectable()
@@ -98,6 +99,8 @@ export class CoffeeModelService implements TreeEditor.ModelService {
                 return automaticTaskView;
             case CoffeeModel.Type.ManualTask:
                 return manualTaskView;
+            case CoffeeModel.Type.MenuSelectionTask:
+                return menuSelectionTaskView;
             case CoffeeModel.Type.DipTray:
                 return dipTrayView;
             case CoffeeModel.Type.WaterTank:

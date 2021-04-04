@@ -35,6 +35,7 @@ export class TaskNodeView extends RectangularNodeView {
             <rect class-sprotty-node={true} class-task={true}
                 class-automated={node.taskType === 'automated'}
                 class-manual={node.taskType === 'manual'}
+                class-menuselection={node.taskType === 'menuselection'}
                 class-mouseover={node.hoverFeedback} class-selected={node.selected}
                 x={0} y={0} rx={rcr} ry={rcr}
                 width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}></rect>

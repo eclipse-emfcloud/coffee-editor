@@ -95,11 +95,17 @@ const workflowDiagramModule = new ContainerModule(
         configureModelElement(context, "graph", GLSPGraph, SGraphView);
         configureModelElement(
             context,
-            "task:automated",
+            'task:automated',
             TaskNode,
             TaskNodeView
         );
-        configureModelElement(context, "task:manual", TaskNode, TaskNodeView);
+        configureModelElement(context, 'task:manual', TaskNode, TaskNodeView);
+        configureModelElement(
+            context,
+            'task:menuselection',
+            TaskNode,
+            TaskNodeView
+        );
         configureModelElement(context, "label:heading", SLabel, SLabelView, {
             enable: [editLabelFeature]
         });

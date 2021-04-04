@@ -165,6 +165,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 				return createWeightedFlowAdapter();
 			}
 			@Override
+			public Adapter caseMenuSelectionTask(MenuSelectionTask object) {
+				return createMenuSelectionTaskAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -475,6 +479,20 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWeightedFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask <em>Menu Selection Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask
+	 * @generated
+	 */
+	public Adapter createMenuSelectionTaskAdapter() {
 		return null;
 	}
 

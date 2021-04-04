@@ -39,6 +39,7 @@ import org.eclipse.emfcloud.coffee.Join;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.ManualTask;
 import org.eclipse.emfcloud.coffee.ManufactoringProcess;
+import org.eclipse.emfcloud.coffee.MenuSelectionTask;
 import org.eclipse.emfcloud.coffee.Merge;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Probability;
@@ -203,6 +204,13 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 * @generated
 	 */
 	private EClass weightedFlowEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass menuSelectionTaskEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -784,6 +792,60 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMenuSelectionTask() {
+		return menuSelectionTaskEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMenuSelectionTask_Prompt() {
+		return (EAttribute)menuSelectionTaskEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMenuSelectionTask_Menu() {
+		return (EAttribute)menuSelectionTaskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMenuSelectionTask_Timeout() {
+		return (EAttribute)menuSelectionTaskEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMenuSelectionTask_SelectionFlow() {
+		return (EReference)menuSelectionTaskEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMenuSelectionTask_TimeoutFlow() {
+		return (EReference)menuSelectionTaskEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSocketConnectorType() {
 		return socketConnectorTypeEEnum;
 	}
@@ -918,6 +980,13 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		weightedFlowEClass = createEClass(WEIGHTED_FLOW);
 		createEAttribute(weightedFlowEClass, WEIGHTED_FLOW__PROBABILITY);
 
+		menuSelectionTaskEClass = createEClass(MENU_SELECTION_TASK);
+		createEAttribute(menuSelectionTaskEClass, MENU_SELECTION_TASK__PROMPT);
+		createEAttribute(menuSelectionTaskEClass, MENU_SELECTION_TASK__MENU);
+		createEAttribute(menuSelectionTaskEClass, MENU_SELECTION_TASK__TIMEOUT);
+		createEReference(menuSelectionTaskEClass, MENU_SELECTION_TASK__SELECTION_FLOW);
+		createEReference(menuSelectionTaskEClass, MENU_SELECTION_TASK__TIMEOUT_FLOW);
+
 		// Create enums
 		socketConnectorTypeEEnum = createEEnum(SOCKET_CONNECTOR_TYPE);
 		manufactoringProcessEEnum = createEEnum(MANUFACTORING_PROCESS);
@@ -966,6 +1035,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		decisionEClass.getESuperTypes().add(this.getNode());
 		mergeEClass.getESuperTypes().add(this.getNode());
 		weightedFlowEClass.getESuperTypes().add(this.getFlow());
+		menuSelectionTaskEClass.getESuperTypes().add(this.getManualTask());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(componentEClass, Component.class, "Component", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1042,6 +1112,13 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 
 		initEClass(weightedFlowEClass, WeightedFlow.class, "WeightedFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWeightedFlow_Probability(), this.getProbability(), "probability", null, 0, 1, WeightedFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(menuSelectionTaskEClass, MenuSelectionTask.class, "MenuSelectionTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMenuSelectionTask_Prompt(), ecorePackage.getEString(), "prompt", null, 1, 1, MenuSelectionTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMenuSelectionTask_Menu(), ecorePackage.getEString(), "menu", null, 2, -1, MenuSelectionTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMenuSelectionTask_Timeout(), ecorePackage.getEInt(), "timeout", null, 0, 1, MenuSelectionTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMenuSelectionTask_SelectionFlow(), this.getFlow(), null, "selectionFlow", null, 1, 1, MenuSelectionTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMenuSelectionTask_TimeoutFlow(), this.getFlow(), null, "timeoutFlow", null, 0, 1, MenuSelectionTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(socketConnectorTypeEEnum, SocketConnectorType.class, "SocketConnectorType");

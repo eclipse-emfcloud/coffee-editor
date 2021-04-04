@@ -197,6 +197,15 @@ public interface CoffeeFactory extends EFactory {
 	WeightedFlow createWeightedFlow();
 
 	/**
+	 * Returns a new object of class '<em>Menu Selection Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Menu Selection Task</em>'.
+	 * @generated
+	 */
+	MenuSelectionTask createMenuSelectionTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

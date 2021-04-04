@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -12,6 +12,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.AUTOMATED_TASK;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.MANUAL_TASK;
+import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.MENU_SELECTION_TASK;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +35,9 @@ public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider 
 				Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
 		MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",
 				Arrays.asList(new CreateNodeOperation(MANUAL_TASK, position)), true);
-		MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask), "add", "0_new");
+		MenuItem newMenuTask = new MenuItem("newMenuSelectionTask", "Menu Selection Task",
+				Arrays.asList(new CreateNodeOperation(MENU_SELECTION_TASK, position)), true);
+		MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask, newMenuTask), "add", "0_new");
 		return Lists.newArrayList(newChildMenu);
 	}
 }

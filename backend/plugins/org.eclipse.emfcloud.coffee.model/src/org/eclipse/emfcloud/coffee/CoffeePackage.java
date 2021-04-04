@@ -1100,6 +1100,106 @@ public interface CoffeePackage extends EPackage {
 	int WEIGHTED_FLOW_OPERATION_COUNT = FLOW_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MenuSelectionTaskImpl <em>Menu Selection Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emfcloud.coffee.impl.MenuSelectionTaskImpl
+	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMenuSelectionTask()
+	 * @generated
+	 */
+	int MENU_SELECTION_TASK = 21;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__NAME = MANUAL_TASK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__DURATION = MANUAL_TASK__DURATION;
+
+	/**
+	 * The feature id for the '<em><b>Actor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__ACTOR = MANUAL_TASK__ACTOR;
+
+	/**
+	 * The feature id for the '<em><b>Prompt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__PROMPT = MANUAL_TASK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Menu</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__MENU = MANUAL_TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Timeout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__TIMEOUT = MANUAL_TASK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Selection Flow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__SELECTION_FLOW = MANUAL_TASK_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Timeout Flow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK__TIMEOUT_FLOW = MANUAL_TASK_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Menu Selection Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK_FEATURE_COUNT = MANUAL_TASK_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Menu Selection Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MENU_SELECTION_TASK_OPERATION_COUNT = MANUAL_TASK_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1107,7 +1207,7 @@ public interface CoffeePackage extends EPackage {
 	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getSocketConnectorType()
 	 * @generated
 	 */
-	int SOCKET_CONNECTOR_TYPE = 21;
+	int SOCKET_CONNECTOR_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring Process</em>}' enum.
@@ -1117,7 +1217,7 @@ public interface CoffeePackage extends EPackage {
 	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManufactoringProcess()
 	 * @generated
 	 */
-	int MANUFACTORING_PROCESS = 22;
+	int MANUFACTORING_PROCESS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.RamType <em>Ram Type</em>}' enum.
@@ -1127,7 +1227,7 @@ public interface CoffeePackage extends EPackage {
 	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRamType()
 	 * @generated
 	 */
-	int RAM_TYPE = 23;
+	int RAM_TYPE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.Probability <em>Probability</em>}' enum.
@@ -1137,7 +1237,7 @@ public interface CoffeePackage extends EPackage {
 	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProbability()
 	 * @generated
 	 */
-	int PROBABILITY = 24;
+	int PROBABILITY = 25;
 
 
 	/**
@@ -1714,6 +1814,71 @@ public interface CoffeePackage extends EPackage {
 	EAttribute getWeightedFlow_Probability();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask <em>Menu Selection Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Menu Selection Task</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask
+	 * @generated
+	 */
+	EClass getMenuSelectionTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask#getPrompt <em>Prompt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Prompt</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask#getPrompt()
+	 * @see #getMenuSelectionTask()
+	 * @generated
+	 */
+	EAttribute getMenuSelectionTask_Prompt();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask#getMenu <em>Menu</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Menu</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask#getMenu()
+	 * @see #getMenuSelectionTask()
+	 * @generated
+	 */
+	EAttribute getMenuSelectionTask_Menu();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask#getTimeout <em>Timeout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timeout</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask#getTimeout()
+	 * @see #getMenuSelectionTask()
+	 * @generated
+	 */
+	EAttribute getMenuSelectionTask_Timeout();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask#getSelectionFlow <em>Selection Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Selection Flow</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask#getSelectionFlow()
+	 * @see #getMenuSelectionTask()
+	 * @generated
+	 */
+	EReference getMenuSelectionTask_SelectionFlow();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emfcloud.coffee.MenuSelectionTask#getTimeoutFlow <em>Timeout Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Timeout Flow</em>'.
+	 * @see org.eclipse.emfcloud.coffee.MenuSelectionTask#getTimeoutFlow()
+	 * @see #getMenuSelectionTask()
+	 * @generated
+	 */
+	EReference getMenuSelectionTask_TimeoutFlow();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2249,6 +2414,56 @@ public interface CoffeePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WEIGHTED_FLOW__PROBABILITY = eINSTANCE.getWeightedFlow_Probability();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.MenuSelectionTaskImpl <em>Menu Selection Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emfcloud.coffee.impl.MenuSelectionTaskImpl
+		 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMenuSelectionTask()
+		 * @generated
+		 */
+		EClass MENU_SELECTION_TASK = eINSTANCE.getMenuSelectionTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Prompt</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MENU_SELECTION_TASK__PROMPT = eINSTANCE.getMenuSelectionTask_Prompt();
+
+		/**
+		 * The meta object literal for the '<em><b>Menu</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MENU_SELECTION_TASK__MENU = eINSTANCE.getMenuSelectionTask_Menu();
+
+		/**
+		 * The meta object literal for the '<em><b>Timeout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MENU_SELECTION_TASK__TIMEOUT = eINSTANCE.getMenuSelectionTask_Timeout();
+
+		/**
+		 * The meta object literal for the '<em><b>Selection Flow</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MENU_SELECTION_TASK__SELECTION_FLOW = eINSTANCE.getMenuSelectionTask_SelectionFlow();
+
+		/**
+		 * The meta object literal for the '<em><b>Timeout Flow</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MENU_SELECTION_TASK__TIMEOUT_FLOW = eINSTANCE.getMenuSelectionTask_TimeoutFlow();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}' enum.

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -25,6 +25,7 @@ export namespace CoffeeModel {
         export const Join = 'http://www.eclipse.org/emfcloud/coffee/model#//Join';
         export const Machine = 'http://www.eclipse.org/emfcloud/coffee/model#//Machine';
         export const ManualTask = 'http://www.eclipse.org/emfcloud/coffee/model#//ManualTask';
+        export const MenuSelectionTask = 'http://www.eclipse.org/emfcloud/coffee/model#//MenuSelectionTask';
         export const Merge = 'http://www.eclipse.org/emfcloud/coffee/model#//Merge';
         export const Node = 'http://www.eclipse.org/emfcloud/coffee/model#//Node';
         export const Processor = 'http://www.eclipse.org/emfcloud/coffee/model#//Processor';
@@ -53,6 +54,7 @@ export namespace CoffeeModel {
         Type.Fork,
         Type.Join,
         Type.ManualTask,
+        Type.MenuSelectionTask,
         Type.Merge
     ];
 

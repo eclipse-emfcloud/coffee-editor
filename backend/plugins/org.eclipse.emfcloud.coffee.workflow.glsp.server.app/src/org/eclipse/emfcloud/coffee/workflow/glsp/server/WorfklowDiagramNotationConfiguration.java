@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,20 +10,19 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
-import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.AUTOMATED_TASK;
+import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.ALL_NODES;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.COMP_HEADER;
+import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.CONTROL_NODES;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.DECISION_NODE;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.ICON;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.LABEL_HEADING;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.LABEL_ICON;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.LABEL_TEXT;
-import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.MANUAL_TASK;
-import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.MERGE_NODE;
+import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.TASKS;
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes.WEIGHTED_EDGE;
 import static org.eclipse.glsp.graph.DefaultTypes.EDGE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -51,20 +50,16 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 		mappings.put(LABEL_ICON, GraphPackage.Literals.GLABEL);
 		mappings.put(WEIGHTED_EDGE, GraphPackage.Literals.GEDGE);
 		mappings.put(ICON, WfgraphPackage.Literals.ICON);
-		mappings.put(MERGE_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
-		mappings.put(DECISION_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
-		mappings.put(MANUAL_TASK, WfgraphPackage.Literals.TASK_NODE);
-		mappings.put(AUTOMATED_TASK, WfgraphPackage.Literals.TASK_NODE);
+		CONTROL_NODES.forEach(type -> mappings.put(type, WfgraphPackage.Literals.ACTIVITY_NODE));
+		TASKS.forEach(type -> mappings.put(type, WfgraphPackage.Literals.TASK_NODE));
 		return mappings;
 	}
 
 	@Override
 	public List<ShapeTypeHint> getNodeTypeHints() {
 		List<ShapeTypeHint> nodeHints = new ArrayList<>();
-		nodeHints.add(new ShapeTypeHint(MANUAL_TASK, true, true, false, false));
-		nodeHints.add(new ShapeTypeHint(AUTOMATED_TASK, true, true, false, false));
-		nodeHints.add(createDefaultNodeTypeHint(DECISION_NODE));
-		nodeHints.add(createDefaultNodeTypeHint(MERGE_NODE));
+		TASKS.stream().map(this::createDefaultShapeTypeHint).forEach(nodeHints::add);
+		CONTROL_NODES.stream().map(this::createDefaultNodeTypeHint).forEach(nodeHints::add);
 		return nodeHints;
 	}
 
@@ -73,8 +68,8 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 		List<EdgeTypeHint> edgeHints = new ArrayList<>();
 		edgeHints.add(createDefaultEdgeTypeHint(EDGE));
 		EdgeTypeHint weightedEdgeHint = DiagramConfiguration.super.createDefaultEdgeTypeHint(WEIGHTED_EDGE);
-		weightedEdgeHint.setSourceElementTypeIds(Arrays.asList(DECISION_NODE));
-		weightedEdgeHint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK));
+		weightedEdgeHint.setSourceElementTypeIds(List.of(DECISION_NODE));
+		weightedEdgeHint.setTargetElementTypeIds(List.copyOf(TASKS));
 		edgeHints.add(weightedEdgeHint);
 		return edgeHints;
 	}
@@ -82,8 +77,13 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 	@Override
 	public EdgeTypeHint createDefaultEdgeTypeHint(final String elementId) {
 		EdgeTypeHint hint = DiagramConfiguration.super.createDefaultEdgeTypeHint(elementId);
-		hint.setSourceElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
-		hint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
+		hint.setSourceElementTypeIds(List.copyOf(ALL_NODES));
+		hint.setTargetElementTypeIds(List.copyOf(ALL_NODES));
 		return hint;
 	}
+	
+	ShapeTypeHint createDefaultShapeTypeHint(String shapeType) {
+		return new ShapeTypeHint(shapeType, true, true, false, false);
+	}
+	
 }

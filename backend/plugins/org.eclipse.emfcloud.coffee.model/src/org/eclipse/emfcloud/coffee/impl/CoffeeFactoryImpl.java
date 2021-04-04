@@ -88,6 +88,7 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 			case CoffeePackage.MERGE: return createMerge();
 			case CoffeePackage.FLOW: return createFlow();
 			case CoffeePackage.WEIGHTED_FLOW: return createWeightedFlow();
+			case CoffeePackage.MENU_SELECTION_TASK: return createMenuSelectionTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -313,6 +314,16 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 	public WeightedFlow createWeightedFlow() {
 		WeightedFlowImpl weightedFlow = new WeightedFlowImpl();
 		return weightedFlow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MenuSelectionTask createMenuSelectionTask() {
+		MenuSelectionTaskImpl menuSelectionTask = new MenuSelectionTaskImpl();
+		return menuSelectionTask;
 	}
 
 	/**
