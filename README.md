@@ -4,6 +4,7 @@ An example of how to build the Theia-based tools including graphical editos, for
 Please visit the [emf.cloud home page](https://www.eclipse.org/emfcloud/#coffeeeditoroverview) for an overview of all features and an [online live demonstration](https://eclipsesource.com/coffee-editor)!
 
 ## Project Structure
+
 The coffee-editor consists of a frontend and a backend.
 
 The frontend is located in the `web/` folder and frontend specific documentation can be found in the [frontend README](web/README.md)
@@ -25,6 +26,7 @@ This project should not contain much code and should mostly consist of 'glue' co
 ## Prerequisites
 
 ### Java
+
 You need Java 11 to build the Coffee Editor.
 
 ### Install [nvm](https://github.com/creationix/nvm#install-script).
@@ -144,3 +146,17 @@ Use the `Launch Browser Backend` launch config inside VSCode.
 #### Debug Theia Frontend
 
 Use the `Launch Browser Frontend` launch config inside VSCode. This will open Chrome and attach a debug listener.
+
+## Example Branches
+
+This project's repository has branches prefixed with `examples/` that serve to demonstrate common use cases of expansion or customization of
+the capabilities of the frameworks on which the Coffee Editor is based. Each of these comprises a single commit that can be compared with its
+base to see the changes from end to end that accomplish some developer use case. Often these examples will cross-cut the whole Coffee Editor
+technology stack, but some will have a smaller focus. It all depends on the use case. The names of these branches are succinct but descriptive
+of the use cases that they illustrate.
+
+Because these examples are branches and not integrated into the main-line, they will be based on some past commit in the history of the
+project. It is strongly encouraged when contributing changes to the Coffee Editor that, where such changes would meaningfully impact a use
+case that is manifest in one of these example branches, that such example branch be rebased and updated as a part of that contribution.
+Thus it is important that users of these example branches not base their own work on them (in git terms) because they **will be force-pushed**
+from time to time, rewriting their history to rebase them on more recent baselines of the Coffee Editor.
