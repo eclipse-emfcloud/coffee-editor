@@ -155,7 +155,7 @@ base to see the changes from end to end that accomplish some developer use case.
 technology stack, but some will have a smaller focus. It all depends on the use case. The names of these branches are succinct but descriptive
 of the use cases that they illustrate.
 
-Because these example are branches and not integrated into the main-line, they will be based on some past commit in the history of the
+Because these examples are branches and not integrated into the main-line, they will be based on some past commit in the history of the
 project. It is strongly encouraged when contributing changes to the Coffee Editor that, where such changes would meaningfully impact a use
 case that is manifest in one of these example branches, that such example branch be rebased and updated as a part of that contribution.
 Thus it is important that users of these example branches not base their own work on them (in git terms) because they **will be force-pushed**
