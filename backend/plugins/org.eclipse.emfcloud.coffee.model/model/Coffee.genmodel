@@ -92,5 +92,12 @@
     <genClasses ecoreClass="Coffee.ecore#//WeightedFlow">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//WeightedFlow/probability"/>
     </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//MenuSelectionTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//MenuSelectionTask/prompt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//MenuSelectionTask/menu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//MenuSelectionTask/timeout"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//MenuSelectionTask/selectionFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//MenuSelectionTask/timeoutFlow"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

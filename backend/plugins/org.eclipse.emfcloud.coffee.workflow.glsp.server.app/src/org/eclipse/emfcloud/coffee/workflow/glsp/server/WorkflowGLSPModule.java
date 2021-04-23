@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -21,6 +21,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Create
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateDecisionNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateManualTaskHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMenuSelectionTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMergeNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.DeleteOperationHandler;
@@ -102,6 +103,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 		// custom workflow operation handlers
 		bindings.add(CreateAutomatedTaskHandler.class);
 		bindings.add(CreateManualTaskHandler.class);
+		bindings.add(CreateMenuSelectionTaskHandler.class);
 		bindings.add(CreateDecisionNodeHandler.class);
 		bindings.add(CreateMergeNodeHandler.class);
 		bindings.add(CreateFlowHandler.class);

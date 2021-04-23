@@ -18,6 +18,11 @@
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" name="Water Ok"/>
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Decision"/>
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Merge"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:MenuSelectionTask" name="Select Strength" prompt="Choose your coffee strength" timeout="10000">
+      <menu>Weak</menu>
+      <menu>Middling</menu>
+      <menu>Corrosive</menu>
+    </nodes>
     <flows source="//@workflows.0/@nodes.4" target="//@workflows.0/@nodes.6"/>
     <flows source="//@workflows.0/@nodes.6" target="//@workflows.0/@nodes.8"/>
     <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" source="//@workflows.0/@nodes.8" target="//@workflows.0/@nodes.2"/>
@@ -26,7 +31,8 @@
     <flows source="//@workflows.0/@nodes.7" target="//@workflows.0/@nodes.9"/>
     <flows source="//@workflows.0/@nodes.9" target="//@workflows.0/@nodes.5"/>
     <flows source="//@workflows.0/@nodes.5" target="//@workflows.0/@nodes.0"/>
-    <flows source="//@workflows.0/@nodes.0" target="//@workflows.0/@nodes.1"/>
+    <flows source="//@workflows.0/@nodes.0" target="//@workflows.0/@nodes.10"/>
     <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" source="//@workflows.0/@nodes.1" target="//@workflows.0/@nodes.3"/>
+    <flows source="//@workflows.0/@nodes.10" target="//@workflows.0/@nodes.1"/>
   </workflows>
 </org.eclipse.emfcloud.coffee.model:Machine>

@@ -118,6 +118,10 @@
     fill: lightblue;
 }
 
+.sprotty-node.task.menuselection {
+    fill: darkseagreen;
+}
+
 text {
     stroke-width: 0;
     stroke: #000;

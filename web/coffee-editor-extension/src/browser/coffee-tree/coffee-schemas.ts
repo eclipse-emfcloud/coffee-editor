@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -186,6 +186,42 @@ export const mergeView = {
 export const decisionView = {
     'type': 'Label',
     'text': 'Decision'
+};
+
+export const menuSelectionTaskView = {
+    'type': 'VerticalLayout',
+    'elements': [
+        {
+            'type': 'Label',
+            'text': 'Menu Selection Task'
+        },
+        {
+            'type': 'Control',
+            'label': 'Name',
+            'scope': '#/properties/name',
+            'options': { focus: true }
+        },
+        {
+            'type': 'Control',
+            'label': 'Actor',
+            'scope': '#/properties/actor'
+        },
+        {
+            'type': 'Control',
+            'label': 'Time-out',
+            'scope': '#/properties/timeout'
+        },
+        {
+            'type': 'Control',
+            'label': 'Prompt',
+            'scope': '#/properties/prompt'
+        },
+        {
+            'type': 'Control',
+            'label': 'Menu',
+            'scope': '#/properties/menu'
+        }
+    ]
 };
 
 export const manualTaskView = {
@@ -464,6 +500,7 @@ export const coffeeSchema = {
                         'anyOf': [
                             { '$ref': '#/definitions/automatictask' },
                             { '$ref': '#/definitions/manualtask' },
+                            { '$ref': '#/definitions/menuselectiontask' },
                             { '$ref': '#/definitions/fork' },
                             { '$ref': '#/definitions/join' },
                             { '$ref': '#/definitions/decision' },
@@ -549,7 +586,39 @@ export const coffeeSchema = {
             },
             'additionalProperties': false
         },
-        'fork': {
+        'menuselectiontask': {
+            '$id': '#menuselectiontask',
+            'title': 'Menu Selection Task',
+            'type': 'object',
+            'properties': {
+                'eClass': {
+                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//MenuSelectionTask'
+                },
+                'name': {
+                    'type': 'string'
+                },
+                'duration': {
+                    'type': 'integer'
+                },
+                'actor': {
+                    'type': 'string'
+                },
+                'timeout': {
+                    'type': 'integer'
+                },
+                'prompt': {
+                    'type': 'string'
+                },
+                'menu': {
+                    'type': 'array',
+                    'items': {
+                        'type': 'string'
+                    }
+                }
+            },
+            'additionalProperties': false
+        },
+       'fork': {
             '$id': '#fork',
             'title': 'Fork',
             'type': 'object',

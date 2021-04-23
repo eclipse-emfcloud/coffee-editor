@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -29,6 +29,7 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.ManualTask;
+import org.eclipse.emfcloud.coffee.MenuSelectionTask;
 import org.eclipse.emfcloud.coffee.Probability;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.Workflow;
@@ -100,6 +101,8 @@ public class AnalyzeWorkflow {
 		Task task = new Task(node.getName(), new Performer("unkown"), node.getDuration());
 		if (node instanceof AutomaticTask) {
 			analysis.addTask(task, "automatic");
+		} else if (node instanceof MenuSelectionTask) {
+			analysis.addTask(task, "menuselection");
 		} else if (node instanceof ManualTask) {
 			analysis.addTask(task, "manual");
 		}

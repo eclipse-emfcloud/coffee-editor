@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -25,6 +25,8 @@ import org.eclipse.glsp.graph.builder.impl.GLabelBuilder;
 import org.eclipse.glsp.graph.builder.impl.GLayoutOptions;
 import org.eclipse.glsp.graph.util.GConstants;
 import org.eclipse.glsp.graph.util.GConstants.HAlign;
+
+import com.google.common.base.Strings;
 
 public final class WorkflowBuilder {
 
@@ -146,8 +148,21 @@ public final class WorkflowBuilder {
       private GLabel createCompartmentIconLabel(final TaskNode taskNode) {
          return new GLabelBuilder(ModelTypes.LABEL_ICON) //
             .id(taskNode.getId() + "_ticon") //
-            .text("" + taskNode.getTaskType().toUpperCase().charAt(0)) //
+            .text(taskIconText(taskNode)) //
             .build();
+      }
+      
+      private String taskIconText(final TaskNode taskNode) {
+         String taskType = taskNode.getTaskType();
+         if (Strings.isNullOrEmpty(taskType)) {
+            return "?";
+         }
+         switch (taskType) {
+         case "menuselection":
+            return "S";
+         default:
+            return String.valueOf(taskType.toUpperCase().charAt(0));
+         }
       }
 
    }
