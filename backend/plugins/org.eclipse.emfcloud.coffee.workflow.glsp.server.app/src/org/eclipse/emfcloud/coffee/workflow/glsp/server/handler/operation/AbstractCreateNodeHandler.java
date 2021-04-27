@@ -14,7 +14,6 @@ import static org.eclipse.glsp.graph.util.GraphUtil.point;
 
 import java.util.UUID;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emfcloud.coffee.CoffeeFactory;
@@ -26,6 +25,8 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowFacade;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Shape;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationFactory;
+import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
 
@@ -47,12 +48,13 @@ public abstract class AbstractCreateNodeHandler
 
 		Node node = initializeNode((Node) CoffeeFactory.eINSTANCE.create(eClass), modelState);
 
-		Command addCommand = AddCommand.create(modelAccess.getEditingDomain(), workflow,
+		AddCommand addCommand = (AddCommand) AddCommand.create(modelAccess.getEditingDomain(), workflow,
 				CoffeePackage.Literals.WORKFLOW__NODES, node);
+		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
 
 		createDiagramElement(workflowFacade, workflow, node, operation);
 
-		if (!modelAccess.edit(addCommand).thenApply(res -> res.body()).get()) {
+		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + addCommand);
 		}
 

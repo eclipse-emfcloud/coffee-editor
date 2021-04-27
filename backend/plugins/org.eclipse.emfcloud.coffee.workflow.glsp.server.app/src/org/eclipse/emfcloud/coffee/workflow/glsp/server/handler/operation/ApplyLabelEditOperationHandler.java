@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Node;
@@ -24,6 +25,11 @@ import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
 import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
+import org.eclipse.emfcloud.modelserver.edit.command.CompoundCommandContribution;
+import org.eclipse.emfcloud.modelserver.edit.command.RemoveCommandContribution;
+import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
 
 public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperationHandler<ApplyLabelEditOperation> {
 
@@ -41,9 +47,10 @@ public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperati
 			throw new IllegalAccessError("Edited label isn't label representing a task");
 		}
 
-		Command setCommand = SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
+		SetCommand setCommand = (SetCommand) SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
 				operation.getText());
-		if (!modelAccess.edit(setCommand).thenApply(res -> res.body()).get()) {
+		CCommand setCCommand = SetCommandContribution.clientCommand(setCommand);
+		if (!modelAccess.edit(setCCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + setCommand);
 		}
 	}

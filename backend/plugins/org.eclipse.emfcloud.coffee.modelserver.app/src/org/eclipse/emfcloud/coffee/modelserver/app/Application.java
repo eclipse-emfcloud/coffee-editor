@@ -32,10 +32,8 @@ public class Application implements IApplication {
 	
 	private Future<Void> startServer(String[] args) {
 		ModelServerLauncher.configureLogger();
-		Logger.getRootLogger().setLevel(Level.INFO);
-		final ModelServerLauncher launcher = new ModelServerLauncher(args, new DefaultModelServerModule());
-		launcher.addEPackageConfigurations(Arrays.asList(CoffeePackageConfiguration.class));
-		launcher.start();
+		final ModelServerLauncher launcher = new ModelServerLauncher(new CoffeeModelServerModule());
+		launcher.run();
 		return new CompletableFuture<>();
 	}
 }
