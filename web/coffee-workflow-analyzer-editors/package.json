@@ -1,5 +1,6 @@
 {
   "name": "coffee-workflow-analyzer-editors",
+  "license": "(EPL-2.0 OR MIT)",
   "keywords": [
     "theia-extension"
   ],

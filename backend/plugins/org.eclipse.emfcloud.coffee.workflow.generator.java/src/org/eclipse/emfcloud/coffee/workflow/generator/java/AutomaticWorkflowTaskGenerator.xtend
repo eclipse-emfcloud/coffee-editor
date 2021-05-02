@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -12,6 +12,7 @@ package org.eclipse.emfcloud.coffee.workflow.generator.java
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import org.eclipse.emfcloud.coffee.workflow.generator.FileUtil
 
 class AutomaticWorkflowTaskGenerator {
 	String sourceDirectory
@@ -21,7 +22,7 @@ class AutomaticWorkflowTaskGenerator {
 	}
 		
 	def String toFileName(String packageName) {
-		'''«sourceDirectory»/«JavaUtil.getFilePath(packageName)»library/«JavaUtil.getJavaFileName("AutomaticWorkflowTask")»'''
+		'''«sourceDirectory»/«FileUtil.getFilePath(packageName)»library/«FileUtil.getJavaFileName("AutomaticWorkflowTask")»'''
 	}
 	
 	def String toFileContent(String packageName) {

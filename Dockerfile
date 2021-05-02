@@ -1,31 +1,27 @@
-FROM node:10-buster
+FROM ubuntu:latest AS cpp-theia-base
 
-# Install Java and update
-RUN apt-get update && apt-get install -y default-jdk libsecret-1-dev xvfb libx11-dev libxkbfile-dev maven libxml2-utils && apt-get upgrade -y
+ENV DEBIAN_FRONTEND noninteractive
 
-# Make readable for root only
-RUN chmod -R 750 /var/run/
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt-get install -y default-jdk maven && \
+	apt-get install wget build-essential cmake libopenblas-dev gnupg curl make git g++-multilib clangd-10 gdb -y
 
-WORKDIR /coffee-editor
+RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
 
-RUN useradd -ms /bin/bash theia
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - && \
+	apt-get install nodejs -y && \
+	npm install -g yarn
 
-COPY --chown=theia:theia . /coffee-editor
+WORKDIR /usr/coffee-editor
+COPY ./backend/examples/SuperBrewer3000 ./backend/examples/SuperBrewer3000
 
-# Set location to place global npm dependencies
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+COPY . .
+RUN ./run.sh -bcf && \
+	cp ./web/favicon.ico ./web/browser-app/lib
+RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/browser-app/lib/index.html
 
-# Expose port
+WORKDIR /usr/coffee-editor/web/browser-app
+
 EXPOSE 3000
-
-USER theia
-
-RUN rm -rf /coffee-editor/web/browser-app/node_modules && \
-	/coffee-editor/run.sh -f && \
-	cd /coffee-editor/backend/examples/SuperBrewer3000 && \
-	mvn clean verify && \
-	rm -r target && \
-	cp /coffee-editor/web/favicon.ico /coffee-editor/web/browser-app/lib && \
-	sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' /coffee-editor/web/browser-app/lib/index.html
-
-CMD cd /coffee-editor/web/browser-app && sleep 5 && yarn start --hostname 0.0.0.0
+CMD yarn start --hostname 0.0.0.0

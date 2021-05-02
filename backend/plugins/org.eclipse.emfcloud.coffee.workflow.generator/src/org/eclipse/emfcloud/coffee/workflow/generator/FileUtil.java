@@ -8,15 +8,17 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-package org.eclipse.emfcloud.coffee.workflow.generator.java;
+package org.eclipse.emfcloud.coffee.workflow.generator;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
-public class JavaUtil {
+public class FileUtil {
 	private static final String JAVA_EXTENSION = ".java";
+	private static final String CPP_HEADER_EXTENSION = ".h";
+	private static final String CPP_CLASS_EXTENSION = ".cpp";
 
 	public static String normalize(final String string) {
 		return Arrays.stream(string.split("[ -]")).map(StringUtils::capitalize)
@@ -24,11 +26,23 @@ public class JavaUtil {
 	}
 
 	public static String getJavaFileName(final String fileName) {
-		String javaFileName = fileName;
-		if(javaFileName.endsWith(JAVA_EXTENSION)) {
-			javaFileName = javaFileName.substring(0, javaFileName.length() - JAVA_EXTENSION.length());
+		return getFileName(fileName, JAVA_EXTENSION);
+	}
+	
+	public static String getCppHeaderFileName(final String fileName) {
+		return getFileName(fileName, CPP_HEADER_EXTENSION);
+	}
+	
+	public static String getCppClassFileName(final String fileName) {
+		return getFileName(fileName, CPP_CLASS_EXTENSION);
+	}
+	
+	private static String getFileName(final String fileName, final String extension) {
+		String newFileName = fileName;
+		if(newFileName.endsWith(extension)) {
+			newFileName = newFileName.substring(0, newFileName.length() - extension.length());
 		}
-		return normalize(javaFileName) + JAVA_EXTENSION;
+		return normalize(newFileName) + extension;
 	}
 
 	public static String getFilePath(final String packageName) {

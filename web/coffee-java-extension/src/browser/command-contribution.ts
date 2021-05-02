@@ -16,7 +16,7 @@ import {
     CommandService,
     MenuContribution,
     MenuModelRegistry,
-    SelectionService
+    SelectionService,
 } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { UriAwareCommandHandler, UriCommandHandler } from '@theia/core/lib/common/uri-command-handler';
@@ -27,7 +27,7 @@ import { JUnitRunService } from './junit-run-service';
 
 export const CODEGEN_COMMAND: Command = {
     id: 'workflow.generate.code.command',
-    label: 'Generate Workflow code'
+    label: 'Generate Java Workflow code'
 };
 
 export const AUTO_CODEGEN_COMMAND: Command = {

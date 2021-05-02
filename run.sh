@@ -84,10 +84,17 @@ if [ "$copyBackend" == "true" ]; then
   echo "$productPath"
   echo "$(date +"[%T.%3N]") Copy built products..."
 
+  # Java Generation
   inputCodeGen=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen/$productPath/x86_64
   outputCodeGen=web/coffee-java-extension/server
   echo "  $(date +"[%T.%3N]") Copy CodeGen to '$outputCodeGen'."
   rm -rf $outputCodeGen && mkdir -p $outputCodeGen && cp -rf $inputCodeGen $outputCodeGen
+
+  # C++ Generation
+  inputCppCodeGen=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen.cpp/$productPath/x86_64
+  outputCppCodeGen=web/coffee-cpp-extension/server
+  echo "  $(date +"[%T.%3N]") Copy CPP CodeGen to '$outputCppCodeGen'."
+  rm -rf $outputCppCodeGen && mkdir -p $outputCppCodeGen && cp -rf $inputCppCodeGen $outputCppCodeGen
 
   inputWorkflowAnalyzer=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.analyzer/$productPath/x86_64
   outputWorkflowAnalyzer=web/coffee-workflow-analyzer/server
@@ -137,4 +144,3 @@ if [ "$runFrontend" == "true" ]; then
   cd web/browser-app
   yarn start --hostname 0.0.0.0
 fi
-

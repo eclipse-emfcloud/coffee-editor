@@ -3,10 +3,9 @@
   // Hover to view descriptions of existing attributes.
   "version": "0.2.0",
   "configurations": [
-
     {
       "type": "java",
-      "name": "Debug (Launch)",
+      "name": "Debug SuperBrewer Java",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
@@ -20,6 +19,12 @@
       "request": "attach",
       "hostName": "localhost",
       "port": 10100
+    },
+    {
+      "type": "gdb",
+      "request": "launch",
+      "name": "Debug SuperBrewer C++",
+      "program": "${workspaceFolder}/cpp/src/SuperBrewer3000"
     }
   ]
 }

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: C++ Generation Application
+Bundle-SymbolicName: org.eclipse.emfcloud.coffee.codegen.cpp.application;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: EclipseSource
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.common;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.workflow.generator;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.workflow.generator.cpp;bundle-version="0.1.0"
+Automatic-Module-Name: org.eclipse.emfcloud.coffee.codegen.cpp.application
+Bundle-RequiredExecutionEnvironment: JavaSE-11

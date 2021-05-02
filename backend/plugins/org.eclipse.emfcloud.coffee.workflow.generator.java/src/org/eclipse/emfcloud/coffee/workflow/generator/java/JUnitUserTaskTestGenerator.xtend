@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -17,6 +17,7 @@ import java.util.List
 import org.eclipse.emfcloud.coffee.Task
 import org.eclipse.emfcloud.coffee.ManualTask
 import org.eclipse.emfcloud.coffee.AutomaticTask
+import org.eclipse.emfcloud.coffee.workflow.generator.FileUtil
 
 class JUnitUserTaskTestGenerator {
 	String sourceDirectory
@@ -26,7 +27,7 @@ class JUnitUserTaskTestGenerator {
 	}
 	
 	def String toFileName(String packageName) {
-		'''«sourceDirectory»/«JavaUtil.getFilePath(packageName)»tests/«JavaUtil.getJavaFileName(packageName.toTestClassName)»'''
+		'''«sourceDirectory»/«FileUtil.getFilePath(packageName)»tests/«FileUtil.getJavaFileName(packageName.toTestClassName)»'''
 	}
 
 	def String toFileContent(String packageName, String sourceFileName, List<Task> tasks) {
@@ -105,6 +106,6 @@ class JUnitUserTaskTestGenerator {
 	}
 	
 	private def String toClassName(String packageName) {
-		JavaUtil.normalize(packageName);
+		FileUtil.normalize(packageName);
 	}
 }
