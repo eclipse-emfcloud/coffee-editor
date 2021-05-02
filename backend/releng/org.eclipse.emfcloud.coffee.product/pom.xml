@@ -44,7 +44,11 @@
 					<products>
 						<product>
 							<id>org.eclipse.emfcloud.coffee.product.codegen</id>
-							<attachId>CodeGen</attachId>
+							<attachId>CodeGenJava</attachId>
+						</product>
+						<product>
+							<id>org.eclipse.emfcloud.coffee.product.codegen.cpp</id>
+							<attachId>CodeGenCpp</attachId>
 						</product>
 						<product>
 							<id>org.eclipse.emfcloud.coffee.product.workflow.analyzer</id>

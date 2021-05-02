@@ -29,16 +29,16 @@ This project should not contain much code and should mostly consist of 'glue' co
 
 You need Java 11 to build the Coffee Editor.
 
-### Install [nvm](https://github.com/creationix/nvm#install-script).
+### Install [nvm](https://github.com/creationix/nvm#install-script)
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 
-### Install npm and node.
+### Install npm and node
 
-    nvm install 10
-    nvm use 10
+    nvm install 12
+    nvm use 12
 
-### Install yarn.
+### Install yarn
 
     npm install -g yarn
 
@@ -49,11 +49,11 @@ Please check the installation documentation for [maven](http://maven.apache.org/
 On Ubuntu you can use:
 `sudo apt-get install maven`
 
-### Install linux packages (if necessary).
+### Install linux packages (if necessary)
 
     sudo apt-get install g++-4.8 libsecret-1-dev xvfb libx11-dev libxkbfile-dev libxml2-utils
 
-### Install python (needed from theia dependencies):
+### Install python (needed from theia dependencies)
 
 Please check the installation description [here](https://github.com/nodejs/node-gyp#installation).
 
@@ -160,3 +160,33 @@ project. It is strongly encouraged when contributing changes to the Coffee Edito
 case that is manifest in one of these example branches, that such example branch be rebased and updated as a part of that contribution.
 Thus it is important that users of these example branches not base their own work on them (in git terms) because they **will be force-pushed**
 from time to time, rewriting their history to rebase them on more recent baselines of the Coffee Editor.
+
+## Docker Example
+
+### Information
+
+This is a Docker image with Theia application and the following VSCode plugins (among others)
+  
+- Clangd for C/C++ editing support
+- Debug for C/C++ debugging support
+- Java LSP
+- Java Debug
+
+The runtime environment has installed (among others)
+
+- CMake for building C/C++ projects
+- GBD for debugging C/C++ projects
+
+## Building and running the Docker image
+
+To build the docker container run the following command once:
+
+    docker build -t "coffee-editor:latest" .
+
+Now you can start the Theia Demo app using the following command (or change the host port to your preferences):
+
+    docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest yarn start
+
+Next, open a browser pointing to localhost:3000/#/usr/coffee-editor/backend/examples/SuperBrewer3000 in your host.
+You should see a Theia application with an example project being loaded.
+Refer to the README.md in the workspace for more details on how to use the example project.

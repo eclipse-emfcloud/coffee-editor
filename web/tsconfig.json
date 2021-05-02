@@ -6,6 +6,7 @@
   "include": [
     "coffee-editor-extension/src",
     "coffee-java-extension/src",
+    "coffee-cpp-extension/src",
     "coffee-server/src",
     "coffee-welcome-page/src",
     "coffee-workflow-analyzer/src",

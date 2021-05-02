@@ -1,0 +1,44 @@
+{
+  "name": "coffee-cpp-extension",
+  "license": "(EPL-2.0 OR MIT)",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.7.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "latest",
+    "@theia/languages": "latest",
+    "@theia/terminal": "latest",
+    "@theia/process": "latest",
+    "express": "4.17.1",
+    "glob": "7.1.4"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "typescript": "latest",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-header": "^3.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-react": "^7.20.3"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
+    "build": "tsc && yarn run lint",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/frontend-extension",
+      "backend": "lib/node/backend-extension"
+    }
+  ]
+}

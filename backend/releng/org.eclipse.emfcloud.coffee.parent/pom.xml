@@ -32,7 +32,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<tycho-version>1.6.0</tycho-version>
+		<tycho-version>2.2.0</tycho-version>
 		<xtext.version>2.23.0</xtext.version>
 		<xtend.version>${xtext.version}</xtend.version>
 		<maven.compiler.source>11</maven.compiler.source>
@@ -251,7 +251,9 @@
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.generator</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.generator.java</module>
+		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.generator.cpp</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.codegen.java.application</module>
+		<module>../../plugins/org.eclipse.emfcloud.coffee.codegen.cpp.application</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.common</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.analyzer.application</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.analyzer</module>

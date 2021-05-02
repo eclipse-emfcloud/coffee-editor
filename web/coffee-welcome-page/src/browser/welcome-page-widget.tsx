@@ -18,10 +18,12 @@ import { ReactWidget } from '@theia/core/lib/browser/widgets/react-widget';
 import { CommandRegistry } from '@theia/core/lib/common';
 import { ApplicationInfo, ApplicationServer } from '@theia/core/lib/common/application-protocol';
 import URI from '@theia/core/lib/common/uri';
+import { DebugConfigurationManager } from '@theia/debug/lib/browser/debug-configuration-manager';
 import { DebugCommands } from '@theia/debug/lib/browser/debug-frontend-application-contribution';
 import { EXPLORER_VIEW_CONTAINER_ID, FILE_NAVIGATOR_ID, FileNavigatorWidget } from '@theia/navigator/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
-import { CODEGEN_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
+import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
+import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
 import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
@@ -47,6 +49,9 @@ export class WelcomePageWidget extends ReactWidget {
 
     @inject(OpenerService)
     protected readonly openerService: OpenerService;
+
+    @inject(DebugConfigurationManager)
+    protected readonly debugConfigurationManager: DebugConfigurationManager;
 
     @inject(ApplicationShell) protected readonly shell: ApplicationShell;
 
@@ -110,16 +115,25 @@ export class WelcomePageWidget extends ReactWidget {
             </div>
             <div className='flex-grid'>
                 <div className='col'>
-                    {this.renderFeatureSection('Code Generator', 'fas fa-cogs', (
+                    {this.renderFeatureSection('Java Code Generator', 'fas fa-cogs', (
                         <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
                         using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate Workflow code&quot;.
                         Browse the generated code in the &quot;src&quot; and &quot;src-gen&quot; folder, the coffee editor also provides extensive language support
-                        for Java!</p>), this.runCodeGenerator)}
+                        for Java!</p>), this.runJavaCodeGenerator)}
                 </div>
             </div>
             <div className='flex-grid'>
                 <div className='col'>
-                    {this.renderFeatureSection('Code Editing', 'fab fa-java', (
+                    {this.renderFeatureSection('C++ Code Generator', 'fas fa-cogs', (
+                        <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
+                        using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate C++ Workflow code&quot;.
+                        Browse the generated code in the &quot;cpp&quot; folder, the coffee editor also provides extensive language support
+                        for C++!</p>), this.runCppCodeGenerator)}
+                </div>
+            </div>
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderFeatureSection('Java Code Editing', 'fab fa-java', (
                         <p>The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion.
                         This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you
                         have generated the code first (see above). Then, open any Java file
@@ -129,13 +143,34 @@ export class WelcomePageWidget extends ReactWidget {
             </div>
             <div className='flex-grid'>
                 <div className='col'>
-                    {this.renderFeatureSection('Debugging', 'fas fa-bug', (
+                    {this.renderFeatureSection('C++ Code Editing', 'fab fa-java', (
+                        <p>The coffee editor provides full-fleged C++ tooling including syntax highlighting and auto completion.
+                        This is based on the Monaco code editor and the &quot;clangd&quot; C++ language server connected via LSP. Make sure you
+                        have generated the code first (see above). Then, open any C++ file
+                        in the cpp/src folder (or click above) and start modifying the code, e.g. by adding &quot;std::cout&quot; statements.
+                        </p>), this.openCppCode)}
+                </div>
+            </div>
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderFeatureSection('Java Debugging', 'fas fa-bug', (
                         <p>The coffee editor allows executing and debugging Java code by integrating the debug adapter protocol (DAP).
                         Make sure you have generated the code (see above) and set a break point in any Java file by double
                         clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
                         This will automatically open the integrated debug view and show
                         all outputs of the example code in the console!
-                        </p>), this.startDebug)}
+                        </p>), this.startDebugJava)}
+                </div>
+            </div>
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderFeatureSection('C++ Debugging', 'fas fa-bug', (
+                        <p>The coffee editor allows executing and debugging C++ code by integrating the debug adapter protocol (DAP).
+                        Make sure you have generated the code (see above) and set a break point in any C++ file by double
+                        clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
+                        This will automatically open the integrated debug view and show
+                        all outputs of the example code in the console!
+                        </p>), this.startDebugCpp)}
                 </div>
             </div>
             <div className='flex-grid'>
@@ -219,7 +254,7 @@ export class WelcomePageWidget extends ReactWidget {
             });
     };
 
-    protected runCodeGenerator = (): void => {
+    protected runJavaCodeGenerator = (): void => {
         this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
             const { model } = widget as FileNavigatorWidget;
             const uri = this.getSuperBrewer3000FileURI('coffee');
@@ -227,19 +262,32 @@ export class WelcomePageWidget extends ReactWidget {
                 if (SelectableTreeNode.is(node)) {
                     model.selectNode(node);
                 }
-                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_COMMAND.id, uri), 1000);
+                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_JAVA_COMMAND.id, uri), 1000);
             });
         });
     };
 
-    private getSuperBrewer3000RunnerFileURI(): URI {
+    protected runCppCodeGenerator = (): void => {
+        this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
+            const { model } = widget as FileNavigatorWidget;
+            const uri = this.getSuperBrewer3000FileURI('coffee');
+            model.revealFile(uri).then(node => {
+                if (SelectableTreeNode.is(node)) {
+                    model.selectNode(node);
+                }
+                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_CPP_COMMAND.id, uri), 1000);
+            });
+        });
+    };
+
+    private getJavaSuperBrewer3000RunnerFileURI(): URI {
         return new URI(`${this.workspaceService.workspace?.uri}/src/SuperBrewer3000/tests/SuperBrewer3000Runner.java`);
     }
 
     protected openJavaCode = (): void => {
         this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
             const { model } = widget as FileNavigatorWidget;
-            model.revealFile(this.getSuperBrewer3000RunnerFileURI()).then(node => {
+            model.revealFile(this.getJavaSuperBrewer3000RunnerFileURI()).then(node => {
                 if (SelectableTreeNode.is(node)) {
                     model.openNode(node);
                 }
@@ -247,5 +295,26 @@ export class WelcomePageWidget extends ReactWidget {
         });
     };
 
-    protected startDebug = (): Promise<unknown> => this.commandRegistry.executeCommand(DebugCommands.START.id);
+    private getCppSuperBrewer3000RunnerFileURI(): URI {
+        return new URI(`${this.workspaceService.workspace?.uri}/cpp/src/SuperBrewer3000Runner.cpp`);
+    }
+
+    protected openCppCode = (): void => {
+        this.shell.revealWidget(FILE_NAVIGATOR_ID).then(widget => {
+            const { model } = widget as FileNavigatorWidget;
+            model.revealFile(this.getCppSuperBrewer3000RunnerFileURI()).then(node => {
+                if (SelectableTreeNode.is(node)) {
+                    model.openNode(node);
+                }
+            });
+        });
+    };
+
+    protected startDebugJava = (): Promise<unknown> => this.startDebug('Debug SuperBrewer Java');
+    protected startDebugCpp = (): Promise<unknown> => this.startDebug('Debug SuperBrewer C++');
+
+    private startDebug = (configName: string): Promise<unknown> => {
+        const config = Array.from(this.debugConfigurationManager.all).find(c => c.configuration.name === configName);
+        return this.commandRegistry.executeCommand(DebugCommands.START.id, config);
+    };
 }

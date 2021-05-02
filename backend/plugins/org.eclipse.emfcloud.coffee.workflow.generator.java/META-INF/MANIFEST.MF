@@ -1,14 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Workflow Java Code Generator 
+Bundle-Name: Workflow Java Code Generator
 Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow.generator.java
 Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: EclipseSource
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="[2.23.0,3.0.0)",
- org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
-Export-Package: org.eclipse.emfcloud.coffee.workflow.generator,
- org.eclipse.emfcloud.coffee.workflow.generator.java
+Require-Bundle: org.eclipse.emfcloud.coffee.workflow.generator;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0",
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib;bundle-version="[2.23.0,3.0.0)",
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro
+Export-Package: org.eclipse.emfcloud.coffee.workflow.generator.java
 Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow.generator.java
-Import-Package: org.apache.commons.lang
-

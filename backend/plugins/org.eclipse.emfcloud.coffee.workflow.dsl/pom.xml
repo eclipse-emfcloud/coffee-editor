@@ -24,10 +24,6 @@
 		<resources>
 			<resource>
 				<directory>src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-					<exclude>**/*.xtend</exclude>
-				</excludes>
 			</resource>
 			<resource>
 				<directory>xtend-gen</directory>

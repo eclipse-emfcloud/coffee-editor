@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter
 import org.eclipse.emfcloud.coffee.Task
 import org.eclipse.emfcloud.coffee.ManualTask
 import org.eclipse.emfcloud.coffee.AutomaticTask
+import org.eclipse.emfcloud.coffee.workflow.generator.FileUtil
 
 class TaskGenerator {
 	String sourceDirectory
@@ -25,7 +26,7 @@ class TaskGenerator {
 	}
 
 	def String toFileName(String packageName, String taskName) {
-		'''«sourceDirectory»/«JavaUtil.getFilePath(packageName)»Abstract«JavaUtil.getJavaFileName(taskName)»'''
+		'''«sourceDirectory»/«FileUtil.getFilePath(packageName)»Abstract«FileUtil.getJavaFileName(taskName)»'''
 	}
 
 	def String toFileContent(String packageName, String sourceFileName, Task task) {
@@ -36,11 +37,11 @@ class TaskGenerator {
 			«IF task instanceof ManualTask»
 				import «packageName».library.ManualWorkflowTask;
 					
-				public abstract class Abstract«JavaUtil.normalize(task.name)» extends ManualWorkflowTask {
+				public abstract class Abstract«FileUtil.normalize(task.name)» extends ManualWorkflowTask {
 			«ELSE»
 				import «packageName».library.AutomaticWorkflowTask;
 					
-				public abstract class Abstract«JavaUtil.normalize(task.name)» extends AutomaticWorkflowTask {
+				public abstract class Abstract«FileUtil.normalize(task.name)» extends AutomaticWorkflowTask {
 			«ENDIF»
 				@Override
 				«IF task instanceof ManualTask»
