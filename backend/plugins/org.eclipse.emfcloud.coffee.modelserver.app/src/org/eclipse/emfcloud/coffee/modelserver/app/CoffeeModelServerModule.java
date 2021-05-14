@@ -15,19 +15,4 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		super.configureEPackages(binding);
 		binding.add(CoffeePackageConfiguration.class);
 	}
-
-	@Override
-	protected void configureCommandCodecs(final MapBinding<String, CommandContribution> binding) {
-		super.configureCommandCodecs(binding);
-	}
-
-	@Override
-	protected void configureCodecs(final MapBinding<String, Codec> binding) {
-		super.configureCodecs(binding);
-	}
-
-	@Override
-	protected void configureRoutings(final MultiBinding<Routing> binding) {
-		super.configureRoutings(binding);
-	}
 }
