@@ -13,15 +13,21 @@ RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - && \
 	apt-get install nodejs -y && \
 	npm install -g yarn
 
-WORKDIR /usr/coffee-editor
-COPY ./backend/examples/SuperBrewer3000 ./backend/examples/SuperBrewer3000
+# Make readable for root only
+RUN chmod -R 750 /var/run/
 
-COPY . .
+RUN useradd -ms /bin/bash theia
+
+WORKDIR /coffee-editor
+
+COPY --chown=theia:theia . .
 RUN ./run.sh -bcf && \
 	cp ./web/favicon.ico ./web/browser-app/lib
 RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/browser-app/lib/index.html
 
-WORKDIR /usr/coffee-editor/web/browser-app
+WORKDIR /coffee-editor/web/browser-app
 
 EXPOSE 3000
+USER theia
+
 CMD yarn start --hostname 0.0.0.0
