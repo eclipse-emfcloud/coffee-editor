@@ -21,6 +21,8 @@ RUN useradd -ms /bin/bash theia
 WORKDIR /coffee-editor
 
 COPY --chown=theia:theia . .
+USER theia
+
 RUN ./run.sh -bcf && \
 	cp ./web/favicon.ico ./web/browser-app/lib
 RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/browser-app/lib/index.html
@@ -28,6 +30,5 @@ RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/br
 WORKDIR /coffee-editor/web/browser-app
 
 EXPOSE 3000
-USER theia
 
 CMD yarn start --hostname 0.0.0.0
