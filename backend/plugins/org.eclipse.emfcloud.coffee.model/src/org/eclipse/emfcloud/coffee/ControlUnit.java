@@ -45,7 +45,7 @@ public interface ControlUnit extends Component {
 	 * @return the value of the '<em>Processor</em>' containment reference.
 	 * @see #setProcessor(Processor)
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Processor()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Processor getProcessor();
@@ -67,7 +67,7 @@ public interface ControlUnit extends Component {
 	 * @return the value of the '<em>Dimension</em>' containment reference.
 	 * @see #setDimension(Dimension)
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Dimension()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Dimension getDimension();
@@ -89,7 +89,7 @@ public interface ControlUnit extends Component {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ram</em>' containment reference list.
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Ram()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<RAM> getRam();
