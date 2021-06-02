@@ -33,7 +33,6 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.DiagramElemen
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Edge;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Shape;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
-import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
 import org.eclipse.glsp.graph.DefaultTypes;
 import org.eclipse.glsp.graph.GEdge;
 import org.eclipse.glsp.graph.GModelRoot;
@@ -69,9 +68,6 @@ public class WorkflowModelFactory implements ModelFactory {
 	@Inject
 	private AdapterFactory adapterFactory;
 
-	@Inject
-	private CommandCodec commandCodec;
-
 	@Override
 	public GModelRoot loadModel(RequestModelAction action, GModelState modelState) {
 		// 1. Load models and create workflow facade
@@ -87,7 +83,7 @@ public class WorkflowModelFactory implements ModelFactory {
 		}
 
 		WorkflowModelServerAccess modelAccess = new WorkflowModelServerAccess(sourceURI.get(), modelServerClient.get(),
-				adapterFactory, commandCodec);
+				adapterFactory);
 		modelAccess.subscribe(new WorkflowModelServerSubscriptionListener(modelState, modelAccess, actionProcessor));
 		this.clientSessionManager.addListener(new ClientSessionListener() {
 			@Override
@@ -121,6 +117,7 @@ public class WorkflowModelFactory implements ModelFactory {
 		// 3. Set current workflow
 		workflowFacade.setCurrentWorkflowIndex(workflowIndex);
 		MappedGModelRoot mappedGModelRoot = populate(workflowFacade, modelState);
+		
 		modelAccess.setNodeMapping(mappedGModelRoot.getMapping());
 
 		return mappedGModelRoot.getRoot();

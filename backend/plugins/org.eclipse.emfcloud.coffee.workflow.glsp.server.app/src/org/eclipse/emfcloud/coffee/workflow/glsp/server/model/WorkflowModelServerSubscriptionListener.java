@@ -29,6 +29,7 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerNotification;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.client.XmiToEObjectSubscriptionListener;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.command.CCommandExecutionResult;
 import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 import org.eclipse.glsp.server.actions.ActionDispatcher;
 import org.eclipse.glsp.server.actions.ServerStatusAction;
@@ -48,36 +49,20 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 	private WorkflowModelServerAccess modelServerAccess;
 	private GModelState modelState;
 
-	public WorkflowModelServerSubscriptionListener(GModelState modelState,
-			WorkflowModelServerAccess modelServerAccess, ActionDispatcher actionProcessor) {
+	public WorkflowModelServerSubscriptionListener(GModelState modelState, WorkflowModelServerAccess modelServerAccess,
+			ActionDispatcher actionProcessor) {
 		this.actionProcessor = actionProcessor;
 		this.modelServerAccess = modelServerAccess;
 		this.modelState = modelState;
 	}
 
 	@Override
-	public void onIncrementalUpdate(CCommand command) {
-		LOG.debug("Incremental update from model server received: " + command);
-		Resource commandResource = null;
-		try {
-			// execute command on semantic resource
-			EditingDomain domain = modelServerAccess.getEditingDomain();
-			commandResource = createCommandResource(domain, command);
-			Command cmd = modelServerAccess.getCommandCodec().decode(domain, command);
-			domain.getCommandStack().execute(cmd);
+	public void onIncrementalUpdate(CCommandExecutionResult commandResult) {
+		LOG.debug("Incremental update from model server received: " + commandResult);
 
-			// update notation resource
-			WorkflowFacade facade = modelServerAccess.getWorkflowFacade();
-			Resource notationResource = facade.getNotationResource();
-			updateNotationResource(facade, notationResource);
-		} catch (DecodingException ex) {
-			LOG.error("Could not decode command: " + command, ex);
-			throw new RuntimeException(ex);
-		} finally {
-			if (commandResource != null) {
-				commandResource.getResourceSet().getResources().remove(commandResource);
-			}
-		}
+		// update notation resource
+		EObject root = modelServerAccess.getModel();
+		onFullUpdate(root);
 	}
 
 	@Override

@@ -37,7 +37,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.feature.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202102161029/"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202105141035/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.emfjson.jackson" version="0.0.0"/>
@@ -58,6 +58,10 @@
       <unit id="org.eclipse.jetty.websocket.server" version="0.0.0"/>
       <unit id="org.eclipse.jetty.server" version="0.0.0"/>
       <repository location="https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.44.v20210927/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emfcloud.validation.framework" version="1.0.0.202104151035"/>
+      <repository location="https://raw.githubusercontent.com/eclipsesource/model-validation-updatesite/master/"/>
     </location>
   </locations>
 </target>

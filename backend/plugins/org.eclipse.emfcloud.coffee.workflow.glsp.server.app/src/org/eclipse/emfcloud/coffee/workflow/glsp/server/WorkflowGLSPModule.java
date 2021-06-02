@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Reconn
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelStateProvider;
 import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
-import org.eclipse.emfcloud.modelserver.edit.DefaultCommandCodec;
 import org.eclipse.glsp.graph.GraphExtension;
 import org.eclipse.glsp.server.actions.ActionHandler;
 import org.eclipse.glsp.server.actions.SaveModelActionHandler;
@@ -137,7 +136,6 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	public void configure() {
 		super.configure();
 		bind(AdapterFactory.class).toInstance(new ComposedAdapterFactory());
-		bind(CommandCodec.class).toInstance(new DefaultCommandCodec());
 	}
 
 }

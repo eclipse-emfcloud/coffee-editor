@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +24,6 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -42,7 +42,6 @@ import org.eclipse.emfcloud.modelserver.client.NotificationSubscriptionListener;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.common.codecs.EncodingException;
-import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
 
@@ -64,16 +63,14 @@ public class WorkflowModelServerAccess {
 	private NotificationSubscriptionListener<EObject> subscriptionListener;
 
 	private EditingDomain editingDomain;
-	private CommandCodec commandCodec;
 
 	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient,
-			AdapterFactory adapterFactory, CommandCodec commandCodec) {
+			AdapterFactory adapterFactory) {
 		Preconditions.checkNotNull(modelServerClient);
 		this.sourceURI = sourceURI;
 		this.modelServerClient = modelServerClient;
 		this.resourceSet = setupResourceSet();
 		this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory, new BasicCommandStack(), resourceSet);
-		this.commandCodec = commandCodec;
 	}
 
 	public void subscribe(NotificationSubscriptionListener<EObject> subscriptionListener) {
@@ -173,6 +170,15 @@ public class WorkflowModelServerAccess {
 	public Node getNodeById(String id) {
 		return idMapping.get(id);
 	}
+	
+	public EObject getModel() {
+		try {
+			return modelServerClient.get(getSemanticResource(sourceURI), FORMAT_XMI).thenApply(res -> res.body()).get();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			throw new GLSPServerException("Error during model loading", e);
+		}
+	}
 
 	public Optional<Flow> getFlow(Node source, Node target) {
 		return this.workflowFacade.getCurrentWorkflow().getFlows().stream()
@@ -196,12 +202,7 @@ public class WorkflowModelServerAccess {
 		return editingDomain;
 	}
 
-	public CommandCodec getCommandCodec() {
-		return commandCodec;
-	}
-
-	public CompletableFuture<Response<Boolean>> edit(Command command) throws EncodingException {
-		CCommand ccommand = getCommandCodec().encode(command);
-		return this.modelServerClient.edit(getSemanticResource(sourceURI), ccommand, FORMAT_XMI);
+	public CompletableFuture<Response<Boolean>> edit(CCommand command) throws EncodingException {
+		return this.modelServerClient.edit(getSemanticResource(sourceURI), command, FORMAT_XMI);
 	}
 }
