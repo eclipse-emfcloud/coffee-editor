@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2020-09" sequenceNumber="1614333774">
+<target name="Coffee 2020-09" sequenceNumber="1620991604">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
@@ -37,7 +37,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.feature.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202102161029/"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202105141035/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.emfjson.jackson" version="0.0.0"/>
@@ -61,6 +61,10 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.jetty.server" version="9.4.34.v20201102"/>
       <repository location="https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.34.v20201102/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emfcloud.validation.framework" version="1.0.0.202104151035"/>
+      <repository location="https://raw.githubusercontent.com/eclipsesource/model-validation-updatesite/master/"/>
     </location>
   </locations>
 </target>
