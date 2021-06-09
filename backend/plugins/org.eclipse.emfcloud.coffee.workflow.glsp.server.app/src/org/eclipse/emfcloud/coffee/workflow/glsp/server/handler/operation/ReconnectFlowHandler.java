@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelIndex;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.glsp.graph.GEdge;
@@ -27,6 +28,7 @@ public class ReconnectFlowHandler extends BasicOperationHandler<ReconnectEdgeOpe
 	@Override
 	public void executeOperation(ReconnectEdgeOperation operation, GModelState modelState) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
+		WorkflowModelIndex modelIndex = WorkflowModelState.getModelState(modelState).getIndex();
 
 		Optional<GModelElement> maybeEdge = modelState.getIndex().get(operation.getEdgeElementId());
 		if (maybeEdge.isEmpty() && !(maybeEdge.get() instanceof GEdge)) {
@@ -34,11 +36,11 @@ public class ReconnectFlowHandler extends BasicOperationHandler<ReconnectEdgeOpe
 		}
 
 		GEdge oldEdge = (GEdge) maybeEdge.get();
-		Node oldSourceNode = modelAccess.getNodeById(oldEdge.getSourceId());
-		Node oldTargetNode = modelAccess.getNodeById(oldEdge.getTargetId());
+		Node oldSourceNode = modelIndex.getSemantic(oldEdge.getSourceId(), Node.class).get();
+		Node oldTargetNode = modelIndex.getSemantic(oldEdge.getTargetId(), Node.class).get();
 
-		Node newSourceNode = modelAccess.getNodeById(operation.getSourceElementId());
-		Node newTargetNode = modelAccess.getNodeById(operation.getTargetElementId());
+		Node newSourceNode = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).get();
+		Node newTargetNode = modelIndex.getSemantic(operation.getTargetElementId(), Node.class).get();
 
 		Optional<Flow> maybeFlow = modelAccess.getFlow(oldSourceNode, oldTargetNode);
 		if (maybeFlow.isEmpty()) {

@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowGLSPServer.InitializeOptions;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.glsp.client.ModelServerClientProvider;
 import org.eclipse.glsp.server.jsonrpc.DefaultGLSPServer;
 
 import com.google.inject.Inject;
