@@ -12,8 +12,6 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.WorkflowOperationActionHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.WorkflowSaveModelActionHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ChangeBoundsOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ChangeRoutingPointsOperationHandler;
@@ -26,21 +24,19 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Create
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.DeleteOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ReconnectFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelSourceLoader;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelStateProvider;
-import org.eclipse.emfcloud.modelserver.edit.CommandCodec;
+import org.eclipse.emfcloud.modelserver.glsp.EMSGLSPModule;
 import org.eclipse.glsp.graph.GraphExtension;
 import org.eclipse.glsp.server.actions.ActionHandler;
-import org.eclipse.glsp.server.actions.SaveModelActionHandler;
-import org.eclipse.glsp.server.di.DefaultGLSPModule;
 import org.eclipse.glsp.server.diagram.DiagramConfiguration;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
-import org.eclipse.glsp.server.features.core.model.ModelFactory;
+import org.eclipse.glsp.server.features.core.model.GModelFactory;
+import org.eclipse.glsp.server.features.core.model.ModelSourceLoader;
 import org.eclipse.glsp.server.features.undoredo.UndoRedoActionHandler;
 import org.eclipse.glsp.server.layout.ILayoutEngine;
-import org.eclipse.glsp.server.layout.ServerLayoutConfiguration;
 import org.eclipse.glsp.server.model.ModelStateProvider;
-import org.eclipse.glsp.server.operations.OperationActionHandler;
 import org.eclipse.glsp.server.operations.OperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.ChangeRoutingPointsHandler;
 import org.eclipse.glsp.server.operations.gmodel.CutOperationHandler;
@@ -50,17 +46,9 @@ import org.eclipse.glsp.server.operations.gmodel.ReconnectEdgeOperationHandler;
 import org.eclipse.glsp.server.protocol.GLSPServer;
 import org.eclipse.glsp.server.utils.MultiBinding;
 
-public class WorkflowGLSPModule extends DefaultGLSPModule {
+public class WorkflowGLSPModule extends EMSGLSPModule {
 
-	@Override
-	protected Class<? extends ModelFactory> bindModelFactory() {
-		return WorkflowModelFactory.class;
-	}
-	
-	@Override
-	protected Class<? extends ServerLayoutConfiguration> bindServerLayoutConfiguration() {
-		return WorkflowServerLayoutConfiguration.class;
-	}
+	// TODO need to bind layout configuration?
 
 	@Override
 	protected Class<? extends ModelStateProvider> bindModelStateProvider() {
@@ -76,8 +64,6 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	@Override
 	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
 		super.configureActionHandlers(bindings);
-		bindings.rebind(OperationActionHandler.class, WorkflowOperationActionHandler.class);
-		bindings.rebind(SaveModelActionHandler.class, WorkflowSaveModelActionHandler.class);
 		// TODO inject own undo/redo once incremental model server is ready
 		bindings.remove(UndoRedoActionHandler.class);
 	}
@@ -136,6 +122,16 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	public void configure() {
 		super.configure();
 		bind(AdapterFactory.class).toInstance(new ComposedAdapterFactory());
+	}
+
+	@Override
+	protected Class<? extends ModelSourceLoader> bindSourceModelLoader() {
+		return WorkflowModelSourceLoader.class;
+	}
+
+	@Override
+	protected Class<? extends GModelFactory> bindGModelFactory() {
+		return WorkflowModelFactory.class;
 	}
 
 }

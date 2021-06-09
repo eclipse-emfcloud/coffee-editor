@@ -19,18 +19,23 @@ import {
     GLSPNotificationManager,
     GLSPTheiaSprottyConnector,
     GLSPWidgetOpenerOptions,
-    GLSPWidgetOptions
+    GLSPWidgetOptions,
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { MessageService } from '@theia/core';
 import { WidgetManager, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { EditorManager } from '@theia/editor/lib/browser';
+import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { inject, injectable } from 'inversify';
 import { TheiaFileSaver } from 'sprotty-theia/lib';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
 import { WorkflowGLSPDiagramClient } from './workflow-glsp-diagram-client';
 import { WorkflowGLSPServerOpenerOptions } from './workflow-glsp-server-options';
+
+export interface WorkflowDiagramWidgetOptions extends DiagramWidgetOptions, GLSPWidgetOptions {
+    workspaceRoot: string;
+}
 
 @injectable()
 export class WorkflowDiagramManager extends GLSPDiagramManager {
@@ -39,6 +44,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
     readonly label = WorkflowNotationLanguage.Label + ' Editor';
 
     private _diagramConnector: GLSPTheiaSprottyConnector;
+    private workspaceRoot: string;
 
     constructor(
         @inject(WorkflowGLSPDiagramClient) diagramClient: WorkflowGLSPDiagramClient,
@@ -46,7 +52,8 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         @inject(WidgetManager) widgetManager: WidgetManager,
         @inject(EditorManager) editorManager: EditorManager,
         @inject(MessageService) messageService: MessageService,
-        @inject(GLSPNotificationManager) notificationManager: GLSPNotificationManager) {
+        @inject(GLSPNotificationManager) notificationManager: GLSPNotificationManager,
+        @inject(WorkspaceService) workspaceService: WorkspaceService) {
         super();
         this._diagramConnector = new GLSPTheiaSprottyConnector({
             diagramClient,
@@ -57,16 +64,18 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
             messageService,
             notificationManager
         });
+        workspaceService.roots.then(roots => this.workspaceRoot = roots[0].uri.toString());
     }
 
-    protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): DiagramWidgetOptions & GLSPWidgetOptions {
+    protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): WorkflowDiagramWidgetOptions {
         const widgetOptions = super.createWidgetOptions(uri.withoutQuery(), options);
         const queryOptions = this.createQueryOptions(uri);
         const serverOptions = this.createServerOptions(options);
         return {
             ...widgetOptions,
             ...queryOptions,
-            ...serverOptions
+            ...serverOptions,
+            workspaceRoot: this.workspaceRoot
         };
     }
 

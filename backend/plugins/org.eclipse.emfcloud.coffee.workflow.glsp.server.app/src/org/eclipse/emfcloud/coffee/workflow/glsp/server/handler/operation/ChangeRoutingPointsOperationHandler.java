@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.ShapeUtil;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelIndex;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Edge;
@@ -40,11 +41,12 @@ public class ChangeRoutingPointsOperationHandler extends BasicOperationHandler<C
 		GEdge gEdge = getOrThrow(modelState.getIndex().findElementByClass(ear.getElementId(), GEdge.class),
 				"Invalid edge: edge ID " + ear.getElementId());
 		// reroute
+		WorkflowModelIndex modelIndex = WorkflowModelState.getModelState(modelState).getIndex();
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-		Node sourceNode = modelAccess.getNodeById(gEdge.getSourceId());
-		Node targetNode = modelAccess.getNodeById(gEdge.getTargetId());
+		Node sourceNode = modelIndex.getSemantic(gEdge.getSourceId(), Node.class).get();
+		Node targetNode = modelIndex.getSemantic(gEdge.getTargetId(), Node.class).get();
 		Optional<Flow> flow = modelAccess.getFlow(sourceNode, targetNode);
-		Edge edge = getOrThrow(flow.flatMap(f -> modelAccess.getWorkflowFacade().findDiagramElement(f, Edge.class)),
+		Edge edge = getOrThrow(flow.flatMap(f -> modelIndex.getNotation(f, Edge.class)),
 				"Cannot find edge for GEdge ID " + ear.getElementId());
 
 		List<Point> bendPoints = ear.getNewRoutingPoints().stream().map(ShapeUtil::point).collect(Collectors.toList());

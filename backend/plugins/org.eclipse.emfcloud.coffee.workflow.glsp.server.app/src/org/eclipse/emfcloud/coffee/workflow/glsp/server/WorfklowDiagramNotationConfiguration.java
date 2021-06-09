@@ -59,12 +59,12 @@ public class WorfklowDiagramNotationConfiguration implements DiagramConfiguratio
 	}
 
 	@Override
-	public List<ShapeTypeHint> getNodeTypeHints() {
+	public List<ShapeTypeHint> getShapeTypeHints() {
 		List<ShapeTypeHint> nodeHints = new ArrayList<>();
 		nodeHints.add(new ShapeTypeHint(MANUAL_TASK, true, true, false, false));
 		nodeHints.add(new ShapeTypeHint(AUTOMATED_TASK, true, true, false, false));
-		nodeHints.add(createDefaultNodeTypeHint(DECISION_NODE));
-		nodeHints.add(createDefaultNodeTypeHint(MERGE_NODE));
+		nodeHints.add(createDefaultShapeTypeHint(DECISION_NODE));
+		nodeHints.add(createDefaultShapeTypeHint(MERGE_NODE));
 		return nodeHints;
 	}
 

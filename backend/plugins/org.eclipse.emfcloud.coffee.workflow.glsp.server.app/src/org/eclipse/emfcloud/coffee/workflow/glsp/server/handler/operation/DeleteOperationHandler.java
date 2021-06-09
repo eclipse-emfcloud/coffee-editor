@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelIndex;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.DiagramElement;
@@ -52,11 +53,11 @@ public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperatio
 		}
 
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
+		WorkflowModelIndex modelIndex = WorkflowModelState.getModelState(modelState).getIndex();
 		if (element instanceof GNode) {
-			Node node = modelAccess.getNodeById(element.getId());
-			toDelete.add(node);
+			modelIndex.getSemantic(element).ifPresent(toDelete::add);
 
-			Optional<DiagramElement> diagramElement = modelAccess.getWorkflowFacade().findDiagramElement(node);
+			Optional<DiagramElement> diagramElement = modelIndex.getNotation(element);
 			if (!diagramElement.isEmpty() && diagramElement.get() instanceof Shape) {
 				toDelete.add(diagramElement.get());
 			}
@@ -67,8 +68,8 @@ public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperatio
 					.forEach(edge -> collectElementsToDelete(edge.getId(), modelState));
 		} else if (element instanceof GEdge) {
 			GEdge gEdge = (GEdge) element;
-			Node sourceNode = modelAccess.getNodeById(gEdge.getSourceId());
-			Node targetNode = modelAccess.getNodeById(gEdge.getTargetId());
+			Node sourceNode = modelIndex.getSemantic(gEdge.getSourceId(), Node.class).get();
+			Node targetNode = modelIndex.getSemantic(gEdge.getTargetId(), Node.class).get();
 			Optional<Flow> maybeFlow = modelAccess.getFlow(sourceNode, targetNode);
 			if (maybeFlow.isEmpty()) {
 				return;
@@ -76,7 +77,7 @@ public class DeleteOperationHandler extends BasicOperationHandler<DeleteOperatio
 			toDelete.add(maybeFlow.get());
 
 			Optional<DiagramElement> edge = maybeFlow
-					.flatMap(flow -> modelAccess.getWorkflowFacade().findDiagramElement(flow));
+					.flatMap(flow -> modelIndex.getNotation(flow));
 			if (edge.isEmpty()) {
 				return;
 			}

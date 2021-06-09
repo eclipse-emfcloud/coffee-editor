@@ -12,4 +12,17 @@
          <property name="appName" value="Workflow GLSP Server"></property>
       </product>
    </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated wfnotation -->
+      <package
+            uri="http://www.eclipsesource.com/glsp/examples/workflow/notation"
+            class="org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationPackage"
+            genModel="model/workflow-notation.genmodel"/>
+      <package
+            class="org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphPackage"
+            genModel="model/workflow-graph.genmodel"
+            uri="http://www.eclipsesource.com/glsp/examples/workflow/graph">
+      </package>
+   </extension>
 </plugin>

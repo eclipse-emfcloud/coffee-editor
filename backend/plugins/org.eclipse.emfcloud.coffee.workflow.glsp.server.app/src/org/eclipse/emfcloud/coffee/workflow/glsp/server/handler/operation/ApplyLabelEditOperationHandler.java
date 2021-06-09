@@ -41,18 +41,19 @@ public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperati
 			throw new IllegalArgumentException("Element with provided ID cannot be found or is not a GLabel");
 		}
 
-		GNode gNode = getParentGNode((GLabel) element.get());
-		Node node = modelAccess.getNodeById(gNode.getId());
-		if (!(node instanceof Task)) {
-			throw new IllegalAccessError("Edited label isn't label representing a task");
-		}
-
-		SetCommand setCommand = (SetCommand) SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
-				operation.getText());
-		CCommand setCCommand = SetCommandContribution.clientCommand(setCommand);
-		if (!modelAccess.edit(setCCommand).thenApply(res -> res.body()).get()) {
-			throw new IllegalAccessError("Could not execute command: " + setCommand);
-		}
+		// FIXME: switch to custom commands
+//		GNode gNode = getParentGNode((GLabel) element.get());
+//		Node node = modelAccess.getNodeById(gNode.getId());
+//		if (!(node instanceof Task)) {
+//			throw new IllegalAccessError("Edited label isn't label representing a task");
+//		}
+//
+//		SetCommand setCommand = (SetCommand) SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
+//				operation.getText());
+//		CCommand setCCommand = SetCommandContribution.clientCommand(setCommand);
+//		if (!modelAccess.edit(setCCommand).thenApply(res -> res.body()).get()) {
+//			throw new IllegalAccessError("Could not execute command: " + setCommand);
+//		}
 	}
 
 	public GNode getParentGNode(GLabel sLabel) {

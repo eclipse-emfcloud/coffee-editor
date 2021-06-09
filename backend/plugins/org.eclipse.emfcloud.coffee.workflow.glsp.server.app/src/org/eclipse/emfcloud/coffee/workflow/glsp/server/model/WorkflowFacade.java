@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Diagram;
@@ -32,26 +31,12 @@ public class WorkflowFacade {
 
 	private Resource semanticResource;
 	private Resource notationResource;
-	private Workflow currentWorkflow;
 
 	public WorkflowFacade(Resource coffeeResource, Resource notationResource) {
 		this.semanticResource = coffeeResource;
 		this.notationResource = notationResource;
 	}
-
-	public Resource getSemanticResource() {
-		return semanticResource;
-	}
-
-	public Resource getNotationResource() {
-		return notationResource;
-	}
-
-	public Optional<Machine> getMachine() {
-		EObject content = this.semanticResource.getContents().get(0);
-		return content instanceof Machine ? Optional.of((Machine) content) : Optional.empty();
-	}
-
+	
 	public Diagram initializeNotation(Workflow workflow) {
 		Optional<Diagram> existingDiagram = findDiagram(workflow);
 		Diagram diagram = existingDiagram.isPresent() ? existingDiagram.get() : createDiagram(workflow);
@@ -170,17 +155,6 @@ public class WorkflowFacade {
 
 	public boolean isDiagramForWorkflow(EObject diagram, Workflow workflow) {
 		return diagram instanceof Diagram && isDiagramElementForSemanticElement((Diagram) diagram, workflow);
-	}
-
-	public void setCurrentWorkflowIndex(int workflowIndex) {
-		if (workflowIndex < 0 || getMachine().isEmpty() || workflowIndex >= getMachine().get().getWorkflows().size()) {
-			return;
-		}
-		currentWorkflow = getMachine().get().getWorkflows().get(workflowIndex);
-	}
-
-	public Workflow getCurrentWorkflow() {
-		return currentWorkflow;
 	}
 
 	private static <T> T safeCast(Object obj, Class<T> clazz) {

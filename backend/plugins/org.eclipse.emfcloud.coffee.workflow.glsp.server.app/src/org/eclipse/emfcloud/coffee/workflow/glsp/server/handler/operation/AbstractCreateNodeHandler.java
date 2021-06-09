@@ -23,6 +23,7 @@ import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.ShapeUtil;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowFacade;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Shape;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationFactory;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
@@ -41,22 +42,25 @@ public abstract class AbstractCreateNodeHandler
 	}
 
 	@Override
-	public void executeOperation(CreateNodeOperation operation, GModelState modelState,
+	public void executeOperation(CreateNodeOperation operation, GModelState gModelState,
 			WorkflowModelServerAccess modelAccess) throws Exception {
-		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
-		Workflow workflow = workflowFacade.getCurrentWorkflow();
+		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
+		Workflow workflow = modelState.getSemanticModel();
 
-		Node node = initializeNode((Node) CoffeeFactory.eINSTANCE.create(eClass), modelState);
-
-		AddCommand addCommand = (AddCommand) AddCommand.create(modelAccess.getEditingDomain(), workflow,
-				CoffeePackage.Literals.WORKFLOW__NODES, node);
-		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
-
-		createDiagramElement(workflowFacade, workflow, node, operation);
-
-		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
-			throw new IllegalAccessError("Could not execute command: " + addCommand);
-		}
+		// FIXME: switch to custom commands
+		//		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
+//
+//		Node node = initializeNode((Node) CoffeeFactory.eINSTANCE.create(eClass), modelState);
+//
+//		AddCommand addCommand = (AddCommand) AddCommand.create(modelAccess.getEditingDomain(), workflow,
+//				CoffeePackage.Literals.WORKFLOW__NODES, node);
+//		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
+//
+//		createDiagramElement(workflowFacade, workflow, node, operation);
+//
+//		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
+//			throw new IllegalAccessError("Could not execute command: " + addCommand);
+//		}
 
 	}
 
