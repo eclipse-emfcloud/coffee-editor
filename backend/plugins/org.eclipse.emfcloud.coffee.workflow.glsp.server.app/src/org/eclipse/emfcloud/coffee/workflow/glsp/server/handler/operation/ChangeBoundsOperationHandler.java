@@ -12,9 +12,8 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
 import java.util.Optional;
 
-import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.ShapeUtil;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelIndex;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.DiagramElement;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Shape;
@@ -33,9 +32,8 @@ public class ChangeBoundsOperationHandler extends BasicOperationHandler<ChangeBo
 	}
 
 	private void changeElementBounds(ElementAndBounds element, GModelState modelState) {
-		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-		Node node = modelAccess.getNodeById(element.getElementId());
-		Optional<DiagramElement> diagramElement = modelAccess.getWorkflowFacade().findDiagramElement(node);
+		WorkflowModelIndex modelIndex = WorkflowModelState.getModelState(modelState).getIndex();
+		Optional<DiagramElement> diagramElement = modelIndex.getNotation(element.getElementId());
 		if (diagramElement.isEmpty() || !(diagramElement.get() instanceof Shape)) {
 			throw new IllegalArgumentException("Could not find shape for node " + element.getElementId());
 		}
