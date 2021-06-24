@@ -3,8 +3,8 @@
 
 name: Build Coffee-Editor
 
-on:
-  workflow_dispatch:
+on: [pull_request]
+  #workflow_dispatch:
 
 jobs:
   ci:
