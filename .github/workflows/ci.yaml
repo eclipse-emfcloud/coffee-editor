@@ -24,9 +24,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-    - name: Setup node 11
+    - name: Setup node 10
       uses: actions/setup-node@v2
       with:
-        node-version: 11
+        node-version: 10
     - name: Build
       run: ./run.sh -bcf
