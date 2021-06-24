@@ -28,5 +28,11 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 10
-    - name: Build
-      run: ./run.sh -bcf
+    - name: Build Java Maven
+      run: | 
+        cd backend/releng/org.eclipse.emfcloud.coffee.parent
+        mvn clean install
+    - name: Build Npm
+      run: | 
+        cd web
+        yarn
