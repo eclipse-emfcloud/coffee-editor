@@ -32,6 +32,7 @@
     "**/@theia/editor": "1.2.0",
     "**/@theia/file-search": "1.2.0",
     "**/@theia/filesystem": "1.2.0",
+    "**/@theia/git": "1.2.0",
     "**/@theia/json": "1.2.0",
     "**/@theia/keymaps": "1.2.0",
     "**/@theia/languages": "1.2.0",

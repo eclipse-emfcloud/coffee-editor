@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS cpp-theia-base
+FROM ubuntu:18.04 AS cpp-theia-base
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
 
-RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_10.x | bash - && \
 	apt-get install nodejs -y && \
 	npm install -g yarn
 

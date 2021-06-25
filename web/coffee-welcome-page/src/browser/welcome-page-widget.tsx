@@ -124,21 +124,21 @@ export class WelcomePageWidget extends ReactWidget {
             </div>
             <div className='flex-grid'>
                 <div className='col'>
-                    {this.renderFeatureSection('C++ Code Generator', 'fas fa-cogs', (
-                        <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
-                        using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate C++ Workflow code&quot;.
-                        Browse the generated code in the &quot;cpp&quot; folder, the coffee editor also provides extensive language support
-                        for C++!</p>), this.runCppCodeGenerator)}
-                </div>
-            </div>
-            <div className='flex-grid'>
-                <div className='col'>
                     {this.renderFeatureSection('Java Code Editing', 'fab fa-java', (
                         <p>The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion.
                         This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you
                         have generated the code first (see above). Then, open any Java file
                         in the src folder (or click above) and start modifying the code, e.g. by adding &quot;sysout&quot; statements.
                         </p>), this.openJavaCode)}
+                </div>
+            </div>
+            <div className='flex-grid'>
+                <div className='col'>
+                    {this.renderFeatureSection('C++ Code Generator', 'fas fa-cogs', (
+                        <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
+                        using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate C++ Workflow code&quot;.
+                        Browse the generated code in the &quot;cpp&quot; folder, the coffee editor also provides extensive language support
+                        for C++!</p>), this.runCppCodeGenerator)}
                 </div>
             </div>
             <div className='flex-grid'>
@@ -187,14 +187,14 @@ export class WelcomePageWidget extends ReactWidget {
             <p>The &quot;coffee editor&quot; is a comprehensive example of a web-based modeling tool based on&nbsp;
                 <a href='https://www.eclipse.org/emfcloud/' target='_blank' rel='noreferrer'>EMF.cloud</a> and Eclipse Theia.
             Please see the sections below to get an overview of the available features and use the links to directly see them in action.
-            Alternatively, <a href='#' onClick={() => this.openFileExplorer()}>open the file explorer</a> to
+            Alternatively, <a onClick={() => this.openFileExplorer()}>open the file explorer</a> to
             the left and browse the example workspace. See the &quot;Help and more information&quot; section below for further pointers.</p>
         </div>;
     }
 
     protected renderFeatureSection(title: string, icon: string, description: JSX.Element, opener: () => void): React.ReactNode {
         return <div className='gs-section'>
-            <a href='#' onClick={opener}>   <h3 className='gs-section-header'>
+            <a onClick={opener}>   <h3 className='gs-section-header'>
                 <i className={icon}></i>
                 {title}
                 <span style={{ marginLeft: '5px' }}>

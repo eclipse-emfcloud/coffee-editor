@@ -11,6 +11,7 @@
     "@theia/editor": "latest",
     "@theia/file-search": "latest",
     "@theia/filesystem": "latest",
+    "@theia/git": "latest",
     "@theia/json": "latest",
     "@theia/keymaps": "latest",
     "@theia/languages": "latest",

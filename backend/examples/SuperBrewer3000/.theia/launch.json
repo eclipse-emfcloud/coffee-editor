@@ -24,7 +24,8 @@
       "type": "gdb",
       "request": "launch",
       "name": "Debug SuperBrewer C++",
-      "program": "${workspaceFolder}/cpp/src/SuperBrewer3000"
+      "program": "${workspaceFolder}/cpp/src/SuperBrewer3000",
+      "preLaunchTask": "Binary build"
     }
   ]
 }
