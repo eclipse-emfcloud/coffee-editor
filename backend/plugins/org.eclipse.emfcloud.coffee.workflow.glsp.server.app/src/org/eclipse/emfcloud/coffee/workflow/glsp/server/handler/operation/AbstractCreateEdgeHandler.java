@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 import java.util.UUID;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emfcloud.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -51,7 +52,7 @@ public abstract class AbstractCreateEdgeHandler
 				CoffeePackage.Literals.WORKFLOW__FLOWS, flow);
 		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
 
-		createDiagramElement(workflowFacade, workflow, flow, operation);
+		createDiagramElement(workflowFacade, workflow, EcoreUtil.copy(flow), operation);
 
 		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + addCommand);

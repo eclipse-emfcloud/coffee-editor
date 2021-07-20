@@ -15,6 +15,7 @@ import static org.eclipse.glsp.graph.util.GraphUtil.point;
 import java.util.UUID;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emfcloud.coffee.CoffeeFactory;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -52,7 +53,7 @@ public abstract class AbstractCreateNodeHandler
 				CoffeePackage.Literals.WORKFLOW__NODES, node);
 		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
 
-		createDiagramElement(workflowFacade, workflow, node, operation);
+		createDiagramElement(workflowFacade, workflow, EcoreUtil.copy(node), operation);
 
 		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
 			throw new IllegalAccessError("Could not execute command: " + addCommand);
