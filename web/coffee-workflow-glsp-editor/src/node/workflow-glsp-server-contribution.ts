@@ -13,11 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { BaseGLSPServerContribution } from '@eclipse-glsp/theia-integration/lib/node';
-import { IConnection } from '@theia/languages/lib/node';
+import { JavaSocketServerContribution, JavaSocketServerLaunchOptions } from '@eclipse-glsp/theia-integration/lib/node';
 import { injectable } from 'inversify';
 import * as net from 'net';
-import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
+import { createSocketConnection, IConnection } from 'vscode-ws-jsonrpc/lib/server';
 
 import { WorkflowNotationLanguage } from '../common/workflow-language';
 
@@ -31,7 +30,7 @@ function getPort(): number | undefined {
 }
 
 @injectable()
-export class WorkflowNotationGLServerContribution extends BaseGLSPServerContribution {
+export class WorkflowNotationGLServerContribution extends JavaSocketServerContribution {
     readonly id = WorkflowNotationLanguage.Id;
     readonly name = WorkflowNotationLanguage.Name;
 
@@ -44,7 +43,11 @@ export class WorkflowNotationGLServerContribution extends BaseGLSPServerContribu
         ]
     };
 
-    start(clientConnection: IConnection): void {
+    async launch(): Promise<void> {
+        console.debug();
+    }
+
+    connect(clientConnection: IConnection): void {
         const socketPort = getPort();
         if (socketPort) {
             const socket = new net.Socket();
@@ -56,5 +59,9 @@ export class WorkflowNotationGLServerContribution extends BaseGLSPServerContribu
         } else {
             console.error('Error when trying to connect to Workflow GLSP server');
         }
+    }
+
+    createLaunchOptions(): Partial<JavaSocketServerLaunchOptions> {
+        return {};
     }
 }

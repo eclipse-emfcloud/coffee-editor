@@ -8,38 +8,39 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import { DisposableCollection, ILogger, MessageService, Progress } from '@theia/core';
+import { DisposableCollection, MessageService, Progress } from '@theia/core';
 import { PreferenceService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
-import { Workspace } from '@theia/languages/lib/browser';
 import { inject, injectable } from 'inversify';
 
 import { CodeGenServer } from '../common/generate-protocol';
 
+// import { Workspace } from '@theia/languages/lib/browser';
 @injectable()
 export class GenerateCodeService {
     private readonly AUTO_CODEGEN_PREFERENCE: string = 'editor.autoGenerateCode';
     private readonly toDispose = new DisposableCollection();
     constructor(
-        @inject(Workspace) private readonly workspace: Workspace,
+        // @inject(Workspace) private readonly workspace: Workspace,
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
         @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer,
         @inject(MessageService) protected readonly messageService: MessageService,
-        @inject(ILogger) private readonly logger: ILogger
+        // @inject(ILogger) private readonly logger: ILogger
     ) {
-        const event = this.workspace.onDidSaveTextDocument;
-        if (event) {
-            this.toDispose.push(event(textDocument => {
-                const fileUri = new URI(textDocument.uri);
-                if (this.isWorkflowFile(fileUri)) {
-                    this.logger.info(`Saved ${fileUri.path.base}, autogenerate is set to: ${this.isAutoGenerateOn()}`);
-                    if (this.isAutoGenerateOn()) {
-                        this.logger.info(`Generate code for ${fileUri}`);
-                        this.generateCode(fileUri);
-                    }
-                }
-            }));
-        }
+        // FIXME reimplement code gen without @theia/languages
+        // const event = this.workspace.onDidSaveTextDocument;
+        // if (event) {
+        //     this.toDispose.push(event(textDocument => {
+        //         const fileUri = new URI(textDocument.uri);
+        //         if (this.isWorkflowFile(fileUri)) {
+        //             this.logger.info(`Saved ${fileUri.path.base}, autogenerate is set to: ${this.isAutoGenerateOn()}`);
+        //             if (this.isAutoGenerateOn()) {
+        //                 this.logger.info(`Generate code for ${fileUri}`);
+        //                 this.generateCode(fileUri);
+        //             }
+        //         }
+        //     }));
+        // }
     }
 
     public generateCode(uri: URI): void {
