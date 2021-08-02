@@ -37,12 +37,12 @@ export class WorkflowGLSPClientContribution extends BaseGLSPClientContribution {
 
     protected async createInitializeOptions(): Promise<WorkflowInitializeOptions> {
         const options = await this.modelServerBackend.getLaunchOptions();
-        const workspaceRoot = await this.workspaceService.roots.then(roots => roots[0].uri);
+        const workspaceRoot = await this.workspaceService.roots.then(roots => roots[0].resource);
 
         return {
             timestamp: new Date(),
             modelserverURL: `http://${options.hostname}:${options.serverPort}/${options.baseURL}`,
-            workspaceRoot
+            workspaceRoot: workspaceRoot.toString()
         };
     }
 

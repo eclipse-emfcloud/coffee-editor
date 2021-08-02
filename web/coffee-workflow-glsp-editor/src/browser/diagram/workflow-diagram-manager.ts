@@ -64,7 +64,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
             messageService,
             notificationManager
         });
-        workspaceService.roots.then(roots => this.workspaceRoot = roots[0].uri.toString());
+        workspaceService.roots.then(roots => this.workspaceRoot = roots[0].resource.toString());
     }
 
     protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): WorkflowDiagramWidgetOptions {

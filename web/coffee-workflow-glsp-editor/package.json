@@ -21,7 +21,6 @@
     "@theia/core": "latest",
     "@theia/editor": "latest",
     "@theia/filesystem": "latest",
-    "@theia/languages": "latest",
     "@theia/monaco": "latest",
     "@theia/workspace": "latest",
     "@types/node": "latest",
