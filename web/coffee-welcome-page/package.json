@@ -16,7 +16,6 @@
     "@theia/filesystem": "latest",
     "@theia/navigator": "latest",
     "@theia/debug": "latest",
-    "coffee-workflow-analyzer": "0.7.0",
     "coffee-java-extension": "0.7.0"
   },
   "devDependencies": {

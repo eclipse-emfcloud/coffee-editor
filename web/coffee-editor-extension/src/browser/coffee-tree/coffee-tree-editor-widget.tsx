@@ -9,10 +9,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
 import {
+    AddCommand,
     ModelServerClient,
-    ModelServerCommandUtil,
     ModelServerReferenceDescription,
-    ModelServerSubscriptionService
+    ModelServerSubscriptionService,
+    RemoveCommand,
+    SetCommand,
 } from '@eclipse-emfcloud/modelserver-theia/lib/common';
 import {
     AddCommandProperty,
@@ -21,7 +23,7 @@ import {
     MasterTreeWidget,
     NavigatableTreeEditorOptions,
     NavigatableTreeEditorWidget,
-    TreeEditor
+    TreeEditor,
 } from '@eclipse-emfcloud/theia-tree-editor';
 import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
@@ -207,16 +209,17 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         return CoffeeModel.Type[key[0].toUpperCase() + key.slice(1)];
     }
 
-    protected deleteNode(node: Readonly<TreeEditor.Node>): void {
-        const removeCommand = ModelServerCommandUtil.createRemoveCommand(
+    protected async deleteNode(node: Readonly<TreeEditor.Node>): Promise<void> {
+        
+        const removeCommand = new RemoveCommand(
             this.getNodeDescription(node.parent as TreeEditor.Node),
             node.jsonforms.property,
             node.jsonforms.index ? [Number(node.jsonforms.index)] : []
         );
         this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
     }
-    protected addNode({ node, type, property }: AddCommandProperty): void {
-        const addCommand = ModelServerCommandUtil.createAddCommand(
+    protected async addNode({ node, type, property }: AddCommandProperty): Promise<void> {
+        const addCommand = new AddCommand(
             this.getNodeDescription(node),
             property,
             [{ eClass: type }]
@@ -229,7 +232,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         super.dispose();
     }
 
-    protected handleFormUpdate(data: any, node: TreeEditor.Node): void {
+    protected async handleFormUpdate(data: any, node: TreeEditor.Node): Promise<void> {
         const modelServerNode = this.getNodeDescription(node);
         Object.keys(data)
             .filter(key => key !== 'eClass')
@@ -239,7 +242,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                     !isEqual(node.jsonforms.data[key], data[key])
                 ) {
                     const eClass = data[key].eClass || this.getEClassFromKey(key);
-                    const setCommand = ModelServerCommandUtil.createSetCommand(
+                    const setCommand = new SetCommand(
                         modelServerNode,
                         key,
                         []
@@ -251,7 +254,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                     setCommand.objectValues = [ref];
                     this.modelServerApi.edit(this.getModelIDToRequest(), setCommand);
                 } else {
-                    const setCommand = ModelServerCommandUtil.createSetCommand(
+                    const setCommand = new SetCommand(
                         modelServerNode,
                         key,
                         [data[key]]
@@ -281,7 +284,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
             toCheck = toCheck.parent;
         }
-        const ownerRef = `${this.workspaceService.workspace.uri}/${this.getModelIDToRequest()}#/${refToNode}`;
+        const ownerRef = `${this.workspaceService.workspace.resource}/${this.getModelIDToRequest()}#/${refToNode}`;
         return {
             eClass: node.jsonforms.type,
             $ref: ownerRef.replace('file:///', 'file:/')

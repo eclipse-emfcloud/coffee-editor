@@ -24,7 +24,6 @@ import { EXPLORER_VIEW_CONTAINER_ID, FILE_NAVIGATOR_ID, FileNavigatorWidget } fr
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
 import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
-import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 
@@ -80,19 +79,19 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Diagram Editor', 'fa fa-project-diagram', (
                         <p>The example diagram editor allows specifying the behavior of a coffee machine using a flow chart like notation.
-                    The diagram editor is based on <a href='https://www.eclipse.org/glsp/' target='_blank' rel='noreferrer'>the graphical language server platform
-                    (Eclipse GLSP)</a>. Double click the file &quot;superbrewer3000.coffeenotation&quot; in the file explorer or click
-                        the header try out the diagram editor!</p>), this.openDiagram)}
+                            The diagram editor is based on <a href='https://www.eclipse.org/glsp/' target='_blank' rel='noreferrer'>the graphical language server platform
+                                (Eclipse GLSP)</a>. Double click the file &quot;superbrewer3000.coffeenotation&quot; in the file explorer or click
+                            the header try out the diagram editor!</p>), this.openDiagram)}
                 </div>
             </div>
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Form/Tree Editor', 'fab fa-wpforms', (
                         <p>This editor allows to edit elements in a form-based view along with a tree showing the
-                        hierarchy of the model instances. This allows to efficiently browse the model and enter
-                        data. The form editor is based on <a href='https://jsonforms.io' target='_blank' rel='noreferrer'>JSON Forms</a>. Double
-                         click the file &quot;superbrewer3000.coffee&quot; in the file explorer or click the header to try
-                          out the editor!</p>), this.openTreeEditor)}
+                            hierarchy of the model instances. This allows to efficiently browse the model and enter
+                            data. The form editor is based on <a href='https://jsonforms.io' target='_blank' rel='noreferrer'>JSON Forms</a>. Double
+                            click the file &quot;superbrewer3000.coffee&quot; in the file explorer or click the header to try
+                            out the editor!</p>), this.openTreeEditor)}
                 </div>
             </div>
             <div className='flex-grid'>
@@ -107,28 +106,28 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Model Analysis', 'fas fa-chart-pie', (
                         <p>Based on the constraints described in the textual DSL, the coffee editor provides an example model analysis.
-                        The result is visualized as a &quot;sun burst&quot; chart. The analysis is an external component written in Kotlin, the
-                        chart is based on D3. Select the file &quot;superbrewer3000.wfconfig&quot; in the file explorer, press F1, type &quot;Analyze
-                        workflow model&quot; and hit enter to see the model analysis in action. Alternatively do a right click in the open
-                        textual DSL editor or click the header above.</p>), this.runModelAnalysis)}
+                            The result is visualized as a &quot;sun burst&quot; chart. The analysis is an external component written in Kotlin, the
+                            chart is based on D3. Select the file &quot;superbrewer3000.wfconfig&quot; in the file explorer, press F1, type &quot;Analyze
+                            workflow model&quot; and hit enter to see the model analysis in action. Alternatively do a right click in the open
+                            textual DSL editor or click the header above.</p>), this.runModelAnalysis)}
                 </div>
             </div>
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Java Code Generator', 'fas fa-cogs', (
                         <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
-                        using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate Workflow code&quot;.
-                        Browse the generated code in the &quot;src&quot; and &quot;src-gen&quot; folder, the coffee editor also provides extensive language support
-                        for Java!</p>), this.runJavaCodeGenerator)}
+                            using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate Workflow code&quot;.
+                            Browse the generated code in the &quot;src&quot; and &quot;src-gen&quot; folder, the coffee editor also provides extensive language support
+                            for Java!</p>), this.runJavaCodeGenerator)}
                 </div>
             </div>
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('Java Code Editing', 'fab fa-java', (
                         <p>The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion.
-                        This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you
-                        have generated the code first (see above). Then, open any Java file
-                        in the src folder (or click above) and start modifying the code, e.g. by adding &quot;sysout&quot; statements.
+                            This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you
+                            have generated the code first (see above). Then, open any Java file
+                            in the src folder (or click above) and start modifying the code, e.g. by adding &quot;sysout&quot; statements.
                         </p>), this.openJavaCode)}
                 </div>
             </div>
@@ -136,18 +135,18 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('C++ Code Generator', 'fas fa-cogs', (
                         <p>The coffee editor allows generating example code based on the current model. The code generator itself is written
-                        using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate C++ Workflow code&quot;.
-                        Browse the generated code in the &quot;cpp&quot; folder, the coffee editor also provides extensive language support
-                        for C++!</p>), this.runCppCodeGenerator)}
+                            using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select &quot;Generate C++ Workflow code&quot;.
+                            Browse the generated code in the &quot;cpp&quot; folder, the coffee editor also provides extensive language support
+                            for C++!</p>), this.runCppCodeGenerator)}
                 </div>
             </div>
             <div className='flex-grid'>
                 <div className='col'>
                     {this.renderFeatureSection('C++ Code Editing', 'fab fa-java', (
                         <p>The coffee editor provides full-fleged C++ tooling including syntax highlighting and auto completion.
-                        This is based on the Monaco code editor and the &quot;clangd&quot; C++ language server connected via LSP. Make sure you
-                        have generated the code first (see above). Then, open any C++ file
-                        in the cpp/src folder (or click above) and start modifying the code, e.g. by adding &quot;std::cout&quot; statements.
+                            This is based on the Monaco code editor and the &quot;clangd&quot; C++ language server connected via LSP. Make sure you
+                            have generated the code first (see above). Then, open any C++ file
+                            in the cpp/src folder (or click above) and start modifying the code, e.g. by adding &quot;std::cout&quot; statements.
                         </p>), this.openCppCode)}
                 </div>
             </div>
@@ -155,10 +154,10 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('Java Debugging', 'fas fa-bug', (
                         <p>The coffee editor allows executing and debugging Java code by integrating the debug adapter protocol (DAP).
-                        Make sure you have generated the code (see above) and set a break point in any Java file by double
-                        clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
-                        This will automatically open the integrated debug view and show
-                        all outputs of the example code in the console!
+                            Make sure you have generated the code (see above) and set a break point in any Java file by double
+                            clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
+                            This will automatically open the integrated debug view and show
+                            all outputs of the example code in the console!
                         </p>), this.startDebugJava)}
                 </div>
             </div>
@@ -166,10 +165,10 @@ export class WelcomePageWidget extends ReactWidget {
                 <div className='col'>
                     {this.renderFeatureSection('C++ Debugging', 'fas fa-bug', (
                         <p>The coffee editor allows executing and debugging C++ code by integrating the debug adapter protocol (DAP).
-                        Make sure you have generated the code (see above) and set a break point in any C++ file by double
-                        clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
-                        This will automatically open the integrated debug view and show
-                        all outputs of the example code in the console!
+                            Make sure you have generated the code (see above) and set a break point in any C++ file by double
+                            clicking on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
+                            This will automatically open the integrated debug view and show
+                            all outputs of the example code in the console!
                         </p>), this.startDebugCpp)}
                 </div>
             </div>
@@ -186,9 +185,9 @@ export class WelcomePageWidget extends ReactWidget {
             <h1>Coffee Editor <span className='gs-sub-header'>Getting Started</span></h1>
             <p>The &quot;coffee editor&quot; is a comprehensive example of a web-based modeling tool based on&nbsp;
                 <a href='https://www.eclipse.org/emfcloud/' target='_blank' rel='noreferrer'>EMF.cloud</a> and Eclipse Theia.
-            Please see the sections below to get an overview of the available features and use the links to directly see them in action.
-            Alternatively, <a onClick={() => this.openFileExplorer()}>open the file explorer</a> to
-            the left and browse the example workspace. See the &quot;Help and more information&quot; section below for further pointers.</p>
+                Please see the sections below to get an overview of the available features and use the links to directly see them in action.
+                Alternatively, <a onClick={() => this.openFileExplorer()}>open the file explorer</a> to
+                the left and browse the example workspace. See the &quot;Help and more information&quot; section below for further pointers.</p>
         </div>;
     }
 
@@ -240,7 +239,7 @@ export class WelcomePageWidget extends ReactWidget {
     }
 
     private getSuperBrewer3000FileURI(extension: string): URI {
-        return new URI(`${this.workspaceService.workspace?.uri}/superbrewer3000.${extension}`);
+        return new URI(`${this.workspaceService.workspace?.resource}/superbrewer3000.${extension}`);
     }
 
     protected openDiagram = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('coffeenotation'));
@@ -248,10 +247,12 @@ export class WelcomePageWidget extends ReactWidget {
     protected openTextualDSL = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'));
     protected openFileExplorer = (): Promise<Widget | undefined> => this.shell.revealWidget(EXPLORER_VIEW_CONTAINER_ID);
     protected runModelAnalysis = (): void => {
-        open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'))
-            .then(() => {
-                this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
-            });
+        // TODO re-enable analyze command
+        // open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'))
+        //     .then(() => {
+        //         this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
+        //     });
+        console.log('Run Model Analysis clicked.');
     };
 
     protected runJavaCodeGenerator = (): void => {
@@ -281,7 +282,7 @@ export class WelcomePageWidget extends ReactWidget {
     };
 
     private getJavaSuperBrewer3000RunnerFileURI(): URI {
-        return new URI(`${this.workspaceService.workspace?.uri}/src/SuperBrewer3000/tests/SuperBrewer3000Runner.java`);
+        return new URI(`${this.workspaceService.workspace?.resource}/src/SuperBrewer3000/tests/SuperBrewer3000Runner.java`);
     }
 
     protected openJavaCode = (): void => {
@@ -296,7 +297,7 @@ export class WelcomePageWidget extends ReactWidget {
     };
 
     private getCppSuperBrewer3000RunnerFileURI(): URI {
-        return new URI(`${this.workspaceService.workspace?.uri}/cpp/src/SuperBrewer3000Runner.cpp`);
+        return new URI(`${this.workspaceService.workspace?.resource}/cpp/src/SuperBrewer3000Runner.cpp`);
     }
 
     protected openCppCode = (): void => {
