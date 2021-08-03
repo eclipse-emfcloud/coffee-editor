@@ -142,11 +142,11 @@ Publish packages with lerna to update versions properly across local packages, [
 #### Code Generation
 
 To debug the code generation you would need to attach to the process when it is started from the backend.
-Alternativly you can run the `codegen.product` or `codegen_cpp.product` with the correct parameters.
+Alternatively you can run the `codegen.product` or `codegen_cpp.product` with the correct parameters.
 
 #### Workflow Analyzer
 
-In order to debug, start the `workflowanalyzer.product` product in debug mode. The root application is : `org.eclipse.emfcloud.coffee.workflow.analyzer.application.Application`.
+In order to debug, start the `workflowanalyzer.product` product in debug mode. The root application is : `org.eclipse.emfcloud.coffee.workflow.analyzer.application.application`.
 
 Please make sure to set the `--WF_ANALYZER=5083` parameter to the browser app. In the backend you need to pass `-port` and `-host` with parameters as application arguments.
 
@@ -161,7 +161,7 @@ You can also use the predefined `RunSocketServer-Headless.launch` run config.
 
 #### Coffee Model Server
 
-Use the `org.eclipse.emfcloud.coffee.modelserver.app.Application` Eclipse Application or the corresponding `modelserver.product` from `org.eclipse.emfcloud.coffee.product` to start the Model Server.
+Use the `org.eclipse.emfcloud.coffee.modelserver.app.application` Eclipse Application or the corresponding `modelserver.product` from `org.eclipse.emfcloud.coffee.product` to start the Model Server.
 
 #### Coffee GLSP Server
 
