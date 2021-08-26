@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -11,18 +11,31 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
 
-import org.eclipse.emfcloud.coffee.CoffeePackage;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
+
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.glsp.graph.GPoint;
 
 public class CreateDecisionNodeHandler extends AbstractCreateNodeHandler {
 
 	public CreateDecisionNodeHandler() {
-		super(ModelTypes.DECISION_NODE, CoffeePackage.Literals.DECISION);
+		super(ModelTypes.DECISION_NODE);
 	}
 
 	@Override
 	public String getLabel() {
 		return "Decision Node";
+	}
+
+	@Override
+	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+			WorkflowModelServerAccess modelAccess) {
+		return modelAccess::addDecisionNode;
 	}
 
 }

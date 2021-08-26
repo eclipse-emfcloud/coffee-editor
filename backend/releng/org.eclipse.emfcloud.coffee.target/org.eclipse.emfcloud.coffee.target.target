@@ -65,7 +65,8 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.glsp.feature.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202106081251/"/>
+      <unit id="org.eclipse.emfcloud.modelserver.glsp.notation.model" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202107200808/"/>
     </location>
   </locations>
 </target>

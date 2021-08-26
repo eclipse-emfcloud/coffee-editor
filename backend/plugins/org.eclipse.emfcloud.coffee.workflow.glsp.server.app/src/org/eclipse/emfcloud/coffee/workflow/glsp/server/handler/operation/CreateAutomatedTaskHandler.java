@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -11,18 +11,31 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
 
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 
-public class CreateAutomatedTaskHandler extends AbstractCreateTaskHandler {
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.glsp.graph.GPoint;
+
+public class CreateAutomatedTaskHandler extends AbstractCreateNodeHandler {
 
 	public CreateAutomatedTaskHandler() {
-		super(ModelTypes.AUTOMATED_TASK, CoffeePackage.Literals.AUTOMATIC_TASK);
+		super(ModelTypes.AUTOMATED_TASK);
 	}
 
 	@Override
 	public String getLabel() {
 		return "Automated Task";
+	}
+
+	@Override
+	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+			WorkflowModelServerAccess modelAccess) {
+		return modelAccess::addAutomatedTask;
 	}
 
 }

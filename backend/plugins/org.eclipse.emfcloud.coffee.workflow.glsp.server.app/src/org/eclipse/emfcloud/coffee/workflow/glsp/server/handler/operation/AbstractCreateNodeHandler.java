@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,80 +10,35 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
-import static org.eclipse.glsp.graph.util.GraphUtil.point;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 
-import java.util.UUID;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emfcloud.coffee.CoffeeFactory;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.ShapeUtil;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowFacade;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Shape;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
-import org.eclipse.emfcloud.modelserver.command.CCommand;
-import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
-import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicCreateOperationHandler;
+import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
+import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 public abstract class AbstractCreateNodeHandler
-		extends ModelServerAwareBasicCreateOperationHandler<CreateNodeOperation> {
+		extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
-	private EClass eClass;
-
-	public AbstractCreateNodeHandler(String type, EClass eClass) {
+	public AbstractCreateNodeHandler(String type) {
 		super(type);
-		this.eClass = eClass;
 	}
 
 	@Override
-	public void executeOperation(CreateNodeOperation operation, GModelState gModelState,
-			WorkflowModelServerAccess modelAccess) throws Exception {
-		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
-		Workflow workflow = modelState.getSemanticModel();
-
-		// FIXME: switch to custom commands
-		//		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
-//
-//		Node node = initializeNode((Node) CoffeeFactory.eINSTANCE.create(eClass), modelState);
-//
-//		AddCommand addCommand = (AddCommand) AddCommand.create(modelAccess.getEditingDomain(), workflow,
-//				CoffeePackage.Literals.WORKFLOW__NODES, node);
-//		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
-//
-//		createDiagramElement(workflowFacade, workflow, node, operation);
-//
-//		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
-//			throw new IllegalAccessError("Could not execute command: " + addCommand);
-//		}
-
-	}
-
-	protected String generateId() {
-		return UUID.randomUUID().toString();
-	}
-
-	protected void createDiagramElement(WorkflowFacade facace, Workflow workflow, Node node,
-			CreateNodeOperation operation) {
-		workflow.getNodes().add(node);
-
-		facace.findDiagram(workflow).ifPresent(diagram -> {
-			Shape shape = WfnotationFactory.eINSTANCE.createShape();
-			shape.setGraphicId(generateId());
-			shape.setSemanticElement(facace.createProxy(node));
-			shape.setPosition(ShapeUtil.point(operation.getLocation().orElse(point(0, 0))));
-			diagram.getElements().add(shape);
+	public void executeOperation(CreateNodeOperation operation, WorkflowModelState modelState,
+			WorkflowModelServerAccess modelAccess) {
+		getNodeCreator(modelAccess).apply(modelState, operation.getLocation()).thenAccept(response -> {
+			if (!response.body()) {
+				throw new GLSPServerException(String.format("Could not execute create operation for a new %s.", getLabel()));
+			}
 		});
-
-		workflow.getNodes().remove(node);
 	}
 
-	protected Node initializeNode(Node node, GModelState modelState) {
-		return node;
-	}
+	protected abstract BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+			WorkflowModelServerAccess modelAccess);
 }
