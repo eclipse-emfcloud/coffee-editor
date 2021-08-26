@@ -13,13 +13,17 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddAutomatedTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddDecisionNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManualTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCompoundCommand;
@@ -33,6 +37,10 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
 		super(sourceURI, modelServerClient, "coffee", "coffeenotation");
 		Preconditions.checkNotNull(modelServerClient);
+	}
+
+	protected String getSemanticUriFragment(final EObject element) {
+		return EcoreUtil.getURI(element).fragment();
 	}
 
 	// TODO move functionality to more suitable position?
@@ -52,16 +60,29 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		CCompoundCommand command = AddAutomatedTaskCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
-	
+
 	public CompletableFuture<Response<Boolean>> addDecisionNode(WorkflowModelState modelState,
 			Optional<GPoint> position) {
 		CCompoundCommand command = AddDecisionNodeCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
-	
-	public CompletableFuture<Response<Boolean>> addMergeNode(WorkflowModelState modelState,
-			Optional<GPoint> position) {
+
+	public CompletableFuture<Response<Boolean>> addMergeNode(WorkflowModelState modelState, Optional<GPoint> position) {
 		CCompoundCommand command = AddMergeNodeCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
+		return this.edit(command);
+	}
+
+	public CompletableFuture<Response<Boolean>> addFlow(WorkflowModelState modelState, Node source, Node target) {
+		String sourceUriFragment = getSemanticUriFragment(source);
+		String targetUriFragment = getSemanticUriFragment(target);
+		CCompoundCommand command = AddFlowCommandContribution.create(sourceUriFragment, targetUriFragment);
+		return this.edit(command);
+	}
+	
+	public CompletableFuture<Response<Boolean>> addWeightedFlow(WorkflowModelState modelState, Node source, Node target) {
+		String sourceUriFragment = getSemanticUriFragment(source);
+		String targetUriFragment = getSemanticUriFragment(target);
+		CCompoundCommand command = AddWeightedFlowCommandContribution.create(sourceUriFragment, targetUriFragment);
 		return this.edit(command);
 	}
 }

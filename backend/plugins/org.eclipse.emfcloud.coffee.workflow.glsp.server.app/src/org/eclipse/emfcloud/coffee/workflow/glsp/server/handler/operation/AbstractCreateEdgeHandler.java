@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,74 +10,44 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
-import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emfcloud.coffee.CoffeeFactory;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowFacade;
+import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelIndex;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Edge;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
-import org.eclipse.emfcloud.modelserver.command.CCommand;
-import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
-import org.eclipse.glsp.server.model.GModelState;
+import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicCreateOperationHandler;
 import org.eclipse.glsp.server.operations.CreateEdgeOperation;
+import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 public abstract class AbstractCreateEdgeHandler
-		extends ModelServerAwareBasicCreateOperationHandler<CreateEdgeOperation> {
+		extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
-	private EClass eClass;
 
-	public AbstractCreateEdgeHandler(String type, EClass eClass) {
+	public AbstractCreateEdgeHandler(String type) {
 		super(type);
-		this.eClass = eClass;
 	}
 
 	@Override
-	public void executeOperation(CreateEdgeOperation operation, GModelState gModelState,
-			WorkflowModelServerAccess modelAccess) throws Exception {
-		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
-		Workflow workflow = modelState.getSemanticModel();
+	public void executeOperation(CreateEdgeOperation operation, WorkflowModelState modelState,
+			WorkflowModelServerAccess modelAccess) {
+		WorkflowModelIndex modelIndex = modelState.getIndex();
 
-		// FIXME: switch to custom commands
-		//		WorkflowFacade workflowFacade = modelAccess.getWorkflowFacade();
-//
-//		Flow flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
-//		flow.setSource(modelAccess.getNodeById(operation.getSourceElementId()));
-//		flow.setTarget(modelAccess.getNodeById(operation.getTargetElementId()));
-//
-//		AddCommand addCommand = (AddCommand) AddCommand.create(modelAccess.getEditingDomain(), workflow,
-//				CoffeePackage.Literals.WORKFLOW__FLOWS, flow);
-//		CCommand addCCommand = AddCommandContribution.clientCommand(addCommand);
-//
-//		createDiagramElement(workflowFacade, workflow, flow, operation);
-//
-//		if (!modelAccess.edit(addCCommand).thenApply(res -> res.body()).get()) {
-//			throw new IllegalAccessError("Could not execute command: " + addCommand);
-//		}
-	}
+		Node source = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).orElseThrow(
+				() -> new GLSPServerException(String.format("No semantic Node found for source element with id %s.",
+						operation.getSourceElementId())));
+		Node target = modelIndex.getSemantic(operation.getTargetElementId(), Node.class).orElseThrow(
+				() -> new GLSPServerException(String.format("No semantic Node found for target element with id %s.",
+						operation.getTargetElementId())));
 
-	protected void createDiagramElement(WorkflowFacade facace, Workflow workflow, Flow flow,
-			CreateEdgeOperation operation) {
-		workflow.getFlows().add(flow);
-
-		facace.findDiagram(workflow).ifPresent(diagram -> {
-			Edge edge = WfnotationFactory.eINSTANCE.createEdge();
-			edge.setGraphicId(generateId());
-			edge.setSemanticElement(facace.createProxy(flow));
-			diagram.getElements().add(edge);
+		addFlow(modelAccess, modelState, source, target).thenAccept(response -> {
+			if (!response.body()) {
+				throw new GLSPServerException(String.format("Could not execute create operation for a new %s.", getLabel()));
+			}
 		});
-
-		workflow.getFlows().remove(flow);
 	}
 
-	protected String generateId() {
-		return UUID.randomUUID().toString();
-	}
-
+	protected abstract CompletableFuture<Response<Boolean>> addFlow(WorkflowModelServerAccess modelAccess,
+			WorkflowModelState modelState, Node source, Node target);
 }

@@ -8,13 +8,16 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-package org.eclipse.emfcloud.coffee.modelserver.commands.contributions;
+package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emfcloud.modelserver.edit.command.BasicCommandContribution;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emfcloud.coffee.CoffeePackage;
 
-public abstract class CompoundCommandContribution extends BasicCommandContribution<Command> {
+public class AddWeightedFlowCommand extends AbstractAddFlowCommand {
 
-	public static final String SOURCE_URI_FRAGMENT = "sourceUriFragment";
-	public static final String TARGET_URI_FRAGMENT = "targetUriFragment";
+	public AddWeightedFlowCommand(EditingDomain domain, URI modelUri, String sourceUriFragment,
+			String targetUriFragment) {
+		super(domain, modelUri, CoffeePackage.Literals.WEIGHTED_FLOW, sourceUriFragment, targetUriFragment);
+	}
 }
