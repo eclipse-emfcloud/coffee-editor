@@ -14,8 +14,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Diagram;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.DiagramElement;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Diagram;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.DiagramElement;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.impl.GModelIndexImpl;
 
