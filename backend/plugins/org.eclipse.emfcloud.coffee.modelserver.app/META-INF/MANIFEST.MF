@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0",
  com.google.guava;bundle-version="27.1.0",
  org.eclipse.glsp.server,
- org.eclipse.emfcloud.modelserver.common
+ org.eclipse.emfcloud.modelserver.common,
+ org.eclipse.emfcloud.coffee.modelserver
 Automatic-Module-Name: org.eclipse.emfcloud.coffee.modelserver.app
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.inject;bundle-version="3.0.0",
@@ -20,7 +21,6 @@ Import-Package: com.google.inject;bundle-version="3.0.0",
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit;bundle-version="2.16.0",
  org.eclipse.emf.transaction;bundle-version="1.9.1",
- org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation,
  org.eclipse.emfcloud.modelserver.client;bundle-version="0.7.0",
  org.eclipse.emfcloud.modelserver.common;bundle-version="0.7.0",
  org.eclipse.emfcloud.modelserver.common.utils,

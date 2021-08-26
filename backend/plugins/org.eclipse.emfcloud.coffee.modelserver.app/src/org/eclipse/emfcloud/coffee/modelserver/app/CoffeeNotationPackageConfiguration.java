@@ -1,7 +1,7 @@
 package org.eclipse.emfcloud.coffee.modelserver.app;
 
 import java.util.Collection;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationPackage;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationPackage;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
 import com.google.common.collect.Lists;

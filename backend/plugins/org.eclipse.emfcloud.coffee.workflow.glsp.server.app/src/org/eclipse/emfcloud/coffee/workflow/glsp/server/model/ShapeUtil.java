@@ -10,9 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Dimension;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Point;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationFactory;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Dimension;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Point;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
 import org.eclipse.glsp.graph.GPoint;
 
 public class ShapeUtil {

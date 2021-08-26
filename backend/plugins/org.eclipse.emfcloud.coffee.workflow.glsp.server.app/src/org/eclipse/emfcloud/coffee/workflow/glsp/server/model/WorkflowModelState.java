@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Diagram;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Diagram;
 import org.eclipse.emfcloud.modelserver.glsp.EMSModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelState;
 import org.eclipse.glsp.server.model.GModelState;
