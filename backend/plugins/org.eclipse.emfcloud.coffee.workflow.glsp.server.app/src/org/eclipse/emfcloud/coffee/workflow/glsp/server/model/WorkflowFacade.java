@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Diagram;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.DiagramElement;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Edge;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.SemanticProxy;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.Shape;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfnotation.WfnotationFactory;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Diagram;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.DiagramElement;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Edge;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.SemanticProxy;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Shape;
+import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
 
 public class WorkflowFacade {
 
