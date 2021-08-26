@@ -68,6 +68,7 @@ location "https://raw.githubusercontent.com/eclipsesource/model-validation-updat
 	org.eclipse.emfcloud.validation.framework
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202106081251/" {
+location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202107200808/" {
 	org.eclipse.emfcloud.modelserver.glsp.feature.feature.group lazy
+	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
 }

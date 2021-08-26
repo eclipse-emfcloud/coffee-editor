@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -8,26 +8,26 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
+package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
-import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.common.base.Preconditions;
 
-public abstract class AbstractCreateTaskHandler extends AbstractCreateNodeHandler {
+public abstract class AbstractAddTaskCommand extends AbstractAddNodeCommand {
 
-	public AbstractCreateTaskHandler(String type, EClass eClass) {
-		super(type, eClass);
+	public AbstractAddTaskCommand(EditingDomain domain, URI modelUri, EClass eClass) {
+		super(domain, modelUri, eClass);
 	}
 
 	@Override
-	protected Node initializeNode(Node node, GModelState modelState) {
+	protected void initializeNode(Node node) {
+		super.initializeNode(node);
 		Preconditions.checkArgument(node instanceof Task);
-		((Task) node).setName("NewTask");
-		return node;
+		Task.class.cast(node).setName("New Task");
 	}
-
 }
