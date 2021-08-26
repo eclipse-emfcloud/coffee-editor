@@ -37,4 +37,14 @@ public final class SemanticCommandUtil {
 		// TODO We might want to hand in the index of the used workflow
 		return machine.getWorkflows().get(0);
 	}
+
+	public static EObject getElement(final Workflow semanticModel, final String semanticUriFragment) {
+		return semanticModel.eResource().getEObject(semanticUriFragment);
+	}
+
+	public static <C> C getElement(final Workflow semanticModel, final String semanticUriFragment,
+			final java.lang.Class<C> clazz) {
+		EObject element = getElement(semanticModel, semanticUriFragment);
+		return clazz.cast(element);
+	}
 }
