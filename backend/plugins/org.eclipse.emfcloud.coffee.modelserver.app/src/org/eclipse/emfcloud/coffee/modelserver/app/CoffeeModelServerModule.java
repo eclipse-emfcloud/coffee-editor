@@ -2,8 +2,10 @@ package org.eclipse.emfcloud.coffee.modelserver.app;
 
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddAutomatedTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddDecisionNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManualTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
 import org.eclipse.emfcloud.modelserver.edit.CommandContribution;
@@ -34,6 +36,10 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(AddAutomatedTaskCommandContribution.TYPE, AddAutomatedTaskCommandContribution.class);
 		binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
 		binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
+		
+		// Flows (Edges)
+		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);
+		binding.put(AddWeightedFlowCommandContribution.TYPE, AddWeightedFlowCommandContribution.class);
 	}
 
 }

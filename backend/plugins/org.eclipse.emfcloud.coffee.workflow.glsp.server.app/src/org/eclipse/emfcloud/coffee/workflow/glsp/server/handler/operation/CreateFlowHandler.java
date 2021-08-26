@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2021 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,18 +10,29 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
-import org.eclipse.emfcloud.coffee.CoffeePackage;
+import java.util.concurrent.CompletableFuture;
+
+import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.glsp.graph.DefaultTypes;
 
 public class CreateFlowHandler extends AbstractCreateEdgeHandler {
 
 	public CreateFlowHandler() {
-		super(DefaultTypes.EDGE, CoffeePackage.Literals.FLOW);
+		super(DefaultTypes.EDGE);
 	}
 
 	@Override
 	public String getLabel() {
 		return "Flow";
+	}
+
+	@Override
+	protected CompletableFuture<Response<Boolean>> addFlow(WorkflowModelServerAccess modelAccess,
+			WorkflowModelState modelState, Node source, Node target) {
+		return modelAccess.addFlow(modelState, source, target);
 	}
 
 }
