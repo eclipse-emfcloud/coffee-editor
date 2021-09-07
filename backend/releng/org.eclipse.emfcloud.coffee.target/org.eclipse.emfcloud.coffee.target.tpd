@@ -64,6 +64,6 @@ location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/" {
 location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.34.v20201102/" {
 	org.eclipse.jetty.server
 }
-location "https://raw.githubusercontent.com/eclipsesource/model-validation-updatesite/master/" {
+location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/" {
 	org.eclipse.emfcloud.validation.framework
 }
