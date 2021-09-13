@@ -20,6 +20,7 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
@@ -30,12 +31,13 @@ import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.command.CompoundCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.command.RemoveCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicOperationHandler;
 
-public class ApplyLabelEditOperationHandler extends ModelServerAwareBasicOperationHandler<ApplyLabelEditOperation> {
+public class ApplyLabelEditOperationHandler extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
 	@Override
-	public void executeOperation(ApplyLabelEditOperation operation, GModelState modelState,
-			WorkflowModelServerAccess modelAccess) throws Exception {
+	public void executeOperation(ApplyLabelEditOperation operation, WorkflowModelState modelState,
+			WorkflowModelServerAccess modelAccess) {
 		Optional<GModelElement> element = modelState.getIndex().get(operation.getLabelId());
 		if (!element.isPresent() && !(element.get() instanceof GLabel)) {
 			throw new IllegalArgumentException("Element with provided ID cannot be found or is not a GLabel");
