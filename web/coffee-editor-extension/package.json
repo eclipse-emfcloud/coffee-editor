@@ -11,16 +11,11 @@
   ],
   "dependencies": {
     "@eclipse-emfcloud/modelserver-theia": "next",
-    "@theia/core": "latest",
-    "@theia/filesystem": "latest",
-    "@theia/workspace": "latest",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-redux": "^6.0.0",
-    "recompose": "^0.27.1",
-    "redux": "^3.7.2",
+    "@theia/core": "next",
+    "@theia/filesystem": "next",
+    "@theia/workspace": "next",
     "uuid": "^3.3.2",
-    "@eclipse-emfcloud/theia-tree-editor": "latest"
+    "@eclipse-emfcloud/theia-tree-editor": "next"
   },
   "devDependencies": {
     "rimraf": "latest",

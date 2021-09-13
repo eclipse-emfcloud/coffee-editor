@@ -19,7 +19,7 @@ import {
     GLSPNotificationManager,
     GLSPTheiaSprottyConnector,
     GLSPWidgetOpenerOptions,
-    GLSPWidgetOptions,
+    GLSPWidgetOptions
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { MessageService } from '@theia/core';
 import { WidgetManager, WidgetOpenerOptions } from '@theia/core/lib/browser';

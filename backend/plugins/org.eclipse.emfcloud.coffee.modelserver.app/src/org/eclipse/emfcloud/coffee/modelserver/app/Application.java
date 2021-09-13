@@ -1,9 +1,6 @@
 package org.eclipse.emfcloud.coffee.modelserver.app;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
-
-import org.eclipse.emfcloud.modelserver.emf.launch.ModelServerLauncher;
+import org.eclipse.emfcloud.coffee.modelserver.CoffeeModelServerLauncher;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
@@ -14,22 +11,24 @@ public class Application implements IApplication {
 
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
-		context.applicationRunning();
-		String[] args = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
-		
-		startServer(args).get();
-		return IApplication.EXIT_OK;
+		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.StdErrLog");
+		System.setProperty("org.eclipse.jetty.LEVEL", "WARN");
+		String[] args = getArgs(context);
+		CoffeeModelServerLauncher.main(args);
+		System.in.read();
+		return null;
+	}
+
+	private String[] getArgs(IApplicationContext context) {
+		Object object = context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
+		if (object instanceof String[]) {
+			return (String[]) object;
+		}
+		return new String[0];
 	}
 
 	@Override
 	public void stop() {
-		// nothing to do
-	}
-	
-	private Future<Void> startServer(String[] args) {
-		ModelServerLauncher.configureLogger();
-		final ModelServerLauncher launcher = new ModelServerLauncher(new CoffeeModelServerModule());
-		launcher.run();
-		return new CompletableFuture<>();
+		// Nothing
 	}
 }

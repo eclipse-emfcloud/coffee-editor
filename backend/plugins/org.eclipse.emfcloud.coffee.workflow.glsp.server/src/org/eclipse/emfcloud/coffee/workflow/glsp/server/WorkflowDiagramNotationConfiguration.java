@@ -35,7 +35,7 @@ import org.eclipse.glsp.server.diagram.DiagramConfiguration;
 import org.eclipse.glsp.server.diagram.EdgeTypeHint;
 import org.eclipse.glsp.server.diagram.ShapeTypeHint;
 
-public class WorfklowDiagramNotationConfiguration implements DiagramConfiguration {
+public class WorkflowDiagramNotationConfiguration implements DiagramConfiguration {
 
 	@Override
 	public String getDiagramType() {
