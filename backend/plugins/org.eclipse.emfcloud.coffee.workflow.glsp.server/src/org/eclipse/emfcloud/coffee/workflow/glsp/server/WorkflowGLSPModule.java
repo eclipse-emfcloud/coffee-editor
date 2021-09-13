@@ -100,7 +100,7 @@ public class WorkflowGLSPModule extends EMSGLSPModule {
 
 	@Override
 	protected void configureDiagramConfigurations(MultiBinding<DiagramConfiguration> bindings) {
-		bindings.add(WorfklowDiagramNotationConfiguration.class);
+		bindings.add(WorkflowDiagramNotationConfiguration.class);
 	}
 
 	@Override

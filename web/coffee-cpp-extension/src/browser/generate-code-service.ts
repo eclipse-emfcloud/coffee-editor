@@ -10,7 +10,6 @@
  */
 import { DisposableCollection, MessageService, Progress } from '@theia/core';
 import URI from '@theia/core/lib/common/uri';
-import { TaskService } from '@theia/task/lib/browser';
 import { inject, injectable } from 'inversify';
 
 import { CodeGenCppServer } from '../common/generate-protocol';
@@ -20,8 +19,8 @@ export class GenerateCppCodeService {
     private readonly toDispose = new DisposableCollection();
     constructor(
         @inject(CodeGenCppServer) private readonly codeGenServer: CodeGenCppServer,
-        @inject(MessageService) protected readonly messageService: MessageService,
-        @inject(TaskService) private readonly taskService: TaskService
+        @inject(MessageService) protected readonly messageService: MessageService
+        // @inject(TaskService) private readonly taskService: TaskService
     ) { }
 
     public generateCode(uri: URI): void {
@@ -38,12 +37,13 @@ export class GenerateCppCodeService {
         this.codeGenServer.generateCode(sourceFile, target, packageName)
             .finally(() => {
                 progress.cancel();
-                this.taskService.getTasks().then(tasks => {
-                    const task = tasks.find(t => t.label === 'Binary build');
-                    if (task) {
-                        this.taskService.runTask(task);
-                    }
-                });
+                // FIXME reimplement code gen without @theia/languages
+                // this.taskService.getTasks().then(tasks => {
+                //     const task = tasks.find(t => t.label === 'Binary build');
+                //     if (task) {
+                //         this.taskService.runTask(task);
+                //     }
+                // });
             });
     }
 

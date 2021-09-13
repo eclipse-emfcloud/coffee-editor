@@ -8,7 +8,7 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-package org.eclipse.emfcloud.coffee.modelserver.app;
+package org.eclipse.emfcloud.coffee.modelserver;
 
 import java.util.Set;
 
