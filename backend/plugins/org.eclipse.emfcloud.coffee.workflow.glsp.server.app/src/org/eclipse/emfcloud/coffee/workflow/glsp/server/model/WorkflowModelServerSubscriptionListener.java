@@ -64,14 +64,14 @@ public class WorkflowModelServerSubscriptionListener extends EMSSubscriptionList
 
 	@Override
 	public void onFailure(Throwable t) {
-		String errorMsg = "Subscribtion connection to modelserver failed!";
+		String errorMsg = "Subscription connection to modelserver failed!";
 		actionDispatcher.dispatch(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
 
 	@Override
 	public void onClosed(int code, String reason) {
-		String errorMsg = "Subscribtion connection to modelserver has been closed!";
+		String errorMsg = "Subscription connection to modelserver has been closed!";
 		actionDispatcher.dispatch(modelState.getClientId(),
 				new ServerStatusAction(new ServerStatus(Severity.ERROR, errorMsg, reason)));
 		LOG.error(errorMsg + "\n" + reason);
@@ -79,7 +79,7 @@ public class WorkflowModelServerSubscriptionListener extends EMSSubscriptionList
 
 	@Override
 	public void onFailure(Throwable t, Response<String> response) {
-		String errorMsg = "Subscribtion connection to modelserver failed:" + "\n" + response;
+		String errorMsg = "Subscription connection to modelserver failed:" + "\n" + response;
 		actionDispatcher.dispatch(modelState.getClientId(), error(errorMsg, t));
 		LOG.error(errorMsg, t);
 	}
