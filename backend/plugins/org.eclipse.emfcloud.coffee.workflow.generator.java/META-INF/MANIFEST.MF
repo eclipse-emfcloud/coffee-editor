@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.emfcloud.coffee.workflow.generator;bundle-version="0
  org.eclipse.xtext.xbase.lib;bundle-version="[2.23.0,3.0.0)",
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro
-Export-Package: org.eclipse.emfcloud.coffee.workflow.generator.java
+Export-Package: org.eclipse.emfcloud.coffee.workflow.generator,
+ org.eclipse.emfcloud.coffee.workflow.generator.java
 Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow.generator.java
