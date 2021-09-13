@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.util;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Workflow;
@@ -22,6 +23,10 @@ public final class SemanticCommandUtil {
 
 	// Hide constructor for utility class
 	private SemanticCommandUtil() {
+	}
+
+	public static String getSemanticUriFragment(final EObject element) {
+		return EcoreUtil.getURI(element).fragment();
 	}
 
 	public static Workflow getModel(final URI modelUri, final EditingDomain domain) {
