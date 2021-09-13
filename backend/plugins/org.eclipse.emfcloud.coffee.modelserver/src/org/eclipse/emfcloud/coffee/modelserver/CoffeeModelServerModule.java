@@ -6,6 +6,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddFlowCom
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManualTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
@@ -46,10 +48,12 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(AddAutomatedTaskCommandContribution.TYPE, AddAutomatedTaskCommandContribution.class);
 		binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
 		binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
+		binding.put(RemoveNodeCommandContribution.TYPE, RemoveNodeCommandContribution.class);
 
 		// Flows (Edges)
 		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);
 		binding.put(AddWeightedFlowCommandContribution.TYPE, AddWeightedFlowCommandContribution.class);
+		binding.put(RemoveFlowCommandContribution.TYPE, RemoveFlowCommandContribution.class);
 
 		// ChangeBounds
 		binding.put(ChangeBoundsCommandContribution.TYPE, ChangeBoundsCommandContribution.class);
