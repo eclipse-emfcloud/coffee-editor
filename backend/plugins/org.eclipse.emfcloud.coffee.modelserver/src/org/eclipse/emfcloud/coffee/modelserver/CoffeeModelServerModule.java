@@ -1,4 +1,4 @@
-package org.eclipse.emfcloud.coffee.modelserver.app;
+package org.eclipse.emfcloud.coffee.modelserver;
 
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddAutomatedTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddDecisionNodeCommandContribution;
@@ -36,7 +36,7 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(AddAutomatedTaskCommandContribution.TYPE, AddAutomatedTaskCommandContribution.class);
 		binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
 		binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
-		
+
 		// Flows (Edges)
 		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);
 		binding.put(AddWeightedFlowCommandContribution.TYPE, AddWeightedFlowCommandContribution.class);

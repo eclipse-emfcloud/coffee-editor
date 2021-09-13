@@ -14,7 +14,7 @@ import {
     ModelServerReferenceDescription,
     ModelServerSubscriptionService,
     RemoveCommand,
-    SetCommand,
+    SetCommand
 } from '@eclipse-emfcloud/modelserver-theia/lib/common';
 import {
     AddCommandProperty,
@@ -23,7 +23,7 @@ import {
     MasterTreeWidget,
     NavigatableTreeEditorOptions,
     NavigatableTreeEditorWidget,
-    TreeEditor,
+    TreeEditor
 } from '@eclipse-emfcloud/theia-tree-editor';
 import { Title, TreeNode, Widget } from '@theia/core/lib/browser';
 import { ILogger } from '@theia/core/lib/common';
@@ -210,7 +210,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     protected async deleteNode(node: Readonly<TreeEditor.Node>): Promise<void> {
-        
+
         const removeCommand = new RemoveCommand(
             this.getNodeDescription(node.parent as TreeEditor.Node),
             node.jsonforms.property,

@@ -15,7 +15,7 @@ import {
     CommandService,
     MenuContribution,
     MenuModelRegistry,
-    SelectionService,
+    SelectionService
 } from '@theia/core/lib/common';
 import URI from '@theia/core/lib/common/uri';
 import { UriAwareCommandHandler, UriCommandHandler } from '@theia/core/lib/common/uri-command-handler';

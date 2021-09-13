@@ -24,7 +24,7 @@ export class GenerateCodeService {
         // @inject(Workspace) private readonly workspace: Workspace,
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
         @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer,
-        @inject(MessageService) protected readonly messageService: MessageService,
+        @inject(MessageService) protected readonly messageService: MessageService
         // @inject(ILogger) private readonly logger: ILogger
     ) {
         // FIXME reimplement code gen without @theia/languages

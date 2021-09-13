@@ -12,28 +12,17 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
 import java.util.Optional;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.ChangeCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicOperationHandler;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
-import org.eclipse.glsp.server.model.GModelState;
-import org.eclipse.emfcloud.modelserver.command.CCommand;
-import org.eclipse.emfcloud.modelserver.edit.command.AddCommandContribution;
-import org.eclipse.emfcloud.modelserver.edit.command.CompoundCommandContribution;
-import org.eclipse.emfcloud.modelserver.edit.command.RemoveCommandContribution;
-import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
-import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicOperationHandler;
 
-public class ApplyLabelEditOperationHandler extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelState, WorkflowModelServerAccess> {
+public class ApplyLabelEditOperationHandler
+		extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
 	@Override
 	public void executeOperation(ApplyLabelEditOperation operation, WorkflowModelState modelState,
