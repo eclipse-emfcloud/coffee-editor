@@ -18,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddAutomatedTaskCommandContribution;
@@ -26,6 +27,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddFlowCom
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManualTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
@@ -102,6 +105,16 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		String sourceUriFragment = getSemanticUriFragment(source);
 		String targetUriFragment = getSemanticUriFragment(target);
 		CCompoundCommand command = AddWeightedFlowCommandContribution.create(sourceUriFragment, targetUriFragment);
+		return this.edit(command);
+	}
+
+	public CompletableFuture<Response<Boolean>> removeFlow(WorkflowModelState modelState, Flow flow) {
+		CCompoundCommand command = RemoveFlowCommandContribution.create(getSemanticUriFragment(flow));
+		return this.edit(command);
+	}
+
+	public CompletableFuture<Response<Boolean>> removeNode(WorkflowModelState modelState, Node node) {
+		CCompoundCommand command = RemoveNodeCommandContribution.create(getSemanticUriFragment(node));
 		return this.edit(command);
 	}
 

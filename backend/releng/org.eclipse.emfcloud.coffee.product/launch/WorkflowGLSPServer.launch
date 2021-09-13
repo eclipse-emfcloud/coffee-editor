@@ -12,6 +12,10 @@
     <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/WorkflowGLSPServer"/>
     <booleanAttribute key="default" value="false"/>
     <setAttribute key="deselected_workspace_bundles">
+        <setEntry value="com.eclipsesource.uml.glsp"/>
+        <setEntry value="com.eclipsesource.uml.glsp.app"/>
+        <setEntry value="com.eclipsesource.uml.modelserver"/>
+        <setEntry value="com.eclipsesource.uml.modelserver.app"/>
         <setEntry value="org.eclipse.emfcloud.coffee.codegen.cpp.application"/>
         <setEntry value="org.eclipse.emfcloud.coffee.codegen.java.application"/>
         <setEntry value="org.eclipse.emfcloud.coffee.common"/>
@@ -28,6 +32,7 @@
     </setAttribute>
     <booleanAttribute key="includeOptional" value="true"/>
     <stringAttribute key="location" value="${workspace_loc}/../runtime-WorkflowGLSPServer"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
