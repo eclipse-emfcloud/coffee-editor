@@ -29,54 +29,74 @@
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
       <plugin id="com.fasterxml.jackson.core.jackson-core"/>
       <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
+      <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
-      <plugin id="com.google.inject.multibindings" fragment="true"/>
+      <plugin id="com.ibm.icu"/>
+      <plugin id="jakarta.servlet-api"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>
+      <plugin id="javax.websocket"/>
+      <plugin id="org.aopalliance"/>
+      <plugin id="org.apache.commons.cli"/>
+      <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.log4j"/>
       <plugin id="org.eclipse.core.contenttype"/>
+      <plugin id="org.eclipse.core.expressions"/>
+      <plugin id="org.eclipse.core.filesystem"/>
+      <plugin id="org.eclipse.core.filesystem.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.emf.common"/>
       <plugin id="org.eclipse.emf.ecore"/>
+      <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
+      <plugin id="org.eclipse.emf.transaction"/>
+      <plugin id="org.eclipse.emf.validation"/>
       <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="org.eclipse.emfcloud.coffee.modelserver"/>
       <plugin id="org.eclipse.emfcloud.coffee.modelserver.app"/>
+      <plugin id="org.eclipse.emfcloud.emfjson-jackson"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.client"/>
       <plugin id="org.eclipse.emfcloud.modelserver.common"/>
       <plugin id="org.eclipse.emfcloud.modelserver.edit"/>
       <plugin id="org.eclipse.emfcloud.modelserver.emf"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.glsp.notation.model"/>
       <plugin id="org.eclipse.emfcloud.modelserver.lib"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
+      <plugin id="org.eclipse.equinox.event"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
-      <plugin id="org.eclipse.jetty.http"/>
-      <plugin id="org.eclipse.jetty.io"/>
-      <plugin id="org.eclipse.jetty.security"/>
-      <plugin id="org.eclipse.jetty.server"/>
-      <plugin id="org.eclipse.jetty.servlet"/>
-      <plugin id="org.eclipse.jetty.util"/>
+      <plugin id="org.eclipse.glsp.graph"/>
+      <plugin id="org.eclipse.glsp.server"/>
+      <plugin id="org.eclipse.jetty.http" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.io" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.server" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.servlet" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util.ajax" version="9.4.43.v20210629"/>
       <plugin id="org.eclipse.jetty.websocket.api"/>
       <plugin id="org.eclipse.jetty.websocket.common"/>
       <plugin id="org.eclipse.jetty.websocket.server"/>
       <plugin id="org.eclipse.jetty.websocket.servlet"/>
+      <plugin id="org.eclipse.lsp4j"/>
+      <plugin id="org.eclipse.lsp4j.jsonrpc"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
+      <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.osgi.util"/>
       <plugin id="org.eclipse.xtext.logging" fragment="true"/>
-      <plugin id="org.emfjson.jackson"/>
+      <plugin id="org.eclipse.xtext.xbase.lib"/>
       <plugin id="org.slf4j.api"/>
    </plugins>
 
    <configurations>
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
-      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
    </configurations>
 
    <preferencesInfo>

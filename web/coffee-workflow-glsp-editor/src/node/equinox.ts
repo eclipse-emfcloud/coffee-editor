@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019 EclipseSource and others.
+ * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,17 +13,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GLSPDiagramClient } from '@eclipse-glsp/theia-integration/lib/browser';
-import { EditorManager } from '@theia/editor/lib/browser';
-import { inject, injectable } from 'inversify';
+import * as glob from 'glob';
+import * as path from 'path';
 
-import { WorkflowGLSPClientContribution } from '../language/workflow-glsp-client-contribution';
-
-@injectable()
-export class WorkflowGLSPDiagramClient extends GLSPDiagramClient {
-    constructor(
-        @inject(WorkflowGLSPClientContribution) glspCLientContribution: WorkflowGLSPClientContribution,
-        @inject(EditorManager) editorManager: EditorManager) {
-        super(glspCLientContribution, editorManager);
+export function findEquinoxLauncher(productPath: string): string {
+    const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: productPath });
+    if (jarPaths.length === 0) {
+        throw new Error('The eclipse.equinox.launcher is not found. ');
     }
+    const jarPath = path.resolve(productPath, jarPaths[0]);
+    return jarPath;
 }
+

@@ -13,22 +13,41 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GLSPClientContribution, registerDiagramManager } from '@eclipse-glsp/theia-integration/lib/browser';
+import {
+    ContainerContext,
+    GLSPClientContribution,
+    GLSPTheiaFrontendModule,
+    registerDiagramManager
+} from '@eclipse-glsp/theia-integration/lib/browser';
 import { LabelProviderContribution } from '@theia/core/lib/browser';
-import { ContainerModule, interfaces } from 'inversify';
 import { DiagramConfiguration } from 'sprotty-theia/lib';
 
+import { WorkflowNotationLanguage } from '../common/workflow-language';
 import { WorkflowDiagramConfiguration } from './diagram/workflow-diagram-configuration';
 import { WorkflowDiagramLabelProviderContribution } from './diagram/workflow-diagram-label-provider-contribution';
 import { WorkflowDiagramManager } from './diagram/workflow-diagram-manager';
-import { WorkflowGLSPDiagramClient } from './diagram/workflow-glsp-diagram-client';
-import { WorkflowGLSPClientContribution } from './language/workflow-glsp-client-contribution';
+import { WorkflowGLSPClientContribution } from './workflow-glsp-client-contribution';
 
-export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
-    bind(WorkflowGLSPClientContribution).toSelf().inSingletonScope();
-    bind(GLSPClientContribution).toService(WorkflowGLSPClientContribution);
-    bind(DiagramConfiguration).to(WorkflowDiagramConfiguration).inSingletonScope();
-    bind(WorkflowGLSPDiagramClient).toSelf().inSingletonScope();
-    registerDiagramManager(bind, WorkflowDiagramManager);
-    bind(LabelProviderContribution).to(WorkflowDiagramLabelProviderContribution);
-});
+export class WorkflowTheiaFrontendModule extends GLSPTheiaFrontendModule {
+
+    readonly diagramLanguage = WorkflowNotationLanguage;
+
+    bindDiagramConfiguration(context: ContainerContext): void {
+        context.bind(DiagramConfiguration).to(WorkflowDiagramConfiguration);
+    }
+
+    bindGLSPClientContribution(context: ContainerContext): void {
+        context.bind(GLSPClientContribution).to(WorkflowGLSPClientContribution);
+    }
+
+    configure(context: ContainerContext): void {
+        context.bind(LabelProviderContribution).to(WorkflowDiagramLabelProviderContribution);
+    }
+
+    configureDiagramManager(context: ContainerContext): void {
+        registerDiagramManager(context.bind, WorkflowDiagramManager);
+    }
+
+}
+
+export default new WorkflowTheiaFrontendModule();

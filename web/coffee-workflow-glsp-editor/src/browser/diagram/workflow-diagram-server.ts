@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,11 +13,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GLSPDiagramLanguage } from '@eclipse-glsp/theia-integration';
+import { ActionHandlerRegistry } from '@eclipse-glsp/client/lib';
+import { GLSPTheiaDiagramServer } from '@eclipse-glsp/theia-integration/lib/browser';
+import { injectable } from 'inversify';
 
-export const WorkflowNotationLanguage: GLSPDiagramLanguage = {
-    contributionId: 'WorkflowNotation',
-    label: 'Workflow Notation diagram',
-    diagramType: 'workflow-diagram-notation',
-    fileExtensions: ['.coffeenotation']
-};
+@injectable()
+export class WorkflowGLSPTheiaDiagramServer extends GLSPTheiaDiagramServer {
+    initialize(registry: ActionHandlerRegistry): void {
+        super.initialize(registry);
+    }
+
+}
+

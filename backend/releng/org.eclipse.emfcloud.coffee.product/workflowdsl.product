@@ -35,13 +35,14 @@
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
-      <plugin id="com.google.inject.multibindings" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="io.github.classgraph"/>
+      <plugin id="jakarta.servlet-api"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>
       <plugin id="org.antlr.runtime"/>
+      <plugin id="org.aopalliance"/>
       <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.felix.gogo.command"/>
       <plugin id="org.apache.felix.gogo.runtime"/>
@@ -77,12 +78,12 @@
       <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
-      <plugin id="org.eclipse.jetty.http"/>
-      <plugin id="org.eclipse.jetty.io"/>
-      <plugin id="org.eclipse.jetty.security"/>
-      <plugin id="org.eclipse.jetty.server"/>
-      <plugin id="org.eclipse.jetty.servlet"/>
-      <plugin id="org.eclipse.jetty.util"/>
+      <plugin id="org.eclipse.jetty.http" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.io" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.server" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.servlet" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util.ajax" version="9.4.43.v20210629"/>
       <plugin id="org.eclipse.jetty.websocket.api"/>
       <plugin id="org.eclipse.jetty.websocket.common"/>
       <plugin id="org.eclipse.jetty.websocket.server"/>
@@ -107,7 +108,6 @@
       <plugin id="org.emfjson.jackson"/>
       <plugin id="org.objectweb.asm"/>
       <plugin id="org.slf4j.api"/>
-      <plugin id="org.slf4j.log4j"/>
    </plugins>
 
    <configurations>

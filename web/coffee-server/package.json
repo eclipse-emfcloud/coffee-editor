@@ -20,21 +20,14 @@
     "url": "https://github.com/eclipsesource/coffee-editor.git"
   },
   "dependencies": {
-    "@theia/core": "latest",
-    "@theia/workspace": "latest",
-    "@theia/process": "latest",
+    "@theia/core": "^1.0.0",
+    "@theia/workspace": "^1.0.0",
+    "@theia/process": "^1.0.0",
     "@eclipse-emfcloud/modelserver-theia": "next"
   },
   "devDependencies": {
-    "rimraf": "latest",
-    "typescript": "latest",
-    "@typescript-eslint/eslint-plugin": "^2.16.0",
-    "@typescript-eslint/parser": "^2.16.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-header": "^3.0.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-no-null": "^1.0.2",
-    "eslint-plugin-react": "^7.20.3"
+    "rimraf": "^2.6.1",
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",

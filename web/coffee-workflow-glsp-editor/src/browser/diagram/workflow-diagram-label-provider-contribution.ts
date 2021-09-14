@@ -19,6 +19,7 @@ import { FileStat } from '@theia/filesystem/lib/common';
 import { injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
+import { DIAGRAM_ICON_CLASS } from './workflow-diagram-manager';
 
 @injectable()
 export class WorkflowDiagramLabelProviderContribution implements LabelProviderContribution {
@@ -28,7 +29,7 @@ export class WorkflowDiagramLabelProviderContribution implements LabelProviderCo
             toCheck = new URI(toCheck.uri);
         }
         if (toCheck instanceof URI) {
-            if (toCheck.path.ext === WorkflowNotationLanguage.FileExtension) {
+            if (toCheck.path.ext === WorkflowNotationLanguage.fileExtensions[0]) {
                 return 1000;
             }
         }
@@ -36,7 +37,7 @@ export class WorkflowDiagramLabelProviderContribution implements LabelProviderCo
     }
 
     getIcon(): string {
-        return 'fa fa-project-diagram';
+        return DIAGRAM_ICON_CLASS;
     }
 
     // Do not need to specify getName() because the default uri label provider handles this

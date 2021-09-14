@@ -23,19 +23,19 @@ import org.eclipse.emfcloud.modelserver.glsp.EMSModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelState;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
-import org.eclipse.glsp.server.utils.ClientOptions;
+import org.eclipse.glsp.server.utils.MapUtil;
 
 public class WorkflowModelState extends EMSModelState {
 	public static final String OPTION_WORKFLOW_INDEX = "workflowIndex";
 	public static final int WORKFLOW_INDEX_DEFAULT = 0;
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelState.class);
-	
+
 	protected WorkflowModelServerAccess modelAccess;
 
 	protected Diagram notationModel;
 	// Our semantic model is not the whole machine but only the selected workflow
 	protected Workflow semanticModel;
-	
+
 	private int workflowIndex;
 
 	public static WorkflowModelServerAccess getModelAccess(GModelState state) {
@@ -52,7 +52,7 @@ public class WorkflowModelState extends EMSModelState {
 	@Override
 	public void initialize(Map<String, String> clientOptions, EMSModelServerAccess modelServerAccess) {
 		super.initialize(clientOptions, modelServerAccess);
-		Optional<Integer> givenWorkflowIndex = ClientOptions.getIntValue(clientOptions, OPTION_WORKFLOW_INDEX);
+		Optional<Integer> givenWorkflowIndex = MapUtil.getIntValue(clientOptions, OPTION_WORKFLOW_INDEX);
 		workflowIndex = givenWorkflowIndex.orElse(WORKFLOW_INDEX_DEFAULT);
 		if (givenWorkflowIndex.isEmpty()) {
 			LOGGER.warn("No workflow index given to create model, use workflow with index: " + workflowIndex);
