@@ -43,7 +43,6 @@ import org.eclipse.glsp.server.operations.gmodel.CutOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.LayoutOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.PasteOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.ReconnectEdgeOperationHandler;
-import org.eclipse.glsp.server.protocol.GLSPServer;
 import org.eclipse.glsp.server.utils.MultiBinding;
 
 public class WorkflowGLSPModule extends EMSGLSPModule {
@@ -56,12 +55,6 @@ public class WorkflowGLSPModule extends EMSGLSPModule {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	protected Class<? extends GLSPServer> bindGLSPServer() {
-		return WorkflowGLSPServer.class;
-	}
-
-	@Override
 	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
 		super.configureActionHandlers(bindings);
 		// TODO inject own undo/redo once incremental model server is ready
@@ -71,19 +64,22 @@ public class WorkflowGLSPModule extends EMSGLSPModule {
 	@Override
 	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
 		super.configureOperationHandlers(bindings);
-		
+
 		// model server-aware operation handlers
-		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.ChangeBoundsOperationHandler.class, ChangeBoundsOperationHandler.class);
-		bindings.rebind(org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler.class, ApplyLabelEditOperationHandler.class);
-		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.DeleteOperationHandler.class, DeleteOperationHandler.class);
+		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.ChangeBoundsOperationHandler.class,
+				ChangeBoundsOperationHandler.class);
+		bindings.rebind(org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler.class,
+				ApplyLabelEditOperationHandler.class);
+		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.DeleteOperationHandler.class,
+				DeleteOperationHandler.class);
 		bindings.rebind(ChangeRoutingPointsHandler.class, ChangeRoutingPointsOperationHandler.class);
 		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class);
-		
+
 		// unsupported operation handlers
 		bindings.remove(CutOperationHandler.class);
 		bindings.remove(PasteOperationHandler.class);
 		bindings.remove(LayoutOperationHandler.class);
-		
+
 		// custom workflow operation handlers
 		bindings.add(CreateAutomatedTaskHandler.class);
 		bindings.add(CreateManualTaskHandler.class);

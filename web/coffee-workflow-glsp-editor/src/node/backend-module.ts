@@ -16,8 +16,8 @@
 import { GLSPServerContribution } from '@eclipse-glsp/theia-integration/lib/node';
 import { ContainerModule } from 'inversify';
 
-import { WorkflowNotationGLServerContribution } from './workflow-glsp-server-contribution';
+import { WorkflowGLSPServerContribution } from './workflow-glsp-server-contribution';
 
 export default new ContainerModule(bind => {
-    bind(GLSPServerContribution).to(WorkflowNotationGLServerContribution).inSingletonScope();
+    bind(GLSPServerContribution).to(WorkflowGLSPServerContribution).inSingletonScope();
 });

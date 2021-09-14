@@ -13,55 +13,70 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { JavaSocketServerContribution, JavaSocketServerLaunchOptions } from '@eclipse-glsp/theia-integration/lib/node';
-import { injectable } from 'inversify';
-import * as net from 'net';
-import { createSocketConnection, IConnection } from 'vscode-ws-jsonrpc/lib/server';
+import { getPort } from '@eclipse-glsp/protocol';
+import {
+    JavaSocketServerContribution,
+    JavaSocketServerLaunchOptions,
+    START_UP_COMPLETE_MSG
+} from '@eclipse-glsp/theia-integration/lib/node';
+import { ILogger } from '@theia/core';
+import * as fs from 'fs';
+import { inject, injectable } from 'inversify';
+import { join } from 'path';
 
 import { WorkflowNotationLanguage } from '../common/workflow-language';
+import { findEquinoxLauncher } from './equinox';
 
-function getPort(): number | undefined {
-    const arg = process.argv.filter(a => a.startsWith('--WORKFLOW_NOTATION_LSP='))[0];
-    if (!arg) {
-        return undefined;
-    } else {
-        return Number.parseInt(arg.substring('--WORKFLOW_NOTATION_LSP='.length), 10);
-    }
-}
+export const PORT_ARG_KEY = 'WORKFLOW_NOTATION_LSP';
+export const SERVER_DIR = join(__dirname, '..', '..', '..', 'coffee-server', 'server');
+export const GLSP_JAR_FILE = join(SERVER_DIR, 'glsp');
 
 @injectable()
-export class WorkflowNotationGLServerContribution extends JavaSocketServerContribution {
-    readonly id = WorkflowNotationLanguage.Id;
-    readonly name = WorkflowNotationLanguage.Name;
+export class WorkflowGLSPServerContribution extends JavaSocketServerContribution {
 
-    readonly description = {
-        id: 'workflow',
-        name: 'Workflow',
-        documentSelector: ['workflow'],
-        fileEvents: [
-            '**/*.coffeenotation'
-        ]
-    };
+    @inject(ILogger) private readonly logger: ILogger;
 
-    async launch(): Promise<void> {
-        console.debug();
+    readonly id = WorkflowNotationLanguage.contributionId;
+
+    createLaunchOptions(): Partial<JavaSocketServerLaunchOptions> {
+        return {
+            jarPath: GLSP_JAR_FILE,
+            additionalArgs: ['--consoleLog', 'true'],
+            socketConnectionOptions: {
+                port: getPort(PORT_ARG_KEY)
+            }
+        };
     }
 
-    connect(clientConnection: IConnection): void {
-        const socketPort = getPort();
-        if (socketPort) {
-            const socket = new net.Socket();
-            const serverConnection = createSocketConnection(socket, socket, () => {
-                socket.destroy();
-            });
-            this.forward(clientConnection, serverConnection);
-            socket.connect(socketPort);
-        } else {
-            console.error('Error when trying to connect to Workflow GLSP server');
+    async launch(): Promise<void> {
+        if (!fs.existsSync(this.launchOptions.jarPath)) {
+            throw new Error(`Could not launch GLSP server. The given jar path is not valid: ${this.launchOptions.jarPath}`);
+        }
+        if (isNaN(this.launchOptions.socketConnectionOptions.port)) {
+            throw new Error(`Could not launch GLSP Server. The given server port is not a number: ${this.launchOptions.socketConnectionOptions.port}`);
+        }
+        let args = ['-jar', findEquinoxLauncher(this.launchOptions.jarPath), '--port', `${this.launchOptions.socketConnectionOptions.port}`];
+        if (this.launchOptions.additionalArgs) {
+            args = [...args, ...this.launchOptions.additionalArgs];
+        }
+
+        await this.spawnProcessAsync('java', args, undefined);
+        return this.onReady;
+    }
+    protected processLogInfo(data: string | Buffer): void {
+        if (data) {
+            const message = data.toString();
+            if (message.startsWith(START_UP_COMPLETE_MSG)) {
+                this.resolveReady();
+            }
+            this.logger.info(`WorkflowGLSPServerContribution: ${data}`);
         }
     }
 
-    createLaunchOptions(): Partial<JavaSocketServerLaunchOptions> {
-        return {};
+    protected processLogError(data: string | Buffer): void {
+        if (data) {
+            this.logger.error(`WorkflowGLSPServerContribution: ${data}`);
+        }
     }
+
 }
