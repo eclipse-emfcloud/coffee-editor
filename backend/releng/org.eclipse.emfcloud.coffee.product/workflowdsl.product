@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="ES Workflow Tool" uid="org.eclipse.emfcloud.coffee.product.workflow.dsl" id="org.eclipse.emfcloud.coffee.workflow.dsl.ide.product" application="org.eclipse.emfcloud.coffee.workflow.dsl.ide.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
+<product name="Workflow DSL" uid="org.eclipse.emfcloud.coffee.product.workflow.dsl" id="org.eclipse.emfcloud.coffee.workflow.dsl.ide.product" application="org.eclipse.emfcloud.coffee.workflow.dsl.ide.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
 
    <configIni use="default">
    </configIni>
@@ -26,14 +26,21 @@
    </vm>
 
    <plugins>
+      <plugin id="ch.qos.logback.classic"/>
+      <plugin id="ch.qos.logback.core"/>
+      <plugin id="ch.qos.logback.slf4j" fragment="true"/>
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
       <plugin id="com.fasterxml.jackson.core.jackson-core"/>
       <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
+      <plugin id="com.google.inject.multibindings" fragment="true"/>
+      <plugin id="com.ibm.icu"/>
+      <plugin id="io.github.classgraph"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
+      <plugin id="javax.servlet"/>
       <plugin id="org.antlr.runtime"/>
       <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.felix.gogo.command"/>
@@ -52,6 +59,8 @@
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
+      <plugin id="org.eclipse.emf.transaction"/>
+      <plugin id="org.eclipse.emf.validation"/>
       <plugin id="org.eclipse.emfcloud.coffee.common"/>
       <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="org.eclipse.emfcloud.coffee.workflow"/>
@@ -60,6 +69,7 @@
       <plugin id="org.eclipse.emfcloud.modelserver.client"/>
       <plugin id="org.eclipse.emfcloud.modelserver.common"/>
       <plugin id="org.eclipse.emfcloud.modelserver.edit"/>
+      <plugin id="org.eclipse.emfcloud.modelserver.emf"/>
       <plugin id="org.eclipse.emfcloud.modelserver.lib"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
@@ -67,6 +77,16 @@
       <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
+      <plugin id="org.eclipse.jetty.http"/>
+      <plugin id="org.eclipse.jetty.io"/>
+      <plugin id="org.eclipse.jetty.security"/>
+      <plugin id="org.eclipse.jetty.server"/>
+      <plugin id="org.eclipse.jetty.servlet"/>
+      <plugin id="org.eclipse.jetty.util"/>
+      <plugin id="org.eclipse.jetty.websocket.api"/>
+      <plugin id="org.eclipse.jetty.websocket.common"/>
+      <plugin id="org.eclipse.jetty.websocket.server"/>
+      <plugin id="org.eclipse.jetty.websocket.servlet"/>
       <plugin id="org.eclipse.lsp4j"/>
       <plugin id="org.eclipse.lsp4j.jsonrpc"/>
       <plugin id="org.eclipse.osgi"/>
@@ -86,6 +106,8 @@
       <plugin id="org.eclipse.xtext.xbase.lib"/>
       <plugin id="org.emfjson.jackson"/>
       <plugin id="org.objectweb.asm"/>
+      <plugin id="org.slf4j.api"/>
+      <plugin id="org.slf4j.log4j"/>
    </plugins>
 
    <configurations>
