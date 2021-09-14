@@ -15,37 +15,23 @@
  ********************************************************************************/
 import 'sprotty-theia/css/theia-sprotty.css';
 
-import { CommandPalette, TYPES } from '@eclipse-glsp/client/lib';
-import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
-import {
-    connectTheiaContextMenuService,
-    TheiaContextMenuServiceFactory
-} from '@eclipse-glsp/theia-integration/lib/browser/diagram/glsp-theia-context-menu-service';
-import { SelectionService } from '@theia/core';
+import { configureDiagramServer, GLSPDiagramConfiguration, TheiaDiagramServer } from '@eclipse-glsp/theia-integration';
 import { createWorkflowDiagramContainer } from 'coffee-workflow-sprotty';
-import { Container, inject, injectable } from 'inversify';
-import { DiagramConfiguration, TheiaDiagramServer, TheiaSprottySelectionForwarder } from 'sprotty-theia/lib';
-import { TheiaContextMenuService } from 'sprotty-theia/lib/sprotty/theia-sprotty-context-menu-service';
+import { Container, injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
+import { WorkflowGLSPTheiaDiagramServer } from './workflow-diagram-server';
 
 @injectable()
-export class WorkflowDiagramConfiguration implements DiagramConfiguration {
-    @inject(SelectionService) protected selectionService: SelectionService;
-    @inject(TheiaContextMenuServiceFactory) protected readonly contextMenuServiceFactory: () => TheiaContextMenuService;
-    diagramType: string = WorkflowNotationLanguage.DiagramType;
+export class WorkflowDiagramConfiguration extends GLSPDiagramConfiguration {
 
-    createContainer(widgetId: string): Container {
+    diagramType: string = WorkflowNotationLanguage.diagramType;
+
+    doCreateContainer(widgetId: string): Container {
         const container = createWorkflowDiagramContainer(widgetId);
-
-        container.bind(TYPES.ModelSource).to(GLSPTheiaDiagramServer).inSingletonScope();
-        container.bind(TheiaDiagramServer).toService(GLSPTheiaDiagramServer);
-        // container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
-        container.bind(TYPES.IActionHandlerInitializer).to(TheiaSprottySelectionForwarder);
-        container.bind(SelectionService).toConstantValue(this.selectionService);
-        container.rebind(CommandPalette).to(TheiaCommandPalette);
-        connectTheiaContextMenuService(container, this.contextMenuServiceFactory);
-
+        configureDiagramServer(container, WorkflowGLSPTheiaDiagramServer);
+        container.bind(TheiaDiagramServer).toService(WorkflowGLSPTheiaDiagramServer);
         return container;
     }
+
 }

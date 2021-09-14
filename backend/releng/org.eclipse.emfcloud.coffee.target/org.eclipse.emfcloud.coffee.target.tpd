@@ -8,63 +8,73 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-target "Coffee 2020-09" with source, requirements
+target "Coffee 2021-06" with source, requirements
 
-location "http://download.eclipse.org/tools/orbit/R-builds/R20200831200620/repository" orbit-release {
-	com.google.gson [2.7.0,2.8.0)
-	org.apache.commons.lang
-	org.apache.commons.io [2.2.0,2.3.0)
-	org.apache.commons.cli lazy
+location "http://download.eclipse.org/tools/orbit/R-builds/R20210602031627/repository" orbit-release {
+	// Transitive dependencies
 	ch.qos.logback.slf4j [1.1.2,2.0.0)
-	org.slf4j.log4j lazy
-	org.slf4j.api [1.7.2,1.7.3)
+	com.google.gson [2.8.6,3.0.0)
+	com.google.inject [5.0.1,5.0.2)
+	com.google.guava [30.1.0,31.0.0)
+	javax.servlet [3.1.0,4.0.0)
+	net.bytebuddy.byte-buddy [1.9.0,2.0.0)
+	net.bytebuddy.byte-buddy-agent [1.9.0,2.0.0)
+	org.aopalliance [1.0.0,2.0.0)
+	org.apache.commons.lang [2.6.0,3.0.0)
+	org.apache.commons.io [2.6.0,3.0.0)
+	org.apache.log4j [1.2.15,2.0.0)
+	org.hamcrest [1.1.0,2.0.0)
+	org.objenesis [2.6.0,3.0.0)
+	com.fasterxml.jackson.core.jackson-annotations [2.10.3,3.0.0)
+	com.fasterxml.jackson.core.jackson-core [2.10.3,3.0.0)
+	com.fasterxml.jackson.core.jackson-databind [2.10.3,3.0.0)
 }
 
-location "http://download.eclipse.org/releases/2020-09/" eclipse-2020-09 {
+location "http://download.eclipse.org/releases/2021-06" {
 	org.eclipse.jdt.feature.group lazy
 	org.eclipse.platform.feature.group lazy
 	org.eclipse.pde.feature.group lazy
 	org.eclipse.draw2d.feature.group lazy
-	org.eclipse.emf.sdk.feature.group lazy
 	org.eclipse.xpand lazy
 	org.eclipse.xtend lazy
 	org.eclipse.xtend.typesystem.emf lazy
 	org.eclipse.emf.mwe2.launcher.feature.group lazy
 	org.eclipse.xtext.sdk.feature.group lazy
+	org.eclipse.core.runtime.feature.feature.group [1.2.900,2.0.0)
 	org.eclipse.equinox.executable.feature.group lazy
-	com.google.guava lazy
+	org.eclipse.emf.edit [2.16.0,3.0.0)
+	org.eclipse.emf.sdk.feature.group lazy
+	org.eclipse.emf.transaction.feature.group [1.12.0,2.0.0)
 }
 
-location "http://download.eclipse.org/eclipse/updates/4.17/" eclipse-4.17 {
-	org.eclipse.e4.rcp.feature.group lazy
-}
-
-location "http://download.eclipse.org/lsp4j/updates/releases/0.9.0" {
-	org.eclipse.lsp4j.sdk.feature.group lazy
-}
-
-location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202105141035/" {
+location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109131017/" {
 	org.eclipse.emfcloud.modelserver.feature.feature.group lazy
+}
+
+location "https://download.eclipse.org/emfcloud/emfjson-jackson/p2/nightly/1.3/1.3.1.202109010859/" {
+	org.eclipse.emfcloud.emfjson-jackson lazy
 }
 
 location "http://ghillairet.github.io/p2" {
 	org.emfjson.jackson lazy
 }
 
-location "https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202105250942/" {
+location "https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202108180758/" {
 	org.eclipse.glsp.feature.feature.group lazy
 	org.eclipse.glsp.layout lazy
 	org.eclipse.glsp.server lazy
 	org.eclipse.glsp.graph lazy
 }
 
-location "https://download.eclipse.org/elk/updates/nightly/" {
-	org.eclipse.elk.feature.feature.group lazy
-	org.eclipse.elk.algorithms.feature.feature.group lazy
+location "https://download.eclipse.org/elk/updates/releases/0.7.1/" {
+	org.eclipse.elk.alg.layered [0.7.1,1.0.0)
+	org.eclipse.elk.core [0.7.1,1.0.0)
+	org.eclipse.elk.graph [0.7.1,1.0.0)
+	org.eclipse.elk.graph.text [0.7.1,1.0.0)
 }
 
-location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.34.v20201102/" {
-	org.eclipse.jetty.server
+location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.43.v20210629/" {
+	org.eclipse.jetty.server lazy
 	org.eclipse.jetty.websocket.server lazy
 }
 
@@ -72,7 +82,7 @@ location "https://raw.githubusercontent.com/eclipsesource/model-validation-updat
 	org.eclipse.emfcloud.validation.framework
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202107200808/" {
+location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202109140714/" {
 	org.eclipse.emfcloud.modelserver.glsp.feature.feature.group lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
 }

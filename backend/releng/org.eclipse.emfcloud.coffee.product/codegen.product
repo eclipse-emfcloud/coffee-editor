@@ -33,13 +33,14 @@
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>
-      <plugin id="com.google.inject.multibindings" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="com.sun.jna"/>
       <plugin id="com.sun.jna.platform"/>
+      <plugin id="jakarta.servlet-api"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>
+      <plugin id="org.aopalliance"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.i18n"/>
@@ -50,6 +51,8 @@
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.log4j"/>
       <plugin id="org.apache.xmlgraphics"/>
+      <plugin id="org.bouncycastle.bcpg"/>
+      <plugin id="org.bouncycastle.bcprov"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.databinding"/>
@@ -96,6 +99,7 @@
       <plugin id="org.eclipse.emfcloud.coffee.model"/>
       <plugin id="org.eclipse.emfcloud.coffee.workflow.generator"/>
       <plugin id="org.eclipse.emfcloud.coffee.workflow.generator.java"/>
+      <plugin id="org.eclipse.emfcloud.emfjson-jackson"/>
       <plugin id="org.eclipse.emfcloud.modelserver.client"/>
       <plugin id="org.eclipse.emfcloud.modelserver.common"/>
       <plugin id="org.eclipse.emfcloud.modelserver.edit"/>
@@ -118,17 +122,19 @@
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
+      <plugin id="org.eclipse.equinox.security.linux" fragment="true"/>
       <plugin id="org.eclipse.equinox.security.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.security.ui"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator"/>
-      <plugin id="org.eclipse.glsp.graph" version="0.9.0.202105250942"/>
+      <plugin id="org.eclipse.glsp.graph"/>
       <plugin id="org.eclipse.help"/>
-      <plugin id="org.eclipse.jetty.http"/>
-      <plugin id="org.eclipse.jetty.io"/>
-      <plugin id="org.eclipse.jetty.security"/>
-      <plugin id="org.eclipse.jetty.server"/>
-      <plugin id="org.eclipse.jetty.servlet"/>
-      <plugin id="org.eclipse.jetty.util"/>
+      <plugin id="org.eclipse.jetty.http" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.io" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.security" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.server" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.servlet" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.util.ajax" version="9.4.43.v20210629"/>
       <plugin id="org.eclipse.jetty.websocket.api"/>
       <plugin id="org.eclipse.jetty.websocket.common"/>
       <plugin id="org.eclipse.jetty.websocket.server"/>
@@ -141,7 +147,6 @@
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.util"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.browser.chromium.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.ui"/>
       <plugin id="org.eclipse.ui.workbench"/>
