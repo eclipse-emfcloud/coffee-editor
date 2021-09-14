@@ -29,10 +29,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jetty.servlet;bundle-version="[9.4.43,10.0.0)",
  org.eclipse.jetty.util;bundle-version="[9.4.43,10.0.0)",
  org.eclipse.jetty.util.ajax;bundle-version="[9.4.43,10.0.0)",
- javax.servlet;bundle-version="3.1.0";visibility:=reexport,
- org.eclipse.jetty.websocket.api;bundle-version="[9.4.43,10.0.0)",
- org.eclipse.jetty.websocket.common;bundle-version="[9.4.43,10.0.0)",
- org.eclipse.jetty.websocket.server;bundle-version="[9.4.43,10.0.0)",
- org.eclipse.jetty.websocket.servlet;bundle-version="[9.4.43,10.0.0)"
+ javax.servlet;bundle-version="[3.1.0,4.0.0)"
 Export-Package: org.eclipse.emfcloud.coffee.workflow.glsp.server
 
