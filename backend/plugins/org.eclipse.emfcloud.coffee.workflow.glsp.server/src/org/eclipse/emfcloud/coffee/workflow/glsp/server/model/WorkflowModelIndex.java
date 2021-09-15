@@ -14,17 +14,18 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Diagram;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.DiagramElement;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Diagram;
+import org.eclipse.emfcloud.modelserver.glsp.notation.NotationElement;
+import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelIndex;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.impl.GModelIndexImpl;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class WorkflowModelIndex extends GModelIndexImpl {
+public class WorkflowModelIndex extends EMSNotationModelIndex {
 	private final BiMap<String, EObject> semanticIndex;
-	private final BiMap<EObject, DiagramElement> notationIndex;
+	private final BiMap<EObject, NotationElement> notationIndex;
 
 	protected WorkflowModelIndex(EObject target) {
 		super(target);
@@ -34,7 +35,8 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 
 	public static WorkflowModelIndex get(final GModelElement element) {
 		EObject root = EcoreUtil.getRootContainer(element);
-		WorkflowModelIndex existingIndex = (WorkflowModelIndex) EcoreUtil.getExistingAdapter(root, WorkflowModelIndex.class);
+		WorkflowModelIndex existingIndex = (WorkflowModelIndex) EcoreUtil.getExistingAdapter(root,
+				WorkflowModelIndex.class);
 		return Optional.ofNullable(existingIndex).orElseGet(() -> (create(element)));
 	}
 
@@ -44,7 +46,7 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 
 	@Override
 	public boolean isAdapterForType(final Object type) {
-		return super.isAdapterForType(type) || WorkflowModelIndex.class.equals(type);
+		return WorkflowModelIndex.class.equals(type) || GModelIndexImpl.class.equals(type);
 	}
 
 	public void clear() {
@@ -52,15 +54,17 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 		this.notationIndex.clear();
 	}
 
+	@Override
 	public void indexSemantic(final String id, final EObject semanticElement) {
 		semanticIndex.putIfAbsent(id, semanticElement);
 	}
 
-	public void indexNotation(final DiagramElement notationElement) {
+	@Override
+	public void indexNotation(final NotationElement notationElement) {
 		if (notationElement.getSemanticElement() != null) {
 			EObject semanticElement = notationElement.getSemanticElement().getResolvedElement();
 			notationIndex.put(semanticElement, notationElement);
-			semanticIndex.inverse().putIfAbsent(semanticElement, notationElement.getGraphicId());
+			semanticIndex.inverse().putIfAbsent(semanticElement, EcoreUtil.getURI(semanticElement).fragment());
 		}
 
 		if (notationElement instanceof Diagram) {
@@ -76,6 +80,7 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 		return Optional.ofNullable(semanticIndex.inverse().get(semanticElement));
 	}
 
+	@Override
 	public <T extends EObject> Optional<T> getSemantic(final String id, final Class<T> clazz) {
 		return safeCast(Optional.ofNullable(semanticIndex.get(id)), clazz);
 	}
@@ -88,27 +93,28 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 		return getSemantic(gModelElement.getId(), clazz);
 	}
 
-	public Optional<DiagramElement> getNotation(final EObject semanticElement) {
+	public Optional<NotationElement> getNotation(final EObject semanticElement) {
 		return Optional.ofNullable(notationIndex.get(semanticElement));
 	}
 
-	public <T extends DiagramElement> Optional<T> getNotation(final EObject semanticElement, final Class<T> clazz) {
+	public <T extends NotationElement> Optional<T> getNotation(final EObject semanticElement, final Class<T> clazz) {
 		return safeCast(getNotation(semanticElement), clazz);
 	}
 
-	public Optional<DiagramElement> getNotation(final String id) {
+	public Optional<NotationElement> getNotation(final String id) {
 		return getSemantic(id).flatMap(this::getNotation);
 	}
 
-	public <T extends DiagramElement> Optional<T> getNotation(final String id, final Class<T> clazz) {
+	@Override
+	public <T extends NotationElement> Optional<T> getNotation(final String id, final Class<T> clazz) {
 		return safeCast(getNotation(id), clazz);
 	}
 
-	public Optional<DiagramElement> getNotation(final GModelElement gModelElement) {
+	public Optional<NotationElement> getNotation(final GModelElement gModelElement) {
 		return getNotation(gModelElement.getId());
 	}
 
-	public <T extends DiagramElement> Optional<T> getNotation(final GModelElement element, final Class<T> clazz) {
+	public <T extends NotationElement> Optional<T> getNotation(final GModelElement element, final Class<T> clazz) {
 		return safeCast(getNotation(element), clazz);
 	}
 
@@ -121,10 +127,10 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 			return ((GModelElement) eObject).getId();
 		}
 		String id = null;
-		if (eObject instanceof DiagramElement) {
-			EObject semanticElement = ((DiagramElement) eObject).getSemanticElement().getResolvedElement();
+		if (eObject instanceof NotationElement) {
+			EObject semanticElement = ((NotationElement) eObject).getSemanticElement().getResolvedElement();
 			id = add(semanticElement);
-			notationIndex.putIfAbsent(semanticElement, (DiagramElement) eObject);
+			notationIndex.putIfAbsent(semanticElement, (NotationElement) eObject);
 		} else {
 			id = getSemanticId(eObject).orElse(null);
 			if (id == null) {
@@ -137,8 +143,8 @@ public class WorkflowModelIndex extends GModelIndexImpl {
 	}
 
 	public void remove(final EObject eObject) {
-		if (eObject instanceof DiagramElement) {
-			EObject semanticElement = ((DiagramElement) eObject).getSemanticElement().getResolvedElement();
+		if (eObject instanceof NotationElement) {
+			EObject semanticElement = ((NotationElement) eObject).getSemanticElement().getResolvedElement();
 			notationIndex.remove(semanticElement);
 			remove(semanticElement);
 			return;
