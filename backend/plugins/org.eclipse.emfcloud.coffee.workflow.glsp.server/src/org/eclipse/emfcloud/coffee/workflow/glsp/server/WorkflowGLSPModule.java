@@ -13,39 +13,40 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ApplyLabelEditOperationHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ChangeBoundsOperationHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ChangeRoutingPointsOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateAutomatedTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateDecisionNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateManualTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMergeNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.DeleteOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ReconnectFlowHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowChangeRoutingPointsOperationHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowCompoundOperationHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowDeleteOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelSourceLoader;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelStateProvider;
-import org.eclipse.emfcloud.modelserver.glsp.EMSGLSPModule;
+import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationGLSPModule;
 import org.eclipse.glsp.graph.GraphExtension;
-import org.eclipse.glsp.server.actions.ActionHandler;
 import org.eclipse.glsp.server.diagram.DiagramConfiguration;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.features.core.model.ModelSourceLoader;
-import org.eclipse.glsp.server.features.undoredo.UndoRedoActionHandler;
 import org.eclipse.glsp.server.layout.ILayoutEngine;
 import org.eclipse.glsp.server.model.ModelStateProvider;
 import org.eclipse.glsp.server.operations.OperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.ChangeRoutingPointsHandler;
+import org.eclipse.glsp.server.operations.gmodel.CompoundOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.CutOperationHandler;
+import org.eclipse.glsp.server.operations.gmodel.DeleteOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.LayoutOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.PasteOperationHandler;
 import org.eclipse.glsp.server.operations.gmodel.ReconnectEdgeOperationHandler;
+import org.eclipse.glsp.server.protocol.GLSPServer;
 import org.eclipse.glsp.server.utils.MultiBinding;
 
-public class WorkflowGLSPModule extends EMSGLSPModule {
+public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 
 	// TODO need to bind layout configuration?
 
@@ -55,24 +56,15 @@ public class WorkflowGLSPModule extends EMSGLSPModule {
 	}
 
 	@Override
-	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
-		super.configureActionHandlers(bindings);
-		// TODO inject own undo/redo once incremental model server is ready
-		bindings.remove(UndoRedoActionHandler.class);
-	}
-
-	@Override
 	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
 		super.configureOperationHandlers(bindings);
 
 		// model server-aware operation handlers
-		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.ChangeBoundsOperationHandler.class,
-				ChangeBoundsOperationHandler.class);
+		bindings.rebind(CompoundOperationHandler.class, WorkflowCompoundOperationHandler.class);
 		bindings.rebind(org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler.class,
 				ApplyLabelEditOperationHandler.class);
-		bindings.rebind(org.eclipse.glsp.server.operations.gmodel.DeleteOperationHandler.class,
-				DeleteOperationHandler.class);
-		bindings.rebind(ChangeRoutingPointsHandler.class, ChangeRoutingPointsOperationHandler.class);
+		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
+		bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
 		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class);
 
 		// unsupported operation handlers
@@ -128,6 +120,11 @@ public class WorkflowGLSPModule extends EMSGLSPModule {
 	@Override
 	protected Class<? extends GModelFactory> bindGModelFactory() {
 		return WorkflowModelFactory.class;
+	}
+
+	@Override
+	protected Class<? extends GLSPServer> bindGLSPServer() {
+		return WorkflowGLSPServer.class;
 	}
 
 }
