@@ -13,9 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
+import { UriSelection } from '@theia/core';
 import { LabelProviderContribution } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
-import { FileStat } from '@theia/filesystem/lib/common';
+import { FileStat } from '@theia/filesystem/lib/common/files';
 import { injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
@@ -24,9 +25,11 @@ import { DIAGRAM_ICON_CLASS } from './workflow-diagram-manager';
 @injectable()
 export class WorkflowDiagramLabelProviderContribution implements LabelProviderContribution {
     canHandle(uri: object): number {
-        let toCheck = uri;
+        let toCheck: any = uri;
         if (FileStat.is(toCheck)) {
-            toCheck = new URI(toCheck.uri);
+            toCheck = toCheck.resource;
+        } else if (UriSelection.is(uri)) {
+            toCheck = UriSelection.getUri(uri);
         }
         if (toCheck instanceof URI) {
             if (toCheck.path.ext === WorkflowNotationLanguage.fileExtensions[0]) {
