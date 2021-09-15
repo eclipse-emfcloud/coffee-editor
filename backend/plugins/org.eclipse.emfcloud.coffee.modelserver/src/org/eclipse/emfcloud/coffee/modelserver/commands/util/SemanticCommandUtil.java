@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
 
 public final class SemanticCommandUtil {
 
@@ -25,7 +26,7 @@ public final class SemanticCommandUtil {
 
 	public static Workflow getModel(final URI modelUri, final EditingDomain domain) {
 		Resource semanticResource = domain.getResourceSet()
-				.getResource(modelUri.trimFileExtension().appendFileExtension("coffee"), false);
+				.getResource(modelUri.trimFileExtension().appendFileExtension(CoffeeResource.FILE_EXTENSION), false);
 		EObject semanticRoot = semanticResource.getContents().get(0);
 		if (!(semanticRoot instanceof Machine)) {
 			return null;
