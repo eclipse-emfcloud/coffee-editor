@@ -14,12 +14,12 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.modelserver.commands.compound.AddAutomatedTaskCompoundCommand;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.NotationCommandUtil;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.command.CCommandFactory;
 import org.eclipse.emfcloud.modelserver.command.CCompoundCommand;
 import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 import org.eclipse.emfcloud.modelserver.glsp.notation.commands.contribution.NotationCommandContribution;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.util.NotationCommandUtil;
 import org.eclipse.glsp.graph.GPoint;
 
 public class AddAutomatedTaskCommandContribution extends CompoundCommandContribution {

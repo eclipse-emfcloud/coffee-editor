@@ -13,15 +13,20 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.notation;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.NotationCommandUtil;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.SemanticProxy;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Shape;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.NotationFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.SemanticProxy;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Shape;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.NotationElementCommand;
 import org.eclipse.glsp.graph.GPoint;
+import org.eclipse.glsp.graph.util.GraphUtil;
 
 public class AddNodeShapeCommand extends NotationElementCommand {
+
+	public static final int MIN_ELEMENT_HEIGHT = 43;
+	public static final int MIN_ELEMENT_WIDTH = 225;
 
 	protected final GPoint shapePosition;
 	protected String semanticProxyUri;
@@ -48,18 +53,19 @@ public class AddNodeShapeCommand extends NotationElementCommand {
 
 	@Override
 	protected void doExecute() {
-		Shape shape = WfnotationFactory.eINSTANCE.createShape();
-		shape.setGraphicId(NotationCommandUtil.generateId());
+		Shape shape = NotationFactory.eINSTANCE.createShape();
+		shape.setPosition(shapePosition);
+		shape.setSize(GraphUtil.dimension(MIN_ELEMENT_WIDTH, MIN_ELEMENT_HEIGHT));
 
-		SemanticProxy proxy = WfnotationFactory.eINSTANCE.createSemanticProxy();
+		SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
 		if (this.semanticProxyUri != null) {
 			proxy.setUri(this.semanticProxyUri);
 		} else {
-			proxy.setUri(NotationCommandUtil.getSemanticProxyUri(nodeSupplier.get()));
+			proxy.setUri(EcoreUtil.getURI(nodeSupplier.get()).fragment());
 		}
 		shape.setSemanticElement(proxy);
 
-		notationModel.getElements().add(shape);
+		notationDiagram.getElements().add(shape);
 	}
 
 }

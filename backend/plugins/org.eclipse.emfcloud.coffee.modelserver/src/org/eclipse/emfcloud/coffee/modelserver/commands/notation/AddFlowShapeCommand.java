@@ -13,12 +13,13 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.notation;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.NotationCommandUtil;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Edge;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.SemanticProxy;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Edge;
+import org.eclipse.emfcloud.modelserver.glsp.notation.NotationFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.SemanticProxy;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.NotationElementCommand;
 
 public class AddFlowShapeCommand extends NotationElementCommand {
 
@@ -41,18 +42,17 @@ public class AddFlowShapeCommand extends NotationElementCommand {
 
 	@Override
 	protected void doExecute() {
-		Edge edge = WfnotationFactory.eINSTANCE.createEdge();
-		edge.setGraphicId(NotationCommandUtil.generateId());
-		SemanticProxy proxy = WfnotationFactory.eINSTANCE.createSemanticProxy();
-		
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+
+		SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
 		if (this.semanticProxyUri != null) {
 			proxy.setUri(this.semanticProxyUri);
 		} else {
-			proxy.setUri(NotationCommandUtil.getSemanticProxyUri(flowSupplier.get()));
+			proxy.setUri(EcoreUtil.getURI(flowSupplier.get()).fragment());
 		}
 		edge.setSemanticElement(proxy);
 
-		notationModel.getElements().add(edge);
+		notationDiagram.getElements().add(edge);
 	}
 
 }
