@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ASCII"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/emfcloud/modelserver/notation">
+  <semanticElement uri="_KjaRcMnNEeuzYY8U8dVg6Q"/>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_5oz_cMKjEeup06HqRBVc_g"/>
+    <position x="600.0" y="600.0"/>
+    <size width="127.71875" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_MrtooMKkEeup06HqRBVc_g"/>
+    <position x="620.0" y="710.0"/>
+    <size width="103.15625" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_O7Vh4MKkEeup06HqRBVc_g"/>
+    <position x="670.0" y="260.0"/>
+    <size width="161.53125" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_8lEZIMqOEeuYap5GtvNPrw"/>
+    <position x="780.0" y="710.0"/>
+    <size width="105.015625" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_QxCfQMKkEeup06HqRBVc_g"/>
+    <position x="430.0" y="100.0"/>
+    <size width="101.90625" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_itPXMMnYEeuzYY8U8dVg6Q"/>
+    <position x="560.0" y="470.0"/>
+    <size width="199.5" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_glMiUMHlEeuOQ_oVeIeN4A"/>
+    <position x="560.0" y="100.0"/>
+    <size width="175.25" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_jc7kcMHlEeuOQ_oVeIeN4A"/>
+    <position x="490.0" y="260.0"/>
+    <size width="141.765625" height="52.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_Y16bQMINEeuM9JtVafDACQ"/>
+    <position x="630.0" y="190.0"/>
+    <size width="32.0" height="32.0"/>
+  </elements>
+  <elements xsi:type="notation:Shape">
+    <semanticElement uri="_hd5kwMINEeuM9JtVafDACQ"/>
+    <position x="640.0" y="390.0"/>
+    <size width="32.0" height="32.0"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_tVvcoMHlEeuOQ_oVeIeN4A"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_7z8LkMHlEeuOQ_oVeIeN4A"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_9dJlEMHlEeuOQ_oVeIeN4A"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_OD_3AMHwEeuwMI7tijX71Q"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_O3eiYMHwEeuwMI7tijX71Q"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_TrV-YMIOEeuM9JtVafDACQ"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_V5JBgMKkEeup06HqRBVc_g"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_ar-eYMKkEeup06HqRBVc_g"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_cOp-gMj5EeuOnZSlSBIr0g"/>
+  </elements>
+  <elements xsi:type="notation:Edge">
+    <semanticElement uri="_c9G_8Mj5EeuOnZSlSBIr0g"/>
+  </elements>
+</notation:Diagram>
