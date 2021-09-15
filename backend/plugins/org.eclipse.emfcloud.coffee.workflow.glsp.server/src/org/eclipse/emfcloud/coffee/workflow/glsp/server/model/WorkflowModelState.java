@@ -10,8 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;

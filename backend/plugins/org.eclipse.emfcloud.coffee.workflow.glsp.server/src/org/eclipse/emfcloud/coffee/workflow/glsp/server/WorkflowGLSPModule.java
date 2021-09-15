@@ -12,7 +12,6 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateAutomatedTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateDecisionNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateFlowHandler;
@@ -20,6 +19,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Create
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMergeNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ReconnectFlowHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowChangeRoutingPointsOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowCompoundOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowDeleteOperationHandler;
@@ -33,6 +33,7 @@ import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvi
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.features.core.model.ModelSourceLoader;
+import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler;
 import org.eclipse.glsp.server.layout.ILayoutEngine;
 import org.eclipse.glsp.server.model.ModelStateProvider;
 import org.eclipse.glsp.server.operations.OperationHandler;
@@ -61,11 +62,10 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 
 		// model server-aware operation handlers
 		bindings.rebind(CompoundOperationHandler.class, WorkflowCompoundOperationHandler.class);
-		bindings.rebind(org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler.class,
-				ApplyLabelEditOperationHandler.class);
-		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
 		bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
-		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class);
+		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class); // TODO
+		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class); // TODO
+		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class); // TODO
 
 		// unsupported operation handlers
 		bindings.remove(CutOperationHandler.class);
