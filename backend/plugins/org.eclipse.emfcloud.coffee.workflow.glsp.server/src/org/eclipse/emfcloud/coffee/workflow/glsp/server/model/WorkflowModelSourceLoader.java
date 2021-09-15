@@ -14,9 +14,6 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.glsp.EMSModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelSourceLoader;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelState;
-import org.eclipse.emfcloud.modelserver.glsp.model.EMSSubscriptionListener;
-import org.eclipse.glsp.server.actions.ActionDispatcher;
-import org.eclipse.glsp.server.features.core.model.ModelSubmissionHandler;
 import org.eclipse.glsp.server.model.GModelState;
 
 public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
@@ -28,12 +25,7 @@ public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 
 	@Override
 	public EMSModelState createModelState(GModelState modelState) {
-		return (WorkflowModelState) modelState;
+		return WorkflowModelState.getModelState(modelState);
 	}
 
-	@Override
-	public EMSSubscriptionListener createSubscriptionListener(EMSModelState modelState,
-			ActionDispatcher actionDispatcher, ModelSubmissionHandler submissionHandler) {
-		return new WorkflowModelServerSubscriptionListener(modelState, actionDispatcher, submissionHandler);
-	}
 }
