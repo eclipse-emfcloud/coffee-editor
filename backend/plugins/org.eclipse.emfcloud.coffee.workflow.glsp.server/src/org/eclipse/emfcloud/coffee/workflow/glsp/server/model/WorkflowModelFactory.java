@@ -11,88 +11,55 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Task;
-import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.ActivityNodeBuilder;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.TaskNodeBuilder;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.WeightedEdgeBuilder;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.ActivityNode;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WeightedEdge;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Diagram;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.DiagramElement;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Edge;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.SemanticProxy;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.Shape;
-import org.eclipse.emfcloud.coffee.modelserver.wfnotation.WfnotationFactory;
-import org.eclipse.glsp.graph.DefaultTypes;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.gmodel.DiagramModelFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Diagram;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Edge;
+import org.eclipse.emfcloud.modelserver.glsp.notation.NotationElement;
+import org.eclipse.emfcloud.modelserver.glsp.notation.NotationFactory;
+import org.eclipse.emfcloud.modelserver.glsp.notation.SemanticProxy;
+import org.eclipse.emfcloud.modelserver.glsp.notation.Shape;
 import org.eclipse.glsp.graph.GEdge;
+import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GModelRoot;
 import org.eclipse.glsp.graph.GNode;
-import org.eclipse.glsp.graph.builder.impl.GEdgeBuilder;
-import org.eclipse.glsp.graph.builder.impl.GGraphBuilder;
+import org.eclipse.glsp.graph.GPoint;
+import org.eclipse.glsp.graph.GShapeElement;
+import org.eclipse.glsp.graph.util.GraphUtil;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.model.GModelState;
 
+import com.google.common.base.Preconditions;
+
 public class WorkflowModelFactory implements GModelFactory {
-	private static final String ROOT_ID = "sprotty";
 
 	@Override
 	public void createGModel(GModelState gModelState) {
 		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
-		GModelRoot gModelRoot = createEmptyRoot();
-		modelState.setRoot(gModelRoot);
+		DiagramModelFactory gModelFactory = new DiagramModelFactory(modelState);
+
+		GModelRoot gmodelRoot = gModelFactory.createRoot(modelState);
 
 		WorkflowModelIndex modelIndex = modelState.getIndex();
 		modelIndex.clear();
 
 		Workflow semanticModel = modelState.getSemanticModel();
 		EcoreUtil.resolveAll(semanticModel);
-		Diagram diagram = getOrCreateDiagram(modelState.getNotationModel(), semanticModel, modelIndex);
-		initializeMissing(diagram, modelIndex);
+		Diagram diagram = modelState.getNotationModel();
+		getOrCreateDiagram(diagram, semanticModel, modelIndex);
 
-		populate(gModelRoot, modelIndex, semanticModel, diagram);
+		gmodelRoot = gModelFactory.create();
+		initialize(gmodelRoot, modelIndex, semanticModel, diagram);
 
-	}
+		modelState.setRoot(gmodelRoot);
 
-	/**
-	 * Populates the GModelRoot by mapping the diagram's notation elements to GModel elements.
-	 */
-	public static void populate(GModelRoot gModelRoot, WorkflowModelIndex modelIndex, Workflow workflow,
-			Diagram diagram) {
-		gModelRoot.setId(diagram.getGraphicId());
-		Map<Node, GNode> nodeMapping = new HashMap<>();
-		for (Node node : workflow.getNodes()) {
-			modelIndex.getNotation(node, Shape.class) //
-					.flatMap(shape -> toGNode(node, shape)) //
-					.ifPresent(gnode -> {
-						nodeMapping.put(node, gnode);
-						modelIndex.indexSemantic(gnode.getId(), node);
-						gModelRoot.getChildren().add(gnode);
-					});
-		}
-
-		for (Flow flow : workflow.getFlows()) {
-			modelIndex.getNotation(flow, Edge.class)//
-					.flatMap(edge -> toGEdge(flow, edge, nodeMapping)) //
-					.ifPresent(gedge -> {
-						modelIndex.indexSemantic(gedge.getId(), flow);
-						gModelRoot.getChildren().add(gedge);
-					});
-		}
 	}
 
 	private Diagram getOrCreateDiagram(Diagram diagram, final Workflow workflow, final WorkflowModelIndex modelIndex) {
@@ -106,93 +73,83 @@ public class WorkflowModelFactory implements GModelFactory {
 	}
 
 	private Diagram createDiagram(Workflow workflow) {
-		Diagram diagram = WfnotationFactory.eINSTANCE.createDiagram();
+		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.setSemanticElement(createProxy(workflow));
-		diagram.setGraphicId(generateId());
 		return diagram;
 	}
 
-	private static GModelRoot createEmptyRoot() {
-		return new GGraphBuilder(DefaultTypes.GRAPH)//
-				.id(ROOT_ID) //
-				.build();
+	public Diagram initialize(final GModelRoot gRoot, final WorkflowModelIndex modelIndex, final Workflow workflowModel,
+			final Diagram diagram) {
+		Preconditions.checkArgument(diagram.getSemanticElement().getResolvedElement() == workflowModel);
+		gRoot.getChildren().forEach(child -> {
+			modelIndex.getNotation(child).ifPresentOrElse(n -> updateNotationElement(n, child),
+					() -> initializeNotationElement(child, modelIndex).ifPresent(diagram.getElements()::add));
+		});
+		return diagram;
 	}
 
-	private static Optional<GEdge> toGEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping) {
-		GEdge gedge = flow instanceof WeightedFlow ? createWeightedEdge((WeightedFlow) flow, edge, nodeMapping)
-				: createEdge(flow, edge, nodeMapping);
-		return Optional.ofNullable(gedge);
-	}
-
-	private static Optional<GNode> toGNode(Node node, DiagramElement shape) {
-		GNode gnode = node instanceof Task //
-				? createTaskNode((Task) node, (Shape) shape)
-				: createActivityNode(node, (Shape) shape);
-		return Optional.ofNullable(gnode);
-	}
-
-	private static WeightedEdge createWeightedEdge(WeightedFlow flow, Edge edge, Map<Node, GNode> nodeMapping) {
-		WeightedEdgeBuilder builder = new WeightedEdgeBuilder() //
-				.probability(flow.getProbability().getName()) //
-				.source(nodeMapping.get(flow.getSource())) //
-				.target(nodeMapping.get(flow.getTarget()));
-		edge.getBendPoints().forEach(bendPoint -> builder.addRoutingPoint(bendPoint.getX(), bendPoint.getY()));
-		builder.id(edge.getGraphicId());
-		return builder.build();
-	}
-
-	private static GEdge createEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping) {
-		GEdgeBuilder builder = new GEdgeBuilder();
-		builder.source(nodeMapping.get(flow.getSource()));
-		builder.target(nodeMapping.get(flow.getTarget()));
-		edge.getBendPoints().forEach(bendPoint -> builder.addRoutingPoint(bendPoint.getX(), bendPoint.getY()));
-		builder.id(edge.getGraphicId());
-		return builder.build();
-	}
-
-	private static TaskNode createTaskNode(Task task, Shape shape) {
-		String type = CoffeeTypeUtil.toType(task);
-		String nodeType = CoffeeTypeUtil.toNodeType(task);
-		TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
-		if (shape.getPosition() != null) {
-			builder.position(shape.getPosition().getX(), shape.getPosition().getY());
+	private Optional<? extends NotationElement> initializeNotationElement(final GModelElement gModelElement,
+			final WorkflowModelIndex modelIndex) {
+		Optional<? extends NotationElement> result = Optional.empty();
+		if (gModelElement instanceof GNode) {
+			result = initializeShape((GNode) gModelElement, modelIndex);
+		} else if (gModelElement instanceof GEdge) {
+			result = initializeEdge((GEdge) gModelElement, modelIndex);
 		}
-		if (shape.getSize() != null) {
-			builder.size(shape.getSize().getWidth(), shape.getSize().getHeight());
-		}
-		builder.id(shape.getGraphicId());
-
-		return builder.build();
+		return result;
 	}
 
-	private static ActivityNode createActivityNode(Node node, Shape shape) {
-		String type = CoffeeTypeUtil.toType(node);
-		String nodeType = CoffeeTypeUtil.toNodeType(node);
-		ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);
-		if (shape.getPosition() != null) {
-			builder.position(shape.getPosition().getX(), shape.getPosition().getY());
-		}
-		if (shape.getSize() != null) {
-			builder.size(shape.getSize().getWidth(), shape.getSize().getHeight());
-		}
-		builder.id(shape.getGraphicId());
-		return builder.build();
-	}
-
-	private List<DiagramElement> findUnresolvedElements(final Diagram diagram, final Workflow workflow) {
-		List<DiagramElement> unresolved = new ArrayList<>();
+	private List<NotationElement> findUnresolvedElements(final Diagram diagram, final Workflow workflowModel) {
+		List<NotationElement> unresolved = new ArrayList<>();
 
 		if (diagram.getSemanticElement() == null
-				|| resolved(diagram.getSemanticElement(), workflow).getResolvedElement() == null) {
+				|| resolved(diagram.getSemanticElement(), workflowModel).getResolvedElement() == null) {
 			unresolved.add(diagram);
 		}
 
 		unresolved.addAll(diagram.getElements().stream()
 				.filter(element -> element.getSemanticElement() == null ? false
-						: resolved(element.getSemanticElement(), workflow).getResolvedElement() == null)
+						: resolved(element.getSemanticElement(), workflowModel).getResolvedElement() == null)
 				.collect(Collectors.toList()));
 
 		return unresolved;
+	}
+
+	private Optional<Shape> initializeShape(final GShapeElement shapeElement, final WorkflowModelIndex modelIndex) {
+		return modelIndex.getSemantic(shapeElement)
+				.map(semanticElement -> initializeShape(semanticElement, shapeElement, modelIndex));
+	}
+
+	private Shape initializeShape(final EObject semanticElement, final GShapeElement shapeElement,
+			final WorkflowModelIndex modelIndex) {
+		Shape shape = NotationFactory.eINSTANCE.createShape();
+		shape.setSemanticElement(createProxy(semanticElement));
+		if (shapeElement != null) {
+			updateShape(shape, shapeElement);
+		}
+		modelIndex.indexNotation(shape);
+		return shape;
+	}
+
+	private Optional<Edge> initializeEdge(final GEdge gEdge, final WorkflowModelIndex modelIndex) {
+		return modelIndex.getSemantic(gEdge).map(semanticElement -> initializeEdge(semanticElement, gEdge, modelIndex));
+	}
+
+	private Edge initializeEdge(final EObject semanticElement, final GEdge gEdge, final WorkflowModelIndex modelIndex) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.setSemanticElement(createProxy(semanticElement));
+		if (gEdge != null) {
+			updateEdge(edge, gEdge);
+		}
+		modelIndex.indexNotation(edge);
+		return edge;
+	}
+
+	private SemanticProxy createProxy(final EObject eObject) {
+		SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
+		proxy.setResolvedElement(eObject);
+		proxy.setUri(EcoreUtil.getURI(eObject).fragment().toString());
+		return proxy;
 	}
 
 	private SemanticProxy resolved(SemanticProxy proxy, Workflow workflow) {
@@ -210,46 +167,32 @@ public class WorkflowModelFactory implements GModelFactory {
 		return proxy;
 	}
 
-	/** Create missing Notation elements for semantic elements. */
-	private Diagram initializeMissing(Diagram diagram, WorkflowModelIndex modelIndex) {
-		Workflow workflow = (Workflow) diagram.getSemanticElement().getResolvedElement();
-		workflow.getNodes().forEach(node -> {
-			if (modelIndex.getNotation(node).isEmpty()) {
-				diagram.getElements().add(this.initializeShape(node, modelIndex));
-			}
-		});
-		workflow.getFlows().forEach(flow -> {
-			if (modelIndex.getNotation(flow).isEmpty()) {
-				diagram.getElements().add(this.initializeEdge(flow, modelIndex));
-			}
-		});
-		return diagram;
+	private void updateNotationElement(final NotationElement notation, final GModelElement modelElement) {
+		if (notation instanceof Shape && modelElement instanceof GShapeElement) {
+			updateShape((Shape) notation, (GShapeElement) modelElement);
+		} else if (notation instanceof Edge && modelElement instanceof GEdge) {
+			updateEdge((Edge) notation, (GEdge) modelElement);
+		}
 	}
 
-	private Shape initializeShape(Node node, WorkflowModelIndex modelIndex) {
-		Shape shape = WfnotationFactory.eINSTANCE.createShape();
-		shape.setSemanticElement(createProxy(node));
-		shape.setGraphicId(generateId());
-		modelIndex.indexNotation(shape);
-		return shape;
+	private void updateShape(final Shape shape, final GShapeElement shapeElement) {
+		if (shapeElement.getSize() != null) {
+			shape.setSize(GraphUtil.copy(shapeElement.getSize()));
+		}
+		if (shapeElement.getPosition() != null) {
+			shape.setPosition(GraphUtil.copy(shapeElement.getPosition()));
+		} else if (shape.getPosition() != null) {
+			shapeElement.setPosition(GraphUtil.copy(shape.getPosition()));
+		}
 	}
 
-	private Edge initializeEdge(Flow flow, WorkflowModelIndex modelIndex) {
-		Edge edge = WfnotationFactory.eINSTANCE.createEdge();
-		edge.setSemanticElement(createProxy(flow));
-		edge.setGraphicId(generateId());
-		modelIndex.indexNotation(edge);
-		return edge;
+	private void updateEdge(final Edge edge, final GEdge gEdge) {
+		edge.getBendPoints().clear();
+		if (gEdge.getRoutingPoints() != null) {
+			ArrayList<GPoint> gPoints = new ArrayList<>();
+			gEdge.getRoutingPoints().forEach(p -> gPoints.add(GraphUtil.copy(p)));
+			edge.getBendPoints().addAll(gPoints);
+		}
 	}
 
-	private SemanticProxy createProxy(EObject eObject) {
-		SemanticProxy proxy = WfnotationFactory.eINSTANCE.createSemanticProxy();
-		proxy.setResolvedElement(eObject);
-		proxy.setUri(EcoreUtil.getURI(eObject).fragment().toString());
-		return proxy;
-	}
-
-	private String generateId() {
-		return UUID.randomUUID().toString();
-	}
 }
