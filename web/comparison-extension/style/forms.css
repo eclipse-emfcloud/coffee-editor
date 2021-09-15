@@ -1,0 +1,210 @@
+/********************************************************************************
+ * Copyright (c) 2021 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
+:root {
+  --validation-error-color: #f44336;
+}
+
+[hidden] {
+  display: none;
+}
+
+/* Controls */
+.control {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0.25em 1em;
+}
+
+.control.trim {
+  display: inline-flex;
+}
+
+.control.trim>*:first-child {
+  margin-right: 0;
+}
+
+.control>* {
+  margin-left: 0.25em;
+}
+
+.control>*:first-child {
+  margin-left: 0;
+  margin-right: -0.25em;
+}
+
+.control>label {
+  font-weight: bold;
+}
+
+.control>.validation:empty {
+  margin-left: 0;
+}
+
+.control>.input-description,
+.control>.validation {
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25em;
+  min-height: 1em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1em;
+}
+
+.control>.validation.validation_error,
+.control>.validate.invalid {
+  color: var(--validation-error-color);
+}
+
+.control[hidden] {
+  display: none;
+}
+
+.control>input[disabled] {
+    opacity: 0.5;
+}
+
+/*
+ *Layouts
+ */
+
+.vertical-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-layout[hidden] {
+  display: none;
+}
+
+.vertical-layout>* {
+  flex: 1;
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.horizontal-layout[hidden] {
+  display: none;
+}
+
+.horizontal-layout>* {
+  flex: 1;
+}
+
+/*
+ * Group
+ */
+.group-layout {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 0.2em;
+}
+
+.group-layout[hidden] {
+  display: none;
+}
+
+.group-layout>legend {
+  padding: 0 0.5em;
+  font-weight: bold;
+}
+
+/*
+ * Array
+ */
+.array-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 0.2em;
+}
+
+.array-layout[hidden] {
+  display: none;
+}
+
+.array-layout>legend {
+  padding: 0 0.5em;
+  font-weight: bold;
+}
+
+.array-layout>legend>label {
+  margin-right: 1em;
+}
+
+.array-layout>.children>* {
+  border-bottom: 1px solid;
+  display: block;
+}
+
+.array-layout>.children>*:last-child {
+  border-bottom: none;
+}
+
+
+/*
+ * Array table.
+ */
+.array-table-layout.control>header {
+  display: flex;
+  margin: 0.25em;
+}
+
+.array-table-layout header label {
+  flex: 1;
+  font-weight: bold;
+}
+
+.array-table-layout table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.array-table-layout table.control>* {
+  margin: 0;
+}
+
+.array-table-layout tr {
+  display: flex;
+}
+
+.array-table-layout table, .array-table-layout th, .array-table-layout td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+.array-table-layout th {
+  padding: 5px;
+  flex: 1
+}
+
+.array-table-layout td {
+  display: flex;
+  flex: 1;
+}
+
+.array-table-layout td>* {
+  flex: 1;
+}

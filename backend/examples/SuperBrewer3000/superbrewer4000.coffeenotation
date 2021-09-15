@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ASCII"?>
+<wfnotation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wfnotation="http://www.eclipsesource.com/glsp/examples/workflow/notation">
+  <semanticElement uri="//@workflows.0"/>
+  <elements xsi:type="wfnotation:Shape" graphicId="81ff1b0e-c703-4fa7-a29a-3884acd9d34b">
+    <semanticElement uri="//@workflows.0/@nodes.0"/>
+    <position x="600.0" y="600.0"/>
+    <size width="127.71875" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="30f9ce78-0882-45da-b96e-abf594325201">
+    <semanticElement uri="//@workflows.0/@nodes.1"/>
+    <position x="620.0" y="710.0"/>
+    <size width="103.15625" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="b14662d6-d627-47ff-9521-7142a191867e">
+    <semanticElement uri="//@workflows.0/@nodes.2"/>
+    <position x="670.0" y="260.0"/>
+    <size width="161.53125" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="40df424f-5860-4959-b846-e0a9f762090b">
+    <semanticElement uri="//@workflows.0/@nodes.3"/>
+    <position x="780.0" y="710.0"/>
+    <size width="105.015625" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="9df3cbad-bf89-4337-8909-18ce50c8c3a6">
+    <semanticElement uri="//@workflows.0/@nodes.4"/>
+    <position x="430.0" y="100.0"/>
+    <size width="101.90625" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="5a7640d2-3cf5-4fe2-b710-8552e3e2b0f6">
+    <semanticElement uri="//@workflows.0/@nodes.5"/>
+    <position x="560.0" y="470.0"/>
+    <size width="199.5" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="74099107-7532-470a-ae0b-e6b844bfe544">
+    <semanticElement uri="//@workflows.0/@nodes.6"/>
+    <position x="560.0" y="100.0"/>
+    <size width="175.25" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="8c8ef974-38a4-420f-96d3-6de8716393fa">
+    <semanticElement uri="//@workflows.0/@nodes.7"/>
+    <position x="490.0" y="260.0"/>
+    <size width="141.765625" height="52.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="9b1c67b4-2dc8-46a7-ae92-d07579d14e89">
+    <semanticElement uri="//@workflows.0/@nodes.8"/>
+    <position x="630.0" y="190.0"/>
+    <size width="32.0" height="32.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Shape" graphicId="56c52621-825e-40d0-8acb-d756531ce542">
+    <semanticElement uri="//@workflows.0/@nodes.9"/>
+    <position x="640.0" y="390.0"/>
+    <size width="32.0" height="32.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="b2431b79-d824-4abb-8903-cc76d54331d2">
+    <semanticElement uri="//@workflows.0/@flows.0"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="a41042a9-b68e-462e-883e-de42895860d6">
+    <semanticElement uri="//@workflows.0/@flows.1"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="888f3657-f0c0-4d0a-acd6-48bd24685eb9">
+    <semanticElement uri="//@workflows.0/@flows.2"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="75c3c178-2e37-4fde-8962-3fb8e7cc9850">
+    <semanticElement uri="//@workflows.0/@flows.3"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="1cb1934a-bc9e-4eb1-b648-ba4e83df846f">
+    <semanticElement uri="//@workflows.0/@flows.4"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="f332fd98-8ae0-475d-8ad9-1ade12cf7491">
+    <semanticElement uri="//@workflows.0/@flows.5"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="ea11ef49-cf58-4027-abc3-54280164513f">
+    <semanticElement uri="//@workflows.0/@flows.6"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="9291376d-3a36-4778-8189-a4d5bea09314">
+    <semanticElement uri="//@workflows.0/@flows.7"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="7b5084a1-4672-4636-8da7-0d4eeff36eba">
+    <semanticElement uri="//@workflows.0/@flows.8"/>
+  </elements>
+  <elements xsi:type="wfnotation:Edge" graphicId="12d8fa40-7170-4db6-8bfe-8ff0e8a0aee9">
+    <semanticElement uri="//@workflows.0/@flows.9"/>
+  </elements>
+</wfnotation:Diagram>

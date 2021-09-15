@@ -48,6 +48,7 @@ import org.eclipse.glsp.server.protocol.ClientSessionManager;
 import org.eclipse.glsp.server.protocol.GLSPClient;
 import org.eclipse.glsp.server.utils.ClientOptions;
 
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 
 public class WorkflowModelFactory implements ModelFactory {
@@ -70,6 +71,10 @@ public class WorkflowModelFactory implements ModelFactory {
 
 	@Override
 	public GModelRoot loadModel(RequestModelAction action, GModelState modelState) {
+		if (modelState instanceof WorkflowModelState && action.getOptions().get("highlights") != null) {
+			HashMap<String, String> map = new Gson().fromJson(action.getOptions().get("highlights"), HashMap.class);
+			((WorkflowModelState) modelState).setHighlight(map);
+		}
 		// 1. Load models and create workflow facade
 		Optional<String> sourceURI = ClientOptions.getValue(action.getOptions(), ClientOptions.SOURCE_URI);
 		if (sourceURI.isEmpty()) {
@@ -82,7 +87,8 @@ public class WorkflowModelFactory implements ModelFactory {
 			return createEmptyRoot();
 		}
 
-		WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(modelState, actionProcessor);
+		WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(modelState,
+				actionProcessor);
 		WorkflowModelServerAccess modelAccess = new WorkflowModelServerAccess(sourceURI.get(), modelServerClient.get(),
 				adapterFactory, changeListener);
 		modelAccess.subscribe(new WorkflowModelServerSubscriptionListener(modelState, modelAccess, actionProcessor));
@@ -118,11 +124,11 @@ public class WorkflowModelFactory implements ModelFactory {
 		// 3. Set current workflow
 		workflowFacade.setCurrentWorkflowIndex(workflowIndex);
 		MappedGModelRoot mappedGModelRoot = populate(workflowFacade, modelState);
-		
+
 		modelAccess.setNodeMapping(mappedGModelRoot.getMapping());
 		modelAccess.initConstraintList();
 		modelAccess.subscribeToValidation();
-
+		
 		return mappedGModelRoot.getRoot();
 	}
 
@@ -178,6 +184,12 @@ public class WorkflowModelFactory implements ModelFactory {
 				.probability(flow.getProbability().getName()) //
 				.source(nodeMapping.get(flow.getSource())) //
 				.target(nodeMapping.get(flow.getTarget()));
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlight().get(edge.getGraphicId());
+			if(change != null) {
+				builder.addCssClass(tempChange(change));
+			}
+		}
 		edge.getBendPoints().forEach(bendPoint -> builder.addRoutingPoint(bendPoint.getX(), bendPoint.getY()));
 		builder.id(edge.getGraphicId());
 		return builder.build();
@@ -185,6 +197,12 @@ public class WorkflowModelFactory implements ModelFactory {
 
 	private static GEdge createEdge(Flow flow, Edge edge, Map<Node, GNode> nodeMapping, GModelState modelState) {
 		GEdgeBuilder builder = new GEdgeBuilder();
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlight().get(edge.getGraphicId());
+			if(change != null) {
+				builder.addCssClass(tempChange(change));
+			}
+		}
 		builder.source(nodeMapping.get(flow.getSource()));
 		builder.target(nodeMapping.get(flow.getTarget()));
 		edge.getBendPoints().forEach(bendPoint -> builder.addRoutingPoint(bendPoint.getX(), bendPoint.getY()));
@@ -196,6 +214,12 @@ public class WorkflowModelFactory implements ModelFactory {
 		String type = CoffeeTypeUtil.toType(task);
 		String nodeType = CoffeeTypeUtil.toNodeType(task);
 		TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlight().get(shape.getGraphicId());
+			if(change != null) {
+				builder.addCssClass(tempChange(change));
+			}
+		}
 		if (shape.getPosition() != null) {
 			builder.position(shape.getPosition().getX(), shape.getPosition().getY());
 		}
@@ -211,6 +235,12 @@ public class WorkflowModelFactory implements ModelFactory {
 		String type = CoffeeTypeUtil.toType(node);
 		String nodeType = CoffeeTypeUtil.toNodeType(node);
 		ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlight().get(shape.getGraphicId());
+			if(change != null) {
+				builder.addCssClass(tempChange(change));
+			}
+		}
 		if (shape.getPosition() != null) {
 			builder.position(shape.getPosition().getX(), shape.getPosition().getY());
 		}
@@ -220,6 +250,16 @@ public class WorkflowModelFactory implements ModelFactory {
 		builder.id(shape.getGraphicId());
 		return builder.build();
 	}
-
+	
+	private static String tempChange(String color) {
+		switch (color) {
+			case "red":
+				return "deleted";
+			case "green":
+				return "added";
+			case "yellow":
+				return "changed";
+		}
+		return "";
+	}
 }
-

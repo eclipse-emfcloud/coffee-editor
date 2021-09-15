@@ -1,0 +1,80 @@
+/********************************************************************************
+ * Copyright (c) 2021 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
+svg {
+  border: none;
+}
+
+button[type="button"] {
+  padding: 0;
+}
+
+.theia-tree-editor, .theia-tree-editor-sash, .theia-tree-editor-tree, .theia-tree-editor-form {
+  height: 100%;
+}
+
+.theia-tree-editor, .theia-tree-editor-sash {
+  width: 100%;
+}
+
+.theia-tree-editor-tree, .theia-tree-editor-form {
+  overflow-y: auto;
+}
+
+.theia-tree-editor-tree {
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.theia-tree-editor-tree .tree-icon-container {
+  width: 16px;
+  margin-right: 5px;
+  text-align: center;
+}
+
+.theia-tree-editor-tree .node-buttons {
+  visibility: hidden;
+}
+
+.theia-tree-editor-tree .node-button {
+  margin-left: 5px;
+}
+
+.theia-tree-editor-tree .theia-TreeNode:hover .node-buttons {
+  visibility: inherit;
+}
+
+/* Theia-specific styling */
+
+.theia-tree-editor .control {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.theia-tree-editor .control > label {
+  color: var(--theia-ui-font-color0);
+  font-size: var(--theia-ui-font-size2);
+  order: -1;
+  font-weight: bold;
+}
+
+.theia-tree-editor .control > .validation {
+  order: -1;
+}
+
+.theia-tree-editor .control > .input-description {
+  color: var(--theia-content-font-color0);
+}

@@ -38,6 +38,7 @@
     "@theia/variable-resolver": "latest",
     "@theia/vsx-registry": "latest",
     "@theia/workspace": "latest",
+    "coffee-comparison": "0.7.0",
     "coffee-workflow-glsp-editor": "0.7.0",
     "coffee-editor-extension": "0.7.0",
     "coffee-workflow-analyzer": "0.7.0",

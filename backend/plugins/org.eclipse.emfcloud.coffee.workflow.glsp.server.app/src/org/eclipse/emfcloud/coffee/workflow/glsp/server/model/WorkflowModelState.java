@@ -10,12 +10,17 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.model.GModelStateImpl;
 
 public class WorkflowModelState extends GModelStateImpl {
 
 	private WorkflowModelServerAccess modelAccess;
+	
+	private Map<String, String> highlight = new HashMap<>();
 
 	public static WorkflowModelServerAccess getModelAccess(GModelState state) {
 		if (!(state instanceof WorkflowModelState)) {
@@ -30,5 +35,13 @@ public class WorkflowModelState extends GModelStateImpl {
 
 	public WorkflowModelServerAccess getModelAccess() {
 		return modelAccess;
+	}
+	
+	public Map<String, String> getHighlight() {
+		return highlight;
+	}
+
+	public void setHighlight(Map<String, String> map) {
+		this.highlight = map;
 	}
 }

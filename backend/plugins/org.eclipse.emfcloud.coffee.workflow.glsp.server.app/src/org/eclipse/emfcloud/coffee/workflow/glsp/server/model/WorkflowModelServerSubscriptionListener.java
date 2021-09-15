@@ -14,7 +14,12 @@ import static org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowMod
 import static org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory.WORKFLOW_INDEX_DEFAULT;
 import static org.eclipse.glsp.server.utils.ServerMessageUtil.error;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -76,6 +81,12 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 
 		Resource notationResource = facade.getNotationResource();
 		updateNotationResource(facade, notationResource);
+		try {
+			modelServerAccess.validate();
+		} catch (IOException | InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void updateNotationResource(WorkflowFacade facade, Resource notationResource) {
@@ -88,7 +99,7 @@ public class WorkflowModelServerSubscriptionListener extends XmiToEObjectSubscri
 				OPTION_WORKFLOW_INDEX);
 		int workflowIndex = givenWorkflowIndex.orElse(WORKFLOW_INDEX_DEFAULT);
 		facade.setCurrentWorkflowIndex(workflowIndex);
-
+		
 		// Re-populate GModel and initiate a client model update
 		MappedGModelRoot mappedGModelRoot = WorkflowModelFactory.populate(modelServerAccess.getWorkflowFacade(),
 				modelState);

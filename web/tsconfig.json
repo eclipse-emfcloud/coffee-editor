@@ -4,6 +4,7 @@
     "baseUrl": "."
   },
   "include": [
+    "coffee-comparison/src",
     "coffee-editor-extension/src",
     "coffee-java-extension/src",
     "coffee-cpp-extension/src",

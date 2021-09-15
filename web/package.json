@@ -11,6 +11,8 @@
     "lerna": "^3.13.0"
   },
   "workspaces": [
+    "comparison-extension",
+    "coffee-comparison",
     "coffee-editor-extension",
     "coffee-java-extension",
     "coffee-cpp-extension",

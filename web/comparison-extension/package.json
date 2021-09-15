@@ -1,0 +1,55 @@
+{
+  "name": "comparison-extension",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.0.1",
+  "files": [
+    "lib",
+    "src",
+    "style"
+  ],
+  "dependencies": {
+    "@eclipse-emfcloud/modelserver-theia": "next",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@jsonforms/core": "2.4.0",
+    "@jsonforms/react": "2.4.0",
+    "@jsonforms/vanilla-renderers": "2.4.0",
+    "@theia/core": "latest",
+    "@theia/workspace": "latest",
+    "@theia/process": "latest",
+    "react": "^16.9.13",
+    "react-dom": "^16.9.13",
+    "react-redux": "^7.1.5",
+    "redux": "^4.0.4",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@eclipse-glsp/theia-integration": "next",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-header": "^3.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-react": "^7.20.3",
+    "rimraf": "latest",
+    "semver": "^6.3.0",
+    "typescript": "latest"
+  },
+
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/tree-comparison-extension-frontend-module",
+      "backend": "lib/node/comparison-extension-backend-module"
+    }, {
+      "frontend": "lib/browser/graphical/graphical-comparison-extension-frontend-module"
+    }
+  ]
+}

@@ -94,7 +94,6 @@ public final class WorkflowBuilder {
          this.name = name;
          this.taskType = taskType;
          this.duration = duration;
-
       }
 
       @Override
