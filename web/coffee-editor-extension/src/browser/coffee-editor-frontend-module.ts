@@ -18,11 +18,11 @@ import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
 
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
+import { CoffeeLabelProviderContribution } from './coffee-label-provider';
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeNodeFactory } from './coffee-tree/coffee-node-factory';
 import { CoffeeTreeEditorConstants, CoffeeTreeEditorWidget } from './coffee-tree/coffee-tree-editor-widget';
 import { CoffeeTreeLabelProvider } from './coffee-tree/coffee-tree-label-provider-contribution';
-import { CoffeeLabelProviderContribution } from './CoffeeLabelProvider';
 
 export default new ContainerModule(bind => {
     // Bind Theia IDE contributions
