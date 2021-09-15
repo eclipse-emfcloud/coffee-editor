@@ -191,3 +191,7 @@ g .movement-not-allowed>.sprotty-node {
 .info>.sprotty-node {
     stroke: var(--glsp-info-foreground)!important;
 }
+
+.p-Menu-itemIcon.fa.fa-project-diagram:before {
+    font-family: "Font Awesome 5 Free";
+}
