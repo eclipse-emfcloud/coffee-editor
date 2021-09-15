@@ -26,7 +26,7 @@ public class CoffeePackageConfiguration implements EPackageConfiguration {
 
 	@Override
 	public Collection<String> getFileExtensions() {
-		return Lists.newArrayList("coffee", "json");
+		return Lists.newArrayList(CoffeeResource.FILE_EXTENSION, "json");
 	}
 
 	@Override

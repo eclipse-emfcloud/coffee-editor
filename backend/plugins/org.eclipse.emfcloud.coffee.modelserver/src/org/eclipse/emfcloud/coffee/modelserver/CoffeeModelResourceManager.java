@@ -10,15 +10,19 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emfcloud.modelserver.emf.common.RecordingModelResourceManager;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 import org.eclipse.emfcloud.modelserver.emf.configuration.ServerConfiguration;
+import org.eclipse.emfcloud.modelserver.glsp.notation.model.NotationUtil;
 
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
@@ -55,12 +59,36 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
 		return URI.createFileURI(uri.path()).toString();
 	}
 
-	// TODO do we need custom loadSourceResources method??
+	@Override
+	protected void loadSourceResources(final String directoryPath) {
+		if (directoryPath == null || directoryPath.isEmpty()) {
+			return;
+		}
+		File directory = new File(directoryPath);
+		File[] list = directory.listFiles();
+		Arrays.sort(list);
+		for (File file : list) {
+			if (isSourceDirectory(file)) {
+				loadSourceResources(file.getAbsolutePath());
+			} else if (file.isFile()) {
+				URI absolutePath = createURI(file.getAbsolutePath());
+				if (CoffeeResource.FILE_EXTENSION.equals(absolutePath.fileExtension())) {
+					ResourceSet resourceSet = new ResourceSetImpl();
+					resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+							.put(CoffeeResource.FILE_EXTENSION, CoffeeResource.Factory.INSTANCE);
+					resourceSets.put(absolutePath, resourceSet);
+				}
+				loadResource(absolutePath.toString(),
+						false /* do not remove unloadable resources on workspace startup */);
+			}
+		}
+	}
 
 	@Override
 	public ResourceSet getResourceSet(final String modeluri) {
-		if (createURI(modeluri).fileExtension().equals("coffeenotation")) {
-			URI semanticUri = createURI(modeluri).trimFileExtension().appendFileExtension("coffee");
+		if (createURI(modeluri).fileExtension().equals(NotationUtil.NOTATION_EXTENSION)) {
+			URI semanticUri = createURI(modeluri).trimFileExtension()
+					.appendFileExtension(CoffeeResource.FILE_EXTENSION);
 			return resourceSets.get(semanticUri);
 		}
 		return resourceSets.get(createURI(modeluri));

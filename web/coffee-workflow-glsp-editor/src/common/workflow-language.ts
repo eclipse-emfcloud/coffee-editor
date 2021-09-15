@@ -19,5 +19,6 @@ export const WorkflowNotationLanguage: GLSPDiagramLanguage = {
     contributionId: 'WorkflowNotation',
     label: 'Workflow Notation diagram',
     diagramType: 'workflow-diagram-notation',
-    fileExtensions: ['.coffeenotation']
+    iconClass: 'fa fa-project-diagram',
+    fileExtensions: ['.notation']
 };
