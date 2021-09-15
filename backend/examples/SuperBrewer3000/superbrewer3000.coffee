@@ -18,15 +18,15 @@
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" xmi:id="_jc7kcMHlEeuOQ_oVeIeN4A" name="Water Ok"/>
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Decision" xmi:id="_Y16bQMINEeuM9JtVafDACQ"/>
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Merge" xmi:id="_hd5kwMINEeuM9JtVafDACQ"/>
-    <flows xmi:id="_tVvcoMHlEeuOQ_oVeIeN4A" source="//@workflows.0/@nodes.4" target="//@workflows.0/@nodes.6"/>
-    <flows xmi:id="_7z8LkMHlEeuOQ_oVeIeN4A" source="//@workflows.0/@nodes.6" target="//@workflows.0/@nodes.8"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_9dJlEMHlEeuOQ_oVeIeN4A" source="//@workflows.0/@nodes.8" target="//@workflows.0/@nodes.2"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_OD_3AMHwEeuwMI7tijX71Q" source="//@workflows.0/@nodes.8" target="//@workflows.0/@nodes.7"/>
-    <flows xmi:id="_O3eiYMHwEeuwMI7tijX71Q" source="//@workflows.0/@nodes.2" target="//@workflows.0/@nodes.9"/>
-    <flows xmi:id="_TrV-YMIOEeuM9JtVafDACQ" source="//@workflows.0/@nodes.7" target="//@workflows.0/@nodes.9"/>
-    <flows xmi:id="_V5JBgMKkEeup06HqRBVc_g" source="//@workflows.0/@nodes.9" target="//@workflows.0/@nodes.5"/>
-    <flows xmi:id="_ar-eYMKkEeup06HqRBVc_g" source="//@workflows.0/@nodes.5" target="//@workflows.0/@nodes.0"/>
-    <flows xmi:id="_cOp-gMj5EeuOnZSlSBIr0g" source="//@workflows.0/@nodes.0" target="//@workflows.0/@nodes.1"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_c9G_8Mj5EeuOnZSlSBIr0g" source="//@workflows.0/@nodes.1" target="//@workflows.0/@nodes.3"/>
+    <flows xmi:id="_tVvcoMHlEeuOQ_oVeIeN4A" source="_QxCfQMKkEeup06HqRBVc_g" target="_glMiUMHlEeuOQ_oVeIeN4A"/>
+    <flows xmi:id="_7z8LkMHlEeuOQ_oVeIeN4A" source="_glMiUMHlEeuOQ_oVeIeN4A" target="_Y16bQMINEeuM9JtVafDACQ"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_9dJlEMHlEeuOQ_oVeIeN4A" source="_Y16bQMINEeuM9JtVafDACQ" target="_O7Vh4MKkEeup06HqRBVc_g"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_OD_3AMHwEeuwMI7tijX71Q" source="_Y16bQMINEeuM9JtVafDACQ" target="_jc7kcMHlEeuOQ_oVeIeN4A"/>
+    <flows xmi:id="_O3eiYMHwEeuwMI7tijX71Q" source="_O7Vh4MKkEeup06HqRBVc_g" target="_hd5kwMINEeuM9JtVafDACQ"/>
+    <flows xmi:id="_TrV-YMIOEeuM9JtVafDACQ" source="_jc7kcMHlEeuOQ_oVeIeN4A" target="_hd5kwMINEeuM9JtVafDACQ"/>
+    <flows xmi:id="_V5JBgMKkEeup06HqRBVc_g" source="_hd5kwMINEeuM9JtVafDACQ" target="_itPXMMnYEeuzYY8U8dVg6Q"/>
+    <flows xmi:id="_ar-eYMKkEeup06HqRBVc_g" source="_itPXMMnYEeuzYY8U8dVg6Q" target="_5oz_cMKjEeup06HqRBVc_g"/>
+    <flows xmi:id="_cOp-gMj5EeuOnZSlSBIr0g" source="_5oz_cMKjEeup06HqRBVc_g" target="_MrtooMKkEeup06HqRBVc_g"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_c9G_8Mj5EeuOnZSlSBIr0g" source="_MrtooMKkEeup06HqRBVc_g" target="_8lEZIMqOEeuYap5GtvNPrw"/>
   </workflows>
 </org.eclipse.emfcloud.coffee.model:Machine>
