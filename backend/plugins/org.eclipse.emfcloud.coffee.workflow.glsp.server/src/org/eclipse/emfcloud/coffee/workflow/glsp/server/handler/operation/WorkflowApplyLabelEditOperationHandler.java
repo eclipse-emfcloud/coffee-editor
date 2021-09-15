@@ -21,7 +21,7 @@ import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
 
-public class ApplyLabelEditOperationHandler
+public class WorkflowApplyLabelEditOperationHandler
 		extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
 	@Override
