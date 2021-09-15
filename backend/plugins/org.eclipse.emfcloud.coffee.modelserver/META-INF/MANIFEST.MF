@@ -23,13 +23,13 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.jetty.util;bundle-version="[9.4.43,10.0.0)",
  org.eclipse.jetty.server;bundle-version="[9.4.43,10.0.0)",
  org.eclipse.jetty.servlet;bundle-version="[9.4.43,10.0.0)",
- javax.servlet;bundle-version="[3.1.0,4.0.0)"
+ javax.servlet;bundle-version="[3.1.0,4.0.0)",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.16.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="2.12.1",
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="2.12.1"
 Export-Package: org.eclipse.emfcloud.coffee.modelserver,
  org.eclipse.emfcloud.coffee.modelserver.commands.compound,
  org.eclipse.emfcloud.coffee.modelserver.commands.contributions,
  org.eclipse.emfcloud.coffee.modelserver.commands.notation,
  org.eclipse.emfcloud.coffee.modelserver.commands.semantic,
- org.eclipse.emfcloud.coffee.modelserver.commands.util,
- org.eclipse.emfcloud.coffee.modelserver.wfnotation,
- org.eclipse.emfcloud.coffee.modelserver.wfnotation.impl;x-internal:=true,
- org.eclipse.emfcloud.coffee.modelserver.wfnotation.util
+ org.eclipse.emfcloud.coffee.modelserver.commands.util
