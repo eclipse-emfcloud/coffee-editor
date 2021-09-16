@@ -8,6 +8,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNo
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
@@ -56,6 +58,8 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);
 		binding.put(AddWeightedFlowCommandContribution.TYPE, AddWeightedFlowCommandContribution.class);
 		binding.put(RemoveFlowCommandContribution.TYPE, RemoveFlowCommandContribution.class);
+		binding.put(SetFlowSourceCommandContribution.TYPE, SetFlowSourceCommandContribution.class);
+		binding.put(SetFlowTargetCommandContribution.TYPE, SetFlowTargetCommandContribution.class);
 
 		// ChangeBounds
 		binding.put(ChangeBoundsCommandContribution.TYPE, ChangeBoundsCommandContribution.class);

@@ -18,7 +18,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Create
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateManualTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMergeNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ReconnectFlowHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowReconnectFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowChangeRoutingPointsOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowCompoundOperationHandler;
@@ -63,7 +63,7 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 		bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
 		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class);
 		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
-		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class); // TODO
+		bindings.rebind(ReconnectEdgeOperationHandler.class, WorkflowReconnectFlowHandler.class);
 
 		// unsupported operation handlers
 		bindings.remove(CutOperationHandler.class);
