@@ -8,6 +8,7 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNo
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
@@ -49,6 +50,7 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
 		binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
 		binding.put(RemoveNodeCommandContribution.TYPE, RemoveNodeCommandContribution.class);
+		binding.put(SetTaskNameCommandContribution.TYPE, SetTaskNameCommandContribution.class);
 
 		// Flows (Edges)
 		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);
