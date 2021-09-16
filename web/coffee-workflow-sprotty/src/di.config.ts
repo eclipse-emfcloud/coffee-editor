@@ -31,6 +31,7 @@ import {
     GLSP_TYPES,
     glspCommandPaletteModule,
     glspContextMenuModule,
+    glspDecorationModule,
     glspEditLabelModule,
     glspHoverModule,
     glspMouseToolModule,
@@ -41,8 +42,10 @@ import {
     labelEditUiModule,
     layoutCommandsModule,
     LogLevel,
+    markerNavigatorModule,
     modelHintsModule,
     modelSourceModule,
+    navigationModule,
     NoOverlapMovmentRestrictor,
     openModule,
     overrideViewerOptions,
@@ -81,7 +84,6 @@ const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind
     configureModelElement(context, 'task:automated', TaskNode, TaskNodeView);
     configureModelElement(context, 'task:manual', TaskNode, TaskNodeView);
     configureModelElement(context, 'label:heading', SLabel, SLabelView, { enable: [editLabelFeature] });
-    // configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView);
     configureModelElement(context, 'label:icon', SLabel, SLabelView);
     configureModelElement(context, 'button:expand', SButton, ExpandButtonView);
     configureModelElement(context, 'routing-point', SRoutingHandle, SRoutingHandleView);
@@ -125,11 +127,14 @@ export default function createContainer(widgetId: string): Container {
         glspServerCopyPasteModule,
         glspCommandPaletteModule,
         paletteModule,
-        routingModule /* , glspDecorationModule*/,
+        routingModule,
+        glspDecorationModule,
         edgeLayoutModule,
         zorderModule,
         layoutCommandsModule,
-        directTaskEditor /* , navigationModule, markerNavigatorModule*/
+        directTaskEditor,
+        navigationModule,
+        markerNavigatorModule
     );
 
     overrideViewerOptions(container, {

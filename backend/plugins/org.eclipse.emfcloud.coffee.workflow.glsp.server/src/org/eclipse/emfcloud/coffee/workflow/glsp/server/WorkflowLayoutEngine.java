@@ -10,19 +10,35 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
+import org.eclipse.elk.alg.layered.options.LayeredOptions;
+import org.eclipse.elk.alg.layered.options.OrderingStrategy;
+import org.eclipse.elk.core.options.Direction;
+import org.eclipse.elk.core.options.EdgeRouting;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emfcloud.modelserver.glsp.layout.EMSLayoutEngine;
+import org.eclipse.glsp.graph.DefaultTypes;
 import org.eclipse.glsp.graph.GGraph;
-import org.eclipse.glsp.layout.ElkLayoutEngine;
+import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.layout.GLSPLayoutConfigurator;
 import org.eclipse.glsp.server.model.GModelState;
 
-public class WorkflowLayoutEngine extends ElkLayoutEngine {
-   @Override
-   public void layout(final GModelState modelState) {
-      if (modelState.getRoot() instanceof GGraph) {
-         GLSPLayoutConfigurator configurator = new GLSPLayoutConfigurator();
-         configurator.configureByType("graph");
-         this.layout((GGraph) modelState.getRoot(), configurator);
-      }
-   }
+public class WorkflowLayoutEngine extends EMSLayoutEngine {
+
+	@Override
+	public GModelElement layoutRoot(final GModelState modelState) {
+		GModelElement newRoot = EcoreUtil.copy(modelState.getRoot());
+		if (newRoot instanceof GGraph) {
+			GLSPLayoutConfigurator configurator = new GLSPLayoutConfigurator();
+			// ELK Layered Algorithm Reference:
+			// https://www.eclipse.org/elk/reference/algorithms/org-eclipse-elk-layered.html
+			configurator.configureByType(DefaultTypes.GRAPH)//
+					.setProperty(LayeredOptions.DIRECTION, Direction.DOWN)
+					.setProperty(LayeredOptions.CONSIDER_MODEL_ORDER, OrderingStrategy.NODES_AND_EDGES)
+					.setProperty(LayeredOptions.SPACING_BASE_VALUE, 35d)
+					.setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.POLYLINE);
+			this.layout((GGraph) newRoot, configurator);
+		}
+		return newRoot;
+	}
 
 }
