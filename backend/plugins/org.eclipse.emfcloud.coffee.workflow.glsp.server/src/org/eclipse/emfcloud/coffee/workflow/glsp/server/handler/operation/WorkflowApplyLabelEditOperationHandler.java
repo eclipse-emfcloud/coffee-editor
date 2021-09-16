@@ -10,52 +10,41 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
 
-import java.util.Optional;
+import static org.eclipse.glsp.server.protocol.GLSPServerException.getOrThrow;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes;
 import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicOperationHandler;
 import org.eclipse.glsp.graph.GLabel;
-import org.eclipse.glsp.graph.GModelElement;
-import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
+import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 public class WorkflowApplyLabelEditOperationHandler
 		extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelState, WorkflowModelServerAccess> {
 
 	@Override
 	public void executeOperation(ApplyLabelEditOperation operation, WorkflowModelState modelState,
-			WorkflowModelServerAccess modelAccess) {
-		Optional<GModelElement> element = modelState.getIndex().get(operation.getLabelId());
-		if (!element.isPresent() && !(element.get() instanceof GLabel)) {
-			throw new IllegalArgumentException("Element with provided ID cannot be found or is not a GLabel");
-		}
+			WorkflowModelServerAccess modelServerAccess) {
 
-		// FIXME: switch to custom commands
-//		GNode gNode = getParentGNode((GLabel) element.get());
-//		Node node = modelAccess.getNodeById(gNode.getId());
-//		if (!(node instanceof Task)) {
-//			throw new IllegalAccessError("Edited label isn't label representing a task");
-//		}
-//
-//		SetCommand setCommand = (SetCommand) SetCommand.create(modelAccess.getEditingDomain(), node, CoffeePackage.Literals.TASK__NAME,
-//				operation.getText());
-//		CCommand setCCommand = SetCommandContribution.clientCommand(setCommand);
-//		if (!modelAccess.edit(setCCommand).thenApply(res -> res.body()).get()) {
-//			throw new IllegalAccessError("Could not execute command: " + setCommand);
-//		}
-	}
+		String inputText = operation.getText().trim();
+		String graphicalElementId = operation.getLabelId();
+		GLabel label = getOrThrow(modelState.getIndex().findElementByClass(graphicalElementId, GLabel.class),
+				GLabel.class, "Element with provided ID cannot be found or is not a GLabel");
 
-	public GNode getParentGNode(GLabel sLabel) {
-		EObject parent = sLabel;
-		while (!(parent instanceof GNode) || parent == null) {
-			parent = parent.eContainer();
+		switch (label.getType()) {
+		case ModelTypes.LABEL_HEADING:
+			String elementId = graphicalElementId.replace("_classname", "");
+			Task semanticElement = getOrThrow(modelState.getIndex().getSemantic(elementId), Task.class,
+					"Could not find Task for id '" + elementId + "', no delete operation executed.");
+			modelServerAccess.setTaskName(modelState, semanticElement, inputText).thenAccept(response -> {
+				if (!response.body()) {
+					throw new GLSPServerException("Could not rename Task to: " + inputText);
+				}
+			});
+			break;
 		}
-		if (!(parent instanceof GNode)) {
-			throw new IllegalArgumentException("Cannot find node parent of label");
-		}
-		return (GNode) parent;
 	}
 
 }

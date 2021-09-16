@@ -61,7 +61,7 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 		// model server-aware operation handlers
 		bindings.rebind(CompoundOperationHandler.class, WorkflowCompoundOperationHandler.class);
 		bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
-		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class); // TODO
+		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class);
 		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
 		bindings.rebind(ReconnectEdgeOperationHandler.class, ReconnectFlowHandler.class); // TODO
 
