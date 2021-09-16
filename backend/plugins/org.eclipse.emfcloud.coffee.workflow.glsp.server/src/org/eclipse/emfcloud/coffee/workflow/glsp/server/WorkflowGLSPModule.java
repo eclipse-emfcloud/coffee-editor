@@ -49,8 +49,6 @@ import org.eclipse.glsp.server.utils.MultiBinding;
 
 public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 
-	// TODO need to bind layout configuration?
-
 	@Override
 	protected Class<? extends ModelStateProvider> bindModelStateProvider() {
 		return WorkflowModelStateProvider.class;
