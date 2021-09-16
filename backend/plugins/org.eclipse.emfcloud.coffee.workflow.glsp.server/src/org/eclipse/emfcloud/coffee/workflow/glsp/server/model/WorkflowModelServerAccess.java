@@ -29,6 +29,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNo
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
@@ -121,14 +123,22 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
 	public CompletableFuture<Response<Boolean>> setTaskName(final WorkflowModelState modelState,
 			final Node nodeToRename, final String newName) {
-
 		CCommand setCommand = SetTaskNameCommandContribution.create(getSemanticUriFragment(nodeToRename), newName);
 		return this.edit(setCommand);
 	}
 
-	/*
-	 * Change Routing Points
-	 */
+	public CompletableFuture<Response<Boolean>> reconnectFlowSource(final Flow flow, final Node newSource) {
+		CCommand command = SetFlowSourceCommandContribution.create(getSemanticUriFragment(flow),
+				getSemanticUriFragment(newSource));
+		return this.edit(command);
+	}
+
+	public CompletableFuture<Response<Boolean>> reconnectFlowTarget(final Flow flow, final Node newTarget) {
+		CCommand command = SetFlowTargetCommandContribution.create(getSemanticUriFragment(flow),
+				getSemanticUriFragment(newTarget));
+		return this.edit(command);
+	}
+
 	public CompletableFuture<Response<Boolean>> changeRoutingPoints(
 			final Map<Edge, ElementAndRoutingPoints> changeBendPointsMap) {
 		CCompoundCommand compoundCommand = CCommandFactory.eINSTANCE.createCompoundCommand();
