@@ -29,6 +29,7 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNo
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
@@ -116,6 +117,13 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 	public CompletableFuture<Response<Boolean>> removeNode(WorkflowModelState modelState, Node node) {
 		CCompoundCommand command = RemoveNodeCommandContribution.create(getSemanticUriFragment(node));
 		return this.edit(command);
+	}
+
+	public CompletableFuture<Response<Boolean>> setTaskName(final WorkflowModelState modelState,
+			final Node nodeToRename, final String newName) {
+
+		CCommand setCommand = SetTaskNameCommandContribution.create(getSemanticUriFragment(nodeToRename), newName);
+		return this.edit(setCommand);
 	}
 
 	/*
