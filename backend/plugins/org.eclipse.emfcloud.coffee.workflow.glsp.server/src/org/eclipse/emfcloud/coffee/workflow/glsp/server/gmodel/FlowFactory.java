@@ -12,6 +12,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.gmodel;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
@@ -55,6 +56,14 @@ public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
 				builder.addRoutingPoints(bendPoints);
 			}
 		});
+		
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlights().get(EcoreUtil.getURI(flow).toString().split("#_")[1]);
+			if(change != null) {
+				builder.addCssClass(change);
+			}
+		}
+		
 		return builder.build();
 	}
 
@@ -76,6 +85,14 @@ public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
 				builder.addRoutingPoints(bendPoints);
 			}
 		});
+		
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlights().get(EcoreUtil.getURI(flow).toString().split("#_")[1]);
+			if(change != null) {
+				builder.addCssClass(change);
+			}
+		}
+		
 		return builder.build();
 	}
 

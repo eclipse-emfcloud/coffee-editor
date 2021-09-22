@@ -6,3 +6,11 @@ out/
 !*-app/package.json
 server/
 *.vsix
+.DS_Store
+
+coffee-server/build/
+
+.yalc
+
+!comparison-extension/server
+

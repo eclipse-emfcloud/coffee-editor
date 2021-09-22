@@ -20,6 +20,9 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.Diagram;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelState;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class WorkflowModelState extends EMSNotationModelState {
 	public static final String OPTION_WORKFLOW_INDEX = "workflowIndex";
@@ -27,6 +30,8 @@ public class WorkflowModelState extends EMSNotationModelState {
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelState.class);
 
 	protected WorkflowModelServerAccess modelAccess;
+	
+	private Map<String, String> highlights = new HashMap<>();
 
 	// Our semantic model is not the whole machine but only the selected workflow
 	protected Workflow semanticModel;
@@ -91,5 +96,33 @@ public class WorkflowModelState extends EMSNotationModelState {
 			throw new GLSPServerException("Error during notation diagram loading");
 		}
 		this.notationModel = (Diagram) notationRoot;
+	}
+	
+	public Map<String, String> getHighlights() {
+		return highlights;
+	}
+
+	public void addHighlight(Entry<String, String> entry) {
+		String current = this.highlights.get(entry.getKey());
+		if(current == null || isHigher(entry.getKey(), current)) {
+			this.highlights.put(entry.getKey(), entry.getValue());
+		}
+	}
+	
+	private boolean isHigher(String key, String current) {
+		if( current == "deleted") {
+			return false;
+		}
+		if( current == "changed") {
+			if ( key == "deleted") {
+				return true;
+			}
+		}
+		if( current == "added") {
+			if ( key == "deleted" || key == "changed") {
+				return true;
+			}
+		}
+		return false;
 	}
 }

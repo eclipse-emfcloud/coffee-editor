@@ -229,6 +229,42 @@ g .movement-not-allowed>.sprotty-node {
 }
 
 .sprotty-issue.sprotty-info {
-    stroke-width: 0;
-    fill-opacity: 1;
+  stroke-width: 0;
+  fill-opacity: 1;
+}
+
+.deleted rect {
+  fill: red !important;
+}
+
+.changed rect {
+  fill: orange !important;
+}
+
+.added rect {
+  fill: green !important;
+}
+
+.deleted polygon {
+  stroke: red !important;
+}
+
+.changed polygon {
+  stroke: orange !important;
+}
+
+.added polygon {
+  stroke: green !important;
+}
+
+.deleted path {
+  stroke: red !important;
+}
+
+.changed path {
+  stroke: orange !important;
+}
+
+.added path {
+  stroke: green !important;
 }

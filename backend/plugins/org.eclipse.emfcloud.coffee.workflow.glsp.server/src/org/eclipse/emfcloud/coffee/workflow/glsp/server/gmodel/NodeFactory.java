@@ -10,6 +10,7 @@
  ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.gmodel;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.CoffeeTypeUtil;
@@ -50,6 +51,13 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 				builder.size(GraphUtil.copy(shape.getSize()));
 			}
 		});
+		
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlights().get(EcoreUtil.getURI(task).toString().split("#_")[1]);
+			if(change != null) {
+				builder.addCssClass(change);
+			}
+		}
 
 		return builder.build();
 	}
@@ -68,6 +76,14 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 				builder.size(GraphUtil.copy(shape.getSize()));
 			}
 		});
+		
+		if(modelState instanceof WorkflowModelState) {
+			String change = ((WorkflowModelState) modelState).getHighlights().get(EcoreUtil.getURI(node).toString().split("#_")[1]);
+			if(change != null) {
+				builder.addCssClass(change);
+			}
+		}
+		
 		return builder.build();
 	}
 

@@ -11,7 +11,10 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,6 +40,7 @@ import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.common.base.Preconditions;
+import com.google.gson.Gson;
 
 public class WorkflowModelFactory implements GModelFactory {
 
@@ -44,6 +48,19 @@ public class WorkflowModelFactory implements GModelFactory {
 	public void createGModel(GModelState gModelState) {
 		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
 		DiagramModelFactory gModelFactory = new DiagramModelFactory(modelState);
+		
+		Map<String,String> clientOptions = gModelState.getClientOptions();
+		
+		if (clientOptions.get("highlights") != null) {
+			HashMap<String, String> map = new Gson().fromJson(clientOptions.get("highlights"), HashMap.class);
+			for (Entry<String, String> entry: map.entrySet()) {
+				((WorkflowModelState) modelState).addHighlight(entry);
+			}
+		} else {
+			modelState.modelAccess.createValidationFramework(modelState);
+			modelState.modelAccess.subscribeToValidation();
+			modelState.modelAccess.initConstraintList();
+		}
 
 		GModelRoot gmodelRoot = gModelFactory.createRoot(modelState);
 
@@ -57,10 +74,6 @@ public class WorkflowModelFactory implements GModelFactory {
 
 		gmodelRoot = gModelFactory.create();
 		initialize(gmodelRoot, modelIndex, semanticModel, diagram);
-		
-		modelState.modelAccess.createValidationFramework(modelState);
-		modelState.modelAccess.subscribeToValidation();
-		modelState.modelAccess.initConstraintList();
 
 		modelState.setRoot(gmodelRoot);
 
