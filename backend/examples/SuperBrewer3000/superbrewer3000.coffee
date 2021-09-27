@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <org.eclipse.emfcloud.coffee.model:Machine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emfcloud.coffee.model="http://www.eclipse.org/emfcloud/coffee/model" xmi:id="_uTowcMnNEeuzYY8U8dVg6Q" name="SuperBrewer3000">
-  <children xsi:type="org.eclipse.emfcloud.coffee.model:BrewingUnit" xmi:id="_glMiUMHlEeuOQ_oVeIeN4A">
+  <children xsi:type="org.eclipse.emfcloud.coffee.model:BrewingUnit" xmi:id="_glMiUXDlEeuOQ_oVeIeN4A">
     <children xsi:type="org.eclipse.emfcloud.coffee.model:ControlUnit" xmi:id="_OYWC8MqOEeuYap5GtvNPrw">
       <processor xmi:id="_fy6cYMqOEeuYap5GtvNPrw" vendor="Qualcommm" clockSpeed="5" numberOfCores="10" socketconnectorType="Z51" thermalDesignPower="1000"/>
       <dimension xmi:id="_sZx2QMqOEeuYap5GtvNPrw" width="10" height="12" length="13"/>

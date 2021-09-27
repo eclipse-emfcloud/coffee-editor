@@ -50,15 +50,14 @@ export namespace CoffeeModel {
     const nodes = [
         Type.AutomaticTask,
         Type.Decision,
-        Type.Fork,
-        Type.Join,
         Type.ManualTask,
         Type.Merge
     ];
 
     const flows = [
-        Type.Flow,
-        Type.WeightedFlow
+        // TODO adding edges is currently not possible because they require a source and target
+        // Type.Flow,
+        // Type.WeightedFlow
     ];
 
     /** Maps types to their creatable children */

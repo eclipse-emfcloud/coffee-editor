@@ -32,10 +32,24 @@ import { inject, injectable } from 'inversify';
 import { clone, isEqual } from 'lodash';
 
 import { CoffeeModel } from './coffee-model';
+import {
+    AddAutomatedTaskCommand,
+    AddDecisionNodeCommand,
+    AddFlowCommand,
+    AddManualTaskCommand,
+    AddMergeNodeCommand,
+    AddWeightedFlowCommand,
+    ID_PROP,
+    SetTaskNameCommand
+} from './model-server';
+
+interface PathSegment { property: string; index?: string }
 
 @injectable()
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     private delayedRefresh = false;
+    private idToPath: Map<string, PathSegment[]> = new Map<string, PathSegment[]>();
+
     constructor(
         @inject(MasterTreeWidget)
         readonly treeWidget: MasterTreeWidget,
@@ -75,28 +89,50 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             }
         });
         this.subscriptionService.onIncrementalUpdateListener(modelServerMessage => {
-            const command = modelServerMessage.data;
-            // the #/ marks the beginning of the actual path, but we also want the first slash removed so +3
-            const ownerPropIndexPath = command.owner.$ref
-                .substring(command.owner.$ref.indexOf('#/') + 3)
-                .split('/')
-                .filter(v => v.length !== 0)
-                .map(path => {
-                    const indexSplitPos = path.indexOf('.');
-                    // each property starts with an @ so we ignore it
-                    return {
-                        property: path.substring(1, indexSplitPos),
-                        index: path.substring(indexSplitPos + 1)
-                    };
-                });
-            let ownerNode;
-            if (ownerPropIndexPath.length !== 0) {
-                ownerNode = this.treeWidget.findNode(ownerPropIndexPath);
-            } else {
-                // TODO should be done in findNode
-                ownerNode = (this.treeWidget.model.root as TreeEditor.RootNode)
-                    .children[0];
+            const command = modelServerMessage.data.source;
+
+            // handle custom add commands without explicit ref
+            switch (command.type) {
+                case AddAutomatedTaskCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.AutomaticTask, 'nodes', { name: 'New Task'});
+                    return;
+                }
+                case AddManualTaskCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.ManualTask, 'nodes', { name: 'New Task'});
+                    return;
+                }
+                case AddDecisionNodeCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.Decision, 'nodes');
+                    return;
+                }
+                case AddMergeNodeCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.Merge, 'nodes');
+                    return;
+                }
+                case AddFlowCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.Flow, 'flows');
+                    return;
+                }
+                case AddWeightedFlowCommand.TYPE: {
+                    this.handleAddWorkflowChildCommand(CoffeeModel.Type.WeightedFlow, 'flows');
+                    return;
+                }
+                case SetTaskNameCommand.TYPE: {
+                    const taskId = command.properties.semanticUriFragment;
+                    const newName = command.properties.newName;
+                    const taskPropIndexPath = this.idToPath.get(taskId);
+                    const taskNode = this.treeWidget.findNode(taskPropIndexPath);
+                    const data = clone(taskNode.jsonforms.data);
+                    data.name = newName;
+                    this.treeWidget.updateDataForNode(taskNode, data);
+                    return;
+                }
             }
+
+            // id starts after the #
+            const ownerId = (command.owner.$ref as string).substring((command.owner.$ref.indexOf('#') + 1));
+            const ownerPropIndexPath = this.idToPath.get(ownerId);
+            const ownerNode= this.treeWidget.findNode(ownerPropIndexPath);
             const objectToModify =
                 ownerPropIndexPath.length === 0
                     ? this.instanceData
@@ -107,15 +143,24 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                                 : data[path.property][path.index],
                         this.instanceData
                     );
+
+            // TODO handle custom remove compound commands
             switch (command.type) {
                 case 'add': {
                     if (!objectToModify[command.feature]) {
                         objectToModify[command.feature] = [];
                     }
-                    objectToModify[command.feature].push(...command.objectsToAdd);
+                    const objectsToAdd: any[] = command.objectValues;
+                    // Add objects and get id for each one
+                    objectsToAdd.forEach(toAdd => {
+                        objectToModify[command.feature].push(toAdd);
+                        const addedIndex = objectToModify[command.feature].length - 1;
+                        const toAddPath: PathSegment[] = [...ownerPropIndexPath, { property: command.feature, index: `${addedIndex}` }];
+                        this.updateElementId(toAddPath, toAdd);
+                    });
                     this.treeWidget.addChildren(
                         ownerNode,
-                        command.objectsToAdd,
+                        objectsToAdd,
                         command.feature
                     );
                     if (!this.isVisible) {
@@ -124,9 +169,10 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                     break;
                 }
                 case 'remove': {
-                    command.indices.forEach(i =>
-                        objectToModify[command.feature].splice(i, 1)
-                    );
+                    command.indices.forEach(i => {
+                        const removed = objectToModify[command.feature].splice(i, 1);
+                        this.idToPath.delete(removed[ID_PROP]);
+                    });
                     this.treeWidget.removeChildren(
                         ownerNode,
                         command.indices,
@@ -158,7 +204,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 default: { /** */ }
             }
         });
-        this.modelServerApi.get(this.getModelIDToRequest()).then(response => {
+        this.modelServerApi.get(this.getModelIDToRequest(), 'json').then(response => {
             if (response.statusCode === 200) {
                 if (isEqual(this.instanceData, response.body)) {
                     return;
@@ -166,6 +212,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 this.instanceData = response.body;
                 this.treeWidget
                     .setData({ error: false, data: this.instanceData })
+                    .then(() => this.initIdMap())
                     .then(() => this.treeWidget.selectFirst());
                 return;
             }
@@ -200,6 +247,64 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         return paths;
     }
 
+    private toXmiPath(path: PathSegment[]): string {
+        if (path.length === 0) {
+            return '//';
+        }
+        return path.reduce((xmiPath, segment) => {
+            let result = xmiPath + `/@${segment.property}`;
+            if (segment.index) {
+                result += `.${segment.index}`;
+            }
+            return result;
+        }, '/');
+    }
+
+    /** Updates a data objects id from the model server */
+    private updateElementId(path: PathSegment[], data: any): void {
+        const xmiPath = this.toXmiPath(path);
+        this.modelServerApi.getElementById(this.getModelIDToRequest(), xmiPath, 'json').then(response => {
+            const newElementId = response.body[ID_PROP];
+            data[ID_PROP] = newElementId;
+            this.idToPath.set(newElementId, path);
+        }, err => console.error('Could not update element id', xmiPath, err));
+    }
+
+    /** Initializes the map from element ids to their path segments */
+    private initIdMap(): void {
+        this.idToPath.clear();
+        const machineNode = (this.treeWidget.model.root as TreeEditor.RootNode).children[0] as TreeEditor.Node;
+        this.idToPath.set(machineNode.jsonforms.data[ID_PROP], []);
+        const recursion = (node: TreeEditor.Node, path: PathSegment[]): void => {
+            const nodePath = [...path, { property: node.jsonforms.property, index: node.jsonforms.index }];
+            this.idToPath.set(node.jsonforms.data[ID_PROP], nodePath);
+            node.children.forEach(child => recursion(child as TreeEditor.Node, nodePath));
+        };
+        machineNode.children.forEach(node => recursion(node as TreeEditor.Node, []));
+    }
+
+    private handleAddWorkflowChildCommand(eClass: string, property: string, additionalProps = {}): void {
+        const machineNode = (this.treeWidget.model.root as TreeEditor.RootNode)
+            .children[0] as TreeEditor.Node;
+        // TODO Always adds to the first workflow because we currently have now way of knowing which workflow is affected.
+        const workflowNode = machineNode.children.find(n =>
+            (n as TreeEditor.Node).jsonforms.type === CoffeeModel.Type.Workflow
+        ) as TreeEditor.Node;
+
+        const data = { eClass, ...additionalProps };
+        if (!workflowNode.jsonforms.data[property]) {
+            workflowNode.jsonforms.data[property] = [];
+        }
+        workflowNode.jsonforms.data[property].push(data);
+        this.treeWidget.addChildren(workflowNode, [data], property);
+
+        // Get id of the new element and add it to the data and the idToPath mapping
+        // new node was added at the end
+        const newIndex = `${workflowNode.jsonforms.data[property].length - 1}`;
+        const path = [{ property: 'workflows', index: '0' }, { property, index: newIndex }];
+        this.updateElementId(path, data);
+    }
+
     public save(): void {
         this.logger.info('Save data to server');
         this.modelServerApi.save(this.getModelIDToRequest());
@@ -219,11 +324,22 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         this.modelServerApi.edit(this.getModelIDToRequest(), removeCommand);
     }
     protected async addNode({ node, type, property }: AddCommandProperty): Promise<void> {
-        const addCommand = new AddCommand(
-            this.getNodeDescription(node),
-            property,
-            [{ eClass: type }]
-        );
+        let addCommand;
+        if (type === CoffeeModel.Type.AutomaticTask) {
+            addCommand = new AddAutomatedTaskCommand();
+        } else if (type === CoffeeModel.Type.ManualTask) {
+            addCommand = new AddManualTaskCommand();
+        } else if (type === CoffeeModel.Type.Decision) {
+            addCommand = new AddDecisionNodeCommand();
+        } else if (type === CoffeeModel.Type.Merge) {
+            addCommand = new AddMergeNodeCommand();
+        } else {
+            addCommand = new AddCommand(
+                this.getNodeDescription(node),
+                property,
+                [{ eClass: type }]
+            );
+        }
         this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
     }
 
@@ -235,7 +351,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     protected async handleFormUpdate(data: any, node: TreeEditor.Node): Promise<void> {
         const modelServerNode = this.getNodeDescription(node);
         Object.keys(data)
-            .filter(key => key !== 'eClass')
+            .filter(key => key !== 'eClass' && key !== ID_PROP)
             .forEach(key => {
                 if (
                     data[key] instanceof Object &&
