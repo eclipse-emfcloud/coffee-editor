@@ -24,7 +24,7 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class AddMergeNodeCommandContribution extends CompoundCommandContribution {
 
-	public static final String TYPE = "addMergeNodeContributuion";
+	public static final String TYPE = "addMergeNodeContribution";
 
 	public static CCompoundCommand create(final GPoint position) {
 		CCompoundCommand addCommand = CCommandFactory.eINSTANCE.createCompoundCommand();
