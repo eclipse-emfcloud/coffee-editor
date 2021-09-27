@@ -11,6 +11,7 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNode
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
+import org.eclipse.emfcloud.modelserver.common.ModelServerPathParameters;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
@@ -40,6 +41,7 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 	protected void configureCodecs(final MapBinding<String, Codec> binding) {
 		super.configureCodecs(binding);
 		binding.put(CoffeeResource.FILE_EXTENSION, CoffeeCodec.class);
+		binding.put(ModelServerPathParameters.FORMAT_JSON, CoffeeTreeJsonCodec.class);
 	}
 
 	@Override
