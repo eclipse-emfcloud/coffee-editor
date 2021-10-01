@@ -11,7 +11,6 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import org.eclipse.elk.alg.layered.options.LayeredOptions;
-import org.eclipse.elk.alg.layered.options.OrderingStrategy;
 import org.eclipse.elk.core.options.Direction;
 import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -24,7 +23,6 @@ import org.eclipse.glsp.server.model.GModelState;
 
 public class WorkflowLayoutEngine extends EMSLayoutEngine {
 
-	@Override
 	public GModelElement layoutRoot(final GModelState modelState) {
 		GModelElement newRoot = EcoreUtil.copy(modelState.getRoot());
 		if (newRoot instanceof GGraph) {
@@ -33,9 +31,8 @@ public class WorkflowLayoutEngine extends EMSLayoutEngine {
 			// https://www.eclipse.org/elk/reference/algorithms/org-eclipse-elk-layered.html
 			configurator.configureByType(DefaultTypes.GRAPH)//
 					.setProperty(LayeredOptions.DIRECTION, Direction.DOWN)
-					.setProperty(LayeredOptions.CONSIDER_MODEL_ORDER, OrderingStrategy.NODES_AND_EDGES)
 					.setProperty(LayeredOptions.SPACING_BASE_VALUE, 35d)
-					.setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.POLYLINE);
+					.setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.UNDEFINED);
 			this.layout((GGraph) newRoot, configurator);
 		}
 		return newRoot;
