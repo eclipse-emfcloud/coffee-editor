@@ -15,12 +15,13 @@
  ********************************************************************************/
 import { ILogger } from '@theia/core';
 import { BackendApplicationContribution } from '@theia/core/lib/node';
+import { inject, injectable } from '@theia/core/shared/inversify';
 import { ProcessErrorEvent } from '@theia/process/lib/node/process';
 import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
 import * as cp from 'child_process';
-import * as glob from 'glob';
-import { inject, injectable } from 'inversify';
-import * as path from 'path';
+import * as process from 'process';
+
+import { getJarPath, inDebugMode } from './backend-module';
 
 @injectable()
 export class WorkflowLSPServerLauncher implements BackendApplicationContribution {
@@ -28,21 +29,25 @@ export class WorkflowLSPServerLauncher implements BackendApplicationContribution
     @inject(ILogger) private readonly logger: ILogger;
 
     initialize(): void {
+        if (inDebugMode()) {
+            return;
+        }
         const command = 'java';
 
-        const serverPath = path.resolve(__dirname, '..', '..', 'server');
-        const jarPaths = glob.sync('**/plugins/org.eclipse.equinox.launcher_*.jar', { cwd: serverPath });
-        if (jarPaths.length === 0) {
+        const jarPath = getJarPath('lsp');
+        if (jarPath.length === 0) {
             throw new Error('[WorkflowDSL] Server launcher not found.');
         }
-        const jarPath = path.resolve(serverPath, jarPaths[0]);
-        const args: string[] = ['-jar', jarPath];
+        const args: string[] = ['-jar', jarPath, '-startSocket'];
 
         this.logger.info('[WorkflowDSL] Spawn Server Process from ' + jarPath);
-        this.spawnProcessAsync(command, args, {
+        const spawnedProcess = this.spawnProcessAsync(command, args, {
             detached: true,
             shell: true,
             stdio: ['inherit', 'pipe']
+        });
+        process.on('beforeExit', () => {
+            spawnedProcess.then(p => p.kill());
         });
     }
 

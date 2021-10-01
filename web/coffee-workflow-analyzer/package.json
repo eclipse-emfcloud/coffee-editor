@@ -16,9 +16,8 @@
     "@theia/process": "^1.0.0",
     "express": "4.17.1",
     "glob": "7.1.4",
-    "vscode-jsonrpc": "4.0.0",
-    "vscode-ws-jsonrpc": "0.1.0",
-    "coffee-workflow-analyzer-editors": "0.7.0"
+    "vscode-jsonrpc": "^5.0.0",
+    "vscode-ws-jsonrpc": "0.2.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

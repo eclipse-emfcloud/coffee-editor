@@ -20,7 +20,8 @@
         "--plugins=local-dir:${workspaceRoot}/browser-app/plugins"
       ],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "WF_CONFIG_LSP": "localhost:5017"
       },
       "sourceMaps": true,
       "outFiles": [
@@ -44,6 +45,19 @@
       "url": "http://localhost:3000/",
       "sourceMaps": true,
       "webRoot": "${workspaceRoot}/browser-app"
+    },
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "Launch LSP Extension",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}/coffee-workflow-analyzer-editor"
+      ],
+      "outFiles": [
+        "${workspaceRoot}/coffee-workflow-analyzer-editor/lib/**/*.js"
+      ],
+      "sourceMaps": true
     }
   ]
 }
