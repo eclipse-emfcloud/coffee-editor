@@ -12,10 +12,6 @@
     <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/CoffeeModelServer"/>
     <booleanAttribute key="default" value="false"/>
     <setAttribute key="deselected_workspace_bundles">
-        <setEntry value="com.eclipsesource.uml.glsp"/>
-        <setEntry value="com.eclipsesource.uml.glsp.app"/>
-        <setEntry value="com.eclipsesource.uml.modelserver"/>
-        <setEntry value="com.eclipsesource.uml.modelserver.app"/>
         <setEntry value="org.eclipse.emfcloud.coffee.codegen.cpp.application"/>
         <setEntry value="org.eclipse.emfcloud.coffee.codegen.java.application"/>
         <setEntry value="org.eclipse.emfcloud.coffee.common"/>
@@ -107,6 +103,10 @@
         <setEntry value="org.eclipse.e4.ui.workbench.swt@default:default"/>
         <setEntry value="org.eclipse.e4.ui.workbench3@default:default"/>
         <setEntry value="org.eclipse.e4.ui.workbench@default:default"/>
+        <setEntry value="org.eclipse.elk.alg.common@default:default"/>
+        <setEntry value="org.eclipse.elk.alg.layered@default:default"/>
+        <setEntry value="org.eclipse.elk.core@default:default"/>
+        <setEntry value="org.eclipse.elk.graph@default:default"/>
         <setEntry value="org.eclipse.emf.common@default:default"/>
         <setEntry value="org.eclipse.emf.ecore.change@default:default"/>
         <setEntry value="org.eclipse.emf.ecore.xmi@default:default"/>
@@ -119,6 +119,8 @@
         <setEntry value="org.eclipse.emfcloud.modelserver.common@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.edit@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.emf@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.glsp.integration@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.commands@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.model@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.lib@default:default"/>
         <setEntry value="org.eclipse.equinox.app@default:default"/>
@@ -128,6 +130,7 @@
         <setEntry value="org.eclipse.equinox.preferences@default:default"/>
         <setEntry value="org.eclipse.equinox.registry@default:default"/>
         <setEntry value="org.eclipse.glsp.graph@default:default"/>
+        <setEntry value="org.eclipse.glsp.layout@default:default"/>
         <setEntry value="org.eclipse.glsp.server@default:default"/>
         <setEntry value="org.eclipse.help@default:default"/>
         <setEntry value="org.eclipse.jdt.annotation*2.2.600.v20200408-1511@default:default"/>
