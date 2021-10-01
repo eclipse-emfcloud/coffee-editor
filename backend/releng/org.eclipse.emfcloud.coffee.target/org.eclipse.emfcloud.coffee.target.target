@@ -41,7 +41,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.feature.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109131017/"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109280727/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.emfjson-jackson" version="0.0.0"/>
@@ -77,7 +77,8 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.glsp.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.emfcloud.modelserver.glsp.notation.model" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202109140714/"/>
+      <unit id="org.eclipse.emfcloud.modelserver.glsp.notation.commands" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202110011520/"/>
     </location>
   </locations>
 </target>

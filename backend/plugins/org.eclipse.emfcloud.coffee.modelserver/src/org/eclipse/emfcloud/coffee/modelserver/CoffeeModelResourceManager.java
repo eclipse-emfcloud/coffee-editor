@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emfcloud.modelserver.emf.common.RecordingModelResourceManager;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 import org.eclipse.emfcloud.modelserver.emf.configuration.ServerConfiguration;
-import org.eclipse.emfcloud.modelserver.glsp.notation.model.NotationUtil;
+import org.eclipse.emfcloud.modelserver.glsp.notation.epackage.NotationUtil;
 
 import com.google.common.base.Strings;
 import com.google.inject.Inject;

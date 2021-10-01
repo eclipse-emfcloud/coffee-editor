@@ -47,7 +47,7 @@ location "http://download.eclipse.org/releases/2021-06" {
 	org.eclipse.emf.transaction.feature.group [1.12.0,2.0.0)
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109131017/" {
+location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109280727/" {
 	org.eclipse.emfcloud.modelserver.feature.feature.group lazy
 }
 
@@ -80,7 +80,8 @@ location "https://raw.githubusercontent.com/eclipsesource/model-validation-updat
 	org.eclipse.emfcloud.validation.framework
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202109140714/" {
+location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202110011520/" {
 	org.eclipse.emfcloud.modelserver.glsp.feature.feature.group lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
+	org.eclipse.emfcloud.modelserver.glsp.notation.commands lazy
 }

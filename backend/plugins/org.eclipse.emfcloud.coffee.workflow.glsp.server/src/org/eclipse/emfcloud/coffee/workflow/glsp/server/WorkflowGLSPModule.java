@@ -18,11 +18,11 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Create
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateManualTaskHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateMergeNodeHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.CreateWeightedFlowHandler;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowReconnectFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowChangeRoutingPointsOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowCompoundOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowDeleteOperationHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowReconnectFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelSourceLoader;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelStateProvider;

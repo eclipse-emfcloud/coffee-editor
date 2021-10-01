@@ -18,12 +18,9 @@ import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
 import org.eclipse.emfcloud.modelserver.edit.CommandContribution;
 import org.eclipse.emfcloud.modelserver.emf.common.ModelResourceManager;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
-import org.eclipse.emfcloud.modelserver.emf.di.DefaultModelServerModule;
-import org.eclipse.emfcloud.modelserver.glsp.notation.commands.contribution.ChangeBoundsCommandContribution;
-import org.eclipse.emfcloud.modelserver.glsp.notation.commands.contribution.ChangeRoutingPointsCommandContribution;
-import org.eclipse.emfcloud.modelserver.glsp.notation.model.NotationPackageConfiguration;
+import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerModule;
 
-public class CoffeeModelServerModule extends DefaultModelServerModule {
+public class CoffeeModelServerModule extends EMSNotationModelServerModule {
 
 	@Override
 	protected Class<? extends ModelResourceManager> bindModelResourceManager() {
@@ -34,7 +31,6 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 	protected void configureEPackages(final MultiBinding<EPackageConfiguration> binding) {
 		super.configureEPackages(binding);
 		binding.add(CoffeePackageConfiguration.class);
-		binding.add(NotationPackageConfiguration.class);
 	}
 
 	@Override
@@ -62,11 +58,6 @@ public class CoffeeModelServerModule extends DefaultModelServerModule {
 		binding.put(RemoveFlowCommandContribution.TYPE, RemoveFlowCommandContribution.class);
 		binding.put(SetFlowSourceCommandContribution.TYPE, SetFlowSourceCommandContribution.class);
 		binding.put(SetFlowTargetCommandContribution.TYPE, SetFlowTargetCommandContribution.class);
-
-		// ChangeBounds
-		binding.put(ChangeBoundsCommandContribution.TYPE, ChangeBoundsCommandContribution.class);
-		// ChangeRoutingPoints
-		binding.put(ChangeRoutingPointsCommandContribution.TYPE, ChangeRoutingPointsCommandContribution.class);
 	}
 
 }
