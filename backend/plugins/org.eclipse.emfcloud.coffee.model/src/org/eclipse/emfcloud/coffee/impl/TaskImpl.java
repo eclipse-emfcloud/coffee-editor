@@ -26,9 +26,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.util.CoffeeValidator;

@@ -14,12 +14,12 @@
         upperBound="-1" eType="#//Workflow" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ControlUnit" eSuperTypes="#//Component">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="processor" lowerBound="1"
-        eType="#//Processor" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" lowerBound="1"
-        eType="#//Dimension" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ram" lowerBound="1" upperBound="-1"
-        eType="#//RAM" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processor" eType="#//Processor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" eType="#//Dimension"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ram" upperBound="-1" eType="#//RAM"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//Display"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
