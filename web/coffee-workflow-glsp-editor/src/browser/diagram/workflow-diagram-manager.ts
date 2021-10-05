@@ -25,6 +25,7 @@ import {
 import { WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
+import { GraphicalComparisonWidget } from 'comparison-extension/lib/browser/graphical/graphical-comparison-widget';
 import { inject, injectable, postConstruct } from 'inversify';
 import { DiagramServer, ModelSource, RequestModelAction, TYPES } from 'sprotty';
 
@@ -87,6 +88,21 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
     //         workspaceRoot: this.workspaceRoot
     //     } as WorkflowDiagramWidgetOptions;
     // }
+
+    protected createWidgetId(options: DiagramWidgetOptions): string {
+        const widgetId = `${this.diagramType}:${options.uri}`;
+        for (const widget of this.shell.widgets) {
+            if (widget instanceof GLSPDiagramWidget) {
+                if (widget.widgetId === widgetId) {
+                    widget.close();
+                }
+            }
+            if (widget instanceof GraphicalComparisonWidget) {
+                widget.close();
+            }
+        }
+        return widgetId;
+    }
 
     protected createServerOptions(options?: WidgetOpenerOptions): Record<string, any> {
         if (WorkflowGLSPServerOpenerOptions.is(options)) {
