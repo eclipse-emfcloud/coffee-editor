@@ -76,7 +76,7 @@ location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.43.v2
 	org.eclipse.jetty.websocket.server lazy
 }
 
-location "https://raw.githubusercontent.com/eclipsesource/model-validation-updatesite/master/" {
+location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/" {
 	org.eclipse.emfcloud.validation.framework
 }
 

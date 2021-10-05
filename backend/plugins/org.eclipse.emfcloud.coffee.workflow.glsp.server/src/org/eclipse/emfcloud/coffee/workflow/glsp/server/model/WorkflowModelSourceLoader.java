@@ -14,13 +14,19 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.glsp.EMSModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelSourceLoader;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelState;
+import org.eclipse.glsp.server.actions.ActionDispatcher;
 import org.eclipse.glsp.server.model.GModelState;
 
+import com.google.inject.Inject;
+
 public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
+	
+	@Inject
+	private ActionDispatcher actionDispatcher;
 
 	@Override
 	public EMSModelServerAccess createModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
-		return new WorkflowModelServerAccess(sourceURI, modelServerClient);
+		return new WorkflowModelServerAccess(sourceURI, modelServerClient, actionDispatcher);
 	}
 
 	@Override

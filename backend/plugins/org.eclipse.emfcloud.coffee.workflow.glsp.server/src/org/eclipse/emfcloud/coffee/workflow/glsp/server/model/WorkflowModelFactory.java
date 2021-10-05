@@ -57,6 +57,10 @@ public class WorkflowModelFactory implements GModelFactory {
 
 		gmodelRoot = gModelFactory.create();
 		initialize(gmodelRoot, modelIndex, semanticModel, diagram);
+		
+		modelState.modelAccess.createValidationFramework(modelState);
+		modelState.modelAccess.subscribeToValidation();
+		modelState.modelAccess.initConstraintList();
 
 		modelState.setRoot(gmodelRoot);
 

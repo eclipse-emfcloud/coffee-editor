@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2021-06" sequenceNumber="1633595676">
+<target name="Coffee 2021-06" sequenceNumber="1631886506">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="ch.qos.logback.slf4j" version="1.2.3.v20200428-2012"/>
@@ -69,8 +69,8 @@
       <repository location="https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.43.v20210629/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emfcloud.validation.framework" version="1.0.0.202104151035"/>
-      <repository location="https://raw.githubusercontent.com/eclipsesource/model-validation-updatesite/master/"/>
+      <unit id="org.eclipse.emfcloud.validation.framework" version="0.2.0.202109060855"/>
+      <repository location="https://download.eclipse.org/emfcloud/model-validation/p2/nightly/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.glsp.feature.feature.group" version="0.0.0"/>
