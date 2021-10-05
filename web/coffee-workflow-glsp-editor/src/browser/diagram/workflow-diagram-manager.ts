@@ -16,8 +16,9 @@
 import {
     DiagramWidgetOptions,
     GLSPDiagramManager,
+    GLSPDiagramWidget,
     GLSPWidgetOpenerOptions,
-    GLSPWidgetOptions
+    GLSPWidgetOptions,
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
@@ -68,6 +69,17 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
         } as WorkflowDiagramWidgetOptions;
     }
 
+    protected createWidgetId(options: DiagramWidgetOptions): string {
+        const widgetId = `${this.diagramType}:${options.uri}`;
+        for (const widget of this.shell.widgets) {
+            if (widget instanceof GLSPDiagramWidget) {
+                if (widget.widgetId === widgetId) {
+                    widget.close();
+                }
+            }
+        }
+        return widgetId;
+    }
     protected createServerOptions(options?: WidgetOpenerOptions): Record<string, any> {
         if (WorkflowGLSPServerOpenerOptions.is(options)) {
             return options.serverOptions;
