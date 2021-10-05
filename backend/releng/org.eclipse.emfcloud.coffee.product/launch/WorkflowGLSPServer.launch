@@ -52,6 +52,8 @@
         <setEntry value="javax.inject@default:default"/>
         <setEntry value="javax.servlet@default:default"/>
         <setEntry value="javax.websocket@default:default"/>
+        <setEntry value="net.bytebuddy.byte-buddy-agent@default:default"/>
+        <setEntry value="net.bytebuddy.byte-buddy@default:default"/>
         <setEntry value="org.aopalliance@default:default"/>
         <setEntry value="org.apache.batik.constants@default:default"/>
         <setEntry value="org.apache.batik.css@default:default"/>
@@ -121,6 +123,7 @@
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.commands@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.model@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.lib@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.validation.framework@default:default"/>
         <setEntry value="org.eclipse.equinox.app@default:default"/>
         <setEntry value="org.eclipse.equinox.bidi@default:default"/>
         <setEntry value="org.eclipse.equinox.common@2:true"/>
@@ -161,6 +164,15 @@
         <setEntry value="org.eclipse.urischeme@default:default"/>
         <setEntry value="org.eclipse.xtext.logging@default:false"/>
         <setEntry value="org.eclipse.xtext.xbase.lib@default:default"/>
+        <setEntry value="org.emfjson.jackson@default:default"/>
+        <setEntry value="org.hamcrest.core@default:default"/>
+        <setEntry value="org.hamcrest.integration@default:default"/>
+        <setEntry value="org.hamcrest.library@default:default"/>
+        <setEntry value="org.hamcrest.text@default:default"/>
+        <setEntry value="org.hamcrest@default:default"/>
+        <setEntry value="org.junit@default:default"/>
+        <setEntry value="org.mockito@default:default"/>
+        <setEntry value="org.objenesis@default:default"/>
         <setEntry value="org.slf4j.api@default:default"/>
         <setEntry value="org.w3c.css.sac@default:default"/>
         <setEntry value="org.w3c.dom.events@default:default"/>
