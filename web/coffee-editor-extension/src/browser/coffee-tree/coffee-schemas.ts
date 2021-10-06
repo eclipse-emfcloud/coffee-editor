@@ -8,58 +8,60 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
+import { JsonSchema7 } from '@jsonforms/core';
 
+// TODO UI schemas should be stored in the workspace and handled by the modelserver instead of hard coded copies in code
 export const controlUnitView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Control Unit'
+            type: 'Label',
+            text: 'Control Unit'
         },
         {
-            'type': 'Group',
-            'label': 'Processor',
-            'elements': [
+            type: 'Group',
+            label: 'Processor',
+            elements: [
                 {
-                    'type': 'HorizontalLayout',
-                    'elements': [
+                    type: 'HorizontalLayout',
+                    elements: [
                         {
-                            'type': 'VerticalLayout',
-                            'elements': [
+                            type: 'VerticalLayout',
+                            elements: [
                                 {
-                                    'type': 'Control',
-                                    'label': 'Vendor',
-                                    'scope': '#/properties/processor/properties/vendor'
+                                    type: 'Control',
+                                    label: 'Vendor',
+                                    scope: '#/properties/processor/properties/vendor'
                                 },
                                 {
-                                    'type': 'Control',
-                                    'label': 'Clock Speed',
-                                    'scope': '#/properties/processor/properties/clockSpeed'
+                                    type: 'Control',
+                                    label: 'Clock Speed',
+                                    scope: '#/properties/processor/properties/clockSpeed'
                                 },
                                 {
-                                    'type': 'Control',
-                                    'label': 'Number Of Cores',
-                                    'scope': '#/properties/processor/properties/numberOfCores'
+                                    type: 'Control',
+                                    label: 'Number Of Cores',
+                                    scope: '#/properties/processor/properties/numberOfCores'
                                 }
                             ]
                         },
                         {
-                            'type': 'VerticalLayout',
-                            'elements': [
+                            type: 'VerticalLayout',
+                            elements: [
                                 {
-                                    'type': 'Control',
-                                    'label': 'Socketconnector Type',
-                                    'scope': '#/properties/processor/properties/socketconnectorType'
+                                    type: 'Control',
+                                    label: 'Socketconnector Type',
+                                    scope: '#/properties/processor/properties/socketconnectorType'
                                 },
                                 {
-                                    'type': 'Control',
-                                    'label': 'Manufacturing Process',
-                                    'scope': '#/properties/processor/properties/manufactoringProcess'
+                                    type: 'Control',
+                                    label: 'Manufacturing Process',
+                                    scope: '#/properties/processor/properties/manufactoringProcess'
                                 },
                                 {
-                                    'type': 'Control',
-                                    'label': 'Thermal Design Power',
-                                    'scope': '#/properties/processor/properties/thermalDesignPower'
+                                    type: 'Control',
+                                    label: 'Thermal Design Power',
+                                    scope: '#/properties/processor/properties/thermalDesignPower'
                                 }
                             ]
                         }
@@ -68,65 +70,104 @@ export const controlUnitView = {
             ]
         },
         {
-            'type': 'Group',
-            'label': 'Display',
-            'elements': [
+            type: 'Group',
+            label: 'Display',
+            elements: [
                 {
-                    'type': 'HorizontalLayout',
-                    'elements': [
+                    type: 'HorizontalLayout',
+                    elements: [
                         {
-                            'type': 'Control',
-                            'label': 'Width',
-                            'scope': '#/properties/display/properties/width'
+                            type: 'Control',
+                            label: 'Width',
+                            scope: '#/properties/display/properties/width'
                         },
                         {
-                            'type': 'Control',
-                            'label': 'Height',
-                            'scope': '#/properties/display/properties/height'
+                            type: 'Control',
+                            label: 'Height',
+                            scope: '#/properties/display/properties/height'
                         }
                     ]
                 }
             ]
         },
         {
-            'type': 'Group',
-            'label': 'Dimension',
-            'elements': [
+            type: 'Group',
+            label: 'Dimension',
+            elements: [
                 {
-                    'type': 'HorizontalLayout',
-                    'elements': [
+                    type: 'HorizontalLayout',
+                    elements: [
                         {
-                            'type': 'Control',
-                            'label': 'Width',
-                            'scope': '#/properties/dimension/properties/width'
+                            type: 'Control',
+                            label: 'Width',
+                            scope: '#/properties/dimension/properties/width'
                         },
                         {
-                            'type': 'Control',
-                            'label': 'Height',
-                            'scope': '#/properties/dimension/properties/height'
+                            type: 'Control',
+                            label: 'Height',
+                            scope: '#/properties/dimension/properties/height'
                         },
                         {
-                            'type': 'Control',
-                            'label': 'Length',
-                            'scope': '#/properties/dimension/properties/length'
+                            type: 'Control',
+                            label: 'Length',
+                            scope: '#/properties/dimension/properties/length'
                         }
                     ]
                 }
             ]
         },
         {
-            'type': 'Control',
-            'label': 'Ram',
-            'scope': '#/properties/ram'
-        },
-        {
-            'type': 'Group',
-            'label': 'User Description',
-            'elements': [
+            type: 'Group',
+            label: 'RAM',
+            elements: [
                 {
-                    'type': 'Control',
-                    'label': 'User Description',
-                    'scope': '#/properties/userDescription'
+                    type: 'Control',
+                    label: 'RAM',
+                    scope: '#/properties/ram'
+                }
+            ]
+        },
+        // TODO[controlunit.ram array] - custom UI schema for ram array does not work as expected
+        // {
+        //     type: 'Group',
+        //     label: 'RAM',
+        //     elements: [
+        //         {
+        //             type: 'Control',
+        //             scope: '#/properties/ram',
+        //             options: {
+        //                 detail: {
+        //                     type: 'HorizontalLayout',
+        //                     elements: [
+        //                         {
+        //                             type: 'Control',
+        //                             label: 'Clock Speed',
+        //                             scope: '#/properties/clockSpeed'
+        //                         },
+        //                         {
+        //                             type: 'Control',
+        //                             label: 'Size',
+        //                             scope: '#/properties/size'
+        //                         },
+        //                         {
+        //                             type: 'Control',
+        //                             label: type,
+        //                             scope: '#/properties/type'
+        //                         }
+        //                     ]
+        //                 }
+        //             }
+        //         }
+        //     ]
+        // },
+        {
+            type: 'Group',
+            label: 'Dimension',
+            elements: [
+                {
+                    type: 'Control',
+                    label: 'User Description',
+                    scope: '#/properties/userDescription'
                 }
             ]
         }
@@ -134,137 +175,142 @@ export const controlUnitView = {
 };
 
 export const machineView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Machine'
+            type: 'Label',
+            text: 'Machine'
         },
         {
-            'type': 'Control',
-            'label': 'Name',
-            'scope': '#/properties/name'
+            type: 'Control',
+            label: 'Name',
+            scope: '#/properties/name'
         }
     ]
 };
 
 export const brewingView = {
-    'type': 'Label',
-    'text': 'Brewing Unit'
+    type: 'Label',
+    text: 'Brewing Unit'
 };
 export const dipTrayView = {
-    'type': 'Label',
-    'text': 'Dip Tray'
+    type: 'Label',
+    text: 'Dip Tray'
 };
 
 export const waterTankView = {
-    'type': 'Label',
-    'text': 'Water Tank'
+    type: 'Label',
+    text: 'Water Tank'
 };
 export const flowView = {
-    'type': 'Label',
-    'text': 'Flow'
+    type: 'Label',
+    text: 'Flow'
 };
 export const weightedFlowView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Weighted Flow'
+            type: 'Label',
+            text: 'Weighted Flow'
         },
         {
-            'type': 'Control',
-            'scope': '#/properties/probability',
-            'options': { focus: true }
+            type: 'Control',
+            scope: '#/properties/probability',
+            options: { focus: true }
         }
     ]
 };
 export const mergeView = {
-    'type': 'Label',
-    'text': 'Merge'
+    type: 'Label',
+    text: 'Merge'
 };
 export const decisionView = {
-    'type': 'Label',
-    'text': 'Decision'
+    type: 'Label',
+    text: 'Decision'
 };
 
 export const manualTaskView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Manual Task'
+            type: 'Label',
+            text: 'Manual Task'
         },
         {
-            'type': 'Control',
-            'label': 'Name',
-            'scope': '#/properties/name',
-            'options': { focus: true }
+            type: 'Control',
+            label: 'Name',
+            scope: '#/properties/name',
+            options: { focus: true }
         },
         {
-            'type': 'Control',
-            'label': 'Duration',
-            'scope': '#/properties/duration'
+            type: 'Control',
+            label: 'Duration',
+            scope: '#/properties/duration'
         },
         {
-            'type': 'Control',
-            'label': 'Actor',
-            'scope': '#/properties/actor'
+            type: 'Control',
+            label: 'Actor',
+            scope: '#/properties/actor'
         }
     ]
 };
 
 export const automaticTaskView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Automatic Task'
+            type: 'Label',
+            text: 'Automatic Task'
         },
         {
-            'type': 'Control',
-            'label': 'Name',
-            'scope': '#/properties/name',
-            'options': { focus: true }
+            type: 'Control',
+            label: 'Name',
+            scope: '#/properties/name',
+            options: { focus: true }
         },
         {
-            'type': 'Control',
-            'label': 'Duration',
-            'scope': '#/properties/duration'
+            type: 'Control',
+            label: 'Duration',
+            scope: '#/properties/duration'
         }
     ]
 };
 
 export const workflowView = {
-    'type': 'VerticalLayout',
-    'elements': [
+    type: 'VerticalLayout',
+    elements: [
         {
-            'type': 'Label',
-            'text': 'Workflow'
+            type: 'Label',
+            text: 'Workflow'
         },
         {
-            'type': 'Control',
-            'label': 'Name',
-            'scope': '#/properties/name',
-            'options': { focus: true }
+            type: 'Control',
+            label: 'Name',
+            scope: '#/properties/name',
+            options: { focus: true }
         }
     ]
 };
 
-export const coffeeSchema = {
+// TODO JSONSchema should be fetched from the modelserver instead of hard coded copy in code
+export const coffeeSchema: JsonSchema7 = {
     'definitions': {
         'component': {
             '$id': '#component',
             'title': 'Component',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Component'
                 },
-                'workflows': {
+                'children': {
                     'type': 'array',
                     'items': {
-                        '$ref': '#/definitions/workflow'
+                        '$ref': '#/definitions/component'
                     }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 }
             },
             'additionalProperties': false
@@ -272,9 +318,19 @@ export const coffeeSchema = {
         'machine': {
             '$id': '#machine',
             'title': 'Machine',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Machine'
+                },
+                'children': {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/component'
+                    }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 },
                 'name': {
                     'type': 'string'
@@ -286,15 +342,27 @@ export const coffeeSchema = {
                     }
                 }
             },
-            'additionalProperties': false
+            'additionalProperties': false,
+            'required': [
+                'name'
+            ]
         },
         'controlunit': {
             '$id': '#controlunit',
-            'title': 'Control Unit',
+            'title': 'ControlUnit',
             'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//ControlUnit'
+                },
+                'children': {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/component'
+                    }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 },
                 'processor': {
                     '$ref': '#/definitions/processor'
@@ -305,7 +373,30 @@ export const coffeeSchema = {
                 'ram': {
                     'type': 'array',
                     'items': {
-                        '$ref': '#/definitions/ram'
+                        // TODO[controlunit.ram array]
+                        // temporarily disable ref to ram object as it causes problems with the JSON forms array functionality for some reason
+                        // '$ref': '#/definitions/ram',
+                        'title': 'RAM',
+                        'type': 'object',
+                        'properties': {
+                            'eClass': {
+                                'const': 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
+                            },
+                            'clockSpeed': {
+                                'type': 'integer'
+                            },
+                            'size': {
+                                'type': 'integer'
+                            },
+                            'type': {
+                                'type': 'string',
+                                'enum': [
+                                    'SO-DIMM',
+                                    'SI-DIMM'
+                                ]
+                            }
+                        },
+                        'additionalProperties': false
                     }
                 },
                 'display': {
@@ -324,38 +415,68 @@ export const coffeeSchema = {
         },
         'brewingunit': {
             '$id': '#brewingunit',
-            'title': 'Brewing Unit',
+            'title': 'BrewingUnit',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//BrewingUnit'
+                },
+                'children': {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/component'
+                    }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 }
             },
             'additionalProperties': false
         },
         'diptray': {
             '$id': '#diptray',
-            'title': 'Dip Tray',
+            'title': 'DipTray',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//DipTray'
+                },
+                'children': {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/component'
+                    }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 }
             },
             'additionalProperties': false
         },
         'watertank': {
             '$id': '#watertank',
-            'title': 'Water Tank',
+            'title': 'WaterTank',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WaterTank'
+                },
+                'children': {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/component'
+                    }
+                },
+                'parent': {
+                    '$ref': '#/definitions/component'
                 }
             },
             'additionalProperties': false
         },
         'processor': {
             '$id': '#processor',
-            'type': 'object',
             'title': 'Processor',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Processor'
@@ -370,24 +491,30 @@ export const coffeeSchema = {
                     'type': 'integer'
                 },
                 'socketconnectorType': {
-                    'type': 'string',
-                    'enum': [
-                        'A1T',
-                        'Z51'
-                    ]
+                    '$ref': '#/definitions/socketconnectortype'
                 },
                 'thermalDesignPower': {
                     'type': 'integer'
                 },
                 'manufactoringProcess': {
-                    'type': 'string',
-                    'enum': [
-                        '18nm',
-                        'nm25'
-                    ]
+                    '$ref': '#/definitions/manufactoringprocess'
                 }
             },
             'additionalProperties': false
+        },
+        'socketconnectortype': {
+            'type': 'string',
+            'enum': [
+                'A1T',
+                'Z51'
+            ]
+        },
+        'manufactoringprocess': {
+            'type': 'string',
+            'enum': [
+                '18nm',
+                'nm25'
+            ]
         },
         'dimension': {
             '$id': '#dimension',
@@ -424,19 +551,22 @@ export const coffeeSchema = {
                     'type': 'integer'
                 },
                 'type': {
-                    'type': 'string',
-                    'enum': [
-                        'SODIMM',
-                        'SIDIMM'
-                    ]
+                    '$ref': '#/definitions/ramtype'
                 }
             },
             'additionalProperties': false
         },
+        'ramtype': {
+            'type': 'string',
+            'enum': [
+                'SO-DIMM',
+                'SI-DIMM'
+            ]
+        },
         'display': {
             '$id': '#display',
-            'type': 'object',
             'title': 'Display',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Display'
@@ -453,40 +583,36 @@ export const coffeeSchema = {
         'workflow': {
             '$id': '#workflow',
             'title': 'Workflow',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Workflow'
                 },
-                'name': { 'type': 'string' },
+                'name': {
+                    'type': 'string'
+                },
                 'nodes': {
                     'type': 'array',
                     'items': {
-                        'anyOf': [
-                            { '$ref': '#/definitions/automatictask' },
-                            { '$ref': '#/definitions/manualtask' },
-                            { '$ref': '#/definitions/fork' },
-                            { '$ref': '#/definitions/join' },
-                            { '$ref': '#/definitions/decision' },
-                            { '$ref': '#/definitions/merge' }
-                        ]
+                        '$ref': '#/definitions/node'
                     }
                 },
                 'flows': {
                     'type': 'array',
                     'items': {
-                        'anyOf': [
-                            { '$ref': '#/definitions/flow' },
-                            { '$ref': '#/definitions/weightedflow' }
-                        ]
+                        '$ref': '#/definitions/flow'
                     }
                 }
             },
-            'additionalProperties': false
+            'additionalProperties': false,
+            'required': [
+                'name'
+            ]
         },
         'node': {
             '$id': '#node',
-            'type': 'object',
             'title': 'Node',
+            'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Node'
@@ -509,11 +635,14 @@ export const coffeeSchema = {
                     'type': 'integer'
                 }
             },
-            'additionalProperties': false
+            'additionalProperties': false,
+            'required': [
+                'name'
+            ]
         },
         'automatictask': {
             '$id': '#automatictask',
-            'title': 'Automatic Task',
+            'title': 'AutomaticTask',
             'type': 'object',
             'properties': {
                 'eClass': {
@@ -524,14 +653,19 @@ export const coffeeSchema = {
                 },
                 'duration': {
                     'type': 'integer'
+                },
+                'component': {
+                    '$ref': '#/definitions/component'
                 }
-                // missing component link
-            }
-            // 'additionalProperties': false
+            },
+            'additionalProperties': false,
+            'required': [
+                'name'
+            ]
         },
         'manualtask': {
             '$id': '#manualtask',
-            'title': 'Manual Task',
+            'title': 'ManualTask',
             'type': 'object',
             'properties': {
                 'eClass': {
@@ -547,7 +681,10 @@ export const coffeeSchema = {
                     'type': 'string'
                 }
             },
-            'additionalProperties': false
+            'additionalProperties': false,
+            'required': [
+                'name'
+            ]
         },
         'fork': {
             '$id': '#fork',
@@ -600,30 +737,51 @@ export const coffeeSchema = {
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Flow'
+                },
+                'source': {
+                    '$ref': '#/definitions/node'
+                },
+                'target': {
+                    '$ref': '#/definitions/node'
                 }
-                // Missing Source and Target
-            }
-            // 'additionalProperties': false
+            },
+            'additionalProperties': false,
+            'required': [
+                'source',
+                'target'
+            ]
         },
         'weightedflow': {
             '$id': '#weightedflow',
-            'title': 'Weighted Flow',
+            'title': 'WeightedFlow',
             'type': 'object',
             'properties': {
                 'eClass': {
                     'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WeightedFlow'
                 },
+                'source': {
+                    '$ref': '#/definitions/node'
+                },
+                'target': {
+                    '$ref': '#/definitions/node'
+                },
                 'probability': {
-                    'type': 'string',
-                    'enum': [
-                        'low',
-                        'medium',
-                        'high'
-                    ]
+                    '$ref': '#/definitions/probability'
                 }
-                // Missing Source and Target
-            }
-            // 'additionalProperties': false
+            },
+            'additionalProperties': false,
+            'required': [
+                'source',
+                'target'
+            ]
+        },
+        'probability': {
+            'type': 'string',
+            'enum': [
+                'low',
+                'medium',
+                'high'
+            ]
         }
     },
     '$ref': '#/definitions/machine'

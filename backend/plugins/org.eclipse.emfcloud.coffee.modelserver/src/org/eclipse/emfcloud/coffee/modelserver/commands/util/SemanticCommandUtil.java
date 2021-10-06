@@ -11,13 +11,22 @@
 package org.eclipse.emfcloud.coffee.modelserver.commands.util;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emfcloud.coffee.AutomaticTask;
+import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Machine;
+import org.eclipse.emfcloud.coffee.ManualTask;
+import org.eclipse.emfcloud.coffee.Node;
+import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.Workflow;
 import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
+import org.eclipse.emfcloud.modelserver.command.CCommand;
+import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
+import org.eclipse.emfcloud.modelserver.edit.util.CommandUtil;
 
 public final class SemanticCommandUtil {
 
@@ -52,5 +61,22 @@ public final class SemanticCommandUtil {
 			final java.lang.Class<C> clazz) {
 		EObject element = getElement(semanticModel, semanticUriFragment);
 		return clazz.cast(element);
+	}
+
+	public static CCommand createSetTaskNameCommand(final Node taskToRename, final String ownerRefUri,
+			final String newName) {
+		return SetCommandContribution.clientCommand(CommandUtil.createProxy(getEClass(taskToRename), ownerRefUri),
+				CoffeePackage.Literals.TASK__NAME, newName);
+	}
+
+	protected static EClass getEClass(final EObject element) {
+		if (element instanceof ManualTask) {
+			return CoffeePackage.Literals.MANUAL_TASK;
+		} else if (element instanceof AutomaticTask) {
+			return CoffeePackage.Literals.AUTOMATIC_TASK;
+		} else if (element instanceof Task) {
+			return CoffeePackage.Literals.TASK;
+		}
+		return CoffeePackage.Literals.NODE;
 	}
 }
