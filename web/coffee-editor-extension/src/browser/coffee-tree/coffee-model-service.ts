@@ -9,6 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
 import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
+import { JsonSchema7, UISchemaElement } from '@jsonforms/core';
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
 
@@ -38,14 +39,14 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         return node.jsonforms.data;
     }
 
-    getSchemaForNode(node: TreeEditor.Node): any {
+    getSchemaForNode(node: TreeEditor.Node): JsonSchema7 {
         return {
             definitions: coffeeSchema.definitions,
             ...this.getSubSchemaForNode(node)
         };
     }
 
-    private getSubSchemaForNode(node: TreeEditor.Node): any {
+    private getSubSchemaForNode(node: TreeEditor.Node): JsonSchema7 {
         const schema = this.getSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -56,14 +57,15 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         }
         return undefined;
     }
-    private getSchemaForType(type: string): any {
+
+    private getSchemaForType(type: string): JsonSchema7 {
         if (!type) {
             return undefined;
         }
         const schema = Object.entries(coffeeSchema.definitions)
             .map(entry => entry[1])
             .find(
-                definition =>
+                (definition: JsonSchema7) =>
                     definition.properties && definition.properties.eClass.const === type
             );
         if (!schema) {
@@ -71,7 +73,8 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         }
         return schema;
     }
-    getUiSchemaForNode(node: TreeEditor.Node): any {
+
+    getUiSchemaForNode(node: TreeEditor.Node): UISchemaElement {
         const schema = this.getUiSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -83,7 +86,7 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         return undefined;
     }
 
-    private getUiSchemaForType(type: string): any {
+    private getUiSchemaForType(type: string): UISchemaElement {
         if (!type) {
             return undefined;
         }

@@ -10,7 +10,6 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlow
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
-import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
 import org.eclipse.emfcloud.modelserver.common.ModelServerPathParameters;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
@@ -50,7 +49,6 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
 		binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
 		binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
 		binding.put(RemoveNodeCommandContribution.TYPE, RemoveNodeCommandContribution.class);
-		binding.put(SetTaskNameCommandContribution.TYPE, SetTaskNameCommandContribution.class);
 
 		// Flows (Edges)
 		binding.put(AddFlowCommandContribution.TYPE, AddFlowCommandContribution.class);

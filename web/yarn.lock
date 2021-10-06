@@ -897,10 +897,10 @@
     node-fetch "2.6.1"
     ws "7.4.6"
 
-"@eclipse-emfcloud/theia-tree-editor@0.7.0-next.1af15ee", "@eclipse-emfcloud/theia-tree-editor@next":
-  version "0.7.0-next.1af15ee"
-  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/theia-tree-editor/-/theia-tree-editor-0.7.0-next.1af15ee.tgz#3a728331f1ed93500b9267d75f78484d1546d25d"
-  integrity sha512-4ZySiMGQDeUC43MTgk5om7osYXTOnhqh0uUeTQ017xGNWEnmGeg7pKKOybRKTrYW/FQmmjk08rpgwWRmFG73zQ==
+"@eclipse-emfcloud/theia-tree-editor@0.7.0-next.4f9e134", "@eclipse-emfcloud/theia-tree-editor@next":
+  version "0.7.0-next.4f9e134"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/theia-tree-editor/-/theia-tree-editor-0.7.0-next.4f9e134.tgz#5731972154c7175778a736f8ecce7d46b6c0346b"
+  integrity sha512-jtxHrVOIFw1g/y+YPE4wEIdUK1s7+583ThSAiqLjl0XNgQB/Tau3eN9pPoCHJAWjAtkFVCO/fMj3OhxkmcWWIg==
   dependencies:
     "@jsonforms/core" "3.0.0-alpha.0"
     "@jsonforms/react" "3.0.0-alpha.0"

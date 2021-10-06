@@ -30,7 +30,7 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlow
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
-import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetTaskNameCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
@@ -62,6 +62,11 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 			LOGGER.error(e);
 			throw new GLSPServerException("Error during model loading", e);
 		}
+	}
+
+	protected String getOwnerRefUri(final EObject element) {
+		return "file:" + baseSourceUri.appendFileExtension(this.semanticFileExtension)
+				.appendFragment(getSemanticUriFragment(element)).toString();
 	}
 
 	protected String getSemanticUriFragment(final EObject element) {
@@ -118,7 +123,8 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
 	public CompletableFuture<Response<Boolean>> setTaskName(final WorkflowModelState modelState,
 			final Node nodeToRename, final String newName) {
-		CCommand setCommand = SetTaskNameCommandContribution.create(getSemanticUriFragment(nodeToRename), newName);
+		CCommand setCommand = SemanticCommandUtil.createSetTaskNameCommand(nodeToRename, getOwnerRefUri(nodeToRename),
+				newName);
 		return this.edit(setCommand);
 	}
 

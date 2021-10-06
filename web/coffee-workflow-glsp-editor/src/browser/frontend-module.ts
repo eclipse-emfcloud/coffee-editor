@@ -17,12 +17,14 @@ import {
     ContainerContext,
     GLSPClientContribution,
     GLSPTheiaFrontendModule,
-    registerDiagramManager
+    registerDiagramManager,
+    TheiaGLSPConnector
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { LabelProviderContribution } from '@theia/core/lib/browser';
 import { DiagramConfiguration } from 'sprotty-theia/lib';
 
 import { WorkflowNotationLanguage } from '../common/workflow-language';
+import { WorkflowTheiaGLSPConnector } from './diagram/theia-glsp-connector';
 import { WorkflowDiagramConfiguration } from './diagram/workflow-diagram-configuration';
 import { WorkflowDiagramLabelProviderContribution } from './diagram/workflow-diagram-label-provider-contribution';
 import { WorkflowDiagramManager } from './diagram/workflow-diagram-manager';
@@ -31,6 +33,14 @@ import { WorkflowGLSPClientContribution } from './workflow-glsp-client-contribut
 export class WorkflowTheiaFrontendModule extends GLSPTheiaFrontendModule {
 
     readonly diagramLanguage = WorkflowNotationLanguage;
+
+    bindTheiaGLSPConnector(context: ContainerContext): void {
+        context.bind(TheiaGLSPConnector).toDynamicValue(dynamicContext => {
+            const connector = dynamicContext.container.resolve(WorkflowTheiaGLSPConnector);
+            connector.doConfigure(this.diagramLanguage);
+            return connector;
+        });
+    }
 
     bindDiagramConfiguration(context: ContainerContext): void {
         context.bind(DiagramConfiguration).to(WorkflowDiagramConfiguration);

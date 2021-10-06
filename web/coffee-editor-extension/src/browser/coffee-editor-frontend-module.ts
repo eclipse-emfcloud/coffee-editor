@@ -8,6 +8,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
+import '../../css/coffee-tree-editor.css';
 import '@eclipse-emfcloud/theia-tree-editor/style/forms.css';
 import '@eclipse-emfcloud/theia-tree-editor/style/index.css';
 

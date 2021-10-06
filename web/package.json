@@ -78,7 +78,7 @@
     "**/@eclipse-glsp/protocol": "0.9.0-next.9793bf31",
     "**/@eclipse-glsp/theia-integration": "0.9.0-next.eb2a43ff",
     "**/@eclipse-emfcloud/modelserver-theia": "0.8.0-next.33249802",
-    "**/@eclipse-emfcloud/theia-tree-editor": "0.7.0-next.1af15ee",
+    "**/@eclipse-emfcloud/theia-tree-editor": "0.7.0-next.4f9e134",
     "**/inversify": "5.0.1",
     "**/sprotty": "0.10.0-next.0e06051",
     "**/sprotty-theia": "0.10.0-next.a5ea006"
