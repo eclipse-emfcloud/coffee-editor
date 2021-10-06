@@ -37,14 +37,13 @@ public class CoffeeTreeJsonCodec extends DefaultJsonCodec {
 		return jsonNode;
 	}
 
-
 	@Override
 	protected ObjectMapper getObjectMapper() {
 		return objectMapper;
 	}
 
 	protected ObjectMapper createObjectMapper() {
-		final ObjectMapper mapper = new ObjectMapper(null);
+		final ObjectMapper mapper = new ObjectMapper();
 		// same as emf
 		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
 		dateFormat.setTimeZone(TimeZone.getDefault());
@@ -54,8 +53,14 @@ public class CoffeeTreeJsonCodec extends DefaultJsonCodec {
 		mapper.setTimeZone(TimeZone.getDefault());
 
 		EMFModule emfModule = new EMFModule();
-		// Write XMI ids in property "@id". For customization see https://github.com/eclipse-emfcloud/emfjson-jackson/wiki/Customization#custom-id-field
+		// Write XMI ids in property "@id". For customization see
+		// https://github.com/eclipse-emfcloud/emfjson-jackson/wiki/Customization#custom-id-field
 		emfModule.configure(EMFModule.Feature.OPTION_USE_ID, true);
+		emfModule.configure(EMFModule.Feature.OPTION_SERIALIZE_DEFAULT_VALUE, true);
+
+		// FIXME investigate why eClass (type) is not serialized for nested elements
+		// e.g. processor child of control unit
+
 		mapper.registerModule(emfModule);
 		return mapper;
 	}

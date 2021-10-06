@@ -57,7 +57,7 @@ location "http://ghillairet.github.io/p2" {
 	org.emfjson.jackson lazy
 }
 
-location "https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202108180758/" {
+location "https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202109211845/" {
 	org.eclipse.glsp.feature.feature.group lazy
 	org.eclipse.glsp.layout lazy
 	org.eclipse.glsp.server lazy

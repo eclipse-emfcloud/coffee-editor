@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2021-06" sequenceNumber="1633595676">
+<target name="Coffee 2021-06" sequenceNumber="1633690505">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="ch.qos.logback.slf4j" version="1.2.3.v20200428-2012"/>
@@ -54,7 +54,7 @@
       <unit id="org.eclipse.glsp.layout" version="0.0.0"/>
       <unit id="org.eclipse.glsp.server" version="0.0.0"/>
       <unit id="org.eclipse.glsp.graph" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202108180758/"/>
+      <repository location="https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202109211845/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.elk.alg.layered" version="0.7.1"/>
