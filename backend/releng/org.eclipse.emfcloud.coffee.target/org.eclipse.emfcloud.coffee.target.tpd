@@ -83,9 +83,9 @@ location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/
 	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.commands lazy
 }
-location "https://download.eclipse.org/modeling/tmf/xtext/updates/nightly/" {
+location "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202110010541/" {
 	org.eclipse.xtext.sdk.feature.group [2.26.0,3.0.0)
 }
-location "https://download.eclipse.org/modeling/emft/mwe/updates/nightly/" {
+location "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202108160852" {
 	org.eclipse.emf.mwe2.launcher.feature.group [2.12.2,3.0.0)
 }
