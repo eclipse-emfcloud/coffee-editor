@@ -1,5 +1,6 @@
 {
   "name": "coffee-workflow-analyzer",
+  "private": true,
   "license": "(EPL-2.0 OR MIT)",
   "keywords": [
     "theia-extension"
@@ -16,7 +17,7 @@
     "@theia/process": "^1.0.0",
     "express": "4.17.1",
     "glob": "7.1.4",
-    "vscode-jsonrpc": "^5.0.0",
+    "vscode-jsonrpc": "^5.0.1",
     "vscode-ws-jsonrpc": "0.2.0"
   },
   "devDependencies": {
@@ -35,5 +36,11 @@
       "frontend": "lib/browser/frontend-extension",
       "backend": "lib/node/backend-extension"
     }
-  ]
+  ],
+  "workspaces": {
+    "nohoist": [
+      "**/vscode-jsonrpc",
+      "**/vscode-jsonrpc/**"
+    ]
+  }
 }
