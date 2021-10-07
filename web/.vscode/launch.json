@@ -31,7 +31,6 @@
         "${workspaceRoot}/coffee-java-extension/lib/**/*.js",
         "${workspaceRoot}/coffee-server/lib/**/*.js",
         "${workspaceRoot}/coffee-workflow-analyzer/lib/**/*.js",
-        "${workspaceRoot}/coffee-workflow-analyzer-editors/lib/**/*.js",
         "${workspaceRoot}/coffee-workflow-glsp-editor/lib/**/*.js"
       ],
       "smartStep": true,
@@ -55,7 +54,7 @@
         "--extensionDevelopmentPath=${workspaceRoot}/coffee-workflow-analyzer-editor"
       ],
       "outFiles": [
-        "${workspaceRoot}/coffee-workflow-analyzer-editor/lib/**/*.js"
+        "${workspaceRoot}/coffee-workflow-analyzer-editor/out/**/*.js"
       ],
       "sourceMaps": true
     }
