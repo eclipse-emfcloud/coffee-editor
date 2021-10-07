@@ -31,7 +31,7 @@
     {
       "label": "Coffee: Start Browser Backend along with server JARs",
       "type": "shell",
-      "command": "cd browser-app && yarn start",
+      "command": "yarn start",
       "presentation": {
         "reveal": "always",
         "panel": "new"
@@ -41,7 +41,7 @@
     {
       "label": "Coffee: Start Browser Backend (expecting server products to run)",
       "type": "shell",
-      "command": "cd browser-app && yarn debug",
+      "command": "yarn debug",
       "presentation": {
         "reveal": "always",
         "panel": "new"
