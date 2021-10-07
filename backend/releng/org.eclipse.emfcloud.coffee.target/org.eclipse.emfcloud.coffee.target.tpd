@@ -30,7 +30,7 @@ location "http://download.eclipse.org/tools/orbit/R-builds/R20210602031627/repos
 	com.fasterxml.jackson.core.jackson-databind [2.10.3,3.0.0)
 }
 
-location "http://download.eclipse.org/releases/2021-06" {
+location "http://download.eclipse.org/releases/2021-09" {
 	org.eclipse.jdt.feature.group lazy
 	org.eclipse.platform.feature.group lazy
 	org.eclipse.pde.feature.group lazy
@@ -38,8 +38,6 @@ location "http://download.eclipse.org/releases/2021-06" {
 	org.eclipse.xpand lazy
 	org.eclipse.xtend lazy
 	org.eclipse.xtend.typesystem.emf lazy
-	org.eclipse.emf.mwe2.launcher.feature.group lazy
-	org.eclipse.xtext.sdk.feature.group lazy
 	org.eclipse.core.runtime.feature.feature.group [1.2.900,2.0.0)
 	org.eclipse.equinox.executable.feature.group lazy
 	org.eclipse.emf.edit [2.16.0,3.0.0)
@@ -86,4 +84,10 @@ location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/
 	org.eclipse.emfcloud.modelserver.glsp.feature.feature.group lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.commands lazy
+}
+location "https://download.eclipse.org/modeling/tmf/xtext/updates/nightly/" {
+	org.eclipse.xtext.sdk.feature.group [2.26.0,3.0.0)
+}
+location "https://download.eclipse.org/modeling/emft/mwe/updates/nightly/" {
+	org.eclipse.emf.mwe2.launcher.feature.group [2.12.2,3.0.0)
 }

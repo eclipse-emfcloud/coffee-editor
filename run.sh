@@ -102,7 +102,7 @@ if [ "$copyBackend" == "true" ]; then
   rm -rf $outputWorkflowAnalyzer && mkdir -p $outputWorkflowAnalyzer && cp -rf $inputWorkflowAnalyzer $outputWorkflowAnalyzer
 
   inputWorkflowDSL=backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.dsl/$productPath/x86_64
-  outputWorkflowDSL=web/coffee-workflow-analyzer-editors/server
+  outputWorkflowDSL=web/coffee-server/server/lsp
   echo "  $(date +"[%T.%3N]") Copy WorkflowDSL to '$outputWorkflowDSL'."
   rm -rf $outputWorkflowDSL && mkdir -p $outputWorkflowDSL && cp -rf $inputWorkflowDSL $outputWorkflowDSL
 
@@ -133,6 +133,9 @@ if [ "$forceFrontend" == "true" ]; then
 fi
 
 if [ "$buildFrontend" == "true" ]; then
+  cd extensions/coffee-workflow-analyzer-editor/
+  yarn
+  cd ../..
   cd web/
   yarn
   cd ..
