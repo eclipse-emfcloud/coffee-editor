@@ -13,6 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
+import { ModelServerClient } from '@eclipse-emfcloud/modelserver-theia/lib/common';
 import { FrontendApplication, OpenerService } from '@theia/core/lib/browser';
 import { WidgetManager } from '@theia/core/lib/browser/widget-manager';
 import { Command, CommandContribution, CommandRegistry, MessageService, SelectionService } from '@theia/core/lib/common';
@@ -44,6 +45,8 @@ export class CoffeeGitIntegration implements CommandContribution {
 
     @inject(WorkspaceService)
     protected readonly workspaceService: WorkspaceService;
+    @inject(ModelServerClient)
+    private readonly modelServerApi: ModelServerClient;
 
     constructor(
         @inject(SelectionService) protected readonly selectionService: SelectionService,
@@ -71,15 +74,21 @@ export class CoffeeGitIntegration implements CommandContribution {
                 const isCoffeeFile = fileUri.toString().endsWith('.coffee');
                 const currentCoffeePath = isCoffeeFile ? fileUri.toString() : fileUri.toString().replace('.notation', '.coffee');
                 const workspace = currentCoffeePath.substr(0, currentCoffeePath.lastIndexOf('/'));
+                const repository = await this.git.repositories(workspace, { maxCount: 1 });
+                const sh = await this.git.revParse(repository[0], { ref: 'HEAD' });
                 const coffeeFileName = currentCoffeePath.substr(currentCoffeePath.lastIndexOf('/') + 1);
                 const notationFileName = coffeeFileName.substr(0, coffeeFileName.lastIndexOf('.')) + '.notation';
-                const headCoffeePath = workspace + '/.help/' + coffeeFileName;
-                const headNotationPath = workspace + '/.help/' + notationFileName;
-                const repository = await this.git.repositories(workspace, { maxCount: 1 });
+                const coffeeHeadFileName = coffeeFileName.substr(0, coffeeFileName.lastIndexOf('.')) + '@' + sh?.slice(0, 7) + '.coffee';
+                const notationHeadFileName = notationFileName.substr(0, notationFileName.lastIndexOf('.')) + '@' + sh?.slice(0, 7) + '.notation';
+                const headCoffeePath = workspace + '/.help/' + coffeeHeadFileName;
+                const headNotationPath = workspace + '/.help/' + notationHeadFileName;
                 const headCoffeeFile = await this.git.show(repository[0], currentCoffeePath, { commitish: 'HEAD' });
                 const headNotationFile = await this.git.show(repository[0], workspace + '/' + notationFileName, { commitish: 'HEAD' });
                 await this.writeToFile(headCoffeePath, headCoffeeFile);
                 await this.writeToFile(headNotationPath, headNotationFile);
+                if (this.workspaceService.workspace) {
+                    this.modelServerApi.configure({ workspaceRoot: this.workspaceService.workspace.resource.toString() });
+                }
                 if (isCoffeeFile) {
                     commands.executeCommand(ComparisonCommands.FILE_COMPARE_TREE_OPEN.id,
                         currentCoffeePath,
