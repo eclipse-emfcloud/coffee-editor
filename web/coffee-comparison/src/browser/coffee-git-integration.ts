@@ -73,6 +73,7 @@ export class CoffeeGitIntegration implements CommandContribution {
             execute: async fileUri => {
                 const isCoffeeFile = fileUri.toString().endsWith('.coffee');
                 const currentCoffeePath = isCoffeeFile ? fileUri.toString() : fileUri.toString().replace('.notation', '.coffee');
+                const currentNotationPath = currentCoffeePath.replace('.coffee', '.notation');
                 const workspace = currentCoffeePath.substr(0, currentCoffeePath.lastIndexOf('/'));
                 const repository = await this.git.repositories(workspace, { maxCount: 1 });
                 const sh = await this.git.revParse(repository[0], { ref: 'HEAD' });
@@ -80,22 +81,28 @@ export class CoffeeGitIntegration implements CommandContribution {
                 const notationFileName = coffeeFileName.substr(0, coffeeFileName.lastIndexOf('.')) + '.notation';
                 const coffeeHeadFileName = coffeeFileName.substr(0, coffeeFileName.lastIndexOf('.')) + '@' + sh?.slice(0, 7) + '.coffee';
                 const notationHeadFileName = notationFileName.substr(0, notationFileName.lastIndexOf('.')) + '@' + sh?.slice(0, 7) + '.notation';
+                const coffeeCopyFileName = coffeeFileName.substr(0, coffeeFileName.lastIndexOf('.')) + '@current.coffee';
+                const notationCopyFileName = notationFileName.substr(0, notationFileName.lastIndexOf('.')) + '@current.notation';
                 const headCoffeePath = workspace + '/.help/' + coffeeHeadFileName;
                 const headNotationPath = workspace + '/.help/' + notationHeadFileName;
+                const copyCoffeePath = workspace + '/.help/' + coffeeCopyFileName;
+                const copyNotationPath = workspace + '/.help/' + notationCopyFileName;
                 const headCoffeeFile = await this.git.show(repository[0], currentCoffeePath, { commitish: 'HEAD' });
                 const headNotationFile = await this.git.show(repository[0], workspace + '/' + notationFileName, { commitish: 'HEAD' });
                 await this.writeToFile(headCoffeePath, headCoffeeFile);
                 await this.writeToFile(headNotationPath, headNotationFile);
+                await this.fileSystem.copy(currentCoffeePath, copyCoffeePath, { overwrite: true });
+                await this.fileSystem.copy(currentNotationPath, copyNotationPath, { overwrite: true });
                 if (this.workspaceService.workspace) {
                     this.modelServerApi.configure({ workspaceRoot: this.workspaceService.workspace.resource.toString() });
                 }
                 if (isCoffeeFile) {
                     commands.executeCommand(ComparisonCommands.FILE_COMPARE_TREE_OPEN.id,
-                        currentCoffeePath,
+                        copyCoffeePath,
                         headCoffeePath);
                 } else {
                     commands.executeCommand(GraphicalComparisonCommands.FILE_COMPARE_GRAPHICALLY_OPEN.id,
-                        currentCoffeePath,
+                        copyCoffeePath,
                         headCoffeePath);
                 }
             }
