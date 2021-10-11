@@ -24,6 +24,7 @@ import { EXPLORER_VIEW_CONTAINER_ID, FILE_NAVIGATOR_ID, FileNavigatorWidget } fr
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
 import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
+import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 
@@ -247,12 +248,10 @@ export class WelcomePageWidget extends ReactWidget {
     protected openTextualDSL = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'));
     protected openFileExplorer = (): Promise<Widget | undefined> => this.shell.revealWidget(EXPLORER_VIEW_CONTAINER_ID);
     protected runModelAnalysis = (): void => {
-        // TODO re-enable analyze command
-        // open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'))
-        //     .then(() => {
-        //         this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
-        //     });
-        console.log('Run Model Analysis clicked.');
+        open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'))
+            .then(() => {
+                this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
+            });
     };
 
     protected runJavaCodeGenerator = (): void => {

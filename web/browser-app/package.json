@@ -49,7 +49,7 @@
   "scripts": {
     "prepare": "yarn run download:plugins && theia build --mode development",
     "start": "export WF_CONFIG_LSP=localhost:5017 && theia start --WORKFLOW_NOTATION_LSP=5008 --hostname=0.0.0.0 --port=3000 --root-dir=../../backend/examples/SuperBrewer3000 --plugins=local-dir:./plugins",
-    "debug": "export WF_CONFIG_LSP=localhost:5017 && theia start --WORKFLOW_NOTATION_LSP=5008  --WF_ANALYZER=5083 --port=3000 --root-dir=../../backend/examples/SuperBrewer3000 --loglevel=debug --plugins=local-dir:./plugins --debug",
+    "debug": "export WF_CONFIG_LSP=localhost:5017 && theia start --WORKFLOW_NOTATION_LSP=5008 --port=3000 --root-dir=../../backend/examples/SuperBrewer3000 --loglevel=debug --plugins=local-dir:./plugins --debug",
     "watch": "theia build --watch --mode development",
     "download:plugins": "theia download:plugins"
   },
