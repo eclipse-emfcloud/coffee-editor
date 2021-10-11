@@ -40,7 +40,8 @@
     "coffee-java-extension": "0.7.0",
     "coffee-server": "0.7.0",
     "coffee-welcome-page": "0.7.0",
-    "coffee-workflow-glsp-editor": "0.7.0"
+    "coffee-workflow-glsp-editor": "0.7.0",
+    "coffee-workflow-analyzer": "0.7.0"
   },
   "devDependencies": {
     "@theia/cli": "^1.0.0"

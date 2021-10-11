@@ -51,7 +51,9 @@ export class WorkflowLSPServerLauncher implements BackendApplicationContribution
         });
     }
 
-    protected spawnProcessAsync(command: string, args?: string[], options?: cp.SpawnOptions): Promise<RawProcess> {
+    protected async spawnProcessAsync(command: string, args?: string[], options?: cp.SpawnOptions): Promise<RawProcess> {
+        // delay start as we need the model server to be started
+        await new Promise(r => setTimeout(r, 10000));
         const rawProcess = this.processFactory({ command, args, options });
         rawProcess.errorStream.on('data', this.logError.bind(this));
         rawProcess.outputStream.on('data', this.logInfo.bind(this));
