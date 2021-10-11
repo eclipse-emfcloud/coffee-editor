@@ -8,8 +8,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import { ILogger } from '@theia/core';
-import { BackendApplicationContribution } from '@theia/core/lib/node';
+import { ILogger, MaybePromise } from '@theia/core';
+import URI from '@theia/core/lib/common/uri';
+import { BackendApplicationContribution, FileUri } from '@theia/core/lib/node';
 import { ProcessErrorEvent } from '@theia/process/lib/node/process';
 import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
 import * as cp from 'child_process';
@@ -18,15 +19,38 @@ import * as glob from 'glob';
 import { inject, injectable } from 'inversify';
 import * as net from 'net';
 import * as path from 'path';
+import * as fs from 'fs-extra';
 import * as rpc from 'vscode-jsonrpc';
 import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
 
 import { WorkflowAnalysisClient, WorkflowAnalyzer } from '../common/workflow-analyze-protocol';
 
+/**
+ * The return type of the `FileSystem#resolveContent` method.
+ */
+interface FileStatWithContent {
+
+    /**
+     * The file stat.
+     */
+    readonly stat: fs.Stats & { uri: string };
+
+    /**
+     * The content of the file as a UTF-8 encoded string.
+     */
+    readonly content: string;
+
+}
+
 // const DEFAULT_PORT = 8024;
 
 @injectable()
 export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicationContribution {
+
+    /**
+     * Endpoint path to handle the request for the given resource.
+     */
+    private static HANDLE_PATH = '/mini-browser/';
 
     private connection?: rpc.MessageConnection;
     private client?: WorkflowAnalysisClient;
@@ -49,6 +73,27 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
                 this.connection.listen();
             });
         }
+    }
+
+    // express server
+    configure(app: Application): void {
+        app.get(`${WorkflowAnalysisServer.HANDLE_PATH}*`, async (request, response) => this.response(await this.getUri(request), response));
+    }
+    private async response(uri: string, response: any): Promise<Response> {
+        const statWithContent = await this.readContent(uri);
+        response.contentType('text/html');
+        return response.send(statWithContent.content);
+    }
+
+    private async readContent(uri: string): Promise<FileStatWithContent> {
+        const fsPath = FileUri.fsPath(uri);
+        const [stat, content] = await Promise.all([fs.stat(fsPath), fs.readFile(fsPath, 'utf8')]);
+        return { stat: Object.assign(stat, { uri }), content };
+    }
+
+    private getUri(request: any): MaybePromise<string> {
+        const decodedPath = request.path.substr(WorkflowAnalysisServer.HANDLE_PATH.length);
+        return new URI(FileUri.create(decodedPath).toString(true)).toString(true);
     }
 
     private getPort(): number | undefined {
