@@ -78,8 +78,7 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
 							.put(CoffeeResource.FILE_EXTENSION, CoffeeResource.Factory.INSTANCE);
 					resourceSets.put(absolutePath, resourceSet);
 				}
-				loadResource(absolutePath.toString(),
-						false /* do not remove unloadable resources on workspace startup */);
+				loadResource(absolutePath.toString());
 			}
 		}
 	}

@@ -39,7 +39,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.modelserver.feature.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202109280727/"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202110081257/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emfcloud.emfjson-jackson" version="0.0.0"/>
