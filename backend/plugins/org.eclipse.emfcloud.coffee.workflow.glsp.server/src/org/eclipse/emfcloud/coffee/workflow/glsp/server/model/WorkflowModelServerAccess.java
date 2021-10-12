@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -35,10 +38,16 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.command.CCompoundCommand;
+import org.eclipse.emfcloud.modelserver.emf.common.EMFFacetConstraints;
 import org.eclipse.emfcloud.modelserver.glsp.notation.epackage.NotationUtil;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerAccess;
+import org.eclipse.emfcloud.validation.framework.ValidationFilter;
+import org.eclipse.emfcloud.validation.framework.ValidationFramework;
+import org.eclipse.emfcloud.validation.framework.ValidationResult;
 import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.graph.util.GraphUtil;
+import org.eclipse.glsp.server.actions.ActionDispatcher;
+import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
 
 import com.google.common.base.Preconditions;
@@ -47,9 +56,21 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelServerAccess.class);
 
-	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
+	private ActionDispatcher actionDispatcher;
+
+	private ValidationFramework validationFramework;
+
+	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient,
+			ActionDispatcher actionDispatcher) {
 		super(sourceURI, modelServerClient, CoffeeResource.FILE_EXTENSION, NotationUtil.NOTATION_EXTENSION);
 		Preconditions.checkNotNull(modelServerClient);
+		this.actionDispatcher = actionDispatcher;
+	}
+
+	public void createValidationFramework(GModelState modelState) {
+		WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(
+				modelState.getClientId(), actionDispatcher);
+		this.validationFramework = new ValidationFramework(this.getSemanticURI(), modelServerClient, changeListener);
 	}
 
 	@Override
@@ -140,4 +161,41 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		return this.edit(command);
 	}
 
+	public CompletableFuture<Void> validate() throws IOException, InterruptedException, ExecutionException {
+		return this.validationFramework.validate();
+	}
+
+	public List<ValidationResult> getValidationResult() throws IOException, InterruptedException, ExecutionException {
+		return this.validationFramework.getRecentValidationResult();
+	}
+
+	public void initConstraintList() {
+		this.validationFramework.getConstraintList();
+	}
+
+	public EMFFacetConstraints getConstraintList(String elementID, String featureID) {
+		Map<String, EMFFacetConstraints> featureMap = this.validationFramework.getInputValidationMap().get(elementID);
+		if (featureMap != null)
+			return featureMap.get(featureID);
+		return null;
+	}
+
+	public void subscribeToValidation() {
+		this.validationFramework.subscribeToValidation();
+	}
+
+	public void addValidationFilter(List<ValidationFilter> contraintValues)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.addValidationFilter(contraintValues);
+	}
+
+	public void removeValidationFilter(List<ValidationFilter> contraintValues)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.removeValidationFilter(contraintValues);
+	}
+
+	public void toggleValidationFilter(ValidationFilter contraintValue)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.toggleValidationFilter(contraintValue);
+	}
 }
