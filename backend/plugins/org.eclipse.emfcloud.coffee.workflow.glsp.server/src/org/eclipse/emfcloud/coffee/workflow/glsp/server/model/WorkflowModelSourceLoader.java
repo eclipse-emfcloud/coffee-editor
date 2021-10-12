@@ -11,24 +11,59 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
 import java.util.Map;
+import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
-import org.eclipse.emfcloud.modelserver.glsp.EMSModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelSourceLoader;
-import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelState;
+import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
 import org.eclipse.glsp.server.utils.ClientOptions;
 
 public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 
+	private static Logger LOGGER = Logger.getLogger(EMSModelSourceLoader.class.getSimpleName());
+
 	@Override
-	public EMSModelServerAccess createModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
-		return new WorkflowModelServerAccess(sourceURI, modelServerClient);
+	public void loadSourceModel(final RequestModelAction action, final GModelState gModelState) {
+		String sourceURI = getSourceURI(action.getOptions());
+		if (sourceURI.isEmpty()) {
+			LOGGER.error("No source URI given to load source models");
+			return;
+		}
+		Optional<ModelServerClient> modelServerClient = modelServerClientProvider.get();
+		if (modelServerClient.isEmpty()) {
+			LOGGER.error("Connection to modelserver could not be initialized");
+			return;
+		}
+
+		WorkflowModelServerAccess modelServerAccess = createModelServerAccess(sourceURI, modelServerClient.get());
+
+		WorkflowModelState modelState = createModelState(gModelState);
+		modelState.initialize(action.getOptions(), modelServerAccess);
+
+		try {
+			modelState.loadSourceModels();
+		} catch (GLSPServerException e) {
+			LOGGER.error("Error during source model loading");
+			e.printStackTrace();
+			return;
+		}
+
+		modelServerAccess.subscribe(createSubscriptionListener(modelState, actionDispatcher, submissionHandler));
+		modelServerAccess.createValidationFramework(modelState);
+		modelServerAccess.subscribeToValidation();
+		modelServerAccess.initConstraintList();
 	}
 
 	@Override
-	public EMSModelState createModelState(GModelState modelState) {
+	public WorkflowModelServerAccess createModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
+		return new WorkflowModelServerAccess(sourceURI, modelServerClient, actionDispatcher);
+	}
+
+	@Override
+	public WorkflowModelState createModelState(GModelState modelState) {
 		return WorkflowModelState.getModelState(modelState);
 	}
 

@@ -15,9 +15,15 @@
  ********************************************************************************/
 import 'sprotty-theia/css/theia-sprotty.css';
 
+import { labelEditModule } from '@eclipse-glsp/client/lib';
 import { configureDiagramServer, GLSPDiagramConfiguration, TheiaDiagramServer } from '@eclipse-glsp/theia-integration';
+import {
+    connectTheiaMarkerManager,
+    TheiaMarkerManager,
+    TheiaMarkerManagerFactory
+} from '@eclipse-glsp/theia-integration/lib/browser/diagram/theia-marker-manager';
 import { createWorkflowDiagramContainer } from 'coffee-workflow-sprotty';
-import { Container, injectable } from 'inversify';
+import { Container, inject, injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
 import { WorkflowGLSPTheiaDiagramServer } from './workflow-diagram-server';
@@ -25,11 +31,15 @@ import { WorkflowGLSPTheiaDiagramServer } from './workflow-diagram-server';
 @injectable()
 export class WorkflowDiagramConfiguration extends GLSPDiagramConfiguration {
 
+    @inject(TheiaMarkerManagerFactory) protected readonly theiaMarkerManager: () => TheiaMarkerManager;
+
     diagramType: string = WorkflowNotationLanguage.diagramType;
 
     doCreateContainer(widgetId: string): Container {
         const container = createWorkflowDiagramContainer(widgetId);
+        container.load(labelEditModule);
         configureDiagramServer(container, WorkflowGLSPTheiaDiagramServer);
+        connectTheiaMarkerManager(container, this.theiaMarkerManager, this.diagramType);
         container.bind(TheiaDiagramServer).toService(WorkflowGLSPTheiaDiagramServer);
         return container;
     }
