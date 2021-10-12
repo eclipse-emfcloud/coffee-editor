@@ -23,17 +23,21 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.Workfl
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowCompoundOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowDeleteOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowReconnectFlowHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.WorkflowRequestMarkersActionHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelSourceLoader;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelStateProvider;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationGLSPModule;
 import org.eclipse.glsp.graph.GraphExtension;
+import org.eclipse.glsp.server.actions.ActionHandler;
 import org.eclipse.glsp.server.diagram.DiagramConfiguration;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.features.core.model.ModelSourceLoader;
 import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperationHandler;
+import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
+import org.eclipse.glsp.server.features.validation.RequestMarkersHandler;
 import org.eclipse.glsp.server.layout.ILayoutEngine;
 import org.eclipse.glsp.server.model.ModelStateProvider;
 import org.eclipse.glsp.server.operations.OperationHandler;
@@ -52,6 +56,12 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 	@Override
 	protected Class<? extends ModelStateProvider> bindModelStateProvider() {
 		return WorkflowModelStateProvider.class;
+	}
+
+	@Override
+	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
+		super.configureActionHandlers(bindings);
+		bindings.rebind(RequestMarkersHandler.class, WorkflowRequestMarkersActionHandler.class);
 	}
 
 	@Override
@@ -82,6 +92,11 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 	@Override
 	protected Class<? extends GraphExtension> bindGraphExtension() {
 		return WorkflowGraphExtension.class;
+	}
+
+	@Override
+	protected Class<? extends LabelEditValidator> bindLabelEditValidator() {
+		return WorkflowLabelEditValidator.class;
 	}
 
 	@Override

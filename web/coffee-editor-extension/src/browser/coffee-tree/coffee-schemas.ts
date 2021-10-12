@@ -406,12 +406,7 @@ export const coffeeSchema: JsonSchema7 = {
                     'type': 'string'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'processor',
-                'dimension',
-                'ram'
-            ]
+            'additionalProperties': false
         },
         'brewingunit': {
             '$id': '#brewingunit',
