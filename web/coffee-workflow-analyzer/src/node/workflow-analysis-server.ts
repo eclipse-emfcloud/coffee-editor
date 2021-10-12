@@ -15,11 +15,11 @@ import { ProcessErrorEvent } from '@theia/process/lib/node/process';
 import { RawProcess, RawProcessFactory } from '@theia/process/lib/node/raw-process';
 import * as cp from 'child_process';
 import { Application } from 'express';
+import * as fs from 'fs-extra';
 import * as glob from 'glob';
 import { inject, injectable } from 'inversify';
 import * as net from 'net';
 import * as path from 'path';
-import * as fs from 'fs-extra';
 import * as rpc from 'vscode-jsonrpc';
 import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
 
@@ -79,9 +79,14 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
     configure(app: Application): void {
         app.get(`${WorkflowAnalysisServer.HANDLE_PATH}*`, async (request, response) => this.response(await this.getUri(request), response));
     }
+
     private async response(uri: string, response: any): Promise<Response> {
         const statWithContent = await this.readContent(uri);
-        response.contentType('text/html');
+        if (uri.endsWith('.css')) {
+            response.contentType('text/css');
+        } else {
+            response.contentType('text/html');
+        }
         return response.send(statWithContent.content);
     }
 
