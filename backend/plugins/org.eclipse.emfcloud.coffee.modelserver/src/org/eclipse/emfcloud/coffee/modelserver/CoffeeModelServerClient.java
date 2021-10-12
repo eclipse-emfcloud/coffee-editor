@@ -12,7 +12,6 @@ package org.eclipse.emfcloud.coffee.modelserver;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +74,6 @@ public class CoffeeModelServerClient extends ModelServerClient {
 
 	protected void doSubscribe(final String modelUri, final SubscriptionListener subscriptionListener,
 			final Request request) {
-		@SuppressWarnings({ "checkstyle:AnonInnerLength" })
 		final WebSocket socket = client.newWebSocket(request, new WebSocketListener() {
 			@Override
 			public void onOpen(@NotNull final WebSocket webSocket, @NotNull final okhttp3.Response response) {
@@ -110,7 +108,7 @@ public class CoffeeModelServerClient extends ModelServerClient {
 			}
 		});
 		List<WebSocket> list = coffeeOpenSockets.get(modelUri);
-		if(list == null) {
+		if (list == null) {
 			List<WebSocket> arrayList = new ArrayList<WebSocket>();
 			arrayList.add(socket);
 			coffeeOpenSockets.put(modelUri, arrayList);
