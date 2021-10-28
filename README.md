@@ -20,7 +20,7 @@ Now you can start the Theia Demo app using the following command (or change the 
 
     docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest yarn start
 
-Next, open a browser pointing to localhost:3000/#/usr/coffee-editor/backend/examples/SuperBrewer3000 in your host.
+Next, open a browser pointing to localhost:3000/#/coffee-editor/backend/examples/SuperBrewer3000 in your host.
 You should see a Theia application with an example project being loaded.
 Refer to the README.md in the workspace for more details on how to use the example project.
 
