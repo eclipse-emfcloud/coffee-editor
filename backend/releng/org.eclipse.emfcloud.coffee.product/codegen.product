@@ -128,13 +128,13 @@
       <plugin id="org.eclipse.equinox.simpleconfigurator"/>
       <plugin id="org.eclipse.glsp.graph"/>
       <plugin id="org.eclipse.help"/>
-      <plugin id="org.eclipse.jetty.http" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.io" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.security" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.server" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.servlet" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.util" version="9.4.43.v20210629"/>
-      <plugin id="org.eclipse.jetty.util.ajax" version="9.4.43.v20210629"/>
+      <plugin id="org.eclipse.jetty.http" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.io" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.security" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.server" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.servlet" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.util" version="9.4.44.v20210927"/>
+      <plugin id="org.eclipse.jetty.util.ajax" version="9.4.44.v20210927"/>
       <plugin id="org.eclipse.jetty.websocket.api"/>
       <plugin id="org.eclipse.jetty.websocket.common"/>
       <plugin id="org.eclipse.jetty.websocket.server"/>
