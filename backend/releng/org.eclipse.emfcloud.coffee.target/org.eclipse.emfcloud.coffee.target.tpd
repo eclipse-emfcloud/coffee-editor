@@ -71,7 +71,7 @@ location "https://download.eclipse.org/elk/updates/releases/0.7.1/" {
 	org.eclipse.elk.graph.text [0.7.1,1.0.0)
 }
 
-location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.43.v20210629/" {
+location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.44.v20210927/" {
 	org.eclipse.jetty.server lazy
 	org.eclipse.jetty.websocket.server lazy
 }
