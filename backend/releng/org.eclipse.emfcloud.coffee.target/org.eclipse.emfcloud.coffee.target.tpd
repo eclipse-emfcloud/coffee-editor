@@ -58,9 +58,7 @@ location "https://download.eclipse.org/elk/updates/nightly/" {
 	org.eclipse.elk.feature.feature.group lazy
 	org.eclipse.elk.algorithms.feature.feature.group lazy
 }
-location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/" {
+location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.44.v20210927/" {
 	org.eclipse.jetty.websocket.server lazy
-}
-location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.34.v20201102/" {
 	org.eclipse.jetty.server
 }
