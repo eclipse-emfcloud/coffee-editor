@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -39,22 +39,11 @@ export namespace CoffeeModel {
         }
     }
 
-    const components = [
-        Type.Machine,
-        Type.ControlUnit,
-        Type.BrewingUnit,
-        Type.DipTray,
-        Type.WaterTank
-    ];
+    const components = [Type.Machine, Type.ControlUnit, Type.BrewingUnit, Type.DipTray, Type.WaterTank];
 
-    const nodes = [
-        Type.AutomaticTask,
-        Type.Decision,
-        Type.ManualTask,
-        Type.Merge
-    ];
+    const nodes = [Type.AutomaticTask, Type.Decision, Type.ManualTask, Type.Merge];
 
-    const flows = [
+    const flows: string[] = [
         // TODO adding edges is currently not possible because they require a source and target
         // Type.Flow,
         // Type.WeightedFlow
@@ -63,7 +52,8 @@ export namespace CoffeeModel {
     /** Maps types to their creatable children */
     export const childrenMapping: Map<string, TreeEditor.ChildrenDescriptor[]> = new Map([
         [
-            Type.BrewingUnit, [
+            Type.BrewingUnit,
+            [
                 {
                     property: 'children',
                     children: components
@@ -71,7 +61,8 @@ export namespace CoffeeModel {
             ]
         ],
         [
-            Type.ControlUnit, [
+            Type.ControlUnit,
+            [
                 {
                     property: 'children',
                     children: components
@@ -79,7 +70,8 @@ export namespace CoffeeModel {
             ]
         ],
         [
-            Type.DipTray, [
+            Type.DipTray,
+            [
                 {
                     property: 'children',
                     children: components
@@ -87,7 +79,8 @@ export namespace CoffeeModel {
             ]
         ],
         [
-            Type.Machine, [
+            Type.Machine,
+            [
                 {
                     property: 'children',
                     children: components
@@ -99,7 +92,8 @@ export namespace CoffeeModel {
             ]
         ],
         [
-            Type.WaterTank, [
+            Type.WaterTank,
+            [
                 {
                     property: 'children',
                     children: components
@@ -107,7 +101,8 @@ export namespace CoffeeModel {
             ]
         ],
         [
-            Type.Workflow, [
+            Type.Workflow,
+            [
                 {
                     property: 'flows',
                     children: flows
@@ -119,5 +114,4 @@ export namespace CoffeeModel {
             ]
         ]
     ]);
-
 }

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -32,8 +32,7 @@ import {
 
 @injectable()
 export class CoffeeModelService implements TreeEditor.ModelService {
-
-    constructor(@inject(ILogger) private readonly logger: ILogger) { }
+    constructor(@inject(ILogger) private readonly logger: ILogger) {}
 
     getDataForNode(node: TreeEditor.Node): void {
         return node.jsonforms.data;
@@ -46,35 +45,32 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         };
     }
 
-    private getSubSchemaForNode(node: TreeEditor.Node): JsonSchema7 {
+    private getSubSchemaForNode(node: TreeEditor.Node): JsonSchema7 | undefined {
         const schema = this.getSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
         }
         // there is no type, try to guess
         if (node.jsonforms.data.nodes) {
-            return coffeeSchema.definitions.workflow;
+            return coffeeSchema.definitions?.workflow;
         }
         return undefined;
     }
 
-    private getSchemaForType(type: string): JsonSchema7 {
+    private getSchemaForType(type: string): JsonSchema7 | undefined {
         if (!type) {
             return undefined;
         }
-        const schema = Object.entries(coffeeSchema.definitions)
+        const schema = (coffeeSchema.definitions ? Object.entries(coffeeSchema.definitions) : [])
             .map(entry => entry[1])
-            .find(
-                (definition: JsonSchema7) =>
-                    definition.properties && definition.properties.eClass.const === type
-            );
+            .find((definition: JsonSchema7) => definition.properties && definition.properties.eClass.const === type);
         if (!schema) {
             this.logger.warn("Can't find definition schema for type " + type);
         }
         return schema;
     }
 
-    getUiSchemaForNode(node: TreeEditor.Node): UISchemaElement {
+    getUiSchemaForNode(node: TreeEditor.Node): UISchemaElement | undefined {
         const schema = this.getUiSchemaForType(node.jsonforms.type);
         if (schema) {
             return schema;
@@ -86,7 +82,7 @@ export class CoffeeModelService implements TreeEditor.ModelService {
         return undefined;
     }
 
-    private getUiSchemaForType(type: string): UISchemaElement {
+    private getUiSchemaForType(type: string): UISchemaElement | undefined {
         if (!type) {
             return undefined;
         }

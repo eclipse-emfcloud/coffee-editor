@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -37,11 +37,15 @@ import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.common.base.Preconditions;
+import com.google.inject.Inject;
 
 public class WorkflowModelFactory implements GModelFactory {
 
+	@Inject
+	GModelState gModelState;
+	
 	@Override
-	public void createGModel(GModelState gModelState) {
+	public void createGModel() {
 		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
 		DiagramModelFactory gModelFactory = new DiagramModelFactory(modelState);
 

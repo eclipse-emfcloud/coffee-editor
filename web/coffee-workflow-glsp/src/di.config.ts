@@ -9,141 +9,72 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ********************************************************************************/
 import '../css/diagram.css';
+// TODO remove when GLSP is updated
+import '../css/temporary_glsp.css';
 import 'balloon-css/balloon.min.css';
 import 'sprotty/css/edit-label.css';
 
 import {
-    boundsModule,
-    buttonModule,
     configureDefaultModelElements,
     configureModelElement,
     ConsoleLogger,
-    copyPasteContextMenuModule,
-    defaultGLSPModule,
-    defaultModule,
+    createClientContainer,
     DeleteElementContextMenuItemProvider,
     DiamondNodeView,
-    edgeLayoutModule,
     editLabelFeature,
-    ExpandButtonView,
-    expandModule,
-    exportModule,
-    fadeModule,
-    GLSP_TYPES,
-    glspCommandPaletteModule,
-    glspContextMenuModule,
-    glspDecorationModule,
-    glspEditLabelModule,
-    glspHoverModule,
-    glspMouseToolModule,
-    glspSelectModule,
-    glspServerCopyPasteModule,
-    glspViewportModule,
     GridSnapper,
-    labelEditModule,
-    labelEditUiModule,
-    layoutCommandsModule,
     LogLevel,
-    markerNavigatorModule,
-    modelHintsModule,
-    modelSourceModule,
-    navigationModule,
-    NoOverlapMovmentRestrictor,
-    openModule,
     overrideViewerOptions,
-    paletteModule,
+    RectangularNodeView,
     RevealNamedElementActionProvider,
-    routingModule,
-    SButton,
+    RoundedCornerNodeView,
+    SCompartment,
+    SCompartmentView,
     SEdge,
     SLabel,
     SLabelView,
-    SRoutingHandle,
-    SRoutingHandleView,
-    toolFeedbackModule,
-    toolsModule,
-    TYPES,
-    validationModule,
-    zorderModule
+    StructureCompartmentView,
+    TYPES
 } from '@eclipse-glsp/client';
+import { DefaultTypes } from '@eclipse-glsp/protocol';
 import { Container, ContainerModule } from 'inversify';
 
 import { directTaskEditor } from './direct-task-editing/di.config';
-import { ActivityNode, Icon, TaskNode, WeightedEdge } from './model';
-import { ForkOrJoinNodeView, IconView, TaskNodeView, WeightedEdgeView, WorkflowEdgeView } from './workflow-views';
+import { ActivityNode, CategoryNode, Icon, TaskNode, WeightedEdge } from './model';
+import { IconView, WorkflowEdgeView } from './workflow-views';
 
 const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.warn);
-    bind(GLSP_TYPES.IMovementRestrictor).to(NoOverlapMovmentRestrictor).inSingletonScope();
     bind(TYPES.ISnapper).to(GridSnapper);
     bind(TYPES.ICommandPaletteActionProvider).to(RevealNamedElementActionProvider);
     bind(TYPES.IContextMenuItemProvider).to(DeleteElementContextMenuItemProvider);
-
     const context = { bind, unbind, isBound, rebind };
+
     configureDefaultModelElements(context);
-    configureModelElement(context, 'task:automated', TaskNode, TaskNodeView);
-    configureModelElement(context, 'task:manual', TaskNode, TaskNodeView);
+    configureModelElement(context, 'task:automated', TaskNode, RoundedCornerNodeView);
+    configureModelElement(context, 'task:manual', TaskNode, RoundedCornerNodeView);
     configureModelElement(context, 'label:heading', SLabel, SLabelView, { enable: [editLabelFeature] });
+    configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView);
+    configureModelElement(context, 'comp:header', SCompartment, SCompartmentView);
     configureModelElement(context, 'label:icon', SLabel, SLabelView);
-    configureModelElement(context, 'button:expand', SButton, ExpandButtonView);
-    configureModelElement(context, 'routing-point', SRoutingHandle, SRoutingHandleView);
-    configureModelElement(context, 'volatile-routing-point', SRoutingHandle, SRoutingHandleView);
-    configureModelElement(context, 'edge', SEdge, WorkflowEdgeView);
-    configureModelElement(context, 'edge:weighted', WeightedEdge, WeightedEdgeView);
+    configureModelElement(context, DefaultTypes.EDGE, SEdge, WorkflowEdgeView);
+    configureModelElement(context, 'edge:weighted', WeightedEdge, WorkflowEdgeView);
     configureModelElement(context, 'icon', Icon, IconView);
     configureModelElement(context, 'activityNode:merge', ActivityNode, DiamondNodeView);
     configureModelElement(context, 'activityNode:decision', ActivityNode, DiamondNodeView);
-    configureModelElement(context, 'activityNode:fork', ActivityNode, ForkOrJoinNodeView);
-    configureModelElement(context, 'activityNode:join', ActivityNode, ForkOrJoinNodeView);
-}
-);
+    configureModelElement(context, 'activityNode:fork', ActivityNode, RectangularNodeView);
+    configureModelElement(context, 'activityNode:join', ActivityNode, RectangularNodeView);
+
+    configureModelElement(context, 'category', CategoryNode, RoundedCornerNodeView);
+    configureModelElement(context, 'struct', SCompartment, StructureCompartmentView);
+});
 
 export default function createContainer(widgetId: string): Container {
-    const container = new Container();
-
-    container.load(
-        validationModule,
-        defaultModule,
-        glspMouseToolModule,
-        defaultGLSPModule,
-        glspSelectModule,
-        boundsModule,
-        glspViewportModule,
-        toolsModule,
-        glspHoverModule,
-        fadeModule,
-        exportModule,
-        expandModule,
-        openModule,
-        buttonModule,
-        modelSourceModule,
-        labelEditModule,
-        labelEditUiModule,
-        glspEditLabelModule,
-        workflowDiagramModule,
-        toolFeedbackModule,
-        modelHintsModule,
-        glspContextMenuModule,
-        glspServerCopyPasteModule,
-        copyPasteContextMenuModule,
-        glspCommandPaletteModule,
-        paletteModule,
-        routingModule,
-        glspDecorationModule,
-        edgeLayoutModule,
-        zorderModule,
-        layoutCommandsModule,
-        directTaskEditor,
-        navigationModule,
-        markerNavigatorModule
-    );
-
+    const container = createClientContainer(workflowDiagramModule, directTaskEditor);
     overrideViewerOptions(container, {
         baseDiv: widgetId,
-        hiddenDiv: widgetId + '_hidden',
-        needsClientLayout: true
+        hiddenDiv: widgetId + '_hidden'
     });
-
     return container;
 }

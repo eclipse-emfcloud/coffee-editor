@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -15,16 +15,15 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelServerAccess;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.modelserver.glsp.actions.handlers.EMSBasicActionHandler;
 import org.eclipse.glsp.server.actions.Action;
 import org.eclipse.glsp.server.features.validation.RequestMarkersAction;
 
 public class WorkflowRequestMarkersActionHandler
-		extends EMSBasicActionHandler<RequestMarkersAction, WorkflowModelState, WorkflowModelServerAccess> {
+		extends EMSBasicActionHandler<RequestMarkersAction, WorkflowModelServerAccess> {
 
 	@Override
-	public List<Action> executeAction(final RequestMarkersAction action, final WorkflowModelState modelState,
+	public List<Action> executeAction(final RequestMarkersAction action,
 			final WorkflowModelServerAccess modelServerAccess) {
 		try {
 			modelServerAccess.validate().join();

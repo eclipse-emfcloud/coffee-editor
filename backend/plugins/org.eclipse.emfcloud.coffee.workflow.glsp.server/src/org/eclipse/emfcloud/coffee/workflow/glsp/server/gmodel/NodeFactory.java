@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -20,6 +20,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.ActivityNode;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
 import org.eclipse.emfcloud.modelserver.glsp.notation.Shape;
 import org.eclipse.glsp.graph.GNode;
+import org.eclipse.glsp.graph.builder.impl.GArguments;
 import org.eclipse.glsp.graph.util.GraphUtil;
 
 public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
@@ -50,6 +51,8 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 				builder.size(GraphUtil.copy(shape.getSize()));
 			}
 		});
+		builder.addArguments(GArguments.cornerRadius(5));
+      
 
 		return builder.build();
 	}

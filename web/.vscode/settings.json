@@ -4,15 +4,6 @@
 // - Linux: $HOME/.config/Code/User/settings.json
 // - Mac: $HOME/Library/Application Support/Code/User/settings.json
 {
-  "typescriptHero.imports.organizeOnSave": true,
-  "typescriptHero.imports.disableImportsSorting": false,
-  "typescriptHero.imports.stringQuoteStyle": "'",
-  "typescriptHero.imports.insertSemicolons": true,
-  "typescriptHero.imports.multiLineTrailingComma": false,
-  "typescriptHero.imports.ignoredFromRemoval": [
-    "react",
-    "snabbdom-jsx"
-  ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -15,16 +15,12 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.Icon;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WeightedEdge;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphFactory;
-import org.eclipse.glsp.graph.GCompartment;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.builder.AbstractGCompartmentBuilder;
 import org.eclipse.glsp.graph.builder.AbstractGEdgeBuilder;
 import org.eclipse.glsp.graph.builder.AbstractGNodeBuilder;
-import org.eclipse.glsp.graph.builder.impl.GCompartmentBuilder;
 import org.eclipse.glsp.graph.builder.impl.GLabelBuilder;
-import org.eclipse.glsp.graph.builder.impl.GLayoutOptions;
 import org.eclipse.glsp.graph.util.GConstants;
-import org.eclipse.glsp.graph.util.GConstants.HAlign;
 
 public final class WorkflowBuilder {
 
@@ -45,6 +41,7 @@ public final class WorkflowBuilder {
       protected void setProperties(final WeightedEdge edge) {
          super.setProperties(edge);
          edge.setProbability(probability);
+         edge.getCssClasses().add(this.probability);
       }
 
       @Override
@@ -71,6 +68,7 @@ public final class WorkflowBuilder {
       protected void setProperties(final ActivityNode node) {
          super.setProperties(node);
          node.setNodeType(nodeType);
+         node.getCssClasses().add(nodeType);
       }
 
       @Override
@@ -113,66 +111,36 @@ public final class WorkflowBuilder {
          taskNode.setName(name);
          taskNode.setTaskType(taskType);
          taskNode.setDuration(duration);
-         taskNode.setLayout(GConstants.Layout.VBOX);
-         taskNode.getChildren().add(createCompartment(taskNode));
+         taskNode.setLayout(GConstants.Layout.HBOX);
+         taskNode.getLayoutOptions().put("paddingRight", 10);
+         taskNode.getChildren().add(createCompartmentIcon(taskNode));
+         taskNode.getChildren().add(createCompartmentHeader(taskNode));
+         taskNode.getCssClasses().add(taskType);
+         taskNode.getCssClasses().add("task");
       }
 
-      private GCompartment createCompartment(final TaskNode taskNode) {
-         return new GCompartmentBuilder(ModelTypes.COMP_HEADER) //
-            .id(taskNode.getId() + "_header") //
-            .layout(GConstants.Layout.HBOX) //
-            .add(createCompartmentIcon(taskNode)) //
-            .add(createCompartmentHeader(taskNode)) //
-            .build();
+      private Icon createCompartmentIcon(final TaskNode taskNode) {
+         return new IconBuilder().id(taskNode.getId() + "_icon").build();
       }
 
       private GLabel createCompartmentHeader(final TaskNode taskNode) {
          return new GLabelBuilder(ModelTypes.LABEL_HEADING) //
-            .id(taskNode.getId() + "_classname") //
-            .text(taskNode.getName()) //
-            .build();
-      }
-
-      private Icon createCompartmentIcon(final TaskNode taskNode) {
-         return new IconBuilder() //
-            .id(taskNode.getId() + "_icon") //
-            .layout(GConstants.Layout.STACK) //
-            .layoutOptions(new GLayoutOptions() //
-               .hAlign(HAlign.CENTER) //
-               .resizeContainer(false)) //
-            .add(createCompartmentIconLabel(taskNode)).build();
-      }
-
-      private GLabel createCompartmentIconLabel(final TaskNode taskNode) {
-         return new GLabelBuilder(ModelTypes.LABEL_ICON) //
-            .id(taskNode.getId() + "_ticon") //
-            .text("" + taskNode.getTaskType().toUpperCase().charAt(0)) //
-            .build();
+               .id(taskNode.getId() + "_classname") //
+               .text(taskNode.getName()) //
+               .build();
       }
 
    }
 
    public static class IconBuilder extends AbstractGCompartmentBuilder<Icon, IconBuilder> {
-      private String commandId;
 
       public IconBuilder() {
          super(ModelTypes.ICON);
       }
 
-      public IconBuilder commandId(final String commandId) {
-         this.commandId = commandId;
-         return self();
-      }
-
       @Override
       protected Icon instantiate() {
          return WfgraphFactory.eINSTANCE.createIcon();
-      }
-
-      @Override
-      protected void setProperties(final Icon comp) {
-         super.setProperties(comp);
-         comp.setCommandId(commandId);
       }
 
       @Override
@@ -182,5 +150,6 @@ public final class WorkflowBuilder {
 
    }
 
-   private WorkflowBuilder() {}
+   private WorkflowBuilder() {
+   }
 }

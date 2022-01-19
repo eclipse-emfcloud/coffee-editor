@@ -3,13 +3,14 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "baseUrl": ".",
     "reactNamespace": "JSX",
+    "baseUrl": ".",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": []
   },
   "include": [
     "src"
-  ],
+  ]
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -24,12 +24,15 @@ import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
 
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 
 public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider {
 
+	@Inject
+	GModelState modelState;
+	
 	@Override
-	public List<MenuItem> getItems(List<String> selectedElementIds, GPoint position, Map<String, String> args,
-			GModelState modelState) {
+	public List<MenuItem> getItems(List<String> selectedElementIds, GPoint position, Map<String, String> args) {
 		MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
 				Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
 		MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",

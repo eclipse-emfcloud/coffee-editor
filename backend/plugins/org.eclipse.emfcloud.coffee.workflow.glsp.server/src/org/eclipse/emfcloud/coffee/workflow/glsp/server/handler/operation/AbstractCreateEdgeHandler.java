@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -19,20 +19,22 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicCreateOperationHandler;
 import org.eclipse.glsp.server.operations.CreateEdgeOperation;
-import org.eclipse.glsp.server.protocol.GLSPServerException;
+import org.eclipse.glsp.server.types.GLSPServerException;
 
 public abstract class AbstractCreateEdgeHandler
-		extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelState, WorkflowModelServerAccess> {
-
+		extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelServerAccess> {
 
 	public AbstractCreateEdgeHandler(String type) {
 		super(type);
 	}
 
+	protected WorkflowModelState getWorkflowModelState() {
+		return (WorkflowModelState) getEMSModelState();
+	}
+
 	@Override
-	public void executeOperation(CreateEdgeOperation operation, WorkflowModelState modelState,
-			WorkflowModelServerAccess modelAccess) {
-		WorkflowModelIndex modelIndex = modelState.getIndex();
+	public void executeOperation(CreateEdgeOperation operation, WorkflowModelServerAccess modelAccess) {
+		WorkflowModelIndex modelIndex = getWorkflowModelState().getIndex();
 
 		Node source = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).orElseThrow(
 				() -> new GLSPServerException(String.format("No semantic Node found for source element with id %s.",
@@ -41,9 +43,10 @@ public abstract class AbstractCreateEdgeHandler
 				() -> new GLSPServerException(String.format("No semantic Node found for target element with id %s.",
 						operation.getTargetElementId())));
 
-		addFlow(modelAccess, modelState, source, target).thenAccept(response -> {
+		addFlow(modelAccess, getWorkflowModelState(), source, target).thenAccept(response -> {
 			if (!response.body()) {
-				throw new GLSPServerException(String.format("Could not execute create operation for a new %s.", getLabel()));
+				throw new GLSPServerException(
+						String.format("Could not execute create operation for a new %s.", getLabel()));
 			}
 		});
 	}

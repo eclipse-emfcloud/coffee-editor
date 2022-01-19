@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -37,30 +37,30 @@ import { inject, injectable } from 'inversify';
 import { get, isEqual, isObject, reduce } from 'lodash';
 
 import { CoffeeModel } from './coffee-model';
-import {
-    AddAutomatedTaskCommand,
-    AddDecisionNodeCommand,
-    AddManualTaskCommand,
-    AddMergeNodeCommand,
-    ID_PROP
-} from './model-server';
+import { AddAutomatedTaskCommand, AddDecisionNodeCommand, AddManualTaskCommand, AddMergeNodeCommand, ID_PROP } from './model-server';
 
-interface PathSegment { property: string; index?: string }
+interface PathSegment {
+    property: string;
+    index?: string;
+}
 
 @injectable()
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
-
     private delayedRefresh = false;
     private idToPath: Map<string, PathSegment[]> = new Map<string, PathSegment[]>();
 
-    constructor(@inject(MasterTreeWidget) readonly treeWidget: MasterTreeWidget,
+    constructor(
+        @inject(MasterTreeWidget) readonly treeWidget: MasterTreeWidget,
         @inject(DetailFormWidget) readonly formWidget: DetailFormWidget,
         @inject(WorkspaceService) readonly workspaceService: WorkspaceService,
         @inject(ILogger) readonly logger: ILogger,
-        @inject(NavigatableTreeEditorOptions) protected readonly options: NavigatableTreeEditorOptions,
-        @inject(ModelServerClient) private readonly modelServerApi: ModelServerClient,
-        @inject(ModelServerSubscriptionService) private readonly subscriptionService: ModelServerSubscriptionService) {
-
+        @inject(NavigatableTreeEditorOptions)
+        protected readonly options: NavigatableTreeEditorOptions,
+        @inject(ModelServerClient)
+        private readonly modelServerApi: ModelServerClient,
+        @inject(ModelServerSubscriptionService)
+        private readonly subscriptionService: ModelServerSubscriptionService
+    ) {
         super(treeWidget, formWidget, workspaceService, logger, CoffeeTreeEditorConstants.WIDGET_ID, options);
 
         this.subscriptionService.onDirtyStateListener(modelServerMessage => {
@@ -72,7 +72,8 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             this.instanceData = undefined;
             this.instanceData = modelServerMessage.data;
 
-            this.treeWidget.setData({ error: false, data: this.instanceData })
+            this.treeWidget
+                .setData({ error: false, data: this.instanceData })
                 .then(() => this.treeWidget.select(this.getOldSelectedPath()));
 
             if (!this.isVisible) {
@@ -105,12 +106,15 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 this.treeWidget
                     .setData({ error: false, data: this.instanceData })
                     .then(() => this.initIdMap())
-                    .then(() => initialLoad ? this.treeWidget.selectFirst() : this.treeWidget.select(this.getOldSelectedPath()));
+                    .then(() => (initialLoad ? this.treeWidget.selectFirst() : this.treeWidget.select(this.getOldSelectedPath())));
                 this.update();
                 return;
             }
             this.treeWidget.setData({ error: !!response.statusMessage });
-            this.renderError("An error occurred when requesting '" + this.getModelIDToRequest() + "' - Status " + response.statusCode + ' ' + response.statusMessage);
+            this.renderError(
+                `An error occurred when requesting '
+                        ${this.getModelIDToRequest()}' - Status ${response.statusCode} ${response.statusMessage}`
+            );
             this.instanceData = undefined;
             return;
         });
@@ -124,7 +128,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         paths.push(this.selectedNode.name);
         let parent = this.selectedNode.parent;
         while (parent) {
-            paths.push(parent.name);
+            parent.name && paths.push(parent.name);
             parent = parent.parent;
         }
         paths.splice(paths.length - 1, 1);
@@ -137,7 +141,13 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         const machineNode = (this.treeWidget.model.root as TreeEditor.RootNode).children[0] as TreeEditor.Node;
         this.idToPath.set(machineNode.jsonforms.data[ID_PROP], []);
         const recursion = (node: TreeEditor.Node, path: PathSegment[]): void => {
-            const nodePath = [...path, { property: node.jsonforms.property, index: node.jsonforms.index }];
+            const nodePath = [
+                ...path,
+                {
+                    property: node.jsonforms.property,
+                    index: node.jsonforms.index
+                }
+            ];
             this.idToPath.set(node.jsonforms.data[ID_PROP], nodePath);
             node.children.forEach(child => recursion(child as TreeEditor.Node, nodePath));
         };
@@ -174,7 +184,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     protected isCurrentModelUri(uri: URI): boolean {
-        return uri.path.toString() === ('/' + this.getModelIDToRequest());
+        return uri.path.toString() === '/' + this.getModelIDToRequest();
     }
 
     public save(): void {
@@ -202,11 +212,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         } else if (type === CoffeeModel.Type.Merge) {
             addCommand = new AddMergeNodeCommand();
         } else {
-            addCommand = new AddCommand(
-                this.getNodeDescription(node),
-                property,
-                [{ eClass: type }]
-            );
+            addCommand = new AddCommand(this.getNodeDescription(node), property, [{ eClass: type }]);
         }
         this.modelServerApi.edit(this.getModelIDToRequest(), addCommand);
     }
@@ -217,7 +223,10 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     protected async handleFormUpdate(jsonFormsData: any, node: TreeEditor.Node): Promise<void> {
-        if (jsonFormsData[ID_PROP] === this.selectedNode.jsonforms.data[ID_PROP] && !isEqual(jsonFormsData, this.selectedNode.jsonforms.data)) {
+        if (
+            jsonFormsData[ID_PROP] === this.selectedNode.jsonforms.data[ID_PROP] &&
+            !isEqual(jsonFormsData, this.selectedNode.jsonforms.data)
+        ) {
             const changedFeatures = this.getObjectDiff(jsonFormsData, this.selectedNode.jsonforms.data);
             if (changedFeatures.length > 0) {
                 const editCommand = this.createSetCommand(changedFeatures[0], jsonFormsData);
@@ -242,7 +251,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         }
     }
 
-    protected deepDiff(o1: object, o2: object): object {
+    protected deepDiff(o1: any, o2: any): any {
         return Object.keys(o2).reduce((diff, key) => {
             if (o1[key] === o2[key]) {
                 return diff;
@@ -255,37 +264,43 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     private getObjectDiff(object: Record<string, any>, base: Record<string, any>): string[] {
-        function difference(obj1, obj2, path): any {
+        function difference(obj1: any, obj2: any, path: string): any {
             obj1 = obj1 || {};
             obj2 = obj2 || {};
 
-            return reduce(obj1, function (result, value, key) {
-                const p = path ? path + '.' + key : key;
-                if (isObject(value)) {
-                    const d = difference(value, obj2[key], p);
-                    return d.length ? result.concat(d) : result;
-                }
-                return isEqual(value, obj2[key]) ? result : result.concat(p);
-            }, []);
+            return reduce<any, string[]>(
+                obj1,
+                (result, value, key) => {
+                    const p = path ? path + '.' + key : key;
+                    if (isObject(value)) {
+                        const d = difference(value, obj2[key], p);
+                        return d.length ? result.concat(d) : result;
+                    }
+                    return isEqual(value, obj2[key]) ? result : result.concat(p);
+                },
+                []
+            );
         }
-        return difference(object, base, undefined);
+        return difference(object, base, '');
     }
 
-    protected createSetCommand(changedFeature: string, jsonFormsData: any): ModelServerCommand | undefined {
+    protected createSetCommand(changedFeature: string, jsonFormsData: any): ModelServerCommand {
         const nestedFeatures = changedFeature.split('.');
         if (nestedFeatures.length > 1) {
             // TODO check why change of dimension (width/height/length) values is not working properly
             const ownerFeatureName = nestedFeatures[0];
             const featureName = nestedFeatures[nestedFeatures.length - 1];
             const changedValue = get(jsonFormsData, nestedFeatures);
-            const setCommand = new SetCommand(this.getOwner(jsonFormsData[ownerFeatureName], ownerFeatureName), featureName, [changedValue]);
+            const setCommand = new SetCommand(this.getOwner(jsonFormsData[ownerFeatureName], ownerFeatureName), featureName, [
+                changedValue
+            ]);
             return setCommand;
         } else {
             return new SetCommand(this.getOwner(jsonFormsData), changedFeature, [jsonFormsData[changedFeature]]);
         }
     }
 
-    protected createAddRamCommand(jsonFormsData: any): ModelServerCommand | undefined {
+    protected createAddRamCommand(jsonFormsData: any): ModelServerCommand {
         const addCommand = new AddCommand(this.getOwner(jsonFormsData), 'ram', []);
         const toAdd = { eClass: CoffeeModel.Type.RAM };
         addCommand.objectsToAdd = [toAdd];
@@ -295,7 +310,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         return addCommand;
     }
 
-    protected createRemoveRamCommand(jsonFormsData: any): ModelServerCommand | undefined {
+    protected createRemoveRamCommand(jsonFormsData: any): ModelServerCommand {
         // TODO fix index
         return new RemoveCommand(this.getOwner(jsonFormsData), 'ram', [0]);
     }
@@ -304,10 +319,18 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         let eClass = jsonFormsData.eClass;
         if (!eClass && ownerFeatureName) {
             switch (ownerFeatureName) {
-                case 'processor': eClass = CoffeeModel.Type.Processor; break;
-                case 'dimension': eClass = CoffeeModel.Type.Dimension; break;
-                case 'ram': eClass = CoffeeModel.Type.RAM; break;
-                case 'display': eClass = CoffeeModel.Type.Display; break;
+                case 'processor':
+                    eClass = CoffeeModel.Type.Processor;
+                    break;
+                case 'dimension':
+                    eClass = CoffeeModel.Type.Dimension;
+                    break;
+                case 'ram':
+                    eClass = CoffeeModel.Type.RAM;
+                    break;
+                case 'display':
+                    eClass = CoffeeModel.Type.Display;
+                    break;
             }
         }
         return {
@@ -326,19 +349,15 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
      */
     protected getNodeDescription(node: TreeEditor.Node): ModelServerReferenceDescription {
         const getRefSegment = (n: TreeEditor.Node): string =>
-            n.jsonforms.property
-                ? `@${n.jsonforms.property}` +
-                (n.jsonforms.index ? `.${n.jsonforms.index}` : '')
-                : '';
+            n.jsonforms.property ? `@${n.jsonforms.property}` + (n.jsonforms.index ? `.${n.jsonforms.index}` : '') : '';
         let refToNode = '';
-        let toCheck: TreeNode = node;
+        let toCheck: TreeNode | undefined = node;
         while (toCheck && TreeEditor.Node.is(toCheck)) {
             const parentRefSeg = getRefSegment(toCheck);
-            refToNode =
-                parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
+            refToNode = parentRefSeg === '' ? refToNode : '/' + parentRefSeg + refToNode;
             toCheck = toCheck.parent;
         }
-        const ownerRef = `${this.workspaceService.workspace.resource}/${this.getModelIDToRequest()}#/${refToNode}`;
+        const ownerRef = `${this.workspaceService.workspace?.resource}/${this.getModelIDToRequest()}#/${refToNode}`;
         return {
             eClass: node.jsonforms.type,
             $ref: ownerRef.replace('file:///', 'file:/')
@@ -346,9 +365,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     private getModelIDToRequest(): string {
-        const rootUriLength = this.workspaceService
-            .getWorkspaceRootUri(this.options.uri)
-            .toString().length;
+        const rootUriLength = this.workspaceService.getWorkspaceRootUri(this.options.uri)?.toString().length ?? 0;
         return this.options.uri.toString().substring(rootUriLength + 1);
     }
 
@@ -356,7 +373,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         title.label = this.options.uri.path.base;
         title.caption = BaseTreeEditorWidget.WIDGET_LABEL;
         title.closable = true;
-        title.iconClass = 'fa coffee-icon dark-purple';
+        title.iconClass = 'codicon coffee-icon dark-purple';
     }
 
     show(): void {

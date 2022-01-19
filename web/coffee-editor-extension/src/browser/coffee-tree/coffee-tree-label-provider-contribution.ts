@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
 import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
-import { LabelProviderContribution } from '@theia/core/lib/browser';
+import { codicon, LabelProviderContribution } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from 'inversify';
 
@@ -19,44 +19,45 @@ import { CoffeeTreeEditorConstants } from './coffee-tree-editor-widget';
 const DEFAULT_COLOR = 'black';
 
 const ICON_CLASSES: Map<string, string> = new Map([
-    [CoffeeModel.Type.AutomaticTask, 'fa-cog ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.BrewingUnit, 'fa-fire ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.ControlUnit, 'fa-server ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Decision, 'fa-chevron-up ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Dimension, 'fa-arrows-alt ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.DipTray, 'fa-inbox ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Display, 'fa-tv ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Flow, 'fa-exchange-alt ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Fork, 'fa-code-branch fa-rotate-90 ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Join, 'fa-code-branch fa-rotate-270 ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Machine, 'fa-cogs ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.ManualTask, 'fa-wrench ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Merge, 'fa-chevron-down ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Node, 'fa-circle ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Processor, 'fa-microchip ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.RAM, 'fa-memory ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Task, 'fa-tasks ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.WaterTank, 'fa-tint ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.WeightedFlow, 'fa-exchange-alt light-orange'],
-    [CoffeeModel.Type.Workflow, 'fa-random ' + DEFAULT_COLOR]
+    [CoffeeModel.Type.AutomaticTask, 'gear ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.BrewingUnit, 'flame ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.ControlUnit, 'server ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Decision, 'chevron-up ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Dimension, 'move ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.DipTray, 'inbox ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Display, 'tv ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Flow, 'arrow-swap ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Fork, 'source-control rotate-90 ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Join, 'source-control rotate-270 ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Machine, 'settings-gear ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.ManualTask, 'symbol-property ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Merge, 'chevron-down ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Node, 'circle ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Processor, 'circuit-board ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.RAM, 'memory ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.Task, 'checklist ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.WaterTank, 'beaker ' + DEFAULT_COLOR],
+    [CoffeeModel.Type.WeightedFlow, 'arrow-swap light-orange'],
+    [CoffeeModel.Type.Workflow, 'combine ' + DEFAULT_COLOR]
 ]);
 
 /* Icon for unknown types */
-const UNKNOWN_ICON = 'fa-question-circle ' + DEFAULT_COLOR;
+const UNKNOWN_ICON = 'circle-slash ' + DEFAULT_COLOR;
 
 @injectable()
 export class CoffeeTreeLabelProvider implements LabelProviderContribution {
-
     public canHandle(element: object): number {
-        if ((TreeEditor.Node.is(element) || TreeEditor.CommandIconInfo.is(element))
-            && element.editorId === CoffeeTreeEditorConstants.EDITOR_ID) {
+        if (
+            (TreeEditor.Node.is(element) || TreeEditor.CommandIconInfo.is(element)) &&
+            element.editorId === CoffeeTreeEditorConstants.EDITOR_ID
+        ) {
             return 1000;
         }
         return 0;
     }
 
     public getIcon(element: object): string | undefined {
-        let iconClass: string;
+        let iconClass: string | undefined;
         if (TreeEditor.CommandIconInfo.is(element)) {
             iconClass = ICON_CLASSES.get(element.type);
         } else if (TreeEditor.Node.is(element)) {
@@ -66,7 +67,7 @@ export class CoffeeTreeLabelProvider implements LabelProviderContribution {
             }
         }
 
-        return iconClass ? 'fa ' + iconClass : 'far ' + UNKNOWN_ICON;
+        return iconClass ? codicon(iconClass) : codicon(UNKNOWN_ICON);
     }
 
     public getName(element: object): string | undefined {
