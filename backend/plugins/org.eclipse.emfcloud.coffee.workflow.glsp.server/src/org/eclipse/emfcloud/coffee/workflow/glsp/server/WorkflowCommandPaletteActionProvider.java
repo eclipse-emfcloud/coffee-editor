@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -33,11 +33,15 @@ import org.eclipse.glsp.server.types.EditorContext;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.inject.Inject;
 
 public class WorkflowCommandPaletteActionProvider implements CommandPaletteActionProvider {
 
+	@Inject
+	GModelState modelState;
+	
 	@Override
-	public List<LabeledAction> getActions(EditorContext editorContext, GModelState modelState) {
+	public List<? extends LabeledAction> getActions(EditorContext editorContext) {
 		List<LabeledAction> actions = Lists.newArrayList();
 
 		GModelIndex index = modelState.getIndex();
@@ -47,15 +51,15 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 		actions.addAll(Sets.newHashSet(
 				new LabeledAction("Create Automated Task",
 						Lists.newArrayList(new CreateNodeOperation(ModelTypes.AUTOMATED_TASK, lastMousePosition)),
-						"fa-plus-square"),
+						"diff-added"),
 				new LabeledAction("Create Manual Task",
 						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)), "fa-plus-square"),
+								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)), "diff-added"),
 				new LabeledAction("Create Merge Node",
 						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)), "fa-plus-square"),
+								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)), "diff-added"),
 				new LabeledAction("Create Decision Node", Lists.newArrayList(
-						new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition)), "fa-plus-square")));
+						new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition)), "diff-added")));
 
 		// Create edge actions between two nodes
 		if (selectedElements.size() == 1) {
@@ -78,10 +82,10 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 		// Delete action
 		if (selectedElements.size() == 1) {
 			actions.add(new LabeledAction("Delete",
-					Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "fa-minus-square"));
+					Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
 		} else if (selectedElements.size() > 1) {
 			actions.add(new LabeledAction("Delete All",
-					Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "fa-minus-square"));
+					Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
 		}
 
 		return actions;
@@ -99,12 +103,12 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 	private LabeledAction createWeightedEdgeAction(final String label, final GNode source, final GNode node) {
 		return new LabeledAction(label,
 				Lists.newArrayList(new CreateEdgeOperation(ModelTypes.WEIGHTED_EDGE, source.getId(), node.getId())),
-				"fa-plus-square");
+				"diff-added");
 	}
 
 	private LabeledAction createEdgeAction(final String label, final GNode source, final GNode node) {
 		return new LabeledAction(label, Lists.newArrayList(new CreateEdgeOperation(EDGE, source.getId(), node.getId())),
-				"fa-plus-square");
+				"diff-added");
 	}
 
 	private String getLabel(final GNode node) {
@@ -113,4 +117,5 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 		}
 		return node.getId();
 	}
+
 }

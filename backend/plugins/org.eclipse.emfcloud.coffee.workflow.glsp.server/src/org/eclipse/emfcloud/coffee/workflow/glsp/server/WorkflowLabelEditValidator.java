@@ -1,3 +1,13 @@
+/********************************************************************************
+ * Copyright (c) 2021-2022 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import java.util.List;
@@ -17,10 +27,15 @@ import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
 import org.eclipse.glsp.server.features.directediting.ValidationStatus;
 import org.eclipse.glsp.server.model.GModelState;
 
+import com.google.inject.Inject;
+
 public class WorkflowLabelEditValidator implements LabelEditValidator {
 
+	@Inject
+	GModelState modelState;
+	
 	@Override
-	public ValidationStatus validate(final GModelState modelState, final String label, final GModelElement element) {
+	public ValidationStatus validate(final String label, final GModelElement element) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
 		GModelElement parent = getRoot(element);
 

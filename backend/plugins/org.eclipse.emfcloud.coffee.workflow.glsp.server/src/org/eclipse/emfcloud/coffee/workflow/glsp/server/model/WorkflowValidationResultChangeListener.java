@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -31,7 +31,7 @@ public class WorkflowValidationResultChangeListener extends ValidationResultChan
 
 	@Override
 	public void changed(List<ValidationResult> newResult) {
-		actionDispatcher.dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))));
+		actionDispatcher.dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))).getAction());
 	}
 
 	public WorkflowValidationResultChangeListener(String clientId, ActionDispatcher actionDispatcher) {

@@ -134,6 +134,7 @@ fi
 
 if [ "$buildFrontend" == "true" ]; then
   cd web/
+  yarn cache clean
   yarn
   cd ..
 fi

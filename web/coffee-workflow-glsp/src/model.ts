@@ -9,11 +9,11 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ********************************************************************************/
 import {
-    Bounds,
     boundsFeature,
     connectableFeature,
     deletableFeature,
     DiamondNode,
+    EditableLabel,
     fadeFeature,
     hoverFeedbackFeature,
     isEditableLabel,
@@ -25,18 +25,16 @@ import {
     nameFeature,
     popupFeature,
     RectangularNode,
+    SChildElement,
     SEdge,
     selectFeature,
     SModelElement,
     SShapeElement,
     WithEditableLabel,
-    withEditLabelFeature,
+    withEditLabelFeature
 } from '@eclipse-glsp/client';
 
-import { ActivityNodeSchema } from './model-schema';
-
-export class TaskNode extends RectangularNode
-    implements Nameable, WithEditableLabel {
+export class TaskNode extends RectangularNode implements Nameable, WithEditableLabel {
     static readonly DEFAULT_FEATURES = [
         connectableFeature,
         deletableFeature,
@@ -50,24 +48,21 @@ export class TaskNode extends RectangularNode
         nameFeature,
         withEditLabelFeature
     ];
-    name = "";
     duration?: number;
     taskType?: string;
     reference?: string;
 
-    get editableLabel() {
-        const headerComp = this.children.find(
-            element => element.type === "comp:header"
-        );
-        if (headerComp) {
-            const label = headerComp.children.find(
-                element => element.type === "label:heading"
-            );
-            if (label && isEditableLabel(label)) {
-                return label;
-            }
+    get editableLabel(): (SChildElement & EditableLabel) | undefined {
+        const label = this.children.find(element => element.type === 'label:heading');
+        if (label && isEditableLabel(label)) {
+            return label;
         }
         return undefined;
+    }
+
+    get name(): string {
+        const labelText = this.editableLabel?.text;
+        return labelText ? labelText : '<unknown>';
     }
 }
 
@@ -80,7 +75,7 @@ export class WeightedEdge extends SEdge {
 }
 
 export class ActivityNode extends DiamondNode {
-    nodeType: string = ActivityNodeSchema.Type.UNDEFINED;
+    nodeType: string = ActivityNode.Type.UNDEFINED;
     size = {
         width: 32,
         height: 32
@@ -88,20 +83,50 @@ export class ActivityNode extends DiamondNode {
     strokeWidth = 1;
 }
 
-export class Icon extends SShapeElement implements LayoutContainer {
-    static readonly DEFAULT_FEATURES = [
-        boundsFeature,
-        layoutContainerFeature,
-        layoutableChildFeature,
-        fadeFeature
-    ];
+export namespace ActivityNode {
+    export namespace Type {
+        export const INITIAL = 'initalNode';
+        export const FINAL = 'finalNode';
+        export const DECISION = 'decisionNode';
+        export const MERGE = 'mergeNode';
+        export const JOIN = 'joinNode';
+        export const FORK = 'forkNode';
+        export const UNDEFINED = 'undefined';
+    }
+}
 
-    commandId: string;
+export class Icon extends SShapeElement implements LayoutContainer {
+    static readonly DEFAULT_FEATURES = [boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature];
+
     layout: string;
     layoutOptions?: { [key: string]: string | number | boolean };
-    bounds: Bounds;
     size = {
         width: 32,
         height: 32
     };
+}
+
+export class CategoryNode extends RectangularNode implements Nameable, WithEditableLabel {
+    static readonly DEFAULT_FEATURES = [
+        deletableFeature,
+        selectFeature,
+        boundsFeature,
+        moveFeature,
+        layoutContainerFeature,
+        fadeFeature,
+        hoverFeedbackFeature,
+        popupFeature,
+        nameFeature,
+        withEditLabelFeature
+    ];
+
+    name = '';
+
+    get editableLabel(): (SChildElement & EditableLabel) | undefined {
+        const label = this.children.find(element => element.type === 'label:heading');
+        if (label && isEditableLabel(label)) {
+            return label;
+        }
+        return undefined;
+    }
 }

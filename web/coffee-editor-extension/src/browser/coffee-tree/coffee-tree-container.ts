@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -21,13 +21,10 @@ export namespace CoffeeTreeCommands {
         id: 'workflow.open',
         label: 'Open Workflow Diagram'
     };
-
 }
 
 export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
-    constructor(protected readonly shell: ApplicationShell,
-        protected readonly openerService: OpenerService) {
-    }
+    constructor(protected readonly shell: ApplicationShell, protected readonly openerService: OpenerService) {}
 
     execute(): void {
         const editorWidget = this.getTreeEditorWidget();
@@ -41,7 +38,8 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     }
 
     isVisible(): boolean {
-        return this.getSelectedWorkflow(this.getTreeEditorWidget()) !== undefined;
+        const widget = this.getTreeEditorWidget();
+        return !!widget && this.getSelectedWorkflow(widget) !== undefined;
     }
 
     getTreeEditorWidget(): CoffeeTreeEditorWidget | undefined {

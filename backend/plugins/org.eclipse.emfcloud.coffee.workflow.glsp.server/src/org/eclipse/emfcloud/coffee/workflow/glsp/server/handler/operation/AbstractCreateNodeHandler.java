@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -20,21 +20,25 @@ import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicCreateOperationHandler;
 import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
-import org.eclipse.glsp.server.protocol.GLSPServerException;
+import org.eclipse.glsp.server.types.GLSPServerException;
 
 public abstract class AbstractCreateNodeHandler
-		extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelState, WorkflowModelServerAccess> {
+		extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelServerAccess> {
 
 	public AbstractCreateNodeHandler(String type) {
 		super(type);
 	}
 
+	protected WorkflowModelState getWorkflowModelState() {
+		return (WorkflowModelState) getEMSModelState();
+	}
+
 	@Override
-	public void executeOperation(CreateNodeOperation operation, WorkflowModelState modelState,
-			WorkflowModelServerAccess modelAccess) {
-		getNodeCreator(modelAccess).apply(modelState, operation.getLocation()).thenAccept(response -> {
+	public void executeOperation(CreateNodeOperation operation, WorkflowModelServerAccess modelAccess) {
+		getNodeCreator(modelAccess).apply(getWorkflowModelState(), operation.getLocation()).thenAccept(response -> {
 			if (!response.body()) {
-				throw new GLSPServerException(String.format("Could not execute create operation for a new %s.", getLabel()));
+				throw new GLSPServerException(
+						String.format("Could not execute create operation for a new %s.", getLabel()));
 			}
 		});
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -18,15 +18,15 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelSourceLoader;
 import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 import org.eclipse.glsp.server.model.GModelState;
-import org.eclipse.glsp.server.protocol.GLSPServerException;
-import org.eclipse.glsp.server.utils.ClientOptions;
+import org.eclipse.glsp.server.types.GLSPServerException;
+import org.eclipse.glsp.server.utils.ClientOptionsUtil;
 
 public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 
 	private static Logger LOGGER = Logger.getLogger(EMSModelSourceLoader.class.getSimpleName());
 
 	@Override
-	public void loadSourceModel(final RequestModelAction action, final GModelState gModelState) {
+	public void loadSourceModel(final RequestModelAction action) {
 		String sourceURI = getSourceURI(action.getOptions());
 		if (sourceURI.isEmpty()) {
 			LOGGER.error("No source URI given to load source models");
@@ -71,7 +71,7 @@ public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 	protected String getSourceURI(final Map<String, String> clientOptions) {
 		// We want to use the absolute sourceUri instead of the relative one from the
 		// super class
-		String sourceURI = ClientOptions.getSourceUri(clientOptions)
+		String sourceURI = ClientOptionsUtil.getSourceUri(clientOptions)
 				.orElseThrow(() -> new GLSPServerException("No source URI given to load model!"));
 		return sourceURI;
 	}

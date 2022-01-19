@@ -13,11 +13,7 @@ import { TYPES } from 'sprotty';
 
 import { TaskEditor } from './direct-task-editor';
 
-export const directTaskEditor = new ContainerModule(
-    (bind, _unbind, isBound) => {
-        bind(TaskEditor)
-            .toSelf()
-            .inSingletonScope();
-        bind(TYPES.IUIExtension).toService(TaskEditor);
-    }
-);
+export const directTaskEditor = new ContainerModule((bind, _unbind, isBound) => {
+    bind(TaskEditor).toSelf().inSingletonScope();
+    bind(TYPES.IUIExtension).toService(TaskEditor);
+});

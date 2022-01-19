@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -20,8 +20,8 @@ import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.glsp.EMSGLSPServer;
 import org.eclipse.emfcloud.modelserver.glsp.notation.epackage.NotationUtil;
 import org.eclipse.glsp.server.protocol.DisposeClientSessionParameters;
-import org.eclipse.glsp.server.protocol.GLSPServerException;
-import org.eclipse.glsp.server.utils.ClientOptions;
+import org.eclipse.glsp.server.types.GLSPServerException;
+import org.eclipse.glsp.server.utils.ClientOptionsUtil;
 
 public class WorkflowGLSPServer extends EMSGLSPServer {
 
@@ -34,7 +34,7 @@ public class WorkflowGLSPServer extends EMSGLSPServer {
 	public CompletableFuture<Void> disposeClientSession(final DisposeClientSessionParameters params) {
 		Optional<ModelServerClient> modelServerClient = modelServerClientProvider.get();
 		if (modelServerClient.isPresent()) {
-			String sourceURI = ClientOptions.getSourceUri(params.getArgs())
+			String sourceURI = ClientOptionsUtil.getSourceUri(params.getArgs())
 					.orElseThrow(() -> new GLSPServerException("No source URI given to dispose client session!"));
 			modelServerClient.get()
 					.unsubscribe(sourceURI.replace(NotationUtil.NOTATION_EXTENSION, CoffeeResource.FILE_EXTENSION));

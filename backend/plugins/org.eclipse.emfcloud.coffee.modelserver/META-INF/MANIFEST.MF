@@ -36,3 +36,4 @@ Export-Package: org.eclipse.emfcloud.coffee.modelserver,
  org.eclipse.emfcloud.coffee.modelserver.commands.notation,
  org.eclipse.emfcloud.coffee.modelserver.commands.semantic,
  org.eclipse.emfcloud.coffee.modelserver.commands.util
+Import-Package: org.apache.log4j;version="1.2.15"

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphPackage;
 import org.eclipse.glsp.graph.DefaultTypes;
 import org.eclipse.glsp.graph.GraphPackage;
-import org.eclipse.glsp.server.diagram.DiagramConfiguration;
-import org.eclipse.glsp.server.diagram.EdgeTypeHint;
-import org.eclipse.glsp.server.diagram.ShapeTypeHint;
+import org.eclipse.glsp.server.diagram.BaseDiagramConfiguration;
 import org.eclipse.glsp.server.layout.ServerLayoutKind;
+import org.eclipse.glsp.server.types.EdgeTypeHint;
+import org.eclipse.glsp.server.types.ShapeTypeHint;
 
-public class WorkflowDiagramNotationConfiguration implements DiagramConfiguration {
+public class WorkflowDiagramNotationConfiguration extends BaseDiagramConfiguration {
 
 	@Override
 	public String getDiagramType() {
@@ -73,7 +73,7 @@ public class WorkflowDiagramNotationConfiguration implements DiagramConfiguratio
 	public List<EdgeTypeHint> getEdgeTypeHints() {
 		List<EdgeTypeHint> edgeHints = new ArrayList<>();
 		edgeHints.add(createDefaultEdgeTypeHint(EDGE));
-		EdgeTypeHint weightedEdgeHint = DiagramConfiguration.super.createDefaultEdgeTypeHint(WEIGHTED_EDGE);
+		EdgeTypeHint weightedEdgeHint = super.createDefaultEdgeTypeHint(WEIGHTED_EDGE);
 		weightedEdgeHint.setSourceElementTypeIds(Arrays.asList(DECISION_NODE));
 		weightedEdgeHint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK));
 		edgeHints.add(weightedEdgeHint);
@@ -82,7 +82,7 @@ public class WorkflowDiagramNotationConfiguration implements DiagramConfiguratio
 
 	@Override
 	public EdgeTypeHint createDefaultEdgeTypeHint(final String elementId) {
-		EdgeTypeHint hint = DiagramConfiguration.super.createDefaultEdgeTypeHint(elementId);
+		EdgeTypeHint hint = super.createDefaultEdgeTypeHint(elementId);
 		hint.setSourceElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
 		hint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
 		return hint;

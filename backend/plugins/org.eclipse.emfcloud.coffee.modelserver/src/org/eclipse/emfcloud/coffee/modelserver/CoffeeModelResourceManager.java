@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emfcloud.modelserver.emf.common.RecordingModelResourceManager;
+import org.eclipse.emfcloud.modelserver.emf.common.watchers.ModelWatchersManager;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 import org.eclipse.emfcloud.modelserver.emf.configuration.ServerConfiguration;
 import org.eclipse.emfcloud.modelserver.glsp.notation.epackage.NotationUtil;
@@ -31,8 +32,8 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
 
 	@Inject
 	public CoffeeModelResourceManager(Set<EPackageConfiguration> configurations, AdapterFactory adapterFactory,
-			ServerConfiguration serverConfiguration) {
-		super(configurations, adapterFactory, serverConfiguration);
+			ServerConfiguration serverConfiguration,final ModelWatchersManager watchersManager) {
+		super(configurations, adapterFactory, serverConfiguration, watchersManager);
 	}
 
 	@Override

@@ -20,8 +20,8 @@
     <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Merge" xmi:id="_hd5kwMINEeuM9JtVafDACQ"/>
     <flows xmi:id="_tVvcoMHlEeuOQ_oVeIeN4A" source="_QxCfQMKkEeup06HqRBVc_g" target="_glMiUMHlEeuOQ_oVeIeN4A"/>
     <flows xmi:id="_7z8LkMHlEeuOQ_oVeIeN4A" source="_glMiUMHlEeuOQ_oVeIeN4A" target="_Y16bQMINEeuM9JtVafDACQ"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_9dJlEMHlEeuOQ_oVeIeN4A" source="_Y16bQMINEeuM9JtVafDACQ" target="_O7Vh4MKkEeup06HqRBVc_g"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_OD_3AMHwEeuwMI7tijX71Q" source="_Y16bQMINEeuM9JtVafDACQ" target="_jc7kcMHlEeuOQ_oVeIeN4A"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_9dJlEMHlEeuOQ_oVeIeN4A" source="_Y16bQMINEeuM9JtVafDACQ" target="_O7Vh4MKkEeup06HqRBVc_g" probability="medium"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_OD_3AMHwEeuwMI7tijX71Q" source="_Y16bQMINEeuM9JtVafDACQ" target="_jc7kcMHlEeuOQ_oVeIeN4A" probability="high"/>
     <flows xmi:id="_O3eiYMHwEeuwMI7tijX71Q" source="_O7Vh4MKkEeup06HqRBVc_g" target="_hd5kwMINEeuM9JtVafDACQ"/>
     <flows xmi:id="_TrV-YMIOEeuM9JtVafDACQ" source="_jc7kcMHlEeuOQ_oVeIeN4A" target="_hd5kwMINEeuM9JtVafDACQ"/>
     <flows xmi:id="_V5JBgMKkEeup06HqRBVc_g" source="_hd5kwMINEeuM9JtVafDACQ" target="_itPXMMnYEeuzYY8U8dVg6Q"/>

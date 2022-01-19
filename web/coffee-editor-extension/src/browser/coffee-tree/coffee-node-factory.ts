@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -19,11 +19,10 @@ import { CoffeeTreeLabelProvider } from './coffee-tree-label-provider-contributi
 
 @injectable()
 export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
-
     constructor(
         @inject(CoffeeTreeLabelProvider) private readonly labelProvider: CoffeeTreeLabelProvider,
-        @inject(ILogger) private readonly logger: ILogger) {
-    }
+        @inject(ILogger) private readonly logger: ILogger
+    ) {}
 
     mapDataToNodes(treeData: TreeEditor.TreeData): TreeEditor.Node[] {
         const node = this.mapData(treeData.data);
@@ -37,17 +36,20 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         if (!data) {
             // sanity check
             this.logger.warn('mapData called without data');
-            return undefined;
+            return {
+                ...this.defaultNode(),
+                editorId: CoffeeTreeEditorConstants.EDITOR_ID
+            };
         }
         const node: TreeEditor.Node = {
             ...this.defaultNode(),
             editorId: CoffeeTreeEditorConstants.EDITOR_ID,
-            name: this.labelProvider.getName(data),
+            name: this.labelProvider.getName(data) ?? '',
             parent: parent,
             jsonforms: {
-                type: this.getType(data.eClass || defaultType, data),
+                type: this.getType(data.eClass || defaultType, data) ?? '',
                 data: data,
-                property: property,
+                property: property ?? '',
                 index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
             }
         };
@@ -58,26 +60,26 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         }
         if (data.children) {
             // component types
-            data.children.forEach((element, idx) => {
+            data.children.forEach((element: any, idx: number) => {
                 this.mapData(element, node, 'children', idx);
             });
         }
         if (data.workflows) {
             // machine type
-            data.workflows.forEach((element, idx) => {
+            data.workflows.forEach((element: any, idx: number) => {
                 element.eClass = CoffeeModel.Type.Workflow;
                 this.mapData(element, node, 'workflows', idx);
             });
         }
         if (data.nodes) {
             // workflow type
-            data.nodes.forEach((element, idx) => {
+            data.nodes.forEach((element: any, idx: number) => {
                 this.mapData(element, node, 'nodes', idx);
             });
         }
         if (data.flows) {
             // workflow type
-            data.flows.forEach((element, idx) => {
+            data.flows.forEach((element: any, idx: number) => {
                 this.mapData(element, node, 'flows', idx, CoffeeModel.Type.Flow);
             });
         }
@@ -88,22 +90,23 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         return node ? CoffeeModel.childrenMapping.get(node.jsonforms.type) !== undefined : false;
     }
 
-    protected defaultNode():
-        Pick<TreeEditor.Node,
-            'children' |
-            'name' |
-            'jsonforms' |
-            'id' |
-            'icon' |
-            'description' |
-            'visible' |
-            'parent' |
-            'previousSibling' |
-            'nextSibling' |
-            'expanded' |
-            'selected' |
-            'focus' |
-            'decorationData'> {
+    protected defaultNode(): Pick<
+        TreeEditor.Node,
+        | 'children'
+        | 'name'
+        | 'jsonforms'
+        | 'id'
+        | 'icon'
+        | 'description'
+        | 'visible'
+        | 'parent'
+        | 'previousSibling'
+        | 'nextSibling'
+        | 'expanded'
+        | 'selected'
+        | 'focus'
+        | 'decorationData'
+    > {
         return {
             id: v4(),
             expanded: false,
@@ -111,12 +114,12 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             parent: undefined,
             children: [],
             decorationData: {},
-            name: undefined,
-            jsonforms: undefined
+            name: '',
+            jsonforms: { type: '', property: '', data: '' }
         };
     }
 
-    protected getType(type: string, data: any): string {
+    protected getType(type: string, data: any): string | undefined {
         // TODO: eClass should always be sent from server
 
         if (type) {
@@ -133,5 +136,4 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         }
         return undefined;
     }
-
 }

@@ -11,8 +11,7 @@
     "@typescript-eslint",
     "header",
     "import",
-    "no-null",
-    "react"
+    "no-null"
   ],
   "extends": [
     "eslint:recommended",
@@ -20,21 +19,13 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:react/recommended"
+    "plugin:import/typescript"
   ],
-  "settings": {
-    "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "version": "detect",
-      "flowVersion": "0.53"
-    }
-  },
   "env": {
     "browser": true,
     "mocha": true,
-    "es6": true
+    "es2017": true,
+    "node": true
   },
   "ignorePatterns": [
     "node_modules",
