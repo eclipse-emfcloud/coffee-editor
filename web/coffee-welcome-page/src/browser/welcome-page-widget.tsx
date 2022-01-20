@@ -243,7 +243,7 @@ export class WelcomePageWidget extends ReactWidget {
         return new URI(`${this.workspaceService.workspace?.resource}/superbrewer3000.${extension}`);
     }
 
-    protected openDiagram = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('coffeenotation'));
+    protected openDiagram = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('notation'));
     protected openTreeEditor = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('coffee'));
     protected openTextualDSL = (): Promise<object | undefined> => open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig'));
     protected openFileExplorer = (): Promise<Widget | undefined> => this.shell.revealWidget(EXPLORER_VIEW_CONTAINER_ID);
