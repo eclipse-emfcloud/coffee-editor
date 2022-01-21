@@ -27,8 +27,8 @@
       "coffee-workflow-glsp-editor": [
         "coffee-workflow-glsp-editor/src/*"
       ],
-      "coffee-workflow-sprotty": [
-        "coffee-workflow-sprotty/src/*"
+      "coffee-workflow-glsp": [
+        "coffee-workflow-glsp/src/*"
       ]
     }
   },
@@ -41,7 +41,7 @@
     "coffee-workflow-analyzer/src",
     "coffee-workflow-analyzer-editor/src",
     "coffee-workflow-glsp-editor/src",
-    "coffee-workflow-sprotty/src"
+    "coffee-workflow-glsp/src"
   ],
   "exclude": [
     "node_modules"

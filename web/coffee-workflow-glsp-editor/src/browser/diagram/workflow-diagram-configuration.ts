@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -22,7 +22,7 @@ import {
     TheiaMarkerManager,
     TheiaMarkerManagerFactory
 } from '@eclipse-glsp/theia-integration/lib/browser/diagram/theia-marker-manager';
-import { createWorkflowDiagramContainer } from 'coffee-workflow-sprotty';
+import { createWorkflowDiagramContainer } from 'coffee-workflow-glsp';
 import { Container, inject, injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';

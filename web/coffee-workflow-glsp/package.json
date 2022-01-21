@@ -1,5 +1,5 @@
 {
-  "name": "coffee-workflow-sprotty",
+  "name": "coffee-workflow-glsp",
   "version": "0.7.0",
   "description": "GLSP sprotty diagrams for the Workflow DSL",
   "license": "(EPL-2.0 OR MIT)",

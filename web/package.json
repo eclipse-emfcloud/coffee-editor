@@ -35,7 +35,7 @@
       "coffee-workflow-analyzer/",
       "coffee-workflow-analyzer-editor/",
       "coffee-workflow-glsp-editor/",
-      "coffee-workflow-sprotty/"
+      "coffee-workflow-glsp/"
     ]
   },
   "resolutions": {
