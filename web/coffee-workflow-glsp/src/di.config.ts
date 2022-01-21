@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019-2021 EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019-2022 EclipseSource, Christian W. Damus, and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -38,6 +38,7 @@ import {
     glspMouseToolModule,
     glspSelectModule,
     glspServerCopyPasteModule,
+    glspViewportModule,
     GridSnapper,
     labelEditModule,
     labelEditUiModule,
@@ -63,7 +64,6 @@ import {
     toolsModule,
     TYPES,
     validationModule,
-    viewportModule,
     zorderModule
 } from '@eclipse-glsp/client';
 import { Container, ContainerModule } from 'inversify';
@@ -109,7 +109,7 @@ export default function createContainer(widgetId: string): Container {
         defaultGLSPModule,
         glspSelectModule,
         boundsModule,
-        viewportModule,
+        glspViewportModule,
         toolsModule,
         glspHoverModule,
         fadeModule,

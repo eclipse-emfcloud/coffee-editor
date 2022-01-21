@@ -17,7 +17,7 @@
   "dependencies": {
     "@eclipse-glsp/theia-integration": "next",
     "@eclipse-emfcloud/modelserver-theia": "next",
-    "coffee-workflow-sprotty": "0.7.0",
+    "coffee-workflow-glsp": "0.7.0",
     "balloon-css": "^0.5.0"
   },
   "devDependencies": {
