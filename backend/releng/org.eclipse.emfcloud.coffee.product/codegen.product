@@ -155,7 +155,6 @@
       <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtext.logging" fragment="true"/>
       <plugin id="org.eclipse.xtext.xbase.lib"/>
-      <plugin id="org.emfjson.jackson"/>
       <plugin id="org.sat4j.core"/>
       <plugin id="org.sat4j.pb"/>
       <plugin id="org.slf4j.api"/>
