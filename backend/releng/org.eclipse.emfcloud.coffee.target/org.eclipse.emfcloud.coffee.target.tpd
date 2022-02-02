@@ -53,10 +53,6 @@ location "https://download.eclipse.org/emfcloud/emfjson-jackson/p2/nightly/1.3/1
 	org.eclipse.emfcloud.emfjson-jackson lazy
 }
 
-location "http://ghillairet.github.io/p2" {
-	org.emfjson.jackson lazy
-}
-
 location "https://download.eclipse.org/glsp/server/p2/nightly/0.9/0.9.0.202109211845/" {
 	org.eclipse.glsp.feature.feature.group lazy
 	org.eclipse.glsp.layout lazy
@@ -74,7 +70,7 @@ location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.44.v2
 	org.eclipse.jetty.websocket.server lazy
 	org.eclipse.jetty.server
 }
-location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/" {
+location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/0.2/0.2.0.202202020952/" {
 	org.eclipse.emfcloud.validation.framework
 }
 

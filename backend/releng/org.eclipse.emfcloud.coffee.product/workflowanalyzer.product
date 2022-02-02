@@ -102,7 +102,6 @@
       <plugin id="org.eclipse.xtext.util"/>
       <plugin id="org.eclipse.xtext.xbase"/>
       <plugin id="org.eclipse.xtext.xbase.lib"/>
-      <plugin id="org.emfjson.jackson"/>
       <plugin id="org.hamcrest.core"/>
       <plugin id="org.junit"/>
       <plugin id="org.junit.jupiter.api"/>

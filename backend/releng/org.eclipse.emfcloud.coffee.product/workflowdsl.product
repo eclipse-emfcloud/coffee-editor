@@ -105,7 +105,6 @@
       <plugin id="org.eclipse.xtext.xbase"/>
       <plugin id="org.eclipse.xtext.xbase.ide"/>
       <plugin id="org.eclipse.xtext.xbase.lib"/>
-      <plugin id="org.emfjson.jackson"/>
       <plugin id="org.objectweb.asm"/>
       <plugin id="org.slf4j.api"/>
    </plugins>
