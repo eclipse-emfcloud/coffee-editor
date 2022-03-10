@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2020 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.common;
@@ -24,13 +24,13 @@ public final class ModelServerClientUtil {
 	private ModelServerClientUtil() {
 	}
 
-	public static EObject loadResource(URI uri) throws Exception {
+	public static EObject loadResource(final URI uri) throws Exception {
 		@SuppressWarnings("resource")
 		ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL);
 		return client.get(Paths.get(uri).getFileName().toString(), FORMAT).get().body();
 	}
 
-	public static <T> Optional<T> loadResource(URI uri, Class<T> clazz) throws Exception {
+	public static <T> Optional<T> loadResource(final URI uri, final Class<T> clazz) throws Exception {
 		EObject eObject = loadResource(uri);
 		return clazz.isInstance(eObject) ? Optional.of(clazz.cast(eObject)) : Optional.empty();
 	}

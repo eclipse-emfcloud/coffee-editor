@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
@@ -39,27 +39,31 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
 
 	@Inject
 	GModelState modelState;
-	
+
 	@Override
-	public List<? extends LabeledAction> getActions(EditorContext editorContext) {
+	public List<? extends LabeledAction> getActions(final EditorContext editorContext) {
 		List<LabeledAction> actions = Lists.newArrayList();
 
 		GModelIndex index = modelState.getIndex();
 		Set<GModelElement> selectedElements = index.getAll(editorContext.getSelectedElementIds());
 		GPoint lastMousePosition = editorContext.getLastMousePosition().orElse(point(0, 0));
 		// Create node actions are always possible
-		actions.addAll(Sets.newHashSet(
-				new LabeledAction("Create Automated Task",
-						Lists.newArrayList(new CreateNodeOperation(ModelTypes.AUTOMATED_TASK, lastMousePosition)),
-						"diff-added"),
-				new LabeledAction("Create Manual Task",
-						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)), "diff-added"),
-				new LabeledAction("Create Merge Node",
-						Lists.newArrayList(
-								new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)), "diff-added"),
-				new LabeledAction("Create Decision Node", Lists.newArrayList(
-						new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition)), "diff-added")));
+		actions.addAll(
+				Sets.newHashSet(
+						new LabeledAction("Create Automated Task",
+								Lists.newArrayList(
+										new CreateNodeOperation(ModelTypes.AUTOMATED_TASK, lastMousePosition)),
+								"diff-added"),
+						new LabeledAction("Create Manual Task",
+								Lists.newArrayList(new CreateNodeOperation(ModelTypes.MANUAL_TASK, lastMousePosition)),
+								"diff-added"),
+						new LabeledAction("Create Merge Node",
+								Lists.newArrayList(new CreateNodeOperation(ModelTypes.MERGE_NODE, lastMousePosition)),
+								"diff-added"),
+						new LabeledAction("Create Decision Node",
+								Lists.newArrayList(
+										new CreateNodeOperation(ModelTypes.DECISION_NODE, lastMousePosition)),
+								"diff-added")));
 
 		// Create edge actions between two nodes
 		if (selectedElements.size() == 1) {

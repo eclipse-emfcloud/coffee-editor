@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
@@ -43,7 +43,7 @@ public class WorkflowModelFactory implements GModelFactory {
 
 	@Inject
 	GModelState gModelState;
-	
+
 	@Override
 	public void createGModel() {
 		WorkflowModelState modelState = WorkflowModelState.getModelState(gModelState);
@@ -76,7 +76,7 @@ public class WorkflowModelFactory implements GModelFactory {
 		return diagram;
 	}
 
-	private Diagram createDiagram(Workflow workflow) {
+	private Diagram createDiagram(final Workflow workflow) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.setSemanticElement(createProxy(workflow));
 		return diagram;
@@ -156,14 +156,14 @@ public class WorkflowModelFactory implements GModelFactory {
 		return proxy;
 	}
 
-	private SemanticProxy resolved(SemanticProxy proxy, Workflow workflow) {
+	private SemanticProxy resolved(final SemanticProxy proxy, final Workflow workflow) {
 		if (proxy.getResolvedElement() != null) {
 			return proxy;
 		}
 		return reResolved(proxy, workflow);
 	}
 
-	private SemanticProxy reResolved(SemanticProxy proxy, Workflow workflow) {
+	private SemanticProxy reResolved(final SemanticProxy proxy, final Workflow workflow) {
 		// The xmi:id is used as URI to identify elements, we use the underlying
 		// resource to fetch elements by id
 		Resource semanticResource = workflow.eResource();

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
@@ -24,7 +24,7 @@ import org.eclipse.glsp.server.types.GLSPServerException;
 public abstract class AbstractCreateEdgeHandler
 		extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelServerAccess> {
 
-	public AbstractCreateEdgeHandler(String type) {
+	public AbstractCreateEdgeHandler(final String type) {
 		super(type);
 	}
 
@@ -33,7 +33,7 @@ public abstract class AbstractCreateEdgeHandler
 	}
 
 	@Override
-	public void executeOperation(CreateEdgeOperation operation, WorkflowModelServerAccess modelAccess) {
+	public void executeOperation(final CreateEdgeOperation operation, final WorkflowModelServerAccess modelAccess) {
 		WorkflowModelIndex modelIndex = getWorkflowModelState().getIndex();
 
 		Node source = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).orElseThrow(

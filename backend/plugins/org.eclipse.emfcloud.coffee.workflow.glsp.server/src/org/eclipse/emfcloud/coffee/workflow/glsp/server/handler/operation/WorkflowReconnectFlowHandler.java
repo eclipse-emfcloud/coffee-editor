@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
@@ -27,9 +27,9 @@ public class WorkflowReconnectFlowHandler
 	private WorkflowModelIndex getWorkflowModelIndex() {
 		return ((WorkflowModelState) super.getEMSModelState()).getIndex();
 	}
-	
+
 	@Override
-	public void executeOperation(final ReconnectEdgeOperation operation, 
+	public void executeOperation(final ReconnectEdgeOperation operation,
 			final WorkflowModelServerAccess modelServerAccess) {
 
 		if (operation.getEdgeElementId() == null || operation.getSourceElementId() == null
@@ -43,19 +43,18 @@ public class WorkflowReconnectFlowHandler
 			return;
 		}
 
-		Flow flow = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getEdgeElementId()),
-				Flow.class, "Could not find Flow for id '" + operation.getEdgeElementId()
+		Flow flow = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getEdgeElementId()), Flow.class,
+				"Could not find Flow for id '" + operation.getEdgeElementId()
 						+ "', no reconnecting operation executed.");
 
 		if (!operation.getSourceElementId().equals(EcoreUtil.getURI(flow.getSource()).fragment())) {
-			Node newSource = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getSourceElementId()),
-					Node.class, "Could not find Node for id '" + operation.getSourceElementId()
+			Node newSource = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getSourceElementId()), Node.class,
+					"Could not find Node for id '" + operation.getSourceElementId()
 							+ "', no reconnecting operation executed.");
 			modelServerAccess.reconnectFlowSource(flow, newSource);
 
 		} else if (!operation.getTargetElementId().equals(EcoreUtil.getURI(flow.getTarget()).fragment())) {
-			Node newTarget = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getTargetElementId()),
-					Node.class,
+			Node newTarget = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getTargetElementId()), Node.class,
 					"Could not find Node for id '" + operation.getTargetElementId()
 							+ "', no reconnecting operation executed.");
 			modelServerAccess.reconnectFlowTarget(flow, newTarget);

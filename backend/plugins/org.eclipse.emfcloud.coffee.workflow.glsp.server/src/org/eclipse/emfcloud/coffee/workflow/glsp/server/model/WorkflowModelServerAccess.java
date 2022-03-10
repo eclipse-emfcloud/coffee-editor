@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2021 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
@@ -56,7 +56,7 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
 	private static Logger LOGGER = Logger.getLogger(WorkflowModelServerAccess.class);
 
-	private ActionDispatcher actionDispatcher;
+	private final ActionDispatcher actionDispatcher;
 
 	private ValidationFramework validationFramework;
 
@@ -67,7 +67,7 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		this.actionDispatcher = actionDispatcher;
 	}
 
-	public void createValidationFramework(GModelState modelState) {
+	public void createValidationFramework(final GModelState modelState) {
 		WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(
 				modelState.getClientId(), actionDispatcher);
 		this.validationFramework = new ValidationFramework(this.getSemanticURI(), modelServerClient, changeListener);
@@ -94,50 +94,52 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		return EcoreUtil.getURI(element).fragment();
 	}
 
-	public CompletableFuture<Response<Boolean>> addManualTask(WorkflowModelState modelState,
-			Optional<GPoint> position) {
+	public CompletableFuture<Response<Boolean>> addManualTask(final WorkflowModelState modelState,
+			final Optional<GPoint> position) {
 		CCompoundCommand command = AddManualTaskCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> addAutomatedTask(WorkflowModelState modelState,
-			Optional<GPoint> position) {
+	public CompletableFuture<Response<Boolean>> addAutomatedTask(final WorkflowModelState modelState,
+			final Optional<GPoint> position) {
 		CCompoundCommand command = AddAutomatedTaskCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> addDecisionNode(WorkflowModelState modelState,
-			Optional<GPoint> position) {
+	public CompletableFuture<Response<Boolean>> addDecisionNode(final WorkflowModelState modelState,
+			final Optional<GPoint> position) {
 		CCompoundCommand command = AddDecisionNodeCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> addMergeNode(WorkflowModelState modelState, Optional<GPoint> position) {
+	public CompletableFuture<Response<Boolean>> addMergeNode(final WorkflowModelState modelState,
+			final Optional<GPoint> position) {
 		CCompoundCommand command = AddMergeNodeCommandContribution.create(position.orElse(GraphUtil.point(0, 0)));
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> addFlow(WorkflowModelState modelState, Node source, Node target) {
+	public CompletableFuture<Response<Boolean>> addFlow(final WorkflowModelState modelState, final Node source,
+			final Node target) {
 		String sourceUriFragment = getSemanticUriFragment(source);
 		String targetUriFragment = getSemanticUriFragment(target);
 		CCompoundCommand command = AddFlowCommandContribution.create(sourceUriFragment, targetUriFragment);
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> addWeightedFlow(WorkflowModelState modelState, Node source,
-			Node target) {
+	public CompletableFuture<Response<Boolean>> addWeightedFlow(final WorkflowModelState modelState, final Node source,
+			final Node target) {
 		String sourceUriFragment = getSemanticUriFragment(source);
 		String targetUriFragment = getSemanticUriFragment(target);
 		CCompoundCommand command = AddWeightedFlowCommandContribution.create(sourceUriFragment, targetUriFragment);
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> removeFlow(WorkflowModelState modelState, Flow flow) {
+	public CompletableFuture<Response<Boolean>> removeFlow(final WorkflowModelState modelState, final Flow flow) {
 		CCompoundCommand command = RemoveFlowCommandContribution.create(getSemanticUriFragment(flow));
 		return this.edit(command);
 	}
 
-	public CompletableFuture<Response<Boolean>> removeNode(WorkflowModelState modelState, Node node) {
+	public CompletableFuture<Response<Boolean>> removeNode(final WorkflowModelState modelState, final Node node) {
 		CCompoundCommand command = RemoveNodeCommandContribution.create(getSemanticUriFragment(node));
 		return this.edit(command);
 	}
@@ -173,10 +175,11 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		this.validationFramework.getConstraintList();
 	}
 
-	public EMFFacetConstraints getConstraintList(String elementID, String featureID) {
+	public EMFFacetConstraints getConstraintList(final String elementID, final String featureID) {
 		Map<String, EMFFacetConstraints> featureMap = this.validationFramework.getInputValidationMap().get(elementID);
-		if (featureMap != null)
+		if (featureMap != null) {
 			return featureMap.get(featureID);
+		}
 		return null;
 	}
 
@@ -184,17 +187,17 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 		this.validationFramework.subscribeToValidation();
 	}
 
-	public void addValidationFilter(List<ValidationFilter> contraintValues)
+	public void addValidationFilter(final List<ValidationFilter> contraintValues)
 			throws IOException, InterruptedException, ExecutionException {
 		this.validationFramework.addValidationFilter(contraintValues);
 	}
 
-	public void removeValidationFilter(List<ValidationFilter> contraintValues)
+	public void removeValidationFilter(final List<ValidationFilter> contraintValues)
 			throws IOException, InterruptedException, ExecutionException {
 		this.validationFramework.removeValidationFilter(contraintValues);
 	}
 
-	public void toggleValidationFilter(ValidationFilter contraintValue)
+	public void toggleValidationFilter(final ValidationFilter contraintValue)
 			throws IOException, InterruptedException, ExecutionException {
 		this.validationFramework.toggleValidationFilter(contraintValue);
 	}

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2020 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.generator.impl;
@@ -13,13 +13,13 @@ package org.eclipse.emfcloud.coffee.workflow.generator.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkflowGeneratorOutput  {
+public class WorkflowGeneratorOutput {
 
-	private List<IGeneratedFile> generatedFiles = new ArrayList<>();
-	private String packageName;
-	private String sourceFileName;
+	private final List<IGeneratedFile> generatedFiles = new ArrayList<>();
+	private final String packageName;
+	private final String sourceFileName;
 
-	public WorkflowGeneratorOutput(String packageName, String sourceFileName) {
+	public WorkflowGeneratorOutput(final String packageName, final String sourceFileName) {
 		this.packageName = packageName;
 		this.sourceFileName = sourceFileName;
 	}
@@ -28,11 +28,11 @@ public class WorkflowGeneratorOutput  {
 		return generatedFiles;
 	}
 
-	public void addGeneratedFile(String fileName, String content, boolean overwrite) {
+	public void addGeneratedFile(final String fileName, final String content, final boolean overwrite) {
 		generatedFiles.add(new GeneratedFile(fileName, content, overwrite));
 	}
 
-	public void addGeneratedFile(String fileName, String content) {
+	public void addGeneratedFile(final String fileName, final String content) {
 		addGeneratedFile(fileName, content, true);
 	}
 
@@ -44,11 +44,11 @@ public class WorkflowGeneratorOutput  {
 	}
 
 	public static class GeneratedFile implements IGeneratedFile {
-		private String fileName;
-		private String content;
-		private boolean overwrite;
+		private final String fileName;
+		private final String content;
+		private final boolean overwrite;
 
-		public GeneratedFile(String fileName, String content, boolean overwrite) {
+		public GeneratedFile(final String fileName, final String content, final boolean overwrite) {
 			this.fileName = fileName;
 			this.content = content;
 			this.overwrite = overwrite;
@@ -77,7 +77,9 @@ public class WorkflowGeneratorOutput  {
 
 	interface IGeneratedFile {
 		String getFileName();
+
 		String getContent();
+
 		boolean shouldOverwrite();
 	}
 }

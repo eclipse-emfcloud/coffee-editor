@@ -66,8 +66,7 @@ public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
 				.id(toId(flow))//
 				.probability(flow.getProbability().getName())//
 				.sourceId(sourceId)//
-				.targetId(targetId)
-				.routerKind(GConstants.RouterKind.POLYLINE);
+				.targetId(targetId).routerKind(GConstants.RouterKind.POLYLINE);
 
 		modelState.getIndex().getNotation(flow, Edge.class).ifPresent(edge -> {
 			if (edge.getBendPoints() != null) {

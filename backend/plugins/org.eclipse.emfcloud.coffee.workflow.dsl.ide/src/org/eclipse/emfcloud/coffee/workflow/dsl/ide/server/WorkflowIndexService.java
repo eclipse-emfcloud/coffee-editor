@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2020 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.dsl.ide.server;
@@ -35,18 +35,18 @@ public class WorkflowIndexService implements WorkspaceService {
 	private static final String WORKFLOW_EXTENSION = "coffee";
 	private static final String DOT_WORKFLOW_EXTENSION = "." + WORKFLOW_EXTENSION;
 
-	private IWorkflowIndex index;
+	private final IWorkflowIndex index;
 
-	public WorkflowIndexService(IWorkflowIndex index) {
+	public WorkflowIndexService(final IWorkflowIndex index) {
 		this.index = index;
 	}
 
-	public void initialize(InitializeParams params) {
+	public void initialize(final InitializeParams params) {
 		updateWorkflowIndex(params);
 	}
 
 	@Override
-	public void didChangeWorkspaceFolders(DidChangeWorkspaceFoldersParams params) {
+	public void didChangeWorkspaceFolders(final DidChangeWorkspaceFoldersParams params) {
 		for (WorkspaceFolder addedFoler : params.getEvent().getAdded()) {
 			workspaceFolderAdded(addedFoler.getUri());
 		}
@@ -69,7 +69,7 @@ public class WorkflowIndexService implements WorkspaceService {
 		return CompletableFuture.supplyAsync(ArrayList<SymbolInformation>::new);
 	}
 
-	private void updateWorkflowIndex(InitializeParams params) {
+	private void updateWorkflowIndex(final InitializeParams params) {
 		workspaceFolderAdded(params.getRootUri());
 	}
 
@@ -80,20 +80,20 @@ public class WorkflowIndexService implements WorkspaceService {
 				continue;
 			}
 			switch (event.getType()) {
-				case Created:
-					workflowFileCreated(uri);
-					break;
-				case Changed:
-					workflowFileChanged(uri);
-					break;
-				case Deleted:
-					workflowFileDeleted(uri);
-					break;
+			case Created:
+				workflowFileCreated(uri);
+				break;
+			case Changed:
+				workflowFileChanged(uri);
+				break;
+			case Deleted:
+				workflowFileDeleted(uri);
+				break;
 			}
 		}
 	}
 
-	private void workspaceFolderAdded(String folderUri) {
+	private void workspaceFolderAdded(final String folderUri) {
 		try {
 			File rootFolder = new File(new URI(folderUri));
 			FileUtils.iterateFiles(rootFolder, new String[] { WORKFLOW_EXTENSION }, true)
@@ -103,7 +103,7 @@ public class WorkflowIndexService implements WorkspaceService {
 		}
 	}
 
-	private void workspaceFolderDeleted(String folderUri) {
+	private void workspaceFolderDeleted(final String folderUri) {
 		try {
 			File rootFolder = new File(new URI(folderUri));
 			FileUtils.iterateFiles(rootFolder, new String[] { WORKFLOW_EXTENSION }, true)
@@ -113,7 +113,7 @@ public class WorkflowIndexService implements WorkspaceService {
 		}
 	}
 
-	private void workflowFileCreated(String uri) {
+	private void workflowFileCreated(final String uri) {
 		try {
 			index.putGraph(uri, getContent(uri));
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ public class WorkflowIndexService implements WorkspaceService {
 		}
 	}
 
-	private void workflowFileChanged(String uri) {
+	private void workflowFileChanged(final String uri) {
 		try {
 			// changed: simply re-parse the whole graph
 			index.putGraph(uri, getContent(uri));
@@ -130,11 +130,11 @@ public class WorkflowIndexService implements WorkspaceService {
 		}
 	}
 
-	private void workflowFileDeleted(String uri) {
+	private void workflowFileDeleted(final String uri) {
 		index.removeGraph(uri);
 	}
 
-	private static Machine getContent(String uri) throws IllegalArgumentException, Exception {
+	private static Machine getContent(final String uri) throws IllegalArgumentException, Exception {
 		return ModelServerClientUtil.loadResource(URI.create(uri), Machine.class)
 				.orElseThrow(IllegalArgumentException::new);
 	}

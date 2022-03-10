@@ -33,7 +33,7 @@ public class WorkflowLabelEditValidator implements LabelEditValidator {
 
 	@Inject
 	GModelState modelState;
-	
+
 	@Override
 	public ValidationStatus validate(final String label, final GModelElement element) {
 		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
@@ -50,7 +50,7 @@ public class WorkflowLabelEditValidator implements LabelEditValidator {
 		return ValidationStatus.ok();
 	}
 
-	private String getElementId(String type) {
+	private String getElementId(final String type) {
 		if (type.equals(ModelTypes.AUTOMATED_TASK)) {
 			return EcoreUtil.getURI(CoffeePackage.Literals.AUTOMATIC_TASK).toString();
 		}
@@ -60,14 +60,15 @@ public class WorkflowLabelEditValidator implements LabelEditValidator {
 		return null;
 	}
 
-	private String getFeatureId(String type) {
+	private String getFeatureId(final String type) {
 		if (type.equals(ModelTypes.LABEL_HEADING)) {
 			return CoffeePackage.Literals.TASK__NAME.getName();
 		}
 		return null;
 	}
 
-	private ValidationStatus checkConstraints(EMFFacetConstraints constraints, String text, GModelElement node) {
+	private ValidationStatus checkConstraints(final EMFFacetConstraints constraints, final String text,
+			final GModelElement node) {
 		if (constraints.getMinLength() != null) {
 			if (text.length() < constraints.getMinLength()) {
 				return ValidationStatus
@@ -84,17 +85,18 @@ public class WorkflowLabelEditValidator implements LabelEditValidator {
 		if (!(patterns.isEmpty())) {
 			for (String pattern : patterns) {
 				if (!Pattern.matches(pattern, text)) {
-					if (node instanceof TaskNodeImpl)
+					if (node instanceof TaskNodeImpl) {
 						return ValidationStatus.error("Must consist only of letters, numbers, - and spaces");
-					else
+					} else {
 						return ValidationStatus.error("Must fit the following expression: " + pattern);
+					}
 				}
 			}
 		}
 		return ValidationStatus.ok();
 	}
 
-	private GModelElement getRoot(GModelElement element) {
+	private GModelElement getRoot(final GModelElement element) {
 		if (element instanceof GLabel || element instanceof GCompartment) {
 			return getRoot(element.getParent());
 		}

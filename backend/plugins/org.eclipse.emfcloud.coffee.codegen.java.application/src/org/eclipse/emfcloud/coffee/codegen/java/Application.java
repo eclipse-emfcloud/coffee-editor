@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2020 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.codegen.java;
@@ -32,7 +32,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 public class Application implements IApplication {
 
 	@Override
-	public Object start(IApplicationContext context) throws Exception {
+	public Object start(final IApplicationContext context) throws Exception {
 		context.applicationRunning();
 		String[] args = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
 		String targetFolder = null;
@@ -83,7 +83,7 @@ public class Application implements IApplication {
 		// nothing to do
 	}
 
-	private static void generate(URI targetLocation, String packageName, URI sourceUri)
+	private static void generate(final URI targetLocation, final String packageName, final URI sourceUri)
 			throws IllegalArgumentException, Exception {
 		JavaWorkflowGenerator generator = new JavaWorkflowGenerator();
 
@@ -99,7 +99,7 @@ public class Application implements IApplication {
 		}
 	}
 
-	private static Machine parse(URI uri) throws IllegalArgumentException, Exception {
+	private static Machine parse(final URI uri) throws IllegalArgumentException, Exception {
 		return ModelServerClientUtil.loadResource(uri, Machine.class).orElseThrow(IllegalArgumentException::new);
 	}
 }

@@ -37,7 +37,7 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 		return createActivityNode(node);
 	}
 
-	private TaskNode createTaskNode(Task task) {
+	private TaskNode createTaskNode(final Task task) {
 		String type = CoffeeTypeUtil.toType(task);
 		String nodeType = CoffeeTypeUtil.toNodeType(task);
 		TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
@@ -52,12 +52,11 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 			}
 		});
 		builder.addArguments(GArguments.cornerRadius(5));
-      
 
 		return builder.build();
 	}
 
-	private ActivityNode createActivityNode(Node node) {
+	private ActivityNode createActivityNode(final Node node) {
 		String type = CoffeeTypeUtil.toType(node);
 		String nodeType = CoffeeTypeUtil.toNodeType(node);
 		ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);

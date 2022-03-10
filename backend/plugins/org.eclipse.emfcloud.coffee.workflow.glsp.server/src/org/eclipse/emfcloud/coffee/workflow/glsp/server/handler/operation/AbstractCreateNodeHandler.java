@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation;
@@ -25,7 +25,7 @@ import org.eclipse.glsp.server.types.GLSPServerException;
 public abstract class AbstractCreateNodeHandler
 		extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelServerAccess> {
 
-	public AbstractCreateNodeHandler(String type) {
+	public AbstractCreateNodeHandler(final String type) {
 		super(type);
 	}
 
@@ -34,7 +34,7 @@ public abstract class AbstractCreateNodeHandler
 	}
 
 	@Override
-	public void executeOperation(CreateNodeOperation operation, WorkflowModelServerAccess modelAccess) {
+	public void executeOperation(final CreateNodeOperation operation, final WorkflowModelServerAccess modelAccess) {
 		getNodeCreator(modelAccess).apply(getWorkflowModelState(), operation.getLocation()).thenAccept(response -> {
 			if (!response.body()) {
 				throw new GLSPServerException(

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2021-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
@@ -25,22 +25,23 @@ import org.eclipse.glsp.server.features.validation.SetMarkersAction;
 
 public class WorkflowValidationResultChangeListener extends ValidationResultChangeListener {
 
-	private String clientId;
+	private final String clientId;
 
-	private ActionDispatcher actionDispatcher;
+	private final ActionDispatcher actionDispatcher;
 
 	@Override
-	public void changed(List<ValidationResult> newResult) {
-		actionDispatcher.dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))).getAction());
+	public void changed(final List<ValidationResult> newResult) {
+		actionDispatcher
+				.dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))).getAction());
 	}
 
-	public WorkflowValidationResultChangeListener(String clientId, ActionDispatcher actionDispatcher) {
+	public WorkflowValidationResultChangeListener(final String clientId, final ActionDispatcher actionDispatcher) {
 		this.clientId = clientId;
 		this.actionDispatcher = actionDispatcher;
 	}
 
-	private List<Marker> createMarkers(List<ValidationResult> validationResult) {
-		List<Marker> markers = new ArrayList<Marker>();
+	private List<Marker> createMarkers(final List<ValidationResult> validationResult) {
+		List<Marker> markers = new ArrayList<>();
 		for (ValidationResult r : validationResult) {
 			BasicDiagnostic diagnostic = r.getDiagnostic();
 			String message = diagnostic.getMessage();
@@ -49,7 +50,7 @@ public class WorkflowValidationResultChangeListener extends ValidationResultChan
 		return markers;
 	}
 
-	private String getMarkerKind(int severity) {
+	private String getMarkerKind(final int severity) {
 		switch (severity) {
 		case Diagnostic.ERROR:
 			return MarkerKind.ERROR;

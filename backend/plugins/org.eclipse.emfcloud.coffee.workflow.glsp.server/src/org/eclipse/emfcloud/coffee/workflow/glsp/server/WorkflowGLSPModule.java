@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
@@ -58,13 +58,13 @@ public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 	}
 
 	@Override
-	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
+	protected void configureActionHandlers(final MultiBinding<ActionHandler> bindings) {
 		super.configureActionHandlers(bindings);
 		bindings.rebind(RequestMarkersHandler.class, WorkflowRequestMarkersActionHandler.class);
 	}
 
 	@Override
-	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
+	protected void configureOperationHandlers(final MultiBinding<OperationHandler> bindings) {
 		super.configureOperationHandlers(bindings);
 
 		// model server-aware operation handlers
