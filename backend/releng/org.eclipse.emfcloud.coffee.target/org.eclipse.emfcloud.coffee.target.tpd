@@ -8,7 +8,7 @@
  * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-target "Coffee 2021-06" with source, requirements
+target "Coffee Editor Targetplatform" with source, requirements
 
 location "https://download.eclipse.org/tools/orbit/R-builds/R20220302172233/repository" orbit-release {
 	// Transitive dependencies
@@ -28,6 +28,7 @@ location "https://download.eclipse.org/tools/orbit/R-builds/R20220302172233/repo
 	com.fasterxml.jackson.core.jackson-annotations [2.10.3,3.0.0)
 	com.fasterxml.jackson.core.jackson-core [2.10.3,3.0.0)
 	com.fasterxml.jackson.core.jackson-databind [2.10.3,3.0.0)
+	org.slf4j.binding.simple [1.7.30,2.0.0)
 }
 
 location "http://download.eclipse.org/releases/2022-03" {
