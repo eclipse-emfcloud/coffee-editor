@@ -18,6 +18,33 @@
 	<packaging>pom</packaging>
 	<version>0.1.0-SNAPSHOT</version>
 
+	<name>Coffee Editor Parent</name>
+
+	<url>https://github.com/eclipse-emfcloud/coffee-editor</url>
+	<licenses>
+		<license>
+			<name>Eclipse Public License - v 2.0</name>
+			<url>http://www.eclipse.org/legal/epl-v20.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Eclipse EMF.cloud Project</name>
+			<email>emfcloud-dev@eclipse.org</email>
+			<organization>Eclipse EMF.cloud</organization>
+			<organizationUrl>https://projects.eclipse.org/projects/ecd.emfcloud</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>https://github.com/eclipse-emfcloud/coffee-editor/</url>
+		<connection>scm:git@github.com:eclipse-emfcloud/coffee-editor.git</connection>
+		<developerConnection>scm:git@github.com:eclipse-emfcloud/coffee-editor.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
