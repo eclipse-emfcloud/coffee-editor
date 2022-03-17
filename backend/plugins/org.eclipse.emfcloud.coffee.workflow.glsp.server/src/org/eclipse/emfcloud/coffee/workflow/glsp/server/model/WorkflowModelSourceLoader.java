@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.client.v1.ModelServerClientV1;
 import org.eclipse.emfcloud.modelserver.glsp.model.EMSModelSourceLoader;
 import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 import org.eclipse.glsp.server.model.GModelState;
@@ -32,7 +32,7 @@ public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 			LOGGER.error("No source URI given to load source models");
 			return;
 		}
-		Optional<ModelServerClient> modelServerClient = modelServerClientProvider.get();
+		Optional<ModelServerClientV1> modelServerClient = modelServerClientProvider.get();
 		if (modelServerClient.isEmpty()) {
 			LOGGER.error("Connection to modelserver could not be initialized");
 			return;
@@ -58,7 +58,7 @@ public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 	}
 
 	@Override
-	public WorkflowModelServerAccess createModelServerAccess(String sourceURI, ModelServerClient modelServerClient) {
+	public WorkflowModelServerAccess createModelServerAccess(String sourceURI, ModelServerClientV1 modelServerClient) {
 		return new WorkflowModelServerAccess(sourceURI, modelServerClient, actionDispatcher);
 	}
 

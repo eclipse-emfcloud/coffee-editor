@@ -34,8 +34,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNode
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
-import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
 import org.eclipse.emfcloud.modelserver.client.Response;
+import org.eclipse.emfcloud.modelserver.client.v1.ModelServerClientV1;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.command.CCompoundCommand;
 import org.eclipse.emfcloud.modelserver.emf.common.EMFFacetConstraints;
@@ -60,7 +60,7 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
 	private ValidationFramework validationFramework;
 
-	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient,
+	public WorkflowModelServerAccess(String sourceURI, ModelServerClientV1 modelServerClient,
 			ActionDispatcher actionDispatcher) {
 		super(sourceURI, modelServerClient, CoffeeResource.FILE_EXTENSION, NotationUtil.NOTATION_EXTENSION);
 		Preconditions.checkNotNull(modelServerClient);
