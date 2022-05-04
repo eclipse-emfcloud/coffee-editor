@@ -65,6 +65,7 @@
         <setEntry value="org.apache.commons.logging@default:default"/>
         <setEntry value="org.apache.felix.scr@1:true"/>
         <setEntry value="org.apache.log4j@default:default"/>
+        <setEntry value="org.apache.logging.log4j@default:default"/>
         <setEntry value="org.apache.xmlgraphics@default:default"/>
         <setEntry value="org.eclipse.ant.core@default:default"/>
         <setEntry value="org.eclipse.compare.core@default:default"/>
@@ -164,7 +165,6 @@
         <setEntry value="org.eclipse.urischeme@default:default"/>
         <setEntry value="org.eclipse.xtext.logging@default:false"/>
         <setEntry value="org.eclipse.xtext.xbase.lib@default:default"/>
-        <setEntry value="org.emfjson.jackson@default:default"/>
         <setEntry value="org.hamcrest.core@default:default"/>
         <setEntry value="org.hamcrest.integration@default:default"/>
         <setEntry value="org.hamcrest.library@default:default"/>

@@ -10,7 +10,7 @@
  ******************************************************************************/
 target "Coffee 2021-06" with source, requirements
 
-location "http://download.eclipse.org/tools/orbit/R-builds/R20210602031627/repository" orbit-release {
+location "https://download.eclipse.org/tools/orbit/R-builds/R20220302172233/repository" orbit-release {
 	// Transitive dependencies
 	ch.qos.logback.slf4j [1.1.2,2.0.0)
 	com.google.gson [2.8.6,3.0.0)
@@ -30,7 +30,7 @@ location "http://download.eclipse.org/tools/orbit/R-builds/R20210602031627/repos
 	com.fasterxml.jackson.core.jackson-databind [2.10.3,3.0.0)
 }
 
-location "http://download.eclipse.org/releases/2021-09" {
+location "http://download.eclipse.org/releases/2022-03" {
 	org.eclipse.jdt.feature.group lazy
 	org.eclipse.platform.feature.group lazy
 	org.eclipse.pde.feature.group lazy
@@ -45,11 +45,11 @@ location "http://download.eclipse.org/releases/2021-09" {
 	org.eclipse.emf.transaction.feature.group [1.12.0,2.0.0)
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver/p2/nightly/0.7/0.7.0.202201070845/" {
+location "https://download.eclipse.org/emfcloud/modelserver/p2/integration/0.8.0.I20220323/" {
 	org.eclipse.emfcloud.modelserver.feature.feature.group lazy
 }
 
-location "https://download.eclipse.org/emfcloud/emfjson-jackson/p2/nightly/1.3/1.3.1.202109010859/" {
+location "https://download.eclipse.org/emfcloud/emfjson-jackson/p2/releases/2.0.0/" {
 	org.eclipse.emfcloud.emfjson-jackson lazy
 }
 
@@ -70,18 +70,18 @@ location "https://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.44.v2
 	org.eclipse.jetty.websocket.server lazy
 	org.eclipse.jetty.server
 }
-location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/0.2/0.2.0.202202020952/" {
+location "https://download.eclipse.org/emfcloud/model-validation/p2/nightly/0.2/0.2.0.202203171240/" {
 	org.eclipse.emfcloud.validation.framework
 }
 
-location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202201101227/" {
+location "https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202203100842/" {
 	org.eclipse.emfcloud.modelserver.glsp.feature.feature.group lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.model lazy
 	org.eclipse.emfcloud.modelserver.glsp.notation.commands lazy
 }
-location "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202110010541/" {
+location "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.26.0/" {
 	org.eclipse.xtext.sdk.feature.group [2.26.0,3.0.0)
 }
-location "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202108160852" {
+location "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.2/" {
 	org.eclipse.emf.mwe2.launcher.feature.group [2.12.2,3.0.0)
 }

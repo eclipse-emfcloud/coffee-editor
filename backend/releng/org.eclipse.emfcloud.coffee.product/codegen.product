@@ -123,7 +123,6 @@
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.linux" fragment="true"/>
-      <plugin id="org.eclipse.equinox.security.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.security.ui"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator"/>
       <plugin id="org.eclipse.glsp.graph"/>
