@@ -15,6 +15,7 @@
     <setAttribute key="deselected_workspace_bundles"/>
     <booleanAttribute key="includeOptional" value="true"/>
     <stringAttribute key="location" value="${workspace_loc}/../runtime-workflowdsl.product"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
@@ -43,6 +44,7 @@
         <setEntry value="org.apache.commons.logging@default:default"/>
         <setEntry value="org.apache.felix.scr@2:true"/>
         <setEntry value="org.apache.log4j@default:default"/>
+        <setEntry value="org.apache.logging.log4j@default:default"/>
         <setEntry value="org.eclipse.core.contenttype@default:default"/>
         <setEntry value="org.eclipse.core.expressions@default:default"/>
         <setEntry value="org.eclipse.core.filesystem.linux.x86_64@default:false"/>
@@ -97,7 +99,6 @@
         <setEntry value="org.eclipse.xtext.xbase.lib@default:default"/>
         <setEntry value="org.eclipse.xtext.xbase@default:default"/>
         <setEntry value="org.eclipse.xtext@default:default"/>
-        <setEntry value="org.emfjson.jackson@default:default"/>
         <setEntry value="org.objectweb.asm@default:default"/>
         <setEntry value="org.slf4j.api@default:default"/>
     </setAttribute>

@@ -116,9 +116,14 @@
         <setEntry value="org.eclipse.emf.transaction@default:default"/>
         <setEntry value="org.eclipse.emf.validation@default:default"/>
         <setEntry value="org.eclipse.emfcloud.emfjson-jackson@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.client@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.common@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.edit@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.emf@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.integration@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.commands@default:default"/>
         <setEntry value="org.eclipse.emfcloud.modelserver.glsp.notation.model@default:default"/>
+        <setEntry value="org.eclipse.emfcloud.modelserver.lib@default:default"/>
         <setEntry value="org.eclipse.emfcloud.validation.framework@default:default"/>
         <setEntry value="org.eclipse.equinox.app@default:default"/>
         <setEntry value="org.eclipse.equinox.bidi@default:default"/>
@@ -179,17 +184,6 @@
         <setEntry value="org.eclipse.emfcloud.coffee.modelserver@default:default"/>
         <setEntry value="org.eclipse.emfcloud.coffee.workflow.glsp.server.app@default:default"/>
         <setEntry value="org.eclipse.emfcloud.coffee.workflow.glsp.server@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.client.tests@default:false"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.client@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.common.tests@default:false"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.common@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.edit.tests@default:false"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.edit@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.emf.tests@default:false"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.emf@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.example@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.lib@default:default"/>
-        <setEntry value="org.eclipse.emfcloud.modelserver.tests@default:default"/>
     </setAttribute>
     <booleanAttribute key="show_selected_only" value="false"/>
     <stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>
