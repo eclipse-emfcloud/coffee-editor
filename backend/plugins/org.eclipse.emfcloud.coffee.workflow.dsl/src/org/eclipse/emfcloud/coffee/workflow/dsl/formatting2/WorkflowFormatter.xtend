@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,17 +10,13 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.dsl.formatting2
 
-import org.eclipse.emfcloud.coffee.workflow.dsl.services.WorkflowGrammarAccess
 import org.eclipse.emfcloud.coffee.workflow.dsl.workflow.Assertion
 import org.eclipse.emfcloud.coffee.workflow.dsl.workflow.ProbabilityConfiguration
 import org.eclipse.emfcloud.coffee.workflow.dsl.workflow.WorkflowConfiguration
-import com.google.inject.Inject
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
 class WorkflowFormatter extends AbstractFormatter2 {
-
-	@Inject extension WorkflowGrammarAccess access
 
 	def dispatch void format(WorkflowConfiguration wfConfig, extension IFormattableDocument document) {
 		wfConfig.regionFor.keyword(":").prepend[noSpace].append[oneSpace]

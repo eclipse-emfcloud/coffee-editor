@@ -28,17 +28,17 @@ import com.google.inject.Inject;
 
 public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider {
 
-	@Inject
-	GModelState modelState;
+   @Inject
+   protected GModelState modelState;
 
-	@Override
-	public List<MenuItem> getItems(final List<String> selectedElementIds, final GPoint position,
-			final Map<String, String> args) {
-		MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
-				Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
-		MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",
-				Arrays.asList(new CreateNodeOperation(MANUAL_TASK, position)), true);
-		MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask), "add", "0_new");
-		return Lists.newArrayList(newChildMenu);
-	}
+   @Override
+   public List<MenuItem> getItems(final List<String> selectedElementIds, final GPoint position,
+      final Map<String, String> args) {
+      MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
+         Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
+      MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",
+         Arrays.asList(new CreateNodeOperation(MANUAL_TASK, position)), true);
+      MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask), "add", "0_new");
+      return Lists.newArrayList(newChildMenu);
+   }
 }

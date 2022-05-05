@@ -21,39 +21,42 @@ import org.eclipse.glsp.server.di.ServerModule;
 import org.eclipse.glsp.server.launch.GLSPServerLauncher;
 import org.eclipse.glsp.server.launch.SocketGLSPServerLauncher;
 
-public class WorkflowGLSPServerLauncher {
+@SuppressWarnings("UncommentedMain")
+public final class WorkflowGLSPServerLauncher {
 
-	private static final Logger LOGGER = Logger.getLogger(WorkflowGLSPServerLauncher.class.getSimpleName());
+   private WorkflowGLSPServerLauncher() {}
 
-	private static final int WORKFLOW_DEFAULT_PORT = 5008;
+   private static final Logger LOGGER = Logger.getLogger(WorkflowGLSPServerLauncher.class.getSimpleName());
 
-	public static void main(final String[] args) {
-		int port = getPort(args);
-		configureLogger();
-		ElkLayoutEngine.initialize(new LayeredMetaDataProvider());
-		ServerModule module = new WorkflowServerModule();
-		module.configureDiagramModule(new WorkflowGLSPModule());
-		GLSPServerLauncher launcher = new SocketGLSPServerLauncher(module);
-		CCommandPackage.eINSTANCE.eClass();
-		launcher.start("localhost", port);
-	}
+   private static final int WORKFLOW_DEFAULT_PORT = 5008;
 
-	private static int getPort(final String[] args) {
-		for (int i = 0; i < args.length; i++) {
-			if ("--port".contentEquals(args[i])) {
-				return Integer.parseInt(args[i + 1]);
-			}
-		}
-		LOGGER.info("The server port was not specified; using default port 5008");
-		return WORKFLOW_DEFAULT_PORT;
-	}
+   public static void main(final String[] args) {
+      int port = getPort(args);
+      configureLogger();
+      ElkLayoutEngine.initialize(new LayeredMetaDataProvider());
+      ServerModule module = new WorkflowServerModule();
+      module.configureDiagramModule(new WorkflowGLSPModule());
+      GLSPServerLauncher launcher = new SocketGLSPServerLauncher(module);
+      CCommandPackage.eINSTANCE.eClass();
+      launcher.start("localhost", port);
+   }
 
-	public static void configureLogger() {
-		Logger root = Logger.getRootLogger();
-		if (!root.getAllAppenders().hasMoreElements()) {
-			root.addAppender(new ConsoleAppender(new PatternLayout(PatternLayout.TTCC_CONVERSION_PATTERN)));
-		}
-		root.setLevel(Level.INFO);
-	}
+   private static int getPort(final String[] args) {
+      for (int i = 0; i < args.length; i++) {
+         if ("--port".contentEquals(args[i])) {
+            return Integer.parseInt(args[i + 1]);
+         }
+      }
+      LOGGER.info("The server port was not specified; using default port 5008");
+      return WORKFLOW_DEFAULT_PORT;
+   }
+
+   public static void configureLogger() {
+      Logger root = Logger.getRootLogger();
+      if (!root.getAllAppenders().hasMoreElements()) {
+         root.addAppender(new ConsoleAppender(new PatternLayout(PatternLayout.TTCC_CONVERSION_PATTERN)));
+      }
+      root.setLevel(Level.INFO);
+   }
 
 }

@@ -22,34 +22,30 @@ import org.eclipse.glsp.server.features.directediting.ApplyLabelEditOperation;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 public class WorkflowApplyLabelEditOperationHandler
-		extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelServerAccess> {
+   extends EMSBasicOperationHandler<ApplyLabelEditOperation, WorkflowModelServerAccess> {
 
-	protected WorkflowModelState getWorkflowModelState() {
-		return (WorkflowModelState) getEMSModelState();
-	}
+   protected WorkflowModelState getWorkflowModelState() { return (WorkflowModelState) getEMSModelState(); }
 
-	@Override
-	public void executeOperation(final ApplyLabelEditOperation operation,
-			final WorkflowModelServerAccess modelServerAccess) {
+   @Override
+   public void executeOperation(final ApplyLabelEditOperation operation,
+      final WorkflowModelServerAccess modelServerAccess) {
 
-		String inputText = operation.getText().trim();
-		String graphicalElementId = operation.getLabelId();
-		GLabel label = getOrThrow(
-				getWorkflowModelState().getIndex().findElementByClass(graphicalElementId, GLabel.class), GLabel.class,
-				"Element with provided ID cannot be found or is not a GLabel");
+      String inputText = operation.getText().trim();
+      String graphicalElementId = operation.getLabelId();
+      GLabel label = getOrThrow(
+         getWorkflowModelState().getIndex().findElementByClass(graphicalElementId, GLabel.class), GLabel.class,
+         "Element with provided ID cannot be found or is not a GLabel");
 
-		switch (label.getType()) {
-		case ModelTypes.LABEL_HEADING:
-			String elementId = graphicalElementId.replace("_classname", "");
-			Task semanticElement = getOrThrow(getWorkflowModelState().getIndex().getSemantic(elementId), Task.class,
-					"Could not find Task for id '" + elementId + "', no delete operation executed.");
-			modelServerAccess.setTaskName(getWorkflowModelState(), semanticElement, inputText).thenAccept(response -> {
-				if (!response.body()) {
-					throw new GLSPServerException("Could not rename Task to: " + inputText);
-				}
-			});
-			break;
-		}
-	}
+      if (label.getType() == ModelTypes.LABEL_HEADING) {
+         String elementId = graphicalElementId.replace("_classname", "");
+         Task semanticElement = getOrThrow(getWorkflowModelState().getIndex().getSemantic(elementId), Task.class,
+            "Could not find Task for id '" + elementId + "', no delete operation executed.");
+         modelServerAccess.setTaskName(getWorkflowModelState(), semanticElement, inputText).thenAccept(response -> {
+            if (!response.body()) {
+               throw new GLSPServerException("Could not rename Task to: " + inputText);
+            }
+         });
+      }
+   }
 
 }

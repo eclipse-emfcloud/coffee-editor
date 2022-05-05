@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -17,37 +17,32 @@ import org.eclipse.emfcloud.coffee.workflow.IWorkflowGraph;
 import org.eclipse.emfcloud.coffee.workflow.IWorkflowTask;
 
 public class WorkflowGraph implements IWorkflowGraph {
-	public static WorkflowGraph NULL_GRAPH = new WorkflowGraph("null");
+   @SuppressWarnings("checkstyle:VisibilityModifier")
+   public static WorkflowGraph NULL_GRAPH = new WorkflowGraph("null");
 
-	private String id;
-	private final List<IWorkflowTask> tasks = new ArrayList<>();
+   private String id;
+   private final List<IWorkflowTask> tasks = new ArrayList<>();
 
-	public WorkflowGraph(final String id) {
-		this.id = id;
-	}
+   public WorkflowGraph(final String id) {
+      this.id = id;
+   }
 
-	public void setId(final String id) {
-		this.id = id;
-	}
+   public void setId(final String id) { this.id = id; }
 
-	@Override
-	public String getId() {
-		return id;
-	}
+   @Override
+   public String getId() { return id; }
 
-	@Override
-	public List<IWorkflowTask> getTasks() {
-		return tasks;
-	}
+   @Override
+   public List<IWorkflowTask> getTasks() { return tasks; }
 
-	@Override
-	public boolean addTask(final IWorkflowTask task) {
-		return tasks.add(task);
-	}
+   @Override
+   public boolean addTask(final IWorkflowTask task) {
+      return tasks.add(task);
+   }
 
-	@Override
-	public boolean removeTask(final IWorkflowTask task) {
-		return tasks.remove(task);
-	}
+   @Override
+   public boolean removeTask(final IWorkflowTask task) {
+      return tasks.remove(task);
+   }
 
 }

@@ -22,43 +22,44 @@ import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSBasicOperati
 import org.eclipse.glsp.server.operations.ReconnectEdgeOperation;
 
 public class WorkflowReconnectFlowHandler
-		extends EMSBasicOperationHandler<ReconnectEdgeOperation, WorkflowModelServerAccess> {
+   extends EMSBasicOperationHandler<ReconnectEdgeOperation, WorkflowModelServerAccess> {
 
-	private WorkflowModelIndex getWorkflowModelIndex() {
-		return ((WorkflowModelState) super.getEMSModelState()).getIndex();
-	}
+   private WorkflowModelIndex getWorkflowModelIndex() {
+      return ((WorkflowModelState) super.getEMSModelState()).getIndex();
+   }
 
-	@Override
-	public void executeOperation(final ReconnectEdgeOperation operation,
-			final WorkflowModelServerAccess modelServerAccess) {
+   @Override
+   @SuppressWarnings("checkstyle:CyclomaticComplexity")
+   public void executeOperation(final ReconnectEdgeOperation operation,
+      final WorkflowModelServerAccess modelServerAccess) {
 
-		if (operation.getEdgeElementId() == null || operation.getSourceElementId() == null
-				|| operation.getTargetElementId() == null) {
-			throw new IllegalArgumentException("Incomplete reconnect flow action");
-		}
+      if (operation.getEdgeElementId() == null || operation.getSourceElementId() == null
+         || operation.getTargetElementId() == null) {
+         throw new IllegalArgumentException("Incomplete reconnect flow action");
+      }
 
-		String modelId = EcoreUtil.getURI(getEMSModelState().getSemanticModel()).fragment();
-		if (operation.getSourceElementId().equals(modelId) || operation.getTargetElementId().equals(modelId)) {
-			// client tool failure, do nothing
-			return;
-		}
+      String modelId = EcoreUtil.getURI(getEMSModelState().getSemanticModel()).fragment();
+      if (operation.getSourceElementId().equals(modelId) || operation.getTargetElementId().equals(modelId)) {
+         // client tool failure, do nothing
+         return;
+      }
 
-		Flow flow = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getEdgeElementId()), Flow.class,
-				"Could not find Flow for id '" + operation.getEdgeElementId()
-						+ "', no reconnecting operation executed.");
+      Flow flow = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getEdgeElementId()), Flow.class,
+         "Could not find Flow for id '" + operation.getEdgeElementId()
+            + "', no reconnecting operation executed.");
 
-		if (!operation.getSourceElementId().equals(EcoreUtil.getURI(flow.getSource()).fragment())) {
-			Node newSource = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getSourceElementId()), Node.class,
-					"Could not find Node for id '" + operation.getSourceElementId()
-							+ "', no reconnecting operation executed.");
-			modelServerAccess.reconnectFlowSource(flow, newSource);
+      if (!operation.getSourceElementId().equals(EcoreUtil.getURI(flow.getSource()).fragment())) {
+         Node newSource = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getSourceElementId()), Node.class,
+            "Could not find Node for id '" + operation.getSourceElementId()
+               + "', no reconnecting operation executed.");
+         modelServerAccess.reconnectFlowSource(flow, newSource);
 
-		} else if (!operation.getTargetElementId().equals(EcoreUtil.getURI(flow.getTarget()).fragment())) {
-			Node newTarget = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getTargetElementId()), Node.class,
-					"Could not find Node for id '" + operation.getTargetElementId()
-							+ "', no reconnecting operation executed.");
-			modelServerAccess.reconnectFlowTarget(flow, newTarget);
-		}
-	}
+      } else if (!operation.getTargetElementId().equals(EcoreUtil.getURI(flow.getTarget()).fragment())) {
+         Node newTarget = getOrThrow(getWorkflowModelIndex().getSemantic(operation.getTargetElementId()), Node.class,
+            "Could not find Node for id '" + operation.getTargetElementId()
+               + "', no reconnecting operation executed.");
+         modelServerAccess.reconnectFlowTarget(flow, newTarget);
+      }
+   }
 
 }

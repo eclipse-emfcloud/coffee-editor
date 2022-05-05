@@ -88,4 +88,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // Record & publish checkstyle issues
+            recordIssues  enabledForFailure: true, publishAllIssues: true,
+            tool: checkStyle(reportEncoding: 'UTF-8'),
+            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
+
+            // Record maven,java warnings
+            recordIssues enabledForFailure: true, skipPublishingChecks:true, tools: [mavenConsole(), java()]
+        }
+    }
 }
