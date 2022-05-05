@@ -5,6 +5,19 @@
   "keywords": [
     "theia-extension"
   ],
+  "contributors": [
+    {
+      "name": "Eclipse EMF.cloud Project",
+      "email": "emfcloud-dev@eclipse.org",
+      "url": "https://projects.eclipse.org/projects/ecd.emfcloud"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-emfcloud/coffee-editor.git"
+  },
+  "homepage": "https://www.eclipse.org/emfcloud/",
+  "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
   "version": "0.7.0",
   "files": [
     "lib",

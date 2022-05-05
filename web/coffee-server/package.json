@@ -4,21 +4,25 @@
   "keywords": [
     "theia-extension"
   ],
-  "homepage": "https://github.com/eclipsesource/coffee-editor",
-  "bugs": "https://github.com/eclipsesource/coffee-editor/issues",
+  "contributors": [
+    {
+      "name": "Eclipse EMF.cloud Project",
+      "email": "emfcloud-dev@eclipse.org",
+      "url": "https://projects.eclipse.org/projects/ecd.emfcloud"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-emfcloud/coffee-editor.git"
+  },
+  "homepage": "https://www.eclipse.org/emfcloud/",
+  "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
   "version": "0.7.0",
   "files": [
     "build",
     "lib",
     "src"
   ],
-  "author": {
-    "name": "EclipseSource"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/eclipsesource/coffee-editor.git"
-  },
   "dependencies": {
     "@theia/core": "^1.0.0",
     "@theia/workspace": "^1.0.0",
