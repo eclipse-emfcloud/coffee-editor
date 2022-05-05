@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee 2021-06" sequenceNumber="1648026844">
+<target name="Coffee Editor Targetplatform" sequenceNumber="1651675938">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="ch.qos.logback.slf4j" version="1.2.3.v20200428-2012"/>
@@ -20,6 +20,7 @@
       <unit id="com.fasterxml.jackson.core.jackson-annotations" version="2.12.1.v20210128-1726"/>
       <unit id="com.fasterxml.jackson.core.jackson-core" version="2.12.1.v20210128-1726"/>
       <unit id="com.fasterxml.jackson.core.jackson-databind" version="2.12.1.v20210128-1726"/>
+      <unit id="org.slf4j.binding.simple" version="1.7.30.v20200204-2150"/>
       <repository id="orbit-release" location="https://download.eclipse.org/tools/orbit/R-builds/R20220302172233/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
