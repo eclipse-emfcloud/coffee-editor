@@ -79,7 +79,7 @@ pipeline {
         }
 
         stage('Store artefacts') {
-            // when { branch 'master' }
+            when { branch 'master' }
             steps {
                 container('ci') {
                     archiveArtifacts artifacts: 'backend/releng/org.eclipse.emfcloud.coffee.product/target/products/*.zip' , fingerprint: true
