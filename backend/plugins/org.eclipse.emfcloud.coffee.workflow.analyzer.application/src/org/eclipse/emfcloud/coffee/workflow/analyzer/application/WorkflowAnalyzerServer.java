@@ -16,7 +16,7 @@ import org.eclipse.lsp4j.jsonrpc.services.JsonRequest;
 
 public interface WorkflowAnalyzerServer {
 
-	@JsonRequest
-	CompletableFuture<String> runAnalysis(String uri, String configUri);
+   @JsonRequest
+   CompletableFuture<String> runAnalysis(String uri, String configUri);
 
 }

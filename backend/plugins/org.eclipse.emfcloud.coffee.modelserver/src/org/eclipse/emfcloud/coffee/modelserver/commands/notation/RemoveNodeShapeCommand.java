@@ -18,16 +18,16 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.util.NotationComm
 
 public class RemoveNodeShapeCommand extends NotationElementCommand {
 
-	protected final Shape shapeToRemove;
+   protected final Shape shapeToRemove;
 
-	public RemoveNodeShapeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
-		super(domain, modelUri);
-		shapeToRemove = NotationCommandUtil.getNotationElement(modelUri, domain, semanticProxyUri, Shape.class);
-	}
+   public RemoveNodeShapeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
+      super(domain, modelUri);
+      shapeToRemove = NotationCommandUtil.getNotationElement(modelUri, domain, semanticProxyUri, Shape.class);
+   }
 
-	@Override
-	protected void doExecute() {
-		notationDiagram.getElements().remove(shapeToRemove);
-	}
+   @Override
+   protected void doExecute() {
+      notationDiagram.getElements().remove(shapeToRemove);
+   }
 
 }

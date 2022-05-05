@@ -19,5 +19,4 @@ package org.eclipse.emfcloud.coffee;
  * @model
  * @generated
  */
-public interface BrewingUnit extends Component {
-} // BrewingUnit
+public interface BrewingUnit extends Component {} // BrewingUnit

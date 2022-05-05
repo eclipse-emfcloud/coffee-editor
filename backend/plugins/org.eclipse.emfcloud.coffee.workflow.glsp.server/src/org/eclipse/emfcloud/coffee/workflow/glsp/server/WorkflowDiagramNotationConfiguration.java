@@ -38,58 +38,54 @@ import org.eclipse.glsp.server.types.ShapeTypeHint;
 
 public class WorkflowDiagramNotationConfiguration extends BaseDiagramConfiguration {
 
-	@Override
-	public String getDiagramType() {
-		return "workflow-diagram-notation";
-	}
+   @Override
+   public String getDiagramType() { return "workflow-diagram-notation"; }
 
-	@Override
-	public Map<String, EClass> getTypeMappings() {
-		Map<String, EClass> mappings = DefaultTypes.getDefaultTypeMappings();
-		mappings.put(LABEL_HEADING, GraphPackage.Literals.GLABEL);
-		mappings.put(LABEL_TEXT, GraphPackage.Literals.GLABEL);
-		mappings.put(COMP_HEADER, GraphPackage.Literals.GCOMPARTMENT);
-		mappings.put(LABEL_ICON, GraphPackage.Literals.GLABEL);
-		mappings.put(WEIGHTED_EDGE, GraphPackage.Literals.GEDGE);
-		mappings.put(ICON, WfgraphPackage.Literals.ICON);
-		mappings.put(MERGE_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
-		mappings.put(DECISION_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
-		mappings.put(MANUAL_TASK, WfgraphPackage.Literals.TASK_NODE);
-		mappings.put(AUTOMATED_TASK, WfgraphPackage.Literals.TASK_NODE);
-		return mappings;
-	}
+   @Override
+   public Map<String, EClass> getTypeMappings() {
+      Map<String, EClass> mappings = DefaultTypes.getDefaultTypeMappings();
+      mappings.put(LABEL_HEADING, GraphPackage.Literals.GLABEL);
+      mappings.put(LABEL_TEXT, GraphPackage.Literals.GLABEL);
+      mappings.put(COMP_HEADER, GraphPackage.Literals.GCOMPARTMENT);
+      mappings.put(LABEL_ICON, GraphPackage.Literals.GLABEL);
+      mappings.put(WEIGHTED_EDGE, GraphPackage.Literals.GEDGE);
+      mappings.put(ICON, WfgraphPackage.Literals.ICON);
+      mappings.put(MERGE_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
+      mappings.put(DECISION_NODE, WfgraphPackage.Literals.ACTIVITY_NODE);
+      mappings.put(MANUAL_TASK, WfgraphPackage.Literals.TASK_NODE);
+      mappings.put(AUTOMATED_TASK, WfgraphPackage.Literals.TASK_NODE);
+      return mappings;
+   }
 
-	@Override
-	public List<ShapeTypeHint> getShapeTypeHints() {
-		List<ShapeTypeHint> nodeHints = new ArrayList<>();
-		nodeHints.add(new ShapeTypeHint(MANUAL_TASK, true, true, false, false));
-		nodeHints.add(new ShapeTypeHint(AUTOMATED_TASK, true, true, false, false));
-		nodeHints.add(createDefaultShapeTypeHint(DECISION_NODE));
-		nodeHints.add(createDefaultShapeTypeHint(MERGE_NODE));
-		return nodeHints;
-	}
+   @Override
+   public List<ShapeTypeHint> getShapeTypeHints() {
+      List<ShapeTypeHint> nodeHints = new ArrayList<>();
+      nodeHints.add(new ShapeTypeHint(MANUAL_TASK, true, true, false, false));
+      nodeHints.add(new ShapeTypeHint(AUTOMATED_TASK, true, true, false, false));
+      nodeHints.add(createDefaultShapeTypeHint(DECISION_NODE));
+      nodeHints.add(createDefaultShapeTypeHint(MERGE_NODE));
+      return nodeHints;
+   }
 
-	@Override
-	public List<EdgeTypeHint> getEdgeTypeHints() {
-		List<EdgeTypeHint> edgeHints = new ArrayList<>();
-		edgeHints.add(createDefaultEdgeTypeHint(EDGE));
-		EdgeTypeHint weightedEdgeHint = super.createDefaultEdgeTypeHint(WEIGHTED_EDGE);
-		weightedEdgeHint.setSourceElementTypeIds(Arrays.asList(DECISION_NODE));
-		weightedEdgeHint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK));
-		edgeHints.add(weightedEdgeHint);
-		return edgeHints;
-	}
+   @Override
+   public List<EdgeTypeHint> getEdgeTypeHints() {
+      List<EdgeTypeHint> edgeHints = new ArrayList<>();
+      edgeHints.add(createDefaultEdgeTypeHint(EDGE));
+      EdgeTypeHint weightedEdgeHint = super.createDefaultEdgeTypeHint(WEIGHTED_EDGE);
+      weightedEdgeHint.setSourceElementTypeIds(Arrays.asList(DECISION_NODE));
+      weightedEdgeHint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK));
+      edgeHints.add(weightedEdgeHint);
+      return edgeHints;
+   }
 
-	@Override
-	public EdgeTypeHint createDefaultEdgeTypeHint(final String elementId) {
-		EdgeTypeHint hint = super.createDefaultEdgeTypeHint(elementId);
-		hint.setSourceElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
-		hint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
-		return hint;
-	}
+   @Override
+   public EdgeTypeHint createDefaultEdgeTypeHint(final String elementId) {
+      EdgeTypeHint hint = super.createDefaultEdgeTypeHint(elementId);
+      hint.setSourceElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
+      hint.setTargetElementTypeIds(Arrays.asList(MANUAL_TASK, AUTOMATED_TASK, DECISION_NODE, MERGE_NODE));
+      return hint;
+   }
 
-	@Override
-	public ServerLayoutKind getLayoutKind() {
-		return ServerLayoutKind.MANUAL;
-	}
+   @Override
+   public ServerLayoutKind getLayoutKind() { return ServerLayoutKind.MANUAL; }
 }

@@ -34,48 +34,48 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Flow extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Node)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getFlow_Source()
-	 * @model required="true"
-	 * @generated
-	 */
-	Node getSource();
+   /**
+    * Returns the value of the '<em><b>Source</b></em>' reference. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Source</em>' reference.
+    * @see #setSource(Node)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getFlow_Source()
+    * @model required="true"
+    * @generated
+    */
+   Node getSource();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getSource
-	 * <em>Source</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(Node value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getSource
+    * <em>Source</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Source</em>' reference.
+    * @see #getSource()
+    * @generated
+    */
+   void setSource(Node value);
 
-	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Node)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getFlow_Target()
-	 * @model required="true"
-	 * @generated
-	 */
-	Node getTarget();
+   /**
+    * Returns the value of the '<em><b>Target</b></em>' reference. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Target</em>' reference.
+    * @see #setTarget(Node)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getFlow_Target()
+    * @model required="true"
+    * @generated
+    */
+   Node getTarget();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getTarget
-	 * <em>Target</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
-	 * @generated
-	 */
-	void setTarget(Node value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getTarget
+    * <em>Target</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Target</em>' reference.
+    * @see #getTarget()
+    * @generated
+    */
+   void setTarget(Node value);
 
 } // Flow

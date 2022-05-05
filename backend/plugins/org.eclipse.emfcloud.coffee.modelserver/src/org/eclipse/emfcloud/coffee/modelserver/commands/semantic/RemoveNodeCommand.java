@@ -17,17 +17,17 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public class RemoveNodeCommand extends SemanticElementCommand {
 
-	protected final String semanticUriFragment;
+   protected final String semanticUriFragment;
 
-	public RemoveNodeCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-		super(domain, modelUri);
-		this.semanticUriFragment = semanticUriFragment;
-	}
+   public RemoveNodeCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
+      super(domain, modelUri);
+      this.semanticUriFragment = semanticUriFragment;
+   }
 
-	@Override
-	protected void doExecute() {
-		Node nodeToDelete = SemanticCommandUtil.getElement(semanticModel, semanticUriFragment, Node.class);
-		semanticModel.getNodes().remove(nodeToDelete);
-	}
+   @Override
+   protected void doExecute() {
+      Node nodeToDelete = SemanticCommandUtil.getElement(semanticModel, semanticUriFragment, Node.class);
+      semanticModel.getNodes().remove(nodeToDelete);
+   }
 
 }

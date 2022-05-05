@@ -20,27 +20,25 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public abstract class AbstractAddFlowCommand extends SemanticElementCommand {
 
-	protected final Flow flow;
-	protected final Node source;
-	protected final Node target;
+   protected final Flow flow;
+   protected final Node source;
+   protected final Node target;
 
-	public AbstractAddFlowCommand(final EditingDomain domain, final URI modelUri, final EClass eClass,
-			final String sourceUriFragment, final String targetUriFragment) {
-		super(domain, modelUri);
-		flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
-		source = SemanticCommandUtil.getElement(semanticModel, sourceUriFragment, Node.class);
-		target = SemanticCommandUtil.getElement(semanticModel, targetUriFragment, Node.class);
-	}
+   public AbstractAddFlowCommand(final EditingDomain domain, final URI modelUri, final EClass eClass,
+      final String sourceUriFragment, final String targetUriFragment) {
+      super(domain, modelUri);
+      flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
+      source = SemanticCommandUtil.getElement(semanticModel, sourceUriFragment, Node.class);
+      target = SemanticCommandUtil.getElement(semanticModel, targetUriFragment, Node.class);
+   }
 
-	@Override
-	protected void doExecute() {
-		flow.setSource(source);
-		flow.setTarget(target);
-		semanticModel.getFlows().add(flow);
+   @Override
+   protected void doExecute() {
+      flow.setSource(source);
+      flow.setTarget(target);
+      semanticModel.getFlows().add(flow);
 
-	}
+   }
 
-	public Flow getFlow() {
-		return flow;
-	}
+   public Flow getFlow() { return flow; }
 }

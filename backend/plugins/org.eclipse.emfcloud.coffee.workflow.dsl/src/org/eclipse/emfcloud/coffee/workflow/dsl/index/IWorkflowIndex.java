@@ -19,19 +19,19 @@ import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.Workflow;
 
 public interface IWorkflowIndex {
-	void putGraph(String uri, Machine graph);
+   void putGraph(String uri, Machine graph);
 
-	void removeGraph(String uri);
+   void removeGraph(String uri);
 
-	Collection<Machine> getMachines();
+   Collection<Machine> getMachines();
 
-	Optional<Machine> getMachine(String machine);
+   Optional<Machine> getMachine(String machine);
 
-	Collection<Workflow> getWorkflows(String machine);
+   Collection<Workflow> getWorkflows(String machine);
 
-	Optional<Workflow> getWorkflow(String machine, String workflow);
+   Optional<Workflow> getWorkflow(String machine, String workflow);
 
-	List<Task> getTasks(String machine, String workflow);
+   List<Task> getTasks(String machine, String workflow);
 
-	Optional<Task> getTask(String machine, String workflow, String task);
+   Optional<Task> getTask(String machine, String workflow, String task);
 }

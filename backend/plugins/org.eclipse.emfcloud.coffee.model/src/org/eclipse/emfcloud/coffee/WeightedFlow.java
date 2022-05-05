@@ -32,32 +32,32 @@ package org.eclipse.emfcloud.coffee;
  * @generated
  */
 public interface WeightedFlow extends Flow {
-	/**
-	 * Returns the value of the '<em><b>Probability</b></em>' attribute. The
-	 * literals are from the enumeration
-	 * {@link org.eclipse.emfcloud.coffee.Probability}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @return the value of the '<em>Probability</em>' attribute.
-	 * @see org.eclipse.emfcloud.coffee.Probability
-	 * @see #setProbability(Probability)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWeightedFlow_Probability()
-	 * @model
-	 * @generated
-	 */
-	Probability getProbability();
+   /**
+    * Returns the value of the '<em><b>Probability</b></em>' attribute. The
+    * literals are from the enumeration
+    * {@link org.eclipse.emfcloud.coffee.Probability}. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @return the value of the '<em>Probability</em>' attribute.
+    * @see org.eclipse.emfcloud.coffee.Probability
+    * @see #setProbability(Probability)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWeightedFlow_Probability()
+    * @model
+    * @generated
+    */
+   Probability getProbability();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability
-	 * <em>Probability</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @param value the new value of the '<em>Probability</em>' attribute.
-	 * @see org.eclipse.emfcloud.coffee.Probability
-	 * @see #getProbability()
-	 * @generated
-	 */
-	void setProbability(Probability value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability
+    * <em>Probability</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+    * -->
+    *
+    * @param value the new value of the '<em>Probability</em>' attribute.
+    * @see org.eclipse.emfcloud.coffee.Probability
+    * @see #getProbability()
+    * @generated
+    */
+   void setProbability(Probability value);
 
 } // WeightedFlow

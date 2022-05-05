@@ -16,7 +16,7 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddManualTaskCommand extends AbstractAddTaskCommand {
 
-	public AddManualTaskCommand(final EditingDomain domain, final URI modelUri) {
-		super(domain, modelUri, CoffeePackage.Literals.MANUAL_TASK);
-	}
+   public AddManualTaskCommand(final EditingDomain domain, final URI modelUri) {
+      super(domain, modelUri, CoffeePackage.Literals.MANUAL_TASK);
+   }
 }

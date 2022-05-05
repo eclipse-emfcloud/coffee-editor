@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 public class CoffeeResourceFactoryImpl extends ResourceFactoryImpl implements CoffeeResource.Factory {
 
-	public CoffeeResourceFactoryImpl() {
-		super();
-	}
+   public CoffeeResourceFactoryImpl() {
+      super();
+   }
 
-	@Override
-	public Resource createResource(final URI uri) {
-		CoffeeResource resource = new CoffeeResourceImpl(uri);
-		return resource;
-	}
+   @Override
+   public Resource createResource(final URI uri) {
+      CoffeeResource resource = new CoffeeResourceImpl(uri);
+      return resource;
+   }
 
 }

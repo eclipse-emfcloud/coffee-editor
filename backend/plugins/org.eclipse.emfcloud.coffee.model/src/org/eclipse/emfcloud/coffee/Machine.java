@@ -35,39 +35,39 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Machine extends Component {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Name()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getName();
+   /**
+    * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Name</em>' attribute.
+    * @see #setName(String)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Name()
+    * @model required="true"
+    * @generated
+    */
+   String getName();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Machine#getName
-	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Machine#getName
+    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Name</em>' attribute.
+    * @see #getName()
+    * @generated
+    */
+   void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Workflows</b></em>' containment reference
-	 * list. The list contents are of type
-	 * {@link org.eclipse.emfcloud.coffee.Workflow}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @return the value of the '<em>Workflows</em>' containment reference list.
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Workflows()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<Workflow> getWorkflows();
+   /**
+    * Returns the value of the '<em><b>Workflows</b></em>' containment reference
+    * list. The list contents are of type
+    * {@link org.eclipse.emfcloud.coffee.Workflow}. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @return the value of the '<em>Workflows</em>' containment reference list.
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Workflows()
+    * @model containment="true" required="true"
+    * @generated
+    */
+   EList<Workflow> getWorkflows();
 
 } // Machine

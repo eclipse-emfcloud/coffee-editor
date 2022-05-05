@@ -22,35 +22,33 @@ import org.eclipse.glsp.server.operations.CreateEdgeOperation;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 public abstract class AbstractCreateEdgeHandler
-		extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelServerAccess> {
+   extends EMSBasicCreateOperationHandler<CreateEdgeOperation, WorkflowModelServerAccess> {
 
-	public AbstractCreateEdgeHandler(final String type) {
-		super(type);
-	}
+   public AbstractCreateEdgeHandler(final String type) {
+      super(type);
+   }
 
-	protected WorkflowModelState getWorkflowModelState() {
-		return (WorkflowModelState) getEMSModelState();
-	}
+   protected WorkflowModelState getWorkflowModelState() { return (WorkflowModelState) getEMSModelState(); }
 
-	@Override
-	public void executeOperation(final CreateEdgeOperation operation, final WorkflowModelServerAccess modelAccess) {
-		WorkflowModelIndex modelIndex = getWorkflowModelState().getIndex();
+   @Override
+   public void executeOperation(final CreateEdgeOperation operation, final WorkflowModelServerAccess modelAccess) {
+      WorkflowModelIndex modelIndex = getWorkflowModelState().getIndex();
 
-		Node source = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).orElseThrow(
-				() -> new GLSPServerException(String.format("No semantic Node found for source element with id %s.",
-						operation.getSourceElementId())));
-		Node target = modelIndex.getSemantic(operation.getTargetElementId(), Node.class).orElseThrow(
-				() -> new GLSPServerException(String.format("No semantic Node found for target element with id %s.",
-						operation.getTargetElementId())));
+      Node source = modelIndex.getSemantic(operation.getSourceElementId(), Node.class).orElseThrow(
+         () -> new GLSPServerException(String.format("No semantic Node found for source element with id %s.",
+            operation.getSourceElementId())));
+      Node target = modelIndex.getSemantic(operation.getTargetElementId(), Node.class).orElseThrow(
+         () -> new GLSPServerException(String.format("No semantic Node found for target element with id %s.",
+            operation.getTargetElementId())));
 
-		addFlow(modelAccess, getWorkflowModelState(), source, target).thenAccept(response -> {
-			if (!response.body()) {
-				throw new GLSPServerException(
-						String.format("Could not execute create operation for a new %s.", getLabel()));
-			}
-		});
-	}
+      addFlow(modelAccess, getWorkflowModelState(), source, target).thenAccept(response -> {
+         if (!response.body()) {
+            throw new GLSPServerException(
+               String.format("Could not execute create operation for a new %s.", getLabel()));
+         }
+      });
+   }
 
-	protected abstract CompletableFuture<Response<Boolean>> addFlow(WorkflowModelServerAccess modelAccess,
-			WorkflowModelState modelState, Node source, Node target);
+   protected abstract CompletableFuture<Response<Boolean>> addFlow(WorkflowModelServerAccess modelAccess,
+      WorkflowModelState modelState, Node source, Node target);
 }

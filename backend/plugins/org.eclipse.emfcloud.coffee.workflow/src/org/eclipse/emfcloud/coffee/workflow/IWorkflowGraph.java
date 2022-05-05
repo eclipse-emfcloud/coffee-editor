@@ -15,13 +15,13 @@ import java.util.List;
 import org.eclipse.emfcloud.coffee.workflow.impl.WorkflowGraph;
 
 public interface IWorkflowGraph {
-	IWorkflowGraph NULL_GRAPH = new WorkflowGraph("null");
+   IWorkflowGraph NULL_GRAPH = new WorkflowGraph("null");
 
-	String getId();
+   String getId();
 
-	List<IWorkflowTask> getTasks();
+   List<IWorkflowTask> getTasks();
 
-	boolean addTask(IWorkflowTask task);
+   boolean addTask(IWorkflowTask task);
 
-	boolean removeTask(IWorkflowTask task);
+   boolean removeTask(IWorkflowTask task);
 }

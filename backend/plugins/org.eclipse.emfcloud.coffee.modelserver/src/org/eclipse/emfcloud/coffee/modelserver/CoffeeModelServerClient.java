@@ -22,16 +22,14 @@ import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
 public class CoffeeModelServerClient extends ModelServerClientV1 {
 
+   private static final Map<String, Codec> SUPPORTED_COFFEE_FORMATS = Map.of(
+      ModelServerPathParametersV1.FORMAT_JSON, new DefaultJsonCodec(),
+      ModelServerPathParametersV1.FORMAT_XMI, new XmiCodec(),
+      CoffeeResource.FILE_EXTENSION, new CoffeeCodec());
 
-	private static final Map<String, Codec> SUPPORTED_COFFEE_FORMATS = Map.of(
-		      ModelServerPathParametersV1.FORMAT_JSON, new DefaultJsonCodec(),
-		      ModelServerPathParametersV1.FORMAT_XMI, new XmiCodec(),
-		      CoffeeResource.FILE_EXTENSION, new CoffeeCodec());
-
-		   public CoffeeModelServerClient(final String baseUrl, final EPackageConfiguration... configurations)
-		      throws MalformedURLException {
-		      super(baseUrl, SUPPORTED_COFFEE_FORMATS, configurations);
-		   }
-	
+   public CoffeeModelServerClient(final String baseUrl, final EPackageConfiguration... configurations)
+      throws MalformedURLException {
+      super(baseUrl, SUPPORTED_COFFEE_FORMATS, configurations);
+   }
 
 }

@@ -24,5 +24,4 @@ package org.eclipse.emfcloud.coffee;
  * @model
  * @generated
  */
-public interface Fork extends Node {
-} // Fork
+public interface Fork extends Node {} // Fork

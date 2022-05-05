@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddFlowCommand extends AbstractAddFlowCommand {
 
-	public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
-			final String targetUriFragment) {
-		super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceUriFragment, targetUriFragment);
-	}
+   public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
+      final String targetUriFragment) {
+      super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceUriFragment, targetUriFragment);
+   }
 }

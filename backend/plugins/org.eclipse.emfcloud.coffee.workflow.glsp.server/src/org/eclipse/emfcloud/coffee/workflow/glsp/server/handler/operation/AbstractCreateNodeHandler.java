@@ -23,26 +23,24 @@ import org.eclipse.glsp.server.operations.CreateNodeOperation;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 public abstract class AbstractCreateNodeHandler
-		extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelServerAccess> {
+   extends EMSBasicCreateOperationHandler<CreateNodeOperation, WorkflowModelServerAccess> {
 
-	public AbstractCreateNodeHandler(final String type) {
-		super(type);
-	}
+   public AbstractCreateNodeHandler(final String type) {
+      super(type);
+   }
 
-	protected WorkflowModelState getWorkflowModelState() {
-		return (WorkflowModelState) getEMSModelState();
-	}
+   protected WorkflowModelState getWorkflowModelState() { return (WorkflowModelState) getEMSModelState(); }
 
-	@Override
-	public void executeOperation(final CreateNodeOperation operation, final WorkflowModelServerAccess modelAccess) {
-		getNodeCreator(modelAccess).apply(getWorkflowModelState(), operation.getLocation()).thenAccept(response -> {
-			if (!response.body()) {
-				throw new GLSPServerException(
-						String.format("Could not execute create operation for a new %s.", getLabel()));
-			}
-		});
-	}
+   @Override
+   public void executeOperation(final CreateNodeOperation operation, final WorkflowModelServerAccess modelAccess) {
+      getNodeCreator(modelAccess).apply(getWorkflowModelState(), operation.getLocation()).thenAccept(response -> {
+         if (!response.body()) {
+            throw new GLSPServerException(
+               String.format("Could not execute create operation for a new %s.", getLabel()));
+         }
+      });
+   }
 
-	protected abstract BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
-			WorkflowModelServerAccess modelAccess);
+   protected abstract BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+      WorkflowModelServerAccess modelAccess);
 }

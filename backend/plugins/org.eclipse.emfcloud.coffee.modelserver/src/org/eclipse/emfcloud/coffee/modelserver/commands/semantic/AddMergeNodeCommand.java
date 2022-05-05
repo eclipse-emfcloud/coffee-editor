@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddMergeNodeCommand extends AbstractAddNodeCommand {
 
-	public AddMergeNodeCommand(final EditingDomain domain, final URI modelUri) {
-		super(domain, modelUri, CoffeePackage.Literals.MERGE);
-	}
+   public AddMergeNodeCommand(final EditingDomain domain, final URI modelUri) {
+      super(domain, modelUri, CoffeePackage.Literals.MERGE);
+   }
 
 }

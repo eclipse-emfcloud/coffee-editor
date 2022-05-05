@@ -22,19 +22,17 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class CreateMergeNodeHandler extends AbstractCreateNodeHandler {
 
-	public CreateMergeNodeHandler() {
-		super(ModelTypes.MERGE_NODE);
-	}
+   public CreateMergeNodeHandler() {
+      super(ModelTypes.MERGE_NODE);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Merge Node";
-	}
+   @Override
+   public String getLabel() { return "Merge Node"; }
 
-	@Override
-	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
-			final WorkflowModelServerAccess modelAccess) {
-		return modelAccess::addMergeNode;
-	}
+   @Override
+   protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+      final WorkflowModelServerAccess modelAccess) {
+      return modelAccess::addMergeNode;
+   }
 
 }

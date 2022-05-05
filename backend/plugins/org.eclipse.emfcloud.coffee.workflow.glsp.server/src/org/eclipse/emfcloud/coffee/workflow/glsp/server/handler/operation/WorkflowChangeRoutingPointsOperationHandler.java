@@ -21,24 +21,22 @@ import org.eclipse.glsp.server.operations.ChangeRoutingPointsOperation;
 import org.eclipse.glsp.server.types.ElementAndRoutingPoints;
 
 public class WorkflowChangeRoutingPointsOperationHandler
-		extends EMSBasicOperationHandler<ChangeRoutingPointsOperation, WorkflowModelServerAccess> {
+   extends EMSBasicOperationHandler<ChangeRoutingPointsOperation, WorkflowModelServerAccess> {
 
-	protected WorkflowModelState getWorkflowModelState() {
-		return (WorkflowModelState) getEMSModelState();
-	}
+   protected WorkflowModelState getWorkflowModelState() { return (WorkflowModelState) getEMSModelState(); }
 
-	@Override
-	public void executeOperation(final ChangeRoutingPointsOperation operation,
-			final WorkflowModelServerAccess modelServerAccess) {
+   @Override
+   public void executeOperation(final ChangeRoutingPointsOperation operation,
+      final WorkflowModelServerAccess modelServerAccess) {
 
-		Map<Edge, ElementAndRoutingPoints> changeRoutingPointsMap = new HashMap<>();
-		for (ElementAndRoutingPoints element : operation.getNewRoutingPoints()) {
-			getWorkflowModelState().getIndex().getNotation(element.getElementId(), Edge.class)
-					.ifPresent(notationElement -> {
-						changeRoutingPointsMap.put(notationElement, element);
-					});
-		}
-		modelServerAccess.changeRoutingPoints(changeRoutingPointsMap);
-	}
+      Map<Edge, ElementAndRoutingPoints> changeRoutingPointsMap = new HashMap<>();
+      for (ElementAndRoutingPoints element : operation.getNewRoutingPoints()) {
+         getWorkflowModelState().getIndex().getNotation(element.getElementId(), Edge.class)
+            .ifPresent(notationElement -> {
+               changeRoutingPointsMap.put(notationElement, element);
+            });
+      }
+      modelServerAccess.changeRoutingPoints(changeRoutingPointsMap);
+   }
 
 }

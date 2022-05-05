@@ -24,5 +24,4 @@ package org.eclipse.emfcloud.coffee;
  * @model
  * @generated
  */
-public interface Join extends Node {
-} // Join
+public interface Join extends Node {} // Join

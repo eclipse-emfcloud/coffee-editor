@@ -41,110 +41,110 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ControlUnit extends Component {
-	/**
-	 * Returns the value of the '<em><b>Processor</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Processor</em>' containment reference.
-	 * @see #setProcessor(Processor)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Processor()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Processor getProcessor();
+   /**
+    * Returns the value of the '<em><b>Processor</b></em>' containment reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Processor</em>' containment reference.
+    * @see #setProcessor(Processor)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Processor()
+    * @model containment="true"
+    * @generated
+    */
+   Processor getProcessor();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor
-	 * <em>Processor</em>}' containment reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Processor</em>' containment reference.
-	 * @see #getProcessor()
-	 * @generated
-	 */
-	void setProcessor(Processor value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor
+    * <em>Processor</em>}' containment reference. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @param value the new value of the '<em>Processor</em>' containment reference.
+    * @see #getProcessor()
+    * @generated
+    */
+   void setProcessor(Processor value);
 
-	/**
-	 * Returns the value of the '<em><b>Dimension</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Dimension</em>' containment reference.
-	 * @see #setDimension(Dimension)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Dimension()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Dimension getDimension();
+   /**
+    * Returns the value of the '<em><b>Dimension</b></em>' containment reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Dimension</em>' containment reference.
+    * @see #setDimension(Dimension)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Dimension()
+    * @model containment="true"
+    * @generated
+    */
+   Dimension getDimension();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension
-	 * <em>Dimension</em>}' containment reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Dimension</em>' containment reference.
-	 * @see #getDimension()
-	 * @generated
-	 */
-	void setDimension(Dimension value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension
+    * <em>Dimension</em>}' containment reference. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @param value the new value of the '<em>Dimension</em>' containment reference.
+    * @see #getDimension()
+    * @generated
+    */
+   void setDimension(Dimension value);
 
-	/**
-	 * Returns the value of the '<em><b>Ram</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emfcloud.coffee.RAM}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Ram</em>' containment reference list.
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Ram()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<RAM> getRam();
+   /**
+    * Returns the value of the '<em><b>Ram</b></em>' containment reference list.
+    * The list contents are of type {@link org.eclipse.emfcloud.coffee.RAM}. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Ram</em>' containment reference list.
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Ram()
+    * @model containment="true"
+    * @generated
+    */
+   EList<RAM> getRam();
 
-	/**
-	 * Returns the value of the '<em><b>Display</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Display</em>' containment reference.
-	 * @see #setDisplay(Display)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Display()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Display getDisplay();
+   /**
+    * Returns the value of the '<em><b>Display</b></em>' containment reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Display</em>' containment reference.
+    * @see #setDisplay(Display)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Display()
+    * @model containment="true"
+    * @generated
+    */
+   Display getDisplay();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Display</em>' containment reference.
-	 * @see #getDisplay()
-	 * @generated
-	 */
-	void setDisplay(Display value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}'
+    * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Display</em>' containment reference.
+    * @see #getDisplay()
+    * @generated
+    */
+   void setDisplay(Display value);
 
-	/**
-	 * Returns the value of the '<em><b>User Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>User Description</em>' attribute.
-	 * @see #setUserDescription(String)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_UserDescription()
-	 * @model
-	 * @generated
-	 */
-	String getUserDescription();
+   /**
+    * Returns the value of the '<em><b>User Description</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>User Description</em>' attribute.
+    * @see #setUserDescription(String)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_UserDescription()
+    * @model
+    * @generated
+    */
+   String getUserDescription();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User
-	 * Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>User Description</em>' attribute.
-	 * @see #getUserDescription()
-	 * @generated
-	 */
-	void setUserDescription(String value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User
+    * Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>User Description</em>' attribute.
+    * @see #getUserDescription()
+    * @generated
+    */
+   void setUserDescription(String value);
 
 } // ControlUnit

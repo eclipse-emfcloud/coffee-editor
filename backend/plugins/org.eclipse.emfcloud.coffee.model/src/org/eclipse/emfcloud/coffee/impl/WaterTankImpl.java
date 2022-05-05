@@ -26,23 +26,23 @@ import org.eclipse.emfcloud.coffee.WaterTank;
  * @generated
  */
 public class WaterTankImpl extends ComponentImpl implements WaterTank {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected WaterTankImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected WaterTankImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.WATER_TANK;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.WATER_TANK;
+   }
 
 } // WaterTankImpl

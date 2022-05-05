@@ -12,23 +12,15 @@ package org.eclipse.emfcloud.coffee.workflow.analyzer.application;
 
 public class WorkflowAnaylsisRequest {
 
-	private String workflowUri;
-	private String workflowConfigUri;
+   private String workflowUri;
+   private String workflowConfigUri;
 
-	public void setWorkflowUri(final String workflowUri) {
-		this.workflowUri = workflowUri;
-	}
+   public void setWorkflowUri(final String workflowUri) { this.workflowUri = workflowUri; }
 
-	public String getWorkflowUri() {
-		return workflowUri;
-	}
+   public String getWorkflowUri() { return workflowUri; }
 
-	public void setWorkflowConfigUri(final String workflowConfigUri) {
-		this.workflowConfigUri = workflowConfigUri;
-	}
+   public void setWorkflowConfigUri(final String workflowConfigUri) { this.workflowConfigUri = workflowConfigUri; }
 
-	public String getWorkflowConfigUri() {
-		return workflowConfigUri;
-	}
+   public String getWorkflowConfigUri() { return workflowConfigUri; }
 
 }

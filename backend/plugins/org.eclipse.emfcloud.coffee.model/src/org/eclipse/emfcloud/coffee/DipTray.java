@@ -24,5 +24,4 @@ package org.eclipse.emfcloud.coffee;
  * @model
  * @generated
  */
-public interface DipTray extends Component {
-} // DipTray
+public interface DipTray extends Component {} // DipTray

@@ -23,20 +23,20 @@ import org.eclipse.glsp.server.model.GModelState;
 
 public class WorkflowLayoutEngine extends EMSLayoutEngine {
 
-	@Override
-	public GModelElement layoutRoot(final GModelState modelState) {
-		GModelElement newRoot = EcoreUtil.copy(modelState.getRoot());
-		if (newRoot instanceof GGraph) {
-			GLSPLayoutConfigurator configurator = new GLSPLayoutConfigurator();
-			// ELK Layered Algorithm Reference:
-			// https://www.eclipse.org/elk/reference/algorithms/org-eclipse-elk-layered.html
-			configurator.configureByType(DefaultTypes.GRAPH)//
-					.setProperty(LayeredOptions.DIRECTION, Direction.DOWN)
-					.setProperty(LayeredOptions.SPACING_BASE_VALUE, 35d)
-					.setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.UNDEFINED);
-			this.layout((GGraph) newRoot, configurator);
-		}
-		return newRoot;
-	}
+   @Override
+   public GModelElement layoutRoot(final GModelState modelState) {
+      GModelElement newRoot = EcoreUtil.copy(modelState.getRoot());
+      if (newRoot instanceof GGraph) {
+         GLSPLayoutConfigurator configurator = new GLSPLayoutConfigurator();
+         // ELK Layered Algorithm Reference:
+         // https://www.eclipse.org/elk/reference/algorithms/org-eclipse-elk-layered.html
+         configurator.configureByType(DefaultTypes.GRAPH)//
+            .setProperty(LayeredOptions.DIRECTION, Direction.DOWN)
+            .setProperty(LayeredOptions.SPACING_BASE_VALUE, 35d)
+            .setProperty(LayeredOptions.EDGE_ROUTING, EdgeRouting.UNDEFINED);
+         this.layout((GGraph) newRoot, configurator);
+      }
+      return newRoot;
+   }
 
 }

@@ -21,22 +21,22 @@ import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 
 public class AddFlowCommandContribution extends CompoundCommandContribution {
 
-	public static final String TYPE = "addFlowContribution";
+   public static final String TYPE = "addFlowContribution";
 
-	public static CCompoundCommand create(final String sourceUriFragment, final String targetUriFragment) {
-		CCompoundCommand command = CCommandFactory.eINSTANCE.createCompoundCommand();
-		command.setType(TYPE);
-		command.getProperties().put(SOURCE_URI_FRAGMENT, sourceUriFragment);
-		command.getProperties().put(TARGET_URI_FRAGMENT, targetUriFragment);
-		return command;
-	}
+   public static CCompoundCommand create(final String sourceUriFragment, final String targetUriFragment) {
+      CCompoundCommand command = CCommandFactory.eINSTANCE.createCompoundCommand();
+      command.setType(TYPE);
+      command.getProperties().put(SOURCE_URI_FRAGMENT, sourceUriFragment);
+      command.getProperties().put(TARGET_URI_FRAGMENT, targetUriFragment);
+      return command;
+   }
 
-	@Override
-	protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
-			throws DecodingException {
-		String sourceUriFragment = command.getProperties().get(SOURCE_URI_FRAGMENT);
-		String targetUriFragment = command.getProperties().get(TARGET_URI_FRAGMENT);
-		return new AddFlowCompoundCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
-	}
+   @Override
+   protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
+      throws DecodingException {
+      String sourceUriFragment = command.getProperties().get(SOURCE_URI_FRAGMENT);
+      String targetUriFragment = command.getProperties().get(TARGET_URI_FRAGMENT);
+      return new AddFlowCompoundCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
+   }
 
 }

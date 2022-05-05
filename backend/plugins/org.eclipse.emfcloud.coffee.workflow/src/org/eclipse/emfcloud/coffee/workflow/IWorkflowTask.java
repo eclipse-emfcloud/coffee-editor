@@ -11,11 +11,11 @@
 package org.eclipse.emfcloud.coffee.workflow;
 
 public interface IWorkflowTask {
-	String getId();
+   String getId();
 
-	String getName();
+   String getName();
 
-	int getDuration();
+   int getDuration();
 
-	boolean isManual();
+   boolean isManual();
 }

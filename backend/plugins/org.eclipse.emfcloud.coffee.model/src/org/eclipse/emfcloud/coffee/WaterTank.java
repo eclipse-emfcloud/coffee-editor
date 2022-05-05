@@ -24,5 +24,4 @@ package org.eclipse.emfcloud.coffee;
  * @model
  * @generated
  */
-public interface WaterTank extends Component {
-} // WaterTank
+public interface WaterTank extends Component {} // WaterTank

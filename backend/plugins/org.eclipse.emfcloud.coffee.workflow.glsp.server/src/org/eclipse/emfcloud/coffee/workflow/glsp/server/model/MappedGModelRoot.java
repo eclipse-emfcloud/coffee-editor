@@ -18,21 +18,17 @@ import org.eclipse.glsp.graph.GNode;
 
 public class MappedGModelRoot {
 
-	private final GModelRoot root;
-	private final Map<Node, GNode> mapping;
+   private final GModelRoot root;
+   private final Map<Node, GNode> mapping;
 
-	public MappedGModelRoot(final GModelRoot root, final Map<Node, GNode> mapping) {
-		super();
-		this.root = root;
-		this.mapping = mapping;
-	}
+   public MappedGModelRoot(final GModelRoot root, final Map<Node, GNode> mapping) {
+      super();
+      this.root = root;
+      this.mapping = mapping;
+   }
 
-	public Map<Node, GNode> getMapping() {
-		return mapping;
-	}
+   public Map<Node, GNode> getMapping() { return mapping; }
 
-	public GModelRoot getRoot() {
-		return root;
-	}
+   public GModelRoot getRoot() { return root; }
 
 }

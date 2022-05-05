@@ -27,27 +27,27 @@ package org.eclipse.emfcloud.coffee;
  * @generated
  */
 public interface AutomaticTask extends Task {
-	/**
-	 * Returns the value of the '<em><b>Component</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Component</em>' reference.
-	 * @see #setComponent(Component)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getAutomaticTask_Component()
-	 * @model
-	 * @generated
-	 */
-	Component getComponent();
+   /**
+    * Returns the value of the '<em><b>Component</b></em>' reference. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Component</em>' reference.
+    * @see #setComponent(Component)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getAutomaticTask_Component()
+    * @model
+    * @generated
+    */
+   Component getComponent();
 
-	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent
-	 * <em>Component</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Component</em>' reference.
-	 * @see #getComponent()
-	 * @generated
-	 */
-	void setComponent(Component value);
+   /**
+    * Sets the value of the
+    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent
+    * <em>Component</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Component</em>' reference.
+    * @see #getComponent()
+    * @generated
+    */
+   void setComponent(Component value);
 
 } // AutomaticTask

@@ -48,430 +48,418 @@ import org.eclipse.emfcloud.coffee.SocketConnectorType;
  * @generated
  */
 public class ProcessorImpl extends MinimalEObjectImpl.Container implements Processor {
-	/**
-	 * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getVendor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VENDOR_EDEFAULT = null;
+   /**
+    * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getVendor()
+    * @generated
+    * @ordered
+    */
+   protected static final String VENDOR_EDEFAULT = null;
 
-	/**
-	 * The cached value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getVendor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String vendor = VENDOR_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getVendor()
+    * @generated
+    * @ordered
+    */
+   protected String vendor = VENDOR_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getClockSpeed()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int CLOCK_SPEED_EDEFAULT = 0;
+   /**
+    * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
+    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getClockSpeed()
+    * @generated
+    * @ordered
+    */
+   protected static final int CLOCK_SPEED_EDEFAULT = 0;
 
-	/**
-	 * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getClockSpeed()
-	 * @generated
-	 * @ordered
-	 */
-	protected int clockSpeed = CLOCK_SPEED_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
+    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getClockSpeed()
+    * @generated
+    * @ordered
+    */
+   protected int clockSpeed = CLOCK_SPEED_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getNumberOfCores() <em>Number Of
-	 * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getNumberOfCores()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int NUMBER_OF_CORES_EDEFAULT = 0;
+   /**
+    * The default value of the '{@link #getNumberOfCores() <em>Number Of
+    * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getNumberOfCores()
+    * @generated
+    * @ordered
+    */
+   protected static final int NUMBER_OF_CORES_EDEFAULT = 0;
 
-	/**
-	 * The cached value of the '{@link #getNumberOfCores() <em>Number Of
-	 * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getNumberOfCores()
-	 * @generated
-	 * @ordered
-	 */
-	protected int numberOfCores = NUMBER_OF_CORES_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getNumberOfCores() <em>Number Of
+    * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getNumberOfCores()
+    * @generated
+    * @ordered
+    */
+   protected int numberOfCores = NUMBER_OF_CORES_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getSocketconnectorType()
-	 * <em>Socketconnector Type</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #getSocketconnectorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SocketConnectorType SOCKETCONNECTOR_TYPE_EDEFAULT = SocketConnectorType.A1T;
+   /**
+    * The default value of the '{@link #getSocketconnectorType()
+    * <em>Socketconnector Type</em>}' attribute. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #getSocketconnectorType()
+    * @generated
+    * @ordered
+    */
+   protected static final SocketConnectorType SOCKETCONNECTOR_TYPE_EDEFAULT = SocketConnectorType.A1T;
 
-	/**
-	 * The cached value of the '{@link #getSocketconnectorType() <em>Socketconnector
-	 * Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getSocketconnectorType()
-	 * @generated
-	 * @ordered
-	 */
-	protected SocketConnectorType socketconnectorType = SOCKETCONNECTOR_TYPE_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getSocketconnectorType() <em>Socketconnector
+    * Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getSocketconnectorType()
+    * @generated
+    * @ordered
+    */
+   protected SocketConnectorType socketconnectorType = SOCKETCONNECTOR_TYPE_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getThermalDesignPower() <em>Thermal Design
-	 * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getThermalDesignPower()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int THERMAL_DESIGN_POWER_EDEFAULT = 0;
+   /**
+    * The default value of the '{@link #getThermalDesignPower() <em>Thermal Design
+    * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getThermalDesignPower()
+    * @generated
+    * @ordered
+    */
+   protected static final int THERMAL_DESIGN_POWER_EDEFAULT = 0;
 
-	/**
-	 * The cached value of the '{@link #getThermalDesignPower() <em>Thermal Design
-	 * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getThermalDesignPower()
-	 * @generated
-	 * @ordered
-	 */
-	protected int thermalDesignPower = THERMAL_DESIGN_POWER_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getThermalDesignPower() <em>Thermal Design
+    * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getThermalDesignPower()
+    * @generated
+    * @ordered
+    */
+   protected int thermalDesignPower = THERMAL_DESIGN_POWER_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getManufactoringProcess() <em>Manufactoring
-	 * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getManufactoringProcess()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ManufactoringProcess MANUFACTORING_PROCESS_EDEFAULT = ManufactoringProcess.NM18;
+   /**
+    * The default value of the '{@link #getManufactoringProcess() <em>Manufactoring
+    * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getManufactoringProcess()
+    * @generated
+    * @ordered
+    */
+   protected static final ManufactoringProcess MANUFACTORING_PROCESS_EDEFAULT = ManufactoringProcess.NM18;
 
-	/**
-	 * The cached value of the '{@link #getManufactoringProcess() <em>Manufactoring
-	 * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getManufactoringProcess()
-	 * @generated
-	 * @ordered
-	 */
-	protected ManufactoringProcess manufactoringProcess = MANUFACTORING_PROCESS_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getManufactoringProcess() <em>Manufactoring
+    * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getManufactoringProcess()
+    * @generated
+    * @ordered
+    */
+   protected ManufactoringProcess manufactoringProcess = MANUFACTORING_PROCESS_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected ProcessorImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected ProcessorImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.PROCESSOR;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.PROCESSOR;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getVendor() {
-		return vendor;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String getVendor() { return vendor; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setVendor(final String newVendor) {
-		String oldVendor = vendor;
-		vendor = newVendor;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__VENDOR, oldVendor, vendor));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setVendor(final String newVendor) {
+      String oldVendor = vendor;
+      vendor = newVendor;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__VENDOR, oldVendor, vendor));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public int getClockSpeed() {
-		return clockSpeed;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public int getClockSpeed() { return clockSpeed; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setClockSpeed(final int newClockSpeed) {
-		int oldClockSpeed = clockSpeed;
-		clockSpeed = newClockSpeed;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__CLOCK_SPEED, oldClockSpeed,
-					clockSpeed));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setClockSpeed(final int newClockSpeed) {
+      int oldClockSpeed = clockSpeed;
+      clockSpeed = newClockSpeed;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__CLOCK_SPEED, oldClockSpeed,
+            clockSpeed));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public int getNumberOfCores() {
-		return numberOfCores;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public int getNumberOfCores() { return numberOfCores; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setNumberOfCores(final int newNumberOfCores) {
-		int oldNumberOfCores = numberOfCores;
-		numberOfCores = newNumberOfCores;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__NUMBER_OF_CORES,
-					oldNumberOfCores, numberOfCores));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setNumberOfCores(final int newNumberOfCores) {
+      int oldNumberOfCores = numberOfCores;
+      numberOfCores = newNumberOfCores;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__NUMBER_OF_CORES,
+            oldNumberOfCores, numberOfCores));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public SocketConnectorType getSocketconnectorType() {
-		return socketconnectorType;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public SocketConnectorType getSocketconnectorType() { return socketconnectorType; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setSocketconnectorType(final SocketConnectorType newSocketconnectorType) {
-		SocketConnectorType oldSocketconnectorType = socketconnectorType;
-		socketconnectorType = newSocketconnectorType == null ? SOCKETCONNECTOR_TYPE_EDEFAULT : newSocketconnectorType;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE,
-					oldSocketconnectorType, socketconnectorType));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setSocketconnectorType(final SocketConnectorType newSocketconnectorType) {
+      SocketConnectorType oldSocketconnectorType = socketconnectorType;
+      socketconnectorType = newSocketconnectorType == null ? SOCKETCONNECTOR_TYPE_EDEFAULT : newSocketconnectorType;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE,
+            oldSocketconnectorType, socketconnectorType));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public int getThermalDesignPower() {
-		return thermalDesignPower;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public int getThermalDesignPower() { return thermalDesignPower; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setThermalDesignPower(final int newThermalDesignPower) {
-		int oldThermalDesignPower = thermalDesignPower;
-		thermalDesignPower = newThermalDesignPower;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER,
-					oldThermalDesignPower, thermalDesignPower));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setThermalDesignPower(final int newThermalDesignPower) {
+      int oldThermalDesignPower = thermalDesignPower;
+      thermalDesignPower = newThermalDesignPower;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER,
+            oldThermalDesignPower, thermalDesignPower));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public ManufactoringProcess getManufactoringProcess() {
-		return manufactoringProcess;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public ManufactoringProcess getManufactoringProcess() { return manufactoringProcess; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setManufactoringProcess(final ManufactoringProcess newManufactoringProcess) {
-		ManufactoringProcess oldManufactoringProcess = manufactoringProcess;
-		manufactoringProcess = newManufactoringProcess == null ? MANUFACTORING_PROCESS_EDEFAULT
-				: newManufactoringProcess;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS,
-					oldManufactoringProcess, manufactoringProcess));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setManufactoringProcess(final ManufactoringProcess newManufactoringProcess) {
+      ManufactoringProcess oldManufactoringProcess = manufactoringProcess;
+      manufactoringProcess = newManufactoringProcess == null ? MANUFACTORING_PROCESS_EDEFAULT
+         : newManufactoringProcess;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS,
+            oldManufactoringProcess, manufactoringProcess));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-		switch (featureID) {
-		case CoffeePackage.PROCESSOR__VENDOR:
-			return getVendor();
-		case CoffeePackage.PROCESSOR__CLOCK_SPEED:
-			return getClockSpeed();
-		case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
-			return getNumberOfCores();
-		case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
-			return getSocketconnectorType();
-		case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
-			return getThermalDesignPower();
-		case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
-			return getManufactoringProcess();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+      switch (featureID) {
+         case CoffeePackage.PROCESSOR__VENDOR:
+            return getVendor();
+         case CoffeePackage.PROCESSOR__CLOCK_SPEED:
+            return getClockSpeed();
+         case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
+            return getNumberOfCores();
+         case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
+            return getSocketconnectorType();
+         case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
+            return getThermalDesignPower();
+         case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
+            return getManufactoringProcess();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void eSet(final int featureID, final Object newValue) {
-		switch (featureID) {
-		case CoffeePackage.PROCESSOR__VENDOR:
-			setVendor((String) newValue);
-			return;
-		case CoffeePackage.PROCESSOR__CLOCK_SPEED:
-			setClockSpeed((Integer) newValue);
-			return;
-		case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
-			setNumberOfCores((Integer) newValue);
-			return;
-		case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
-			setSocketconnectorType((SocketConnectorType) newValue);
-			return;
-		case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
-			setThermalDesignPower((Integer) newValue);
-			return;
-		case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
-			setManufactoringProcess((ManufactoringProcess) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void eSet(final int featureID, final Object newValue) {
+      switch (featureID) {
+         case CoffeePackage.PROCESSOR__VENDOR:
+            setVendor((String) newValue);
+            return;
+         case CoffeePackage.PROCESSOR__CLOCK_SPEED:
+            setClockSpeed((Integer) newValue);
+            return;
+         case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
+            setNumberOfCores((Integer) newValue);
+            return;
+         case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
+            setSocketconnectorType((SocketConnectorType) newValue);
+            return;
+         case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
+            setThermalDesignPower((Integer) newValue);
+            return;
+         case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
+            setManufactoringProcess((ManufactoringProcess) newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void eUnset(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.PROCESSOR__VENDOR:
-			setVendor(VENDOR_EDEFAULT);
-			return;
-		case CoffeePackage.PROCESSOR__CLOCK_SPEED:
-			setClockSpeed(CLOCK_SPEED_EDEFAULT);
-			return;
-		case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
-			setNumberOfCores(NUMBER_OF_CORES_EDEFAULT);
-			return;
-		case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
-			setSocketconnectorType(SOCKETCONNECTOR_TYPE_EDEFAULT);
-			return;
-		case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
-			setThermalDesignPower(THERMAL_DESIGN_POWER_EDEFAULT);
-			return;
-		case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
-			setManufactoringProcess(MANUFACTORING_PROCESS_EDEFAULT);
-			return;
-		}
-		super.eUnset(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void eUnset(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.PROCESSOR__VENDOR:
+            setVendor(VENDOR_EDEFAULT);
+            return;
+         case CoffeePackage.PROCESSOR__CLOCK_SPEED:
+            setClockSpeed(CLOCK_SPEED_EDEFAULT);
+            return;
+         case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
+            setNumberOfCores(NUMBER_OF_CORES_EDEFAULT);
+            return;
+         case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
+            setSocketconnectorType(SOCKETCONNECTOR_TYPE_EDEFAULT);
+            return;
+         case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
+            setThermalDesignPower(THERMAL_DESIGN_POWER_EDEFAULT);
+            return;
+         case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
+            setManufactoringProcess(MANUFACTORING_PROCESS_EDEFAULT);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.PROCESSOR__VENDOR:
-			return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
-		case CoffeePackage.PROCESSOR__CLOCK_SPEED:
-			return clockSpeed != CLOCK_SPEED_EDEFAULT;
-		case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
-			return numberOfCores != NUMBER_OF_CORES_EDEFAULT;
-		case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
-			return socketconnectorType != SOCKETCONNECTOR_TYPE_EDEFAULT;
-		case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
-			return thermalDesignPower != THERMAL_DESIGN_POWER_EDEFAULT;
-		case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
-			return manufactoringProcess != MANUFACTORING_PROCESS_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public boolean eIsSet(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.PROCESSOR__VENDOR:
+            return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
+         case CoffeePackage.PROCESSOR__CLOCK_SPEED:
+            return clockSpeed != CLOCK_SPEED_EDEFAULT;
+         case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
+            return numberOfCores != NUMBER_OF_CORES_EDEFAULT;
+         case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
+            return socketconnectorType != SOCKETCONNECTOR_TYPE_EDEFAULT;
+         case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
+            return thermalDesignPower != THERMAL_DESIGN_POWER_EDEFAULT;
+         case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
+            return manufactoringProcess != MANUFACTORING_PROCESS_EDEFAULT;
+      }
+      return super.eIsSet(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String toString() {
+      if (eIsProxy()) {
+         return super.toString();
+      }
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (vendor: ");
-		result.append(vendor);
-		result.append(", clockSpeed: ");
-		result.append(clockSpeed);
-		result.append(", numberOfCores: ");
-		result.append(numberOfCores);
-		result.append(", socketconnectorType: ");
-		result.append(socketconnectorType);
-		result.append(", thermalDesignPower: ");
-		result.append(thermalDesignPower);
-		result.append(", manufactoringProcess: ");
-		result.append(manufactoringProcess);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuilder result = new StringBuilder(super.toString());
+      result.append(" (vendor: ");
+      result.append(vendor);
+      result.append(", clockSpeed: ");
+      result.append(clockSpeed);
+      result.append(", numberOfCores: ");
+      result.append(numberOfCores);
+      result.append(", socketconnectorType: ");
+      result.append(socketconnectorType);
+      result.append(", thermalDesignPower: ");
+      result.append(thermalDesignPower);
+      result.append(", manufactoringProcess: ");
+      result.append(manufactoringProcess);
+      result.append(')');
+      return result.toString();
+   }
 
 } // ProcessorImpl

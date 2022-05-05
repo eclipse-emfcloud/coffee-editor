@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddDecisionNodeCommand extends AbstractAddNodeCommand {
 
-	public AddDecisionNodeCommand(final EditingDomain domain, final URI modelUri) {
-		super(domain, modelUri, CoffeePackage.Literals.DECISION);
-	}
+   public AddDecisionNodeCommand(final EditingDomain domain, final URI modelUri) {
+      super(domain, modelUri, CoffeePackage.Literals.DECISION);
+   }
 
 }

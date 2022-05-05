@@ -20,14 +20,14 @@ import com.google.common.base.Preconditions;
 
 public abstract class AbstractAddTaskCommand extends AbstractAddNodeCommand {
 
-	public AbstractAddTaskCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
-		super(domain, modelUri, eClass);
-	}
+   public AbstractAddTaskCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
+      super(domain, modelUri, eClass);
+   }
 
-	@Override
-	protected void initializeNode(final Node node) {
-		super.initializeNode(node);
-		Preconditions.checkArgument(node instanceof Task);
-		Task.class.cast(node).setName("New Task");
-	}
+   @Override
+   protected void initializeNode(final Node node) {
+      super.initializeNode(node);
+      Preconditions.checkArgument(node instanceof Task);
+      Task.class.cast(node).setName("New Task");
+   }
 }

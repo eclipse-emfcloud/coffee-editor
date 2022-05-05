@@ -30,19 +30,19 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  */
 public interface Decision extends Node {
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @model
-	 * @generated
-	 */
-	boolean hasOneIncoming(DiagnosticChain chain, Map<?, ?> context);
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @model
+    * @generated
+    */
+   boolean hasOneIncoming(DiagnosticChain chain, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @model
-	 * @generated
-	 */
-	boolean hasTwoOutgoing(DiagnosticChain chain, Map<?, ?> context);
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @model
+    * @generated
+    */
+   boolean hasTwoOutgoing(DiagnosticChain chain, Map<?, ?> context);
 } // Decision

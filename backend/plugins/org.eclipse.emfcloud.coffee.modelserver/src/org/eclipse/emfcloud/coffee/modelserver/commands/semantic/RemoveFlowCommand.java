@@ -17,17 +17,17 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public class RemoveFlowCommand extends SemanticElementCommand {
 
-	protected final String semanticUriFragment;
+   protected final String semanticUriFragment;
 
-	public RemoveFlowCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-		super(domain, modelUri);
-		this.semanticUriFragment = semanticUriFragment;
-	}
+   public RemoveFlowCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
+      super(domain, modelUri);
+      this.semanticUriFragment = semanticUriFragment;
+   }
 
-	@Override
-	protected void doExecute() {
-		Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticUriFragment, Flow.class);
-		semanticModel.getFlows().remove(flowToDelete);
-	}
+   @Override
+   protected void doExecute() {
+      Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticUriFragment, Flow.class);
+      semanticModel.getFlows().remove(flowToDelete);
+   }
 
 }

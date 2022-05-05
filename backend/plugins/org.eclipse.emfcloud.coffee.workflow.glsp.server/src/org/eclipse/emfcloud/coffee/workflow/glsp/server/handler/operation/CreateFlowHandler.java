@@ -20,19 +20,17 @@ import org.eclipse.glsp.graph.DefaultTypes;
 
 public class CreateFlowHandler extends AbstractCreateEdgeHandler {
 
-	public CreateFlowHandler() {
-		super(DefaultTypes.EDGE);
-	}
+   public CreateFlowHandler() {
+      super(DefaultTypes.EDGE);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Flow";
-	}
+   @Override
+   public String getLabel() { return "Flow"; }
 
-	@Override
-	protected CompletableFuture<Response<Boolean>> addFlow(final WorkflowModelServerAccess modelAccess,
-			final WorkflowModelState modelState, final Node source, final Node target) {
-		return modelAccess.addFlow(modelState, source, target);
-	}
+   @Override
+   protected CompletableFuture<Response<Boolean>> addFlow(final WorkflowModelServerAccess modelAccess,
+      final WorkflowModelState modelState, final Node source, final Node target) {
+      return modelAccess.addFlow(modelState, source, target);
+   }
 
 }

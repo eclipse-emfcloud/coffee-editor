@@ -23,36 +23,36 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.NotationElementCo
 
 public class AddFlowShapeCommand extends NotationElementCommand {
 
-	protected Supplier<Flow> flowSupplier;
-	protected String semanticProxyUri;
+   protected Supplier<Flow> flowSupplier;
+   protected String semanticProxyUri;
 
-	private AddFlowShapeCommand(final EditingDomain domain, final URI modelUri) {
-		super(domain, modelUri);
-	}
+   private AddFlowShapeCommand(final EditingDomain domain, final URI modelUri) {
+      super(domain, modelUri);
+   }
 
-	public AddFlowShapeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
-		super(domain, modelUri);
-		this.semanticProxyUri = semanticProxyUri;
-	}
+   public AddFlowShapeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
+      super(domain, modelUri);
+      this.semanticProxyUri = semanticProxyUri;
+   }
 
-	public AddFlowShapeCommand(final EditingDomain domain, final URI modelUri, final Supplier<Flow> flowSupplier) {
-		super(domain, modelUri);
-		this.flowSupplier = flowSupplier;
-	}
+   public AddFlowShapeCommand(final EditingDomain domain, final URI modelUri, final Supplier<Flow> flowSupplier) {
+      super(domain, modelUri);
+      this.flowSupplier = flowSupplier;
+   }
 
-	@Override
-	protected void doExecute() {
-		Edge edge = NotationFactory.eINSTANCE.createEdge();
+   @Override
+   protected void doExecute() {
+      Edge edge = NotationFactory.eINSTANCE.createEdge();
 
-		SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
-		if (this.semanticProxyUri != null) {
-			proxy.setUri(this.semanticProxyUri);
-		} else {
-			proxy.setUri(EcoreUtil.getURI(flowSupplier.get()).fragment());
-		}
-		edge.setSemanticElement(proxy);
+      SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
+      if (this.semanticProxyUri != null) {
+         proxy.setUri(this.semanticProxyUri);
+      } else {
+         proxy.setUri(EcoreUtil.getURI(flowSupplier.get()).fragment());
+      }
+      edge.setSemanticElement(proxy);
 
-		notationDiagram.getElements().add(edge);
-	}
+      notationDiagram.getElements().add(edge);
+   }
 
 }

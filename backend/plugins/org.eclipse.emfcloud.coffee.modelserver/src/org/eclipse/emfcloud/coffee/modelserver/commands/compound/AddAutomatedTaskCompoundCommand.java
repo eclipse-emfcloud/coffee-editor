@@ -22,11 +22,11 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class AddAutomatedTaskCompoundCommand extends CompoundCommand {
 
-	public AddAutomatedTaskCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
-		// Chain semantic and notation command
-		AddAutomatedTaskCommand command = new AddAutomatedTaskCommand(domain, modelUri);
-		this.append(command);
-		Supplier<Node> semanticResultSupplier = () -> command.getNode();
-		this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
-	}
+   public AddAutomatedTaskCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
+      // Chain semantic and notation command
+      AddAutomatedTaskCommand command = new AddAutomatedTaskCommand(domain, modelUri);
+      this.append(command);
+      Supplier<Node> semanticResultSupplier = () -> command.getNode();
+      this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+   }
 }

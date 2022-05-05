@@ -20,19 +20,17 @@ import org.eclipse.emfcloud.modelserver.client.Response;
 
 public class CreateWeightedFlowHandler extends AbstractCreateEdgeHandler {
 
-	public CreateWeightedFlowHandler() {
-		super(ModelTypes.WEIGHTED_EDGE);
-	}
+   public CreateWeightedFlowHandler() {
+      super(ModelTypes.WEIGHTED_EDGE);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Weighted Edge";
-	}
+   @Override
+   public String getLabel() { return "Weighted Edge"; }
 
-	@Override
-	protected CompletableFuture<Response<Boolean>> addFlow(final WorkflowModelServerAccess modelAccess,
-			final WorkflowModelState modelState, final Node source, final Node target) {
-		return modelAccess.addWeightedFlow(modelState, source, target);
-	}
+   @Override
+   protected CompletableFuture<Response<Boolean>> addFlow(final WorkflowModelServerAccess modelAccess,
+      final WorkflowModelState modelState, final Node source, final Node target) {
+      return modelAccess.addWeightedFlow(modelState, source, target);
+   }
 
 }

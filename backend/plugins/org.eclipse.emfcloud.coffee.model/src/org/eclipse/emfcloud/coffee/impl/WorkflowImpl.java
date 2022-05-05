@@ -49,229 +49,227 @@ import org.eclipse.emfcloud.coffee.Workflow;
  * @generated
  */
 public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workflow {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
+   /**
+    * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
+   protected static final String NAME_EDEFAULT = null;
 
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
+   protected String name = NAME_EDEFAULT;
 
-	/**
-	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getNodes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Node> nodes;
+   /**
+    * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment
+    * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getNodes()
+    * @generated
+    * @ordered
+    */
+   protected EList<Node> nodes;
 
-	/**
-	 * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getFlows()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Flow> flows;
+   /**
+    * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment
+    * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getFlows()
+    * @generated
+    * @ordered
+    */
+   protected EList<Flow> flows;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected WorkflowImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected WorkflowImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.WORKFLOW;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.WORKFLOW;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String getName() { return name; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setName(final String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WORKFLOW__NAME, oldName, name));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setName(final String newName) {
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WORKFLOW__NAME, oldName, name));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public EList<Node> getNodes() {
-		if (nodes == null) {
-			nodes = new EObjectContainmentEList<>(Node.class, this, CoffeePackage.WORKFLOW__NODES);
-		}
-		return nodes;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public EList<Node> getNodes() {
+      if (nodes == null) {
+         nodes = new EObjectContainmentEList<>(Node.class, this, CoffeePackage.WORKFLOW__NODES);
+      }
+      return nodes;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public EList<Flow> getFlows() {
-		if (flows == null) {
-			flows = new EObjectContainmentEList<>(Flow.class, this, CoffeePackage.WORKFLOW__FLOWS);
-		}
-		return flows;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public EList<Flow> getFlows() {
+      if (flows == null) {
+         flows = new EObjectContainmentEList<>(Flow.class, this, CoffeePackage.WORKFLOW__FLOWS);
+      }
+      return flows;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-			final NotificationChain msgs) {
-		switch (featureID) {
-		case CoffeePackage.WORKFLOW__NODES:
-			return ((InternalEList<?>) getNodes()).basicRemove(otherEnd, msgs);
-		case CoffeePackage.WORKFLOW__FLOWS:
-			return ((InternalEList<?>) getFlows()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
+      final NotificationChain msgs) {
+      switch (featureID) {
+         case CoffeePackage.WORKFLOW__NODES:
+            return ((InternalEList<?>) getNodes()).basicRemove(otherEnd, msgs);
+         case CoffeePackage.WORKFLOW__FLOWS:
+            return ((InternalEList<?>) getFlows()).basicRemove(otherEnd, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-		switch (featureID) {
-		case CoffeePackage.WORKFLOW__NAME:
-			return getName();
-		case CoffeePackage.WORKFLOW__NODES:
-			return getNodes();
-		case CoffeePackage.WORKFLOW__FLOWS:
-			return getFlows();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+      switch (featureID) {
+         case CoffeePackage.WORKFLOW__NAME:
+            return getName();
+         case CoffeePackage.WORKFLOW__NODES:
+            return getNodes();
+         case CoffeePackage.WORKFLOW__FLOWS:
+            return getFlows();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(final int featureID, final Object newValue) {
-		switch (featureID) {
-		case CoffeePackage.WORKFLOW__NAME:
-			setName((String) newValue);
-			return;
-		case CoffeePackage.WORKFLOW__NODES:
-			getNodes().clear();
-			getNodes().addAll((Collection<? extends Node>) newValue);
-			return;
-		case CoffeePackage.WORKFLOW__FLOWS:
-			getFlows().clear();
-			getFlows().addAll((Collection<? extends Flow>) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @SuppressWarnings("unchecked")
+   @Override
+   public void eSet(final int featureID, final Object newValue) {
+      switch (featureID) {
+         case CoffeePackage.WORKFLOW__NAME:
+            setName((String) newValue);
+            return;
+         case CoffeePackage.WORKFLOW__NODES:
+            getNodes().clear();
+            getNodes().addAll((Collection<? extends Node>) newValue);
+            return;
+         case CoffeePackage.WORKFLOW__FLOWS:
+            getFlows().clear();
+            getFlows().addAll((Collection<? extends Flow>) newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void eUnset(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.WORKFLOW__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case CoffeePackage.WORKFLOW__NODES:
-			getNodes().clear();
-			return;
-		case CoffeePackage.WORKFLOW__FLOWS:
-			getFlows().clear();
-			return;
-		}
-		super.eUnset(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void eUnset(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.WORKFLOW__NAME:
+            setName(NAME_EDEFAULT);
+            return;
+         case CoffeePackage.WORKFLOW__NODES:
+            getNodes().clear();
+            return;
+         case CoffeePackage.WORKFLOW__FLOWS:
+            getFlows().clear();
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.WORKFLOW__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case CoffeePackage.WORKFLOW__NODES:
-			return nodes != null && !nodes.isEmpty();
-		case CoffeePackage.WORKFLOW__FLOWS:
-			return flows != null && !flows.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public boolean eIsSet(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.WORKFLOW__NAME:
+            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+         case CoffeePackage.WORKFLOW__NODES:
+            return nodes != null && !nodes.isEmpty();
+         case CoffeePackage.WORKFLOW__FLOWS:
+            return flows != null && !flows.isEmpty();
+      }
+      return super.eIsSet(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String toString() {
+      if (eIsProxy()) {
+         return super.toString();
+      }
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuilder result = new StringBuilder(super.toString());
+      result.append(" (name: ");
+      result.append(name);
+      result.append(')');
+      return result.toString();
+   }
 
 } // WorkflowImpl

@@ -20,16 +20,16 @@ import org.eclipse.glsp.server.actions.Action;
 import org.eclipse.glsp.server.features.validation.RequestMarkersAction;
 
 public class WorkflowRequestMarkersActionHandler
-		extends EMSBasicActionHandler<RequestMarkersAction, WorkflowModelServerAccess> {
+   extends EMSBasicActionHandler<RequestMarkersAction, WorkflowModelServerAccess> {
 
-	@Override
-	public List<Action> executeAction(final RequestMarkersAction action,
-			final WorkflowModelServerAccess modelServerAccess) {
-		try {
-			modelServerAccess.validate().join();
-		} catch (IOException | InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
-		return listOf();
-	}
+   @Override
+   public List<Action> executeAction(final RequestMarkersAction action,
+      final WorkflowModelServerAccess modelServerAccess) {
+      try {
+         modelServerAccess.validate().join();
+      } catch (IOException | InterruptedException | ExecutionException e) {
+         e.printStackTrace();
+      }
+      return listOf();
+   }
 }

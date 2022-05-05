@@ -17,14 +17,10 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphPackage;
 import org.eclipse.glsp.graph.GraphExtension;
 
 public class WorkflowGraphExtension implements GraphExtension {
-	@Override
-	public EPackage getEPackage() {
-		return WfgraphPackage.eINSTANCE;
-	}
+   @Override
+   public EPackage getEPackage() { return WfgraphPackage.eINSTANCE; }
 
-	@Override
-	public EFactory getEFactory() {
-		return WfgraphFactory.eINSTANCE;
-	}
+   @Override
+   public EFactory getEFactory() { return WfgraphFactory.eINSTANCE; }
 
 }

@@ -29,54 +29,50 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class WorkflowIndex implements IWorkflowIndex {
-	private static Map<URI, Machine> machines = new HashMap<>();
+   private static Map<URI, Machine> machines = new HashMap<>();
 
-	@Override
-	public void putGraph(final String uri, final Machine graph) {
-		if (graph != null && uri != null) {
-			try {
-				machines.put(new URI(uri), graph);
-			} catch (URISyntaxException e) {
-			}
-		}
-	}
+   @Override
+   public void putGraph(final String uri, final Machine graph) {
+      if (graph != null && uri != null) {
+         try {
+            machines.put(new URI(uri), graph);
+         } catch (URISyntaxException e) {}
+      }
+   }
 
-	@Override
-	public void removeGraph(final String uri) {
-		try {
-			machines.remove(new URI(uri));
-		} catch (URISyntaxException e) {
-		}
-	}
+   @Override
+   public void removeGraph(final String uri) {
+      try {
+         machines.remove(new URI(uri));
+      } catch (URISyntaxException e) {}
+   }
 
-	@Override
-	public Collection<Machine> getMachines() {
-		return Collections.unmodifiableCollection(machines.values());
-	}
+   @Override
+   public Collection<Machine> getMachines() { return Collections.unmodifiableCollection(machines.values()); }
 
-	@Override
-	public Optional<Machine> getMachine(final String graphId) {
-		return machines.values().stream().filter(graph -> graph.getName().equals(graphId)).findAny();
-	}
+   @Override
+   public Optional<Machine> getMachine(final String graphId) {
+      return machines.values().stream().filter(graph -> graph.getName().equals(graphId)).findAny();
+   }
 
-	@Override
-	public Collection<Workflow> getWorkflows(final String machine) {
-		return getMachine(machine).orElse(CoffeeFactory.eINSTANCE.createMachine()).getWorkflows();
-	}
+   @Override
+   public Collection<Workflow> getWorkflows(final String machine) {
+      return getMachine(machine).orElse(CoffeeFactory.eINSTANCE.createMachine()).getWorkflows();
+   }
 
-	@Override
-	public Optional<Workflow> getWorkflow(final String machine, final String workflow) {
-		return getWorkflows(machine).stream().filter(w -> w.getName().equals(workflow)).findAny();
-	}
+   @Override
+   public Optional<Workflow> getWorkflow(final String machine, final String workflow) {
+      return getWorkflows(machine).stream().filter(w -> w.getName().equals(workflow)).findAny();
+   }
 
-	@Override
-	public List<Task> getTasks(final String machine, final String workflow) {
-		return getWorkflow(machine, workflow).map(w -> w.getNodes().stream().filter(Task.class::isInstance)
-				.map(Task.class::cast).collect(Collectors.toList())).orElse(Collections.emptyList());
-	}
+   @Override
+   public List<Task> getTasks(final String machine, final String workflow) {
+      return getWorkflow(machine, workflow).map(w -> w.getNodes().stream().filter(Task.class::isInstance)
+         .map(Task.class::cast).collect(Collectors.toList())).orElse(Collections.emptyList());
+   }
 
-	@Override
-	public Optional<Task> getTask(final String machine, final String workflow, final String taskName) {
-		return getTasks(machine, workflow).stream().filter(task -> task.getName().equals(taskName)).findFirst();
-	}
+   @Override
+   public Optional<Task> getTask(final String machine, final String workflow, final String taskName) {
+      return getTasks(machine, workflow).stream().filter(task -> task.getName().equals(taskName)).findFirst();
+   }
 }

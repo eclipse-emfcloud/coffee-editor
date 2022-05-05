@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddWeightedFlowCommand extends AbstractAddFlowCommand {
 
-	public AddWeightedFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
-			final String targetUriFragment) {
-		super(domain, modelUri, CoffeePackage.Literals.WEIGHTED_FLOW, sourceUriFragment, targetUriFragment);
-	}
+   public AddWeightedFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
+      final String targetUriFragment) {
+      super(domain, modelUri, CoffeePackage.Literals.WEIGHTED_FLOW, sourceUriFragment, targetUriFragment);
+   }
 }

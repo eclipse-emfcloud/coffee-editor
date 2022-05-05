@@ -26,23 +26,23 @@ import org.eclipse.emfcloud.coffee.Join;
  * @generated
  */
 public class JoinImpl extends NodeImpl implements Join {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected JoinImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected JoinImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.JOIN;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.JOIN;
+   }
 
 } // JoinImpl

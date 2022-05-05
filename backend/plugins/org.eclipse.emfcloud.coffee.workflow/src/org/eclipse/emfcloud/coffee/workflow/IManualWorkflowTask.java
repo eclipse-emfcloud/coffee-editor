@@ -11,5 +11,5 @@
 package org.eclipse.emfcloud.coffee.workflow;
 
 public interface IManualWorkflowTask {
-	String getActor();
+   String getActor();
 }

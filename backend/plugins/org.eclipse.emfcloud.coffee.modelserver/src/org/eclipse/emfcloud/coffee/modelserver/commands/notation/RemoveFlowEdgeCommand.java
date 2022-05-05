@@ -18,16 +18,16 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.util.NotationComm
 
 public class RemoveFlowEdgeCommand extends NotationElementCommand {
 
-	protected final Edge edgeToRemove;
+   protected final Edge edgeToRemove;
 
-	public RemoveFlowEdgeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
-		super(domain, modelUri);
-		edgeToRemove = NotationCommandUtil.getNotationElement(modelUri, domain, semanticProxyUri, Edge.class);
-	}
+   public RemoveFlowEdgeCommand(final EditingDomain domain, final URI modelUri, final String semanticProxyUri) {
+      super(domain, modelUri);
+      edgeToRemove = NotationCommandUtil.getNotationElement(modelUri, domain, semanticProxyUri, Edge.class);
+   }
 
-	@Override
-	protected void doExecute() {
-		notationDiagram.getElements().remove(edgeToRemove);
-	}
+   @Override
+   protected void doExecute() {
+      notationDiagram.getElements().remove(edgeToRemove);
+   }
 
 }

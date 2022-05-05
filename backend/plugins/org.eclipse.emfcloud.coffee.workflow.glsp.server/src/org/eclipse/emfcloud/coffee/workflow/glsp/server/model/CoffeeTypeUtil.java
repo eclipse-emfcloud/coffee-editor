@@ -20,53 +20,52 @@ import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.ModelTypes;
 
 public final class CoffeeTypeUtil {
-	public static final String FORK_NODE = "activityNode:fork";
-	public static final String JOIN_NODE = "activityNode:join";
+   public static final String FORK_NODE = "activityNode:fork";
+   public static final String JOIN_NODE = "activityNode:join";
 
-	public static String toType(final Node node) {
-		if (node instanceof AutomaticTask) {
-			return ModelTypes.AUTOMATED_TASK;
-		}
-		if (node instanceof ManualTask) {
-			return ModelTypes.MANUAL_TASK;
-		}
-		if (node instanceof Decision) {
-			return ModelTypes.DECISION_NODE;
-		}
-		if (node instanceof Merge) {
-			return ModelTypes.MERGE_NODE;
-		}
-		if (node instanceof Fork) {
-			return FORK_NODE;
-		}
-		if (node instanceof Join) {
-			return JOIN_NODE;
-		}
-		return "unknown";
-	}
+   public static String toType(final Node node) {
+      if (node instanceof AutomaticTask) {
+         return ModelTypes.AUTOMATED_TASK;
+      }
+      if (node instanceof ManualTask) {
+         return ModelTypes.MANUAL_TASK;
+      }
+      if (node instanceof Decision) {
+         return ModelTypes.DECISION_NODE;
+      }
+      if (node instanceof Merge) {
+         return ModelTypes.MERGE_NODE;
+      }
+      if (node instanceof Fork) {
+         return FORK_NODE;
+      }
+      if (node instanceof Join) {
+         return JOIN_NODE;
+      }
+      return "unknown";
+   }
 
-	public static String toNodeType(final Node node) {
-		if (node instanceof AutomaticTask) {
-			return "automated";
-		}
-		if (node instanceof ManualTask) {
-			return "manual";
-		}
-		if (node instanceof Decision) {
-			return "decisionNode";
-		}
-		if (node instanceof Merge) {
-			return "mergeNode";
-		}
-		if (node instanceof Fork) {
-			return "forkNode";
-		}
-		if (node instanceof Join) {
-			return "joinNode";
-		}
-		return "unknown";
-	}
+   public static String toNodeType(final Node node) {
+      if (node instanceof AutomaticTask) {
+         return "automated";
+      }
+      if (node instanceof ManualTask) {
+         return "manual";
+      }
+      if (node instanceof Decision) {
+         return "decisionNode";
+      }
+      if (node instanceof Merge) {
+         return "mergeNode";
+      }
+      if (node instanceof Fork) {
+         return "forkNode";
+      }
+      if (node instanceof Join) {
+         return "joinNode";
+      }
+      return "unknown";
+   }
 
-	private CoffeeTypeUtil() {
-	}
+   private CoffeeTypeUtil() {}
 }

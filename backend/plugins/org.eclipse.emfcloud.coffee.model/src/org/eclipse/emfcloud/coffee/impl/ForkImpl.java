@@ -26,23 +26,23 @@ import org.eclipse.emfcloud.coffee.Fork;
  * @generated
  */
 public class ForkImpl extends NodeImpl implements Fork {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected ForkImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected ForkImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.FORK;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.FORK;
+   }
 
 } // ForkImpl

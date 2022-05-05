@@ -19,25 +19,25 @@ import org.eclipse.glsp.graph.GModelElement;
 
 public abstract class AbstractGModelFactory<T extends EObject, E extends GModelElement> {
 
-	protected WorkflowModelState modelState;
+   protected WorkflowModelState modelState;
 
-	public AbstractGModelFactory(final WorkflowModelState modelState) {
-		this.modelState = modelState;
-	}
+   public AbstractGModelFactory(final WorkflowModelState modelState) {
+      this.modelState = modelState;
+   }
 
-	public abstract E create(T semanticElement);
+   public abstract E create(T semanticElement);
 
-	public <U extends E> Optional<U> create(final T semanticElement, final Class<U> clazz) {
-		return Optional.ofNullable(create(semanticElement)).filter(clazz::isInstance).map(clazz::cast);
-	}
+   public <U extends E> Optional<U> create(final T semanticElement, final Class<U> clazz) {
+      return Optional.ofNullable(create(semanticElement)).filter(clazz::isInstance).map(clazz::cast);
+   }
 
-	protected String toId(final EObject semanticElement) {
-		String id = modelState.getIndex().getSemanticId(semanticElement).orElse(null);
-		if (id == null) {
-			id = EcoreUtil.getURI(semanticElement).fragment();
-			modelState.getIndex().indexSemantic(id, semanticElement);
-		}
-		return id;
+   protected String toId(final EObject semanticElement) {
+      String id = modelState.getIndex().getSemanticId(semanticElement).orElse(null);
+      if (id == null) {
+         id = EcoreUtil.getURI(semanticElement).fragment();
+         modelState.getIndex().indexSemantic(id, semanticElement);
+      }
+      return id;
 
-	}
+   }
 }

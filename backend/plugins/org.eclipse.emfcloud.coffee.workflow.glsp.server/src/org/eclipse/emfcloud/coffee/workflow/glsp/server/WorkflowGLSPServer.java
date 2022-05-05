@@ -25,21 +25,21 @@ import org.eclipse.glsp.server.utils.ClientOptionsUtil;
 
 public class WorkflowGLSPServer extends EMSGLSPServer {
 
-	@Override
-	protected ModelServerClientV1 createModelServerClient(final String modelServerURL) throws MalformedURLException {
-		return new CoffeeModelServerClient(modelServerURL);
-	}
+   @Override
+   protected ModelServerClientV1 createModelServerClient(final String modelServerURL) throws MalformedURLException {
+      return new CoffeeModelServerClient(modelServerURL);
+   }
 
-	@Override
-	public CompletableFuture<Void> disposeClientSession(final DisposeClientSessionParameters params) {
-		Optional<ModelServerClientV1> modelServerClient = modelServerClientProvider.get();
-		if (modelServerClient.isPresent()) {
-			String sourceURI = ClientOptionsUtil.getSourceUri(params.getArgs())
-					.orElseThrow(() -> new GLSPServerException("No source URI given to dispose client session!"));
-			modelServerClient.get()
-					.unsubscribe(sourceURI.replace(NotationUtil.NOTATION_EXTENSION, CoffeeResource.FILE_EXTENSION));
-		}
-		return super.disposeClientSession(params);
-	}
+   @Override
+   public CompletableFuture<Void> disposeClientSession(final DisposeClientSessionParameters params) {
+      Optional<ModelServerClientV1> modelServerClient = modelServerClientProvider.get();
+      if (modelServerClient.isPresent()) {
+         String sourceURI = ClientOptionsUtil.getSourceUri(params.getArgs())
+            .orElseThrow(() -> new GLSPServerException("No source URI given to dispose client session!"));
+         modelServerClient.get()
+            .unsubscribe(sourceURI.replace(NotationUtil.NOTATION_EXTENSION, CoffeeResource.FILE_EXTENSION));
+      }
+      return super.disposeClientSession(params);
+   }
 
 }

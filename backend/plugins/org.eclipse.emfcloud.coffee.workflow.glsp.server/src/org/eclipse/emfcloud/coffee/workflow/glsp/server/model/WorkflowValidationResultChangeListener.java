@@ -25,40 +25,40 @@ import org.eclipse.glsp.server.features.validation.SetMarkersAction;
 
 public class WorkflowValidationResultChangeListener extends ValidationResultChangeListener {
 
-	private final String clientId;
+   private final String clientId;
 
-	private final ActionDispatcher actionDispatcher;
+   private final ActionDispatcher actionDispatcher;
 
-	@Override
-	public void changed(final List<ValidationResult> newResult) {
-		actionDispatcher
-				.dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))).getAction());
-	}
+   @Override
+   public void changed(final List<ValidationResult> newResult) {
+      actionDispatcher
+         .dispatch(new ActionMessage(this.clientId, new SetMarkersAction(createMarkers(newResult))).getAction());
+   }
 
-	public WorkflowValidationResultChangeListener(final String clientId, final ActionDispatcher actionDispatcher) {
-		this.clientId = clientId;
-		this.actionDispatcher = actionDispatcher;
-	}
+   public WorkflowValidationResultChangeListener(final String clientId, final ActionDispatcher actionDispatcher) {
+      this.clientId = clientId;
+      this.actionDispatcher = actionDispatcher;
+   }
 
-	private List<Marker> createMarkers(final List<ValidationResult> validationResult) {
-		List<Marker> markers = new ArrayList<>();
-		for (ValidationResult r : validationResult) {
-			BasicDiagnostic diagnostic = r.getDiagnostic();
-			String message = diagnostic.getMessage();
-			markers.add(new Marker(message, message, r.getIdentifier(), getMarkerKind(diagnostic.getSeverity())));
-		}
-		return markers;
-	}
+   private List<Marker> createMarkers(final List<ValidationResult> validationResult) {
+      List<Marker> markers = new ArrayList<>();
+      for (ValidationResult r : validationResult) {
+         BasicDiagnostic diagnostic = r.getDiagnostic();
+         String message = diagnostic.getMessage();
+         markers.add(new Marker(message, message, r.getIdentifier(), getMarkerKind(diagnostic.getSeverity())));
+      }
+      return markers;
+   }
 
-	private String getMarkerKind(final int severity) {
-		switch (severity) {
-		case Diagnostic.ERROR:
-			return MarkerKind.ERROR;
-		case Diagnostic.WARNING:
-			return MarkerKind.WARNING;
-		default:
-			return MarkerKind.INFO;
-		}
-	}
+   private String getMarkerKind(final int severity) {
+      switch (severity) {
+         case Diagnostic.ERROR:
+            return MarkerKind.ERROR;
+         case Diagnostic.WARNING:
+            return MarkerKind.WARNING;
+         default:
+            return MarkerKind.INFO;
+      }
+   }
 
 }

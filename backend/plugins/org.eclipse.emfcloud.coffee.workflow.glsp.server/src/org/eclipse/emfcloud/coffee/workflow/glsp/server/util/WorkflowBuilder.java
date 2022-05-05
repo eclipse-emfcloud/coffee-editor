@@ -24,132 +24,131 @@ import org.eclipse.glsp.graph.util.GConstants;
 
 public final class WorkflowBuilder {
 
-	public static class WeightedEdgeBuilder extends AbstractGEdgeBuilder<WeightedEdge, WeightedEdgeBuilder> {
+   public static class WeightedEdgeBuilder extends AbstractGEdgeBuilder<WeightedEdge, WeightedEdgeBuilder> {
 
-		private String probability;
+      private String probability;
 
-		public WeightedEdgeBuilder() {
-			super(ModelTypes.WEIGHTED_EDGE);
-		}
+      public WeightedEdgeBuilder() {
+         super(ModelTypes.WEIGHTED_EDGE);
+      }
 
-		public WeightedEdgeBuilder probability(final String probability) {
-			this.probability = probability;
-			return self();
-		}
+      public WeightedEdgeBuilder probability(final String probability) {
+         this.probability = probability;
+         return self();
+      }
 
-		@Override
-		protected void setProperties(final WeightedEdge edge) {
-			super.setProperties(edge);
-			edge.setProbability(probability);
-			edge.getCssClasses().add(this.probability);
-		}
+      @Override
+      protected void setProperties(final WeightedEdge edge) {
+         super.setProperties(edge);
+         edge.setProbability(probability);
+         edge.getCssClasses().add(this.probability);
+      }
 
-		@Override
-		protected WeightedEdge instantiate() {
-			return WfgraphFactory.eINSTANCE.createWeightedEdge();
-		}
+      @Override
+      protected WeightedEdge instantiate() {
+         return WfgraphFactory.eINSTANCE.createWeightedEdge();
+      }
 
-		@Override
-		protected WeightedEdgeBuilder self() {
-			return this;
-		}
+      @Override
+      protected WeightedEdgeBuilder self() {
+         return this;
+      }
 
-	}
+   }
 
-	public static class ActivityNodeBuilder extends AbstractGNodeBuilder<ActivityNode, ActivityNodeBuilder> {
-		protected String nodeType;
+   public static class ActivityNodeBuilder extends AbstractGNodeBuilder<ActivityNode, ActivityNodeBuilder> {
+      protected String nodeType;
 
-		public ActivityNodeBuilder(final String type, final String nodeType) {
-			super(type);
-			this.nodeType = nodeType;
-		}
+      public ActivityNodeBuilder(final String type, final String nodeType) {
+         super(type);
+         this.nodeType = nodeType;
+      }
 
-		@Override
-		protected void setProperties(final ActivityNode node) {
-			super.setProperties(node);
-			node.setNodeType(nodeType);
-			node.getCssClasses().add(nodeType);
-		}
+      @Override
+      protected void setProperties(final ActivityNode node) {
+         super.setProperties(node);
+         node.setNodeType(nodeType);
+         node.getCssClasses().add(nodeType);
+      }
 
-		@Override
-		protected ActivityNode instantiate() {
-			return WfgraphFactory.eINSTANCE.createActivityNode();
-		}
+      @Override
+      protected ActivityNode instantiate() {
+         return WfgraphFactory.eINSTANCE.createActivityNode();
+      }
 
-		@Override
-		protected ActivityNodeBuilder self() {
-			return this;
-		}
-	}
+      @Override
+      protected ActivityNodeBuilder self() {
+         return this;
+      }
+   }
 
-	public static class TaskNodeBuilder extends AbstractGNodeBuilder<TaskNode, TaskNodeBuilder> {
-		private final String name;
-		private final String taskType;
-		private final int duration;
+   public static class TaskNodeBuilder extends AbstractGNodeBuilder<TaskNode, TaskNodeBuilder> {
+      private final String name;
+      private final String taskType;
+      private final int duration;
 
-		public TaskNodeBuilder(final String type, final String name, final String taskType, final int duration) {
-			super(type);
-			this.name = name;
-			this.taskType = taskType;
-			this.duration = duration;
+      public TaskNodeBuilder(final String type, final String name, final String taskType, final int duration) {
+         super(type);
+         this.name = name;
+         this.taskType = taskType;
+         this.duration = duration;
 
-		}
+      }
 
-		@Override
-		protected TaskNode instantiate() {
-			return WfgraphFactory.eINSTANCE.createTaskNode();
-		}
+      @Override
+      protected TaskNode instantiate() {
+         return WfgraphFactory.eINSTANCE.createTaskNode();
+      }
 
-		@Override
-		protected TaskNodeBuilder self() {
-			return this;
-		}
+      @Override
+      protected TaskNodeBuilder self() {
+         return this;
+      }
 
-		@Override
-		public void setProperties(final TaskNode taskNode) {
-			super.setProperties(taskNode);
-			taskNode.setName(name);
-			taskNode.setTaskType(taskType);
-			taskNode.setDuration(duration);
-			taskNode.setLayout(GConstants.Layout.HBOX);
-			taskNode.getLayoutOptions().put("paddingRight", 10);
-			taskNode.getChildren().add(createCompartmentIcon(taskNode));
-			taskNode.getChildren().add(createCompartmentHeader(taskNode));
-			taskNode.getCssClasses().add(taskType);
-			taskNode.getCssClasses().add("task");
-		}
+      @Override
+      public void setProperties(final TaskNode taskNode) {
+         super.setProperties(taskNode);
+         taskNode.setName(name);
+         taskNode.setTaskType(taskType);
+         taskNode.setDuration(duration);
+         taskNode.setLayout(GConstants.Layout.HBOX);
+         taskNode.getLayoutOptions().put("paddingRight", 10);
+         taskNode.getChildren().add(createCompartmentIcon(taskNode));
+         taskNode.getChildren().add(createCompartmentHeader(taskNode));
+         taskNode.getCssClasses().add(taskType);
+         taskNode.getCssClasses().add("task");
+      }
 
-		private Icon createCompartmentIcon(final TaskNode taskNode) {
-			return new IconBuilder().id(taskNode.getId() + "_icon").build();
-		}
+      private Icon createCompartmentIcon(final TaskNode taskNode) {
+         return new IconBuilder().id(taskNode.getId() + "_icon").build();
+      }
 
-		private GLabel createCompartmentHeader(final TaskNode taskNode) {
-			return new GLabelBuilder(ModelTypes.LABEL_HEADING) //
-					.id(taskNode.getId() + "_classname") //
-					.text(taskNode.getName()) //
-					.build();
-		}
+      private GLabel createCompartmentHeader(final TaskNode taskNode) {
+         return new GLabelBuilder(ModelTypes.LABEL_HEADING) //
+            .id(taskNode.getId() + "_classname") //
+            .text(taskNode.getName()) //
+            .build();
+      }
 
-	}
+   }
 
-	public static class IconBuilder extends AbstractGCompartmentBuilder<Icon, IconBuilder> {
+   public static class IconBuilder extends AbstractGCompartmentBuilder<Icon, IconBuilder> {
 
-		public IconBuilder() {
-			super(ModelTypes.ICON);
-		}
+      public IconBuilder() {
+         super(ModelTypes.ICON);
+      }
 
-		@Override
-		protected Icon instantiate() {
-			return WfgraphFactory.eINSTANCE.createIcon();
-		}
+      @Override
+      protected Icon instantiate() {
+         return WfgraphFactory.eINSTANCE.createIcon();
+      }
 
-		@Override
-		protected IconBuilder self() {
-			return this;
-		}
+      @Override
+      protected IconBuilder self() {
+         return this;
+      }
 
-	}
+   }
 
-	private WorkflowBuilder() {
-	}
+   private WorkflowBuilder() {}
 }

@@ -21,13 +21,13 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddWeightedFlow
 
 public class AddWeightedFlowCompoundCommand extends CompoundCommand {
 
-	public AddWeightedFlowCompoundCommand(final EditingDomain domain, final URI modelUri,
-			final String sourceUriFragment, final String targetUriFragment) {
-		// Chain semantic and notation command
-		AddWeightedFlowCommand command = new AddWeightedFlowCommand(domain, modelUri, sourceUriFragment,
-				targetUriFragment);
-		this.append(command);
-		Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
-		this.append(new AddFlowShapeCommand(domain, modelUri, semanticResultSupplier));
-	}
+   public AddWeightedFlowCompoundCommand(final EditingDomain domain, final URI modelUri,
+      final String sourceUriFragment, final String targetUriFragment) {
+      // Chain semantic and notation command
+      AddWeightedFlowCommand command = new AddWeightedFlowCommand(domain, modelUri, sourceUriFragment,
+         targetUriFragment);
+      this.append(command);
+      Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
+      this.append(new AddFlowShapeCommand(domain, modelUri, semanticResultSupplier));
+   }
 }

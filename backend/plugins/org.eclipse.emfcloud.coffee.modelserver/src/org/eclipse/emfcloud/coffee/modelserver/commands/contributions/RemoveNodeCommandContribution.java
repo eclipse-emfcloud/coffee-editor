@@ -21,20 +21,20 @@ import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 
 public class RemoveNodeCommandContribution extends CompoundCommandContribution {
 
-	public static final String TYPE = "removeNode";
+   public static final String TYPE = "removeNode";
 
-	public static CCompoundCommand create(final String semanticUri) {
-		CCompoundCommand removeFlowCommand = CCommandFactory.eINSTANCE.createCompoundCommand();
-		removeFlowCommand.setType(TYPE);
-		removeFlowCommand.getProperties().put(SEMANTIC_URI_FRAGMENT, semanticUri);
-		return removeFlowCommand;
-	}
+   public static CCompoundCommand create(final String semanticUri) {
+      CCompoundCommand removeFlowCommand = CCommandFactory.eINSTANCE.createCompoundCommand();
+      removeFlowCommand.setType(TYPE);
+      removeFlowCommand.getProperties().put(SEMANTIC_URI_FRAGMENT, semanticUri);
+      return removeFlowCommand;
+   }
 
-	@Override
-	protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
-			throws DecodingException {
-		String semanticUriFragment = command.getProperties().get(SEMANTIC_URI_FRAGMENT);
-		return new RemoveNodeCompoundCommand(domain, modelUri, semanticUriFragment);
-	}
+   @Override
+   protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
+      throws DecodingException {
+      String semanticUriFragment = command.getProperties().get(SEMANTIC_URI_FRAGMENT);
+      return new RemoveNodeCompoundCommand(domain, modelUri, semanticUriFragment);
+   }
 
 }

@@ -12,6 +12,6 @@ package org.eclipse.emfcloud.coffee.workflow.analyzer.application;
 
 public interface WorkflowAnalysisClient {
 
-	// For future purposes
+   // For future purposes
 
 }

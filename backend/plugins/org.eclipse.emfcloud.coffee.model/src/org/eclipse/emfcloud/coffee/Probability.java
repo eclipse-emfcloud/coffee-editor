@@ -31,211 +31,205 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum Probability implements Enumerator {
-	/**
-	 * The '<em><b>Low</b></em>' literal object. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #LOW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOW(0, "low", "low"),
+   /**
+    * The '<em><b>Low</b></em>' literal object. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #LOW_VALUE
+    * @generated
+    * @ordered
+    */
+   LOW(0, "low", "low"),
 
-	/**
-	 * The '<em><b>Medium</b></em>' literal object. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #MEDIUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEDIUM(1, "medium", "medium"),
+   /**
+    * The '<em><b>Medium</b></em>' literal object. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #MEDIUM_VALUE
+    * @generated
+    * @ordered
+    */
+   MEDIUM(1, "medium", "medium"),
 
-	/**
-	 * The '<em><b>High</b></em>' literal object. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #HIGH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGH(2, "high", "high");
+   /**
+    * The '<em><b>High</b></em>' literal object. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #HIGH_VALUE
+    * @generated
+    * @ordered
+    */
+   HIGH(2, "high", "high");
 
-	/**
-	 * The '<em><b>Low</b></em>' literal value. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #LOW
-	 * @model name="low"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOW_VALUE = 0;
+   /**
+    * The '<em><b>Low</b></em>' literal value. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #LOW
+    * @model name="low"
+    * @generated
+    * @ordered
+    */
+   public static final int LOW_VALUE = 0;
 
-	/**
-	 * The '<em><b>Medium</b></em>' literal value. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #MEDIUM
-	 * @model name="medium"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MEDIUM_VALUE = 1;
+   /**
+    * The '<em><b>Medium</b></em>' literal value. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #MEDIUM
+    * @model name="medium"
+    * @generated
+    * @ordered
+    */
+   public static final int MEDIUM_VALUE = 1;
 
-	/**
-	 * The '<em><b>High</b></em>' literal value. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @see #HIGH
-	 * @model name="high"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HIGH_VALUE = 2;
+   /**
+    * The '<em><b>High</b></em>' literal value. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @see #HIGH
+    * @model name="high"
+    * @generated
+    * @ordered
+    */
+   public static final int HIGH_VALUE = 2;
 
-	/**
-	 * An array of all the '<em><b>Probability</b></em>' enumerators. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	private static final Probability[] VALUES_ARRAY = new Probability[] { LOW, MEDIUM, HIGH, };
+   /**
+    * An array of all the '<em><b>Probability</b></em>' enumerators. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   private static final Probability[] VALUES_ARRAY = new Probability[] { LOW, MEDIUM, HIGH, };
 
-	/**
-	 * A public read-only list of all the '<em><b>Probability</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public static final List<Probability> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+   /**
+    * A public read-only list of all the '<em><b>Probability</b></em>' enumerators.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   public static final List<Probability> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-	/**
-	 * Returns the '<em><b>Probability</b></em>' literal with the specified literal
-	 * value. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param literal the literal.
-	 * @return the matching enumerator or <code>null</code>.
-	 * @generated
-	 */
-	public static Probability get(final String literal) {
-		for (Probability result : VALUES_ARRAY) {
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+   /**
+    * Returns the '<em><b>Probability</b></em>' literal with the specified literal
+    * value. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param literal the literal.
+    * @return the matching enumerator or <code>null</code>.
+    * @generated
+    */
+   public static Probability get(final String literal) {
+      for (Probability result : VALUES_ARRAY) {
+         if (result.toString().equals(literal)) {
+            return result;
+         }
+      }
+      return null;
+   }
 
-	/**
-	 * Returns the '<em><b>Probability</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param name the name.
-	 * @return the matching enumerator or <code>null</code>.
-	 * @generated
-	 */
-	public static Probability getByName(final String name) {
-		for (Probability result : VALUES_ARRAY) {
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+   /**
+    * Returns the '<em><b>Probability</b></em>' literal with the specified name.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param name the name.
+    * @return the matching enumerator or <code>null</code>.
+    * @generated
+    */
+   public static Probability getByName(final String name) {
+      for (Probability result : VALUES_ARRAY) {
+         if (result.getName().equals(name)) {
+            return result;
+         }
+      }
+      return null;
+   }
 
-	/**
-	 * Returns the '<em><b>Probability</b></em>' literal with the specified integer
-	 * value. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the integer value.
-	 * @return the matching enumerator or <code>null</code>.
-	 * @generated
-	 */
-	public static Probability get(final int value) {
-		switch (value) {
-		case LOW_VALUE:
-			return LOW;
-		case MEDIUM_VALUE:
-			return MEDIUM;
-		case HIGH_VALUE:
-			return HIGH;
-		}
-		return null;
-	}
+   /**
+    * Returns the '<em><b>Probability</b></em>' literal with the specified integer
+    * value. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the integer value.
+    * @return the matching enumerator or <code>null</code>.
+    * @generated
+    */
+   public static Probability get(final int value) {
+      switch (value) {
+         case LOW_VALUE:
+            return LOW;
+         case MEDIUM_VALUE:
+            return MEDIUM;
+         case HIGH_VALUE:
+            return HIGH;
+      }
+      return null;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	private final int value;
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   private final int value;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	private final String name;
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   private final String name;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	private final String literal;
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   private final String literal;
 
-	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @generated
-	 */
-	Probability(final int value, final String name, final String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+   /**
+    * Only this class can construct instances. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @generated
+    */
+   Probability(final int value, final String name, final String literal) {
+      this.value = value;
+      this.name = name;
+      this.literal = literal;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public int getValue() {
-		return value;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public int getValue() { return value; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String getName() { return name; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getLiteral() {
-		return literal;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String getLiteral() { return literal; }
 
-	/**
-	 * Returns the literal value of the enumerator, which is its string
-	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		return literal;
-	}
+   /**
+    * Returns the literal value of the enumerator, which is its string
+    * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String toString() {
+      return literal;
+   }
 
 } // Probability

@@ -22,19 +22,17 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class CreateManualTaskHandler extends AbstractCreateNodeHandler {
 
-	public CreateManualTaskHandler() {
-		super(ModelTypes.MANUAL_TASK);
-	}
+   public CreateManualTaskHandler() {
+      super(ModelTypes.MANUAL_TASK);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Manual Task";
-	}
+   @Override
+   public String getLabel() { return "Manual Task"; }
 
-	@Override
-	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
-			final WorkflowModelServerAccess modelAccess) {
-		return modelAccess::addManualTask;
-	}
+   @Override
+   protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+      final WorkflowModelServerAccess modelAccess) {
+      return modelAccess::addManualTask;
+   }
 
 }

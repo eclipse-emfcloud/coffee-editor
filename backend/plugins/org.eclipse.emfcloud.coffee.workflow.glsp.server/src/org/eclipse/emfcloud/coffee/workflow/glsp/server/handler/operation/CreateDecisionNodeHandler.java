@@ -22,19 +22,17 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class CreateDecisionNodeHandler extends AbstractCreateNodeHandler {
 
-	public CreateDecisionNodeHandler() {
-		super(ModelTypes.DECISION_NODE);
-	}
+   public CreateDecisionNodeHandler() {
+      super(ModelTypes.DECISION_NODE);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Decision Node";
-	}
+   @Override
+   public String getLabel() { return "Decision Node"; }
 
-	@Override
-	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
-			final WorkflowModelServerAccess modelAccess) {
-		return modelAccess::addDecisionNode;
-	}
+   @Override
+   protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+      final WorkflowModelServerAccess modelAccess) {
+      return modelAccess::addDecisionNode;
+   }
 
 }

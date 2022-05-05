@@ -32,26 +32,26 @@ package org.eclipse.emfcloud.coffee;
  * @generated
  */
 public interface ManualTask extends Task {
-	/**
-	 * Returns the value of the '<em><b>Actor</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Actor</em>' attribute.
-	 * @see #setActor(String)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getManualTask_Actor()
-	 * @model
-	 * @generated
-	 */
-	String getActor();
+   /**
+    * Returns the value of the '<em><b>Actor</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Actor</em>' attribute.
+    * @see #setActor(String)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getManualTask_Actor()
+    * @model
+    * @generated
+    */
+   String getActor();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ManualTask#getActor
-	 * <em>Actor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Actor</em>' attribute.
-	 * @see #getActor()
-	 * @generated
-	 */
-	void setActor(String value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ManualTask#getActor
+    * <em>Actor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Actor</em>' attribute.
+    * @see #getActor()
+    * @generated
+    */
+   void setActor(String value);
 
 } // ManualTask

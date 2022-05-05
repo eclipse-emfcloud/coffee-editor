@@ -18,24 +18,22 @@ import org.eclipse.emfcloud.coffee.Node;
 
 public abstract class AbstractAddNodeCommand extends SemanticElementCommand {
 
-	protected final Node node;
+   protected final Node node;
 
-	public AbstractAddNodeCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
-		super(domain, modelUri);
-		node = (Node) CoffeeFactory.eINSTANCE.create(eClass);
-	}
+   public AbstractAddNodeCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
+      super(domain, modelUri);
+      node = (Node) CoffeeFactory.eINSTANCE.create(eClass);
+   }
 
-	@Override
-	protected void doExecute() {
-		initializeNode(node);
-		semanticModel.getNodes().add(node);
-	}
+   @Override
+   protected void doExecute() {
+      initializeNode(node);
+      semanticModel.getNodes().add(node);
+   }
 
-	protected void initializeNode(final Node node) {
-		// Empty by default
-	}
+   protected void initializeNode(final Node node) {
+      // Empty by default
+   }
 
-	public Node getNode() {
-		return node;
-	}
+   public Node getNode() { return node; }
 }

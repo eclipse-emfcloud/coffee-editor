@@ -35,143 +35,141 @@ import org.eclipse.emfcloud.coffee.ManualTask;
  * @generated
  */
 public class ManualTaskImpl extends TaskImpl implements ManualTask {
-	/**
-	 * The default value of the '{@link #getActor() <em>Actor</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getActor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ACTOR_EDEFAULT = null;
+   /**
+    * The default value of the '{@link #getActor() <em>Actor</em>}' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getActor()
+    * @generated
+    * @ordered
+    */
+   protected static final String ACTOR_EDEFAULT = null;
 
-	/**
-	 * The cached value of the '{@link #getActor() <em>Actor</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #getActor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String actor = ACTOR_EDEFAULT;
+   /**
+    * The cached value of the '{@link #getActor() <em>Actor</em>}' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @see #getActor()
+    * @generated
+    * @ordered
+    */
+   protected String actor = ACTOR_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected ManualTaskImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected ManualTaskImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.MANUAL_TASK;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.MANUAL_TASK;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getActor() {
-		return actor;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String getActor() { return actor; }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setActor(final String newActor) {
-		String oldActor = actor;
-		actor = newActor;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.MANUAL_TASK__ACTOR, oldActor, actor));
-		}
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void setActor(final String newActor) {
+      String oldActor = actor;
+      actor = newActor;
+      if (eNotificationRequired()) {
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.MANUAL_TASK__ACTOR, oldActor, actor));
+      }
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-		switch (featureID) {
-		case CoffeePackage.MANUAL_TASK__ACTOR:
-			return getActor();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+      switch (featureID) {
+         case CoffeePackage.MANUAL_TASK__ACTOR:
+            return getActor();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void eSet(final int featureID, final Object newValue) {
-		switch (featureID) {
-		case CoffeePackage.MANUAL_TASK__ACTOR:
-			setActor((String) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void eSet(final int featureID, final Object newValue) {
+      switch (featureID) {
+         case CoffeePackage.MANUAL_TASK__ACTOR:
+            setActor((String) newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public void eUnset(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.MANUAL_TASK__ACTOR:
-			setActor(ACTOR_EDEFAULT);
-			return;
-		}
-		super.eUnset(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public void eUnset(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.MANUAL_TASK__ACTOR:
+            setActor(ACTOR_EDEFAULT);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(final int featureID) {
-		switch (featureID) {
-		case CoffeePackage.MANUAL_TASK__ACTOR:
-			return ACTOR_EDEFAULT == null ? actor != null : !ACTOR_EDEFAULT.equals(actor);
-		}
-		return super.eIsSet(featureID);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public boolean eIsSet(final int featureID) {
+      switch (featureID) {
+         case CoffeePackage.MANUAL_TASK__ACTOR:
+            return ACTOR_EDEFAULT == null ? actor != null : !ACTOR_EDEFAULT.equals(actor);
+      }
+      return super.eIsSet(featureID);
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public String toString() {
+      if (eIsProxy()) {
+         return super.toString();
+      }
 
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (actor: ");
-		result.append(actor);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuilder result = new StringBuilder(super.toString());
+      result.append(" (actor: ");
+      result.append(actor);
+      result.append(')');
+      return result.toString();
+   }
 
 } // ManualTaskImpl

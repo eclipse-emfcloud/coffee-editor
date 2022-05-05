@@ -19,11 +19,11 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public abstract class SemanticElementCommand extends RecordingCommand {
 
-	protected final Workflow semanticModel;
+   protected final Workflow semanticModel;
 
-	public SemanticElementCommand(final EditingDomain domain, final URI modelUri) {
-		super((TransactionalEditingDomain) domain);
-		this.semanticModel = SemanticCommandUtil.getModel(modelUri, domain);
-	}
+   public SemanticElementCommand(final EditingDomain domain, final URI modelUri) {
+      super((TransactionalEditingDomain) domain);
+      this.semanticModel = SemanticCommandUtil.getModel(modelUri, domain);
+   }
 
 }

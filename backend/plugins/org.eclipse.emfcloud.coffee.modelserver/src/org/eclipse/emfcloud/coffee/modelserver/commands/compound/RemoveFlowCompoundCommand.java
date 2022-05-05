@@ -18,8 +18,8 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.RemoveFlowComma
 
 public class RemoveFlowCompoundCommand extends CompoundCommand {
 
-	public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-		this.append(new RemoveFlowCommand(domain, modelUri, semanticUriFragment));
-		this.append(new RemoveFlowEdgeCommand(domain, modelUri, semanticUriFragment));
-	}
+   public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
+      this.append(new RemoveFlowCommand(domain, modelUri, semanticUriFragment));
+      this.append(new RemoveFlowEdgeCommand(domain, modelUri, semanticUriFragment));
+   }
 }

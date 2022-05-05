@@ -34,75 +34,75 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
  * @generated
  */
 public class MergeImpl extends NodeImpl implements Merge {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected MergeImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected MergeImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.MERGE;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.MERGE;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
-	@Override
-	public boolean hasTwoIncoming(final DiagnosticChain chain, final Map<?, ?> context) {
-		if (countIncomingFlows() != 2) {
-			if (chain != null) {
-				chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
-						CoffeeValidator.MERGE__HAS_TWO_INCOMING, "Merge node must have exactly two incoming flows",
-						new Object[] { this }));
-			}
-			return false;
-		}
-		return true;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated NOT
+    */
+   @Override
+   public boolean hasTwoIncoming(final DiagnosticChain chain, final Map<?, ?> context) {
+      if (countIncomingFlows() != 2) {
+         if (chain != null) {
+            chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
+               CoffeeValidator.MERGE__HAS_TWO_INCOMING, "Merge node must have exactly two incoming flows",
+               new Object[] { this }));
+         }
+         return false;
+      }
+      return true;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
-	@Override
-	public boolean hasOneOutgoing(final DiagnosticChain chain, final Map<?, ?> context) {
-		if (countOutgoingFlows() != 1) {
-			if (chain != null) {
-				chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
-						CoffeeValidator.MERGE__HAS_ONE_OUTGOING, "Merge node must have exactly one outgoing flows",
-						new Object[] { this }));
-			}
-			return false;
-		}
-		return true;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated NOT
+    */
+   @Override
+   public boolean hasOneOutgoing(final DiagnosticChain chain, final Map<?, ?> context) {
+      if (countOutgoingFlows() != 1) {
+         if (chain != null) {
+            chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
+               CoffeeValidator.MERGE__HAS_ONE_OUTGOING, "Merge node must have exactly one outgoing flows",
+               new Object[] { this }));
+         }
+         return false;
+      }
+      return true;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-		case CoffeePackage.MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP:
-			return hasTwoIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
-		case CoffeePackage.MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP:
-			return hasOneOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+      switch (operationID) {
+         case CoffeePackage.MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP:
+            return hasTwoIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+         case CoffeePackage.MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP:
+            return hasOneOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+      }
+      return super.eInvoke(operationID, arguments);
+   }
 
 } // MergeImpl

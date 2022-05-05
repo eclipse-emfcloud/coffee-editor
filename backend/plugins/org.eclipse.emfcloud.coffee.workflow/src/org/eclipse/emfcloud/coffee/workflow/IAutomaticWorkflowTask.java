@@ -11,5 +11,5 @@
 package org.eclipse.emfcloud.coffee.workflow;
 
 public interface IAutomaticWorkflowTask extends IWorkflowTask {
-	String getComponent();
+   String getComponent();
 }

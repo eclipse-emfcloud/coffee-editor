@@ -27,20 +27,20 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public class RemoveNodeCompoundCommand extends CompoundCommand {
 
-	public RemoveNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-		this.append(new RemoveNodeCommand(domain, modelUri, semanticUriFragment));
-		this.append(new RemoveNodeShapeCommand(domain, modelUri, semanticUriFragment));
+   public RemoveNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
+      this.append(new RemoveNodeCommand(domain, modelUri, semanticUriFragment));
+      this.append(new RemoveNodeShapeCommand(domain, modelUri, semanticUriFragment));
 
-		Workflow workflow = SemanticCommandUtil.getModel(modelUri, domain);
-		Node nodeToRemove = SemanticCommandUtil.getElement(workflow, semanticUriFragment, Node.class);
+      Workflow workflow = SemanticCommandUtil.getModel(modelUri, domain);
+      Node nodeToRemove = SemanticCommandUtil.getElement(workflow, semanticUriFragment, Node.class);
 
-		Collection<Setting> nodeUsages = UsageCrossReferencer.find(nodeToRemove, workflow.eResource());
-		for (Setting setting : nodeUsages) {
-			EObject eObject = setting.getEObject();
-			if (eObject instanceof Flow && eObject.eContainer() == workflow) {
-				String flowSemanticUriFragment = SemanticCommandUtil.getSemanticUriFragment(eObject);
-				this.append(new RemoveFlowCompoundCommand(domain, modelUri, flowSemanticUriFragment));
-			}
-		}
-	}
+      Collection<Setting> nodeUsages = UsageCrossReferencer.find(nodeToRemove, workflow.eResource());
+      for (Setting setting : nodeUsages) {
+         EObject eObject = setting.getEObject();
+         if (eObject instanceof Flow && eObject.eContainer() == workflow) {
+            String flowSemanticUriFragment = SemanticCommandUtil.getSemanticUriFragment(eObject);
+            this.append(new RemoveFlowCompoundCommand(domain, modelUri, flowSemanticUriFragment));
+         }
+      }
+   }
 }

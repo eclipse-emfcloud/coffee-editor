@@ -16,39 +16,38 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 
 public final class FileUtil {
-	private FileUtil() {
-	}
+   private FileUtil() {}
 
-	private static final String JAVA_EXTENSION = ".java";
-	private static final String CPP_HEADER_EXTENSION = ".h";
-	private static final String CPP_CLASS_EXTENSION = ".cpp";
+   private static final String JAVA_EXTENSION = ".java";
+   private static final String CPP_HEADER_EXTENSION = ".h";
+   private static final String CPP_CLASS_EXTENSION = ".cpp";
 
-	public static String normalize(final String string) {
-		return Arrays.stream(string.split("[ -]")).map(StringUtils::capitalize)
-				.map(part -> part.replaceAll("[^A-Za-z0-9]", "")).collect(Collectors.joining());
-	}
+   public static String normalize(final String string) {
+      return Arrays.stream(string.split("[ -]")).map(StringUtils::capitalize)
+         .map(part -> part.replaceAll("[^A-Za-z0-9]", "")).collect(Collectors.joining());
+   }
 
-	public static String getJavaFileName(final String fileName) {
-		return getFileName(fileName, JAVA_EXTENSION);
-	}
+   public static String getJavaFileName(final String fileName) {
+      return getFileName(fileName, JAVA_EXTENSION);
+   }
 
-	public static String getCppHeaderFileName(final String fileName) {
-		return getFileName(fileName, CPP_HEADER_EXTENSION);
-	}
+   public static String getCppHeaderFileName(final String fileName) {
+      return getFileName(fileName, CPP_HEADER_EXTENSION);
+   }
 
-	public static String getCppClassFileName(final String fileName) {
-		return getFileName(fileName, CPP_CLASS_EXTENSION);
-	}
+   public static String getCppClassFileName(final String fileName) {
+      return getFileName(fileName, CPP_CLASS_EXTENSION);
+   }
 
-	private static String getFileName(final String fileName, final String extension) {
-		String newFileName = fileName;
-		if (newFileName.endsWith(extension)) {
-			newFileName = newFileName.substring(0, newFileName.length() - extension.length());
-		}
-		return normalize(newFileName) + extension;
-	}
+   private static String getFileName(final String fileName, final String extension) {
+      String newFileName = fileName;
+      if (newFileName.endsWith(extension)) {
+         newFileName = newFileName.substring(0, newFileName.length() - extension.length());
+      }
+      return normalize(newFileName) + extension;
+   }
 
-	public static String getFilePath(final String packageName) {
-		return Arrays.stream(packageName.split("\\.")).collect(Collectors.joining("/")) + "/";
-	}
+   public static String getFilePath(final String packageName) {
+      return Arrays.stream(packageName.split("\\.")).collect(Collectors.joining("/")) + "/";
+   }
 }

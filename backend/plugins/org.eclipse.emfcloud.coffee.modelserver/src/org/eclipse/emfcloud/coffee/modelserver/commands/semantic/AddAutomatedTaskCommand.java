@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddAutomatedTaskCommand extends AbstractAddTaskCommand {
 
-	public AddAutomatedTaskCommand(final EditingDomain domain, final URI modelUri) {
-		super(domain, modelUri, CoffeePackage.Literals.AUTOMATIC_TASK);
-	}
+   public AddAutomatedTaskCommand(final EditingDomain domain, final URI modelUri) {
+      super(domain, modelUri, CoffeePackage.Literals.AUTOMATIC_TASK);
+   }
 
 }

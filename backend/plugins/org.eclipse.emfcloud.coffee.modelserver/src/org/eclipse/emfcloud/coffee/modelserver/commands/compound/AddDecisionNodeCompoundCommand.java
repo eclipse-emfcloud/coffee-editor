@@ -22,11 +22,11 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class AddDecisionNodeCompoundCommand extends CompoundCommand {
 
-	public AddDecisionNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
-		// Chain semantic and notation command
-		AddDecisionNodeCommand command = new AddDecisionNodeCommand(domain, modelUri);
-		this.append(command);
-		Supplier<Node> semanticResultSupplier = () -> command.getNode();
-		this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
-	}
+   public AddDecisionNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
+      // Chain semantic and notation command
+      AddDecisionNodeCommand command = new AddDecisionNodeCommand(domain, modelUri);
+      this.append(command);
+      Supplier<Node> semanticResultSupplier = () -> command.getNode();
+      this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+   }
 }

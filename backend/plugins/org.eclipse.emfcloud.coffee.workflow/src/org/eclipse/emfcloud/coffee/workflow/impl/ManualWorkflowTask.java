@@ -14,21 +14,17 @@ import org.eclipse.emfcloud.coffee.workflow.IManualWorkflowTask;
 
 public class ManualWorkflowTask extends AbstractWorkflowTask implements IManualWorkflowTask {
 
-	private final String actor;
+   private final String actor;
 
-	public ManualWorkflowTask(final String id, final String name, final int duration, final String actor) {
-		super(id, name, duration);
-		this.actor = actor;
-	}
+   public ManualWorkflowTask(final String id, final String name, final int duration, final String actor) {
+      super(id, name, duration);
+      this.actor = actor;
+   }
 
-	@Override
-	public String getActor() {
-		return actor;
-	}
+   @Override
+   public String getActor() { return actor; }
 
-	@Override
-	public boolean isManual() {
-		return true;
-	}
+   @Override
+   public boolean isManual() { return true; }
 
 }

@@ -22,11 +22,11 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class AddMergeNodeCompoundCommand extends CompoundCommand {
 
-	public AddMergeNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
-		// Chain semantic and notation command
-		AddMergeNodeCommand command = new AddMergeNodeCommand(domain, modelUri);
-		this.append(command);
-		Supplier<Node> semanticResultSupplier = () -> command.getNode();
-		this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
-	}
+   public AddMergeNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
+      // Chain semantic and notation command
+      AddMergeNodeCommand command = new AddMergeNodeCommand(domain, modelUri);
+      this.append(command);
+      Supplier<Node> semanticResultSupplier = () -> command.getNode();
+      this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+   }
 }

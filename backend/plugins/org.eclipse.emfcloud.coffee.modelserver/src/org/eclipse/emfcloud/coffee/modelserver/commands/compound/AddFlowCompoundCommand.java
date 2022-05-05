@@ -21,12 +21,12 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddFlowCommand;
 
 public class AddFlowCompoundCommand extends CompoundCommand {
 
-	public AddFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
-			final String targetUriFragment) {
-		// Chain semantic and notation command
-		AddFlowCommand command = new AddFlowCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
-		this.append(command);
-		Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
-		this.append(new AddFlowShapeCommand(domain, modelUri, semanticResultSupplier));
-	}
+   public AddFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
+      final String targetUriFragment) {
+      // Chain semantic and notation command
+      AddFlowCommand command = new AddFlowCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
+      this.append(command);
+      Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
+      this.append(new AddFlowShapeCommand(domain, modelUri, semanticResultSupplier));
+   }
 }

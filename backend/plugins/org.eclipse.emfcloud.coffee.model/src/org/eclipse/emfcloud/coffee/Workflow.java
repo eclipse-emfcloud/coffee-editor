@@ -36,50 +36,50 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Workflow extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Name()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getName();
+   /**
+    * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Name</em>' attribute.
+    * @see #setName(String)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Name()
+    * @model required="true"
+    * @generated
+    */
+   String getName();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Workflow#getName
-	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Workflow#getName
+    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Name</em>' attribute.
+    * @see #getName()
+    * @generated
+    */
+   void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emfcloud.coffee.Node}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Nodes</em>' containment reference list.
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Nodes()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<Node> getNodes();
+   /**
+    * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
+    * The list contents are of type {@link org.eclipse.emfcloud.coffee.Node}. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Nodes</em>' containment reference list.
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Nodes()
+    * @model containment="true" required="true"
+    * @generated
+    */
+   EList<Node> getNodes();
 
-	/**
-	 * Returns the value of the '<em><b>Flows</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emfcloud.coffee.Flow}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Flows</em>' containment reference list.
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Flows()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Flow> getFlows();
+   /**
+    * Returns the value of the '<em><b>Flows</b></em>' containment reference list.
+    * The list contents are of type {@link org.eclipse.emfcloud.coffee.Flow}. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Flows</em>' containment reference list.
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Flows()
+    * @model containment="true"
+    * @generated
+    */
+   EList<Flow> getFlows();
 
 } // Workflow

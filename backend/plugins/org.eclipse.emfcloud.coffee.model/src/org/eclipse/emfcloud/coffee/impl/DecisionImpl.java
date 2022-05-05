@@ -34,75 +34,75 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
  * @generated
  */
 public class DecisionImpl extends NodeImpl implements Decision {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected DecisionImpl() {
-		super();
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected DecisionImpl() {
+      super();
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return CoffeePackage.Literals.DECISION;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   protected EClass eStaticClass() {
+      return CoffeePackage.Literals.DECISION;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
-	@Override
-	public boolean hasOneIncoming(final DiagnosticChain chain, final Map<?, ?> context) {
-		if (countIncomingFlows() != 1) {
-			if (chain != null) {
-				chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
-						CoffeeValidator.DECISION__HAS_ONE_INCOMING, "Decision node must have exactly one incoming flow",
-						new Object[] { this }));
-			}
-			return false;
-		}
-		return true;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated NOT
+    */
+   @Override
+   public boolean hasOneIncoming(final DiagnosticChain chain, final Map<?, ?> context) {
+      if (countIncomingFlows() != 1) {
+         if (chain != null) {
+            chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
+               CoffeeValidator.DECISION__HAS_ONE_INCOMING, "Decision node must have exactly one incoming flow",
+               new Object[] { this }));
+         }
+         return false;
+      }
+      return true;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
-	@Override
-	public boolean hasTwoOutgoing(final DiagnosticChain chain, final Map<?, ?> context) {
-		if (countOutgoingFlows() != 2) {
-			if (chain != null) {
-				chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
-						CoffeeValidator.DECISION__HAS_TWO_OUTGOING,
-						"Decision node must have exactly two outgoing flows", new Object[] { this }));
-			}
-			return false;
-		}
-		return true;
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated NOT
+    */
+   @Override
+   public boolean hasTwoOutgoing(final DiagnosticChain chain, final Map<?, ?> context) {
+      if (countOutgoingFlows() != 2) {
+         if (chain != null) {
+            chain.add(new BasicDiagnostic(Diagnostic.ERROR, CoffeeValidator.DIAGNOSTIC_SOURCE,
+               CoffeeValidator.DECISION__HAS_TWO_OUTGOING,
+               "Decision node must have exactly two outgoing flows", new Object[] { this }));
+         }
+         return false;
+      }
+      return true;
+   }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-		case CoffeePackage.DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP:
-			return hasOneIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
-		case CoffeePackage.DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP:
-			return hasTwoOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   @Override
+   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+      switch (operationID) {
+         case CoffeePackage.DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP:
+            return hasOneIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+         case CoffeePackage.DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP:
+            return hasTwoOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+      }
+      return super.eInvoke(operationID, arguments);
+   }
 
 } // DecisionImpl

@@ -14,21 +14,17 @@ import org.eclipse.emfcloud.coffee.workflow.IAutomaticWorkflowTask;
 
 public class AutomaticWorkflowTask extends AbstractWorkflowTask implements IAutomaticWorkflowTask {
 
-	private final String component;
+   private final String component;
 
-	public AutomaticWorkflowTask(final String id, final String name, final int duration, final String component) {
-		super(id, name, duration);
-		this.component = component;
-	}
+   public AutomaticWorkflowTask(final String id, final String name, final int duration, final String component) {
+      super(id, name, duration);
+      this.component = component;
+   }
 
-	@Override
-	public String getComponent() {
-		return component;
-	}
+   @Override
+   public String getComponent() { return component; }
 
-	@Override
-	public boolean isManual() {
-		return false;
-	}
+   @Override
+   public boolean isManual() { return false; }
 
 }

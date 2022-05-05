@@ -28,14 +28,14 @@ import com.google.inject.AbstractModule;
 @SuppressWarnings("restriction")
 public class WorkflowServerModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		binder().bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
+   @Override
+   protected void configure() {
+      binder().bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
 
-		bind(LanguageServer.class).to(WorkflowLanguageServer.class);
-		bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
-		bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
-		bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
-		bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
-	}
+      bind(LanguageServer.class).to(WorkflowLanguageServer.class);
+      bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
+      bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
+      bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
+      bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
+   }
 }

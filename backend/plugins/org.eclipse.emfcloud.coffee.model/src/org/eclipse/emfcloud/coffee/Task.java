@@ -37,72 +37,72 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface Task extends Node {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask_Name()
-	 * @model dataType="org.eclipse.emfcloud.coffee.TaskName" required="true"
-	 * @generated
-	 */
-	String getName();
+   /**
+    * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Name</em>' attribute.
+    * @see #setName(String)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask_Name()
+    * @model dataType="org.eclipse.emfcloud.coffee.TaskName" required="true"
+    * @generated
+    */
+   String getName();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getName
-	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getName
+    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Name</em>' attribute.
+    * @see #getName()
+    * @generated
+    */
+   void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Duration</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @return the value of the '<em>Duration</em>' attribute.
-	 * @see #setDuration(int)
-	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask_Duration()
-	 * @model
-	 * @generated
-	 */
-	int getDuration();
+   /**
+    * Returns the value of the '<em><b>Duration</b></em>' attribute. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @return the value of the '<em>Duration</em>' attribute.
+    * @see #setDuration(int)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask_Duration()
+    * @model
+    * @generated
+    */
+   int getDuration();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getDuration
-	 * <em>Duration</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param value the new value of the '<em>Duration</em>' attribute.
-	 * @see #getDuration()
-	 * @generated
-	 */
-	void setDuration(int value);
+   /**
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getDuration
+    * <em>Duration</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @param value the new value of the '<em>Duration</em>' attribute.
+    * @see #getDuration()
+    * @generated
+    */
+   void setDuration(int value);
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @model
-	 * @generated
-	 */
-	boolean hasAtMostOneIncoming(DiagnosticChain chain, Map<?, ?> context);
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @model
+    * @generated
+    */
+   boolean hasAtMostOneIncoming(DiagnosticChain chain, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @model
-	 * @generated
-	 */
-	boolean hasAtMostOneOutgoing(DiagnosticChain chain, Map<?, ?> context);
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @model
+    * @generated
+    */
+   boolean hasAtMostOneOutgoing(DiagnosticChain chain, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @model
-	 * @generated
-	 */
-	boolean isUsed(DiagnosticChain chain, Map<?, ?> context);
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @model
+    * @generated
+    */
+   boolean isUsed(DiagnosticChain chain, Map<?, ?> context);
 
 } // Task

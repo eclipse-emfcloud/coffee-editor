@@ -19,19 +19,15 @@ import com.google.common.collect.Lists;
 
 public class CoffeePackageConfiguration implements EPackageConfiguration {
 
-	@Override
-	public String getId() {
-		return CoffeePackage.eINSTANCE.getNsURI();
-	}
+   @Override
+   public String getId() { return CoffeePackage.eINSTANCE.getNsURI(); }
 
-	@Override
-	public Collection<String> getFileExtensions() {
-		return Lists.newArrayList(CoffeeResource.FILE_EXTENSION, "json");
-	}
+   @Override
+   public Collection<String> getFileExtensions() { return Lists.newArrayList(CoffeeResource.FILE_EXTENSION, "json"); }
 
-	@Override
-	public void registerEPackage() {
-		CoffeePackage.eINSTANCE.eClass();
-	}
+   @Override
+   public void registerEPackage() {
+      CoffeePackage.eINSTANCE.eClass();
+   }
 
 }

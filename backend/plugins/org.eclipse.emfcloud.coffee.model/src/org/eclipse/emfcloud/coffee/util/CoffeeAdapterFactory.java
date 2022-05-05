@@ -51,500 +51,500 @@ import org.eclipse.emfcloud.coffee.Workflow;
  * @generated
  */
 public class CoffeeAdapterFactory extends AdapterFactoryImpl {
-	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected static CoffeePackage modelPackage;
+   /**
+    * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected static CoffeePackage modelPackage;
 
-	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public CoffeeAdapterFactory() {
-		if (modelPackage == null) {
-			modelPackage = CoffeePackage.eINSTANCE;
-		}
-	}
+   /**
+    * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @generated
+    */
+   public CoffeeAdapterFactory() {
+      if (modelPackage == null) {
+         modelPackage = CoffeePackage.eINSTANCE;
+      }
+   }
 
-	/**
-	 * Returns whether this factory is applicable for the type of the object. <!--
-	 * begin-user-doc --> This implementation returns <code>true</code> if the
-	 * object is either the model's package or is an instance object of the model.
-	 * <!-- end-user-doc -->
-	 *
-	 * @return whether this factory is applicable for the type of the object.
-	 * @generated
-	 */
-	@Override
-	public boolean isFactoryForType(final Object object) {
-		if (object == modelPackage) {
-			return true;
-		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
-		}
-		return false;
-	}
+   /**
+    * Returns whether this factory is applicable for the type of the object. <!--
+    * begin-user-doc --> This implementation returns <code>true</code> if the
+    * object is either the model's package or is an instance object of the model.
+    * <!-- end-user-doc -->
+    *
+    * @return whether this factory is applicable for the type of the object.
+    * @generated
+    */
+   @Override
+   public boolean isFactoryForType(final Object object) {
+      if (object == modelPackage) {
+         return true;
+      }
+      if (object instanceof EObject) {
+         return ((EObject) object).eClass().getEPackage() == modelPackage;
+      }
+      return false;
+   }
 
-	/**
-	 * The switch that delegates to the <code>createXXX</code> methods. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<>() {
-		@Override
-		public Adapter caseComponent(final Component object) {
-			return createComponentAdapter();
-		}
+   /**
+    * The switch that delegates to the <code>createXXX</code> methods. <!--
+    * begin-user-doc --> <!-- end-user-doc -->
+    *
+    * @generated
+    */
+   protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<>() {
+      @Override
+      public Adapter caseComponent(final Component object) {
+         return createComponentAdapter();
+      }
 
-		@Override
-		public Adapter caseMachine(final Machine object) {
-			return createMachineAdapter();
-		}
+      @Override
+      public Adapter caseMachine(final Machine object) {
+         return createMachineAdapter();
+      }
 
-		@Override
-		public Adapter caseControlUnit(final ControlUnit object) {
-			return createControlUnitAdapter();
-		}
+      @Override
+      public Adapter caseControlUnit(final ControlUnit object) {
+         return createControlUnitAdapter();
+      }
 
-		@Override
-		public Adapter caseBrewingUnit(final BrewingUnit object) {
-			return createBrewingUnitAdapter();
-		}
+      @Override
+      public Adapter caseBrewingUnit(final BrewingUnit object) {
+         return createBrewingUnitAdapter();
+      }
 
-		@Override
-		public Adapter caseDipTray(final DipTray object) {
-			return createDipTrayAdapter();
-		}
+      @Override
+      public Adapter caseDipTray(final DipTray object) {
+         return createDipTrayAdapter();
+      }
 
-		@Override
-		public Adapter caseWaterTank(final WaterTank object) {
-			return createWaterTankAdapter();
-		}
+      @Override
+      public Adapter caseWaterTank(final WaterTank object) {
+         return createWaterTankAdapter();
+      }
 
-		@Override
-		public Adapter caseProcessor(final Processor object) {
-			return createProcessorAdapter();
-		}
+      @Override
+      public Adapter caseProcessor(final Processor object) {
+         return createProcessorAdapter();
+      }
 
-		@Override
-		public Adapter caseDimension(final Dimension object) {
-			return createDimensionAdapter();
-		}
+      @Override
+      public Adapter caseDimension(final Dimension object) {
+         return createDimensionAdapter();
+      }
 
-		@Override
-		public Adapter caseRAM(final RAM object) {
-			return createRAMAdapter();
-		}
+      @Override
+      public Adapter caseRAM(final RAM object) {
+         return createRAMAdapter();
+      }
 
-		@Override
-		public Adapter caseDisplay(final Display object) {
-			return createDisplayAdapter();
-		}
+      @Override
+      public Adapter caseDisplay(final Display object) {
+         return createDisplayAdapter();
+      }
 
-		@Override
-		public Adapter caseWorkflow(final Workflow object) {
-			return createWorkflowAdapter();
-		}
+      @Override
+      public Adapter caseWorkflow(final Workflow object) {
+         return createWorkflowAdapter();
+      }
 
-		@Override
-		public Adapter caseNode(final Node object) {
-			return createNodeAdapter();
-		}
+      @Override
+      public Adapter caseNode(final Node object) {
+         return createNodeAdapter();
+      }
 
-		@Override
-		public Adapter caseTask(final Task object) {
-			return createTaskAdapter();
-		}
+      @Override
+      public Adapter caseTask(final Task object) {
+         return createTaskAdapter();
+      }
 
-		@Override
-		public Adapter caseAutomaticTask(final AutomaticTask object) {
-			return createAutomaticTaskAdapter();
-		}
+      @Override
+      public Adapter caseAutomaticTask(final AutomaticTask object) {
+         return createAutomaticTaskAdapter();
+      }
 
-		@Override
-		public Adapter caseManualTask(final ManualTask object) {
-			return createManualTaskAdapter();
-		}
+      @Override
+      public Adapter caseManualTask(final ManualTask object) {
+         return createManualTaskAdapter();
+      }
 
-		@Override
-		public Adapter caseFork(final Fork object) {
-			return createForkAdapter();
-		}
+      @Override
+      public Adapter caseFork(final Fork object) {
+         return createForkAdapter();
+      }
 
-		@Override
-		public Adapter caseJoin(final Join object) {
-			return createJoinAdapter();
-		}
+      @Override
+      public Adapter caseJoin(final Join object) {
+         return createJoinAdapter();
+      }
 
-		@Override
-		public Adapter caseDecision(final Decision object) {
-			return createDecisionAdapter();
-		}
+      @Override
+      public Adapter caseDecision(final Decision object) {
+         return createDecisionAdapter();
+      }
 
-		@Override
-		public Adapter caseMerge(final Merge object) {
-			return createMergeAdapter();
-		}
+      @Override
+      public Adapter caseMerge(final Merge object) {
+         return createMergeAdapter();
+      }
 
-		@Override
-		public Adapter caseFlow(final Flow object) {
-			return createFlowAdapter();
-		}
+      @Override
+      public Adapter caseFlow(final Flow object) {
+         return createFlowAdapter();
+      }
 
-		@Override
-		public Adapter caseWeightedFlow(final WeightedFlow object) {
-			return createWeightedFlowAdapter();
-		}
+      @Override
+      public Adapter caseWeightedFlow(final WeightedFlow object) {
+         return createWeightedFlowAdapter();
+      }
 
-		@Override
-		public Adapter defaultCase(final EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+      @Override
+      public Adapter defaultCase(final EObject object) {
+         return createEObjectAdapter();
+      }
+   };
 
-	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @param target the object to adapt.
-	 * @return the adapter for the <code>target</code>.
-	 * @generated
-	 */
-	@Override
-	public Adapter createAdapter(final Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
-	}
+   /**
+    * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!--
+    * end-user-doc -->
+    *
+    * @param target the object to adapt.
+    * @return the adapter for the <code>target</code>.
+    * @generated
+    */
+   @Override
+   public Adapter createAdapter(final Notifier target) {
+      return modelSwitch.doSwitch((EObject) target);
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Component <em>Component</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Component
-	 * @generated
-	 */
-	public Adapter createComponentAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Component <em>Component</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Component
+    * @generated
+    */
+   public Adapter createComponentAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Machine <em>Machine</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Machine
-	 * @generated
-	 */
-	public Adapter createMachineAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Machine <em>Machine</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Machine
+    * @generated
+    */
+   public Adapter createMachineAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.ControlUnit <em>Control Unit</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.ControlUnit
-	 * @generated
-	 */
-	public Adapter createControlUnitAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.ControlUnit <em>Control Unit</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.ControlUnit
+    * @generated
+    */
+   public Adapter createControlUnitAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.BrewingUnit <em>Brewing Unit</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.BrewingUnit
-	 * @generated
-	 */
-	public Adapter createBrewingUnitAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.BrewingUnit <em>Brewing Unit</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.BrewingUnit
+    * @generated
+    */
+   public Adapter createBrewingUnitAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.DipTray <em>Dip Tray</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.DipTray
-	 * @generated
-	 */
-	public Adapter createDipTrayAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.DipTray <em>Dip Tray</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.DipTray
+    * @generated
+    */
+   public Adapter createDipTrayAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.WaterTank <em>Water Tank</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.WaterTank
-	 * @generated
-	 */
-	public Adapter createWaterTankAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.WaterTank <em>Water Tank</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.WaterTank
+    * @generated
+    */
+   public Adapter createWaterTankAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Processor <em>Processor</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Processor
-	 * @generated
-	 */
-	public Adapter createProcessorAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Processor <em>Processor</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Processor
+    * @generated
+    */
+   public Adapter createProcessorAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Dimension <em>Dimension</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Dimension
-	 * @generated
-	 */
-	public Adapter createDimensionAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Dimension <em>Dimension</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Dimension
+    * @generated
+    */
+   public Adapter createDimensionAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.RAM
-	 * @generated
-	 */
-	public Adapter createRAMAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.RAM
+    * @generated
+    */
+   public Adapter createRAMAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Display
-	 * @generated
-	 */
-	public Adapter createDisplayAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Display
+    * @generated
+    */
+   public Adapter createDisplayAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Workflow <em>Workflow</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Workflow
-	 * @generated
-	 */
-	public Adapter createWorkflowAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Workflow <em>Workflow</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Workflow
+    * @generated
+    */
+   public Adapter createWorkflowAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Node
-	 * @generated
-	 */
-	public Adapter createNodeAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Node
+    * @generated
+    */
+   public Adapter createNodeAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Task
-	 * @generated
-	 */
-	public Adapter createTaskAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Task
+    * @generated
+    */
+   public Adapter createTaskAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will
-	 * catch all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.AutomaticTask
-	 * @generated
-	 */
-	public Adapter createAutomaticTaskAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
+    * <!-- begin-user-doc --> This default implementation returns null so that we
+    * can easily ignore cases; it's useful to ignore a case when inheritance will
+    * catch all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.AutomaticTask
+    * @generated
+    */
+   public Adapter createAutomaticTaskAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.ManualTask <em>Manual Task</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.ManualTask
-	 * @generated
-	 */
-	public Adapter createManualTaskAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.ManualTask <em>Manual Task</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.ManualTask
+    * @generated
+    */
+   public Adapter createManualTaskAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Fork
-	 * @generated
-	 */
-	public Adapter createForkAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Fork
+    * @generated
+    */
+   public Adapter createForkAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Join
-	 * @generated
-	 */
-	public Adapter createJoinAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Join
+    * @generated
+    */
+   public Adapter createJoinAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Decision <em>Decision</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Decision
-	 * @generated
-	 */
-	public Adapter createDecisionAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Decision <em>Decision</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Decision
+    * @generated
+    */
+   public Adapter createDecisionAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch
-	 * all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Merge
-	 * @generated
-	 */
-	public Adapter createMergeAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'. <!--
+    * begin-user-doc --> This default implementation returns null so that we can
+    * easily ignore cases; it's useful to ignore a case when inheritance will catch
+    * all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Merge
+    * @generated
+    */
+   public Adapter createMergeAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'. <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.Flow
-	 * @generated
-	 */
-	public Adapter createFlowAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'. <!-- begin-user-doc
+    * --> This default implementation returns null so that we can easily ignore
+    * cases; it's useful to ignore a case when inheritance will catch all the cases
+    * anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Flow
+    * @generated
+    */
+   public Adapter createFlowAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will
-	 * catch all the cases anyway. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @see org.eclipse.emfcloud.coffee.WeightedFlow
-	 * @generated
-	 */
-	public Adapter createWeightedFlowAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for an object of class
+    * '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
+    * <!-- begin-user-doc --> This default implementation returns null so that we
+    * can easily ignore cases; it's useful to ignore a case when inheritance will
+    * catch all the cases anyway. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.WeightedFlow
+    * @generated
+    */
+   public Adapter createWeightedFlowAdapter() {
+      return null;
+   }
 
-	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
-	 * default implementation returns null. <!-- end-user-doc -->
-	 *
-	 * @return the new adapter.
-	 * @generated
-	 */
-	public Adapter createEObjectAdapter() {
-		return null;
-	}
+   /**
+    * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+    * default implementation returns null. <!-- end-user-doc -->
+    *
+    * @return the new adapter.
+    * @generated
+    */
+   public Adapter createEObjectAdapter() {
+      return null;
+   }
 
 } // CoffeeAdapterFactory

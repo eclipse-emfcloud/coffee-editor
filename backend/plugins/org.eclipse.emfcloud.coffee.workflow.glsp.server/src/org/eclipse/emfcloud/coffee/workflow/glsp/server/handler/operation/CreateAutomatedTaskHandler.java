@@ -22,19 +22,17 @@ import org.eclipse.glsp.graph.GPoint;
 
 public class CreateAutomatedTaskHandler extends AbstractCreateNodeHandler {
 
-	public CreateAutomatedTaskHandler() {
-		super(ModelTypes.AUTOMATED_TASK);
-	}
+   public CreateAutomatedTaskHandler() {
+      super(ModelTypes.AUTOMATED_TASK);
+   }
 
-	@Override
-	public String getLabel() {
-		return "Automated Task";
-	}
+   @Override
+   public String getLabel() { return "Automated Task"; }
 
-	@Override
-	protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
-			final WorkflowModelServerAccess modelAccess) {
-		return modelAccess::addAutomatedTask;
-	}
+   @Override
+   protected BiFunction<WorkflowModelState, Optional<GPoint>, CompletableFuture<Response<Boolean>>> getNodeCreator(
+      final WorkflowModelServerAccess modelAccess) {
+      return modelAccess::addAutomatedTask;
+   }
 
 }

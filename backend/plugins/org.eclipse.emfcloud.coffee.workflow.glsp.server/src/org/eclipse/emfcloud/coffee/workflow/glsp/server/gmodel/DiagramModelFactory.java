@@ -21,32 +21,32 @@ import org.eclipse.glsp.graph.GModelElement;
 
 public class DiagramModelFactory extends GModelFactory {
 
-	public DiagramModelFactory(final WorkflowModelState modelState) {
-		super(modelState);
-	}
+   public DiagramModelFactory(final WorkflowModelState modelState) {
+      super(modelState);
+   }
 
-	@Override
-	public GGraph create(final Diagram notationDiagram) {
-		GGraph graph = getOrCreateRoot();
+   @Override
+   public GGraph create(final Diagram notationDiagram) {
+      GGraph graph = getOrCreateRoot();
 
-		if (notationDiagram.getSemanticElement().getResolvedElement() != null) {
-			Workflow workflowModel = (Workflow) notationDiagram.getSemanticElement().getResolvedElement();
+      if (notationDiagram.getSemanticElement().getResolvedElement() != null) {
+         Workflow workflowModel = (Workflow) notationDiagram.getSemanticElement().getResolvedElement();
 
-			graph.setId(toId(workflowModel));
+         graph.setId(toId(workflowModel));
 
-			// Add Nodes
-			List<GModelElement> nodeElements = workflowModel.getNodes().stream().map(node -> nodeFactory.create(node))
-					.collect(Collectors.toList());
-			graph.getChildren().addAll(nodeElements);
+         // Add Nodes
+         List<GModelElement> nodeElements = workflowModel.getNodes().stream().map(node -> nodeFactory.create(node))
+            .collect(Collectors.toList());
+         graph.getChildren().addAll(nodeElements);
 
-			// Add Flows
-			List<GModelElement> flowElements = workflowModel.getFlows().stream().map(flow -> flowFactory.create(flow))
-					.collect(Collectors.toList());
-			graph.getChildren().addAll(flowElements);
+         // Add Flows
+         List<GModelElement> flowElements = workflowModel.getFlows().stream().map(flow -> flowFactory.create(flow))
+            .collect(Collectors.toList());
+         graph.getChildren().addAll(flowElements);
 
-		}
-		return graph;
+      }
+      return graph;
 
-	}
+   }
 
 }
