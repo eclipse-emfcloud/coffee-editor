@@ -25,53 +25,52 @@ import org.eclipse.glsp.graph.util.GraphUtil;
 
 public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
 
-	public NodeFactory(final WorkflowModelState modelState) {
-		super(modelState);
-	}
+   public NodeFactory(final WorkflowModelState modelState) {
+      super(modelState);
+   }
 
-	@Override
-	public GNode create(final Node node) {
-		if (node instanceof Task) {
-			return createTaskNode((Task) node);
-		}
-		return createActivityNode(node);
-	}
+   @Override
+   public GNode create(final Node node) {
+      if (node instanceof Task) {
+         return createTaskNode((Task) node);
+      }
+      return createActivityNode(node);
+   }
 
-	private TaskNode createTaskNode(Task task) {
-		String type = CoffeeTypeUtil.toType(task);
-		String nodeType = CoffeeTypeUtil.toNodeType(task);
-		TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
-		builder.id(toId(task));
+   private TaskNode createTaskNode(final Task task) {
+      String type = CoffeeTypeUtil.toType(task);
+      String nodeType = CoffeeTypeUtil.toNodeType(task);
+      TaskNodeBuilder builder = new TaskNodeBuilder(type, task.getName(), nodeType, task.getDuration());
+      builder.id(toId(task));
 
-		modelState.getIndex().getNotation(task, Shape.class).ifPresent(shape -> {
-			if (shape.getPosition() != null) {
-				builder.position(GraphUtil.copy(shape.getPosition()));
-			}
-			if (shape.getSize() != null) {
-				builder.size(GraphUtil.copy(shape.getSize()));
-			}
-		});
-		builder.addArguments(GArguments.cornerRadius(5));
-      
+      modelState.getIndex().getNotation(task, Shape.class).ifPresent(shape -> {
+         if (shape.getPosition() != null) {
+            builder.position(GraphUtil.copy(shape.getPosition()));
+         }
+         if (shape.getSize() != null) {
+            builder.size(GraphUtil.copy(shape.getSize()));
+         }
+      });
+      builder.addArguments(GArguments.cornerRadius(5));
 
-		return builder.build();
-	}
+      return builder.build();
+   }
 
-	private ActivityNode createActivityNode(Node node) {
-		String type = CoffeeTypeUtil.toType(node);
-		String nodeType = CoffeeTypeUtil.toNodeType(node);
-		ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);
-		builder.id(toId(node));
+   private ActivityNode createActivityNode(final Node node) {
+      String type = CoffeeTypeUtil.toType(node);
+      String nodeType = CoffeeTypeUtil.toNodeType(node);
+      ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);
+      builder.id(toId(node));
 
-		modelState.getIndex().getNotation(node, Shape.class).ifPresent(shape -> {
-			if (shape.getPosition() != null) {
-				builder.position(GraphUtil.copy(shape.getPosition()));
-			}
-			if (shape.getSize() != null) {
-				builder.size(GraphUtil.copy(shape.getSize()));
-			}
-		});
-		return builder.build();
-	}
+      modelState.getIndex().getNotation(node, Shape.class).ifPresent(shape -> {
+         if (shape.getPosition() != null) {
+            builder.position(GraphUtil.copy(shape.getPosition()));
+         }
+         if (shape.getSize() != null) {
+            builder.size(GraphUtil.copy(shape.getSize()));
+         }
+      });
+      return builder.build();
+   }
 
 }

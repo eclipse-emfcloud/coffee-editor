@@ -26,57 +26,56 @@ import org.eclipse.glsp.graph.util.GraphUtil;
 
 public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
 
-	public FlowFactory(final WorkflowModelState modelState) {
-		super(modelState);
-	}
+   public FlowFactory(final WorkflowModelState modelState) {
+      super(modelState);
+   }
 
-	@Override
-	public GEdge create(final Flow element) {
-		if (element instanceof WeightedFlow) {
-			return createWeightedFlowEdge((WeightedFlow) element);
-		}
-		return createFlowEdge(element);
-	}
+   @Override
+   public GEdge create(final Flow element) {
+      if (element instanceof WeightedFlow) {
+         return createWeightedFlowEdge((WeightedFlow) element);
+      }
+      return createFlowEdge(element);
+   }
 
-	protected GEdge createFlowEdge(final Flow flow) {
-		String sourceId = toId(flow.getSource());
-		String targetId = toId(flow.getTarget());
+   protected GEdge createFlowEdge(final Flow flow) {
+      String sourceId = toId(flow.getSource());
+      String targetId = toId(flow.getTarget());
 
-		GEdgeBuilder builder = new GEdgeBuilder()//
-				.id(toId(flow))//
-				.sourceId(sourceId)//
-				.targetId(targetId)//
-				.routerKind(GConstants.RouterKind.POLYLINE);
+      GEdgeBuilder builder = new GEdgeBuilder()//
+         .id(toId(flow))//
+         .sourceId(sourceId)//
+         .targetId(targetId)//
+         .routerKind(GConstants.RouterKind.POLYLINE);
 
-		modelState.getIndex().getNotation(flow, Edge.class).ifPresent(edge -> {
-			if (edge.getBendPoints() != null) {
-				ArrayList<GPoint> bendPoints = new ArrayList<>();
-				edge.getBendPoints().forEach(p -> bendPoints.add(GraphUtil.copy(p)));
-				builder.addRoutingPoints(bendPoints);
-			}
-		});
-		return builder.build();
-	}
+      modelState.getIndex().getNotation(flow, Edge.class).ifPresent(edge -> {
+         if (edge.getBendPoints() != null) {
+            ArrayList<GPoint> bendPoints = new ArrayList<>();
+            edge.getBendPoints().forEach(p -> bendPoints.add(GraphUtil.copy(p)));
+            builder.addRoutingPoints(bendPoints);
+         }
+      });
+      return builder.build();
+   }
 
-	protected WeightedEdge createWeightedFlowEdge(final WeightedFlow flow) {
-		String sourceId = toId(flow.getSource());
-		String targetId = toId(flow.getTarget());
+   protected WeightedEdge createWeightedFlowEdge(final WeightedFlow flow) {
+      String sourceId = toId(flow.getSource());
+      String targetId = toId(flow.getTarget());
 
-		WeightedEdgeBuilder builder = new WeightedEdgeBuilder()//
-				.id(toId(flow))//
-				.probability(flow.getProbability().getName())//
-				.sourceId(sourceId)//
-				.targetId(targetId)
-				.routerKind(GConstants.RouterKind.POLYLINE);
+      WeightedEdgeBuilder builder = new WeightedEdgeBuilder()//
+         .id(toId(flow))//
+         .probability(flow.getProbability().getName())//
+         .sourceId(sourceId)//
+         .targetId(targetId).routerKind(GConstants.RouterKind.POLYLINE);
 
-		modelState.getIndex().getNotation(flow, Edge.class).ifPresent(edge -> {
-			if (edge.getBendPoints() != null) {
-				ArrayList<GPoint> bendPoints = new ArrayList<>();
-				edge.getBendPoints().forEach(p -> bendPoints.add(GraphUtil.copy(p)));
-				builder.addRoutingPoints(bendPoints);
-			}
-		});
-		return builder.build();
-	}
+      modelState.getIndex().getNotation(flow, Edge.class).ifPresent(edge -> {
+         if (edge.getBendPoints() != null) {
+            ArrayList<GPoint> bendPoints = new ArrayList<>();
+            edge.getBendPoints().forEach(p -> bendPoints.add(GraphUtil.copy(p)));
+            builder.addRoutingPoints(bendPoints);
+         }
+      });
+      return builder.build();
+   }
 
 }

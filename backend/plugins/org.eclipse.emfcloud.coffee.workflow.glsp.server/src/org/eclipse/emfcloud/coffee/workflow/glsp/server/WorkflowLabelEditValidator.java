@@ -31,74 +31,76 @@ import com.google.inject.Inject;
 
 public class WorkflowLabelEditValidator implements LabelEditValidator {
 
-	@Inject
-	GModelState modelState;
-	
-	@Override
-	public ValidationStatus validate(final String label, final GModelElement element) {
-		WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
-		GModelElement parent = getRoot(element);
+   @Inject
+   protected GModelState modelState;
 
-		String featureId = getFeatureId(element.getType());
+   @Override
+   public ValidationStatus validate(final String label, final GModelElement element) {
+      WorkflowModelServerAccess modelAccess = WorkflowModelState.getModelAccess(modelState);
+      GModelElement parent = getRoot(element);
 
-		if (featureId != null) {
-			EMFFacetConstraints constraints = modelAccess.getConstraintList(getElementId(parent.getType()), featureId);
-			if (constraints != null) {
-				return checkConstraints(constraints, label, parent);
-			}
-		}
-		return ValidationStatus.ok();
-	}
+      String featureId = getFeatureId(element.getType());
 
-	private String getElementId(String type) {
-		if (type.equals(ModelTypes.AUTOMATED_TASK)) {
-			return EcoreUtil.getURI(CoffeePackage.Literals.AUTOMATIC_TASK).toString();
-		}
-		if (type.equals(ModelTypes.MANUAL_TASK)) {
-			return EcoreUtil.getURI(CoffeePackage.Literals.MANUAL_TASK).toString();
-		}
-		return null;
-	}
+      if (featureId != null) {
+         EMFFacetConstraints constraints = modelAccess.getConstraintList(getElementId(parent.getType()), featureId);
+         if (constraints != null) {
+            return checkConstraints(constraints, label, parent);
+         }
+      }
+      return ValidationStatus.ok();
+   }
 
-	private String getFeatureId(String type) {
-		if (type.equals(ModelTypes.LABEL_HEADING)) {
-			return CoffeePackage.Literals.TASK__NAME.getName();
-		}
-		return null;
-	}
+   private String getElementId(final String type) {
+      if (type.equals(ModelTypes.AUTOMATED_TASK)) {
+         return EcoreUtil.getURI(CoffeePackage.Literals.AUTOMATIC_TASK).toString();
+      }
+      if (type.equals(ModelTypes.MANUAL_TASK)) {
+         return EcoreUtil.getURI(CoffeePackage.Literals.MANUAL_TASK).toString();
+      }
+      return null;
+   }
 
-	private ValidationStatus checkConstraints(EMFFacetConstraints constraints, String text, GModelElement node) {
-		if (constraints.getMinLength() != null) {
-			if (text.length() < constraints.getMinLength()) {
-				return ValidationStatus
-						.error("Name must be at least " + constraints.getMinLength() + " character(s) long");
-			}
-		}
-		if (constraints.getMaxLength() != -1) {
-			if (text.length() > constraints.getMaxLength()) {
-				return ValidationStatus
-						.error("Name must not be longer than " + constraints.getMaxLength() + " character(s)");
-			}
-		}
-		List<String> patterns = constraints.getPattern();
-		if (!(patterns.isEmpty())) {
-			for (String pattern : patterns) {
-				if (!Pattern.matches(pattern, text)) {
-					if (node instanceof TaskNodeImpl)
-						return ValidationStatus.error("Must consist only of letters, numbers, - and spaces");
-					else
-						return ValidationStatus.error("Must fit the following expression: " + pattern);
-				}
-			}
-		}
-		return ValidationStatus.ok();
-	}
+   private String getFeatureId(final String type) {
+      if (type.equals(ModelTypes.LABEL_HEADING)) {
+         return CoffeePackage.Literals.TASK__NAME.getName();
+      }
+      return null;
+   }
 
-	private GModelElement getRoot(GModelElement element) {
-		if (element instanceof GLabel || element instanceof GCompartment) {
-			return getRoot(element.getParent());
-		}
-		return element;
-	}
+   @SuppressWarnings("checkstyle:CyclomaticComplexity")
+   private ValidationStatus checkConstraints(final EMFFacetConstraints constraints, final String text,
+      final GModelElement node) {
+      if (constraints.getMinLength() != null) {
+         if (text.length() < constraints.getMinLength()) {
+            return ValidationStatus
+               .error("Name must be at least " + constraints.getMinLength() + " character(s) long");
+         }
+      }
+      if (constraints.getMaxLength() != -1) {
+         if (text.length() > constraints.getMaxLength()) {
+            return ValidationStatus
+               .error("Name must not be longer than " + constraints.getMaxLength() + " character(s)");
+         }
+      }
+      List<String> patterns = constraints.getPattern();
+      if (!(patterns.isEmpty())) {
+         for (String pattern : patterns) {
+            if (!Pattern.matches(pattern, text)) {
+               if (node instanceof TaskNodeImpl) {
+                  return ValidationStatus.error("Must consist only of letters, numbers, - and spaces");
+               }
+               return ValidationStatus.error("Must fit the following expression: " + pattern);
+            }
+         }
+      }
+      return ValidationStatus.ok();
+   }
+
+   private GModelElement getRoot(final GModelElement element) {
+      if (element instanceof GLabel || element instanceof GCompartment) {
+         return getRoot(element.getParent());
+      }
+      return element;
+   }
 
 }

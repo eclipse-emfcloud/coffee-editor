@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2020 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.dsl.ide.server;
@@ -28,14 +28,14 @@ import com.google.inject.AbstractModule;
 @SuppressWarnings("restriction")
 public class WorkflowServerModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		binder().bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
+   @Override
+   protected void configure() {
+      binder().bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
 
-		bind(LanguageServer.class).to(WorkflowLanguageServer.class);
-		bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
-		bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
-		bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
-		bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
-	}
+      bind(LanguageServer.class).to(WorkflowLanguageServer.class);
+      bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
+      bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
+      bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
+      bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
+   }
 }

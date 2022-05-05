@@ -15,8 +15,8 @@ import org.eclipse.glsp.server.protocol.GLSPServer;
 
 public class WorkflowServerModule extends ServerModule {
 
-	@Override
-	protected Class<? extends GLSPServer> bindGLSPServer() {
-		return WorkflowGLSPServer.class;
-	}
+   @Override
+   protected Class<? extends GLSPServer> bindGLSPServer() {
+      return WorkflowGLSPServer.class;
+   }
 }

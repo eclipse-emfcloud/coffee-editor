@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -45,11 +45,11 @@ class TaskGenerator {
 				public:
 					«IF task instanceof ManualTask»
 					std::string getActor() {
-						return "«(task as ManualTask).actor»";
+						return "«task.actor»";
 					}
 					«ELSEIF task instanceof AutomaticTask»
 					std::string getComponent() {
-						return "«(task as AutomaticTask).component»";
+						return "«task.component»";
 					}
 					«ENDIF»
 			

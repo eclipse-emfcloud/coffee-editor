@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
@@ -52,91 +52,89 @@ import org.eclipse.glsp.server.operations.gmodel.ReconnectEdgeOperationHandler;
 
 public class WorkflowGLSPModule extends EMSNotationGLSPModule {
 
-	@Override
-	protected Class<? extends EMSModelState> bindGModelState() {
-		return WorkflowModelState.class;
-	}
+   @Override
+   protected Class<? extends EMSModelState> bindGModelState() {
+      return WorkflowModelState.class;
+   }
 
-	@Override
-	protected void configureActionHandlers(MultiBinding<ActionHandler> bindings) {
-		super.configureActionHandlers(bindings);
-		bindings.rebind(RequestMarkersHandler.class, WorkflowRequestMarkersActionHandler.class);
-	}
+   @Override
+   protected void configureActionHandlers(final MultiBinding<ActionHandler> bindings) {
+      super.configureActionHandlers(bindings);
+      bindings.rebind(RequestMarkersHandler.class, WorkflowRequestMarkersActionHandler.class);
+   }
 
-	@Override
-	protected void configureOperationHandlers(MultiBinding<OperationHandler> bindings) {
-		super.configureOperationHandlers(bindings);
+   @Override
+   protected void configureOperationHandlers(final MultiBinding<OperationHandler> bindings) {
+      super.configureOperationHandlers(bindings);
 
-		// model server-aware operation handlers
-		bindings.rebind(CompoundOperationHandler.class, WorkflowCompoundOperationHandler.class);
-		bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
-		bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class);
-		bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
-		bindings.rebind(ReconnectEdgeOperationHandler.class, WorkflowReconnectFlowHandler.class);
+      // model server-aware operation handlers
+      bindings.rebind(CompoundOperationHandler.class, WorkflowCompoundOperationHandler.class);
+      bindings.rebind(ChangeRoutingPointsHandler.class, WorkflowChangeRoutingPointsOperationHandler.class);
+      bindings.rebind(ApplyLabelEditOperationHandler.class, WorkflowApplyLabelEditOperationHandler.class);
+      bindings.rebind(DeleteOperationHandler.class, WorkflowDeleteOperationHandler.class);
+      bindings.rebind(ReconnectEdgeOperationHandler.class, WorkflowReconnectFlowHandler.class);
 
-		// unsupported operation handlers
-		bindings.remove(CutOperationHandler.class);
-		bindings.remove(PasteOperationHandler.class);
-		bindings.remove(LayoutOperationHandler.class);
+      // unsupported operation handlers
+      bindings.remove(CutOperationHandler.class);
+      bindings.remove(PasteOperationHandler.class);
+      bindings.remove(LayoutOperationHandler.class);
 
-		// custom workflow operation handlers
-		bindings.add(CreateAutomatedTaskHandler.class);
-		bindings.add(CreateManualTaskHandler.class);
-		bindings.add(CreateDecisionNodeHandler.class);
-		bindings.add(CreateMergeNodeHandler.class);
-		bindings.add(CreateFlowHandler.class);
-		bindings.add(CreateWeightedFlowHandler.class);
-	}
+      // custom workflow operation handlers
+      bindings.add(CreateAutomatedTaskHandler.class);
+      bindings.add(CreateManualTaskHandler.class);
+      bindings.add(CreateDecisionNodeHandler.class);
+      bindings.add(CreateMergeNodeHandler.class);
+      bindings.add(CreateFlowHandler.class);
+      bindings.add(CreateWeightedFlowHandler.class);
+   }
 
-	@Override
-	protected Class<? extends GraphExtension> bindGraphExtension() {
-		return WorkflowGraphExtension.class;
-	}
+   @Override
+   protected Class<? extends GraphExtension> bindGraphExtension() {
+      return WorkflowGraphExtension.class;
+   }
 
-	@Override
-	protected Class<? extends LabelEditValidator> bindLabelEditValidator() {
-		return WorkflowLabelEditValidator.class;
-	}
+   @Override
+   protected Class<? extends LabelEditValidator> bindLabelEditValidator() {
+      return WorkflowLabelEditValidator.class;
+   }
 
-	@Override
-	protected Class<? extends DiagramConfiguration> bindDiagramConfiguration() {
-		return WorkflowDiagramNotationConfiguration.class;
-	}
+   @Override
+   protected Class<? extends DiagramConfiguration> bindDiagramConfiguration() {
+      return WorkflowDiagramNotationConfiguration.class;
+   }
 
-	@Override
-	protected Class<? extends CommandPaletteActionProvider> bindCommandPaletteActionProvider() {
-		return WorkflowCommandPaletteActionProvider.class;
-	}
+   @Override
+   protected Class<? extends CommandPaletteActionProvider> bindCommandPaletteActionProvider() {
+      return WorkflowCommandPaletteActionProvider.class;
+   }
 
-	@Override
-	protected Class<? extends ContextMenuItemProvider> bindContextMenuItemProvider() {
-		return WorkflowContextMenuItemProvider.class;
-	}
+   @Override
+   protected Class<? extends ContextMenuItemProvider> bindContextMenuItemProvider() {
+      return WorkflowContextMenuItemProvider.class;
+   }
 
-	@Override
-	protected Class<? extends LayoutEngine> bindLayoutEngine() {
-		return WorkflowLayoutEngine.class;
-	}
+   @Override
+   protected Class<? extends LayoutEngine> bindLayoutEngine() {
+      return WorkflowLayoutEngine.class;
+   }
 
-	@Override
-	public void configure() {
-		super.configure();
-		bind(AdapterFactory.class).toInstance(new ComposedAdapterFactory());
-	}
+   @Override
+   public void configure() {
+      super.configure();
+      bind(AdapterFactory.class).toInstance(new ComposedAdapterFactory());
+   }
 
-	@Override
-	protected Class<? extends ModelSourceLoader> bindSourceModelLoader() {
-		return WorkflowModelSourceLoader.class;
-	}
+   @Override
+   protected Class<? extends ModelSourceLoader> bindSourceModelLoader() {
+      return WorkflowModelSourceLoader.class;
+   }
 
-	@Override
-	protected Class<? extends GModelFactory> bindGModelFactory() {
-		return WorkflowModelFactory.class;
-	}
+   @Override
+   protected Class<? extends GModelFactory> bindGModelFactory() {
+      return WorkflowModelFactory.class;
+   }
 
-	@Override
-	public String getDiagramType() {
-		return "workflow-diagram-notation";
-	}
+   @Override
+   public String getDiagramType() { return "workflow-diagram-notation"; }
 
 }

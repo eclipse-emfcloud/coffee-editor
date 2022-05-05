@@ -24,28 +24,28 @@ import org.eclipse.glsp.server.operations.OperationHandlerRegistry;
 import com.google.inject.Inject;
 
 public class WorkflowCompoundOperationHandler
-		extends EMSBasicOperationHandler<CompoundOperation, WorkflowModelServerAccess> {
-	@Inject
-	protected OperationHandlerRegistry operationHandlerRegistry;
+   extends EMSBasicOperationHandler<CompoundOperation, WorkflowModelServerAccess> {
+   @Inject
+   protected OperationHandlerRegistry operationHandlerRegistry;
 
-	@Override
-	public void executeOperation(final CompoundOperation operation, final WorkflowModelServerAccess modelServerAccess) {
-		operation.getOperationList()
-				.forEach(nestedOperation -> executeNestedOperation(nestedOperation, modelServerAccess));
-	}
+   @Override
+   public void executeOperation(final CompoundOperation operation, final WorkflowModelServerAccess modelServerAccess) {
+      operation.getOperationList()
+         .forEach(nestedOperation -> executeNestedOperation(nestedOperation, modelServerAccess));
+   }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected void executeNestedOperation(final Operation operation,
-			final WorkflowModelServerAccess modelServerAccess) {
-		Optional<? extends OperationHandler> operationHandler = OperationActionHandler.getOperationHandler(operation,
-				operationHandlerRegistry);
-		if (operationHandler.isPresent()) {
-			if (operationHandler.get() instanceof EMSOperationHandler) {
-				((EMSOperationHandler) operationHandler.get()).executeOperation(operation, modelServerAccess);
-			} else {
-				operationHandler.get().execute(operation);
-			}
-		}
-	}
+   @SuppressWarnings({ "unchecked", "rawtypes" })
+   protected void executeNestedOperation(final Operation operation,
+      final WorkflowModelServerAccess modelServerAccess) {
+      Optional<? extends OperationHandler> operationHandler = OperationActionHandler.getOperationHandler(operation,
+         operationHandlerRegistry);
+      if (operationHandler.isPresent()) {
+         if (operationHandler.get() instanceof EMSOperationHandler) {
+            ((EMSOperationHandler) operationHandler.get()).executeOperation(operation, modelServerAccess);
+         } else {
+            operationHandler.get().execute(operation);
+         }
+      }
+   }
 
 }

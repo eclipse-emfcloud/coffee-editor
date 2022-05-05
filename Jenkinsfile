@@ -79,13 +79,25 @@ pipeline {
         }
 
         stage('Store artefacts') {
-            // when { branch 'master' }
+            when { branch 'master' }
             steps {
                 container('ci') {
                     archiveArtifacts artifacts: 'backend/releng/org.eclipse.emfcloud.coffee.product/target/products/*.zip' , fingerprint: true
                     archiveArtifacts artifacts: 'web/browser-app/**', fingerprint: true
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            // Record & publish checkstyle issues
+            recordIssues  enabledForFailure: true, publishAllIssues: true,
+            tool: checkStyle(reportEncoding: 'UTF-8'),
+            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
+
+            // Record maven,java warnings
+            recordIssues enabledForFailure: true, skipPublishingChecks:true, tools: [mavenConsole(), java()]
         }
     }
 }

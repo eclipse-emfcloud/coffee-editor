@@ -135,7 +135,7 @@ fi
 if [ "$buildFrontend" == "true" ]; then
   cd web/
   yarn cache clean
-  yarn
+  yarn --ignore-engines --unsafe-perm
   cd ..
 fi
 

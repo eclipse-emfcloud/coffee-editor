@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (c) 2019-2020 EclipseSource and others.
-  
-  This program and the accompanying materials are made available under the
-  terms of the Eclipse Public License v. 2.0 which is available at
-  https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
-  available at https://opensource.org/licenses/MIT.
-  
-  SPDX-License-Identifier: EPL-2.0 OR MIT
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- Copyright (c) 2019-2020 EclipseSource and others. This program and the 
+	accompanying materials are made available under the terms of the Eclipse 
+	Public License v. 2.0 which is available at https://www.eclipse.org/legal/epl-2.0, 
+	or the MIT License which is available at https://opensource.org/licenses/MIT. 
+	SPDX-License-Identifier: EPL-2.0 OR MIT -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 
@@ -64,6 +61,9 @@
 		<xtend.version>${xtext.version}</xtend.version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		<maven.checkstyle.version>3.1.1</maven.checkstyle.version>
+		<puppycrawl.checkstyle.version>8.44</puppycrawl.checkstyle.version>
+		<emfcloud.checkstyle.version>0.1.0-SNAPSHOT</emfcloud.checkstyle.version>
 	</properties>
 
 	<build>
@@ -105,6 +105,37 @@
 						</environment>
 					</environments>
 				</configuration>
+			</plugin>
+			<!-- Check Style: to disable use -Dcheckstyle.skip -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven.checkstyle.version}</version>
+				<configuration>
+					<configLocation>emfcloud-checkstyle-8.44.xml</configLocation>
+					<consoleOutput>true</consoleOutput>
+					<suppressionsLocation>.settings/checkstyle-suppressions.xml</suppressionsLocation>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>verify</phase>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${puppycrawl.checkstyle.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.emfcloud</groupId>
+						<artifactId>org.eclipse.emfcloud.checkstyle</artifactId>
+						<version>${emfcloud.checkstyle.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -247,10 +278,7 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<!--
-						Can be removed after first generator execution
-						https://bugs.eclipse.org/bugs/show_bug.cgi?id=480097
-					-->
+					<!-- Can be removed after first generator execution https://bugs.eclipse.org/bugs/show_bug.cgi?id=480097 -->
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-compiler-plugin</artifactId>
 					<version>${tycho-version}</version>
@@ -265,7 +293,8 @@
 					<version>${tycho-version}</version>
 					<configuration>
 						<!-- THE FOLLOWING LINE MUST NOT BE BROKEN BY AUTOFORMATTING -->
-						<argLine>${tycho.testArgLine} ${platformSystemProperties} ${systemProperties} ${moduleProperties}</argLine>
+						<argLine>${tycho.testArgLine} ${platformSystemProperties}
+							${systemProperties} ${moduleProperties}</argLine>
 					</configuration>
 				</plugin>
 			</plugins>

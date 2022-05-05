@@ -9,5 +9,6 @@
   <fileset name="all non-generated" enabled="true" check-config-name="EMF.cloud Checkstyle (8.44)" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
     <file-match-pattern match-pattern="src-gen" include-pattern="false"/>
+    <file-match-pattern match-pattern="xtend-gen" include-pattern="false"/>
   </fileset>
 </fileset-config>

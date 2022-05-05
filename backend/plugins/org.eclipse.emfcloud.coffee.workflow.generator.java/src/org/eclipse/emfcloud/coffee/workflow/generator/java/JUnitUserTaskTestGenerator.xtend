@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -81,9 +81,9 @@ class JUnitUserTaskTestGenerator {
 					// verify initial state
 					assertEquals("Unexpected task duration.", «task.duration», task.getDuration());
 					«IF task instanceof ManualTask»
-					assertEquals("Unexpected task actor.", "«(task as ManualTask).actor»", task.getActor());
-					«ELSE»
-					assertEquals("Unexpected task component.", "«(task as AutomaticTask).component»", task.getComponent());
+					assertEquals("Unexpected task actor.", "«task.actor»", task.getActor());
+					«ELSEIF task instanceof AutomaticTask»
+					assertEquals("Unexpected task component.", "«task.component»", task.getComponent());
 					«ENDIF»
 					
 					// verify preExecute
