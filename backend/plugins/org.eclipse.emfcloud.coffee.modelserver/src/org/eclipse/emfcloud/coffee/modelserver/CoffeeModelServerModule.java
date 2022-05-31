@@ -20,6 +20,7 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlow
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
+import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV1;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;

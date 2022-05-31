@@ -25,9 +25,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.Machine#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Machine#getWorkflows
- * <em>Workflows</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Machine#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Machine#getWorkflows <em>Workflows</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine()
@@ -48,9 +47,8 @@ public interface Machine extends Component {
    String getName();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Machine#getName
-    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Machine#getName <em>Name</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Name</em>' attribute.
     * @see #getName()
     * @generated
@@ -58,11 +56,10 @@ public interface Machine extends Component {
    void setName(String value);
 
    /**
-    * Returns the value of the '<em><b>Workflows</b></em>' containment reference
-    * list. The list contents are of type
-    * {@link org.eclipse.emfcloud.coffee.Workflow}. <!-- begin-user-doc --> <!--
+    * Returns the value of the '<em><b>Workflows</b></em>' containment reference list.
+    * The list contents are of type {@link org.eclipse.emfcloud.coffee.Workflow}.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the value of the '<em>Workflows</em>' containment reference list.
     * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Workflows()
     * @model containment="true" required="true"

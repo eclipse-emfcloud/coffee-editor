@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.Fork;
 public class ForkImpl extends NodeImpl implements Fork {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected ForkImpl() {
@@ -37,7 +36,6 @@ public class ForkImpl extends NodeImpl implements Fork {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override

@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.Flow#getSource <em>Source</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Flow#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Flow#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Flow#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getFlow()
@@ -47,9 +47,8 @@ public interface Flow extends EObject {
    Node getSource();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getSource
-    * <em>Source</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getSource <em>Source</em>}' reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Source</em>' reference.
     * @see #getSource()
     * @generated
@@ -69,9 +68,8 @@ public interface Flow extends EObject {
    Node getTarget();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getTarget
-    * <em>Target</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Flow#getTarget <em>Target</em>}' reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Target</em>' reference.
     * @see #getTarget()
     * @generated

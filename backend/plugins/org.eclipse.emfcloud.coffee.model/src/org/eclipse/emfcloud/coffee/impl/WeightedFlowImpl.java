@@ -29,17 +29,15 @@ import org.eclipse.emfcloud.coffee.WeightedFlow;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl#getProbability
- * <em>Probability</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl#getProbability <em>Probability</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
    /**
-    * The default value of the '{@link #getProbability() <em>Probability</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getProbability() <em>Probability</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getProbability()
     * @generated
     * @ordered
@@ -47,9 +45,8 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
    protected static final Probability PROBABILITY_EDEFAULT = Probability.LOW;
 
    /**
-    * The cached value of the '{@link #getProbability() <em>Probability</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getProbability() <em>Probability</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getProbability()
     * @generated
     * @ordered
@@ -58,7 +55,6 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected WeightedFlowImpl() {
@@ -67,7 +63,6 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -77,34 +72,31 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Probability getProbability() { return probability; }
-
-   /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @generated
-    */
-   @Override
-   public void setProbability(final Probability newProbability) {
-      Probability oldProbability = probability;
-      probability = newProbability == null ? PROBABILITY_EDEFAULT : newProbability;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WEIGHTED_FLOW__PROBABILITY,
-            oldProbability, probability));
-      }
+   public Probability getProbability() {
+      return probability;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public void setProbability(Probability newProbability) {
+      Probability oldProbability = probability;
+      probability = newProbability == null ? PROBABILITY_EDEFAULT : newProbability;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WEIGHTED_FLOW__PROBABILITY, oldProbability, probability));
+   }
+
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.WEIGHTED_FLOW__PROBABILITY:
             return getProbability();
@@ -114,14 +106,13 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.WEIGHTED_FLOW__PROBABILITY:
-            setProbability((Probability) newValue);
+            setProbability((Probability)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -129,11 +120,10 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.WEIGHTED_FLOW__PROBABILITY:
             setProbability(PROBABILITY_EDEFAULT);
@@ -144,11 +134,10 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.WEIGHTED_FLOW__PROBABILITY:
             return probability != PROBABILITY_EDEFAULT;
@@ -158,14 +147,11 @@ public class WeightedFlowImpl extends FlowImpl implements WeightedFlow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (probability: ");

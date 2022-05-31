@@ -36,10 +36,8 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.TaskImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.TaskImpl#getDuration
- * <em>Duration</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.TaskImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.TaskImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,9 +64,8 @@ public abstract class TaskImpl extends NodeImpl implements Task {
    protected String name = NAME_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getDuration() <em>Duration</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getDuration()
     * @generated
     * @ordered
@@ -78,7 +75,6 @@ public abstract class TaskImpl extends NodeImpl implements Task {
    /**
     * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getDuration()
     * @generated
     * @ordered
@@ -87,7 +83,6 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected TaskImpl() {
@@ -96,7 +91,6 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -106,46 +100,44 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getName() { return name; }
-
-   /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @generated
-    */
-   @Override
-   public void setName(final String newName) {
-      String oldName = name;
-      name = newName;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.TASK__NAME, oldName, name));
-      }
+   public String getName() {
+      return name;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getDuration() { return duration; }
+   public void setName(String newName) {
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.TASK__NAME, oldName, name));
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setDuration(final int newDuration) {
+   public int getDuration() {
+      return duration;
+   }
+
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public void setDuration(int newDuration) {
       int oldDuration = duration;
       duration = newDuration;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.TASK__DURATION, oldDuration, duration));
-      }
    }
 
    /**
@@ -203,11 +195,10 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.TASK__NAME:
             return getName();
@@ -219,17 +210,16 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.TASK__NAME:
-            setName((String) newValue);
+            setName((String)newValue);
             return;
          case CoffeePackage.TASK__DURATION:
-            setDuration((Integer) newValue);
+            setDuration((Integer)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -237,11 +227,10 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.TASK__NAME:
             setName(NAME_EDEFAULT);
@@ -255,11 +244,10 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.TASK__NAME:
             return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
@@ -271,32 +259,28 @@ public abstract class TaskImpl extends NodeImpl implements Task {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
       switch (operationID) {
          case CoffeePackage.TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP:
-            return hasAtMostOneIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasAtMostOneIncoming((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
          case CoffeePackage.TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP:
-            return hasAtMostOneOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasAtMostOneOutgoing((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
          case CoffeePackage.TASK___IS_USED__DIAGNOSTICCHAIN_MAP:
-            return isUsed((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return isUsed((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
       }
       return super.eInvoke(operationID, arguments);
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (name: ");

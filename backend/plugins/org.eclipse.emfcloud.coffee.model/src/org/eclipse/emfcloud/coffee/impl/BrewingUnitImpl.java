@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 public class BrewingUnitImpl extends ComponentImpl implements BrewingUnit {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected BrewingUnitImpl() {
@@ -37,7 +36,6 @@ public class BrewingUnitImpl extends ComponentImpl implements BrewingUnit {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override

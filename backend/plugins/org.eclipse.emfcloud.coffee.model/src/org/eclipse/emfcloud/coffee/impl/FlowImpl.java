@@ -31,10 +31,8 @@ import org.eclipse.emfcloud.coffee.Node;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.FlowImpl#getSource
- * <em>Source</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.FlowImpl#getTarget
- * <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.FlowImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.FlowImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,7 +41,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
    /**
     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getSource()
     * @generated
     * @ordered
@@ -53,7 +50,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
    /**
     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getTarget()
     * @generated
     * @ordered
@@ -62,7 +58,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected FlowImpl() {
@@ -71,7 +66,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -81,19 +75,16 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public Node getSource() {
       if (source != null && source.eIsProxy()) {
-         InternalEObject oldSource = (InternalEObject) source;
-         source = (Node) eResolveProxy(oldSource);
+         InternalEObject oldSource = (InternalEObject)source;
+         source = (Node)eResolveProxy(oldSource);
          if (source != oldSource) {
-            if (eNotificationRequired()) {
-               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.FLOW__SOURCE, oldSource,
-                  source));
-            }
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.FLOW__SOURCE, oldSource, source));
          }
       }
       return source;
@@ -101,7 +92,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    public Node basicGetSource() {
@@ -110,33 +100,28 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setSource(final Node newSource) {
+   public void setSource(Node newSource) {
       Node oldSource = source;
       source = newSource;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.FLOW__SOURCE, oldSource, source));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public Node getTarget() {
       if (target != null && target.eIsProxy()) {
-         InternalEObject oldTarget = (InternalEObject) target;
-         target = (Node) eResolveProxy(oldTarget);
+         InternalEObject oldTarget = (InternalEObject)target;
+         target = (Node)eResolveProxy(oldTarget);
          if (target != oldTarget) {
-            if (eNotificationRequired()) {
-               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.FLOW__TARGET, oldTarget,
-                  target));
-            }
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.FLOW__TARGET, oldTarget, target));
          }
       }
       return target;
@@ -144,7 +129,6 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    public Node basicGetTarget() {
@@ -153,35 +137,28 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setTarget(final Node newTarget) {
+   public void setTarget(Node newTarget) {
       Node oldTarget = target;
       target = newTarget;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.FLOW__TARGET, oldTarget, target));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.FLOW__SOURCE:
-            if (resolve) {
-               return getSource();
-            }
+            if (resolve) return getSource();
             return basicGetSource();
          case CoffeePackage.FLOW__TARGET:
-            if (resolve) {
-               return getTarget();
-            }
+            if (resolve) return getTarget();
             return basicGetTarget();
       }
       return super.eGet(featureID, resolve, coreType);
@@ -189,17 +166,16 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.FLOW__SOURCE:
-            setSource((Node) newValue);
+            setSource((Node)newValue);
             return;
          case CoffeePackage.FLOW__TARGET:
-            setTarget((Node) newValue);
+            setTarget((Node)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -207,17 +183,16 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.FLOW__SOURCE:
-            setSource((Node) null);
+            setSource((Node)null);
             return;
          case CoffeePackage.FLOW__TARGET:
-            setTarget((Node) null);
+            setTarget((Node)null);
             return;
       }
       super.eUnset(featureID);
@@ -225,11 +200,10 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.FLOW__SOURCE:
             return source != null;

@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.modelserver;
 import java.util.Collection;
 
 import org.eclipse.emfcloud.coffee.CoffeePackage;
+import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
 import com.google.common.collect.Lists;

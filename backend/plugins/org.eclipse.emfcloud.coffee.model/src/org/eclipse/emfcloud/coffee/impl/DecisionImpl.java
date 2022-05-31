@@ -36,7 +36,6 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
 public class DecisionImpl extends NodeImpl implements Decision {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected DecisionImpl() {
@@ -45,7 +44,6 @@ public class DecisionImpl extends NodeImpl implements Decision {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -91,16 +89,15 @@ public class DecisionImpl extends NodeImpl implements Decision {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
       switch (operationID) {
          case CoffeePackage.DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP:
-            return hasOneIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasOneIncoming((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
          case CoffeePackage.DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP:
-            return hasTwoOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasTwoOutgoing((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
       }
       return super.eInvoke(operationID, arguments);
    }

@@ -36,7 +36,6 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
 public class MergeImpl extends NodeImpl implements Merge {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected MergeImpl() {
@@ -45,7 +44,6 @@ public class MergeImpl extends NodeImpl implements Merge {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -91,16 +89,15 @@ public class MergeImpl extends NodeImpl implements Merge {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
       switch (operationID) {
          case CoffeePackage.MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP:
-            return hasTwoIncoming((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasTwoIncoming((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
          case CoffeePackage.MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP:
-            return hasOneOutgoing((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasOneOutgoing((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
       }
       return super.eInvoke(operationID, arguments);
    }

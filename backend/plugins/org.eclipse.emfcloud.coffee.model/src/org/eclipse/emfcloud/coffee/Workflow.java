@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.Workflow#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Workflow#getNodes <em>Nodes</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Workflow#getFlows <em>Flows</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Workflow#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Workflow#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Workflow#getFlows <em>Flows</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow()
@@ -49,9 +49,8 @@ public interface Workflow extends EObject {
    String getName();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Workflow#getName
-    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Workflow#getName <em>Name</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Name</em>' attribute.
     * @see #getName()
     * @generated

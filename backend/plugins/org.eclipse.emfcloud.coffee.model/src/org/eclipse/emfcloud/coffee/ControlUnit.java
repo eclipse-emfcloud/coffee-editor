@@ -25,15 +25,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor
- * <em>Processor</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension
- * <em>Dimension</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getRam <em>Ram</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay
- * <em>Display</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription
- * <em>User Description</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor <em>Processor</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getRam <em>Ram</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User Description</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit()
@@ -44,7 +40,6 @@ public interface ControlUnit extends Component {
    /**
     * Returns the value of the '<em><b>Processor</b></em>' containment reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the value of the '<em>Processor</em>' containment reference.
     * @see #setProcessor(Processor)
     * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Processor()
@@ -54,11 +49,9 @@ public interface ControlUnit extends Component {
    Processor getProcessor();
 
    /**
-    * Sets the value of the
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor
-    * <em>Processor</em>}' containment reference. <!-- begin-user-doc --> <!--
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor <em>Processor</em>}' containment reference.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @param value the new value of the '<em>Processor</em>' containment reference.
     * @see #getProcessor()
     * @generated
@@ -68,7 +61,6 @@ public interface ControlUnit extends Component {
    /**
     * Returns the value of the '<em><b>Dimension</b></em>' containment reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the value of the '<em>Dimension</em>' containment reference.
     * @see #setDimension(Dimension)
     * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Dimension()
@@ -78,11 +70,9 @@ public interface ControlUnit extends Component {
    Dimension getDimension();
 
    /**
-    * Sets the value of the
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension
-    * <em>Dimension</em>}' containment reference. <!-- begin-user-doc --> <!--
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension <em>Dimension</em>}' containment reference.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @param value the new value of the '<em>Dimension</em>' containment reference.
     * @see #getDimension()
     * @generated
@@ -104,7 +94,6 @@ public interface ControlUnit extends Component {
    /**
     * Returns the value of the '<em><b>Display</b></em>' containment reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the value of the '<em>Display</em>' containment reference.
     * @see #setDisplay(Display)
     * @see org.eclipse.emfcloud.coffee.CoffeePackage#getControlUnit_Display()
@@ -114,10 +103,8 @@ public interface ControlUnit extends Component {
    Display getDisplay();
 
    /**
-    * Sets the value of the
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}'
-    * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}' containment reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Display</em>' containment reference.
     * @see #getDisplay()
     * @generated
@@ -137,10 +124,8 @@ public interface ControlUnit extends Component {
    String getUserDescription();
 
    /**
-    * Sets the value of the
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User
-    * Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User Description</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>User Description</em>' attribute.
     * @see #getUserDescription()
     * @generated

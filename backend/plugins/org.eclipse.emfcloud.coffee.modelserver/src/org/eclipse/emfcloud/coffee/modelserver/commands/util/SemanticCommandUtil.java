@@ -23,7 +23,7 @@ import org.eclipse.emfcloud.coffee.ManualTask;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
+import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.util.CommandUtil;

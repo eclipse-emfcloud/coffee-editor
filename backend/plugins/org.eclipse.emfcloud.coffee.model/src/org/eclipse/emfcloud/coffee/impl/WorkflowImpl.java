@@ -38,12 +38,9 @@ import org.eclipse.emfcloud.coffee.Workflow;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getNodes
- * <em>Nodes</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getFlows
- * <em>Flows</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl#getFlows <em>Flows</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,9 +67,8 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
    protected String name = NAME_EDEFAULT;
 
    /**
-    * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment
-    * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getNodes()
     * @generated
     * @ordered
@@ -80,9 +76,8 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
    protected EList<Node> nodes;
 
    /**
-    * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment
-    * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment reference list.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getFlows()
     * @generated
     * @ordered
@@ -91,7 +86,6 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected WorkflowImpl() {
@@ -100,7 +94,6 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -110,76 +103,70 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getName() { return name; }
-
-   /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @generated
-    */
-   @Override
-   public void setName(final String newName) {
-      String oldName = name;
-      name = newName;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WORKFLOW__NAME, oldName, name));
-      }
+   public String getName() {
+      return name;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * @generated
+    */
+   @Override
+   public void setName(String newName) {
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.WORKFLOW__NAME, oldName, name));
+   }
+
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    @Override
    public EList<Node> getNodes() {
       if (nodes == null) {
-         nodes = new EObjectContainmentEList<>(Node.class, this, CoffeePackage.WORKFLOW__NODES);
+         nodes = new EObjectContainmentEList<Node>(Node.class, this, CoffeePackage.WORKFLOW__NODES);
       }
       return nodes;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public EList<Flow> getFlows() {
       if (flows == null) {
-         flows = new EObjectContainmentEList<>(Flow.class, this, CoffeePackage.WORKFLOW__FLOWS);
+         flows = new EObjectContainmentEList<Flow>(Flow.class, this, CoffeePackage.WORKFLOW__FLOWS);
       }
       return flows;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-      final NotificationChain msgs) {
+   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
       switch (featureID) {
          case CoffeePackage.WORKFLOW__NODES:
-            return ((InternalEList<?>) getNodes()).basicRemove(otherEnd, msgs);
+            return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
          case CoffeePackage.WORKFLOW__FLOWS:
-            return ((InternalEList<?>) getFlows()).basicRemove(otherEnd, msgs);
+            return ((InternalEList<?>)getFlows()).basicRemove(otherEnd, msgs);
       }
       return super.eInverseRemove(otherEnd, featureID, msgs);
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.WORKFLOW__NAME:
             return getName();
@@ -193,23 +180,22 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @SuppressWarnings("unchecked")
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.WORKFLOW__NAME:
-            setName((String) newValue);
+            setName((String)newValue);
             return;
          case CoffeePackage.WORKFLOW__NODES:
             getNodes().clear();
-            getNodes().addAll((Collection<? extends Node>) newValue);
+            getNodes().addAll((Collection<? extends Node>)newValue);
             return;
          case CoffeePackage.WORKFLOW__FLOWS:
             getFlows().clear();
-            getFlows().addAll((Collection<? extends Flow>) newValue);
+            getFlows().addAll((Collection<? extends Flow>)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -217,11 +203,10 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.WORKFLOW__NAME:
             setName(NAME_EDEFAULT);
@@ -238,11 +223,10 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.WORKFLOW__NAME:
             return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
@@ -256,14 +240,11 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (name: ");

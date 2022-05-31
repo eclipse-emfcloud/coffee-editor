@@ -29,10 +29,8 @@ import org.eclipse.emfcloud.coffee.Display;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl#getWidth
- * <em>Width</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl#getHeight
- * <em>Height</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl#getHeight <em>Height</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,7 +59,6 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
    /**
     * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getHeight()
     * @generated
     * @ordered
@@ -71,7 +68,6 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
    /**
     * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getHeight()
     * @generated
     * @ordered
@@ -80,7 +76,6 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected DisplayImpl() {
@@ -89,7 +84,6 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -99,55 +93,52 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getWidth() { return width; }
+   public int getWidth() {
+      return width;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setWidth(final int newWidth) {
+   public void setWidth(int newWidth) {
       int oldWidth = width;
       width = newWidth;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.DISPLAY__WIDTH, oldWidth, width));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getHeight() { return height; }
+   public int getHeight() {
+      return height;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setHeight(final int newHeight) {
+   public void setHeight(int newHeight) {
       int oldHeight = height;
       height = newHeight;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.DISPLAY__HEIGHT, oldHeight, height));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.DISPLAY__WIDTH:
             return getWidth();
@@ -159,17 +150,16 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.DISPLAY__WIDTH:
-            setWidth((Integer) newValue);
+            setWidth((Integer)newValue);
             return;
          case CoffeePackage.DISPLAY__HEIGHT:
-            setHeight((Integer) newValue);
+            setHeight((Integer)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -177,11 +167,10 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.DISPLAY__WIDTH:
             setWidth(WIDTH_EDEFAULT);
@@ -195,11 +184,10 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.DISPLAY__WIDTH:
             return width != WIDTH_EDEFAULT;
@@ -211,14 +199,11 @@ public class DisplayImpl extends MinimalEObjectImpl.Container implements Display
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (width: ");

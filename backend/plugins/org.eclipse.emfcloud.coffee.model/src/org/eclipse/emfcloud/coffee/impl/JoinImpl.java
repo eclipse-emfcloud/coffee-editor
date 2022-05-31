@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.Join;
 public class JoinImpl extends NodeImpl implements Join {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected JoinImpl() {
@@ -37,7 +36,6 @@ public class JoinImpl extends NodeImpl implements Join {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override

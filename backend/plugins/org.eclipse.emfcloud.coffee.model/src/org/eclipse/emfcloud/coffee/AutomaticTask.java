@@ -18,8 +18,7 @@ package org.eclipse.emfcloud.coffee;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent
- * <em>Component</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent <em>Component</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getAutomaticTask()
@@ -40,10 +39,8 @@ public interface AutomaticTask extends Task {
    Component getComponent();
 
    /**
-    * Sets the value of the
-    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent
-    * <em>Component</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent <em>Component</em>}' reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Component</em>' reference.
     * @see #getComponent()
     * @generated

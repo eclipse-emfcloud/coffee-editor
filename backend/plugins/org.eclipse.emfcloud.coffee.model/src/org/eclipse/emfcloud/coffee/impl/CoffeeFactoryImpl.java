@@ -49,24 +49,23 @@ import org.eclipse.emfcloud.coffee.Workflow;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- *
  * @generated
  */
 public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
    /**
-    * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+    * Creates the default factory implementation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @generated
     */
    public static CoffeeFactory init() {
       try {
-         CoffeeFactory theCoffeeFactory = (CoffeeFactory) EPackage.Registry.INSTANCE
-            .getEFactory(CoffeePackage.eNS_URI);
+         CoffeeFactory theCoffeeFactory = (CoffeeFactory)EPackage.Registry.INSTANCE.getEFactory(CoffeePackage.eNS_URI);
          if (theCoffeeFactory != null) {
             return theCoffeeFactory;
          }
-      } catch (Exception exception) {
+      }
+      catch (Exception exception) {
          EcorePlugin.INSTANCE.log(exception);
       }
       return new CoffeeFactoryImpl();
@@ -84,48 +83,29 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public EObject create(final EClass eClass) {
+   public EObject create(EClass eClass) {
       switch (eClass.getClassifierID()) {
-         case CoffeePackage.MACHINE:
-            return createMachine();
-         case CoffeePackage.CONTROL_UNIT:
-            return createControlUnit();
-         case CoffeePackage.BREWING_UNIT:
-            return createBrewingUnit();
-         case CoffeePackage.DIP_TRAY:
-            return createDipTray();
-         case CoffeePackage.WATER_TANK:
-            return createWaterTank();
-         case CoffeePackage.PROCESSOR:
-            return createProcessor();
-         case CoffeePackage.DIMENSION:
-            return createDimension();
-         case CoffeePackage.RAM:
-            return createRAM();
-         case CoffeePackage.DISPLAY:
-            return createDisplay();
-         case CoffeePackage.WORKFLOW:
-            return createWorkflow();
-         case CoffeePackage.AUTOMATIC_TASK:
-            return createAutomaticTask();
-         case CoffeePackage.MANUAL_TASK:
-            return createManualTask();
-         case CoffeePackage.FORK:
-            return createFork();
-         case CoffeePackage.JOIN:
-            return createJoin();
-         case CoffeePackage.DECISION:
-            return createDecision();
-         case CoffeePackage.MERGE:
-            return createMerge();
-         case CoffeePackage.FLOW:
-            return createFlow();
-         case CoffeePackage.WEIGHTED_FLOW:
-            return createWeightedFlow();
+         case CoffeePackage.MACHINE: return createMachine();
+         case CoffeePackage.CONTROL_UNIT: return createControlUnit();
+         case CoffeePackage.BREWING_UNIT: return createBrewingUnit();
+         case CoffeePackage.DIP_TRAY: return createDipTray();
+         case CoffeePackage.WATER_TANK: return createWaterTank();
+         case CoffeePackage.PROCESSOR: return createProcessor();
+         case CoffeePackage.DIMENSION: return createDimension();
+         case CoffeePackage.RAM: return createRAM();
+         case CoffeePackage.DISPLAY: return createDisplay();
+         case CoffeePackage.WORKFLOW: return createWorkflow();
+         case CoffeePackage.AUTOMATIC_TASK: return createAutomaticTask();
+         case CoffeePackage.MANUAL_TASK: return createManualTask();
+         case CoffeePackage.FORK: return createFork();
+         case CoffeePackage.JOIN: return createJoin();
+         case CoffeePackage.DECISION: return createDecision();
+         case CoffeePackage.MERGE: return createMerge();
+         case CoffeePackage.FLOW: return createFlow();
+         case CoffeePackage.WEIGHTED_FLOW: return createWeightedFlow();
          default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
       }
@@ -133,11 +113,10 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object createFromString(final EDataType eDataType, final String initialValue) {
+   public Object createFromString(EDataType eDataType, String initialValue) {
       switch (eDataType.getClassifierID()) {
          case CoffeePackage.SOCKET_CONNECTOR_TYPE:
             return createSocketConnectorTypeFromString(eDataType, initialValue);
@@ -156,11 +135,10 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String convertToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertToString(EDataType eDataType, Object instanceValue) {
       switch (eDataType.getClassifierID()) {
          case CoffeePackage.SOCKET_CONNECTOR_TYPE:
             return convertSocketConnectorTypeToString(eDataType, instanceValue);
@@ -179,7 +157,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -190,7 +167,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -201,7 +177,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -212,7 +187,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -223,7 +197,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -234,7 +207,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -245,7 +217,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -256,7 +227,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -267,7 +237,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -278,7 +247,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -289,7 +257,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -300,7 +267,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -311,7 +277,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -322,7 +287,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -333,7 +297,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -344,7 +307,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -355,7 +317,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -366,7 +327,6 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -377,131 +337,109 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public SocketConnectorType createSocketConnectorTypeFromString(final EDataType eDataType,
-      final String initialValue) {
+   public SocketConnectorType createSocketConnectorTypeFromString(EDataType eDataType, String initialValue) {
       SocketConnectorType result = SocketConnectorType.get(initialValue);
-      if (result == null) {
-         throw new IllegalArgumentException(
-            "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-      }
+      if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
       return result;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String convertSocketConnectorTypeToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertSocketConnectorTypeToString(EDataType eDataType, Object instanceValue) {
       return instanceValue == null ? null : instanceValue.toString();
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public ManufactoringProcess createManufactoringProcessFromString(final EDataType eDataType,
-      final String initialValue) {
+   public ManufactoringProcess createManufactoringProcessFromString(EDataType eDataType, String initialValue) {
       ManufactoringProcess result = ManufactoringProcess.get(initialValue);
-      if (result == null) {
-         throw new IllegalArgumentException(
-            "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-      }
+      if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
       return result;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String convertManufactoringProcessToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertManufactoringProcessToString(EDataType eDataType, Object instanceValue) {
       return instanceValue == null ? null : instanceValue.toString();
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public RamType createRamTypeFromString(final EDataType eDataType, final String initialValue) {
+   public RamType createRamTypeFromString(EDataType eDataType, String initialValue) {
       RamType result = RamType.get(initialValue);
-      if (result == null) {
-         throw new IllegalArgumentException(
-            "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-      }
+      if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
       return result;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String convertRamTypeToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertRamTypeToString(EDataType eDataType, Object instanceValue) {
       return instanceValue == null ? null : instanceValue.toString();
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public Probability createProbabilityFromString(final EDataType eDataType, final String initialValue) {
+   public Probability createProbabilityFromString(EDataType eDataType, String initialValue) {
       Probability result = Probability.get(initialValue);
-      if (result == null) {
-         throw new IllegalArgumentException(
-            "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-      }
+      if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
       return result;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String convertProbabilityToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertProbabilityToString(EDataType eDataType, Object instanceValue) {
       return instanceValue == null ? null : instanceValue.toString();
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String createTaskNameFromString(final EDataType eDataType, final String initialValue) {
-      return (String) super.createFromString(eDataType, initialValue);
+   public String createTaskNameFromString(EDataType eDataType, String initialValue) {
+      return (String)super.createFromString(eDataType, initialValue);
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public String convertTaskNameToString(final EDataType eDataType, final Object instanceValue) {
+   public String convertTaskNameToString(EDataType eDataType, Object instanceValue) {
       return super.convertToString(eDataType, instanceValue);
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public CoffeePackage getCoffeePackage() { return (CoffeePackage) getEPackage(); }
+   public CoffeePackage getCoffeePackage() {
+      return (CoffeePackage)getEPackage();
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @deprecated
     * @generated
     */
    @Deprecated
-   public static CoffeePackage getPackage() { return CoffeePackage.eINSTANCE; }
+   public static CoffeePackage getPackage() {
+      return CoffeePackage.eINSTANCE;
+   }
 
 } // CoffeeFactoryImpl

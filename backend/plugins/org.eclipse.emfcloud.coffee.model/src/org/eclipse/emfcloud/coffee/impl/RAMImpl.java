@@ -30,21 +30,17 @@ import org.eclipse.emfcloud.coffee.RamType;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getClockSpeed <em>Clock
- * Speed</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getSize
- * <em>Size</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getType
- * <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getClockSpeed <em>Clock Speed</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
    /**
-    * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getClockSpeed()
     * @generated
     * @ordered
@@ -52,9 +48,8 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
    protected static final int CLOCK_SPEED_EDEFAULT = 0;
 
    /**
-    * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getClockSpeed()
     * @generated
     * @ordered
@@ -103,7 +98,6 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected RAMImpl() {
@@ -112,7 +106,6 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -122,78 +115,73 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getClockSpeed() { return clockSpeed; }
+   public int getClockSpeed() {
+      return clockSpeed;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setClockSpeed(final int newClockSpeed) {
+   public void setClockSpeed(int newClockSpeed) {
       int oldClockSpeed = clockSpeed;
       clockSpeed = newClockSpeed;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__CLOCK_SPEED, oldClockSpeed,
-            clockSpeed));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__CLOCK_SPEED, oldClockSpeed, clockSpeed));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getSize() { return size; }
+   public int getSize() {
+      return size;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setSize(final int newSize) {
+   public void setSize(int newSize) {
       int oldSize = size;
       size = newSize;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__SIZE, oldSize, size));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public RamType getType() { return type; }
+   public RamType getType() {
+      return type;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setType(final RamType newType) {
+   public void setType(RamType newType) {
       RamType oldType = type;
       type = newType == null ? TYPE_EDEFAULT : newType;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__TYPE, oldType, type));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.RAM__CLOCK_SPEED:
             return getClockSpeed();
@@ -207,20 +195,19 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.RAM__CLOCK_SPEED:
-            setClockSpeed((Integer) newValue);
+            setClockSpeed((Integer)newValue);
             return;
          case CoffeePackage.RAM__SIZE:
-            setSize((Integer) newValue);
+            setSize((Integer)newValue);
             return;
          case CoffeePackage.RAM__TYPE:
-            setType((RamType) newValue);
+            setType((RamType)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -228,11 +215,10 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.RAM__CLOCK_SPEED:
             setClockSpeed(CLOCK_SPEED_EDEFAULT);
@@ -249,11 +235,10 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.RAM__CLOCK_SPEED:
             return clockSpeed != CLOCK_SPEED_EDEFAULT;
@@ -267,14 +252,11 @@ public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (clockSpeed: ");

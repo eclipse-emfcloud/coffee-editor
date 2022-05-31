@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.modelserver;
 import java.net.MalformedURLException;
 import java.util.Map;
 
+import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.client.v1.ModelServerClientV1;
 import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV1;
 import org.eclipse.emfcloud.modelserver.common.codecs.Codec;

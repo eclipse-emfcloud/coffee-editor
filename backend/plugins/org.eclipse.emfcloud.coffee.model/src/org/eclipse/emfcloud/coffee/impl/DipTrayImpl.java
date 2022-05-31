@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.DipTray;
 public class DipTrayImpl extends ComponentImpl implements DipTray {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected DipTrayImpl() {
@@ -37,7 +36,6 @@ public class DipTrayImpl extends ComponentImpl implements DipTray {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
