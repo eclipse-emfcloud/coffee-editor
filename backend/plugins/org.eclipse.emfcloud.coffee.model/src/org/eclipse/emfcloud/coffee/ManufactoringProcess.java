@@ -25,16 +25,15 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc --> A representation of the literals of the enumeration
  * '<em><b>Manufactoring Process</b></em>', and utility methods for working with
  * them. <!-- end-user-doc -->
- *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getManufactoringProcess()
  * @model
  * @generated
  */
 public enum ManufactoringProcess implements Enumerator {
    /**
-    * The '<em><b>Nm18</b></em>' literal object. <!-- begin-user-doc --> <!--
+    * The '<em><b>Nm18</b></em>' literal object.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @see #NM18_VALUE
     * @generated
     * @ordered
@@ -42,9 +41,9 @@ public enum ManufactoringProcess implements Enumerator {
    NM18(0, "nm18", "18nm"),
 
    /**
-    * The '<em><b>Nm25</b></em>' literal object. <!-- begin-user-doc --> <!--
+    * The '<em><b>Nm25</b></em>' literal object.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @see #NM25_VALUE
     * @generated
     * @ordered
@@ -52,9 +51,9 @@ public enum ManufactoringProcess implements Enumerator {
    NM25(1, "nm25", "nm25");
 
    /**
-    * The '<em><b>Nm18</b></em>' literal value. <!-- begin-user-doc --> <!--
+    * The '<em><b>Nm18</b></em>' literal value.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @see #NM18
     * @model name="nm18" literal="18nm"
     * @generated
@@ -63,9 +62,9 @@ public enum ManufactoringProcess implements Enumerator {
    public static final int NM18_VALUE = 0;
 
    /**
-    * The '<em><b>Nm25</b></em>' literal value. <!-- begin-user-doc --> <!--
+    * The '<em><b>Nm25</b></em>' literal value.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @see #NM25
     * @model name="nm25"
     * @generated
@@ -79,26 +78,28 @@ public enum ManufactoringProcess implements Enumerator {
     *
     * @generated
     */
-   private static final ManufactoringProcess[] VALUES_ARRAY = new ManufactoringProcess[] { NM18, NM25, };
+   private static final ManufactoringProcess[] VALUES_ARRAY = new ManufactoringProcess[] {
+         NM18,
+         NM25,
+      };
 
    /**
-    * A public read-only list of all the '<em><b>Manufactoring Process</b></em>'
-    * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * A public read-only list of all the '<em><b>Manufactoring Process</b></em>' enumerators.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    public static final List<ManufactoringProcess> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
    /**
-    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the
-    * specified literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the specified literal value.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param literal the literal.
     * @return the matching enumerator or <code>null</code>.
     * @generated
     */
-   public static ManufactoringProcess get(final String literal) {
-      for (ManufactoringProcess result : VALUES_ARRAY) {
+   public static ManufactoringProcess get(String literal) {
+      for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+         ManufactoringProcess result = VALUES_ARRAY[i];
          if (result.toString().equals(literal)) {
             return result;
          }
@@ -107,15 +108,15 @@ public enum ManufactoringProcess implements Enumerator {
    }
 
    /**
-    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the
-    * specified name. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the specified name.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param name the name.
     * @return the matching enumerator or <code>null</code>.
     * @generated
     */
-   public static ManufactoringProcess getByName(final String name) {
-      for (ManufactoringProcess result : VALUES_ARRAY) {
+   public static ManufactoringProcess getByName(String name) {
+      for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+         ManufactoringProcess result = VALUES_ARRAY[i];
          if (result.getName().equals(name)) {
             return result;
          }
@@ -124,51 +125,45 @@ public enum ManufactoringProcess implements Enumerator {
    }
 
    /**
-    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the
-    * specified integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the '<em><b>Manufactoring Process</b></em>' literal with the specified integer value.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the integer value.
     * @return the matching enumerator or <code>null</code>.
     * @generated
     */
-   public static ManufactoringProcess get(final int value) {
+   public static ManufactoringProcess get(int value) {
       switch (value) {
-         case NM18_VALUE:
-            return NM18;
-         case NM25_VALUE:
-            return NM25;
+         case NM18_VALUE: return NM18;
+         case NM25_VALUE: return NM25;
       }
       return null;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    private final int value;
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    private final String name;
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    private final String literal;
 
    /**
-    * Only this class can construct instances. <!-- begin-user-doc --> <!--
+    * Only this class can construct instances.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @generated
     */
-   ManufactoringProcess(final int value, final String name, final String literal) {
+   private ManufactoringProcess(int value, String name, String literal) {
       this.value = value;
       this.name = name;
       this.literal = literal;
@@ -176,32 +171,34 @@ public enum ManufactoringProcess implements Enumerator {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getValue() { return value; }
+   public int getValue() {
+     return value;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getName() { return name; }
+   public String getName() {
+     return name;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getLiteral() { return literal; }
+   public String getLiteral() {
+     return literal;
+   }
 
    /**
-    * Returns the literal value of the enumerator, which is its string
-    * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the literal value of the enumerator, which is its string representation.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    @Override

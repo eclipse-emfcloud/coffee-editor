@@ -28,8 +28,7 @@ import org.eclipse.emfcloud.coffee.ManualTask;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl#getActor
- * <em>Actor</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl#getActor <em>Actor</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,7 +56,6 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected ManualTaskImpl() {
@@ -66,7 +64,6 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -76,33 +73,31 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getActor() { return actor; }
-
-   /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @generated
-    */
-   @Override
-   public void setActor(final String newActor) {
-      String oldActor = actor;
-      actor = newActor;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.MANUAL_TASK__ACTOR, oldActor, actor));
-      }
+   public String getActor() {
+      return actor;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public void setActor(String newActor) {
+      String oldActor = actor;
+      actor = newActor;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.MANUAL_TASK__ACTOR, oldActor, actor));
+   }
+
+   /**
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.MANUAL_TASK__ACTOR:
             return getActor();
@@ -112,14 +107,13 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.MANUAL_TASK__ACTOR:
-            setActor((String) newValue);
+            setActor((String)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -127,11 +121,10 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.MANUAL_TASK__ACTOR:
             setActor(ACTOR_EDEFAULT);
@@ -142,11 +135,10 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.MANUAL_TASK__ACTOR:
             return ACTOR_EDEFAULT == null ? actor != null : !ACTOR_EDEFAULT.equals(actor);
@@ -156,14 +148,11 @@ public class ManualTaskImpl extends TaskImpl implements ManualTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (actor: ");

@@ -23,8 +23,7 @@ package org.eclipse.emfcloud.coffee;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability
- * <em>Probability</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability <em>Probability</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWeightedFlow()
@@ -33,11 +32,10 @@ package org.eclipse.emfcloud.coffee;
  */
 public interface WeightedFlow extends Flow {
    /**
-    * Returns the value of the '<em><b>Probability</b></em>' attribute. The
-    * literals are from the enumeration
-    * {@link org.eclipse.emfcloud.coffee.Probability}. <!-- begin-user-doc --> <!--
+    * Returns the value of the '<em><b>Probability</b></em>' attribute.
+    * The literals are from the enumeration {@link org.eclipse.emfcloud.coffee.Probability}.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the value of the '<em>Probability</em>' attribute.
     * @see org.eclipse.emfcloud.coffee.Probability
     * @see #setProbability(Probability)

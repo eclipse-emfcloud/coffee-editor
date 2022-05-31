@@ -32,7 +32,6 @@ public interface Decision extends Node {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */
@@ -40,7 +39,6 @@ public interface Decision extends Node {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */

@@ -1,17 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2019-2022 EclipseSource and others.
- *
+ * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
  * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
  * available at https://opensource.org/licenses/MIT.
- *
+ * 
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.dsl;
 
+import com.google.inject.Binder;
+import com.google.inject.Provider;
+import com.google.inject.name.Names;
 import java.util.Properties;
-
 import org.eclipse.emfcloud.coffee.workflow.dsl.formatting2.WorkflowFormatter;
 import org.eclipse.emfcloud.coffee.workflow.dsl.generator.WorkflowGenerator;
 import org.eclipse.emfcloud.coffee.workflow.dsl.parser.antlr.WorkflowAntlrTokenFileProvider;
@@ -60,174 +62,155 @@ import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
 
-import com.google.inject.Binder;
-import com.google.inject.Provider;
-import com.google.inject.name.Names;
-
 /**
  * Manual modifications go to {@link WorkflowRuntimeModule}.
  */
 @SuppressWarnings("all")
 public abstract class AbstractWorkflowRuntimeModule extends DefaultRuntimeModule {
 
-   protected Properties properties = null;
+	protected Properties properties = null;
 
-   @Override
-   public void configure(final Binder binder) {
-      properties = tryBindProperties(binder, "org/eclipse/emfcloud/coffee/workflow/dsl/Workflow.properties");
-      super.configure(binder);
-   }
-
-   public void configureLanguageName(final Binder binder) {
-      binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME))
-         .toInstance("org.eclipse.emfcloud.coffee.workflow.dsl.Workflow");
-   }
-
-   public void configureFileExtensions(final Binder binder) {
-      if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null) {
-         binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("wfconfig");
-      }
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
-   public ClassLoader bindClassLoaderToInstance() {
-      return getClass().getClassLoader();
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
-   public Class<? extends IGrammarAccess> bindIGrammarAccess() {
-      return WorkflowGrammarAccess.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
-   @Override
-   public Class<? extends ISemanticSequencer> bindISemanticSequencer() {
-      return WorkflowSemanticSequencer.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
-   public Class<? extends ISyntacticSequencer> bindISyntacticSequencer() {
-      return WorkflowSyntacticSequencer.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
-   @Override
-   public Class<? extends ISerializer> bindISerializer() {
-      return Serializer.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   public Class<? extends IParser> bindIParser() {
-      return WorkflowParser.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   @Override
-   public Class<? extends ITokenToStringConverter> bindITokenToStringConverter() {
-      return AntlrTokenToStringConverter.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   public Class<? extends IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
-      return WorkflowAntlrTokenFileProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   public Class<? extends Lexer> bindLexer() {
-      return InternalWorkflowLexer.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   @Override
-   public Class<? extends ITokenDefProvider> bindITokenDefProvider() {
-      return AntlrTokenDefProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   public Provider<? extends InternalWorkflowLexer> provideInternalWorkflowLexer() {
-      return LexerProvider.create(InternalWorkflowLexer.class);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-   public void configureRuntimeLexer(final Binder binder) {
-      binder.bind(Lexer.class)
-         .annotatedWith(Names.named(LexerBindings.RUNTIME))
-         .to(InternalWorkflowLexer.class);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
-   @SingletonBinding(eager = true)
-   public Class<? extends WorkflowValidator> bindWorkflowValidator() {
-      return WorkflowValidator.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-   @Override
-   public Class<? extends IScopeProvider> bindIScopeProvider() {
-      return WorkflowScopeProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-   public void configureIScopeProviderDelegate(final Binder binder) {
-      binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
-         .to(ImportedNamespaceAwareLocalScopeProvider.class);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-   @Override
-   public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-      return DefaultGlobalScopeProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-   public void configureIgnoreCaseLinking(final Binder binder) {
-      binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
-   @Override
-   public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-      return DefaultDeclarativeQualifiedNameProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-   @Override
-   public Class<? extends IContainer.Manager> bindIContainer$Manager() {
-      return StateBasedContainerManager.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-   public Class<? extends IAllContainersState.Provider> bindIAllContainersState$Provider() {
-      return ResourceSetBasedAllContainersStateProvider.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-   @Override
-   public void configureIResourceDescriptions(final Binder binder) {
-      binder.bind(IResourceDescriptions.class).to(ResourceSetBasedResourceDescriptions.class);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-   public void configureIResourceDescriptionsPersisted(final Binder binder) {
-      binder.bind(IResourceDescriptions.class)
-         .annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
-         .to(ResourceSetBasedResourceDescriptions.class);
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
-   public Class<? extends IGenerator2> bindIGenerator2() {
-      return WorkflowGenerator.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
-   public Class<? extends IFormatter2> bindIFormatter2() {
-      return WorkflowFormatter.class;
-   }
-
-   // contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
-   public void configureFormatterPreferences(final Binder binder) {
-      binder.bind(IPreferenceValuesProvider.class).annotatedWith(FormatterPreferences.class)
-         .to(FormatterPreferenceValuesProvider.class);
-   }
-
+	@Override
+	public void configure(Binder binder) {
+		properties = tryBindProperties(binder, "org/eclipse/emfcloud/coffee/workflow/dsl/Workflow.properties");
+		super.configure(binder);
+	}
+	
+	public void configureLanguageName(Binder binder) {
+		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.emfcloud.coffee.workflow.dsl.Workflow");
+	}
+	
+	public void configureFileExtensions(Binder binder) {
+		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
+			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("wfconfig");
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
+	public ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
+	public Class<? extends IGrammarAccess> bindIGrammarAccess() {
+		return WorkflowGrammarAccess.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISemanticSequencer> bindISemanticSequencer() {
+		return WorkflowSemanticSequencer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISyntacticSequencer> bindISyntacticSequencer() {
+		return WorkflowSyntacticSequencer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISerializer> bindISerializer() {
+		return Serializer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends IParser> bindIParser() {
+		return WorkflowParser.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends ITokenToStringConverter> bindITokenToStringConverter() {
+		return AntlrTokenToStringConverter.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
+		return WorkflowAntlrTokenFileProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends Lexer> bindLexer() {
+		return InternalWorkflowLexer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends ITokenDefProvider> bindITokenDefProvider() {
+		return AntlrTokenDefProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Provider<? extends InternalWorkflowLexer> provideInternalWorkflowLexer() {
+		return LexerProvider.create(InternalWorkflowLexer.class);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public void configureRuntimeLexer(Binder binder) {
+		binder.bind(Lexer.class)
+			.annotatedWith(Names.named(LexerBindings.RUNTIME))
+			.to(InternalWorkflowLexer.class);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
+	@SingletonBinding(eager=true)
+	public Class<? extends WorkflowValidator> bindWorkflowValidator() {
+		return WorkflowValidator.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
+	public Class<? extends IScopeProvider> bindIScopeProvider() {
+		return WorkflowScopeProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
+	public void configureIScopeProviderDelegate(Binder binder) {
+		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(ImportedNamespaceAwareLocalScopeProvider.class);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return DefaultGlobalScopeProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
+	public void configureIgnoreCaseLinking(Binder binder) {
+		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return DefaultDeclarativeQualifiedNameProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+	public Class<? extends IContainer.Manager> bindIContainer$Manager() {
+		return StateBasedContainerManager.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+	public Class<? extends IAllContainersState.Provider> bindIAllContainersState$Provider() {
+		return ResourceSetBasedAllContainersStateProvider.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+	public void configureIResourceDescriptions(Binder binder) {
+		binder.bind(IResourceDescriptions.class).to(ResourceSetBasedResourceDescriptions.class);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+	public void configureIResourceDescriptionsPersisted(Binder binder) {
+		binder.bind(IResourceDescriptions.class).annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(ResourceSetBasedResourceDescriptions.class);
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
+	public Class<? extends IGenerator2> bindIGenerator2() {
+		return WorkflowGenerator.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
+	public Class<? extends IFormatter2> bindIFormatter2() {
+		return WorkflowFormatter.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
+	public void configureFormatterPreferences(Binder binder) {
+		binder.bind(IPreferenceValuesProvider.class).annotatedWith(FormatterPreferences.class).to(FormatterPreferenceValuesProvider.class);
+	}
+	
 }

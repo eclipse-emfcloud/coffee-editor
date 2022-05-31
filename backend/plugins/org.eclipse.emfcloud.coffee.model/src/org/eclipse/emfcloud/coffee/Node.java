@@ -34,7 +34,6 @@ public interface Node extends EObject {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */

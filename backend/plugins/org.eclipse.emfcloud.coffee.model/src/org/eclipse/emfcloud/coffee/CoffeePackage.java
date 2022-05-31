@@ -34,46 +34,43 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.emfcloud.coffee.CoffeeFactory
  * @model kind="package"
  * @generated
  */
 public interface CoffeePackage extends EPackage {
    /**
-    * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The package name.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    String eNAME = "coffee";
 
    /**
-    * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The package namespace URI.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    String eNS_URI = "http://www.eclipse.org/emfcloud/coffee/model";
 
    /**
-    * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The package namespace name.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    String eNS_PREFIX = "org.eclipse.emfcloud.coffee.model";
 
    /**
-    * The singleton instance of the package. <!-- begin-user-doc --> <!--
+    * The singleton instance of the package.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @generated
     */
    CoffeePackage eINSTANCE = org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl.init();
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ComponentImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getComponent()
     * @generated
@@ -83,7 +80,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -117,10 +113,8 @@ public interface CoffeePackage extends EPackage {
    int COMPONENT_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.MachineImpl <em>Machine</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MachineImpl <em>Machine</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.MachineImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMachine()
     * @generated
@@ -130,7 +124,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -146,18 +139,17 @@ public interface CoffeePackage extends EPackage {
    int MACHINE__PARENT = COMPONENT__PARENT;
 
    /**
-    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Name</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int MACHINE__NAME = COMPONENT_FEATURE_COUNT + 0;
 
    /**
-    * The feature id for the '<em><b>Workflows</b></em>' containment reference
-    * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The feature id for the '<em><b>Workflows</b></em>' containment reference list.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     * @ordered
     */
@@ -173,19 +165,17 @@ public interface CoffeePackage extends EPackage {
    int MACHINE_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 2;
 
    /**
-    * The number of operations of the '<em>Machine</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Machine</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int MACHINE_OPERATION_COUNT = COMPONENT_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.ControlUnitImpl <em>Control
-    * Unit</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ControlUnitImpl <em>Control Unit</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ControlUnitImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getControlUnit()
     * @generated
@@ -195,7 +185,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -213,7 +202,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Processor</b></em>' containment reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -222,7 +210,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Dimension</b></em>' containment reference.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -274,10 +261,8 @@ public interface CoffeePackage extends EPackage {
    int CONTROL_UNIT_OPERATION_COUNT = COMPONENT_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl <em>Brewing
-    * Unit</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl <em>Brewing Unit</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getBrewingUnit()
     * @generated
@@ -287,7 +272,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -321,10 +305,8 @@ public interface CoffeePackage extends EPackage {
    int BREWING_UNIT_OPERATION_COUNT = COMPONENT_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.DipTrayImpl <em>Dip Tray</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DipTrayImpl <em>Dip Tray</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.DipTrayImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDipTray()
     * @generated
@@ -334,7 +316,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -368,10 +349,8 @@ public interface CoffeePackage extends EPackage {
    int DIP_TRAY_OPERATION_COUNT = COMPONENT_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.WaterTankImpl <em>Water Tank</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.WaterTankImpl <em>Water Tank</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.WaterTankImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWaterTank()
     * @generated
@@ -381,7 +360,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -415,10 +393,8 @@ public interface CoffeePackage extends EPackage {
    int WATER_TANK_OPERATION_COUNT = COMPONENT_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl <em>Processor</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl <em>Processor</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ProcessorImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProcessor()
     * @generated
@@ -473,7 +449,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Manufactoring Process</b></em>' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -498,10 +473,8 @@ public interface CoffeePackage extends EPackage {
    int PROCESSOR_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.DimensionImpl <em>Dimension</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DimensionImpl <em>Dimension</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.DimensionImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDimension()
     * @generated
@@ -509,9 +482,9 @@ public interface CoffeePackage extends EPackage {
    int DIMENSION = 7;
 
    /**
-    * The feature id for the '<em><b>Width</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Width</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -554,9 +527,8 @@ public interface CoffeePackage extends EPackage {
    int DIMENSION_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.RAMImpl
-    * <em>RAM</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.RAMImpl <em>RAM</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.RAMImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRAM()
     * @generated
@@ -573,18 +545,18 @@ public interface CoffeePackage extends EPackage {
    int RAM__CLOCK_SPEED = 0;
 
    /**
-    * The feature id for the '<em><b>Size</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Size</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int RAM__SIZE = 1;
 
    /**
-    * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Type</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -600,19 +572,17 @@ public interface CoffeePackage extends EPackage {
    int RAM_FEATURE_COUNT = 3;
 
    /**
-    * The number of operations of the '<em>RAM</em>' class. <!-- begin-user-doc -->
+    * The number of operations of the '<em>RAM</em>' class.
+    * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int RAM_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.DisplayImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDisplay()
     * @generated
@@ -620,9 +590,9 @@ public interface CoffeePackage extends EPackage {
    int DISPLAY = 9;
 
    /**
-    * The feature id for the '<em><b>Width</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Width</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -647,19 +617,17 @@ public interface CoffeePackage extends EPackage {
    int DISPLAY_FEATURE_COUNT = 2;
 
    /**
-    * The number of operations of the '<em>Display</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Display</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int DISPLAY_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl <em>Workflow</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl <em>Workflow</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.WorkflowImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWorkflow()
     * @generated
@@ -667,9 +635,9 @@ public interface CoffeePackage extends EPackage {
    int WORKFLOW = 10;
 
    /**
-    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Name</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -678,7 +646,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -687,7 +654,6 @@ public interface CoffeePackage extends EPackage {
    /**
     * The feature id for the '<em><b>Flows</b></em>' containment reference list.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -712,9 +678,8 @@ public interface CoffeePackage extends EPackage {
    int WORKFLOW_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.NodeImpl
-    * <em>Node</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.NodeImpl <em>Node</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.NodeImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getNode()
     * @generated
@@ -731,27 +696,26 @@ public interface CoffeePackage extends EPackage {
    int NODE_FEATURE_COUNT = 0;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = 0;
 
    /**
-    * The number of operations of the '<em>Node</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Node</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int NODE_OPERATION_COUNT = 1;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.TaskImpl
-    * <em>Task</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.TaskImpl <em>Task</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.TaskImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getTask()
     * @generated
@@ -759,9 +723,9 @@ public interface CoffeePackage extends EPackage {
    int TASK = 12;
 
    /**
-    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Name</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -786,9 +750,9 @@ public interface CoffeePackage extends EPackage {
    int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -813,28 +777,26 @@ public interface CoffeePackage extends EPackage {
    int TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 1;
 
    /**
-    * The operation id for the '<em>Is Used</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Is Used</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int TASK___IS_USED__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 2;
 
    /**
-    * The number of operations of the '<em>Task</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Task</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int TASK_OPERATION_COUNT = NODE_OPERATION_COUNT + 3;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic
-    * Task</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic Task</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getAutomaticTask()
     * @generated
@@ -842,9 +804,9 @@ public interface CoffeePackage extends EPackage {
    int AUTOMATIC_TASK = 13;
 
    /**
-    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Name</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -871,16 +833,15 @@ public interface CoffeePackage extends EPackage {
    /**
     * The number of structural features of the '<em>Automatic Task</em>' class.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int AUTOMATIC_TASK_FEATURE_COUNT = TASK_FEATURE_COUNT + 1;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -905,9 +866,9 @@ public interface CoffeePackage extends EPackage {
    int AUTOMATIC_TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP;
 
    /**
-    * The operation id for the '<em>Is Used</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Is Used</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -923,10 +884,8 @@ public interface CoffeePackage extends EPackage {
    int AUTOMATIC_TASK_OPERATION_COUNT = TASK_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl <em>Manual
-    * Task</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl <em>Manual Task</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ManualTaskImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManualTask()
     * @generated
@@ -934,9 +893,9 @@ public interface CoffeePackage extends EPackage {
    int MANUAL_TASK = 14;
 
    /**
-    * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Name</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -952,9 +911,9 @@ public interface CoffeePackage extends EPackage {
    int MANUAL_TASK__DURATION = TASK__DURATION;
 
    /**
-    * The feature id for the '<em><b>Actor</b></em>' attribute. <!-- begin-user-doc
+    * The feature id for the '<em><b>Actor</b></em>' attribute.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -970,9 +929,9 @@ public interface CoffeePackage extends EPackage {
    int MANUAL_TASK_FEATURE_COUNT = TASK_FEATURE_COUNT + 1;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -997,9 +956,9 @@ public interface CoffeePackage extends EPackage {
    int MANUAL_TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP;
 
    /**
-    * The operation id for the '<em>Is Used</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Is Used</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -1015,9 +974,8 @@ public interface CoffeePackage extends EPackage {
    int MANUAL_TASK_OPERATION_COUNT = TASK_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ForkImpl
-    * <em>Fork</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ForkImpl <em>Fork</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ForkImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getFork()
     * @generated
@@ -1034,27 +992,26 @@ public interface CoffeePackage extends EPackage {
    int FORK_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int FORK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
 
    /**
-    * The number of operations of the '<em>Fork</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Fork</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int FORK_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.JoinImpl
-    * <em>Join</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.JoinImpl <em>Join</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.JoinImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getJoin()
     * @generated
@@ -1071,28 +1028,26 @@ public interface CoffeePackage extends EPackage {
    int JOIN_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int JOIN___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
 
    /**
-    * The number of operations of the '<em>Join</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Join</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int JOIN_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.DecisionImpl <em>Decision</em>}'
-    * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DecisionImpl <em>Decision</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.DecisionImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDecision()
     * @generated
@@ -1109,9 +1064,9 @@ public interface CoffeePackage extends EPackage {
    int DECISION_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -1145,9 +1100,8 @@ public interface CoffeePackage extends EPackage {
    int DECISION_OPERATION_COUNT = NODE_OPERATION_COUNT + 2;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl
-    * <em>Merge</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl <em>Merge</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.MergeImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMerge()
     * @generated
@@ -1164,9 +1118,9 @@ public interface CoffeePackage extends EPackage {
    int MERGE_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
    /**
-    * The operation id for the '<em>Has Cycle</em>' operation. <!-- begin-user-doc
+    * The operation id for the '<em>Has Cycle</em>' operation.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
@@ -1191,18 +1145,17 @@ public interface CoffeePackage extends EPackage {
    int MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 1;
 
    /**
-    * The number of operations of the '<em>Merge</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Merge</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int MERGE_OPERATION_COUNT = NODE_OPERATION_COUNT + 2;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.FlowImpl
-    * <em>Flow</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.FlowImpl <em>Flow</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.FlowImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getFlow()
     * @generated
@@ -1237,19 +1190,17 @@ public interface CoffeePackage extends EPackage {
    int FLOW_FEATURE_COUNT = 2;
 
    /**
-    * The number of operations of the '<em>Flow</em>' class. <!-- begin-user-doc
+    * The number of operations of the '<em>Flow</em>' class.
+    * <!-- begin-user-doc
     * --> <!-- end-user-doc -->
-    *
     * @generated
     * @ordered
     */
    int FLOW_OPERATION_COUNT = 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl <em>Weighted
-    * Flow</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl <em>Weighted Flow</em>}' class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWeightedFlow()
     * @generated
@@ -1302,10 +1253,8 @@ public interface CoffeePackage extends EPackage {
    int WEIGHTED_FLOW_OPERATION_COUNT = FLOW_OPERATION_COUNT + 0;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector
-    * Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}' enum.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.SocketConnectorType
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getSocketConnectorType()
     * @generated
@@ -1313,10 +1262,8 @@ public interface CoffeePackage extends EPackage {
    int SOCKET_CONNECTOR_TYPE = 21;
 
    /**
-    * The meta object id for the
-    * '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring
-    * Process</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring Process</em>}' enum.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.ManufactoringProcess
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManufactoringProcess()
     * @generated
@@ -1324,9 +1271,8 @@ public interface CoffeePackage extends EPackage {
    int MANUFACTORING_PROCESS = 22;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.RamType
-    * <em>Ram Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.RamType <em>Ram Type</em>}' enum.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.RamType
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRamType()
     * @generated
@@ -1334,9 +1280,8 @@ public interface CoffeePackage extends EPackage {
    int RAM_TYPE = 23;
 
    /**
-    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.Probability
-    * <em>Probability</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.Probability <em>Probability</em>}' enum.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.Probability
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProbability()
     * @generated
@@ -1365,12 +1310,9 @@ public interface CoffeePackage extends EPackage {
    EClass getComponent();
 
    /**
-    * Returns the meta object for the containment reference list
-    * '{@link org.eclipse.emfcloud.coffee.Component#getChildren
-    * <em>Children</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @return the meta object for the containment reference list
-    *         '<em>Children</em>'.
+    * Returns the meta object for the containment reference list '{@link org.eclipse.emfcloud.coffee.Component#getChildren <em>Children</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * @return the meta object for the containment reference list '<em>Children</em>'.
     * @see org.eclipse.emfcloud.coffee.Component#getChildren()
     * @see #getComponent()
     * @generated
@@ -1378,10 +1320,8 @@ public interface CoffeePackage extends EPackage {
    EReference getComponent_Children();
 
    /**
-    * Returns the meta object for the container reference
-    * '{@link org.eclipse.emfcloud.coffee.Component#getParent <em>Parent</em>}'.
+    * Returns the meta object for the container reference '{@link org.eclipse.emfcloud.coffee.Component#getParent <em>Parent</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the container reference '<em>Parent</em>'.
     * @see org.eclipse.emfcloud.coffee.Component#getParent()
     * @see #getComponent()
@@ -1390,9 +1330,8 @@ public interface CoffeePackage extends EPackage {
    EReference getComponent_Parent();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Machine
-    * <em>Machine</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Machine <em>Machine</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Machine</em>'.
     * @see org.eclipse.emfcloud.coffee.Machine
     * @generated
@@ -1412,12 +1351,9 @@ public interface CoffeePackage extends EPackage {
    EAttribute getMachine_Name();
 
    /**
-    * Returns the meta object for the containment reference list
-    * '{@link org.eclipse.emfcloud.coffee.Machine#getWorkflows
-    * <em>Workflows</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @return the meta object for the containment reference list
-    *         '<em>Workflows</em>'.
+    * Returns the meta object for the containment reference list '{@link org.eclipse.emfcloud.coffee.Machine#getWorkflows <em>Workflows</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * @return the meta object for the containment reference list '<em>Workflows</em>'.
     * @see org.eclipse.emfcloud.coffee.Machine#getWorkflows()
     * @see #getMachine()
     * @generated
@@ -1436,10 +1372,8 @@ public interface CoffeePackage extends EPackage {
    EClass getControlUnit();
 
    /**
-    * Returns the meta object for the containment reference
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor
-    * <em>Processor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the containment reference '{@link org.eclipse.emfcloud.coffee.ControlUnit#getProcessor <em>Processor</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the containment reference '<em>Processor</em>'.
     * @see org.eclipse.emfcloud.coffee.ControlUnit#getProcessor()
     * @see #getControlUnit()
@@ -1448,10 +1382,8 @@ public interface CoffeePackage extends EPackage {
    EReference getControlUnit_Processor();
 
    /**
-    * Returns the meta object for the containment reference
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension
-    * <em>Dimension</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the containment reference '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDimension <em>Dimension</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the containment reference '<em>Dimension</em>'.
     * @see org.eclipse.emfcloud.coffee.ControlUnit#getDimension()
     * @see #getControlUnit()
@@ -1472,10 +1404,8 @@ public interface CoffeePackage extends EPackage {
    EReference getControlUnit_Ram();
 
    /**
-    * Returns the meta object for the containment reference
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay
-    * <em>Display</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the containment reference '{@link org.eclipse.emfcloud.coffee.ControlUnit#getDisplay <em>Display</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the containment reference '<em>Display</em>'.
     * @see org.eclipse.emfcloud.coffee.ControlUnit#getDisplay()
     * @see #getControlUnit()
@@ -1484,10 +1414,8 @@ public interface CoffeePackage extends EPackage {
    EReference getControlUnit_Display();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User
-    * Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription <em>User Description</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the attribute '<em>User Description</em>'.
     * @see org.eclipse.emfcloud.coffee.ControlUnit#getUserDescription()
     * @see #getControlUnit()
@@ -1507,9 +1435,8 @@ public interface CoffeePackage extends EPackage {
    EClass getBrewingUnit();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.DipTray
-    * <em>Dip Tray</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.DipTray <em>Dip Tray</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Dip Tray</em>'.
     * @see org.eclipse.emfcloud.coffee.DipTray
     * @generated
@@ -1539,10 +1466,8 @@ public interface CoffeePackage extends EPackage {
    EClass getProcessor();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Processor#getVendor <em>Vendor</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Processor#getVendor <em>Vendor</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Vendor</em>'.
     * @see org.eclipse.emfcloud.coffee.Processor#getVendor()
     * @see #getProcessor()
@@ -1551,10 +1476,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getProcessor_Vendor();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Processor#getClockSpeed <em>Clock
-    * Speed</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Processor#getClockSpeed <em>Clock Speed</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the attribute '<em>Clock Speed</em>'.
     * @see org.eclipse.emfcloud.coffee.Processor#getClockSpeed()
     * @see #getProcessor()
@@ -1563,10 +1486,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getProcessor_ClockSpeed();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Processor#getNumberOfCores <em>Number Of
-    * Cores</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Processor#getNumberOfCores <em>Number Of Cores</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the attribute '<em>Number Of Cores</em>'.
     * @see org.eclipse.emfcloud.coffee.Processor#getNumberOfCores()
     * @see #getProcessor()
@@ -1637,10 +1558,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getDimension_Width();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Dimension#getHeight <em>Height</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Dimension#getHeight <em>Height</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Height</em>'.
     * @see org.eclipse.emfcloud.coffee.Dimension#getHeight()
     * @see #getDimension()
@@ -1649,10 +1568,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getDimension_Height();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Dimension#getLength <em>Length</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Dimension#getLength <em>Length</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Length</em>'.
     * @see org.eclipse.emfcloud.coffee.Dimension#getLength()
     * @see #getDimension()
@@ -1661,9 +1578,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getDimension_Length();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.RAM
-    * <em>RAM</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>RAM</em>'.
     * @see org.eclipse.emfcloud.coffee.RAM
     * @generated
@@ -1671,10 +1587,8 @@ public interface CoffeePackage extends EPackage {
    EClass getRAM();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.RAM#getClockSpeed <em>Clock Speed</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.RAM#getClockSpeed <em>Clock Speed</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Clock Speed</em>'.
     * @see org.eclipse.emfcloud.coffee.RAM#getClockSpeed()
     * @see #getRAM()
@@ -1707,9 +1621,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getRAM_Type();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Display
-    * <em>Display</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Display</em>'.
     * @see org.eclipse.emfcloud.coffee.Display
     * @generated
@@ -1788,9 +1701,8 @@ public interface CoffeePackage extends EPackage {
    EReference getWorkflow_Flows();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Node
-    * <em>Node</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Node</em>'.
     * @see org.eclipse.emfcloud.coffee.Node
     * @generated
@@ -1798,21 +1710,17 @@ public interface CoffeePackage extends EPackage {
    EClass getNode();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has Cycle</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Cycle</em>}' operation.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the '<em>Has Cycle</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getNode__HasCycle__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Task
-    * <em>Task</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Task</em>'.
     * @see org.eclipse.emfcloud.coffee.Task
     * @generated
@@ -1832,10 +1740,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getTask_Name();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.Task#getDuration <em>Duration</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Task#getDuration <em>Duration</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Duration</em>'.
     * @see org.eclipse.emfcloud.coffee.Task#getDuration()
     * @see #getTask()
@@ -1844,50 +1750,37 @@ public interface CoffeePackage extends EPackage {
    EAttribute getTask_Duration();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has At Most One Incoming</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has At Most One Incoming</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
-    * @return the meta object for the '<em>Has At Most One Incoming</em>'
-    *         operation.
-    * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @return the meta object for the '<em>Has At Most One Incoming</em>' operation.
+    * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getTask__HasAtMostOneIncoming__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has At Most One Outgoing</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has At Most One Outgoing</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
-    * @return the meta object for the '<em>Has At Most One Outgoing</em>'
-    *         operation.
-    * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @return the meta object for the '<em>Has At Most One Outgoing</em>' operation.
+    * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getTask__HasAtMostOneOutgoing__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Is Used</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Used</em>}' operation.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the '<em>Is Used</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getTask__IsUsed__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for class
-    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for class '<em>Automatic Task</em>'.
     * @see org.eclipse.emfcloud.coffee.AutomaticTask
     * @generated
@@ -1895,10 +1788,8 @@ public interface CoffeePackage extends EPackage {
    EClass getAutomaticTask();
 
    /**
-    * Returns the meta object for the reference
-    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent
-    * <em>Component</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the reference '{@link org.eclipse.emfcloud.coffee.AutomaticTask#getComponent <em>Component</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the reference '<em>Component</em>'.
     * @see org.eclipse.emfcloud.coffee.AutomaticTask#getComponent()
     * @see #getAutomaticTask()
@@ -1918,10 +1809,8 @@ public interface CoffeePackage extends EPackage {
    EClass getManualTask();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.ManualTask#getActor <em>Actor</em>}'.
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.ManualTask#getActor <em>Actor</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for the attribute '<em>Actor</em>'.
     * @see org.eclipse.emfcloud.coffee.ManualTask#getActor()
     * @see #getManualTask()
@@ -1930,9 +1819,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getManualTask_Actor();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Fork
-    * <em>Fork</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Fork</em>'.
     * @see org.eclipse.emfcloud.coffee.Fork
     * @generated
@@ -1940,9 +1828,8 @@ public interface CoffeePackage extends EPackage {
    EClass getFork();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Join
-    * <em>Join</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Join</em>'.
     * @see org.eclipse.emfcloud.coffee.Join
     * @generated
@@ -1961,35 +1848,28 @@ public interface CoffeePackage extends EPackage {
    EClass getDecision();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has One Incoming</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has One Incoming</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the meta object for the '<em>Has One Incoming</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getDecision__HasOneIncoming__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has Two Outgoing</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Two Outgoing</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the meta object for the '<em>Has Two Outgoing</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getDecision__HasTwoOutgoing__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Merge
-    * <em>Merge</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Merge</em>'.
     * @see org.eclipse.emfcloud.coffee.Merge
     * @generated
@@ -1997,35 +1877,28 @@ public interface CoffeePackage extends EPackage {
    EClass getMerge();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has Two Incoming</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Two Incoming</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the meta object for the '<em>Has Two Incoming</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getMerge__HasTwoIncoming__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for the
-    * '{@link org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-    * <em>Has One Outgoing</em>}' operation. <!-- begin-user-doc --> <!--
+    * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has One Outgoing</em>}' operation.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @return the meta object for the '<em>Has One Outgoing</em>' operation.
-    * @see org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain,
-    *      java.util.Map)
+    * @see org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
     * @generated
     */
    EOperation getMerge__HasOneOutgoing__DiagnosticChain_Map();
 
    /**
-    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Flow
-    * <em>Flow</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for class '<em>Flow</em>'.
     * @see org.eclipse.emfcloud.coffee.Flow
     * @generated
@@ -2057,10 +1930,8 @@ public interface CoffeePackage extends EPackage {
    EReference getFlow_Target();
 
    /**
-    * Returns the meta object for class
-    * '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @return the meta object for class '<em>Weighted Flow</em>'.
     * @see org.eclipse.emfcloud.coffee.WeightedFlow
     * @generated
@@ -2068,10 +1939,8 @@ public interface CoffeePackage extends EPackage {
    EClass getWeightedFlow();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability
-    * <em>Probability</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.WeightedFlow#getProbability <em>Probability</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for the attribute '<em>Probability</em>'.
     * @see org.eclipse.emfcloud.coffee.WeightedFlow#getProbability()
     * @see #getWeightedFlow()
@@ -2080,10 +1949,8 @@ public interface CoffeePackage extends EPackage {
    EAttribute getWeightedFlow_Probability();
 
    /**
-    * Returns the meta object for enum
-    * '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector
-    * Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for enum '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for enum '<em>Socket Connector Type</em>'.
     * @see org.eclipse.emfcloud.coffee.SocketConnectorType
     * @generated
@@ -2091,10 +1958,8 @@ public interface CoffeePackage extends EPackage {
    EEnum getSocketConnectorType();
 
    /**
-    * Returns the meta object for enum
-    * '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring
-    * Process</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for enum '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring Process</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for enum '<em>Manufactoring Process</em>'.
     * @see org.eclipse.emfcloud.coffee.ManufactoringProcess
     * @generated
@@ -2102,9 +1967,8 @@ public interface CoffeePackage extends EPackage {
    EEnum getManufactoringProcess();
 
    /**
-    * Returns the meta object for enum '{@link org.eclipse.emfcloud.coffee.RamType
-    * <em>Ram Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for enum '{@link org.eclipse.emfcloud.coffee.RamType <em>Ram Type</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for enum '<em>Ram Type</em>'.
     * @see org.eclipse.emfcloud.coffee.RamType
     * @generated
@@ -2123,13 +1987,12 @@ public interface CoffeePackage extends EPackage {
    EEnum getProbability();
 
    /**
-    * Returns the meta object for data type '{@link java.lang.String <em>Task
-    * Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Returns the meta object for data type '{@link java.lang.String <em>Task Name</em>}'.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @return the meta object for data type '<em>Task Name</em>'.
     * @see java.lang.String
-    * @model instanceClass="java.lang.String" extendedMetaData="maxLength='20'
-    *        minLength='1' pattern='[a-zA-Z0-9%2520\\-%20]+'"
+    * @model instanceClass="java.lang.String"
+    *        extendedMetaData="maxLength='20' minLength='1' pattern='[a-zA-Z0-9%2520\\-%20]+'"
     * @generated
     */
    EDataType getTaskName();
@@ -2153,15 +2016,12 @@ public interface CoffeePackage extends EPackage {
     * <li>and each data type</li>
     * </ul>
     * <!-- end-user-doc -->
-    *
     * @generated
     */
    interface Literals {
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.ComponentImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getComponent()
        * @generated
@@ -2169,26 +2029,22 @@ public interface CoffeePackage extends EPackage {
       EClass COMPONENT = eINSTANCE.getComponent();
 
       /**
-       * The meta object literal for the '<em><b>Children</b></em>' containment
-       * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference COMPONENT__CHILDREN = eINSTANCE.getComponent_Children();
 
       /**
-       * The meta object literal for the '<em><b>Parent</b></em>' container reference
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference COMPONENT__PARENT = eINSTANCE.getComponent_Parent();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.MachineImpl <em>Machine</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.MachineImpl <em>Machine</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.MachineImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMachine()
        * @generated
@@ -2198,24 +2054,20 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute MACHINE__NAME = eINSTANCE.getMachine_Name();
 
       /**
-       * The meta object literal for the '<em><b>Workflows</b></em>' containment
-       * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Workflows</b></em>' containment reference list feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference MACHINE__WORKFLOWS = eINSTANCE.getMachine_Workflows();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.ControlUnitImpl <em>Control
-       * Unit</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.ControlUnitImpl <em>Control Unit</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.ControlUnitImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getControlUnit()
        * @generated
@@ -2223,50 +2075,43 @@ public interface CoffeePackage extends EPackage {
       EClass CONTROL_UNIT = eINSTANCE.getControlUnit();
 
       /**
-       * The meta object literal for the '<em><b>Processor</b></em>' containment
-       * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Processor</b></em>' containment reference feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference CONTROL_UNIT__PROCESSOR = eINSTANCE.getControlUnit_Processor();
 
       /**
-       * The meta object literal for the '<em><b>Dimension</b></em>' containment
-       * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Dimension</b></em>' containment reference feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference CONTROL_UNIT__DIMENSION = eINSTANCE.getControlUnit_Dimension();
 
       /**
-       * The meta object literal for the '<em><b>Ram</b></em>' containment reference
-       * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Ram</b></em>' containment reference list feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference CONTROL_UNIT__RAM = eINSTANCE.getControlUnit_Ram();
 
       /**
-       * The meta object literal for the '<em><b>Display</b></em>' containment
-       * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Display</b></em>' containment reference feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference CONTROL_UNIT__DISPLAY = eINSTANCE.getControlUnit_Display();
 
       /**
-       * The meta object literal for the '<em><b>User Description</b></em>' attribute
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>User Description</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute CONTROL_UNIT__USER_DESCRIPTION = eINSTANCE.getControlUnit_UserDescription();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl <em>Brewing
-       * Unit</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl <em>Brewing Unit</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.BrewingUnitImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getBrewingUnit()
        * @generated
@@ -2274,10 +2119,8 @@ public interface CoffeePackage extends EPackage {
       EClass BREWING_UNIT = eINSTANCE.getBrewingUnit();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.DipTrayImpl <em>Dip Tray</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DipTrayImpl <em>Dip Tray</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.DipTrayImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDipTray()
        * @generated
@@ -2285,10 +2128,8 @@ public interface CoffeePackage extends EPackage {
       EClass DIP_TRAY = eINSTANCE.getDipTray();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.WaterTankImpl <em>Water Tank</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.WaterTankImpl <em>Water Tank</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.WaterTankImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWaterTank()
        * @generated
@@ -2296,10 +2137,8 @@ public interface CoffeePackage extends EPackage {
       EClass WATER_TANK = eINSTANCE.getWaterTank();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl <em>Processor</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl <em>Processor</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.ProcessorImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProcessor()
        * @generated
@@ -2309,56 +2148,48 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Vendor</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute PROCESSOR__VENDOR = eINSTANCE.getProcessor_Vendor();
 
       /**
-       * The meta object literal for the '<em><b>Clock Speed</b></em>' attribute
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Clock Speed</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute PROCESSOR__CLOCK_SPEED = eINSTANCE.getProcessor_ClockSpeed();
 
       /**
-       * The meta object literal for the '<em><b>Number Of Cores</b></em>' attribute
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Number Of Cores</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute PROCESSOR__NUMBER_OF_CORES = eINSTANCE.getProcessor_NumberOfCores();
 
       /**
-       * The meta object literal for the '<em><b>Socketconnector Type</b></em>'
-       * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Socketconnector Type</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute PROCESSOR__SOCKETCONNECTOR_TYPE = eINSTANCE.getProcessor_SocketconnectorType();
 
       /**
-       * The meta object literal for the '<em><b>Thermal Design Power</b></em>'
-       * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Thermal Design Power</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute PROCESSOR__THERMAL_DESIGN_POWER = eINSTANCE.getProcessor_ThermalDesignPower();
 
       /**
-       * The meta object literal for the '<em><b>Manufactoring Process</b></em>'
-       * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Manufactoring Process</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute PROCESSOR__MANUFACTORING_PROCESS = eINSTANCE.getProcessor_ManufactoringProcess();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.DimensionImpl <em>Dimension</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DimensionImpl <em>Dimension</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.DimensionImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDimension()
        * @generated
@@ -2368,7 +2199,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute DIMENSION__WIDTH = eINSTANCE.getDimension_Width();
@@ -2376,7 +2206,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute DIMENSION__HEIGHT = eINSTANCE.getDimension_Height();
@@ -2384,7 +2213,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute DIMENSION__LENGTH = eINSTANCE.getDimension_Length();
@@ -2401,9 +2229,8 @@ public interface CoffeePackage extends EPackage {
       EClass RAM = eINSTANCE.getRAM();
 
       /**
-       * The meta object literal for the '<em><b>Clock Speed</b></em>' attribute
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Clock Speed</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute RAM__CLOCK_SPEED = eINSTANCE.getRAM_ClockSpeed();
@@ -2411,7 +2238,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute RAM__SIZE = eINSTANCE.getRAM_Size();
@@ -2419,16 +2245,13 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute RAM__TYPE = eINSTANCE.getRAM_Type();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.DisplayImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDisplay()
        * @generated
@@ -2438,7 +2261,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute DISPLAY__WIDTH = eINSTANCE.getDisplay_Width();
@@ -2446,16 +2268,13 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute DISPLAY__HEIGHT = eINSTANCE.getDisplay_Height();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl <em>Workflow</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl <em>Workflow</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.WorkflowImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWorkflow()
        * @generated
@@ -2465,23 +2284,20 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute WORKFLOW__NAME = eINSTANCE.getWorkflow_Name();
 
       /**
-       * The meta object literal for the '<em><b>Nodes</b></em>' containment reference
-       * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference WORKFLOW__NODES = eINSTANCE.getWorkflow_Nodes();
 
       /**
-       * The meta object literal for the '<em><b>Flows</b></em>' containment reference
-       * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Flows</b></em>' containment reference list feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference WORKFLOW__FLOWS = eINSTANCE.getWorkflow_Flows();
@@ -2519,7 +2335,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute TASK__NAME = eINSTANCE.getTask_Name();
@@ -2527,28 +2342,23 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute TASK__DURATION = eINSTANCE.getTask_Duration();
 
       /**
-       * The meta object literal for the '<em><b>Has At Most One Incoming</b></em>'
-       * operation. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Has At Most One Incoming</b></em>' operation.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
-      EOperation TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getTask__HasAtMostOneIncoming__DiagnosticChain_Map();
+      EOperation TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__HasAtMostOneIncoming__DiagnosticChain_Map();
 
       /**
-       * The meta object literal for the '<em><b>Has At Most One Outgoing</b></em>'
-       * operation. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Has At Most One Outgoing</b></em>' operation.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
-      EOperation TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getTask__HasAtMostOneOutgoing__DiagnosticChain_Map();
+      EOperation TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__HasAtMostOneOutgoing__DiagnosticChain_Map();
 
       /**
        * The meta object literal for the '<em><b>Is Used</b></em>' operation. <!--
@@ -2559,10 +2369,8 @@ public interface CoffeePackage extends EPackage {
       EOperation TASK___IS_USED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__IsUsed__DiagnosticChain_Map();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic
-       * Task</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic Task</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getAutomaticTask()
        * @generated
@@ -2570,18 +2378,15 @@ public interface CoffeePackage extends EPackage {
       EClass AUTOMATIC_TASK = eINSTANCE.getAutomaticTask();
 
       /**
-       * The meta object literal for the '<em><b>Component</b></em>' reference
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Component</b></em>' reference feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EReference AUTOMATIC_TASK__COMPONENT = eINSTANCE.getAutomaticTask_Component();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl <em>Manual
-       * Task</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.ManualTaskImpl <em>Manual Task</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.ManualTaskImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManualTask()
        * @generated
@@ -2591,7 +2396,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Actor</b></em>' attribute feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EAttribute MANUAL_TASK__ACTOR = eINSTANCE.getManualTask_Actor();
@@ -2619,10 +2423,8 @@ public interface CoffeePackage extends EPackage {
       EClass JOIN = eINSTANCE.getJoin();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.DecisionImpl <em>Decision</em>}'
-       * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DecisionImpl <em>Decision</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.DecisionImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDecision()
        * @generated
@@ -2632,26 +2434,20 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Has One Incoming</b></em>' operation.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
-      EOperation DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getDecision__HasOneIncoming__DiagnosticChain_Map();
+      EOperation DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDecision__HasOneIncoming__DiagnosticChain_Map();
 
       /**
        * The meta object literal for the '<em><b>Has Two Outgoing</b></em>' operation.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
-      EOperation DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getDecision__HasTwoOutgoing__DiagnosticChain_Map();
+      EOperation DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDecision__HasTwoOutgoing__DiagnosticChain_Map();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl <em>Merge</em>}' class.
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl <em>Merge</em>}' class.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @see org.eclipse.emfcloud.coffee.impl.MergeImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMerge()
        * @generated
@@ -2661,20 +2457,16 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Has Two Incoming</b></em>' operation.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
-      EOperation MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getMerge__HasTwoIncoming__DiagnosticChain_Map();
+      EOperation MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMerge__HasTwoIncoming__DiagnosticChain_Map();
 
       /**
        * The meta object literal for the '<em><b>Has One Outgoing</b></em>' operation.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
-      EOperation MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE
-         .getMerge__HasOneOutgoing__DiagnosticChain_Map();
+      EOperation MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMerge__HasOneOutgoing__DiagnosticChain_Map();
 
       /**
        * The meta object literal for the
@@ -2690,7 +2482,6 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Source</b></em>' reference feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EReference FLOW__SOURCE = eINSTANCE.getFlow_Source();
@@ -2698,16 +2489,13 @@ public interface CoffeePackage extends EPackage {
       /**
        * The meta object literal for the '<em><b>Target</b></em>' reference feature.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @generated
        */
       EReference FLOW__TARGET = eINSTANCE.getFlow_Target();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl <em>Weighted
-       * Flow</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl <em>Weighted Flow</em>}' class.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWeightedFlow()
        * @generated
@@ -2715,18 +2503,15 @@ public interface CoffeePackage extends EPackage {
       EClass WEIGHTED_FLOW = eINSTANCE.getWeightedFlow();
 
       /**
-       * The meta object literal for the '<em><b>Probability</b></em>' attribute
-       * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '<em><b>Probability</b></em>' attribute feature.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @generated
        */
       EAttribute WEIGHTED_FLOW__PROBABILITY = eINSTANCE.getWeightedFlow_Probability();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector
-       * Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.SocketConnectorType <em>Socket Connector Type</em>}' enum.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.SocketConnectorType
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getSocketConnectorType()
        * @generated
@@ -2734,10 +2519,8 @@ public interface CoffeePackage extends EPackage {
       EEnum SOCKET_CONNECTOR_TYPE = eINSTANCE.getSocketConnectorType();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring
-       * Process</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring Process</em>}' enum.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.ManufactoringProcess
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManufactoringProcess()
        * @generated
@@ -2745,9 +2528,8 @@ public interface CoffeePackage extends EPackage {
       EEnum MANUFACTORING_PROCESS = eINSTANCE.getManufactoringProcess();
 
       /**
-       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.RamType
-       * <em>Ram Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.RamType <em>Ram Type</em>}' enum.
+       * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.RamType
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRamType()
        * @generated
@@ -2755,10 +2537,8 @@ public interface CoffeePackage extends EPackage {
       EEnum RAM_TYPE = eINSTANCE.getRamType();
 
       /**
-       * The meta object literal for the
-       * '{@link org.eclipse.emfcloud.coffee.Probability <em>Probability</em>}' enum.
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.Probability <em>Probability</em>}' enum.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
-       *
        * @see org.eclipse.emfcloud.coffee.Probability
        * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProbability()
        * @generated

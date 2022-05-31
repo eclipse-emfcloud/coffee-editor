@@ -27,9 +27,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.Task#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Task#getDuration
- * <em>Duration</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Task#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Task#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask()
@@ -50,9 +49,8 @@ public interface Task extends Node {
    String getName();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getName
-    * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getName <em>Name</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Name</em>' attribute.
     * @see #getName()
     * @generated
@@ -72,9 +70,8 @@ public interface Task extends Node {
    int getDuration();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getDuration
-    * <em>Duration</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Task#getDuration <em>Duration</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Duration</em>' attribute.
     * @see #getDuration()
     * @generated
@@ -83,7 +80,6 @@ public interface Task extends Node {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */
@@ -91,7 +87,6 @@ public interface Task extends Node {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */
@@ -99,7 +94,6 @@ public interface Task extends Node {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @model
     * @generated
     */

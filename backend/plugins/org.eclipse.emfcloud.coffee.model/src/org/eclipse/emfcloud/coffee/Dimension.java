@@ -25,12 +25,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.Dimension#getWidth
- * <em>Width</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Dimension#getHeight
- * <em>Height</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.Dimension#getLength
- * <em>Length</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Dimension#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Dimension#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.Dimension#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getDimension()
@@ -51,9 +48,8 @@ public interface Dimension extends EObject {
    int getWidth();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getWidth
-    * <em>Width</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getWidth <em>Width</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Width</em>' attribute.
     * @see #getWidth()
     * @generated
@@ -73,9 +69,8 @@ public interface Dimension extends EObject {
    int getHeight();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getHeight
-    * <em>Height</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getHeight <em>Height</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Height</em>' attribute.
     * @see #getHeight()
     * @generated
@@ -95,9 +90,8 @@ public interface Dimension extends EObject {
    int getLength();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getLength
-    * <em>Length</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.Dimension#getLength <em>Length</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Length</em>' attribute.
     * @see #getLength()
     * @generated

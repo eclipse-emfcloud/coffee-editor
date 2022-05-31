@@ -46,22 +46,21 @@ import org.eclipse.emfcloud.coffee.Workflow;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
- *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage
  * @generated
  */
 public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    /**
-    * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached model package.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    protected static CoffeePackage modelPackage;
 
    /**
-    * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+    * Creates an instance of the adapter factory.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @generated
     */
    public CoffeeAdapterFactory() {
@@ -80,12 +79,12 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
     * @generated
     */
    @Override
-   public boolean isFactoryForType(final Object object) {
+   public boolean isFactoryForType(Object object) {
       if (object == modelPackage) {
          return true;
       }
       if (object instanceof EObject) {
-         return ((EObject) object).eClass().getEPackage() == modelPackage;
+         return ((EObject)object).eClass().getEPackage() == modelPackage;
       }
       return false;
    }
@@ -96,129 +95,108 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
     *
     * @generated
     */
-   protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<>() {
-      @Override
-      public Adapter caseComponent(final Component object) {
-         return createComponentAdapter();
-      }
-
-      @Override
-      public Adapter caseMachine(final Machine object) {
-         return createMachineAdapter();
-      }
-
-      @Override
-      public Adapter caseControlUnit(final ControlUnit object) {
-         return createControlUnitAdapter();
-      }
-
-      @Override
-      public Adapter caseBrewingUnit(final BrewingUnit object) {
-         return createBrewingUnitAdapter();
-      }
-
-      @Override
-      public Adapter caseDipTray(final DipTray object) {
-         return createDipTrayAdapter();
-      }
-
-      @Override
-      public Adapter caseWaterTank(final WaterTank object) {
-         return createWaterTankAdapter();
-      }
-
-      @Override
-      public Adapter caseProcessor(final Processor object) {
-         return createProcessorAdapter();
-      }
-
-      @Override
-      public Adapter caseDimension(final Dimension object) {
-         return createDimensionAdapter();
-      }
-
-      @Override
-      public Adapter caseRAM(final RAM object) {
-         return createRAMAdapter();
-      }
-
-      @Override
-      public Adapter caseDisplay(final Display object) {
-         return createDisplayAdapter();
-      }
-
-      @Override
-      public Adapter caseWorkflow(final Workflow object) {
-         return createWorkflowAdapter();
-      }
-
-      @Override
-      public Adapter caseNode(final Node object) {
-         return createNodeAdapter();
-      }
-
-      @Override
-      public Adapter caseTask(final Task object) {
-         return createTaskAdapter();
-      }
-
-      @Override
-      public Adapter caseAutomaticTask(final AutomaticTask object) {
-         return createAutomaticTaskAdapter();
-      }
-
-      @Override
-      public Adapter caseManualTask(final ManualTask object) {
-         return createManualTaskAdapter();
-      }
-
-      @Override
-      public Adapter caseFork(final Fork object) {
-         return createForkAdapter();
-      }
-
-      @Override
-      public Adapter caseJoin(final Join object) {
-         return createJoinAdapter();
-      }
-
-      @Override
-      public Adapter caseDecision(final Decision object) {
-         return createDecisionAdapter();
-      }
-
-      @Override
-      public Adapter caseMerge(final Merge object) {
-         return createMergeAdapter();
-      }
-
-      @Override
-      public Adapter caseFlow(final Flow object) {
-         return createFlowAdapter();
-      }
-
-      @Override
-      public Adapter caseWeightedFlow(final WeightedFlow object) {
-         return createWeightedFlowAdapter();
-      }
-
-      @Override
-      public Adapter defaultCase(final EObject object) {
-         return createEObjectAdapter();
-      }
-   };
+   protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<Adapter>() {
+         @Override
+         public Adapter caseComponent(Component object) {
+            return createComponentAdapter();
+         }
+         @Override
+         public Adapter caseMachine(Machine object) {
+            return createMachineAdapter();
+         }
+         @Override
+         public Adapter caseControlUnit(ControlUnit object) {
+            return createControlUnitAdapter();
+         }
+         @Override
+         public Adapter caseBrewingUnit(BrewingUnit object) {
+            return createBrewingUnitAdapter();
+         }
+         @Override
+         public Adapter caseDipTray(DipTray object) {
+            return createDipTrayAdapter();
+         }
+         @Override
+         public Adapter caseWaterTank(WaterTank object) {
+            return createWaterTankAdapter();
+         }
+         @Override
+         public Adapter caseProcessor(Processor object) {
+            return createProcessorAdapter();
+         }
+         @Override
+         public Adapter caseDimension(Dimension object) {
+            return createDimensionAdapter();
+         }
+         @Override
+         public Adapter caseRAM(RAM object) {
+            return createRAMAdapter();
+         }
+         @Override
+         public Adapter caseDisplay(Display object) {
+            return createDisplayAdapter();
+         }
+         @Override
+         public Adapter caseWorkflow(Workflow object) {
+            return createWorkflowAdapter();
+         }
+         @Override
+         public Adapter caseNode(Node object) {
+            return createNodeAdapter();
+         }
+         @Override
+         public Adapter caseTask(Task object) {
+            return createTaskAdapter();
+         }
+         @Override
+         public Adapter caseAutomaticTask(AutomaticTask object) {
+            return createAutomaticTaskAdapter();
+         }
+         @Override
+         public Adapter caseManualTask(ManualTask object) {
+            return createManualTaskAdapter();
+         }
+         @Override
+         public Adapter caseFork(Fork object) {
+            return createForkAdapter();
+         }
+         @Override
+         public Adapter caseJoin(Join object) {
+            return createJoinAdapter();
+         }
+         @Override
+         public Adapter caseDecision(Decision object) {
+            return createDecisionAdapter();
+         }
+         @Override
+         public Adapter caseMerge(Merge object) {
+            return createMergeAdapter();
+         }
+         @Override
+         public Adapter caseFlow(Flow object) {
+            return createFlowAdapter();
+         }
+         @Override
+         public Adapter caseWeightedFlow(WeightedFlow object) {
+            return createWeightedFlowAdapter();
+         }
+         @Override
+         public Adapter defaultCase(EObject object) {
+            return createEObjectAdapter();
+         }
+      };
 
    /**
-    * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!--
+    * Creates an adapter for the <code>target</code>.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @param target the object to adapt.
     * @return the adapter for the <code>target</code>.
     * @generated
     */
    @Override
-   public Adapter createAdapter(final Notifier target) {
-      return modelSwitch.doSwitch((EObject) target);
+   public Adapter createAdapter(Notifier target) {
+      return modelSwitch.doSwitch((EObject)target);
    }
 
    /**
@@ -342,12 +320,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.RAM
     * @generated
@@ -387,12 +364,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Node
     * @generated
@@ -402,12 +378,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Task
     * @generated
@@ -417,12 +392,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
     * <!-- begin-user-doc --> This default implementation returns null so that we
     * can easily ignore cases; it's useful to ignore a case when inheritance will
     * catch all the cases anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.AutomaticTask
     * @generated
@@ -447,12 +420,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Fork
     * @generated
@@ -462,12 +434,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Join
     * @generated
@@ -507,12 +478,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'. <!-- begin-user-doc
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'.
+    * <!-- begin-user-doc
     * --> This default implementation returns null so that we can easily ignore
     * cases; it's useful to ignore a case when inheritance will catch all the cases
     * anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Flow
     * @generated
@@ -522,12 +492,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
     * <!-- begin-user-doc --> This default implementation returns null so that we
     * can easily ignore cases; it's useful to ignore a case when inheritance will
     * catch all the cases anyway. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.WeightedFlow
     * @generated
@@ -537,9 +505,9 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+    * Creates a new adapter for the default case.
+    * <!-- begin-user-doc --> This
     * default implementation returns null. <!-- end-user-doc -->
-    *
     * @return the new adapter.
     * @generated
     */

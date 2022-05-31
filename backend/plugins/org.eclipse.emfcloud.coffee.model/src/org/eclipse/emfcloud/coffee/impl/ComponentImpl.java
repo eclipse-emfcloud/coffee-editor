@@ -37,19 +37,16 @@ import org.eclipse.emfcloud.coffee.Component;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl#getChildren
- * <em>Children</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl#getParent
- * <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl#getParent <em>Parent</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ComponentImpl extends MinimalEObjectImpl.Container implements Component {
    /**
-    * The cached value of the '{@link #getChildren() <em>Children</em>}'
-    * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getChildren()
     * @generated
     * @ordered
@@ -58,7 +55,6 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected ComponentImpl() {
@@ -67,7 +63,6 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -77,102 +72,83 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public EList<Component> getChildren() {
       if (children == null) {
-         children = new EObjectContainmentWithInverseEList<>(Component.class, this,
-            CoffeePackage.COMPONENT__CHILDREN, CoffeePackage.COMPONENT__PARENT);
+         children = new EObjectContainmentWithInverseEList<Component>(Component.class, this, CoffeePackage.COMPONENT__CHILDREN, CoffeePackage.COMPONENT__PARENT);
       }
       return children;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public Component getParent() {
-      if (eContainerFeatureID() != CoffeePackage.COMPONENT__PARENT) {
-         return null;
-      }
-      return (Component) eInternalContainer();
+      if (eContainerFeatureID() != CoffeePackage.COMPONENT__PARENT) return null;
+      return (Component)eInternalContainer();
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
-   public NotificationChain basicSetParent(final Component newParent, NotificationChain msgs) {
-      msgs = eBasicSetContainer((InternalEObject) newParent, CoffeePackage.COMPONENT__PARENT, msgs);
+   public NotificationChain basicSetParent(Component newParent, NotificationChain msgs) {
+      msgs = eBasicSetContainer((InternalEObject)newParent, CoffeePackage.COMPONENT__PARENT, msgs);
       return msgs;
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setParent(final Component newParent) {
-      if (newParent != eInternalContainer()
-         || (eContainerFeatureID() != CoffeePackage.COMPONENT__PARENT && newParent != null)) {
-         if (EcoreUtil.isAncestor(this, newParent)) {
+   public void setParent(Component newParent) {
+      if (newParent != eInternalContainer() || (eContainerFeatureID() != CoffeePackage.COMPONENT__PARENT && newParent != null)) {
+         if (EcoreUtil.isAncestor(this, newParent))
             throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-         }
          NotificationChain msgs = null;
-         if (eInternalContainer() != null) {
+         if (eInternalContainer() != null)
             msgs = eBasicRemoveFromContainer(msgs);
-         }
-         if (newParent != null) {
-            msgs = ((InternalEObject) newParent).eInverseAdd(this, CoffeePackage.COMPONENT__CHILDREN,
-               Component.class, msgs);
-         }
+         if (newParent != null)
+            msgs = ((InternalEObject)newParent).eInverseAdd(this, CoffeePackage.COMPONENT__CHILDREN, Component.class, msgs);
          msgs = basicSetParent(newParent, msgs);
-         if (msgs != null) {
-            msgs.dispatch();
-         }
-      } else if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.COMPONENT__PARENT, newParent,
-            newParent));
+         if (msgs != null) msgs.dispatch();
       }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.COMPONENT__PARENT, newParent, newParent));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @SuppressWarnings("unchecked")
    @Override
-   public NotificationChain eInverseAdd(final InternalEObject otherEnd, final int featureID, NotificationChain msgs) {
+   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getChildren()).basicAdd(otherEnd, msgs);
+            return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
          case CoffeePackage.COMPONENT__PARENT:
-            if (eInternalContainer() != null) {
+            if (eInternalContainer() != null)
                msgs = eBasicRemoveFromContainer(msgs);
-            }
-            return basicSetParent((Component) otherEnd, msgs);
+            return basicSetParent((Component)otherEnd, msgs);
       }
       return super.eInverseAdd(otherEnd, featureID, msgs);
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-      final NotificationChain msgs) {
+   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
-            return ((InternalEList<?>) getChildren()).basicRemove(otherEnd, msgs);
+            return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
          case CoffeePackage.COMPONENT__PARENT:
             return basicSetParent(null, msgs);
       }
@@ -181,11 +157,10 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public NotificationChain eBasicRemoveFromContainerFeature(final NotificationChain msgs) {
+   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
       switch (eContainerFeatureID()) {
          case CoffeePackage.COMPONENT__PARENT:
             return eInternalContainer().eInverseRemove(this, CoffeePackage.COMPONENT__CHILDREN, Component.class, msgs);
@@ -195,11 +170,10 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
             return getChildren();
@@ -211,19 +185,18 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @SuppressWarnings("unchecked")
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
             getChildren().clear();
-            getChildren().addAll((Collection<? extends Component>) newValue);
+            getChildren().addAll((Collection<? extends Component>)newValue);
             return;
          case CoffeePackage.COMPONENT__PARENT:
-            setParent((Component) newValue);
+            setParent((Component)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -231,17 +204,16 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
             getChildren().clear();
             return;
          case CoffeePackage.COMPONENT__PARENT:
-            setParent((Component) null);
+            setParent((Component)null);
             return;
       }
       super.eUnset(featureID);
@@ -249,11 +221,10 @@ public abstract class ComponentImpl extends MinimalEObjectImpl.Container impleme
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.COMPONENT__CHILDREN:
             return children != null && !children.isEmpty();

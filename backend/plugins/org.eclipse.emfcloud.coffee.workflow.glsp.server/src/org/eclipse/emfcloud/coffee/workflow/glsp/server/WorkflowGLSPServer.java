@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.emfcloud.coffee.modelserver.CoffeeModelServerClient;
-import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
+import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.client.v1.ModelServerClientV1;
 import org.eclipse.emfcloud.modelserver.glsp.EMSGLSPServer;
 import org.eclipse.emfcloud.modelserver.glsp.notation.epackage.NotationUtil;

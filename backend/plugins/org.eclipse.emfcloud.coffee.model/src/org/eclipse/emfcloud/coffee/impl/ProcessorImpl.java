@@ -31,18 +31,12 @@ import org.eclipse.emfcloud.coffee.SocketConnectorType;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getVendor
- * <em>Vendor</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getClockSpeed
- * <em>Clock Speed</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getNumberOfCores
- * <em>Number Of Cores</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getSocketconnectorType
- * <em>Socketconnector Type</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getThermalDesignPower
- * <em>Thermal Design Power</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getManufactoringProcess
- * <em>Manufactoring Process</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getVendor <em>Vendor</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getClockSpeed <em>Clock Speed</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getNumberOfCores <em>Number Of Cores</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getSocketconnectorType <em>Socketconnector Type</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getThermalDesignPower <em>Thermal Design Power</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.ProcessorImpl#getManufactoringProcess <em>Manufactoring Process</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,7 +45,6 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    /**
     * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getVendor()
     * @generated
     * @ordered
@@ -61,7 +54,6 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    /**
     * The cached value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @see #getVendor()
     * @generated
     * @ordered
@@ -69,9 +61,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected String vendor = VENDOR_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getClockSpeed()
     * @generated
     * @ordered
@@ -79,9 +70,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected static final int CLOCK_SPEED_EDEFAULT = 0;
 
    /**
-    * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}'
-    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getClockSpeed() <em>Clock Speed</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getClockSpeed()
     * @generated
     * @ordered
@@ -89,9 +79,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected int clockSpeed = CLOCK_SPEED_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getNumberOfCores() <em>Number Of
-    * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getNumberOfCores() <em>Number Of Cores</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getNumberOfCores()
     * @generated
     * @ordered
@@ -99,9 +88,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected static final int NUMBER_OF_CORES_EDEFAULT = 0;
 
    /**
-    * The cached value of the '{@link #getNumberOfCores() <em>Number Of
-    * Cores</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getNumberOfCores() <em>Number Of Cores</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getNumberOfCores()
     * @generated
     * @ordered
@@ -109,10 +97,9 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected int numberOfCores = NUMBER_OF_CORES_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getSocketconnectorType()
-    * <em>Socketconnector Type</em>}' attribute. <!-- begin-user-doc --> <!--
+    * The default value of the '{@link #getSocketconnectorType() <em>Socketconnector Type</em>}' attribute.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    *
     * @see #getSocketconnectorType()
     * @generated
     * @ordered
@@ -120,9 +107,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected static final SocketConnectorType SOCKETCONNECTOR_TYPE_EDEFAULT = SocketConnectorType.A1T;
 
    /**
-    * The cached value of the '{@link #getSocketconnectorType() <em>Socketconnector
-    * Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getSocketconnectorType() <em>Socketconnector Type</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getSocketconnectorType()
     * @generated
     * @ordered
@@ -130,9 +116,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected SocketConnectorType socketconnectorType = SOCKETCONNECTOR_TYPE_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getThermalDesignPower() <em>Thermal Design
-    * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getThermalDesignPower() <em>Thermal Design Power</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getThermalDesignPower()
     * @generated
     * @ordered
@@ -140,9 +125,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected static final int THERMAL_DESIGN_POWER_EDEFAULT = 0;
 
    /**
-    * The cached value of the '{@link #getThermalDesignPower() <em>Thermal Design
-    * Power</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getThermalDesignPower() <em>Thermal Design Power</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getThermalDesignPower()
     * @generated
     * @ordered
@@ -150,9 +134,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected int thermalDesignPower = THERMAL_DESIGN_POWER_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getManufactoringProcess() <em>Manufactoring
-    * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The default value of the '{@link #getManufactoringProcess() <em>Manufactoring Process</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getManufactoringProcess()
     * @generated
     * @ordered
@@ -160,9 +143,8 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
    protected static final ManufactoringProcess MANUFACTORING_PROCESS_EDEFAULT = ManufactoringProcess.NM18;
 
    /**
-    * The cached value of the '{@link #getManufactoringProcess() <em>Manufactoring
-    * Process</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getManufactoringProcess() <em>Manufactoring Process</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getManufactoringProcess()
     * @generated
     * @ordered
@@ -171,7 +153,6 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected ProcessorImpl() {
@@ -180,7 +161,6 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -190,149 +170,136 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public String getVendor() { return vendor; }
+   public String getVendor() {
+      return vendor;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setVendor(final String newVendor) {
+   public void setVendor(String newVendor) {
       String oldVendor = vendor;
       vendor = newVendor;
-      if (eNotificationRequired()) {
+      if (eNotificationRequired())
          eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__VENDOR, oldVendor, vendor));
-      }
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getClockSpeed() { return clockSpeed; }
+   public int getClockSpeed() {
+      return clockSpeed;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setClockSpeed(final int newClockSpeed) {
+   public void setClockSpeed(int newClockSpeed) {
       int oldClockSpeed = clockSpeed;
       clockSpeed = newClockSpeed;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__CLOCK_SPEED, oldClockSpeed,
-            clockSpeed));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__CLOCK_SPEED, oldClockSpeed, clockSpeed));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getNumberOfCores() { return numberOfCores; }
+   public int getNumberOfCores() {
+      return numberOfCores;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setNumberOfCores(final int newNumberOfCores) {
+   public void setNumberOfCores(int newNumberOfCores) {
       int oldNumberOfCores = numberOfCores;
       numberOfCores = newNumberOfCores;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__NUMBER_OF_CORES,
-            oldNumberOfCores, numberOfCores));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__NUMBER_OF_CORES, oldNumberOfCores, numberOfCores));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public SocketConnectorType getSocketconnectorType() { return socketconnectorType; }
+   public SocketConnectorType getSocketconnectorType() {
+      return socketconnectorType;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setSocketconnectorType(final SocketConnectorType newSocketconnectorType) {
+   public void setSocketconnectorType(SocketConnectorType newSocketconnectorType) {
       SocketConnectorType oldSocketconnectorType = socketconnectorType;
       socketconnectorType = newSocketconnectorType == null ? SOCKETCONNECTOR_TYPE_EDEFAULT : newSocketconnectorType;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE,
-            oldSocketconnectorType, socketconnectorType));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE, oldSocketconnectorType, socketconnectorType));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public int getThermalDesignPower() { return thermalDesignPower; }
+   public int getThermalDesignPower() {
+      return thermalDesignPower;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setThermalDesignPower(final int newThermalDesignPower) {
+   public void setThermalDesignPower(int newThermalDesignPower) {
       int oldThermalDesignPower = thermalDesignPower;
       thermalDesignPower = newThermalDesignPower;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER,
-            oldThermalDesignPower, thermalDesignPower));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER, oldThermalDesignPower, thermalDesignPower));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public ManufactoringProcess getManufactoringProcess() { return manufactoringProcess; }
+   public ManufactoringProcess getManufactoringProcess() {
+      return manufactoringProcess;
+   }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setManufactoringProcess(final ManufactoringProcess newManufactoringProcess) {
+   public void setManufactoringProcess(ManufactoringProcess newManufactoringProcess) {
       ManufactoringProcess oldManufactoringProcess = manufactoringProcess;
-      manufactoringProcess = newManufactoringProcess == null ? MANUFACTORING_PROCESS_EDEFAULT
-         : newManufactoringProcess;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS,
-            oldManufactoringProcess, manufactoringProcess));
-      }
+      manufactoringProcess = newManufactoringProcess == null ? MANUFACTORING_PROCESS_EDEFAULT : newManufactoringProcess;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS, oldManufactoringProcess, manufactoringProcess));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.PROCESSOR__VENDOR:
             return getVendor();
@@ -352,29 +319,28 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.PROCESSOR__VENDOR:
-            setVendor((String) newValue);
+            setVendor((String)newValue);
             return;
          case CoffeePackage.PROCESSOR__CLOCK_SPEED:
-            setClockSpeed((Integer) newValue);
+            setClockSpeed((Integer)newValue);
             return;
          case CoffeePackage.PROCESSOR__NUMBER_OF_CORES:
-            setNumberOfCores((Integer) newValue);
+            setNumberOfCores((Integer)newValue);
             return;
          case CoffeePackage.PROCESSOR__SOCKETCONNECTOR_TYPE:
-            setSocketconnectorType((SocketConnectorType) newValue);
+            setSocketconnectorType((SocketConnectorType)newValue);
             return;
          case CoffeePackage.PROCESSOR__THERMAL_DESIGN_POWER:
-            setThermalDesignPower((Integer) newValue);
+            setThermalDesignPower((Integer)newValue);
             return;
          case CoffeePackage.PROCESSOR__MANUFACTORING_PROCESS:
-            setManufactoringProcess((ManufactoringProcess) newValue);
+            setManufactoringProcess((ManufactoringProcess)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -382,11 +348,10 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.PROCESSOR__VENDOR:
             setVendor(VENDOR_EDEFAULT);
@@ -412,11 +377,10 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.PROCESSOR__VENDOR:
             return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
@@ -436,14 +400,11 @@ public class ProcessorImpl extends MinimalEObjectImpl.Container implements Proce
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public String toString() {
-      if (eIsProxy()) {
-         return super.toString();
-      }
+      if (eIsProxy()) return super.toString();
 
       StringBuilder result = new StringBuilder(super.toString());
       result.append(" (vendor: ");

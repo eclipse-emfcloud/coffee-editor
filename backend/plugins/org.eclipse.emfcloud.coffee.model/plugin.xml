@@ -27,4 +27,11 @@
             genModel="model/Coffee.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Coffee -->
+      <parser
+            type="coffee"
+            class="org.eclipse.emfcloud.coffee.util.CoffeeResourceFactoryImpl"/>
+   </extension>
+
 </plugin>

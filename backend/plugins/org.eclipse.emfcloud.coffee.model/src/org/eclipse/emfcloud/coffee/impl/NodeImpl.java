@@ -43,7 +43,6 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
 public abstract class NodeImpl extends MinimalEObjectImpl.Container implements Node {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected NodeImpl() {
@@ -104,7 +103,6 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -221,14 +219,13 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eInvoke(final int operationID, final EList<?> arguments) throws InvocationTargetException {
+   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
       switch (operationID) {
          case CoffeePackage.NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP:
-            return hasCycle((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+            return hasCycle((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
       }
       return super.eInvoke(operationID, arguments);
    }

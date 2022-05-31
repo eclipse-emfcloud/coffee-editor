@@ -28,7 +28,6 @@ import org.eclipse.emfcloud.coffee.WaterTank;
 public class WaterTankImpl extends ComponentImpl implements WaterTank {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected WaterTankImpl() {
@@ -37,7 +36,6 @@ public class WaterTankImpl extends ComponentImpl implements WaterTank {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override

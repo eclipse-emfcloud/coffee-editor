@@ -30,17 +30,15 @@ import org.eclipse.emfcloud.coffee.Component;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl#getComponent
- * <em>Component</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl#getComponent <em>Component</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
    /**
-    * The cached value of the '{@link #getComponent() <em>Component</em>}'
-    * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The cached value of the '{@link #getComponent() <em>Component</em>}' reference.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see #getComponent()
     * @generated
     * @ordered
@@ -49,7 +47,6 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    protected AutomaticTaskImpl() {
@@ -58,7 +55,6 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
@@ -68,19 +64,16 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
    public Component getComponent() {
       if (component != null && component.eIsProxy()) {
-         InternalEObject oldComponent = (InternalEObject) component;
-         component = (Component) eResolveProxy(oldComponent);
+         InternalEObject oldComponent = (InternalEObject)component;
+         component = (Component)eResolveProxy(oldComponent);
          if (component != oldComponent) {
-            if (eNotificationRequired()) {
-               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.AUTOMATIC_TASK__COMPONENT,
-                  oldComponent, component));
-            }
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoffeePackage.AUTOMATIC_TASK__COMPONENT, oldComponent, component));
          }
       }
       return component;
@@ -88,7 +81,6 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    public Component basicGetComponent() {
@@ -97,31 +89,25 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void setComponent(final Component newComponent) {
+   public void setComponent(Component newComponent) {
       Component oldComponent = component;
       component = newComponent;
-      if (eNotificationRequired()) {
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.AUTOMATIC_TASK__COMPONENT, oldComponent,
-            component));
-      }
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.AUTOMATIC_TASK__COMPONENT, oldComponent, component));
    }
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+   public Object eGet(int featureID, boolean resolve, boolean coreType) {
       switch (featureID) {
          case CoffeePackage.AUTOMATIC_TASK__COMPONENT:
-            if (resolve) {
-               return getComponent();
-            }
+            if (resolve) return getComponent();
             return basicGetComponent();
       }
       return super.eGet(featureID, resolve, coreType);
@@ -129,14 +115,13 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eSet(final int featureID, final Object newValue) {
+   public void eSet(int featureID, Object newValue) {
       switch (featureID) {
          case CoffeePackage.AUTOMATIC_TASK__COMPONENT:
-            setComponent((Component) newValue);
+            setComponent((Component)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -144,14 +129,13 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public void eUnset(final int featureID) {
+   public void eUnset(int featureID) {
       switch (featureID) {
          case CoffeePackage.AUTOMATIC_TASK__COMPONENT:
-            setComponent((Component) null);
+            setComponent((Component)null);
             return;
       }
       super.eUnset(featureID);
@@ -159,11 +143,10 @@ public class AutomaticTaskImpl extends TaskImpl implements AutomaticTask {
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
     * @generated
     */
    @Override
-   public boolean eIsSet(final int featureID) {
+   public boolean eIsSet(int featureID) {
       switch (featureID) {
          case CoffeePackage.AUTOMATIC_TASK__COMPONENT:
             return component != null;

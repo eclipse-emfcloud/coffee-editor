@@ -25,10 +25,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.emfcloud.coffee.RAM#getClockSpeed <em>Clock
- * Speed</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.RAM#getSize <em>Size</em>}</li>
- * <li>{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getClockSpeed <em>Clock Speed</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getSize <em>Size</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getRAM()
@@ -72,9 +71,8 @@ public interface RAM extends EObject {
    int getSize();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getSize
-    * <em>Size</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getSize <em>Size</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Size</em>' attribute.
     * @see #getSize()
     * @generated
@@ -96,9 +94,8 @@ public interface RAM extends EObject {
    RamType getType();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getType
-    * <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}' attribute.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @param value the new value of the '<em>Type</em>' attribute.
     * @see org.eclipse.emfcloud.coffee.RamType
     * @see #getType()

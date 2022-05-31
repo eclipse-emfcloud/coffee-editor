@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
-package org.eclipse.emfcloud.coffee.modelserver;
+package org.eclipse.emfcloud.coffee.util;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
