@@ -69,9 +69,11 @@ pipeline {
         stage('Build client') {
             steps {
                 container('ci') {
-                    timeout(30){
-                        dir('.') {
-                            sh './run.sh -f'
+                    withCredentials([string(credentialsId: "github-bot-token", variable: 'GITHUB_TOKEN')]) {
+                        timeout(30){
+                            dir('.') {
+                                sh './run.sh -f'
+                            }
                         }
                     }
                 }
