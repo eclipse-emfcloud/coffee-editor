@@ -49,6 +49,7 @@
     "@theia/vsx-registry": "^1.0.0",
     "@theia/workspace": "^1.0.0",
     "coffee-cpp-extension": "0.7.0",
+    "coffee-comparison": "0.7.0",
     "coffee-editor-extension": "0.7.0",
     "coffee-java-extension": "0.7.0",
     "coffee-server": "0.7.0",

@@ -52,7 +52,7 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
             loadSourceResources(file.getAbsolutePath());
          } else if (file.isFile()) {
             URI modelURI = createURI(file.getAbsolutePath());
-            if (modelURI.fileExtension().equals(CoffeeResource.FILE_EXTENSION)) {
+            if (CoffeeResource.FILE_EXTENSION.equals(modelURI.fileExtension())) {
                resourceSets.put(modelURI, resourceSetFactory.createResourceSet(modelURI));
             }
             loadResource(modelURI.toString());
@@ -62,7 +62,8 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
 
    @Override
    public ResourceSet getResourceSet(final String modeluri) {
-      if (createURI(modeluri).fileExtension().equals(NotationUtil.NOTATION_EXTENSION)) {
+      URI modelURI = createURI(modeluri);
+      if (NotationUtil.NOTATION_EXTENSION.equals(modelURI.fileExtension())) {
          URI semanticUri = createURI(modeluri).trimFileExtension()
             .appendFileExtension(CoffeeResource.FILE_EXTENSION);
          return resourceSets.get(semanticUri);

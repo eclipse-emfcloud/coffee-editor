@@ -1,0 +1,11 @@
+{
+  "extends": "../configs/base.tsconfig",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "jsx": "react"
+  },
+  "include": ["src"]
+}

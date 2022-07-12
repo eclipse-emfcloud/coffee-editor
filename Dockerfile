@@ -27,6 +27,14 @@ RUN ./run.sh -bcf && \
 	cp ./web/favicon.ico ./web/browser-app/lib
 RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/browser-app/lib/index.html
 
+WORKDIR /coffee-editor/backend/examples/SuperBrewer3000
+
+RUN git config --global user.name "Test User"
+RUN git config --global user.email "test@example.com"
+RUN git init
+RUN git add *
+RUN git commit -m "init"
+
 WORKDIR /coffee-editor/web/browser-app
 
 EXPOSE 3000

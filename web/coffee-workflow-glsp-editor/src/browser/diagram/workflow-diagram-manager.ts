@@ -1,4 +1,4 @@
-/********************************************************************************
+/*
  * Copyright (c) 2020-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -7,15 +7,18 @@
  * available at https://opensource.org/licenses/MIT.
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ********************************************************************************/
+ */
+import { Args, EnableToolPaletteAction, RequestTypeHintsAction, SetEditModeAction, codiconCSSString } from '@eclipse-glsp/client';
+
+import { DiagramServer, ModelSource, RequestModelAction, TYPES } from 'sprotty';
 import {
     DiagramWidgetOptions,
     GLSPDiagramManager,
     GLSPDiagramWidget,
+    GLSPTheiaDiagramServer,
     GLSPWidgetOpenerOptions,
     GLSPWidgetOptions
 } from '@eclipse-glsp/theia-integration/lib/browser';
-import { codiconCSSString } from '@eclipse-glsp/client';
 import { WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
@@ -57,9 +60,18 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
     //     };
     // }
 
-    protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): WorkflowDiagramWidgetOptions {
+    protected createWidgetOptions(uri: URI, options?: GLSPWidgetOpenerOptions): DiagramWidgetOptions & GLSPWidgetOptions {
+        const widgetOptions = super.createWidgetOptions(uri.withoutQuery(), options);
+        const queryOptions = this.createQueryOptions(uri);
+        const serverOptions = this.createServerOptions(options);
+        if (options?.widgetOptions && (options.widgetOptions as any).editMode) {
+            (widgetOptions as any).editMode = (options.widgetOptions as any).editMode;
+        }
         return {
-            ...super.createWidgetOptions(uri, options),
+            ...options?.widgetOptions,
+            ...widgetOptions,
+            ...queryOptions,
+            ...serverOptions,
             workspaceRoot: this.workspaceRoot
         } as WorkflowDiagramWidgetOptions;
     }
@@ -101,5 +113,45 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
 
     get iconClass(): string {
         return DIAGRAM_ICON_CLASS;
+    }
+
+    createWidgetFromURI(uri: URI, options?: WidgetOpenerOptions): Promise<GLSPDiagramWidget> {
+        const uriString = uri.toString();
+        const notationString = uriString.substr(0, uriString.lastIndexOf('.')) + '.notation';
+        const notationUri = new URI(notationString);
+        return this.getOrCreateWidget(notationUri, options) as Promise<GLSPDiagramWidget>;
+    }
+}
+
+export class WorkflowDiagramWidget extends GLSPDiagramWidget {
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    protected initializeSprotty() {
+        const modelSource = this.diContainer.get<ModelSource>(TYPES.ModelSource);
+        if (modelSource instanceof DiagramServer) {
+            modelSource.clientId = this.id;
+        }
+        if (modelSource instanceof GLSPTheiaDiagramServer && this.connector) {
+            this.connector.connect(modelSource);
+        }
+
+        this.disposed.connect(() => {
+            if (modelSource instanceof GLSPTheiaDiagramServer && this.connector) {
+                this.connector.disconnect(modelSource);
+            }
+        });
+
+        this.requestModelOptions = {
+            sourceUri: this.uri.path.toString(),
+            needsClientLayout: `${this.viewerOptions.needsClientLayout}`,
+            ...this.options
+        } as Args;
+        this.actionDispatcher.dispatch(new RequestModelAction(this.requestModelOptions));
+        this.actionDispatcher.dispatch(new RequestTypeHintsAction(this.options.diagramType));
+        if ((this.options as any).editMode === 'editable') {
+            this.actionDispatcher.dispatch(new EnableToolPaletteAction());
+            this.actionDispatcher.dispatch(new SetEditModeAction('editable'));
+        } else {
+            this.actionDispatcher.dispatch(new SetEditModeAction('readonly'));
+        }
     }
 }

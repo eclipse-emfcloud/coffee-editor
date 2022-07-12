@@ -1,5 +1,5 @@
-/********************************************************************************
- * Copyright (C) 2020-2022 EclipseSource and others.
+/*
+ * Copyright (c) 2020-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ********************************************************************************/
+ */
 import { ApplicationShell, codicon, open, OpenerService, SelectableTreeNode, Widget } from '@theia/core/lib/browser';
 import { ReactWidget } from '@theia/core/lib/browser/widgets/react-widget';
 import { CommandRegistry } from '@theia/core/lib/common';
@@ -228,6 +228,55 @@ export class WelcomePageWidget extends ReactWidget {
                                 console!
                             </p>,
                             this.startDebugCpp
+                        )}
+                    </div>
+                </div>
+                <div className='flex-grid'>
+                    <div className='col'>
+                        {this.renderFeatureSection(
+                            'Model validation',
+                            'codicon codicon-warning',
+                            <div>
+                                <p>
+                                    For the model validation the project uses EMF validation via the Model Server and displays the results
+                                    in the GLSP editor, as well as the Theia problems view. The editor has live validation enabled, so the
+                                    model server will validate and display the markers on changes to the model. The validation rules are:
+                                </p>
+                                <ul>
+                                    <li>A task name may only contain letters, number, - and whitespaces</li>
+                                    <li>Every task should have at most 1 incoming and 1 outgoing flow</li>
+                                    <li>A decision node should have exactly 1 incoming and 2 outgoing flows</li>
+                                    <li>A merge node should have exactly 2 incoming and 1 outgoing flows</li>
+                                    <li>A task should be used (have at least one connection)</li>
+                                    <li>A workflow should not contain a cycle</li>
+                                </ul>
+                            </div>,
+                            this.openDiagram
+                        )}
+                    </div>
+                </div>
+                <div className='flex-grid'>
+                    <div className='col'>
+                        {this.renderFeatureSection(
+                            'Model comparison',
+                            'codicon codicon-files',
+                            <p>
+                                The model comparison is done via the{' '}
+                                <a
+                                    href='https://github.com/eclipsesource/model-compare/tree/master/client/comparison-extension'
+                                    target='_blank'
+                                    rel='noreferrer'
+                                >
+                                    comparison-extension
+                                </a>{' '}
+                                , which uses EMF Compare. The coffee-editor adds to the comparison extension and provides a git integration.
+                                With this, the current file can be compared to its HEAD file. This can be achieved by right-clicking on the
+                                &quot;.notation&quot; or &quot;.coffee&quot; file and selecting &quot;Compare with HEAD...&quot; , with the
+                                latter opening the tree comparison and the right click on the &quot;.notation&quot; file the graphical
+                                comparison. Note, that this requires the current workspace to be a Git repository with at least one commit
+                                that contains the selected file.
+                            </p>,
+                            this.openDiagram
                         )}
                     </div>
                 </div>

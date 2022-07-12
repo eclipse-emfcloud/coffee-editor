@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.util;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.ActivityNode;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.Icon;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
@@ -148,6 +151,10 @@ public final class WorkflowBuilder {
          return this;
       }
 
+   }
+   
+   public static String getChangeCssClass(WorkflowModelState modelState, EObject object) {
+	   return modelState.getHighlights().get(EcoreUtil.getURI(object).toString().split("#_")[1]);
    }
 
    private WorkflowBuilder() {}

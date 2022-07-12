@@ -3,36 +3,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "coffee-editor-extension": [
-        "coffee-editor-extension/src/*"
-      ],
-      "coffee-java-extension": [
-        "coffee-java-extension/src/*"
-      ],
-      "coffee-cpp-extension": [
-        "coffee-cpp-extension/src/*"
-      ],
-      "coffee-server": [
-        "coffee-server/src/*"
-      ],
-      "coffee-welcome-page": [
-        "coffee-welcome-page/src/*"
-      ],
-      "coffee-workflow-analyzer": [
-        "coffee-workflow-analyzer/src/*"
-      ],
-      "coffee-workflow-analyzer-editor": [
-        "coffee-workflow-analyzer-editor/src/*"
-      ],
-      "coffee-workflow-glsp-editor": [
-        "coffee-workflow-glsp-editor/src/*"
-      ],
-      "coffee-workflow-glsp": [
-        "coffee-workflow-glsp/src/*"
-      ]
+      "coffee-comparison": ["coffee-comparison/src/*"],
+      "coffee-editor-extension": ["coffee-editor-extension/src/*"],
+      "coffee-java-extension": ["coffee-java-extension/src/*"],
+      "coffee-cpp-extension": ["coffee-cpp-extension/src/*"],
+      "coffee-server": ["coffee-server/src/*"],
+      "coffee-welcome-page": ["coffee-welcome-page/src/*"],
+      "coffee-workflow-analyzer": ["coffee-workflow-analyzer/src/*"],
+      "coffee-workflow-analyzer-editor": ["coffee-workflow-analyzer-editor/src/*"],
+      "coffee-workflow-glsp-editor": ["coffee-workflow-glsp-editor/src/*"],
+      "coffee-workflow-glsp": ["coffee-workflow-glsp/src/*"]
     }
   },
   "include": [
+    "coffee-comparison/src",
     "coffee-editor-extension/src",
     "coffee-java-extension/src",
     "coffee-cpp-extension/src",
@@ -43,7 +27,5 @@
     "coffee-workflow-glsp-editor/src",
     "coffee-workflow-glsp/src"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
