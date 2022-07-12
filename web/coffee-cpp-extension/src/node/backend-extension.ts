@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -18,8 +18,9 @@ import { CoffeeCodeGenCppServer } from './coffee-codegen-server';
 export default new ContainerModule(bind => {
     bind(CoffeeCodeGenCppServer).toSelf().inSingletonScope();
     bind(BackendApplicationContribution).toService(CoffeeCodeGenCppServer);
-    bind(ConnectionHandler).toDynamicValue(ctx =>
-        new JsonRpcConnectionHandler(CODEGEN_SERVICE_PATH, () =>
-            ctx.container.get<CodeGenCppServer>(CoffeeCodeGenCppServer))
-    ).inSingletonScope();
+    bind(ConnectionHandler)
+        .toDynamicValue(
+            ctx => new JsonRpcConnectionHandler(CODEGEN_SERVICE_PATH, () => ctx.container.get<CodeGenCppServer>(CoffeeCodeGenCppServer))
+        )
+        .inSingletonScope();
 });

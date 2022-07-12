@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -22,8 +22,10 @@ export default new ContainerModule(bind => {
     bind(GenerateCodeService).toSelf().inSingletonScope();
     bind(JavaGenerationCommandContribution).toSelf().inSingletonScope();
     [CommandContribution, MenuContribution].forEach(s => bind(s).toService(JavaGenerationCommandContribution));
-    bind(CodeGenServer).toDynamicValue(ctx => {
-        const connection = ctx.container.get(WebSocketConnectionProvider);
-        return connection.createProxy<CodeGenServer>(CODEGEN_SERVICE_PATH);
-    }).inSingletonScope();
+    bind(CodeGenServer)
+        .toDynamicValue(ctx => {
+            const connection = ctx.container.get(WebSocketConnectionProvider);
+            return connection.createProxy<CodeGenServer>(CODEGEN_SERVICE_PATH);
+        })
+        .inSingletonScope();
 });

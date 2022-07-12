@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -14,12 +14,11 @@ export const ID_PROP = '@id';
 
 export class AddAutomatedTaskCommand extends ModelServerCommand {
     static readonly TYPE = 'addAutomatedTaskContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddAutomatedTaskCommand.URI;
 
     constructor() {
-        super(AddAutomatedTaskCommand.TYPE, { positionX: '0.0', positionY: '0.0'});
+        super(AddAutomatedTaskCommand.TYPE, { positionX: '0.0', positionY: '0.0' });
     }
 
     static is(object?: any): object is ModelServerCommand {
@@ -36,12 +35,11 @@ export class AddAutomatedTaskCommand extends ModelServerCommand {
 
 export class AddManualTaskCommand extends ModelServerCommand {
     static readonly TYPE = 'addManualTaskContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddManualTaskCommand.URI;
 
     constructor() {
-        super(AddManualTaskCommand.TYPE, { positionX: '0.0', positionY: '0.0'});
+        super(AddManualTaskCommand.TYPE, { positionX: '0.0', positionY: '0.0' });
     }
 
     static is(object?: any): object is ModelServerCommand {
@@ -58,12 +56,11 @@ export class AddManualTaskCommand extends ModelServerCommand {
 
 export class AddDecisionNodeCommand extends ModelServerCommand {
     static readonly TYPE = 'addDecisionNodeContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddDecisionNodeCommand.URI;
 
     constructor() {
-        super(AddDecisionNodeCommand.TYPE, { positionX: '0.0', positionY: '0.0'});
+        super(AddDecisionNodeCommand.TYPE, { positionX: '0.0', positionY: '0.0' });
     }
 
     static is(object?: any): object is ModelServerCommand {
@@ -80,12 +77,11 @@ export class AddDecisionNodeCommand extends ModelServerCommand {
 
 export class AddMergeNodeCommand extends ModelServerCommand {
     static readonly TYPE = 'addMergeNodeContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddMergeNodeCommand.URI;
 
     constructor() {
-        super(AddMergeNodeCommand.TYPE, { positionX: '0.0', positionY: '0.0'});
+        super(AddMergeNodeCommand.TYPE, { positionX: '0.0', positionY: '0.0' });
     }
 
     static is(object?: any): object is ModelServerCommand {
@@ -102,8 +98,7 @@ export class AddMergeNodeCommand extends ModelServerCommand {
 
 export class AddFlowCommand extends ModelServerCommand {
     static readonly TYPE = 'addFlowContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddFlowCommand.URI;
 
     constructor() {
@@ -124,8 +119,7 @@ export class AddFlowCommand extends ModelServerCommand {
 
 export class AddWeightedFlowCommand extends ModelServerCommand {
     static readonly TYPE = 'addWeightedFlowContribution';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = AddWeightedFlowCommand.URI;
 
     constructor() {
@@ -146,8 +140,7 @@ export class AddWeightedFlowCommand extends ModelServerCommand {
 
 export class SetTaskNameCommand extends ModelServerCommand {
     static readonly TYPE = 'setTaskName';
-    static readonly URI =
-        ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
+    static readonly URI = ModelServerCommandPackage.NS_URI + '#//CompoundCommand';
     eClass = SetTaskNameCommand.URI;
 
     constructor(taskId: string, newName: string) {
@@ -165,4 +158,3 @@ export class SetTaskNameCommand extends ModelServerCommand {
         );
     }
 }
-

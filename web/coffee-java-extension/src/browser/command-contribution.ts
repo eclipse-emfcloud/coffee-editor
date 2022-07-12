@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -42,13 +42,12 @@ export const TEST_CODE_COMMAND: Command = {
 
 @injectable()
 export class JavaGenerationCommandContribution implements CommandContribution, MenuContribution {
-
     constructor(
         @inject(SelectionService) protected readonly selectionService: SelectionService,
         @inject(CommandService) protected readonly commandService: CommandService,
         @inject(GenerateCodeService) protected readonly generateCodeService: GenerateCodeService,
         @inject(JUnitRunService) private readonly junitRunService: JUnitRunService
-    ) { }
+    ) {}
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {
@@ -68,16 +67,22 @@ export class JavaGenerationCommandContribution implements CommandContribution, M
             isToggled: () => this.generateCodeService.isAutoGenerateOn(),
             execute: () => this.generateCodeService.toggleAutoGenerate()
         });
-        registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
-            execute: uri => this.generateCodeService.generateCode(uri),
-            isVisible: uri => this.generateCodeService.isWorkflowFile(uri),
-            isEnabled: uri => this.generateCodeService.isWorkflowFile(uri)
-        }));
-        registry.registerCommand(TEST_CODE_COMMAND, this.newUriAwareCommandHandler({
-            execute: uri => this.junitRunService.runTest(uri),
-            isVisible: uri => this.isJUnitTestFile(uri),
-            isEnabled: uri => this.isJUnitTestFile(uri)
-        }));
+        registry.registerCommand(
+            CODEGEN_COMMAND,
+            this.newUriAwareCommandHandler({
+                execute: uri => this.generateCodeService.generateCode(uri),
+                isVisible: uri => this.generateCodeService.isWorkflowFile(uri),
+                isEnabled: uri => this.generateCodeService.isWorkflowFile(uri)
+            })
+        );
+        registry.registerCommand(
+            TEST_CODE_COMMAND,
+            this.newUriAwareCommandHandler({
+                execute: uri => this.junitRunService.runTest(uri),
+                isVisible: uri => this.isJUnitTestFile(uri),
+                isEnabled: uri => this.isJUnitTestFile(uri)
+            })
+        );
     }
 
     private newUriAwareCommandHandler(handler: UriCommandHandler<URI>): UriAwareCommandHandler<URI> {
@@ -87,5 +92,4 @@ export class JavaGenerationCommandContribution implements CommandContribution, M
     private isJUnitTestFile(fileUri: URI): boolean {
         return fileUri.toString().endsWith('Test.java');
     }
-
 }

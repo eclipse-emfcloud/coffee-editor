@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -29,7 +29,6 @@ import { WorkflowAnalysisClient, WorkflowAnalyzer } from '../common/workflow-ana
  * The return type of the `FileSystem#resolveContent` method.
  */
 interface FileStatWithContent {
-
     /**
      * The file stat.
      */
@@ -39,14 +38,12 @@ interface FileStatWithContent {
      * The content of the file as a UTF-8 encoded string.
      */
     readonly content: string;
-
 }
 
 // const DEFAULT_PORT = 8024;
 
 @injectable()
 export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicationContribution {
-
     /**
      * Endpoint path to handle the request for the given resource.
      */
@@ -57,7 +54,8 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
 
     constructor(
         @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory,
-        @inject(ILogger) private readonly logger: ILogger) { }
+        @inject(ILogger) private readonly logger: ILogger
+    ) {}
 
     initialize(): void {
         const port = this.getPort();
@@ -179,8 +177,10 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
     async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
         return new Promise((resolve, reject) => {
             if (this.connection) {
-                this.connection.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri)
-                    .then(r => resolve(r), e => reject(e));
+                this.connection.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri).then(
+                    r => resolve(r),
+                    e => reject(e)
+                );
             } else {
                 reject(new Error('No connection to model analysis server'));
             }
@@ -190,5 +190,4 @@ export class WorkflowAnalysisServer implements WorkflowAnalyzer, BackendApplicat
     public createRunAnalysisRequest(): rpc.RequestType2<string, string, string, void, void> {
         return new rpc.RequestType2<string, string, string, void, void>('runAnalysis');
     }
-
 }

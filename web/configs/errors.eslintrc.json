@@ -6,21 +6,11 @@
     // Possible Errors
     "no-inner-declarations": "off",
     // Best Practices
-    "eqeqeq": [
-      "error",
-      "smart"
-    ],
+    "eqeqeq": ["error", "smart"],
     "guard-for-in": "error",
     "no-caller": "error",
     "no-eval": "error",
-    "no-restricted-imports": [
-      "error",
-      "..",
-      "../index",
-      "../..",
-      "../../index",
-      "src"
-    ],
+    "no-restricted-imports": ["error", "..", "../index", "../..", "../../index", "src"],
     "no-sequences": "error",
     "no-throw-literal": "error",
     "no-unused-expressions": [
@@ -35,15 +25,9 @@
     "no-use-before-define": "off", // typescript-eslint rule activated instead
     "no-underscore-dangle": "off",
     "quotes": "off", // typescript-eslint rule activated instead
-    "one-var": [
-      "error",
-      "never"
-    ],
+    "one-var": ["error", "never"],
     // ECMAScript6
-    "arrow-body-style": [
-      "error",
-      "as-needed"
-    ],
+    "arrow-body-style": ["error", "as-needed"],
     "no-var": "error",
     "prefer-const": [
       "error",
@@ -69,9 +53,19 @@
       2,
       "block",
       [
+        "",
         {
-          "pattern": "[\n\r]+ \\* Copyright \\([cC]\\) \\d{4}(-\\d{4})? .*[\n\r]+"
-        }
+          "pattern": "\\* Copyright \\([cC]\\) \\d{4}(-\\d{4})? [a-zA-Z\\s\\,\\.]*\\.",
+          "template": " * Copyright (c) 2022 EclipseSource and others."
+        },
+        " *",
+        " * This program and the accompanying materials are made available under the",
+        " * terms of the Eclipse Public License v. 2.0 which is available at",
+        " * http://www.eclipse.org/legal/epl-2.0, or the MIT License which is",
+        " * available at https://opensource.org/licenses/MIT.",
+        " *",
+        " * SPDX-License-Identifier: EPL-2.0 OR MIT",
+        " "
       ]
     ],
     // eslint-plugin-import

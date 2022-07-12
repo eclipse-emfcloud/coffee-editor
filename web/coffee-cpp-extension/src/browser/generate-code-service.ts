@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -20,13 +20,13 @@ export class GenerateCppCodeService {
     constructor(
         @inject(CodeGenCppServer) private readonly codeGenServer: CodeGenCppServer,
         @inject(MessageService) protected readonly messageService: MessageService
-        // @inject(TaskService) private readonly taskService: TaskService
-    ) { }
+    ) // @inject(TaskService) private readonly taskService: TaskService
+    {}
 
     public generateCode(uri: URI): void {
-        this.messageService.showProgress(
-            { text: `Generating code for ${uri.parent.relative(uri)}`, options: { cancelable: false } }
-        ).then(progress => this.doGenerateCode(uri, progress));
+        this.messageService
+            .showProgress({ text: `Generating code for ${uri.parent.relative(uri)}`, options: { cancelable: false } })
+            .then(progress => this.doGenerateCode(uri, progress));
     }
 
     private doGenerateCode(uri: URI, progress: Progress): void {
@@ -34,17 +34,16 @@ export class GenerateCppCodeService {
         const packageName = generationDirectory.path.name;
         const sourceFile = uri.toString();
         const target = generationDirectory.toString();
-        this.codeGenServer.generateCode(sourceFile, target, packageName)
-            .finally(() => {
-                progress.cancel();
-                // FIXME reimplement code gen without @theia/languages
-                // this.taskService.getTasks().then(tasks => {
-                //     const task = tasks.find(t => t.label === 'Binary build');
-                //     if (task) {
-                //         this.taskService.runTask(task);
-                //     }
-                // });
-            });
+        this.codeGenServer.generateCode(sourceFile, target, packageName).finally(() => {
+            progress.cancel();
+            // FIXME reimplement code gen without @theia/languages
+            // this.taskService.getTasks().then(tasks => {
+            //     const task = tasks.find(t => t.label === 'Binary build');
+            //     if (task) {
+            //         this.taskService.runTask(task);
+            //     }
+            // });
+        });
     }
 
     dispose(): void {

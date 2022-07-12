@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -30,11 +30,10 @@ export const ANALYZE_COMMAND: Command = {
 
 @injectable()
 export class WorkflowCommandContribution implements CommandContribution, MenuContribution {
-
     constructor(
         @inject(SelectionService) private readonly selectionService: SelectionService,
         @inject(AnalysisService) private readonly analysisService: AnalysisService
-    ) { }
+    ) {}
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...EDITOR_CONTEXT_MENU, '0_addition'], {
@@ -43,16 +42,17 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
         });
     }
     registerCommands(registry: CommandRegistry): void {
-        registry.registerCommand(ANALYZE_COMMAND, this.newUriAwareCommandHandler({
-            execute: (uri: URI) => this.analysisService.analyze(uri),
-            isVisible: (uri: URI) => uri.toString().endsWith('wfconfig'),
-            isEnabled: (uri: URI) => uri.toString().endsWith('wfconfig')
-        })
+        registry.registerCommand(
+            ANALYZE_COMMAND,
+            this.newUriAwareCommandHandler({
+                execute: (uri: URI) => this.analysisService.analyze(uri),
+                isVisible: (uri: URI) => uri.toString().endsWith('wfconfig'),
+                isEnabled: (uri: URI) => uri.toString().endsWith('wfconfig')
+            })
         );
     }
 
     protected newUriAwareCommandHandler(handler: UriCommandHandler<URI>): UriAwareCommandHandler<URI> {
         return new UriAwareCommandHandler(this.selectionService, handler);
-
     }
 }
