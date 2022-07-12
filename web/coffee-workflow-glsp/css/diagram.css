@@ -48,15 +48,15 @@
     fill: transparent;
 }
 
-.task.automated>.sprotty-node {
-    fill: #5b9fa8;
+.task.automated > .sprotty-node {
+    fill: #035e7b;
 }
 
-.task.manual>.sprotty-node {
-    fill: #db8651;
+.task.manual > .sprotty-node {
+    fill: #0acdff;
 }
 
-.category>.sprotty-node {
+.category > .sprotty-node {
     fill: #5c87bd;
 }
 
@@ -98,4 +98,40 @@
 .label-edit input {
     margin-top: -3px;
     margin-left: -3px;
+}
+
+.deleted > .sprotty-node {
+    fill: var(--theia-gitDecoration-deletedResourceForeground) !important;
+}
+
+.changed > .sprotty-node {
+    fill: var(--theia-gitDecoration-modifiedResourceForeground) !important;
+}
+
+.added > .sprotty-node {
+    fill: var(--theia-gitDecoration-untrackedResourceForeground) !important;
+}
+
+.deleted polygon {
+    stroke: var(--theia-gitDecoration-deletedResourceForeground) !important;
+}
+
+.changed polygon {
+    stroke: var(--theia-gitDecoration-modifiedResourceForeground) !important;
+}
+
+.added polygon {
+    stroke: var(--theia-gitDecoration-untrackedResourceForeground) !important;
+}
+
+.deleted path {
+    stroke: var(--theia-gitDecoration-deletedResourceForeground) !important;
+}
+
+.changed path {
+    stroke: var(--theia-gitDecoration-modifiedResourceForeground) !important;
+}
+
+.added path {
+    stroke: var(--theia-gitDecoration-untrackedResourceForeground) !important;
 }

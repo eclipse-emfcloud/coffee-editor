@@ -14,6 +14,7 @@ import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.CoffeeTypeUtil;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.ActivityNodeBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.TaskNodeBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.ActivityNode;
@@ -53,6 +54,11 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
       });
       builder.addArguments(GArguments.cornerRadius(5));
 
+      String change = WorkflowBuilder.getChangeCssClass(modelState, task);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
+
       return builder.build();
    }
 
@@ -70,6 +76,12 @@ public class NodeFactory extends AbstractGModelFactory<Node, GNode> {
             builder.size(GraphUtil.copy(shape.getSize()));
          }
       });
+
+      String change = WorkflowBuilder.getChangeCssClass(modelState, node);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
+
       return builder.build();
    }
 

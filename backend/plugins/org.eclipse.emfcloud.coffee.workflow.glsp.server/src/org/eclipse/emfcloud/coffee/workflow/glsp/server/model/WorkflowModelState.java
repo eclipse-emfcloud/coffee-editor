@@ -10,6 +10,10 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -27,6 +31,8 @@ public class WorkflowModelState extends EMSNotationModelState {
    private static Logger LOGGER = Logger.getLogger(WorkflowModelState.class);
 
    protected WorkflowModelServerAccess modelAccess;
+
+   private final Map<String, String> highlights = new HashMap<>();
 
    // Our semantic model is not the whole machine but only the selected workflow
    protected Workflow semanticModel;
@@ -83,5 +89,31 @@ public class WorkflowModelState extends EMSNotationModelState {
          throw new GLSPServerException("Error during notation diagram loading");
       }
       this.notationModel = (Diagram) notationRoot;
+   }
+
+   public Map<String, String> getHighlights() { return highlights; }
+
+   public void addHighlight(final Entry<String, String> entry) {
+      String current = this.highlights.get(entry.getKey());
+      if (current == null || isHigher(entry.getKey(), current)) {
+         this.highlights.put(entry.getKey(), entry.getValue());
+      }
+   }
+
+   private boolean isHigher(final String key, final String current) {
+      if (current == "deleted") {
+         return false;
+      }
+      if (current == "changed") {
+         if (key == "deleted") {
+            return true;
+         }
+      }
+      if (current == "added") {
+         if (key == "deleted" || key == "changed") {
+            return true;
+         }
+      }
+      return false;
    }
 }

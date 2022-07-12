@@ -1,0 +1,35 @@
+{
+  "name": "coffee-comparison",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.7.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@eclipsesource/comparison-extension": "0.0.1-next.20220414-105416",
+    "coffee-workflow-glsp-editor": "0.7.0",
+    "@theia/core": "latest",
+    "@theia/git": "latest",
+    "@theia/filesystem": "latest"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc && yarn run lint",
+    "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/coffee-comparison-frontend-module",
+      "backend": "lib/node/coffee-comparison-backend-module"
+    }
+  ]
+}

@@ -2,3 +2,9 @@
 /src-gen/*
 /src/*
 /target/
+.help
+
+.theia
+.settings
+.classpath
+.project

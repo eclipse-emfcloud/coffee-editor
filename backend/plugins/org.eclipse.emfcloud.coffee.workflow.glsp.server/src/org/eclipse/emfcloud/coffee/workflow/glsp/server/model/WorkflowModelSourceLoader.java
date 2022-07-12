@@ -10,7 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.model;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -20,6 +22,8 @@ import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.types.GLSPServerException;
 import org.eclipse.glsp.server.utils.ClientOptionsUtil;
+
+import com.google.gson.Gson;
 
 public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
 
@@ -51,10 +55,17 @@ public class WorkflowModelSourceLoader extends EMSModelSourceLoader {
          return;
       }
 
-      modelServerAccess.subscribe(createSubscriptionListener(modelState, actionDispatcher, submissionHandler));
-      modelServerAccess.createValidationFramework(modelState);
-      modelServerAccess.subscribeToValidation();
-      modelServerAccess.initConstraintList();
+      if (action.getOptions().get("highlights") != null) {
+         HashMap<String, String> map = new Gson().fromJson(action.getOptions().get("highlights"), HashMap.class);
+         for (Entry<String, String> entry : map.entrySet()) {
+            modelState.addHighlight(entry);
+         }
+      } else {
+         modelServerAccess.subscribe(createSubscriptionListener(modelState, actionDispatcher, submissionHandler));
+         modelServerAccess.createValidationFramework(modelState);
+         modelServerAccess.subscribeToValidation();
+         modelServerAccess.initConstraintList();
+      }
    }
 
    @Override

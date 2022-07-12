@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.WeightedEdgeBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WeightedEdge;
 import org.eclipse.emfcloud.modelserver.glsp.notation.Edge;
@@ -55,6 +56,12 @@ public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
             builder.addRoutingPoints(bendPoints);
          }
       });
+
+      String change = WorkflowBuilder.getChangeCssClass(modelState, flow);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
+
       return builder.build();
    }
 
@@ -75,6 +82,12 @@ public class FlowFactory extends AbstractGModelFactory<Flow, GEdge> {
             builder.addRoutingPoints(bendPoints);
          }
       });
+
+      String change = WorkflowBuilder.getChangeCssClass(modelState, flow);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
+
       return builder.build();
    }
 
