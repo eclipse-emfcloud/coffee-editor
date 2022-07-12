@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -40,7 +40,6 @@ export default new ContainerModule(bind => {
     bind<WidgetFactory>(WidgetFactory).toDynamicValue(context => ({
         id: CoffeeTreeEditorConstants.WIDGET_ID,
         createWidget: (options: NavigatableWidgetOptions) => {
-
             const treeContainer = createBasicTreeContainer(
                 context.container,
                 CoffeeTreeEditorWidget,

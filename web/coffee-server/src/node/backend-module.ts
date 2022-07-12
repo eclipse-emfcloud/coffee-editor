@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -47,4 +47,3 @@ export function inDebugMode(): boolean {
     const args = process.argv.filter(a => a.startsWith('--debug'));
     return args.length > 0;
 }
-

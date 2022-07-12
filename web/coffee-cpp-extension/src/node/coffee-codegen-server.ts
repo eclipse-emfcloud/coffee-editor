@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -20,10 +20,10 @@ import { CodeGenCppServer } from '../common/generate-protocol';
 
 @injectable()
 export class CoffeeCodeGenCppServer implements CodeGenCppServer, BackendApplicationContribution {
-
     constructor(
         @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory,
-        @inject(ILogger) private readonly logger: ILogger) { }
+        @inject(ILogger) private readonly logger: ILogger
+    ) {}
 
     generateCode(sourceFile: string, targetFolder: string, packageName: string): Promise<string> {
         const serverPath = path.resolve(__dirname, '..', '..', 'server');
@@ -37,12 +37,7 @@ export class CoffeeCodeGenCppServer implements CodeGenCppServer, BackendApplicat
         const command = 'java';
         const args: string[] = [];
 
-        args.push(
-            '-jar', jarPath,
-            '-targetFolder', targetFolder,
-            '-source', sourceFile,
-            '-packageName', packageName
-        );
+        args.push('-jar', jarPath, '-targetFolder', targetFolder, '-source', sourceFile, '-packageName', packageName);
 
         return new Promise(resolve => {
             const process = this.spawnProcess(command, args);
@@ -52,13 +47,27 @@ export class CoffeeCodeGenCppServer implements CodeGenCppServer, BackendApplicat
             }
             process.process.on('exit', code => {
                 switch (code) {
-                    case 0: resolve('OK'); break;
-                    case -10: resolve('Target Folder Parameter missing'); break;
-                    case -11: resolve('Source File Parameter missing'); break;
-                    case -12: resolve('Package Name Parameter missing'); break;
-                    case -20: resolve('Encoding not found, check Server Log!'); break;
-                    case -30: resolve('IO Exception occurred, check Server Log!'); break;
-                    default: resolve('UNKNOWN ERROR'); break;
+                    case 0:
+                        resolve('OK');
+                        break;
+                    case -10:
+                        resolve('Target Folder Parameter missing');
+                        break;
+                    case -11:
+                        resolve('Source File Parameter missing');
+                        break;
+                    case -12:
+                        resolve('Package Name Parameter missing');
+                        break;
+                    case -20:
+                        resolve('Encoding not found, check Server Log!');
+                        break;
+                    case -30:
+                        resolve('IO Exception occurred, check Server Log!');
+                        break;
+                    default:
+                        resolve('UNKNOWN ERROR');
+                        break;
                 }
             });
         });
@@ -98,5 +107,4 @@ export class CoffeeCodeGenCppServer implements CodeGenCppServer, BackendApplicat
             this.logger.error(`Code Gen: ${data}`);
         }
     }
-
 }

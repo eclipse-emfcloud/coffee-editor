@@ -1,4 +1,4 @@
-/********************************************************************************
+/*
  * Copyright (c) 2019-2022 EclipseSource, Christian W. Damus, and others.
  *
  * This program and the accompanying materials are made available under the
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ********************************************************************************/
+ */
 import '../css/diagram.css';
 // TODO remove when GLSP is updated
 import '../css/temporary_glsp.css';

@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -8,12 +8,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import {
-    BaseTreeEditorContribution,
-    BaseTreeEditorWidget,
-    TreeContextMenu,
-    TreeEditor
-} from '@eclipse-emfcloud/theia-tree-editor';
+import { BaseTreeEditorContribution, BaseTreeEditorWidget, TreeContextMenu, TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
 import { CommandRegistry, MenuModelRegistry } from '@theia/core';
 import { ApplicationShell, NavigatableWidgetOptions, OpenerService, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
@@ -40,18 +35,14 @@ export class CoffeeTreeEditorContribution extends BaseTreeEditorContribution {
     readonly label = BaseTreeEditorWidget.WIDGET_LABEL;
 
     canHandle(uri: URI): number {
-        if (
-            uri.path.ext === '.coffee'
-        ) {
+        if (uri.path.ext === '.coffee') {
             return 1000;
         }
         return 0;
     }
 
     registerCommands(commands: CommandRegistry): void {
-        commands.registerCommand(
-            CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM,
-            new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
+        commands.registerCommand(CoffeeTreeCommands.OPEN_WORKFLOW_DIAGRAM, new OpenWorkflowDiagramCommandHandler(this.shell, this.opener));
 
         super.registerCommands(commands);
     }
@@ -75,5 +66,4 @@ export class CoffeeTreeEditorContribution extends BaseTreeEditorContribution {
     protected serializeUri(uri: URI): string {
         return uri.withoutFragment().toString();
     }
-
 }

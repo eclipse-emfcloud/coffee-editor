@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the

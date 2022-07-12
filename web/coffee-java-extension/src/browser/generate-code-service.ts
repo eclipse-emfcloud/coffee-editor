@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -25,8 +25,8 @@ export class GenerateCodeService {
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
         @inject(CodeGenServer) private readonly codeGenServer: CodeGenServer,
         @inject(MessageService) protected readonly messageService: MessageService
-        // @inject(ILogger) private readonly logger: ILogger
-    ) {
+    ) // @inject(ILogger) private readonly logger: ILogger
+    {
         // FIXME reimplement code gen without @theia/languages
         // const event = this.workspace.onDidSaveTextDocument;
         // if (event) {
@@ -44,9 +44,9 @@ export class GenerateCodeService {
     }
 
     public generateCode(uri: URI): void {
-        this.messageService.showProgress(
-            { text: `Generating code for ${uri.parent.relative(uri)}`, options: { cancelable: false } }
-        ).then(progress => this.doGenerateCode(uri, progress));
+        this.messageService
+            .showProgress({ text: `Generating code for ${uri.parent.relative(uri)}`, options: { cancelable: false } })
+            .then(progress => this.doGenerateCode(uri, progress));
     }
 
     private doGenerateCode(uri: URI, progress: Progress): void {
@@ -54,8 +54,7 @@ export class GenerateCodeService {
         const packageName = generationDirectory.path.name;
         const sourceFile = uri.toString();
         const target = generationDirectory.toString();
-        this.codeGenServer.generateCode(sourceFile, target, packageName)
-            .finally(() => progress.cancel());
+        this.codeGenServer.generateCode(sourceFile, target, packageName).finally(() => progress.cancel());
     }
 
     dispose(): void {

@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -20,8 +20,10 @@ export default new ContainerModule(bind => {
     bind(GenerateCppCodeService).toSelf().inSingletonScope();
     bind(CppGenerationCommandContribution).toSelf().inSingletonScope();
     [CommandContribution, MenuContribution].forEach(s => bind(s).toService(CppGenerationCommandContribution));
-    bind(CodeGenCppServer).toDynamicValue(ctx => {
-        const connection = ctx.container.get(WebSocketConnectionProvider);
-        return connection.createProxy<CodeGenCppServer>(CODEGEN_SERVICE_PATH);
-    }).inSingletonScope();
+    bind(CodeGenCppServer)
+        .toDynamicValue(ctx => {
+            const connection = ctx.container.get(WebSocketConnectionProvider);
+            return connection.createProxy<CodeGenCppServer>(CODEGEN_SERVICE_PATH);
+        })
+        .inSingletonScope();
 });

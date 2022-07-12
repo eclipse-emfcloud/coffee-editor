@@ -1,4 +1,4 @@
-/********************************************************************************
+/*
  * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -7,7 +7,7 @@
  * available at https://opensource.org/licenses/MIT.
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
- ********************************************************************************/
+ */
 import { GLSPDiagramLanguage } from '@eclipse-glsp/theia-integration';
 
 export const WorkflowNotationLanguage: GLSPDiagramLanguage = {

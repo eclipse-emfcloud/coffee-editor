@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2021 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -30,12 +30,11 @@ export const CODEGEN_COMMAND: Command = {
 
 @injectable()
 export class CppGenerationCommandContribution implements CommandContribution, MenuContribution {
-
     constructor(
         @inject(SelectionService) protected readonly selectionService: SelectionService,
         @inject(CommandService) protected readonly commandService: CommandService,
         @inject(GenerateCppCodeService) protected readonly generateCodeService: GenerateCppCodeService
-    ) { }
+    ) {}
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {
@@ -44,15 +43,17 @@ export class CppGenerationCommandContribution implements CommandContribution, Me
     }
 
     registerCommands(registry: CommandRegistry): void {
-        registry.registerCommand(CODEGEN_COMMAND, this.newUriAwareCommandHandler({
-            execute: uri => this.generateCodeService.generateCode(uri),
-            isVisible: uri => this.generateCodeService.isWorkflowFile(uri),
-            isEnabled: uri => this.generateCodeService.isWorkflowFile(uri)
-        }));
+        registry.registerCommand(
+            CODEGEN_COMMAND,
+            this.newUriAwareCommandHandler({
+                execute: uri => this.generateCodeService.generateCode(uri),
+                isVisible: uri => this.generateCodeService.isWorkflowFile(uri),
+                isEnabled: uri => this.generateCodeService.isWorkflowFile(uri)
+            })
+        );
     }
 
     private newUriAwareCommandHandler(handler: UriCommandHandler<URI>): UriAwareCommandHandler<URI> {
         return new UriAwareCommandHandler(this.selectionService, handler);
     }
-
 }

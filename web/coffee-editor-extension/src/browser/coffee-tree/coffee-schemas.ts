@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -294,490 +294,458 @@ export const workflowView = {
 
 // TODO JSONSchema should be fetched from the modelserver instead of hard coded copy in code
 export const coffeeSchema: JsonSchema7 = {
-    'definitions': {
-        'component': {
-            '$id': '#component',
-            'title': 'Component',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Component'
+    definitions: {
+        component: {
+            $id: '#component',
+            title: 'Component',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Component'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'machine': {
-            '$id': '#machine',
-            'title': 'Machine',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Machine'
+        machine: {
+            $id: '#machine',
+            title: 'Machine',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Machine'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 },
-                'name': {
-                    'type': 'string'
+                name: {
+                    type: 'string'
                 },
-                'workflows': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/workflow'
+                workflows: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/workflow'
                     }
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'name'
-            ]
+            additionalProperties: false,
+            required: ['name']
         },
-        'controlunit': {
-            '$id': '#controlunit',
-            'title': 'ControlUnit',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//ControlUnit'
+        controlunit: {
+            $id: '#controlunit',
+            title: 'ControlUnit',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//ControlUnit'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 },
-                'processor': {
-                    '$ref': '#/definitions/processor'
+                processor: {
+                    $ref: '#/definitions/processor'
                 },
-                'dimension': {
-                    '$ref': '#/definitions/dimension'
+                dimension: {
+                    $ref: '#/definitions/dimension'
                 },
-                'ram': {
-                    'type': 'array',
-                    'items': {
+                ram: {
+                    type: 'array',
+                    items: {
                         // TODO[controlunit.ram array]
                         // temporarily disable ref to ram object as it causes problems with the JSON forms array functionality for some reason
                         // '$ref': '#/definitions/ram',
-                        'title': 'RAM',
-                        'type': 'object',
-                        'properties': {
-                            'eClass': {
-                                'const': 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
+                        title: 'RAM',
+                        type: 'object',
+                        properties: {
+                            eClass: {
+                                const: 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
                             },
-                            'clockSpeed': {
-                                'type': 'integer'
+                            clockSpeed: {
+                                type: 'integer'
                             },
-                            'size': {
-                                'type': 'integer'
+                            size: {
+                                type: 'integer'
                             },
-                            'type': {
-                                'type': 'string',
-                                'enum': [
-                                    'SO-DIMM',
-                                    'SI-DIMM'
-                                ]
+                            type: {
+                                type: 'string',
+                                enum: ['SO-DIMM', 'SI-DIMM']
                             }
                         },
-                        'additionalProperties': false
+                        additionalProperties: false
                     }
                 },
-                'display': {
-                    '$ref': '#/definitions/display'
+                display: {
+                    $ref: '#/definitions/display'
                 },
-                'userDescription': {
-                    'type': 'string'
+                userDescription: {
+                    type: 'string'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'brewingunit': {
-            '$id': '#brewingunit',
-            'title': 'BrewingUnit',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//BrewingUnit'
+        brewingunit: {
+            $id: '#brewingunit',
+            title: 'BrewingUnit',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//BrewingUnit'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'diptray': {
-            '$id': '#diptray',
-            'title': 'DipTray',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//DipTray'
+        diptray: {
+            $id: '#diptray',
+            title: 'DipTray',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//DipTray'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'watertank': {
-            '$id': '#watertank',
-            'title': 'WaterTank',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WaterTank'
+        watertank: {
+            $id: '#watertank',
+            title: 'WaterTank',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//WaterTank'
                 },
-                'children': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/component'
+                children: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/component'
                     }
                 },
-                'parent': {
-                    '$ref': '#/definitions/component'
+                parent: {
+                    $ref: '#/definitions/component'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'processor': {
-            '$id': '#processor',
-            'title': 'Processor',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Processor'
+        processor: {
+            $id: '#processor',
+            title: 'Processor',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Processor'
                 },
-                'vendor': {
-                    'type': 'string'
+                vendor: {
+                    type: 'string'
                 },
-                'clockSpeed': {
-                    'type': 'integer'
+                clockSpeed: {
+                    type: 'integer'
                 },
-                'numberOfCores': {
-                    'type': 'integer'
+                numberOfCores: {
+                    type: 'integer'
                 },
-                'socketconnectorType': {
-                    '$ref': '#/definitions/socketconnectortype'
+                socketconnectorType: {
+                    $ref: '#/definitions/socketconnectortype'
                 },
-                'thermalDesignPower': {
-                    'type': 'integer'
+                thermalDesignPower: {
+                    type: 'integer'
                 },
-                'manufactoringProcess': {
-                    '$ref': '#/definitions/manufactoringprocess'
+                manufactoringProcess: {
+                    $ref: '#/definitions/manufactoringprocess'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'socketconnectortype': {
-            'type': 'string',
-            'enum': [
-                'A1T',
-                'Z51'
-            ]
+        socketconnectortype: {
+            type: 'string',
+            enum: ['A1T', 'Z51']
         },
-        'manufactoringprocess': {
-            'type': 'string',
-            'enum': [
-                '18nm',
-                'nm25'
-            ]
+        manufactoringprocess: {
+            type: 'string',
+            enum: ['18nm', 'nm25']
         },
-        'dimension': {
-            '$id': '#dimension',
-            'title': 'Dimension',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Dimension'
+        dimension: {
+            $id: '#dimension',
+            title: 'Dimension',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Dimension'
                 },
-                'width': {
-                    'type': 'integer'
+                width: {
+                    type: 'integer'
                 },
-                'height': {
-                    'type': 'integer'
+                height: {
+                    type: 'integer'
                 },
-                'length': {
-                    'type': 'integer'
+                length: {
+                    type: 'integer'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'ram': {
-            '$id': '#ram',
-            'title': 'RAM',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
+        ram: {
+            $id: '#ram',
+            title: 'RAM',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
                 },
-                'clockSpeed': {
-                    'type': 'integer'
+                clockSpeed: {
+                    type: 'integer'
                 },
-                'size': {
-                    'type': 'integer'
+                size: {
+                    type: 'integer'
                 },
-                'type': {
-                    '$ref': '#/definitions/ramtype'
+                type: {
+                    $ref: '#/definitions/ramtype'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'ramtype': {
-            'type': 'string',
-            'enum': [
-                'SO-DIMM',
-                'SI-DIMM'
-            ]
+        ramtype: {
+            type: 'string',
+            enum: ['SO-DIMM', 'SI-DIMM']
         },
-        'display': {
-            '$id': '#display',
-            'title': 'Display',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Display'
+        display: {
+            $id: '#display',
+            title: 'Display',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Display'
                 },
-                'width': {
-                    'type': 'integer'
+                width: {
+                    type: 'integer'
                 },
-                'height': {
-                    'type': 'integer'
+                height: {
+                    type: 'integer'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'workflow': {
-            '$id': '#workflow',
-            'title': 'Workflow',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Workflow'
+        workflow: {
+            $id: '#workflow',
+            title: 'Workflow',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Workflow'
                 },
-                'name': {
-                    'type': 'string'
+                name: {
+                    type: 'string'
                 },
-                'nodes': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/node'
+                nodes: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/node'
                     }
                 },
-                'flows': {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/flow'
+                flows: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/flow'
                     }
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'name'
-            ]
+            additionalProperties: false,
+            required: ['name']
         },
-        'node': {
-            '$id': '#node',
-            'title': 'Node',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Node'
+        node: {
+            $id: '#node',
+            title: 'Node',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Node'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'task': {
-            '$id': '#task',
-            'title': 'Task',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Task'
+        task: {
+            $id: '#task',
+            title: 'Task',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Task'
                 },
-                'name': {
-                    'type': 'string'
+                name: {
+                    type: 'string'
                 },
-                'duration': {
-                    'type': 'integer'
+                duration: {
+                    type: 'integer'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'name'
-            ]
+            additionalProperties: false,
+            required: ['name']
         },
-        'automatictask': {
-            '$id': '#automatictask',
-            'title': 'AutomaticTask',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//AutomaticTask'
+        automatictask: {
+            $id: '#automatictask',
+            title: 'AutomaticTask',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//AutomaticTask'
                 },
-                'name': {
-                    'type': 'string'
+                name: {
+                    type: 'string'
                 },
-                'duration': {
-                    'type': 'integer'
+                duration: {
+                    type: 'integer'
                 },
-                'component': {
-                    '$ref': '#/definitions/component'
+                component: {
+                    $ref: '#/definitions/component'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'name'
-            ]
+            additionalProperties: false,
+            required: ['name']
         },
-        'manualtask': {
-            '$id': '#manualtask',
-            'title': 'ManualTask',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//ManualTask'
+        manualtask: {
+            $id: '#manualtask',
+            title: 'ManualTask',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//ManualTask'
                 },
-                'name': {
-                    'type': 'string'
+                name: {
+                    type: 'string'
                 },
-                'duration': {
-                    'type': 'integer'
+                duration: {
+                    type: 'integer'
                 },
-                'actor': {
-                    'type': 'string'
+                actor: {
+                    type: 'string'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'name'
-            ]
+            additionalProperties: false,
+            required: ['name']
         },
-        'fork': {
-            '$id': '#fork',
-            'title': 'Fork',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Fork'
+        fork: {
+            $id: '#fork',
+            title: 'Fork',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Fork'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'join': {
-            '$id': '#join',
-            'title': 'Join',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Join'
+        join: {
+            $id: '#join',
+            title: 'Join',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Join'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'decision': {
-            '$id': '#decision',
-            'title': 'Decision',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Decision'
+        decision: {
+            $id: '#decision',
+            title: 'Decision',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Decision'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'merge': {
-            '$id': '#merge',
-            'title': 'Merge',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Merge'
+        merge: {
+            $id: '#merge',
+            title: 'Merge',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Merge'
                 }
             },
-            'additionalProperties': false
+            additionalProperties: false
         },
-        'flow': {
-            '$id': '#flow',
-            'title': 'Flow',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//Flow'
+        flow: {
+            $id: '#flow',
+            title: 'Flow',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//Flow'
                 },
-                'source': {
-                    '$ref': '#/definitions/node'
+                source: {
+                    $ref: '#/definitions/node'
                 },
-                'target': {
-                    '$ref': '#/definitions/node'
+                target: {
+                    $ref: '#/definitions/node'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'source',
-                'target'
-            ]
+            additionalProperties: false,
+            required: ['source', 'target']
         },
-        'weightedflow': {
-            '$id': '#weightedflow',
-            'title': 'WeightedFlow',
-            'type': 'object',
-            'properties': {
-                'eClass': {
-                    'const': 'http://www.eclipse.org/emfcloud/coffee/model#//WeightedFlow'
+        weightedflow: {
+            $id: '#weightedflow',
+            title: 'WeightedFlow',
+            type: 'object',
+            properties: {
+                eClass: {
+                    const: 'http://www.eclipse.org/emfcloud/coffee/model#//WeightedFlow'
                 },
-                'source': {
-                    '$ref': '#/definitions/node'
+                source: {
+                    $ref: '#/definitions/node'
                 },
-                'target': {
-                    '$ref': '#/definitions/node'
+                target: {
+                    $ref: '#/definitions/node'
                 },
-                'probability': {
-                    '$ref': '#/definitions/probability'
+                probability: {
+                    $ref: '#/definitions/probability'
                 }
             },
-            'additionalProperties': false,
-            'required': [
-                'source',
-                'target'
-            ]
+            additionalProperties: false,
+            required: ['source', 'target']
         },
-        'probability': {
-            'type': 'string',
-            'enum': [
-                'low',
-                'medium',
-                'high'
-            ]
+        probability: {
+            type: 'string',
+            enum: ['low', 'medium', 'high']
         }
     },
-    '$ref': '#/definitions/machine'
+    $ref: '#/definitions/machine'
 };

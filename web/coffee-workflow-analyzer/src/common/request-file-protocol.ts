@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (c) 2019-2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -21,7 +21,7 @@ export interface FileServer extends JsonRpcServer<FileClient> {
 export const FileClient = Symbol('FileClient');
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface FileClient { }
+export interface FileClient {}
 
 export namespace FileTypes {
     export const WORKFLOW_ANALYSIS_HTML = 'wfanalysis';
