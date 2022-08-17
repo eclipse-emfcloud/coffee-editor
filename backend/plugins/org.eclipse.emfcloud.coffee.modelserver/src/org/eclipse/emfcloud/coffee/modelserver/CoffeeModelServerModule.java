@@ -27,6 +27,7 @@ import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
 import org.eclipse.emfcloud.modelserver.edit.CommandContribution;
 import org.eclipse.emfcloud.modelserver.emf.common.ModelResourceManager;
+import org.eclipse.emfcloud.modelserver.emf.common.ModelValidator;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerModule;
 
@@ -67,6 +68,11 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
       binding.put(RemoveFlowCommandContribution.TYPE, RemoveFlowCommandContribution.class);
       binding.put(SetFlowSourceCommandContribution.TYPE, SetFlowSourceCommandContribution.class);
       binding.put(SetFlowTargetCommandContribution.TYPE, SetFlowTargetCommandContribution.class);
+   }
+
+   @Override
+   protected Class<? extends ModelValidator> bindModelValidator() {
+      return CoffeeModelValidator.class;
    }
 
 }
