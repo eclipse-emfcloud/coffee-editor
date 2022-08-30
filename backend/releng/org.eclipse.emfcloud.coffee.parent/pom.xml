@@ -318,8 +318,6 @@
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.dsl.ide</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.modelserver</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server</module>
-		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server.app</module>
-		<module>../../plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server.feature</module>
 		<module>../../plugins/org.eclipse.emfcloud.coffee.model</module>
 	</modules>
 
