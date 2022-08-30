@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -21,14 +21,15 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNode
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
 import org.eclipse.emfcloud.coffee.util.CoffeeResource;
-import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV1;
-import org.eclipse.emfcloud.modelserver.common.codecs.Codec;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
 import org.eclipse.emfcloud.modelserver.edit.CommandContribution;
 import org.eclipse.emfcloud.modelserver.emf.common.ModelResourceManager;
+import org.eclipse.emfcloud.modelserver.emf.common.ResourceSetFactory;
+import org.eclipse.emfcloud.modelserver.emf.common.codecs.CodecProvider;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
-import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerModule;
+import org.eclipse.emfcloud.modelserver.notation.integration.EMSNotationModelServerModule;
+import org.eclipse.emfcloud.modelserver.notation.integration.NotationResource;
 
 public class CoffeeModelServerModule extends EMSNotationModelServerModule {
 
@@ -44,10 +45,14 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
    }
 
    @Override
-   protected void configureCodecs(final MapBinding<String, Codec> binding) {
+   protected void configureCodecs(final MultiBinding<CodecProvider> binding) {
       super.configureCodecs(binding);
-      binding.put(CoffeeResource.FILE_EXTENSION, CoffeeCodec.class);
-      binding.put(ModelServerPathParametersV1.FORMAT_JSON, CoffeeTreeJsonCodec.class);
+      binding.add(CoffeeCodecProvider.class);
+   }
+
+   @Override
+   protected Class<? extends ResourceSetFactory> bindResourceSetFactory() {
+      return CoffeeResourceSetFactory.class;
    }
 
    @Override
@@ -68,5 +73,11 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
       binding.put(SetFlowSourceCommandContribution.TYPE, SetFlowSourceCommandContribution.class);
       binding.put(SetFlowTargetCommandContribution.TYPE, SetFlowTargetCommandContribution.class);
    }
+
+   @Override
+   protected String getSemanticFileExtension() { return CoffeeResource.FILE_EXTENSION; }
+
+   @Override
+   protected String getNotationFileExtension() { return NotationResource.FILE_EXTENSION; }
 
 }

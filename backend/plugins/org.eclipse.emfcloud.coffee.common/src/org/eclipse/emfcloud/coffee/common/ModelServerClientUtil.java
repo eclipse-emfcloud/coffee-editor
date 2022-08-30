@@ -16,10 +16,10 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emfcloud.modelserver.client.ModelServerClient;
+import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV2;
 
 public final class ModelServerClientUtil {
-   private static final String FORMAT = "xmi";
-   private static final String MODEL_SERVER_BASE_URL = "http://localhost:8081/api/v1/";
+   private static final String MODEL_SERVER_BASE_URL = "http://localhost:8081/api/v2/";
 
    private ModelServerClientUtil() {}
 
@@ -27,7 +27,7 @@ public final class ModelServerClientUtil {
    public static EObject loadResource(final URI uri) throws Exception {
       @SuppressWarnings("resource")
       ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL);
-      return client.get(Paths.get(uri).getFileName().toString(), FORMAT).get().body();
+      return client.get(Paths.get(uri).getFileName().toString(), ModelServerPathParametersV2.FORMAT_XMI).get().body();
    }
 
    @SuppressWarnings("IllegalThrows")

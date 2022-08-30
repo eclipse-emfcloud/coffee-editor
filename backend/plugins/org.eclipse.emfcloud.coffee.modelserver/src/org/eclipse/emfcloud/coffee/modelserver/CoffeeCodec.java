@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,7 +34,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class CoffeeCodec implements Codec {
 
-   private static Logger LOGGER = Logger.getLogger(CoffeeCodec.class.getSimpleName());
+   private static Logger LOGGER = LogManager.getLogger(CoffeeCodec.class.getSimpleName());
 
    @Override
    public JsonNode encode(final EObject eObject) throws EncodingException {
@@ -84,7 +85,7 @@ public class CoffeeCodec implements Codec {
          result = null;
       }
       if (result == null) {
-         result = CoffeeResource.Factory.INSTANCE.createResource(URI.createURI(modelURI));
+         result = CoffeeResource.FACTORY.createResource(URI.createURI(modelURI));
          resourceSet.getResources().add(result);
       }
       try {

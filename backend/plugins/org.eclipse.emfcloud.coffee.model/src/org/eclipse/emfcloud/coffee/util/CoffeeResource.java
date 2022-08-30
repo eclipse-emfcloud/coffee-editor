@@ -15,9 +15,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 
 public interface CoffeeResource extends XMIResource {
 
-   public interface Factory extends Resource.Factory {
-      Factory INSTANCE = new CoffeeResourceFactoryImpl();
-   }
+   Resource.Factory FACTORY = new CoffeeResourceFactoryImpl();
 
    String FILE_EXTENSION = "coffee";
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,10 +16,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.modelserver.glsp.notation.Edge;
-import org.eclipse.emfcloud.modelserver.glsp.notation.NotationFactory;
-import org.eclipse.emfcloud.modelserver.glsp.notation.SemanticProxy;
 import org.eclipse.emfcloud.modelserver.glsp.notation.commands.NotationElementCommand;
+import org.eclipse.glsp.server.emf.model.notation.Edge;
+import org.eclipse.glsp.server.emf.model.notation.NotationFactory;
+import org.eclipse.glsp.server.emf.model.notation.SemanticElementReference;
 
 public class AddFlowShapeCommand extends NotationElementCommand {
 
@@ -44,13 +44,13 @@ public class AddFlowShapeCommand extends NotationElementCommand {
    protected void doExecute() {
       Edge edge = NotationFactory.eINSTANCE.createEdge();
 
-      SemanticProxy proxy = NotationFactory.eINSTANCE.createSemanticProxy();
+      SemanticElementReference semanticReference = NotationFactory.eINSTANCE.createSemanticElementReference();
       if (this.semanticProxyUri != null) {
-         proxy.setUri(this.semanticProxyUri);
+         semanticReference.setElementId(this.semanticProxyUri);
       } else {
-         proxy.setUri(EcoreUtil.getURI(flowSupplier.get()).fragment());
+         semanticReference.setElementId(EcoreUtil.getURI(flowSupplier.get()).fragment());
       }
-      edge.setSemanticElement(proxy);
+      edge.setSemanticElement(semanticReference);
 
       notationDiagram.getElements().add(edge);
    }
