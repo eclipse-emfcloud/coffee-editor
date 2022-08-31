@@ -11,6 +11,7 @@
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.launch;
 
 import java.io.IOException;
+import java.util.function.Predicate;
 
 import org.apache.commons.cli.ParseException;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
@@ -25,7 +26,10 @@ import org.eclipse.glsp.server.utils.LaunchUtil;
 
 @SuppressWarnings("UncommentedMain")
 public final class WorkflowGLSPServerLauncher {
+
    private WorkflowGLSPServerLauncher() {}
+
+   private static final int WORKFLOW_DEFAULT_PORT = 5008;
 
    public static void main(final String[] args) {
       String processName = "WorkflowGLSPServer";
@@ -34,12 +38,14 @@ public final class WorkflowGLSPServerLauncher {
          DefaultCLIParser parser = new DefaultCLIParser(args, processName);
          LaunchUtil.configure(parser);
 
-         int port = parser.parsePort();
+         Predicate<Integer> validator = (port) -> LaunchUtil.isValidPort(port);
+         int serverPort = parser.parseIntOption(DefaultCLIParser.OPTION_PORT, WORKFLOW_DEFAULT_PORT, validator);
+
          ServerModule tasklistServerModule = new EMSGLSPServerModule()
             .configureDiagramModule(new WorkflowDiagramModule());
 
          GLSPServerLauncher launcher = new SocketGLSPServerLauncher(tasklistServerModule);
-         launcher.start("localhost", port);
+         launcher.start("localhost", serverPort);
       } catch (ParseException | IOException ex) {
          ex.printStackTrace();
          LaunchUtil.printHelp(processName, DefaultCLIParser.getDefaultOptions());

@@ -58,10 +58,6 @@
 							<id>org.eclipse.emfcloud.coffee.product.workflow.dsl</id>
 							<attachId>WorkflowDSL</attachId>
 						</product>
-						<product>
-							<id>org.eclipse.emfcloud.coffee.product.workflow.glsp.server</id>
-							<attachId>WorkflowGLSPServer</attachId>
-						</product>
 					</products>
 				</configuration>
 			</plugin>

@@ -21,7 +21,7 @@ location "https://download.eclipse.org/tools/orbit/R-builds/R20220302172233/repo
 	net.bytebuddy.byte-buddy-agent [1.9.0,2.0.0)
 	org.aopalliance [1.0.0,2.0.0)
 	org.apache.commons.lang [2.6.0,3.0.0)
-	org.apache.commons.io [2.6.0,3.0.0)
+	org.apache.commons.io [2.8.0,3.0.0)
 	org.apache.log4j [1.2.15,2.0.0)
 	org.hamcrest [1.1.0,2.0.0)
 	org.objenesis [2.6.0,3.0.0)

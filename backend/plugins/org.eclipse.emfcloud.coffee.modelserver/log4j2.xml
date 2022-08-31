@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Properties>
+		<Property name="LOGPATTERN">%d{DEFAULT_NANOS} [%t] %-5level %logger{1} - %msg%n</Property>
+		<Property name="LOGDIR">logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LOGPATTERN}"/>
+			<ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+		</Console>
+		<Console name="stderr" target="SYSTEM_ERR">
+			<PatternLayout pattern="${LOGPATTERN}"/>
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+		</Console>
+		<RollingFile
+			name="rollingFileLogger"
+			fileName="${LOGDIR}/emfcloud-modelserver.log"
+			filePattern="${LOGDIR}/emfcloud-modelserver.%i.log.gz"
+			bufferedIO="true">
+			<PatternLayout pattern="${LOGPATTERN}"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="5MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="stdout" level="INFO"/>
+			<AppenderRef ref="stderr"/>
+			<AppenderRef ref="rollingFileLogger" level="DEBUG"/>
+		</Root>
+	</Loggers>
+</Configuration>
