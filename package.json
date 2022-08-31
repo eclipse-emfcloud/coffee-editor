@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "description": "Eclipse EMF.cloud Coffee Editor Parent",
+  "version": "0.1.0",
+  "engines": {
+    "yarn": ">=1.7.0",
+    "node": ">=16"
+  },
+  "license": "(EPL-2.0 OR MIT)",
+  "contributors": [
+    {
+      "name": "Eclipse EMF.cloud Project",
+      "email": "emfcloud-dev@eclipse.org",
+      "url": "https://projects.eclipse.org/projects/ecd.emfcloud"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-emfcloud/coffee-editor.git"
+  },
+  "homepage": "https://www.eclipse.org/emfcloud/",
+  "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
+  "scripts": {
+    "build": "yarn build:backend && yarn build:client",
+    "build:client": "yarn --cwd client --ignore-engines",
+    "build:backend": "cd backend/releng/org.eclipse.emfcloud.coffee.parent && mvn clean install",
+    "start": "yarn --cwd client start",
+    "start:debug": "yarn --cwd client start:debug"
+  }
+}

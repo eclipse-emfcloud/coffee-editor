@@ -1,0 +1,11 @@
+{
+  "extends": "@eclipse-glsp/ts-config/tsconfig.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "jsx": "react"
+  },
+  "include": ["src"]
+}

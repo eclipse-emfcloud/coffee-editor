@@ -42,8 +42,8 @@ The runtime environment has installed (among others)
 
 The coffee-editor consists of a frontend and a backend.
 
-The frontend is located in the `web/` folder and frontend specific documentation can be found in the [frontend README](web/README.md)
-The backend is located in the `backend/` folder and backend specific documentation can be found in the [backend README](backend/README.md)
+The frontend is located in the [`client/`](./client/) folder and frontend specific documentation can be found in the [client README](client/README.md)
+The backend is located in the [`backend/`](./backend/) folder and backend specific documentation can be found in the [backend README](backend/README.md)
 
 ## Used Projects
 
@@ -70,8 +70,8 @@ You need Java 11 to build the Coffee Editor.
 
 ### Install npm and node
 
-    nvm install 12
-    nvm use 12
+    nvm install 16
+    nvm use 16
 
 ### Install yarn
 
@@ -164,17 +164,16 @@ You can also use the predefined `RunSocketServer-Headless.launch` run config.
 
 #### Coffee Model Server
 
-Use the `org.eclipse.emfcloud.coffee.modelserver.app.application` Eclipse Application or the corresponding `modelserver.product` from `org.eclipse.emfcloud.coffee.product` to start the Model Server.
+Use the `CoffeeModelServer` launch config to start the Model Server.
 
 #### Coffee GLSP Server
 
-Use the `workflowserver.product` product to start the GLSP Server.
-On the client side, set the `isRunning` flag of the [CoffeeGlspLaunchOptions](web/coffee-server/src/node/backend-module.ts) to `true`.
+Use the `WorkflowGLSPServer` launch config to start the GLSP Server.
 
-### Debug Frontend
+### Debug Client
 
 - Install VSCode
-- Import projects from `web`
+- Open folder `client`
 
 #### Debug Theia Backend
 

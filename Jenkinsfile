@@ -49,18 +49,7 @@ pipeline {
                 container('ci') {
                     timeout(30){
                         dir('backend/releng/org.eclipse.emfcloud.coffee.parent') {
-                            sh 'mvn clean install -Pfatjar -U --batch-mode -Dmaven.repo.local=/home/jenkins/.m2/repository'
-                        }
-                    }
-                }
-            }
-        }
-        stage('Copy server') {
-            steps {
-                container('ci') {
-                    timeout(30){
-                        dir('.') {
-                            sh './run.sh -c'
+                            sh 'mvn clean install -U --batch-mode -Dmaven.repo.local=/home/jenkins/.m2/repository'
                         }
                     }
                 }
@@ -72,7 +61,7 @@ pipeline {
                     withCredentials([string(credentialsId: "github-bot-token", variable: 'GITHUB_TOKEN')]) {
                         timeout(30){
                             dir('.') {
-                                sh './run.sh -f'
+                                sh 'yarn build:client'
                             }
                         }
                     }
@@ -85,7 +74,9 @@ pipeline {
             steps {
                 container('ci') {
                     archiveArtifacts artifacts: 'backend/releng/org.eclipse.emfcloud.coffee.product/target/products/*.zip' , fingerprint: true
-                    archiveArtifacts artifacts: 'web/browser-app/**', fingerprint: true
+                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar' , fingerprint: true
+                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar' , fingerprint: true
+                    archiveArtifacts artifacts: 'client/browser-app/**', fingerprint: true
                 }
             }
         }

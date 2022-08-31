@@ -1,0 +1,54 @@
+{
+  "name": "coffee-servers",
+  "keywords": [
+    "theia-extension"
+  ],
+  "license": "(EPL-2.0 OR MIT)",
+  "version": "0.1.0",
+  "contributors": [
+    {
+      "name": "Eclipse EMF.cloud Project",
+      "email": "emfcloud-dev@eclipse.org",
+      "url": "https://projects.eclipse.org/projects/ecd.emfcloud"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-emfcloud/coffee-editor.git"
+  },
+  "homepage": "https://www.eclipse.org/emfcloud/",
+  "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
+  "files": [
+    "build",
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "^1.27.0",
+    "@theia/workspace": "^1.27.0",
+    "@theia/process": "^1.27.0",
+    "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
+    "coffee-cpp-extension": "0.1.0",
+    "coffee-java-extension": "0.1.0",
+    "coffee-workflow-analyzer": "0.1.0",
+    "coffee-workflow-glsp-theia": "0.1.0"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "typescript": "~4.5.5"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build && yarn lint && yarn copy:servers",
+    "copy:servers": "rimraf servers && ts-node ./scripts/copy-servers.ts",
+    "clean": "rimraf tsconfig.tsbuildinfo lib",
+    "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "backend": "lib/node/backend-module",
+      "frontend": "lib/browser/coffee-server-frontend-module"
+    }
+  ]
+}

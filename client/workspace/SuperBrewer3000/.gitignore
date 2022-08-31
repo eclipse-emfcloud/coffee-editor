@@ -1,0 +1,6 @@
+/bin/
+/cpp/
+/src-gen/*
+/src/*
+/target/
+.help
