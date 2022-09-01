@@ -14,7 +14,6 @@ import { EquinoxServer } from './equinox-server';
 
 @injectable()
 export class CoffeeCppCodeGenServer extends EquinoxServer implements CppCodeGenServer {
-
     protected serverName = 'CoffeeCppCodeGenServer';
 
     generateCode(sourceFile: string, targetFolder: string, packageName: string): Promise<string> {
@@ -59,5 +58,4 @@ export class CoffeeCppCodeGenServer extends EquinoxServer implements CppCodeGenS
             });
         });
     }
-
 }

@@ -5,5 +5,6 @@
     "outDir": "lib",
     "baseUrl": "."
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["scripts"]
 }

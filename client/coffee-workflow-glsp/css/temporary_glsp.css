@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright (c) 2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
@@ -36,7 +36,7 @@
     z-index: 1;
 }
 
-.sprotty-popup>div {
+.sprotty-popup > div {
     margin: 10px;
 }
 
@@ -147,22 +147,22 @@
     opacity: 0.2;
 }
 
-.sprotty-edge>.sprotty-routing-handle {
+.sprotty-edge > .sprotty-routing-handle {
     r: 5px;
     fill: #1d80d1;
     stroke: none;
     z-index: 1000;
 }
 
-.sprotty-edge>.sprotty-routing-handle[data-kind='line'] {
+.sprotty-edge > .sprotty-routing-handle[data-kind='line'] {
     opacity: 0.35;
 }
 
-.sprotty-edge>.sprotty-routing-handle.selected {
+.sprotty-edge > .sprotty-routing-handle.selected {
     fill: #1d80d1;
 }
 
-.sprotty-edge>.sprotty-routing-handle.mouseover {
+.sprotty-edge > .sprotty-routing-handle.mouseover {
     stroke: #1d80d1a1;
     stroke-width: 1;
 }
@@ -175,7 +175,7 @@
     text-anchor: middle;
 }
 
-g .movement-not-allowed>.sprotty-node {
+g .movement-not-allowed > .sprotty-node {
     stroke: var(--glsp-error-foreground) !important;
 }
 
@@ -184,15 +184,15 @@ g .movement-not-allowed>.sprotty-node {
     fill: var(--glsp-error-foreground) !important;
 }
 
-.error>.sprotty-node {
+.error > .sprotty-node {
     filter: drop-shadow(0px 0px 2px var(--glsp-error-foreground)) !important;
 }
 
-.warning>.sprotty-node {
+.warning > .sprotty-node {
     filter: drop-shadow(0px 0px 2px var(--glsp-warning-foreground)) !important;
 }
 
-.info>.sprotty-node {
+.info > .sprotty-node {
     filter: drop-shadow(0px 0px 2px var(--glsp-info-foreground)) !important;
 }
 
@@ -245,8 +245,8 @@ text {
 
 .sprotty-resize-handle.selected,
 .sprotty-resize-handle.active,
-.sprotty-edge>.sprotty-routing-handle.selected,
-.sprotty-edge>.sprotty-routing-handle.mouseover {
+.sprotty-edge > .sprotty-routing-handle.selected,
+.sprotty-edge > .sprotty-routing-handle.mouseover {
     fill: var(--theia-focusBorder);
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -19,11 +19,11 @@ import { LabelProviderContribution } from '@theia/core/lib/browser';
 import { DiagramConfiguration } from 'sprotty-theia/lib';
 
 import { WorkflowNotationLanguage } from '../common/workflow-language';
-import { WorkflowTheiaGLSPConnector } from './diagram/theia-glsp-connector';
 import { WorkflowDiagramConfiguration } from './diagram/diagram-configuration';
 import { WorkflowDiagramLabelProviderContribution } from './diagram/diagram-label-provider-contribution';
-import { WorkflowGLSPClientContribution } from './workflow-glsp-client-contribution';
 import { WorkflowDiagramManager } from './diagram/diagram-manager';
+import { WorkflowTheiaGLSPConnector } from './diagram/theia-glsp-connector';
+import { WorkflowGLSPClientContribution } from './workflow-glsp-client-contribution';
 
 export class WorkflowTheiaFrontendModule extends GLSPTheiaFrontendModule {
     readonly diagramLanguage = WorkflowNotationLanguage;

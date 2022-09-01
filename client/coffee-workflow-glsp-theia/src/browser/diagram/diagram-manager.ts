@@ -13,7 +13,8 @@ import { codiconCSSString } from '@eclipse-glsp/client';
 import {
     DiagramWidgetOptions,
     GLSPDiagramManager,
-    GLSPDiagramWidget, GLSPWidgetOpenerOptions,
+    GLSPDiagramWidget,
+    GLSPWidgetOpenerOptions,
     GLSPWidgetOptions
 } from '@eclipse-glsp/theia-integration/lib/browser';
 import { WidgetOpenerOptions } from '@theia/core/lib/browser';
@@ -104,7 +105,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
 
     createWidgetFromURI(uri: URI, options?: WidgetOpenerOptions): Promise<GLSPDiagramWidget> {
         const uriString = uri.toString();
-        const notationString = uriString.substr(0, uriString.lastIndexOf('.')) + '.notation';
+        const notationString = uriString.slice(0, uriString.lastIndexOf('.')) + '.notation';
         const notationUri = new URI(notationString);
         return this.getOrCreateWidget(notationUri, options) as Promise<GLSPDiagramWidget>;
     }

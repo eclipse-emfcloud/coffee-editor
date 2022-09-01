@@ -21,7 +21,6 @@ import * as process from 'process';
 
 @injectable()
 export abstract class EquinoxServer implements BackendApplicationContribution {
-
     protected abstract serverName: string;
 
     @inject(RawProcessFactory) protected readonly processFactory: RawProcessFactory;

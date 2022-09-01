@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ********************************************************************************/
-import { existsSync, mkdirSync, copyFileSync } from 'fs';
+import { copyFileSync, existsSync, mkdirSync } from 'fs';
 import { copySync } from 'fs-extra';
 import { platform } from 'os';
 import { join } from 'path';
@@ -30,17 +30,17 @@ export function getOSProductPath(): string {
 
     log('Determining OS...');
     if (osType === 'linux') {
-        productPath = 'linux/gtk';
+        productPath = join('linux', 'gtk');
         log('Running on Linux');
     } else if (osType === 'darwin') {
-        productPath = 'macosx/cocoa';
+        productPath = join('macosx', 'cocoa');
         log('Running on MacOS');
     } else if (osType === 'cygwin') {
         // POSIX compatibility layer and Linux environment emulation for Windows
-        productPath = 'win32\win32';
+        productPath = join('win32', 'win32');
         log('Running on Windows with Cygwin');
     } else if (osType === 'win32') {
-        productPath = 'win32\win32';
+        productPath = join('win32', 'win32');
         log('Running on Windows');
     }
     return productPath;
@@ -68,7 +68,7 @@ function checkSourcePath(sourcePath: string): void {
         logError(`Error: Source path '${sourcePath}' does not exist!`);
         exit(1);
     }
-    log('Source directory exists!')
+    log('Source directory exists!');
 }
 
 export function copyBackendDirectory(sourcePath: string, targetPath: string): void {
@@ -78,7 +78,7 @@ export function copyBackendDirectory(sourcePath: string, targetPath: string): vo
     prepareTargetDir(targetPath);
     // Start copying
     copySync(sourcePath, targetPath, { recursive: true, overwrite: false });
-    log(`Copy to '${targetPath} was successful!`)
+    log(`Copy to '${targetPath} was successful!`);
 }
 
 export function copyBackendFile(sourcePath: string, targetPath: string, jarName: string): void {
@@ -88,5 +88,5 @@ export function copyBackendFile(sourcePath: string, targetPath: string, jarName:
     prepareTargetDir(targetPath);
     // Start copying
     copyFileSync(sourcePath, join(targetPath, jarName));
-    log(`Copy to '${targetPath} was successful!`)
+    log(`Copy to '${targetPath} was successful!`);
 }

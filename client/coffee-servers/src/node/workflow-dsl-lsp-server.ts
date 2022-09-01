@@ -16,7 +16,6 @@ import { EquinoxServer } from './equinox-server';
 
 @injectable()
 export class WorkflowLSPServer extends EquinoxServer implements BackendApplicationContribution {
-
     protected serverName = 'WorkflowLSPServer';
 
     initialize(): void {
@@ -41,5 +40,4 @@ export class WorkflowLSPServer extends EquinoxServer implements BackendApplicati
             spawnedProcess.then(p => p.kill());
         });
     }
-
 }

@@ -17,11 +17,13 @@ import { CppCodeGenServer } from '../common/generate-protocol';
 @injectable()
 export class GenerateCppCodeService {
     private readonly toDispose = new DisposableCollection();
+
+    // FIXME
+    // @inject(TaskService) private readonly taskService: TaskService
     constructor(
         @inject(CppCodeGenServer) private readonly codeGenServer: CppCodeGenServer,
         @inject(MessageService) protected readonly messageService: MessageService
-    ) // @inject(TaskService) private readonly taskService: TaskService
-    { }
+    ) {}
 
     public generateCode(uri: URI): void {
         this.messageService

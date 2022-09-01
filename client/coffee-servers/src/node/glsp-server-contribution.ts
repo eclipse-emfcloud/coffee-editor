@@ -10,8 +10,8 @@
  */
 import { getPort, GLSPSocketServerContribution, GLSPSocketServerContributionOptions } from '@eclipse-glsp/theia-integration/lib/node';
 import { injectable } from '@theia/core/shared/inversify';
-import { join, resolve } from 'path';
 import { WorkflowNotationLanguage } from 'coffee-workflow-glsp-theia/lib/common';
+import { join, resolve } from 'path';
 
 export const GLSP_PORT = 5008;
 export const PORT_ARG_KEY = 'WF_GLSP';

@@ -59,9 +59,8 @@ export default new ContainerModule((bind, _unbind, isBound, rebind) => {
     bind(BackendApplicationContribution).toService(CoffeeJavaCodeGenServer);
     bind(ConnectionHandler)
         .toDynamicValue(
-            ctx => new JsonRpcConnectionHandler(
-                JAVA_CODEGEN_SERVICE_PATH,
-                () => ctx.container.get<JavaCodeGenServer>(CoffeeJavaCodeGenServer))
+            ctx =>
+                new JsonRpcConnectionHandler(JAVA_CODEGEN_SERVICE_PATH, () => ctx.container.get<JavaCodeGenServer>(CoffeeJavaCodeGenServer))
         )
         .inSingletonScope();
 
@@ -70,9 +69,7 @@ export default new ContainerModule((bind, _unbind, isBound, rebind) => {
     bind(BackendApplicationContribution).toService(CoffeeCppCodeGenServer);
     bind(ConnectionHandler)
         .toDynamicValue(
-            ctx => new JsonRpcConnectionHandler(
-                CPP_CODEGEN_SERVICE_PATH,
-                () => ctx.container.get<CppCodeGenServer>(CoffeeCppCodeGenServer))
+            ctx => new JsonRpcConnectionHandler(CPP_CODEGEN_SERVICE_PATH, () => ctx.container.get<CppCodeGenServer>(CoffeeCppCodeGenServer))
         )
         .inSingletonScope();
 });

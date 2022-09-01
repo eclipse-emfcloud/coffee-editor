@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -53,6 +53,6 @@ export class WorkflowCommandContribution implements CommandContribution, MenuCon
     }
 
     protected newUriAwareCommandHandler(handler: UriCommandHandler<URI>): UriAwareCommandHandler<URI> {
-        return new UriAwareCommandHandler(this.selectionService, handler);
+        return UriAwareCommandHandler.MonoSelect(this.selectionService, handler);
     }
 }

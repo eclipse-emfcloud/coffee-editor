@@ -1,9 +1,7 @@
 {
   "scopeName": "text.wfconfig",
   "name": "Workflow Config",
-  "fileTypes": [
-    "wfconfig"
-  ],
+  "fileTypes": ["wfconfig"],
   "patterns": [
     {
       "include": "#keywords"

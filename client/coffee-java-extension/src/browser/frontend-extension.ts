@@ -12,7 +12,7 @@ import { CommandContribution, MenuContribution } from '@theia/core';
 import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
 import { ContainerModule } from 'inversify';
 
-import { JAVA_CODEGEN_SERVICE_PATH, JavaCodeGenServer } from '../common/generate-protocol';
+import { JavaCodeGenServer, JAVA_CODEGEN_SERVICE_PATH } from '../common/generate-protocol';
 import { JavaGenerationCommandContribution } from './command-contribution';
 import { GenerateCodeService } from './generate-code-service';
 import { JUnitRunService } from './junit-run-service';

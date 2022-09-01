@@ -34,7 +34,7 @@ export class CppGenerationCommandContribution implements CommandContribution, Me
         @inject(SelectionService) protected readonly selectionService: SelectionService,
         @inject(CommandService) protected readonly commandService: CommandService,
         @inject(GenerateCppCodeService) protected readonly generateCodeService: GenerateCppCodeService
-    ) { }
+    ) {}
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {

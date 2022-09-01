@@ -24,9 +24,8 @@ export class GenerateCodeService {
         // @inject(Workspace) private readonly workspace: Workspace,
         @inject(PreferenceService) private readonly preferenceService: PreferenceService,
         @inject(JavaCodeGenServer) private readonly codeGenServer: JavaCodeGenServer,
-        @inject(MessageService) protected readonly messageService: MessageService
-    ) // @inject(ILogger) private readonly logger: ILogger
-    {
+        @inject(MessageService) protected readonly messageService: MessageService // @inject(ILogger) private readonly logger: ILogger
+    ) {
         // FIXME reimplement code gen without @theia/languages
         // const event = this.workspace.onDidSaveTextDocument;
         // if (event) {

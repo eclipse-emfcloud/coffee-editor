@@ -27,7 +27,7 @@ Refer to the README.md in the workspace for more details on how to use the examp
 ### Docker Image information
 
 The docker image includes the Theia application and the following VSCode plugins (among others):
-  
+
 - Clangd for C/C++ editing support
 - Debug for C/C++ debugging support
 - Java LSP
@@ -49,11 +49,11 @@ The backend is located in the [`backend/`](./backend/) folder and backend specif
 
 We are relying on a bunch of projects:
 
-- https://github.com/eclipsesource/jsonforms
-- https://github.com/eclipse-glsp/glsp
-- https://github.com/eclipse-emfcloud/emfcloud-modelserver
-- https://github.com/eclipse-emfcloud/emfcloud-modelserver-theia
-- https://github.com/eclipse-emfcloud/theia-tree-editor
+- <https://github.com/eclipsesource/jsonforms>
+- <https://github.com/eclipse-glsp/glsp>
+- <https://github.com/eclipse-emfcloud/emfcloud-modelserver>
+- <https://github.com/eclipse-emfcloud/emfcloud-modelserver-theia>
+- <https://github.com/eclipse-emfcloud/theia-tree-editor>
 
 If you encounter issues please report them in the corresponding project.
 This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
@@ -96,32 +96,18 @@ On Windows the most reliable way seems to be to install Python and set `npm conf
 
 ## Getting started
 
-Clone and build the coffee-editor:
+Clone the coffee-editor:
 
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
-    ./run.sh
 
 Run the built coffee-editor:
 
-    ./run.sh -r
+    yarn build
 
-Open http://localhost:3000 in the browser.
+Open <http://localhost:3000> in the browser.
 
 In Theia open the example workspace `backend/examples/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
-
-## The build and run script
-
-The `run.sh` script provides funtionality to build the coffee-editor, download used libraries, and run the IDE.
-Every part step can be executed independently from each other by using the corresponding paramater:
-
-`-b`: Builds the backend services
-
-`-c`: Integrates the built backend artifacts in the coffee-editor IDE
-
-`-f`: Builds the frontend shown in the web browser
-
-`-r`: Runs the coffee-editor and exposes it at http://localhost:3000
 
 ## Publishing the coffee-editor-extension
 

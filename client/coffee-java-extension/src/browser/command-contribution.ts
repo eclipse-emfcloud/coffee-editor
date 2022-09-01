@@ -47,7 +47,7 @@ export class JavaGenerationCommandContribution implements CommandContribution, M
         @inject(CommandService) protected readonly commandService: CommandService,
         @inject(GenerateCodeService) protected readonly generateCodeService: GenerateCodeService,
         @inject(JUnitRunService) private readonly junitRunService: JUnitRunService
-    ) { }
+    ) {}
 
     registerMenus(menus: MenuModelRegistry): void {
         menus.registerMenuAction([...['navigator-context-menu'], '0_addition'], {

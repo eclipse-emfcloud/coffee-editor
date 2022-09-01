@@ -23,13 +23,22 @@ const glspServerPath = join(__dirname, '..', '..', '..', 'backend', 'plugins', '
 const glspServerJarPath = join(glspServerPath, 'target', 'org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar');
 
 // Coffee products (Equinox servers)
-const coffeeProductsPath = join(__dirname, '..', '..', '..', 'backend', 'releng', 'org.eclipse.emfcloud.coffee.product', 'target', 'products');
+const coffeeProductsPath = join(
+    __dirname,
+    '..',
+    '..',
+    '..',
+    'backend',
+    'releng',
+    'org.eclipse.emfcloud.coffee.product',
+    'target',
+    'products'
+);
 const osProductPath = getOSProductPath();
 const workflowDSLServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.workflow.dsl', osProductPath, 'x86_64');
 const workflowAnalyerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.workflow.analyzer', osProductPath, 'x86_64');
 const javaCodeGenServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.codegen', osProductPath, 'x86_64');
 const cppCodeGenServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.codegen.cpp', osProductPath, 'x86_64');
-
 
 const targetDir = join(__dirname, '..', 'servers');
 
@@ -55,5 +64,5 @@ log('Start copying C++ CodeGen backend product..');
 copyBackendDirectory(cppCodeGenServerPath, join(targetDir, 'cpp-codegen'));
 
 const end = new Date(Date.now());
-const elapsedTime = ((end.getTime() - start.getTime()) / 1000);
+const elapsedTime = (end.getTime() - start.getTime()) / 1000;
 log('Done in ' + elapsedTime + 's.');

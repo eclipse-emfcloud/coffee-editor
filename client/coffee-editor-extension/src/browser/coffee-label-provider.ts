@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -34,6 +34,4 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
     getIcon(): string {
         return 'coffee-icon dark-purple default-file-icon';
     }
-
-    // Do not need to specify getName() nor getLongName() because the default uri label provider handles this
 }

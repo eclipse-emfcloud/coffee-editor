@@ -25,7 +25,7 @@ export class AnalysisService {
         @inject(WorkflowAnalyzer) private readonly workflowAnalyzer: WorkflowAnalyzer,
         @inject(MessageService) protected readonly messageService: MessageService,
         @inject(ILogger) private readonly logger: ILogger
-    ) { }
+    ) {}
 
     analyze(uri: URI): void {
         this.logger.info('Analyze ' + uri);
@@ -44,6 +44,7 @@ export class AnalysisService {
             const htmlFile = await this.fileServer.requestFile(FileTypes.WORKFLOW_ANALYSIS_HTML);
             progress.report({ message: 'Finished analysis, opening result ...' });
             this.logger.info('[WorkflowAnalyzer] Analysis Result Ready: ' + jsonFile);
+            // eslint-disable-next-line deprecation/deprecation
             const urlWithQuery = htmlFile + '?json=' + escape(jsonFile);
             this.logger.info('[WorkflowAnalyzer] Open Analysis Result');
             await this.openHandler.open(new URI(undefined), {
@@ -70,7 +71,7 @@ export class AnalysisService {
 
 @injectable()
 export class WorkflowAnalysisClientImpl implements WorkflowAnalysisClient {
-    constructor(@inject(MessageService) protected readonly messageService: MessageService) { }
+    constructor(@inject(MessageService) protected readonly messageService: MessageService) {}
     reportStatus(status: WorkflowAnalysisStatus): void {
         switch (status.status) {
             case 'ok':

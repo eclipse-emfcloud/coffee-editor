@@ -14,7 +14,6 @@ import { EquinoxServer } from './equinox-server';
 
 @injectable()
 export class CoffeeJavaCodeGenServer extends EquinoxServer implements JavaCodeGenServer {
-
     protected serverName = 'CoffeeJavaCodeGenServer';
 
     generateCode(sourceFile: string, targetFolder: string, packageName: string): Promise<string> {
@@ -59,5 +58,4 @@ export class CoffeeJavaCodeGenServer extends EquinoxServer implements JavaCodeGe
             });
         });
     }
-
 }

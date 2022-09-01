@@ -12,7 +12,7 @@ import { CommandContribution, MenuContribution } from '@theia/core';
 import { WebSocketConnectionProvider } from '@theia/core/lib/browser';
 import { ContainerModule } from 'inversify';
 
-import { CPP_CODEGEN_SERVICE_PATH, CppCodeGenServer } from '../common/generate-protocol';
+import { CppCodeGenServer, CPP_CODEGEN_SERVICE_PATH } from '../common/generate-protocol';
 import { CppGenerationCommandContribution } from './command-contribution';
 import { GenerateCppCodeService } from './generate-code-service';
 

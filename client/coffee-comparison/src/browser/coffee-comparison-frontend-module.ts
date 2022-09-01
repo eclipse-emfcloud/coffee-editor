@@ -8,9 +8,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import { CommandContribution } from '@theia/core/lib/common';
 import { ComparisonExtensionConfiguration } from '@eclipsesource/comparison-extension/lib/browser/comparison-extension-configuration';
 import { GraphicalComparisonOpener } from '@eclipsesource/comparison-extension/lib/browser/graphical/graphical-comparison-opener';
+import { CommandContribution } from '@theia/core/lib/common';
 import { ContainerModule, interfaces } from 'inversify';
 
 import { CoffeeComparisonFrontendConfiguration } from './coffee-comparison-frontend-configuration';

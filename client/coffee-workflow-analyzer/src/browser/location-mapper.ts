@@ -30,7 +30,7 @@ export class WorkflowFileLocationMapper implements LocationMapper {
         const queryString = uri.substring(queryIndex, uri.length);
         let rawLocation = uri.substring(7, queryIndex);
         if (rawLocation.charAt(0) === '/') {
-            rawLocation = rawLocation.substr(1);
+            rawLocation = rawLocation.slice(1);
         }
         return new Endpoint().getRestUrl().resolve(`${endpointPath}/${rawLocation}`).toString() + queryString;
     }

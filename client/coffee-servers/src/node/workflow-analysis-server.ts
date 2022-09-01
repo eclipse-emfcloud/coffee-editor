@@ -36,8 +36,6 @@ interface FileStatWithContent {
     readonly content: string;
 }
 
-// const DEFAULT_PORT = 8024;
-
 @injectable()
 export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAnalyzer, BackendApplicationContribution {
     /**
