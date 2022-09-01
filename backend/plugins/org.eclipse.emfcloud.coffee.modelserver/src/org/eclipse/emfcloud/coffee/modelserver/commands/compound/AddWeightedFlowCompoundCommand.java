@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,8 +16,8 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.notation.AddFlowShapeCommand;
 import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddWeightedFlowCommand;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddEdgeCommand;
 
 public class AddWeightedFlowCompoundCommand extends CompoundCommand {
 
@@ -28,6 +28,6 @@ public class AddWeightedFlowCompoundCommand extends CompoundCommand {
          targetUriFragment);
       this.append(command);
       Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
-      this.append(new AddFlowShapeCommand(domain, modelUri, semanticResultSupplier));
+      this.append(new AddEdgeCommand(domain, modelUri, semanticResultSupplier));
    }
 }

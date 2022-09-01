@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -9,6 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
+
+import java.util.UUID;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -28,6 +30,7 @@ public abstract class AbstractAddFlowCommand extends SemanticElementCommand {
       final String sourceUriFragment, final String targetUriFragment) {
       super(domain, modelUri);
       flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
+      flow.setId(UUID.randomUUID().toString());
       source = SemanticCommandUtil.getElement(semanticModel, sourceUriFragment, Node.class);
       target = SemanticCommandUtil.getElement(semanticModel, targetUriFragment, Node.class);
    }

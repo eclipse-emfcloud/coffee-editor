@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -21,15 +21,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.notation.RemoveNodeShapeCommand;
 import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.RemoveNodeCommand;
 import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.RemoveNotationElementCommand;
 
 public class RemoveNodeCompoundCommand extends CompoundCommand {
 
    public RemoveNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
       this.append(new RemoveNodeCommand(domain, modelUri, semanticUriFragment));
-      this.append(new RemoveNodeShapeCommand(domain, modelUri, semanticUriFragment));
+      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticUriFragment));
 
       Workflow workflow = SemanticCommandUtil.getModel(modelUri, domain);
       Node nodeToRemove = SemanticCommandUtil.getElement(workflow, semanticUriFragment, Node.class);
