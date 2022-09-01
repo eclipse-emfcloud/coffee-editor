@@ -15,7 +15,8 @@ import { ApplicationInfo, ApplicationServer } from '@theia/core/lib/common/appli
 import URI from '@theia/core/lib/common/uri';
 import { DebugConfigurationManager } from '@theia/debug/lib/browser/debug-configuration-manager';
 import { DebugCommands } from '@theia/debug/lib/browser/debug-frontend-application-contribution';
-import { EXPLORER_VIEW_CONTAINER_ID, FILE_NAVIGATOR_ID, FileNavigatorWidget } from '@theia/navigator/lib/browser';
+import { GitDiffCommands } from '@theia/git/lib/browser/diff/git-diff-contribution';
+import { EXPLORER_VIEW_CONTAINER_ID, FileNavigatorWidget, FILE_NAVIGATOR_ID } from '@theia/navigator/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
 import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
@@ -80,10 +81,11 @@ export class WelcomePageWidget extends ReactWidget {
                                 <a href='https://www.eclipse.org/glsp/' target='_blank' rel='noreferrer'>
                                     the graphical language server platform (Eclipse GLSP)
                                 </a>
-                                . Double click the file &quot;superbrewer3000.coffeenotation&quot; in the file explorer or click the header
-                                try out the diagram editor!
+                                . Open the file &quot;superbrewer3000.notation&quot; via the file explorer or click the header to try out
+                                the diagram editor!
                             </p>,
-                            this.openDiagram
+                            this.openDiagram,
+                            'Open "superbrewer3000.notation" with diagram editor'
                         )}
                     </div>
                 </div>
@@ -94,15 +96,16 @@ export class WelcomePageWidget extends ReactWidget {
                             'codicon codicon-preview',
                             <p>
                                 This editor allows to edit elements in a form-based view along with a tree showing the hierarchy of the
-                                model instances. This allows to efficiently browse the model and enter data.
-                                The form editor is based on{' '}
+                                model instances. This allows to efficiently browse the model and enter data. The form editor is based on
+                                &nbsp;
                                 <a href='https://jsonforms.io' target='_blank' rel='noreferrer'>
                                     JSON Forms
                                 </a>
-                                . Double click the file &quot;superbrewer3000.coffee&quot; in the file explorer or click the header to try
-                                out the editor!
+                                . Open the file &quot;superbrewer3000.coffee&quot; via the file explorer or click the header to try out the
+                                editor!
                             </p>,
-                            this.openTreeEditor
+                            this.openTreeEditor,
+                            'Open "superbrewer3000.coffee" with Tree editor'
                         )}
                     </div>
                 </div>
@@ -117,10 +120,11 @@ export class WelcomePageWidget extends ReactWidget {
                                 <a href='https://www.eclipse.org/Xtext/' target='_blank' rel='noreferrer'>
                                     Xtext
                                 </a>
-                                . Double click the file &quot;superbrewer3000.wfconfig&quot; in the file explorer or click the header to try
-                                out the textual DSl!
+                                . Open the file &quot;superbrewer3000.wfconfig&quot; via the file explorer or click the header to try out
+                                the textual DSL!
                             </p>,
-                            this.openTextualDSL
+                            this.openTextualDSL,
+                            'Open "superbrewer3000.wfconfig" with the Workflow DSL editor'
                         )}
                     </div>
                 </div>
@@ -134,104 +138,119 @@ export class WelcomePageWidget extends ReactWidget {
                                 The result is visualized as a &quot;sun burst&quot; chart. The analysis is an external component written in
                                 Kotlin, the chart is based on D3. Select the file &quot;superbrewer3000.wfconfig&quot; in the file explorer,
                                 press F1, type &quot;Analyze workflow model&quot; and hit enter to see the model analysis in action.
-                                Alternatively do a right click in the open textual DSL editor or click the header above.
+                                Alternatively, do a right click in the open textual DSL editor and select &quot;Perform Analysis&quot; or
+                                click the header above.
                             </p>,
-                            this.runModelAnalysis
+                            this.runModelAnalysis,
+                            'Trigger Workflow Model Analysis'
                         )}
                     </div>
                 </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'Java Code Generator',
-                            'codicon codicon-github-action',
-                            <p>
-                                The coffee editor allows generating example code based on the current model. The code generator itself is
-                                written using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select
-                                &quot;Generate Workflow code&quot;. Browse the generated code in the &quot;src&quot; and &quot;src-gen&quot;
-                                folder, the coffee editor also provides extensive language support for Java!
-                            </p>,
-                            this.runJavaCodeGenerator
-                        )}
+                <details>
+                    <summary>{this.renderDetailSummary('Java support', 'java-icon medium-purple gs-language-icon')}</summary>
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'Java Code Generator',
+                                'codicon codicon-github-action',
+                                <p>
+                                    The coffee editor allows generating example code based on the current model. The code generator itself
+                                    is written using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and
+                                    select &quot;Generate Workflow code&quot;. Browse the generated code in the &quot;src&quot; and
+                                    &quot;src-gen&quot; folder, the coffee editor also provides extensive language support for Java!
+                                </p>,
+                                this.runJavaCodeGenerator,
+                                'Run Java code generation for "superbrewer3000.coffee"'
+                            )}
+                        </div>
                     </div>
-                </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'Java Code Editing',
-                            'codicon codicon-file-code',
-                            <p>
-                                The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion. This
-                                is based on the Monaco code editor and a Java language server connected via LSP. Make sure you have
-                                generated the code first (see above). Then, open any Java file in the src folder (or click above) and start
-                                modifying the code, e.g. by adding &quot;sysout&quot; statements.
-                            </p>,
-                            this.openJavaCode
-                        )}
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'Java Code Editing',
+                                'codicon codicon-file-code',
+                                <p>
+                                    The coffee editor provides full-fleged Java tooling including syntax highlighting and auto completion.
+                                    This is based on the Monaco code editor and a Java language server connected via LSP. Make sure you have
+                                    generated the code first (see above). Then, open any Java file in the src folder (or click above) and
+                                    start modifying the code, e.g. by adding &quot;sysout&quot; statements.
+                                </p>,
+                                this.openJavaCode,
+                                'Open "SuperBrewer3000Runner.java" in Java editor'
+                            )}
+                        </div>
                     </div>
-                </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'C++ Code Generator',
-                            'codicon codicon-github-action',
-                            <p>
-                                The coffee editor allows generating example code based on the current model. The code generator itself is
-                                written using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and select
-                                &quot;Generate C++ Workflow code&quot;. Browse the generated code in the &quot;cpp&quot; folder, the coffee
-                                editor also provides extensive language support for C++!
-                            </p>,
-                            this.runCppCodeGenerator
-                        )}
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'Java Debugging',
+                                'codicon codicon-bug',
+                                <p>
+                                    The coffee editor allows executing and debugging Java code by integrating the debug adapter protocol
+                                    (DAP). Make sure you have generated the code (see above) and set a break point in any Java file by
+                                    double clicking on the left border of the code editor. Press &quot;F5&quot;, start the launch
+                                    configuration &quot;Debug SuperBrewer Java&quot; or click above to start debugging the example. This
+                                    will automatically open the integrated debug view and show all outputs of the example code in the
+                                    console!
+                                </p>,
+                                this.startDebugJava,
+                                'Debug "SuperBrewer3000Runner.java"'
+                            )}
+                        </div>
                     </div>
-                </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'C++ Code Editing',
-                            'codicon codicon-file-code',
-                            <p>
-                                The coffee editor provides full-fleged C++ tooling including syntax highlighting and auto completion. This
-                                is based on the Monaco code editor and the &quot;clangd&quot; C++ language server connected via LSP. Make
-                                sure you have generated the code first (see above). Then, open any C++ file in the cpp/src folder (or click
-                                above) and start modifying the code, e.g. by adding &quot;std::cout&quot; statements.
-                            </p>,
-                            this.openCppCode
-                        )}
+                </details>
+                <details>
+                    <summary>{this.renderDetailSummary('C++ support', 'cpp-icon medium-blue gs-language-icon')}</summary>
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'C++ Code Generator',
+                                'codicon codicon-github-action',
+                                <p>
+                                    The coffee editor allows generating example code based on the current model. The code generator itself
+                                    is written using Xtend. Right click the file &quot;superbrewer3000.coffee&quot; in the file explorer and
+                                    select &quot;Generate C++ Workflow code&quot;. Browse the generated code in the &quot;cpp&quot; folder,
+                                    the coffee editor also provides extensive language support for C++!
+                                </p>,
+                                this.runCppCodeGenerator,
+                                'Run C++ code generation for "superbrewer3000.coffee"'
+                            )}
+                        </div>
                     </div>
-                </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'Java Debugging',
-                            'codicon codicon-bug',
-                            <p>
-                                The coffee editor allows executing and debugging Java code by integrating the debug adapter protocol (DAP).
-                                Make sure you have generated the code (see above) and set a break point in any Java file by double clicking
-                                on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
-                                This will automatically open the integrated debug view and show all outputs of the example code in the
-                                console!
-                            </p>,
-                            this.startDebugJava
-                        )}
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'C++ Code Editing',
+                                'codicon codicon-file-code',
+                                <p>
+                                    The coffee editor provides full-fleged C++ tooling including syntax highlighting and auto completion.
+                                    This is based on the Monaco code editor and the &quot;clangd&quot; C++ language server connected via
+                                    LSP. Make sure you have generated the code first (see above). Then, open any C++ file in the cpp/src
+                                    folder (or click above) and start modifying the code, e.g. by adding &quot;std::cout&quot; statements.
+                                </p>,
+                                this.openCppCode,
+                                'Open "SuperBrewer3000Runner.cpp" in C++ editor'
+                            )}
+                        </div>
                     </div>
-                </div>
-                <div className='flex-grid'>
-                    <div className='col'>
-                        {this.renderFeatureSection(
-                            'C++ Debugging',
-                            'codicon codicon-bug',
-                            <p>
-                                The coffee editor allows executing and debugging C++ code by integrating the debug adapter protocol (DAP).
-                                Make sure you have generated the code (see above) and set a break point in any C++ file by double clicking
-                                on the left border of the code editor. Press &quot;F5&quot; or click above to start debugging the example.
-                                This will automatically open the integrated debug view and show all outputs of the example code in the
-                                console!
-                            </p>,
-                            this.startDebugCpp
-                        )}
+                    <div className='flex-grid gs-nested-section'>
+                        <div className='col'>
+                            {this.renderFeatureSection(
+                                'C++ Debugging',
+                                'codicon codicon-bug',
+                                <p>
+                                    The coffee editor allows executing and debugging C++ code by integrating the debug adapter protocol
+                                    (DAP). Make sure you have generated the code (see above) and set a break point in any C++ file by double
+                                    clicking on the left border of the code editor. Press &quot;F5&quot;, start the launch configuration
+                                    &quot;Debug SuperBrewer C++&quot; or click above to start debugging the example. This will automatically
+                                    open the integrated debug view and show all outputs of the example code in the console!
+                                </p>,
+                                this.startDebugCpp,
+                                'Debug "SuperBrewer3000Runner.cpp"'
+                            )}
+                        </div>
                     </div>
-                </div>
+                </details>
                 <div className='flex-grid'>
                     <div className='col'>
                         {this.renderFeatureSection(
@@ -240,19 +259,46 @@ export class WelcomePageWidget extends ReactWidget {
                             <div>
                                 <p>
                                     For the model validation the project uses EMF validation via the Model Server and displays the results
-                                    in the GLSP editor, as well as the Theia problems view. The editor has live validation enabled, so the
-                                    model server will validate and display the markers on changes to the model. The validation rules are:
+                                    in the GLSP diagram editor, as well as the Theia problems view. The editor has live validation enabled,
+                                    so the Model Server validates immediately after changes are made to the diagram. Validation results will
+                                    be displayed as problem markers on the model and in the problems view. The validation rules are:
                                 </p>
-                                <ul>
-                                    <li>A task name may only contain letters, number, - and whitespaces</li>
-                                    <li>Every task should have at most 1 incoming and 1 outgoing flow</li>
-                                    <li>A decision node should have exactly 1 incoming and 2 outgoing flows</li>
-                                    <li>A merge node should have exactly 2 incoming and 1 outgoing flows</li>
-                                    <li>A task should be used (have at least one connection)</li>
-                                    <li>A workflow should not contain a cycle</li>
+                                <ul className='gs-section-listing'>
+                                    <li>
+                                        <div className='gs-action-container'>
+                                            A task name may only contain letters, number, - and whitespaces
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className='gs-action-container'>
+                                            Every task should have at most 1 incoming and 1 outgoing flow
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className='gs-action-container'>
+                                            A decision node should have exactly 1 incoming and 2 outgoing flows
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className='gs-action-container'>
+                                            A merge node should have exactly 2 incoming and 1 outgoing flows
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className='gs-action-container'>A task should be used (have at least one connection)</div>
+                                    </li>
+                                    <li>
+                                        <div className='gs-action-container'>A workflow should not contain a cycle</div>
+                                    </li>
                                 </ul>
+                                <p>
+                                    Open the file &quot;superbrewer3000.notation&quot; via the file explorer or click the header to open the
+                                    diagram editor and change the model. Try out the Model Validation by breaking any of the above mentioned
+                                    validation rules!
+                                </p>
                             </div>,
-                            this.openDiagram
+                            this.openDiagram,
+                            'Open "superbrewer3000.notation" with diagram editor'
                         )}
                     </div>
                 </div>
@@ -269,15 +315,17 @@ export class WelcomePageWidget extends ReactWidget {
                                     rel='noreferrer'
                                 >
                                     comparison-extension
-                                </a>{' '}
+                                </a>
                                 , which uses EMF Compare. The coffee-editor adds to the comparison extension and provides a git integration.
                                 With this, the current file can be compared to its HEAD file. This can be achieved by right-clicking on the
                                 &quot;.notation&quot; or &quot;.coffee&quot; file and selecting &quot;Compare with HEAD...&quot; , with the
                                 latter opening the tree comparison and the right click on the &quot;.notation&quot; file the graphical
                                 comparison. Note, that this requires the current workspace to be a Git repository with at least one commit
-                                that contains the selected file.
+                                that contains the selected file. Clicking the header opens the comparison for
+                                &quot;superbrewer3000.notation&quot; with HEAD.
                             </p>,
-                            this.openDiagram
+                            this.compareDiagramToHead,
+                            'Compare "superbrewer3000.notation" with HEAD'
                         )}
                     </div>
                 </div>
@@ -295,27 +343,50 @@ export class WelcomePageWidget extends ReactWidget {
                     Coffee Editor <span className='gs-sub-header'>Getting Started</span>
                 </h1>
                 <p>
-                    The &quot;coffee editor&quot; is a comprehensive example of a web-based modeling tool based on&nbsp;
+                    The &quot;coffee editor&quot; is a comprehensive example of a web-based modeling tool based on{' '}
                     <a href='https://www.eclipse.org/emfcloud/' target='_blank' rel='noreferrer'>
                         EMF.cloud
                     </a>{' '}
                     and Eclipse Theia. Please see the sections below to get an overview of the available features and use the links to
-                    directly see them in action. Alternatively, <a onClick={() => this.openFileExplorer()}>open the file explorer</a> to the
-                    left and browse the example workspace. See the &quot;Help and more information&quot; section below for further pointers.
+                    directly see them in action. Alternatively,{' '}
+                    <a onClick={() => this.openFileExplorer()} rel='noreferrer'>
+                        open the file explorer
+                    </a>{' '}
+                    to the left and browse the example workspace. See the &quot;Help and more information&quot; section below for further
+                    pointers.
                 </p>
             </div>
         );
     }
 
-    protected renderFeatureSection(title: string, icon: string, description: React.ReactNode, opener: () => void): React.ReactNode {
+    protected renderDetailSummary(title: string, icon: string): React.ReactNode {
         return (
-            <div className='gs-section'>
+            <div className='gs-section gs-detail-summary'>
+                {' '}
+                <h3 className='gs-section-header'>
+                    <i className={'gs-section-header-icon ' + icon}></i>
+                    {title}
+                </h3>
+                <div className='gs-action-container'></div>
+            </div>
+        );
+    }
+
+    protected renderFeatureSection(
+        title: string,
+        icon: string,
+        description: React.ReactNode,
+        opener: () => void,
+        actionTitle?: string
+    ): React.ReactNode {
+        return (
+            <div className='gs-section' title={actionTitle}>
                 <a onClick={opener}>
                     {' '}
                     <h3 className='gs-section-header'>
-                        <i className={icon}></i>
+                        <i className={'gs-section-header-icon ' + icon}></i>
                         {title}
-                        <span style={{ marginLeft: '5px' }}>
+                        <span className='gs-link-icon'>
                             <i className='codicon codicon-link-external' />
                         </span>
                     </h3>
@@ -330,29 +401,46 @@ export class WelcomePageWidget extends ReactWidget {
         return (
             <div className='gs-section'>
                 <h3 className='gs-section-header'>
-                    <i className='codicon codicon-question'></i>
+                    <i className='gs-section-header-icon codicon codicon-question'></i>
                     Help and more information
                 </h3>
-                <div className='gs-action-container'>
-                    <a href='https://www.eclipse.org/emfcloud/contact/' target='_blank' rel='noreferrer'>
-                        Ask a question
-                    </a>
-                </div>
-                <div className='gs-action-container'>
-                    <a href='https://github.com/eclipsesource/coffee-editor/issues' target='_blank' rel='noreferrer'>
-                        Report an issue
-                    </a>
-                </div>
-                <div className='gs-action-container'>
-                    <a href='https://github.com/eclipsesource/coffee-editor/' target='_blank' rel='noreferrer'>
-                        Github project with code and more info
-                    </a>
-                </div>
-                <div className='gs-action-container'>
-                    <a href='https://eclipsesource.com/technology/eclipse-theia/' target='_blank' rel='noreferrer'>
-                        Get support for building your own custom tool based on Eclipse Theia
-                    </a>
-                </div>
+                <ul className='gs-section-listing'>
+                    <li>
+                        <div className='gs-action-container'>
+                            <a href='https://www.eclipse.org/emfcloud/contact/' target='_blank' rel='noreferrer'>
+                                Visit the EMF.cloud Website
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div className='gs-action-container'>
+                            <a href='https://github.com/eclipse-emfcloud/emfcloud/discussions' target='_blank' rel='noreferrer'>
+                                Ask a question in the EMF.cloud discussions page
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div className='gs-action-container'>
+                            <a href='https://github.com/eclipsesource/coffee-editor/issues' target='_blank' rel='noreferrer'>
+                                Report an issue
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div className='gs-action-container'>
+                            <a href='https://github.com/eclipsesource/coffee-editor/' target='_blank' rel='noreferrer'>
+                                Github project with code and more information
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div className='gs-action-container'>
+                            <a href='https://eclipsesource.com/technology/eclipse-theia/' target='_blank' rel='noreferrer'>
+                                Get support for building your own custom tool based on Eclipse Theia
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         );
     }
@@ -379,6 +467,9 @@ export class WelcomePageWidget extends ReactWidget {
         open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig')).then(() => {
             this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
         });
+    };
+    protected compareDiagramToHead = (): void => {
+        this.commandRegistry.executeCommand(GitDiffCommands.OPEN_FILE_DIFF.id, this.getSuperBrewer3000FileURI('notation'));
     };
 
     protected runJavaCodeGenerator = (): void => {
