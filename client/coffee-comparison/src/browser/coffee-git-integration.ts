@@ -8,12 +8,17 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import { ModelServerClient } from '@eclipse-emfcloud/modelserver-theia/lib/common';
+import { TheiaModelServerClientV2 } from '@eclipse-emfcloud/modelserver-theia';
+import { GraphicalComparisonCommands } from '@eclipsesource/comparison-extension/lib/browser/graphical/graphical-comparison-contribution';
+import { GraphicalComparisonOpener } from '@eclipsesource/comparison-extension/lib/browser/graphical/graphical-comparison-opener';
+import { ComparisonCommands } from '@eclipsesource/comparison-extension/lib/browser/tree-comparison-contribution';
 import { FrontendApplication, OpenerService } from '@theia/core/lib/browser';
 import { WidgetManager } from '@theia/core/lib/browser/widget-manager';
 import { Command, CommandContribution, CommandRegistry, MessageService, SelectionService } from '@theia/core/lib/common';
+import { BinaryBuffer } from '@theia/core/lib/common/buffer';
 import URI from '@theia/core/lib/common/uri';
 import { UriCommandHandler } from '@theia/core/lib/common/uri-command-handler';
+import { FileService } from '@theia/filesystem/lib/browser/file-service';
 import { GitDiffCommands } from '@theia/git/lib/browser/diff/git-diff-contribution';
 import { DirtyDiffManager } from '@theia/git/lib/browser/dirty-diff/dirty-diff-manager';
 import { GitQuickOpenService } from '@theia/git/lib/browser/git-quick-open-service';
@@ -21,12 +26,7 @@ import { Git } from '@theia/git/lib/common';
 import { ScmService } from '@theia/scm/lib/browser/scm-service';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { WorkspaceRootUriAwareCommandHandler } from '@theia/workspace/lib/browser/workspace-commands';
-import { GraphicalComparisonCommands } from '@eclipsesource/comparison-extension/lib/browser/graphical/graphical-comparison-contribution';
-import { GraphicalComparisonOpener } from '@eclipsesource/comparison-extension/lib/browser/graphical/graphical-comparison-opener';
-import { ComparisonCommands } from '@eclipsesource/comparison-extension/lib/browser/tree-comparison-contribution';
 import { inject, injectable } from 'inversify';
-import { FileService } from '@theia/filesystem/lib/browser/file-service';
-import { BinaryBuffer } from '@theia/core/lib/common/buffer';
 
 export namespace GitCommands {
     export const OPEN_FILE_DIFF: Command = {
@@ -40,8 +40,8 @@ export namespace GitCommands {
 export class CoffeeGitIntegration implements CommandContribution {
     @inject(WorkspaceService)
     protected readonly workspaceService: WorkspaceService;
-    @inject(ModelServerClient)
-    private readonly modelServerApi: ModelServerClient;
+    @inject(TheiaModelServerClientV2)
+    protected readonly modelServerClient: TheiaModelServerClientV2;
 
     constructor(
         @inject(SelectionService)
@@ -124,7 +124,9 @@ export class CoffeeGitIntegration implements CommandContribution {
                     await this.writeToFile(new URI(headNotationPath), headNotationFile);
 
                     if (this.workspaceService.workspace) {
-                        await this.modelServerApi.configure({ workspaceRoot: this.workspaceService.workspace.resource.toString() });
+                        await this.modelServerClient.configureServer({
+                            workspaceRoot: this.workspaceService.workspace.resource.toString()
+                        });
                     }
 
                     if (isCoffeeFile) {
