@@ -34,6 +34,8 @@ import org.eclipse.glsp.graph.GraphExtension;
 import org.eclipse.glsp.server.actions.ActionHandler;
 import org.eclipse.glsp.server.di.MultiBinding;
 import org.eclipse.glsp.server.diagram.DiagramConfiguration;
+import org.eclipse.glsp.server.emf.EMFIdGenerator;
+import org.eclipse.glsp.server.emf.idgen.AttributeIdGenerator;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
@@ -123,6 +125,11 @@ public class WorkflowDiagramModule extends EMSGLSPNotationDiagramModule {
    @Override
    protected Class<? extends LayoutEngine> bindLayoutEngine() {
       return WorkflowLayoutEngine.class;
+   }
+
+   @Override
+   protected Class<? extends EMFIdGenerator> bindEMFIdGenerator() {
+      return AttributeIdGenerator.class;
    }
 
    @Override

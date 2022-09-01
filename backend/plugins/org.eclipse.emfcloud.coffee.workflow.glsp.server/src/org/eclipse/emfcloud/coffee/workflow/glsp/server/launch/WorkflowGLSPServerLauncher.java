@@ -41,10 +41,10 @@ public final class WorkflowGLSPServerLauncher {
          Predicate<Integer> validator = (port) -> LaunchUtil.isValidPort(port);
          int serverPort = parser.parseIntOption(DefaultCLIParser.OPTION_PORT, WORKFLOW_DEFAULT_PORT, validator);
 
-         ServerModule tasklistServerModule = new EMSGLSPServerModule()
+         ServerModule coffeeServerModule = new EMSGLSPServerModule()
             .configureDiagramModule(new WorkflowDiagramModule());
 
-         GLSPServerLauncher launcher = new SocketGLSPServerLauncher(tasklistServerModule);
+         GLSPServerLauncher launcher = new SocketGLSPServerLauncher(coffeeServerModule);
          launcher.start("localhost", serverPort);
       } catch (ParseException | IOException ex) {
          ex.printStackTrace();

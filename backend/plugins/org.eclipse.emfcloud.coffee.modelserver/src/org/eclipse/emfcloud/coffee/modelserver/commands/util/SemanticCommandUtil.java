@@ -23,7 +23,7 @@ import org.eclipse.emfcloud.coffee.ManualTask;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
+import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.util.CommandUtil;
@@ -37,9 +37,11 @@ public final class SemanticCommandUtil {
       return EcoreUtil.getURI(element).fragment();
    }
 
+   public static String getCoffeeFileExtension() { return CoffeeResource.FILE_EXTENSION; }
+
    public static Workflow getModel(final URI modelUri, final EditingDomain domain) {
       Resource semanticResource = domain.getResourceSet()
-         .getResource(modelUri.trimFileExtension().appendFileExtension(CoffeeResource.FILE_EXTENSION), false);
+         .getResource(modelUri.trimFileExtension().appendFileExtension(getCoffeeFileExtension()), false);
       EObject semanticRoot = semanticResource.getContents().get(0);
       if (!(semanticRoot instanceof Machine)) {
          return null;

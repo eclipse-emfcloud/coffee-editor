@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.emf.common.RecordingModelResourceManager;
 import org.eclipse.emfcloud.modelserver.emf.common.watchers.ModelWatchersManager;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
@@ -61,7 +60,7 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
          } else if (file.isFile()) {
             URI absolutePath = URI.createFileURI(file.getAbsolutePath());
             if (CoffeeResource.FILE_EXTENSION.equals(absolutePath.fileExtension())) {
-               getTaskListResourceSet(absolutePath);
+               getCoffeeResourceSet(absolutePath);
             }
             loadResource(absolutePath.toString());
          }
@@ -69,13 +68,13 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
    }
 
    /**
-    * Get the resource set that manages the given TaskList semantic model resource, creating
+    * Get the resource set that manages the given coffee semantic model resource, creating
     * it if necessary.
     *
-    * @param modelURI a TaskList semantic model resource URI
+    * @param modelURI a coffee semantic model resource URI
     * @return its resource set
     */
-   protected ResourceSet getTaskListResourceSet(final URI modelURI) {
+   protected ResourceSet getCoffeeResourceSet(final URI modelURI) {
       ResourceSet result = resourceSets.get(modelURI);
       if (result == null) {
          result = resourceSetFactory.createResourceSet(modelURI);
@@ -87,9 +86,9 @@ public class CoffeeModelResourceManager extends RecordingModelResourceManager {
    @Override
    public ResourceSet getResourceSet(final String modeluri) {
       URI resourceURI = createURI(modeluri);
-      if (resourceURI.fileExtension().equals(notationFileExtension)) {
+      if (notationFileExtension.equals(resourceURI.fileExtension())) {
          URI semanticUri = resourceURI.trimFileExtension().appendFileExtension(semanticFileExtension);
-         return getTaskListResourceSet(semanticUri);
+         return getCoffeeResourceSet(semanticUri);
       }
       return resourceSets.get(resourceURI);
    }

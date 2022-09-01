@@ -20,13 +20,11 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlow
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowSourceCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.SetFlowTargetCommandContribution;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.common.utils.MapBinding;
 import org.eclipse.emfcloud.modelserver.common.utils.MultiBinding;
 import org.eclipse.emfcloud.modelserver.edit.CommandContribution;
 import org.eclipse.emfcloud.modelserver.emf.common.ModelResourceManager;
 import org.eclipse.emfcloud.modelserver.emf.common.ResourceSetFactory;
-import org.eclipse.emfcloud.modelserver.emf.common.codecs.CodecProvider;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 import org.eclipse.emfcloud.modelserver.notation.integration.EMSNotationModelServerModule;
 import org.eclipse.emfcloud.modelserver.notation.integration.NotationResource;
@@ -42,12 +40,6 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
    protected void configureEPackages(final MultiBinding<EPackageConfiguration> binding) {
       super.configureEPackages(binding);
       binding.add(CoffeePackageConfiguration.class);
-   }
-
-   @Override
-   protected void configureCodecs(final MultiBinding<CodecProvider> binding) {
-      super.configureCodecs(binding);
-      binding.add(CoffeeCodecProvider.class);
    }
 
    @Override

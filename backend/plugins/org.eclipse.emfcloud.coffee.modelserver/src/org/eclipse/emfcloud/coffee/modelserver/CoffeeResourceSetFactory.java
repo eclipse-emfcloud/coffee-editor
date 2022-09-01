@@ -12,7 +12,6 @@ package org.eclipse.emfcloud.coffee.modelserver;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.emf.common.DefaultResourceSetFactory;
 import org.eclipse.emfcloud.modelserver.integration.SemanticFileExtension;
 import org.eclipse.emfcloud.modelserver.notation.integration.NotationFileExtension;
