@@ -18,8 +18,8 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.RemoveNotationEle
 
 public class RemoveFlowCompoundCommand extends CompoundCommand {
 
-   public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-      this.append(new RemoveFlowCommand(domain, modelUri, semanticUriFragment));
-      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticUriFragment));
+   public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticElementId) {
+      this.append(new RemoveFlowCommand(domain, modelUri, semanticElementId));
+      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticElementId));
    }
 }

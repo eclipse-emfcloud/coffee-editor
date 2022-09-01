@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -15,8 +15,8 @@ import org.eclipse.emfcloud.modelserver.edit.command.BasicCommandContribution;
 
 public abstract class CompoundCommandContribution extends BasicCommandContribution<Command> {
 
-   public static final String SEMANTIC_URI_FRAGMENT = "semanticUriFragment";
+   public static final String SEMANTIC_ELEMENT_ID = "semanticElementId";
 
-   public static final String SOURCE_URI_FRAGMENT = "sourceUriFragment";
-   public static final String TARGET_URI_FRAGMENT = "targetUriFragment";
+   public static final String SOURCE_ELEMENT_ID = "sourceElementId";
+   public static final String TARGET_ELEMENT_ID = "targetElementId";
 }

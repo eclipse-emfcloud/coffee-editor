@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,8 +16,8 @@ import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddFlowCommand extends AbstractAddFlowCommand {
 
-   public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
-      final String targetUriFragment) {
-      super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceUriFragment, targetUriFragment);
+   public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceElementId,
+      final String targetElementId) {
+      super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceElementId, targetElementId);
    }
 }

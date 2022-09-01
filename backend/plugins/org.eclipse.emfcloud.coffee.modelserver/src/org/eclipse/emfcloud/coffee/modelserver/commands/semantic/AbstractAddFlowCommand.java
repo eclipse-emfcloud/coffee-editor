@@ -27,12 +27,12 @@ public abstract class AbstractAddFlowCommand extends SemanticElementCommand {
    protected final Node target;
 
    public AbstractAddFlowCommand(final EditingDomain domain, final URI modelUri, final EClass eClass,
-      final String sourceUriFragment, final String targetUriFragment) {
+      final String sourceElementId, final String targetElementId) {
       super(domain, modelUri);
       flow = (Flow) CoffeeFactory.eINSTANCE.create(eClass);
       flow.setId(UUID.randomUUID().toString());
-      source = SemanticCommandUtil.getElement(semanticModel, sourceUriFragment, Node.class);
-      target = SemanticCommandUtil.getElement(semanticModel, targetUriFragment, Node.class);
+      source = SemanticCommandUtil.getElement(semanticModel, sourceElementId, Node.class);
+      target = SemanticCommandUtil.getElement(semanticModel, targetElementId, Node.class);
    }
 
    @Override

@@ -21,10 +21,10 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddEdgeCommand;
 
 public class AddFlowCompoundCommand extends CompoundCommand {
 
-   public AddFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String sourceUriFragment,
-      final String targetUriFragment) {
+   public AddFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String sourceElementId,
+      final String targetElementId) {
       // Chain semantic and notation command
-      AddFlowCommand command = new AddFlowCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
+      AddFlowCommand command = new AddFlowCommand(domain, modelUri, sourceElementId, targetElementId);
       this.append(command);
       Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
       this.append(new AddEdgeCommand(domain, modelUri, semanticResultSupplier));

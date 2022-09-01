@@ -27,19 +27,19 @@ import org.eclipse.emfcloud.modelserver.glsp.notation.commands.RemoveNotationEle
 
 public class RemoveNodeCompoundCommand extends CompoundCommand {
 
-   public RemoveNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-      this.append(new RemoveNodeCommand(domain, modelUri, semanticUriFragment));
-      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticUriFragment));
+   public RemoveNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticElementId) {
+      this.append(new RemoveNodeCommand(domain, modelUri, semanticElementId));
+      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticElementId));
 
       Workflow workflow = SemanticCommandUtil.getModel(modelUri, domain);
-      Node nodeToRemove = SemanticCommandUtil.getElement(workflow, semanticUriFragment, Node.class);
+      Node nodeToRemove = SemanticCommandUtil.getElement(workflow, semanticElementId, Node.class);
 
       Collection<Setting> nodeUsages = UsageCrossReferencer.find(nodeToRemove, workflow.eResource());
       for (Setting setting : nodeUsages) {
          EObject eObject = setting.getEObject();
          if (eObject instanceof Flow && eObject.eContainer() == workflow) {
-            String flowSemanticUriFragment = SemanticCommandUtil.getSemanticUriFragment(eObject);
-            this.append(new RemoveFlowCompoundCommand(domain, modelUri, flowSemanticUriFragment));
+            String flowId = SemanticCommandUtil.getSemanticElementId(eObject);
+            this.append(new RemoveFlowCompoundCommand(domain, modelUri, flowId));
          }
       }
    }

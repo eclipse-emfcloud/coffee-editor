@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -17,16 +17,16 @@ import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil
 
 public class RemoveFlowCommand extends SemanticElementCommand {
 
-   protected final String semanticUriFragment;
+   protected final String semanticElementId;
 
-   public RemoveFlowCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
+   public RemoveFlowCommand(final EditingDomain domain, final URI modelUri, final String semanticElementId) {
       super(domain, modelUri);
-      this.semanticUriFragment = semanticUriFragment;
+      this.semanticElementId = semanticElementId;
    }
 
    @Override
    protected void doExecute() {
-      Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticUriFragment, Flow.class);
+      Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticElementId, Flow.class);
       semanticModel.getFlows().remove(flowToDelete);
    }
 

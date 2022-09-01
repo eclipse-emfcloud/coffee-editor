@@ -151,8 +151,10 @@ public final class WorkflowBuilder {
 
    }
 
+   // FIXME
    // public static String getChangeCssClass(WorkflowModelState modelState, EObject object) {
    // return modelState.getHighlights().get(EcoreUtil.getURI(object).toString().split("#_")[1]);
+   // idGenerator.getOrCreateId?
    // }
 
    private WorkflowBuilder() {}

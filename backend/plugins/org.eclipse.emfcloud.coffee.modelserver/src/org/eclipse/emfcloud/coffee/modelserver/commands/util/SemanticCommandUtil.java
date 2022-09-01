@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -33,8 +33,9 @@ public final class SemanticCommandUtil {
    // Hide constructor for utility class
    private SemanticCommandUtil() {}
 
-   public static String getSemanticUriFragment(final EObject element) {
-      return EcoreUtil.getURI(element).fragment();
+   // Expect a given EObject with an ID attribute
+   public static String getSemanticElementId(final EObject element) {
+      return EcoreUtil.getID(element);
    }
 
    public static String getCoffeeFileExtension() { return CoffeeResource.FILE_EXTENSION; }
@@ -54,13 +55,13 @@ public final class SemanticCommandUtil {
       return machine.getWorkflows().get(0);
    }
 
-   public static EObject getElement(final Workflow semanticModel, final String semanticUriFragment) {
-      return semanticModel.eResource().getEObject(semanticUriFragment);
+   public static EObject getElement(final Workflow semanticModel, final String semanticElementId) {
+      return semanticModel.eResource().getEObject(semanticElementId);
    }
 
-   public static <C> C getElement(final Workflow semanticModel, final String semanticUriFragment,
+   public static <C> C getElement(final Workflow semanticModel, final String semanticElementId,
       final java.lang.Class<C> clazz) {
-      EObject element = getElement(semanticModel, semanticUriFragment);
+      EObject element = getElement(semanticModel, semanticElementId);
       return clazz.cast(element);
    }
 

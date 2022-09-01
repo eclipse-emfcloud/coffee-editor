@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -21,13 +21,13 @@ import org.eclipse.emfcloud.modelserver.common.codecs.DecodingException;
 public class SetFlowSourceCommandContribution extends SemanticCommandContribution {
 
    public static final String TYPE = "setFlowSource";
-   public static final String NEW_SOURCE_URI = "newSourceUri";
+   public static final String NEW_SOURCE_ELEMENT_ID = "newSourceElementId";
 
-   public static CCommand create(final String semanticUri, final String newTargetUriFragment) {
+   public static CCommand create(final String semanticElementId, final String newSourceElementId) {
       CCommand setSourceCommand = CCommandFactory.eINSTANCE.createCommand();
       setSourceCommand.setType(TYPE);
-      setSourceCommand.getProperties().put(SEMANTIC_URI_FRAGMENT, semanticUri);
-      setSourceCommand.getProperties().put(NEW_SOURCE_URI, newTargetUriFragment);
+      setSourceCommand.getProperties().put(SEMANTIC_ELEMENT_ID, semanticElementId);
+      setSourceCommand.getProperties().put(NEW_SOURCE_ELEMENT_ID, newSourceElementId);
       return setSourceCommand;
    }
 
@@ -35,10 +35,10 @@ public class SetFlowSourceCommandContribution extends SemanticCommandContributio
    protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
       throws DecodingException {
 
-      String semanticUriFragment = command.getProperties().get(SEMANTIC_URI_FRAGMENT);
-      String newSourceUriFragment = command.getProperties().get(NEW_SOURCE_URI);
+      String semanticElementId = command.getProperties().get(SEMANTIC_ELEMENT_ID);
+      String newSourceElementId = command.getProperties().get(NEW_SOURCE_ELEMENT_ID);
 
-      return new SetFlowSourceCommand(domain, modelUri, semanticUriFragment, newSourceUriFragment);
+      return new SetFlowSourceCommand(domain, modelUri, semanticElementId, newSourceElementId);
    }
 
 }
