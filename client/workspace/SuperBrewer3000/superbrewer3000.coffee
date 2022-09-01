@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emfcloud.coffee.model:Machine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emfcloud.coffee.model="http://www.eclipse.org/emfcloud/coffee/model" xmi:id="_uTowcMnNEeuzYY8U8dVg6Q" name="SuperBrewer3000">
-  <children xsi:type="org.eclipse.emfcloud.coffee.model:BrewingUnit" xmi:id="_glMiUXDlEeuOQ_oVeIeN4A">
-    <children xsi:type="org.eclipse.emfcloud.coffee.model:ControlUnit" xmi:id="_OYWC8MqOEeuYap5GtvNPrw">
-      <processor xmi:id="_fy6cYMqOEeuYap5GtvNPrw" vendor="Qualcommm" clockSpeed="5" numberOfCores="10" socketconnectorType="Z51" thermalDesignPower="1000"/>
-      <dimension xmi:id="_sZx2QMqOEeuYap5GtvNPrw" width="10" height="12" length="13"/>
-      <display xmi:id="_uj_EAMqOEeuYap5GtvNPrw" width="10" height="20"/>
+<org.eclipse.emfcloud.coffee.model:Machine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.emfcloud.coffee.model="http://www.eclipse.org/emfcloud/coffee/model" id="bb9b7c44-9838-4335-b986-043382534130" name="SuperBrewer3000">
+  <children xsi:type="org.eclipse.emfcloud.coffee.model:BrewingUnit" id="4edecb17-80bf-4938-949b-723468322ecf">
+    <children xsi:type="org.eclipse.emfcloud.coffee.model:ControlUnit" id="5058c1f8-d292-49b5-ac24-8efba98e242a">
+      <processor id="099634c6-c759-4da4-b482-902a0f85a711" vendor="Qualcommm" clockSpeed="5" numberOfCores="10" socketconnectorType="Z51" thermalDesignPower="1000"/>
+      <dimension id="f2141765-95ba-426d-9fa9-2e1e14784072" width="10" height="12" length="13"/>
+      <display id="b99b3974-e3da-490a-ac69-ef921c0f9707" width="10" height="20"/>
     </children>
   </children>
-  <workflows xmi:id="_KjaRcMnNEeuzYY8U8dVg6Q" name="BrewingFlow">
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" xmi:id="_5oz_cMKjEeup06HqRBVc_g" name="Preheat"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" xmi:id="_MrtooMKkEeup06HqRBVc_g" name="Brew"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" xmi:id="_O7Vh4MKkEeup06HqRBVc_g" name="Refill water"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" xmi:id="_8lEZIMqOEeuYap5GtvNPrw" name="Drink"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" xmi:id="_QxCfQMKkEeup06HqRBVc_g" name="Push"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" xmi:id="_itPXMMnYEeuzYY8U8dVg6Q" name="Check drip tray"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" xmi:id="_glMiUMHlEeuOQ_oVeIeN4A" name="Check Water"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" xmi:id="_jc7kcMHlEeuOQ_oVeIeN4A" name="Water Ok"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Decision" xmi:id="_Y16bQMINEeuM9JtVafDACQ"/>
-    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Merge" xmi:id="_hd5kwMINEeuM9JtVafDACQ"/>
-    <flows xmi:id="_tVvcoMHlEeuOQ_oVeIeN4A" source="_QxCfQMKkEeup06HqRBVc_g" target="_glMiUMHlEeuOQ_oVeIeN4A"/>
-    <flows xmi:id="_7z8LkMHlEeuOQ_oVeIeN4A" source="_glMiUMHlEeuOQ_oVeIeN4A" target="_Y16bQMINEeuM9JtVafDACQ"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_9dJlEMHlEeuOQ_oVeIeN4A" source="_Y16bQMINEeuM9JtVafDACQ" target="_O7Vh4MKkEeup06HqRBVc_g" probability="medium"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_OD_3AMHwEeuwMI7tijX71Q" source="_Y16bQMINEeuM9JtVafDACQ" target="_jc7kcMHlEeuOQ_oVeIeN4A" probability="high"/>
-    <flows xmi:id="_O3eiYMHwEeuwMI7tijX71Q" source="_O7Vh4MKkEeup06HqRBVc_g" target="_hd5kwMINEeuM9JtVafDACQ"/>
-    <flows xmi:id="_TrV-YMIOEeuM9JtVafDACQ" source="_jc7kcMHlEeuOQ_oVeIeN4A" target="_hd5kwMINEeuM9JtVafDACQ"/>
-    <flows xmi:id="_V5JBgMKkEeup06HqRBVc_g" source="_hd5kwMINEeuM9JtVafDACQ" target="_itPXMMnYEeuzYY8U8dVg6Q"/>
-    <flows xmi:id="_ar-eYMKkEeup06HqRBVc_g" source="_itPXMMnYEeuzYY8U8dVg6Q" target="_5oz_cMKjEeup06HqRBVc_g"/>
-    <flows xmi:id="_cOp-gMj5EeuOnZSlSBIr0g" source="_5oz_cMKjEeup06HqRBVc_g" target="_MrtooMKkEeup06HqRBVc_g"/>
-    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" xmi:id="_c9G_8Mj5EeuOnZSlSBIr0g" source="_MrtooMKkEeup06HqRBVc_g" target="_8lEZIMqOEeuYap5GtvNPrw"/>
+  <workflows id="47501d49-3a8d-4cb2-bed5-6263f5e5733b" name="BrewingFlow">
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" id="6e30dc6e-cc62-4287-a6d4-2b25e58e427d" name="Preheat"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" id="254d603a-f76c-4a22-8912-b87ed51b620d" name="Brew"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" id="8de0c429-c144-4492-938b-6bb0968eabd3" name="Refill water"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" id="1b5dc659-bd2f-4696-a22b-bea925cf026f" name="Drink"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" id="27a635ae-5a5f-4546-9a07-01aecb684bfd" name="Push"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:ManualTask" id="1c893904-02c1-4876-bdb9-a1143d1d6154" name="Check drip tray"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" id="76abc67b-61d9-4f9c-9b85-dc9ff6f34095" name="Check Water"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:AutomaticTask" id="8acc2028-975c-4f46-9147-3f576386d188" name="Water Ok"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Decision" id="a73092cf-37e8-4bc3-a36d-5e9609c2ca2d"/>
+    <nodes xsi:type="org.eclipse.emfcloud.coffee.model:Merge" id="571bf651-67ba-490c-af56-3b32ee824830"/>
+    <flows id="3b43103b-cc04-45af-99d9-1940687109e9" source="27a635ae-5a5f-4546-9a07-01aecb684bfd" target="76abc67b-61d9-4f9c-9b85-dc9ff6f34095"/>
+    <flows id="63f7e210-a4fe-494e-a945-31101384bcad" source="76abc67b-61d9-4f9c-9b85-dc9ff6f34095" target="a73092cf-37e8-4bc3-a36d-5e9609c2ca2d"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" id="f410d003-8f18-4caf-bdef-5e1478094611" source="a73092cf-37e8-4bc3-a36d-5e9609c2ca2d" target="8de0c429-c144-4492-938b-6bb0968eabd3" probability="medium"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" id="727e2f4a-69ba-47f2-b1b0-1e7b7df564a9" source="a73092cf-37e8-4bc3-a36d-5e9609c2ca2d" target="8acc2028-975c-4f46-9147-3f576386d188" probability="high"/>
+    <flows id="fdd38616-efcf-485e-bc6d-e8b504fea936" source="8de0c429-c144-4492-938b-6bb0968eabd3" target="571bf651-67ba-490c-af56-3b32ee824830"/>
+    <flows id="763b2a75-0694-43a0-8be3-39632f500bf6" source="8acc2028-975c-4f46-9147-3f576386d188" target="571bf651-67ba-490c-af56-3b32ee824830"/>
+    <flows id="b8da661a-ac64-4cfc-9991-dfc1c7ceb315" source="571bf651-67ba-490c-af56-3b32ee824830" target="1c893904-02c1-4876-bdb9-a1143d1d6154"/>
+    <flows id="2b2f20ba-df24-472b-b367-54cc6829106b" source="1c893904-02c1-4876-bdb9-a1143d1d6154" target="6e30dc6e-cc62-4287-a6d4-2b25e58e427d"/>
+    <flows id="5024e14f-99dc-439c-a7ec-32affe138224" source="6e30dc6e-cc62-4287-a6d4-2b25e58e427d" target="254d603a-f76c-4a22-8912-b87ed51b620d"/>
+    <flows xsi:type="org.eclipse.emfcloud.coffee.model:WeightedFlow" id="6271b71f-01ff-4736-b3bd-2f1ed9a1b662" source="254d603a-f76c-4a22-8912-b87ed51b620d" target="1b5dc659-bd2f-4696-a22b-bea925cf026f"/>
   </workflows>
 </org.eclipse.emfcloud.coffee.model:Machine>

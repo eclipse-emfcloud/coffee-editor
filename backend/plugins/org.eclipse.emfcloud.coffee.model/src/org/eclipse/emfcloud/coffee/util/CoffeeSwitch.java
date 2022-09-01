@@ -18,6 +18,7 @@ package org.eclipse.emfcloud.coffee.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emfcloud.coffee.*;
 import org.eclipse.emfcloud.coffee.AutomaticTask;
 import org.eclipse.emfcloud.coffee.BrewingUnit;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -94,9 +95,16 @@ public class CoffeeSwitch<T> extends Switch<T> {
    @Override
    protected T doSwitch(int classifierID, EObject theEObject) {
       switch (classifierID) {
+         case CoffeePackage.IDENTIFIABLE: {
+            Identifiable identifiable = (Identifiable)theEObject;
+            T result = caseIdentifiable(identifiable);
+            if (result == null) result = defaultCase(theEObject);
+            return result;
+         }
          case CoffeePackage.COMPONENT: {
             Component component = (Component)theEObject;
             T result = caseComponent(component);
+            if (result == null) result = caseIdentifiable(component);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -104,6 +112,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Machine machine = (Machine)theEObject;
             T result = caseMachine(machine);
             if (result == null) result = caseComponent(machine);
+            if (result == null) result = caseIdentifiable(machine);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -111,6 +120,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             ControlUnit controlUnit = (ControlUnit)theEObject;
             T result = caseControlUnit(controlUnit);
             if (result == null) result = caseComponent(controlUnit);
+            if (result == null) result = caseIdentifiable(controlUnit);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -118,6 +128,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             BrewingUnit brewingUnit = (BrewingUnit)theEObject;
             T result = caseBrewingUnit(brewingUnit);
             if (result == null) result = caseComponent(brewingUnit);
+            if (result == null) result = caseIdentifiable(brewingUnit);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -125,6 +136,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             DipTray dipTray = (DipTray)theEObject;
             T result = caseDipTray(dipTray);
             if (result == null) result = caseComponent(dipTray);
+            if (result == null) result = caseIdentifiable(dipTray);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -132,42 +144,49 @@ public class CoffeeSwitch<T> extends Switch<T> {
             WaterTank waterTank = (WaterTank)theEObject;
             T result = caseWaterTank(waterTank);
             if (result == null) result = caseComponent(waterTank);
+            if (result == null) result = caseIdentifiable(waterTank);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.PROCESSOR: {
             Processor processor = (Processor)theEObject;
             T result = caseProcessor(processor);
+            if (result == null) result = caseIdentifiable(processor);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.DIMENSION: {
             Dimension dimension = (Dimension)theEObject;
             T result = caseDimension(dimension);
+            if (result == null) result = caseIdentifiable(dimension);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.RAM: {
             RAM ram = (RAM)theEObject;
             T result = caseRAM(ram);
+            if (result == null) result = caseIdentifiable(ram);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.DISPLAY: {
             Display display = (Display)theEObject;
             T result = caseDisplay(display);
+            if (result == null) result = caseIdentifiable(display);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.WORKFLOW: {
             Workflow workflow = (Workflow)theEObject;
             T result = caseWorkflow(workflow);
+            if (result == null) result = caseIdentifiable(workflow);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.NODE: {
             Node node = (Node)theEObject;
             T result = caseNode(node);
+            if (result == null) result = caseIdentifiable(node);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -175,6 +194,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Task task = (Task)theEObject;
             T result = caseTask(task);
             if (result == null) result = caseNode(task);
+            if (result == null) result = caseIdentifiable(task);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -183,6 +203,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             T result = caseAutomaticTask(automaticTask);
             if (result == null) result = caseTask(automaticTask);
             if (result == null) result = caseNode(automaticTask);
+            if (result == null) result = caseIdentifiable(automaticTask);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -191,6 +212,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             T result = caseManualTask(manualTask);
             if (result == null) result = caseTask(manualTask);
             if (result == null) result = caseNode(manualTask);
+            if (result == null) result = caseIdentifiable(manualTask);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -198,6 +220,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Fork fork = (Fork)theEObject;
             T result = caseFork(fork);
             if (result == null) result = caseNode(fork);
+            if (result == null) result = caseIdentifiable(fork);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -205,6 +228,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Join join = (Join)theEObject;
             T result = caseJoin(join);
             if (result == null) result = caseNode(join);
+            if (result == null) result = caseIdentifiable(join);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -212,6 +236,7 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Decision decision = (Decision)theEObject;
             T result = caseDecision(decision);
             if (result == null) result = caseNode(decision);
+            if (result == null) result = caseIdentifiable(decision);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -219,12 +244,14 @@ public class CoffeeSwitch<T> extends Switch<T> {
             Merge merge = (Merge)theEObject;
             T result = caseMerge(merge);
             if (result == null) result = caseNode(merge);
+            if (result == null) result = caseIdentifiable(merge);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          case CoffeePackage.FLOW: {
             Flow flow = (Flow)theEObject;
             T result = caseFlow(flow);
+            if (result == null) result = caseIdentifiable(flow);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
@@ -232,11 +259,27 @@ public class CoffeeSwitch<T> extends Switch<T> {
             WeightedFlow weightedFlow = (WeightedFlow)theEObject;
             T result = caseWeightedFlow(weightedFlow);
             if (result == null) result = caseFlow(weightedFlow);
+            if (result == null) result = caseIdentifiable(weightedFlow);
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
          default: return defaultCase(theEObject);
       }
+   }
+
+   /**
+    * Returns the result of interpreting the object as an instance of '<em>Identifiable</em>'.
+    * <!-- begin-user-doc -->
+    * This implementation returns null;
+    * returning a non-null result will terminate the switch.
+    * <!-- end-user-doc -->
+    * @param object the target of the switch.
+    * @return the result of interpreting the object as an instance of '<em>Identifiable</em>'.
+    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+    * @generated
+    */
+   public T caseIdentifiable(Identifiable object) {
+      return null;
    }
 
    /**

@@ -18,7 +18,6 @@ package org.eclipse.emfcloud.coffee.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.RAM;
 import org.eclipse.emfcloud.coffee.RamType;
@@ -37,7 +36,7 @@ import org.eclipse.emfcloud.coffee.RamType;
  *
  * @generated
  */
-public class RAMImpl extends MinimalEObjectImpl.Container implements RAM {
+public class RAMImpl extends IdentifiableImpl implements RAM {
    /**
     * The default value of the '{@link #getClockSpeed() <em>Clock Speed</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->

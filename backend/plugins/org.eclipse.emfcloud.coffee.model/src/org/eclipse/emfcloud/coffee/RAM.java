@@ -15,8 +15,6 @@
  */
 package org.eclipse.emfcloud.coffee;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>RAM</b></em>'. <!-- end-user-doc -->
@@ -34,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface RAM extends EObject {
+public interface RAM extends Identifiable {
    /**
     * Returns the value of the '<em><b>Clock Speed</b></em>' attribute. <!--
     * begin-user-doc --> <!-- end-user-doc -->

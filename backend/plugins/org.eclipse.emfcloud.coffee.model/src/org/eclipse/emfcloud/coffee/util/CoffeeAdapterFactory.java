@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emfcloud.coffee.*;
 import org.eclipse.emfcloud.coffee.AutomaticTask;
 import org.eclipse.emfcloud.coffee.BrewingUnit;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -96,6 +97,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
     * @generated
     */
    protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<Adapter>() {
+         @Override
+         public Adapter caseIdentifiable(Identifiable object) {
+            return createIdentifiableAdapter();
+         }
          @Override
          public Adapter caseComponent(Component object) {
             return createComponentAdapter();
@@ -197,6 +202,20 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    @Override
    public Adapter createAdapter(Notifier target) {
       return modelSwitch.doSwitch((EObject)target);
+   }
+
+   /**
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Identifiable <em>Identifiable</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Identifiable
+    * @generated
+    */
+   public Adapter createIdentifiableAdapter() {
+      return null;
    }
 
    /**

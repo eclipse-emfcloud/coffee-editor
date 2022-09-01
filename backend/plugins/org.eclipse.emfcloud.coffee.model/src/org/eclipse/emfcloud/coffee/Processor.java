@@ -15,8 +15,6 @@
  */
 package org.eclipse.emfcloud.coffee;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Processor</b></em>'. <!-- end-user-doc -->
@@ -37,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Processor extends EObject {
+public interface Processor extends Identifiable {
    /**
     * Returns the value of the '<em><b>Vendor</b></em>' attribute. <!--
     * begin-user-doc --> <!-- end-user-doc -->

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
+import org.eclipse.emfcloud.coffee.*;
 import org.eclipse.emfcloud.coffee.AutomaticTask;
 import org.eclipse.emfcloud.coffee.BrewingUnit;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -183,6 +184,8 @@ public class CoffeeValidator extends EObjectValidator {
    @Override
    protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
       switch (classifierID) {
+         case CoffeePackage.IDENTIFIABLE:
+            return validateIdentifiable((Identifiable)value, diagnostics, context);
          case CoffeePackage.COMPONENT:
             return validateComponent((Component)value, diagnostics, context);
          case CoffeePackage.MACHINE:
@@ -238,6 +241,15 @@ public class CoffeeValidator extends EObjectValidator {
          default:
             return true;
       }
+   }
+
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   public boolean validateIdentifiable(Identifiable identifiable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+      return validate_EveryDefaultConstraint(identifiable, diagnostics, context);
    }
 
    /**

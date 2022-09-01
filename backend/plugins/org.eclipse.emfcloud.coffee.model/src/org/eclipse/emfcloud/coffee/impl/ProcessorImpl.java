@@ -18,7 +18,6 @@ package org.eclipse.emfcloud.coffee.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.ManufactoringProcess;
 import org.eclipse.emfcloud.coffee.Processor;
@@ -41,7 +40,7 @@ import org.eclipse.emfcloud.coffee.SocketConnectorType;
  *
  * @generated
  */
-public class ProcessorImpl extends MinimalEObjectImpl.Container implements Processor {
+public class ProcessorImpl extends IdentifiableImpl implements Processor {
    /**
     * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
     * <!-- begin-user-doc --> <!-- end-user-doc -->

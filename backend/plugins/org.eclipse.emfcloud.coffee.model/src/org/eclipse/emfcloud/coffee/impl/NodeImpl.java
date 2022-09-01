@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Decision;
 import org.eclipse.emfcloud.coffee.Flow;
@@ -40,7 +39,7 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
  *
  * @generated
  */
-public abstract class NodeImpl extends MinimalEObjectImpl.Container implements Node {
+public abstract class NodeImpl extends IdentifiableImpl implements Node {
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
