@@ -49,11 +49,11 @@
 }
 
 .task.automated > .sprotty-node {
-    fill: #035e7b;
+    fill: #5b9fa8;
 }
 
 .task.manual > .sprotty-node {
-    fill: #0acdff;
+    fill: #db8651;
 }
 
 .category > .sprotty-node {

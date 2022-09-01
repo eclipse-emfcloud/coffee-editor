@@ -11,7 +11,6 @@
 import 'balloon-css/balloon.min.css';
 import 'sprotty/css/edit-label.css';
 import '../css/diagram.css';
-import '../css/temporary_glsp.css'; // TODO remove when GLSP is updated
 
 import {
     configureDefaultModelElements,

@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emfcloud.coffee.Flow;
+import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
@@ -46,8 +47,9 @@ public class WorkflowGModelFactory extends EMSNotationGModelFactory {
 
    @Override
    protected void fillRootElement(final EObject semanticModel, final Diagram notationModel, final GModelRoot newRoot) {
-      Workflow workflowModel = Workflow.class.cast(semanticModel);
+      Workflow workflowModel = Machine.class.cast(semanticModel).getWorkflows().get(0);
       GGraph graph = GGraph.class.cast(newRoot);
+
       if (notationModel.getSemanticElement() != null
          && notationModel.getSemanticElement().getResolvedSemanticElement() != null) {
 
