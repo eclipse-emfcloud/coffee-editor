@@ -39,7 +39,6 @@
   "files": [
     "lib",
     "src",
-    "build",
     "css"
   ],
   "main": "lib/index",

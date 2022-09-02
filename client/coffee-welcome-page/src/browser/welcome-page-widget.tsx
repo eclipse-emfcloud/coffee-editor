@@ -415,7 +415,7 @@ export class WelcomePageWidget extends ReactWidget {
                     <li>
                         <div className='gs-action-container'>
                             <a href='https://github.com/eclipse-emfcloud/emfcloud/discussions' target='_blank' rel='noreferrer'>
-                                Ask a question in the EMF.cloud discussions page
+                                Ask a question in the EMF.cloud discussions
                             </a>
                         </div>
                     </li>

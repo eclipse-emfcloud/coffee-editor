@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Browser Backend [DEBUG] (External GLSP Server)",
+      "name": "Launch Browser Backend [DEBUG] (Embedded Servers)",
       "program": "${workspaceRoot}/browser-app/src-gen/backend/main.js",
       "args": [
         "--loglevel=debug",
@@ -19,6 +19,41 @@
         "--app-project-path=${workspaceRoot}/browser-app",
         "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
         "--root-dir=${workspaceRoot}/workspace/SuperBrewer3000"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "WF_CONFIG_LSP": "localhost:5017"
+      },
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/node_modules/@theia/*/lib/**/*.js",
+        "${workspaceRoot}/browser-app/lib/**/*.js",
+        "${workspaceRoot}/browser-app/src-gen/backend/*.js",
+        "${workspaceRoot}/coffee-java-extension/lib/**/*.js",
+        "${workspaceRoot}/coffee-servers/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-analyzer/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-glsp-theia/lib/**/*.js"
+      ],
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Browser Backend [DEBUG] (External Servers)",
+      "program": "${workspaceRoot}/browser-app/src-gen/backend/main.js",
+      "args": [
+        "--loglevel=debug",
+        "--port=3000",
+        "--no-cluster",
+        "--WF_GLSP=5008",
+        "--WF_LSP=5017",
+        "--WF_ANALYZER=5083",
+        "--app-project-path=${workspaceRoot}/browser-app",
+        "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
+        "--root-dir=${workspaceRoot}/workspace/SuperBrewer3000",
+        "--debug"
       ],
       "env": {
         "NODE_ENV": "development",

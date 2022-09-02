@@ -1,9 +1,9 @@
 {
-  "name": "coffee-workflow-glsp-theia",
+  "name": "coffee-common",
+  "description": "An extension to provide common utilities and branding to the application",
   "keywords": [
     "theia-extension"
   ],
-  "description": "GLSP editor integration for coffee models",
   "license": "(EPL-2.0 OR MIT)",
   "version": "0.1.0",
   "contributors": [
@@ -24,10 +24,7 @@
     "src"
   ],
   "dependencies": {
-    "@eclipse-glsp/theia-integration": "1.1.0-next",
-    "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
-    "coffee-workflow-glsp": "0.1.0",
-    "balloon-css": "^0.5.0"
+    "@theia/core": "^1.27.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

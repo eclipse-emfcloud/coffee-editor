@@ -39,6 +39,7 @@
   "workspaces": {
     "packages": [
       "browser-app",
+      "coffee-common",
       "coffee-comparison",
       "coffee-cpp-extension",
       "coffee-editor-extension",

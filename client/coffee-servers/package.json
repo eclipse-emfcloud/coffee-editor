@@ -19,9 +19,10 @@
   "homepage": "https://www.eclipse.org/emfcloud/",
   "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
   "files": [
-    "build",
     "lib",
-    "src"
+    "src",
+    "scrpts",
+    "servers"
   ],
   "dependencies": {
     "@theia/core": "^1.27.0",
