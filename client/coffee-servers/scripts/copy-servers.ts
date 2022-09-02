@@ -36,7 +36,7 @@ const coffeeProductsPath = join(
 );
 const osProductPath = getOSProductPath();
 const workflowDSLServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.workflow.dsl', osProductPath, 'x86_64');
-const workflowAnalyerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.workflow.analyzer', osProductPath, 'x86_64');
+const workflowAnalyzerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.workflow.analyzer', osProductPath, 'x86_64');
 const javaCodeGenServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.codegen', osProductPath, 'x86_64');
 const cppCodeGenServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coffee.product.codegen.cpp', osProductPath, 'x86_64');
 
@@ -55,7 +55,7 @@ log('Start copying Workflow DSL LSP backend product...');
 copyBackendDirectory(workflowDSLServerPath, join(targetDir, 'wf-lsp'));
 
 log('Start copying WorkflowAnalyzer backend product..');
-copyBackendDirectory(workflowAnalyerPath, join(targetDir, 'wf-analyzer'));
+copyBackendDirectory(workflowAnalyzerPath, join(targetDir, 'wf-analyzer'));
 
 log('Start copying Java CodeGen backend product..');
 copyBackendDirectory(javaCodeGenServerPath, join(targetDir, 'java-codegen'));

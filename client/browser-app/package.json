@@ -63,8 +63,8 @@
   },
   "scripts": {
     "prepare": "yarn run download:plugins && theia build --mode development",
-    "start": "export WF_CONFIG_LSP=localhost:5017 && theia start --WF_GLSP=5008 --hostname=0.0.0.0 --port=3000 --root-dir=../workspace/examples/SuperBrewer3000 --plugins=local-dir:./plugins",
-    "start:debug": "export WF_CONFIG_LSP=localhost:5017 && theia start --WF_GLSP=5008 --port=3000 --root-dir=../workspace/SuperBrewer3000 --loglevel=debug --plugins=local-dir:./plugins --debug",
+    "start": "export WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --root-dir=../workspace/examples/SuperBrewer3000 --plugins=local-dir:./plugins",
+    "start:debug": "export WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --WF_ANALYZER=5083 --root-dir=../workspace/SuperBrewer3000 --plugins=local-dir:./plugins  --loglevel=debug --debug",
     "watch": "theia build --watch --mode development",
     "download:plugins": "theia download:plugins"
   },

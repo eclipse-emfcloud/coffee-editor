@@ -13,9 +13,7 @@
         "--loglevel=debug",
         "--port=3000",
         "--no-cluster",
-        "--WF_GLSP=5008",
         "--WF_LSP=5017",
-        "--WF_ANALYZER=5083",
         "--app-project-path=${workspaceRoot}/browser-app",
         "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
         "--root-dir=${workspaceRoot}/workspace/SuperBrewer3000"
@@ -47,8 +45,6 @@
         "--loglevel=debug",
         "--port=3000",
         "--no-cluster",
-        "--WF_GLSP=5008",
-        "--WF_LSP=5017",
         "--WF_ANALYZER=5083",
         "--app-project-path=${workspaceRoot}/browser-app",
         "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
