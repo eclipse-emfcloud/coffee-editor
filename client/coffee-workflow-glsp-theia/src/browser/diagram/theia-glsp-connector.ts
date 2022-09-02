@@ -14,6 +14,7 @@ import { BaseTheiaGLSPConnector } from '@eclipse-glsp/theia-integration/lib/brow
 import { injectable } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
+import { getCoffeeUriString } from './diagram-utils';
 
 @injectable()
 export class WorkflowTheiaGLSPConnector extends BaseTheiaGLSPConnector {
@@ -28,14 +29,14 @@ export class WorkflowTheiaGLSPConnector extends BaseTheiaGLSPConnector {
 
     get diagramType(): string {
         if (!this._diagramType) {
-            throw new Error('No diagramType has been set for this VwTheiaGLSPConnector');
+            throw new Error('No diagramType has been set for this WorkflowTheiaGLSPConnector');
         }
         return this._diagramType;
     }
 
     get contributionId(): string {
         if (!this._contributionId) {
-            throw new Error('No contributionId has been set for this VwTheiaGLSPConnector');
+            throw new Error('No contributionId has been set for this WorkflowTheiaGLSPConnector');
         }
         return this._contributionId;
     }
@@ -48,7 +49,7 @@ export class WorkflowTheiaGLSPConnector extends BaseTheiaGLSPConnector {
 
     override disposeClientSessionArgs(diagramServer: TheiaDiagramServer): Args | undefined {
         return {
-            ['sourceUri']: diagramServer.sourceUri
+            ['sourceUri']: getCoffeeUriString(diagramServer.sourceUri)
         };
     }
 }

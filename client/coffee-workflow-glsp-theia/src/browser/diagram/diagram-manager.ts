@@ -23,6 +23,7 @@ import { WorkspaceService } from '@theia/workspace/lib/browser';
 import { inject, injectable, postConstruct } from 'inversify';
 
 import { WorkflowNotationLanguage } from '../../common/workflow-language';
+import { getNotationUri } from './diagram-utils';
 import { WorkflowGLSPServerOpenerOptions } from './glsp-server-options';
 
 export const DIAGRAM_ICON_CLASS = codiconCSSString('type-hierarchy-sub');
@@ -104,9 +105,7 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
     }
 
     createWidgetFromURI(uri: URI, options?: WidgetOpenerOptions): Promise<GLSPDiagramWidget> {
-        const uriString = uri.toString();
-        const notationString = uriString.slice(0, uriString.lastIndexOf('.')) + '.notation';
-        const notationUri = new URI(notationString);
+        const notationUri = getNotationUri(uri);
         return this.getOrCreateWidget(notationUri, options) as Promise<GLSPDiagramWidget>;
     }
 }
