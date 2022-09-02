@@ -24,6 +24,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operations.Workf
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operations.WorkflowDeleteOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operations.WorkflowReconnectFlowHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.layout.WorkflowLayoutEngine;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.palette.WorkflowToolPaletteItemProvider;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.provider.WorkflowCommandPaletteActionProvider;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.provider.WorkflowContextMenuItemProvider;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.validation.WorkflowLabelEditValidator;
@@ -40,6 +41,7 @@ import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvi
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
 import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
+import org.eclipse.glsp.server.features.toolpalette.ToolPaletteItemProvider;
 import org.eclipse.glsp.server.features.validation.RequestMarkersHandler;
 import org.eclipse.glsp.server.layout.LayoutEngine;
 import org.eclipse.glsp.server.operations.CutOperationHandler;
@@ -125,6 +127,11 @@ public class WorkflowDiagramModule extends EMSGLSPNotationDiagramModule {
    @Override
    protected Class<? extends LayoutEngine> bindLayoutEngine() {
       return WorkflowLayoutEngine.class;
+   }
+
+   @Override
+   protected Class<? extends ToolPaletteItemProvider> bindToolPaletteItemProvider() {
+      return WorkflowToolPaletteItemProvider.class;
    }
 
    @Override

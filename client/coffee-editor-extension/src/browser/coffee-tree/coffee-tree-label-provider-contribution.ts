@@ -16,33 +16,31 @@ import { injectable } from 'inversify';
 import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorConstants } from './coffee-tree-editor-widget';
 
-const DEFAULT_COLOR = 'black';
-
 const ICON_CLASSES: Map<string, string> = new Map([
-    [CoffeeModel.Type.AutomaticTask, 'gear ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.BrewingUnit, 'flame ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.ControlUnit, 'server ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Decision, 'chevron-up ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Dimension, 'move ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.DipTray, 'inbox ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Display, 'tv ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Flow, 'arrow-swap ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Fork, 'source-control rotate-90 ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Join, 'source-control rotate-270 ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Machine, 'settings-gear ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.ManualTask, 'symbol-property ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Merge, 'chevron-down ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Node, 'circle ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Processor, 'circuit-board ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.RAM, 'memory ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.Task, 'checklist ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.WaterTank, 'beaker ' + DEFAULT_COLOR],
-    [CoffeeModel.Type.WeightedFlow, 'arrow-swap light-orange'],
-    [CoffeeModel.Type.Workflow, 'combine ' + DEFAULT_COLOR]
+    [CoffeeModel.Type.AutomaticTask, 'settings-gear'],
+    [CoffeeModel.Type.BrewingUnit, 'flame'],
+    [CoffeeModel.Type.ControlUnit, 'server'],
+    [CoffeeModel.Type.Decision, 'chevron-up'],
+    [CoffeeModel.Type.Dimension, 'move'],
+    [CoffeeModel.Type.DipTray, 'inbox'],
+    [CoffeeModel.Type.Display, 'tv'],
+    [CoffeeModel.Type.Flow, 'chrome-minimize'],
+    [CoffeeModel.Type.Fork, 'repo-forked'],
+    [CoffeeModel.Type.Join, 'repo-forked rotate-180'],
+    [CoffeeModel.Type.Machine, 'server-process'],
+    [CoffeeModel.Type.ManualTask, 'account'],
+    [CoffeeModel.Type.Merge, 'chevron-down'],
+    [CoffeeModel.Type.Node, 'circle'],
+    [CoffeeModel.Type.Processor, 'circuit-board'],
+    [CoffeeModel.Type.RAM, 'memory'],
+    [CoffeeModel.Type.Task, 'checklist'],
+    [CoffeeModel.Type.WaterTank, 'beaker'],
+    [CoffeeModel.Type.WeightedFlow, 'grabber'],
+    [CoffeeModel.Type.Workflow, 'type-hierarchy-sub']
 ]);
 
 /* Icon for unknown types */
-const UNKNOWN_ICON = 'circle-slash ' + DEFAULT_COLOR;
+const UNKNOWN_ICON = 'circle-slash';
 
 @injectable()
 export class CoffeeTreeLabelProvider implements LabelProviderContribution {

@@ -12,6 +12,7 @@ import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
 import { Command, CommandHandler } from '@theia/core';
 import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
+import { injectable } from '@theia/core/shared/inversify';
 
 import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
@@ -23,6 +24,7 @@ export namespace CoffeeTreeCommands {
     };
 }
 
+@injectable()
 export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     constructor(protected readonly shell: ApplicationShell, protected readonly openerService: OpenerService) {}
 
@@ -58,9 +60,9 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     }
 
     getNotationUri(widget: CoffeeTreeEditorWidget): URI {
-        const coffeeUri = widget.uri;
-        const coffeeNotationUri = coffeeUri.parent.resolve(coffeeUri.displayName + 'notation');
-        return coffeeNotationUri;
+        const coffeeUriString = widget.uri.toString();
+        const coffeeNotationUri = this.getNotationUriString(coffeeUriString);
+        return new URI(coffeeNotationUri);
     }
 
     createServerOptions(node: TreeEditor.Node): any {
@@ -69,5 +71,16 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
                 workflowIndex: node.jsonforms.index
             }
         };
+    }
+
+    protected getNotationUriString(uriString: string): string {
+        const coffeeFileExtension = '.coffee';
+        const notationFileExtension = '.notation';
+        if (uriString.endsWith(coffeeFileExtension)) {
+            return uriString.replace(coffeeFileExtension, notationFileExtension);
+        } else if (uriString.endsWith(notationFileExtension)) {
+            return uriString;
+        }
+        throw Error(`Unexpected uriString: ${uriString}! Expected uriString ending in ${coffeeFileExtension} or ${notationFileExtension}!`);
     }
 }

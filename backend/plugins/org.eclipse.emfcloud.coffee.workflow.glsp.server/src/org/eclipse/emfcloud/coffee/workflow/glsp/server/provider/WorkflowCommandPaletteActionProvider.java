@@ -54,17 +54,17 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
             new LabeledAction("Create Automated Task",
                Lists.newArrayList(
                   new CreateNodeOperation(WorkflowModelTypes.AUTOMATED_TASK, lastMousePosition)),
-               "diff-added"),
+               "settings-gear"),
             new LabeledAction("Create Manual Task",
                Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.MANUAL_TASK, lastMousePosition)),
-               "diff-added"),
+               "account"),
             new LabeledAction("Create Merge Node",
                Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.MERGE_NODE, lastMousePosition)),
-               "diff-added"),
+               "chevron-down"),
             new LabeledAction("Create Decision Node",
                Lists.newArrayList(
                   new CreateNodeOperation(WorkflowModelTypes.DECISION_NODE, lastMousePosition)),
-               "diff-added")));
+               "chevron-up")));
 
       // Create edge actions between two nodes
       if (selectedElements.size() == 1) {
