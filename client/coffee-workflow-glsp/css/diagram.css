@@ -104,6 +104,10 @@
     color: var(--theia-tab-unfocusedActiveForeground);
 }
 
+.tool-button.clicked > i.codicon {
+    color: var(--theia-list-activeSelectionForeground);
+}
+
 .deleted > .sprotty-node {
     fill: var(--theia-gitDecoration-deletedResourceForeground) !important;
 }
