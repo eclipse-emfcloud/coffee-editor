@@ -672,13 +672,13 @@ public interface CoffeePackage extends EPackage {
    int RAM__SIZE = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
-    * The feature id for the '<em><b>Type</b></em>' attribute.
-    * <!-- begin-user-doc
-    * --> <!-- end-user-doc -->
+    * The feature id for the '<em><b>Ram Type</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     * @ordered
     */
-   int RAM__TYPE = IDENTIFIABLE_FEATURE_COUNT + 2;
+   int RAM__RAM_TYPE = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of structural features of the '<em>RAM</em>' class. <!--
@@ -1856,16 +1856,15 @@ public interface CoffeePackage extends EPackage {
    EAttribute getRAM_Size();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @return the meta object for the attribute '<em>Type</em>'.
-    * @see org.eclipse.emfcloud.coffee.RAM#getType()
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.RAM#getRamType <em>Ram Type</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for the attribute '<em>Ram Type</em>'.
+    * @see org.eclipse.emfcloud.coffee.RAM#getRamType()
     * @see #getRAM()
     * @generated
     */
-   EAttribute getRAM_Type();
+   EAttribute getRAM_RamType();
 
    /**
     * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'.
@@ -2508,11 +2507,12 @@ public interface CoffeePackage extends EPackage {
       EAttribute RAM__SIZE = eINSTANCE.getRAM_Size();
 
       /**
-       * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-       * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * The meta object literal for the '<em><b>Ram Type</b></em>' attribute feature.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
        * @generated
        */
-      EAttribute RAM__TYPE = eINSTANCE.getRAM_Type();
+      EAttribute RAM__RAM_TYPE = eINSTANCE.getRAM_RamType();
 
       /**
        * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}' class.

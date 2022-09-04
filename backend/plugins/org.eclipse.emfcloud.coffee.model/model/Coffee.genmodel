@@ -64,7 +64,7 @@
     <genClasses ecoreClass="Coffee.ecore#//RAM">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/clockSpeed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/ramType"/>
     </genClasses>
     <genClasses ecoreClass="Coffee.ecore#//Display">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Display/width"/>

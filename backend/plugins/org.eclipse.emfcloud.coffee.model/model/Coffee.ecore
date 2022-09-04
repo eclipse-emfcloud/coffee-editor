@@ -55,7 +55,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RAM" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RamType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ramType" eType="#//RamType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RamType">
     <eLiterals name="SODIMM" literal="SO-DIMM"/>

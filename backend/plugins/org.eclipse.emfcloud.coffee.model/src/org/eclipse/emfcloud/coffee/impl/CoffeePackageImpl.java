@@ -575,11 +575,12 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public EAttribute getRAM_Type() {
+   public EAttribute getRAM_RamType() {
       return (EAttribute)ramEClass.getEStructuralFeatures().get(2);
    }
 
@@ -983,7 +984,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       ramEClass = createEClass(RAM);
       createEAttribute(ramEClass, RAM__CLOCK_SPEED);
       createEAttribute(ramEClass, RAM__SIZE);
-      createEAttribute(ramEClass, RAM__TYPE);
+      createEAttribute(ramEClass, RAM__RAM_TYPE);
 
       displayEClass = createEClass(DISPLAY);
       createEAttribute(displayEClass, DISPLAY__WIDTH);
@@ -1129,7 +1130,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       initEClass(ramEClass, org.eclipse.emfcloud.coffee.RAM.class, "RAM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEAttribute(getRAM_ClockSpeed(), ecorePackage.getEInt(), "clockSpeed", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
       initEAttribute(getRAM_Size(), ecorePackage.getEInt(), "size", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-      initEAttribute(getRAM_Type(), this.getRamType(), "type", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEAttribute(getRAM_RamType(), this.getRamType(), "ramType", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
       initEClass(displayEClass, Display.class, "Display", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEAttribute(getDisplay_Width(), ecorePackage.getEInt(), "width", null, 0, 1, Display.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

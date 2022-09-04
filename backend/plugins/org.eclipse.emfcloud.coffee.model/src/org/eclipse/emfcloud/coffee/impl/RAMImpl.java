@@ -31,7 +31,7 @@ import org.eclipse.emfcloud.coffee.RamType;
  * <ul>
  *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getClockSpeed <em>Clock Speed</em>}</li>
  *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.impl.RAMImpl#getRamType <em>Ram Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,24 +76,24 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
    protected int size = SIZE_EDEFAULT;
 
    /**
-    * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @see #getType()
+    * The default value of the '{@link #getRamType() <em>Ram Type</em>}' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @see #getRamType()
     * @generated
     * @ordered
     */
-   protected static final RamType TYPE_EDEFAULT = RamType.SODIMM;
+   protected static final RamType RAM_TYPE_EDEFAULT = RamType.SODIMM;
 
    /**
-    * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @see #getType()
+    * The cached value of the '{@link #getRamType() <em>Ram Type</em>}' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @see #getRamType()
     * @generated
     * @ordered
     */
-   protected RamType type = TYPE_EDEFAULT;
+   protected RamType ramType = RAM_TYPE_EDEFAULT;
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -155,24 +155,26 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public RamType getType() {
-      return type;
+   public RamType getRamType() {
+      return ramType;
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public void setType(RamType newType) {
-      RamType oldType = type;
-      type = newType == null ? TYPE_EDEFAULT : newType;
+   public void setRamType(RamType newRamType) {
+      RamType oldRamType = ramType;
+      ramType = newRamType == null ? RAM_TYPE_EDEFAULT : newRamType;
       if (eNotificationRequired())
-         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__TYPE, oldType, type));
+         eNotify(new ENotificationImpl(this, Notification.SET, CoffeePackage.RAM__RAM_TYPE, oldRamType, ramType));
    }
 
    /**
@@ -186,8 +188,8 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
             return getClockSpeed();
          case CoffeePackage.RAM__SIZE:
             return getSize();
-         case CoffeePackage.RAM__TYPE:
-            return getType();
+         case CoffeePackage.RAM__RAM_TYPE:
+            return getRamType();
       }
       return super.eGet(featureID, resolve, coreType);
    }
@@ -205,8 +207,8 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
          case CoffeePackage.RAM__SIZE:
             setSize((Integer)newValue);
             return;
-         case CoffeePackage.RAM__TYPE:
-            setType((RamType)newValue);
+         case CoffeePackage.RAM__RAM_TYPE:
+            setRamType((RamType)newValue);
             return;
       }
       super.eSet(featureID, newValue);
@@ -225,8 +227,8 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
          case CoffeePackage.RAM__SIZE:
             setSize(SIZE_EDEFAULT);
             return;
-         case CoffeePackage.RAM__TYPE:
-            setType(TYPE_EDEFAULT);
+         case CoffeePackage.RAM__RAM_TYPE:
+            setRamType(RAM_TYPE_EDEFAULT);
             return;
       }
       super.eUnset(featureID);
@@ -243,8 +245,8 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
             return clockSpeed != CLOCK_SPEED_EDEFAULT;
          case CoffeePackage.RAM__SIZE:
             return size != SIZE_EDEFAULT;
-         case CoffeePackage.RAM__TYPE:
-            return type != TYPE_EDEFAULT;
+         case CoffeePackage.RAM__RAM_TYPE:
+            return ramType != RAM_TYPE_EDEFAULT;
       }
       return super.eIsSet(featureID);
    }
@@ -262,8 +264,8 @@ public class RAMImpl extends IdentifiableImpl implements RAM {
       result.append(clockSpeed);
       result.append(", size: ");
       result.append(size);
-      result.append(", type: ");
-      result.append(type);
+      result.append(", ramType: ");
+      result.append(ramType);
       result.append(')');
       return result.toString();
    }

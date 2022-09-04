@@ -25,7 +25,7 @@ package org.eclipse.emfcloud.coffee;
  * <ul>
  *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getClockSpeed <em>Clock Speed</em>}</li>
  *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getSize <em>Size</em>}</li>
- *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emfcloud.coffee.RAM#getRamType <em>Ram Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.emfcloud.coffee.CoffeePackage#getRAM()
@@ -78,27 +78,28 @@ public interface RAM extends Identifiable {
    void setSize(int value);
 
    /**
-    * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are
-    * from the enumeration {@link org.eclipse.emfcloud.coffee.RamType}. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @return the value of the '<em>Type</em>' attribute.
+    * Returns the value of the '<em><b>Ram Type</b></em>' attribute.
+    * The literals are from the enumeration {@link org.eclipse.emfcloud.coffee.RamType}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the value of the '<em>Ram Type</em>' attribute.
     * @see org.eclipse.emfcloud.coffee.RamType
-    * @see #setType(RamType)
-    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getRAM_Type()
+    * @see #setRamType(RamType)
+    * @see org.eclipse.emfcloud.coffee.CoffeePackage#getRAM_RamType()
     * @model
     * @generated
     */
-   RamType getType();
+   RamType getRamType();
 
    /**
-    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}' attribute.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @param value the new value of the '<em>Type</em>' attribute.
+    * Sets the value of the '{@link org.eclipse.emfcloud.coffee.RAM#getRamType <em>Ram Type</em>}' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @param value the new value of the '<em>Ram Type</em>' attribute.
     * @see org.eclipse.emfcloud.coffee.RamType
-    * @see #getType()
+    * @see #getRamType()
     * @generated
     */
-   void setType(RamType value);
+   void setRamType(RamType value);
 
 } // RAM
