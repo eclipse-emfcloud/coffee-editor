@@ -116,6 +116,12 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
       return this.edit(setCommand);
    }
 
+   public CompletableFuture<Response<String>> setTaskDuration(final Node node, final int newDuration) {
+      CCommand setCommand = SemanticCommandUtil.createSetTaskDurationCommand(node, getOwnerRefUri(node),
+         newDuration);
+      return this.edit(setCommand);
+   }
+
    public CompletableFuture<Response<String>> reconnectFlowSource(final Flow flow, final Node newSource) {
       CCommand command = SetFlowSourceCommandContribution.create(idGenerator.getOrCreateId(flow),
          idGenerator.getOrCreateId(newSource));

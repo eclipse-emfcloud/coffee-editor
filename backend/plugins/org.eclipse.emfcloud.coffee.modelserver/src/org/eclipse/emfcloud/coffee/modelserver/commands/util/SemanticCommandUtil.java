@@ -71,6 +71,12 @@ public final class SemanticCommandUtil {
          CoffeePackage.Literals.TASK__NAME, newName);
    }
 
+   public static CCommand createSetTaskDurationCommand(final Node task, final String ownerRefUri,
+      final int newDuration) {
+      return SetCommandContribution.clientCommand(CommandUtil.createProxy(getEClass(task), ownerRefUri),
+         CoffeePackage.Literals.TASK__DURATION, newDuration);
+   }
+
    protected static EClass getEClass(final EObject element) {
       if (element instanceof ManualTask) {
          return CoffeePackage.Literals.MANUAL_TASK;

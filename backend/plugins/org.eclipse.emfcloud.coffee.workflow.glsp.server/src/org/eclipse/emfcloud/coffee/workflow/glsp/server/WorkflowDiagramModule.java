@@ -27,6 +27,10 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.layout.WorkflowLayoutEng
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.palette.WorkflowToolPaletteItemProvider;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.provider.WorkflowCommandPaletteActionProvider;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.provider.WorkflowContextMenuItemProvider;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit.ApplyTaskEditOperationHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit.EditTaskOperationHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit.TaskEditContextActionProvider;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit.TaskEditValidator;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.validation.WorkflowLabelEditValidator;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSGLSPNotationDiagramModule;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerAccess;
@@ -35,11 +39,11 @@ import org.eclipse.glsp.graph.GraphExtension;
 import org.eclipse.glsp.server.actions.ActionHandler;
 import org.eclipse.glsp.server.di.MultiBinding;
 import org.eclipse.glsp.server.diagram.DiagramConfiguration;
-import org.eclipse.glsp.server.emf.EMFIdGenerator;
-import org.eclipse.glsp.server.emf.idgen.AttributeIdGenerator;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
+import org.eclipse.glsp.server.features.contextactions.ContextActionsProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.GModelFactory;
+import org.eclipse.glsp.server.features.directediting.ContextEditValidator;
 import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
 import org.eclipse.glsp.server.features.toolpalette.ToolPaletteItemProvider;
 import org.eclipse.glsp.server.features.validation.RequestMarkersHandler;
@@ -102,6 +106,10 @@ public class WorkflowDiagramModule extends EMSGLSPNotationDiagramModule {
       bindings.add(CreateMergeNodeHandler.class);
       bindings.add(CreateFlowHandler.class);
       bindings.add(CreateWeightedFlowHandler.class);
+
+      // task editing
+      bindings.add(EditTaskOperationHandler.class);
+      bindings.add(ApplyTaskEditOperationHandler.class);
    }
 
    @Override
@@ -135,8 +143,15 @@ public class WorkflowDiagramModule extends EMSGLSPNotationDiagramModule {
    }
 
    @Override
-   protected Class<? extends EMFIdGenerator> bindEMFIdGenerator() {
-      return AttributeIdGenerator.class;
+   protected void configureContextActionsProviders(final MultiBinding<ContextActionsProvider> binding) {
+      super.configureContextActionsProviders(binding);
+      binding.add(TaskEditContextActionProvider.class);
+   }
+
+   @Override
+   protected void configureContextEditValidators(final MultiBinding<ContextEditValidator> binding) {
+      super.configureContextEditValidators(binding);
+      binding.add(TaskEditValidator.class);
    }
 
    @Override
