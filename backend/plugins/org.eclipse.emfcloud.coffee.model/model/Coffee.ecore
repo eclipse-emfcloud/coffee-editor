@@ -58,8 +58,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ramType" eType="#//RamType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RamType">
-    <eLiterals name="SODIMM" literal="SO-DIMM"/>
-    <eLiterals name="SIDIMM" literal="SI-DIMM"/>
+    <eLiterals name="SODIMM" literal="SODIMM"/>
+    <eLiterals name="SIDIMM" value="1" literal="SIDIMM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Display" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
