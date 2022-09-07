@@ -23,12 +23,12 @@
     "src"
   ],
   "dependencies": {
-    "@eclipse-emfcloud/modelserver-theia": "next",
-    "@theia/core": "^1.27.0",
-    "@theia/filesystem": "^1.27.0",
-    "@theia/workspace": "^1.27.0",
-    "uuid": "^3.3.2",
-    "@eclipse-emfcloud/theia-tree-editor": "next"
+    "@eclipse-emfcloud/modelserver-client": "0.8.0-next",
+    "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
+    "@theia/core": "^1.0.0",
+    "@theia/filesystem": "^1.0.0",
+    "@theia/workspace": "^1.0.0",
+    "@eclipse-emfcloud/theia-tree-editor": "0.7.0-next"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
@@ -43,7 +43,8 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/coffee-editor-frontend-module"
+      "frontend": "lib/browser/coffee-editor-frontend-module",
+      "backend": "lib/node/backend-module"
     }
   ]
 }

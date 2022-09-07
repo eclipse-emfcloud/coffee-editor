@@ -25,9 +25,9 @@
   "dependencies": {
     "@eclipsesource/comparison-extension": "0.0.1-next.20220414-105416",
     "coffee-workflow-glsp-theia": "0.1.0",
-    "@theia/core": "^1.27.0",
-    "@theia/git": "^1.27.0",
-    "@theia/filesystem": "^1.27.0"
+    "@theia/core": "^1.0.0",
+    "@theia/git": "^1.0.0",
+    "@theia/filesystem": "^1.0.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

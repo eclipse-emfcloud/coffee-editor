@@ -14,7 +14,7 @@ import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from '@theia/core/shared/inversify';
 
-import { CoffeeModel } from './coffee-model';
+import { Workflow } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
 
 export namespace CoffeeTreeCommands {
@@ -53,7 +53,7 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     }
 
     getSelectedWorkflow(widget: CoffeeTreeEditorWidget): TreeEditor.Node | undefined {
-        if (widget && TreeEditor.Node.hasType(widget.selectedNode, CoffeeModel.Type.Workflow)) {
+        if (widget && TreeEditor.Node.hasType(widget.selectedNode, Workflow.$type)) {
             return widget.selectedNode;
         }
         return undefined;

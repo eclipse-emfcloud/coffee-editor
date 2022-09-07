@@ -127,39 +127,6 @@ export const controlUnitView = {
                 }
             ]
         },
-        // TODO[controlunit.ram array] - custom UI schema for ram array does not work as expected
-        // {
-        //     type: 'Group',
-        //     label: 'RAM',
-        //     elements: [
-        //         {
-        //             type: 'Control',
-        //             scope: '#/properties/ram',
-        //             options: {
-        //                 detail: {
-        //                     type: 'HorizontalLayout',
-        //                     elements: [
-        //                         {
-        //                             type: 'Control',
-        //                             label: 'Clock Speed',
-        //                             scope: '#/properties/clockSpeed'
-        //                         },
-        //                         {
-        //                             type: 'Control',
-        //                             label: 'Size',
-        //                             scope: '#/properties/size'
-        //                         },
-        //                         {
-        //                             type: 'Control',
-        //                             label: type,
-        //                             scope: '#/properties/type'
-        //                         }
-        //                     ]
-        //                 }
-        //             }
-        //         }
-        //     ]
-        // },
         {
             type: 'Group',
             label: 'Dimension',
@@ -292,7 +259,6 @@ export const workflowView = {
     ]
 };
 
-// TODO JSONSchema should be fetched from the modelserver instead of hard coded copy in code
 export const coffeeSchema: JsonSchema7 = {
     definitions: {
         component: {
@@ -300,8 +266,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Component',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Component'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -320,8 +289,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Machine',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Machine'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -350,8 +322,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'ControlUnit',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//ControlUnit'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -371,27 +346,9 @@ export const coffeeSchema: JsonSchema7 = {
                 ram: {
                     type: 'array',
                     items: {
-                        // TODO[controlunit.ram array]
-                        // temporarily disable ref to ram object as it causes problems with the JSON Forms
-                        // array functionality for some reason
-                        // '$ref': '#/definitions/ram',
                         title: 'RAM',
                         type: 'object',
-                        properties: {
-                            eClass: {
-                                const: 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
-                            },
-                            clockSpeed: {
-                                type: 'integer'
-                            },
-                            size: {
-                                type: 'integer'
-                            },
-                            type: {
-                                type: 'string',
-                                enum: ['SO-DIMM', 'SI-DIMM']
-                            }
-                        },
+                        $ref: '#/definitions/ram',
                         additionalProperties: false
                     }
                 },
@@ -409,8 +366,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'BrewingUnit',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//BrewingUnit'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -429,8 +389,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'DipTray',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//DipTray'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -449,8 +412,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'WaterTank',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//WaterTank'
+                },
+                id: {
+                    type: 'string'
                 },
                 children: {
                     type: 'array',
@@ -469,8 +435,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Processor',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Processor'
+                },
+                id: {
+                    type: 'string'
                 },
                 vendor: {
                     type: 'string'
@@ -499,15 +468,18 @@ export const coffeeSchema: JsonSchema7 = {
         },
         manufactoringprocess: {
             type: 'string',
-            enum: ['18nm', 'nm25']
+            enum: ['nm18', 'nm25']
         },
         dimension: {
             $id: '#dimension',
             title: 'Dimension',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Dimension'
+                },
+                id: {
+                    type: 'string'
                 },
                 width: {
                     type: 'integer'
@@ -526,8 +498,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'RAM',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//RAM'
+                },
+                id: {
+                    type: 'string'
                 },
                 clockSpeed: {
                     type: 'integer'
@@ -535,7 +510,7 @@ export const coffeeSchema: JsonSchema7 = {
                 size: {
                     type: 'integer'
                 },
-                type: {
+                ramType: {
                     $ref: '#/definitions/ramtype'
                 }
             },
@@ -543,15 +518,18 @@ export const coffeeSchema: JsonSchema7 = {
         },
         ramtype: {
             type: 'string',
-            enum: ['SO-DIMM', 'SI-DIMM']
+            enum: ['SODIMM', 'SIDIMM']
         },
         display: {
             $id: '#display',
             title: 'Display',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Display'
+                },
+                id: {
+                    type: 'string'
                 },
                 width: {
                     type: 'integer'
@@ -567,8 +545,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Workflow',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Workflow'
+                },
+                id: {
+                    type: 'string'
                 },
                 name: {
                     type: 'string'
@@ -594,8 +575,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Node',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Node'
+                },
+                id: {
+                    type: 'string'
                 }
             },
             additionalProperties: false
@@ -605,8 +589,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Task',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Task'
+                },
+                id: {
+                    type: 'string'
                 },
                 name: {
                     type: 'string'
@@ -623,8 +610,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'AutomaticTask',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//AutomaticTask'
+                },
+                id: {
+                    type: 'string'
                 },
                 name: {
                     type: 'string'
@@ -644,8 +634,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'ManualTask',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//ManualTask'
+                },
+                id: {
+                    type: 'string'
                 },
                 name: {
                     type: 'string'
@@ -665,8 +658,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Fork',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Fork'
+                },
+                id: {
+                    type: 'string'
                 }
             },
             additionalProperties: false
@@ -676,8 +672,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Join',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Join'
+                },
+                id: {
+                    type: 'string'
                 }
             },
             additionalProperties: false
@@ -687,8 +686,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Decision',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Decision'
+                },
+                id: {
+                    type: 'string'
                 }
             },
             additionalProperties: false
@@ -698,8 +700,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Merge',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Merge'
+                },
+                id: {
+                    type: 'string'
                 }
             },
             additionalProperties: false
@@ -709,8 +714,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'Flow',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//Flow'
+                },
+                id: {
+                    type: 'string'
                 },
                 source: {
                     $ref: '#/definitions/node'
@@ -727,8 +735,11 @@ export const coffeeSchema: JsonSchema7 = {
             title: 'WeightedFlow',
             type: 'object',
             properties: {
-                eClass: {
+                $type: {
                     const: 'http://www.eclipse.org/emfcloud/coffee/model#//WeightedFlow'
+                },
+                id: {
+                    type: 'string'
                 },
                 source: {
                     $ref: '#/definitions/node'

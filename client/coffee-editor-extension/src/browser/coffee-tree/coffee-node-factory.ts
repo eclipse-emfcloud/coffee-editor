@@ -11,9 +11,8 @@
 import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
 import { ILogger } from '@theia/core';
 import { inject, injectable } from 'inversify';
-import { v4 } from 'uuid';
+import { CoffeeModel, Component, Flow, Identifiable, Machine, WeightedFlow, Workflow } from './coffee-model';
 
-import { CoffeeModel } from './coffee-model';
 import { CoffeeTreeEditorConstants } from './coffee-tree-editor-widget';
 import { CoffeeTreeLabelProvider } from './coffee-tree-label-provider-contribution';
 
@@ -32,23 +31,30 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         return [];
     }
 
-    mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string, defaultType?: string): TreeEditor.Node {
-        if (!data) {
+    mapData(
+        element: Identifiable,
+        parent?: TreeEditor.Node,
+        property?: string,
+        indexOrKey?: number | string,
+        defaultType?: string
+    ): TreeEditor.Node {
+        if (!element) {
             // sanity check
             this.logger.warn('mapData called without data');
             return {
-                ...this.defaultNode(),
+                ...this.emptyNode(),
                 editorId: CoffeeTreeEditorConstants.EDITOR_ID
             };
         }
         const node: TreeEditor.Node = {
-            ...this.defaultNode(),
+            ...this.emptyNode(),
             editorId: CoffeeTreeEditorConstants.EDITOR_ID,
-            name: this.labelProvider.getName(data) ?? '',
+            name: this.labelProvider.getName(element) ?? '',
             parent: parent,
+            id: element.id,
             jsonforms: {
-                type: this.getType(data.eClass || defaultType, data) ?? '',
-                data: data,
+                type: element.$type || defaultType || '',
+                data: element,
                 property: property ?? '',
                 index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
             }
@@ -58,30 +64,31 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             parent.children.push(node);
             parent.expanded = true;
         }
-        if (data.children) {
-            // component types
-            data.children.forEach((element: any, idx: number) => {
-                this.mapData(element, node, 'children', idx);
+        if (Component.is(element) && element.children) {
+            element.children.forEach((component: any, idx: number) => {
+                this.mapData(component, node, 'children', idx);
             });
         }
-        if (data.workflows) {
-            // machine type
-            data.workflows.forEach((element: any, idx: number) => {
-                element.eClass = CoffeeModel.Type.Workflow;
-                this.mapData(element, node, 'workflows', idx);
+        if (Machine.is(element)) {
+            element.workflows.forEach((workflow: any, idx: number) => {
+                workflow.$type = Workflow.$type;
+                this.mapData(workflow, node, 'workflows', idx);
             });
         }
-        if (data.nodes) {
-            // workflow type
-            data.nodes.forEach((element: any, idx: number) => {
-                this.mapData(element, node, 'nodes', idx);
-            });
-        }
-        if (data.flows) {
-            // workflow type
-            data.flows.forEach((element: any, idx: number) => {
-                this.mapData(element, node, 'flows', idx, CoffeeModel.Type.Flow);
-            });
+        if (Workflow.is(element)) {
+            if (element.nodes) {
+                element.nodes.forEach((workflowNode: any, idx: number) => {
+                    this.mapData(workflowNode, node, 'nodes', idx);
+                });
+            }
+            if (element.flows) {
+                element.flows.forEach((flow: any, idx: number) => {
+                    if (!WeightedFlow.is(flow)) {
+                        flow.$type = Flow.$type;
+                    }
+                    this.mapData(flow, node, 'flows', idx);
+                });
+            }
         }
         return node;
     }
@@ -90,7 +97,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         return node ? CoffeeModel.childrenMapping.get(node.jsonforms.type) !== undefined : false;
     }
 
-    protected defaultNode(): Pick<
+    protected emptyNode(): Pick<
         TreeEditor.Node,
         | 'children'
         | 'name'
@@ -108,7 +115,7 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         | 'decorationData'
     > {
         return {
-            id: v4(),
+            id: '',
             expanded: false,
             selected: false,
             parent: undefined,
@@ -117,23 +124,5 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             name: '',
             jsonforms: { type: '', property: '', data: '' }
         };
-    }
-
-    protected getType(type: string, data: any): string | undefined {
-        // TODO: eClass should always be sent from server
-
-        if (type) {
-            // given eClass
-            return type;
-        }
-        if (data.eClass) {
-            // eClass of node
-            return data.eClass;
-        }
-        // guess
-        if (data.nodes) {
-            return CoffeeModel.Type.Workflow;
-        }
-        return undefined;
     }
 }

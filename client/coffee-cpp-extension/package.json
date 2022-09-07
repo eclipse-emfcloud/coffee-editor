@@ -23,9 +23,9 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "^1.27.0",
-    "@theia/terminal": "^1.27.0",
-    "@theia/process": "^1.27.0",
+    "@theia/core": "^1.0.0",
+    "@theia/terminal": "^1.0.0",
+    "@theia/process": "^1.0.0",
     "express": "4.17.1",
     "glob": "7.1.4"
   },

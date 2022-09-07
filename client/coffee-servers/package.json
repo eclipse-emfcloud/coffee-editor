@@ -25,9 +25,9 @@
     "servers"
   ],
   "dependencies": {
-    "@theia/core": "^1.27.0",
-    "@theia/workspace": "^1.27.0",
-    "@theia/process": "^1.27.0",
+    "@theia/core": "^1.0.0",
+    "@theia/workspace": "^1.0.0",
+    "@theia/process": "^1.0.0",
     "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
     "coffee-cpp-extension": "0.1.0",
     "coffee-java-extension": "0.1.0",
