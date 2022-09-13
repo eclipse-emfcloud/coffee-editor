@@ -25,7 +25,6 @@ import {
     LabelProviderContribution,
     NavigatableWidgetOptions,
     OpenHandler,
-    WebSocketConnectionProvider,
     WidgetFactory
 } from '@theia/core/lib/browser';
 import { TreeProps, TreeWidget as TheiaTreeWidget } from '@theia/core/lib/browser/tree';
@@ -33,17 +32,11 @@ import URI from '@theia/core/lib/common/uri';
 import { ContainerModule } from 'inversify';
 
 import {
-    ModelServerFrontendClient,
-    MODEL_SERVER_CLIENT_V2_SERVICE_PATH,
-    TheiaModelServerClientV2
-} from '@eclipse-emfcloud/modelserver-theia';
-import {
     ModelServerSubscriptionClient,
     ModelServerSubscriptionClientV2,
     ModelServerSubscriptionServiceV2
 } from '@eclipse-emfcloud/modelserver-theia/lib/browser';
 import { interfaces } from '@theia/core/shared/inversify';
-import { CoffeeModelServerClient } from '../common/coffee-tree-model-server-api';
 import { CoffeeTreeEditorContribution } from './coffee-editor-tree-contribution';
 import { CoffeeLabelProviderContribution } from './coffee-tree-label-provider';
 import { CoffeeMasterTreeWidget } from './coffee-tree/coffee-master-tree-widget';
@@ -59,21 +52,6 @@ export default new ContainerModule((bind, _unbind, isBound, rebind) => {
     bind(MenuContribution).to(CoffeeTreeEditorContribution);
     bind(CommandContribution).to(CoffeeTreeEditorContribution);
     bind(LabelProviderContribution).to(CoffeeTreeLabelProvider);
-
-    // Bind extended model server client and rebind generic interface
-    bind(CoffeeModelServerClient)
-        .toDynamicValue(ctx => {
-            const connection = ctx.container.get(WebSocketConnectionProvider);
-            const client: ModelServerFrontendClient = ctx.container.get(ModelServerFrontendClient);
-            return connection.createProxy<CoffeeModelServerClient>(MODEL_SERVER_CLIENT_V2_SERVICE_PATH, client);
-        })
-        .inSingletonScope();
-
-    if (isBound(TheiaModelServerClientV2)) {
-        rebind(TheiaModelServerClientV2).toService(CoffeeModelServerClient);
-    } else {
-        bind(TheiaModelServerClientV2).toService(CoffeeModelServerClient);
-    }
 
     // Bind ModelServerSubscription services
     bind(ModelServerSubscriptionClientV2).toSelf().inSingletonScope();

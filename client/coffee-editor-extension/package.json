@@ -43,8 +43,7 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/coffee-editor-frontend-module",
-      "backend": "lib/node/backend-module"
+      "frontend": "lib/browser/coffee-editor-frontend-module"
     }
   ]
 }

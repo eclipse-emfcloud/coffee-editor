@@ -919,10 +919,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@eclipse-emfcloud/modelserver-client@0.8.0-next", "@eclipse-emfcloud/modelserver-client@0.8.0-next.271f6294":
-  version "0.8.0-next.271f6294"
-  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-client/-/modelserver-client-0.8.0-next.271f6294.tgz#425f059291e8a22494826faa77babeea3432e476"
-  integrity sha512-SxdM/deOvHWFAyEXPMzTsHd51YdUmvglC8zpr91duzZx2tLY6Cyo/PWhXqlTr/oUKVwm50/j2p7vbH0NzG0WaQ==
+"@eclipse-emfcloud/modelserver-client@0.8.0-next", "@eclipse-emfcloud/modelserver-client@0.8.0-next.f8faca93":
+  version "0.8.0-next.f8faca93"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-client/-/modelserver-client-0.8.0-next.f8faca93.tgz#652dbf6e044de64564986fa50c41fa8db1628584"
+  integrity sha512-EG8wsbc0gNGkAFR1nn7I24k6v5cTSfV/Fz2srQSLYypel9I6KRD7UaS3zhIL+TRx5XDvYvmer6WyNnTejfKs4g==
   dependencies:
     axios "^0.24.0"
     events "^3.3.0"
@@ -930,12 +930,12 @@
     isomorphic-ws "^4.0.1"
     ws "^7.4.6"
 
-"@eclipse-emfcloud/modelserver-theia@0.8.0-next", "@eclipse-emfcloud/modelserver-theia@0.8.0-next.271f6294":
-  version "0.8.0-next.271f6294"
-  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-theia/-/modelserver-theia-0.8.0-next.271f6294.tgz#1847079c7f27b01b9a4cdfbd2742985a2ff5e5f0"
-  integrity sha512-1nbMrhhsQdm3R2lO7LN9j6rCwE5bilc/3DLTK6mn7arr4bGXE0NrVhtjXEPBsIZfDIZxTY/Wzb4DRGeFo/PPxw==
+"@eclipse-emfcloud/modelserver-theia@0.8.0-next", "@eclipse-emfcloud/modelserver-theia@0.8.0-next.f8faca93":
+  version "0.8.0-next.f8faca93"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-theia/-/modelserver-theia-0.8.0-next.f8faca93.tgz#20470e86870d58c6f6d88e8b9c7cdb6818b11c6b"
+  integrity sha512-wsDxFugh59tVFeGprCdY6rgpiNOQVw2Is+eGCVh7HE2DPZh3uGtyvmwj4/287ZBY/L5lIJkrwq0xJ5vzcc5V+A==
   dependencies:
-    "@eclipse-emfcloud/modelserver-client" "0.8.0-next.271f6294"
+    "@eclipse-emfcloud/modelserver-client" "0.8.0-next.f8faca93"
     "@theia/core" "^1.0.0"
     "@theia/process" "^1.0.0"
     "@theia/workspace" "^1.0.0"

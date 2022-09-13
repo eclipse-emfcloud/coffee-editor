@@ -16,6 +16,7 @@ import {
     Operations,
     PatchOrCommand
 } from '@eclipse-emfcloud/modelserver-client';
+import { TheiaModelServerClientV2 } from '@eclipse-emfcloud/modelserver-theia';
 import { ModelServerSubscriptionServiceV2 } from '@eclipse-emfcloud/modelserver-theia/lib/browser';
 import {
     AddCommandProperty,
@@ -33,7 +34,6 @@ import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service
 import { compare, Operation } from 'fast-json-patch';
 import { inject, injectable } from 'inversify';
 import { isEqual } from 'lodash';
-import { CoffeeModelServerClient } from '../../common/coffee-tree-model-server-api';
 import { CoffeeMasterTreeWidget } from './coffee-master-tree-widget';
 
 import {
@@ -68,7 +68,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         @inject(WorkspaceService) override readonly workspaceService: WorkspaceService,
         @inject(ILogger) override readonly logger: ILogger,
         @inject(NavigatableTreeEditorOptions) protected override readonly options: NavigatableTreeEditorOptions,
-        @inject(CoffeeModelServerClient) protected readonly modelServerClient: CoffeeModelServerClient,
+        @inject(TheiaModelServerClientV2) protected readonly modelServerClient: TheiaModelServerClientV2,
         @inject(ModelServerSubscriptionServiceV2) protected readonly subscriptionService: ModelServerSubscriptionServiceV2
     ) {
         super(treeWidget, formWidget, workspaceService, logger, CoffeeTreeEditorConstants.WIDGET_ID, options);
