@@ -1,4 +1,5 @@
-workflowModel: "SuperBrewer3000"
+machine: "SuperBrewer3000"
+workflow: "BrewingFlow"
 
 probabilities
 low    : 0.1
