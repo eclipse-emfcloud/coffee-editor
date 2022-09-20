@@ -51,7 +51,15 @@ import org.eclipse.glsp.server.layout.LayoutEngine;
 import org.eclipse.glsp.server.operations.CutOperationHandler;
 import org.eclipse.glsp.server.operations.OperationHandler;
 
+import com.google.inject.Singleton;
+
 public class WorkflowDiagramModule extends EMSGLSPNotationDiagramModule {
+
+   @Override
+   protected void configureBase() {
+      super.configureBase();
+      bind(WorkflowHighlightStore.class).in(Singleton.class);
+   }
 
    @Override
    protected void registerEPackages() {

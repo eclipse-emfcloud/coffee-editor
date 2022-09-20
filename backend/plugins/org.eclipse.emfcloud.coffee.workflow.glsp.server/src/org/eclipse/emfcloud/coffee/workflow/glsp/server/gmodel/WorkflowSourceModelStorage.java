@@ -10,9 +10,15 @@
  ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.gmodel;
 
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowHighlightStore;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationSourceModelStorage;
+import org.eclipse.glsp.server.features.core.model.RequestModelAction;
 
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 
 public class WorkflowSourceModelStorage extends EMSNotationSourceModelStorage {
@@ -20,17 +26,26 @@ public class WorkflowSourceModelStorage extends EMSNotationSourceModelStorage {
    @Inject
    protected WorkflowModelServerAccess modelServerAccess;
 
+   @Inject
+   protected WorkflowHighlightStore highlightStore;
+
+   @Override
+   public void loadSourceModel(final RequestModelAction action) {
+      if (action.getOptions().get("highlights") != null) {
+         HashMap<String, String> map = new Gson().fromJson(action.getOptions().get("highlights"), HashMap.class);
+         for (Entry<String, String> entry : map.entrySet()) {
+            this.highlightStore.addHighlight(entry);
+         }
+         // Do not subscribe as we are in the comparison view
+         doLoadSourceModel();
+      } else {
+         doLoadSourceModel();
+         doSubscribe();
+      }
+   }
+
    @Override
    protected void doSubscribe() {
-      // FIXME @sgraband dealing with highlights:
-      //
-      // if (action.getOptions().get("highlights") != null) {
-      // HashMap<String, String> map = new Gson().fromJson(action.getOptions().get("highlights"), HashMap.class);
-      // for (Entry<String, String> entry : map.entrySet()) {
-      // modelState.addHighlight(entry);
-      // }
-      // } else { ..Subscribe .. }
-
       super.doSubscribe();
       modelServerAccess.createValidationFramework(modelState.getClientId(), actionDispatcher);
       modelServerAccess.subscribeToValidation();

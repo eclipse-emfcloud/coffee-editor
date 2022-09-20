@@ -14,12 +14,14 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowHighlightStore;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.CoffeeTypeUtil;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.ActivityNodeBuilder;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.util.WorkflowBuilder.TaskNodeBuilder;
@@ -43,7 +45,16 @@ import org.eclipse.glsp.server.emf.model.notation.Diagram;
 import org.eclipse.glsp.server.emf.model.notation.Edge;
 import org.eclipse.glsp.server.emf.model.notation.Shape;
 
+import com.google.inject.Inject;
+
 public class WorkflowGModelFactory extends EMSNotationGModelFactory {
+
+   @Inject
+   protected WorkflowHighlightStore highlightStore;
+
+   private String getChangeCssClass(final EObject object) {
+      return highlightStore.getHighlights().get(EcoreUtil.getURI(object).toString().substring(1));
+   }
 
    @Override
    protected void fillRootElement(final EObject semanticModel, final Diagram notationModel, final GModelRoot newRoot) {
@@ -80,10 +91,10 @@ public class WorkflowGModelFactory extends EMSNotationGModelFactory {
 
       builder.addArguments(GArguments.cornerRadius(5));
 
-      // String change = WorkflowBuilder.getChangeCssClass(modelState, task);
-      // if (change != null) {
-      // builder.addCssClass(change);
-      // }
+      String change = getChangeCssClass(task);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
 
       applyShapeData(task, builder);
       return builder.build();
@@ -95,10 +106,10 @@ public class WorkflowGModelFactory extends EMSNotationGModelFactory {
       ActivityNodeBuilder builder = new ActivityNodeBuilder(type, nodeType);
       builder.id(idGenerator.getOrCreateId(node));
 
-      // String change = WorkflowBuilder.getChangeCssClass(modelState, node);
-      // if (change != null) {
-      // builder.addCssClass(change);
-      // }
+      String change = getChangeCssClass(node);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
 
       applyShapeData(node, builder);
       return builder.build();
@@ -118,10 +129,10 @@ public class WorkflowGModelFactory extends EMSNotationGModelFactory {
          .targetId(idGenerator.getOrCreateId(flow.getTarget()))
          .routerKind(GConstants.RouterKind.POLYLINE);
 
-      // String change = WorkflowBuilder.getChangeCssClass(modelState, flow);
-      // if (change != null) {
-      // builder.addCssClass(change);
-      // }
+      String change = getChangeCssClass(flow);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
 
       applyEdgeData(flow, builder);
       return builder.build();
@@ -135,10 +146,10 @@ public class WorkflowGModelFactory extends EMSNotationGModelFactory {
          .targetId(idGenerator.getOrCreateId(flow.getTarget()))
          .routerKind(GConstants.RouterKind.POLYLINE);
 
-      // String change = WorkflowBuilder.getChangeCssClass(modelState, flow);
-      // if (change != null) {
-      // builder.addCssClass(change);
-      // }
+      String change = getChangeCssClass(flow);
+      if (change != null) {
+         builder.addCssClass(change);
+      }
 
       applyEdgeData(flow, builder);
       return builder.build();

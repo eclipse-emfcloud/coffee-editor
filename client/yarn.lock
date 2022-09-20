@@ -1029,10 +1029,10 @@
   resolved "https://registry.yarnpkg.com/@eclipse-glsp/ts-config/-/ts-config-1.0.0.tgz#9196016057b73eccf0fcbd35d771f26c08a3d6dd"
   integrity sha512-4NCuSv/Q9IFvkZxszZmIpt80BJM9catYygqpJw0/luyXj2/bdHT/vdiCEw/wgrt0lJjOjrY4qi6VFApwrx0NXQ==
 
-"@eclipsesource/comparison-extension@0.0.1-next.20220414-105416":
-  version "0.0.1-next.20220414-105416"
-  resolved "https://registry.yarnpkg.com/@eclipsesource/comparison-extension/-/comparison-extension-0.0.1-next.20220414-105416.tgz#e63aed9e989eb84e56a05233302165cd469e146e"
-  integrity sha512-CDzASky/wq7dI10gC8BPYDVODOJWsKw/WWoLroYSnDuGuRfCjOCMRck70qCJEICnWYsN8r9Jn7TCKFedWZ19Bw==
+"@eclipsesource/comparison-extension@0.0.1-next.20220920-101703":
+  version "0.0.1-next.20220920-101703"
+  resolved "https://registry.npmjs.org/@eclipsesource/comparison-extension/-/comparison-extension-0.0.1-next.20220920-101703.tgz#9acc5a6066edc518d58647cf93466c97aafea843"
+  integrity sha512-rfwybut+4sjhquOdjCDlgMJl4YjHP/dicEm+SzOLq0lpginjadaIFlcFkpWoqFlo41FvKk1+7Sks5aLivsZdKA==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.14.0"
     "@jsonforms/core" "2.4.0"
