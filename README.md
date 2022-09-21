@@ -18,11 +18,11 @@ To build the docker container run the following command once:
 
 Now you can start the Theia Demo app using the following command (or change the host port to your preferences):
 
-    docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest yarn start
+    docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest
 
-Next, open a browser pointing to localhost:3000/#/coffee-editor/backend/examples/SuperBrewer3000 in your host.
+Next, open a browser pointing to localhost:3000/#/coffee-editor/client/workspace/SuperBrewer3000 in your host.
 You should see a Theia application with an example project being loaded.
-Refer to the README.md in the workspace for more details on how to use the example project.
+Refer to the `Getting Started` widget in the right area of the application for more details on how to use the example project.
 
 ### Docker Image information
 
@@ -70,8 +70,8 @@ You need Java 11 to build the Coffee Editor.
 
 ### Install npm and node
 
-    nvm install 16
-    nvm use 16
+    nvm install 14
+    nvm use 14
 
 ### Install yarn
 
@@ -107,7 +107,7 @@ Run the built coffee-editor:
 
 Open <http://localhost:3000> in the browser.
 
-In Theia open the example workspace `backend/examples/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
+In Theia open the example workspace `client/workspace/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
 
 ## Publishing the coffee-editor-extension
 
