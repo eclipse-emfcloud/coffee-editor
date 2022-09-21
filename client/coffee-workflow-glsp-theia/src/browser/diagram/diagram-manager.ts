@@ -65,15 +65,6 @@ export class WorkflowDiagramManager extends GLSPDiagramManager {
 
     protected override createWidgetId(options: DiagramWidgetOptions): string {
         return `${this.diagramType}:${options.uri}`;
-        // FIXME @sgraband ?
-        // for (const widget of this.shell.widgets) {
-        //     if (widget instanceof GLSPDiagramWidget) {
-        //         if (widget.widgetId === widgetId) {
-        //             widget.close();
-        //         }
-        //     }
-        // }
-        // return widgetId;
     }
 
     protected createServerOptions(options?: WidgetOpenerOptions): Record<string, any> {
