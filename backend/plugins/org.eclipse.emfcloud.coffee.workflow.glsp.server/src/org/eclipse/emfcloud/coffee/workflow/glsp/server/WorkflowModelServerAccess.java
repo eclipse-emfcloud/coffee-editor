@@ -51,7 +51,6 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
    private static Logger LOGGER = LogManager.getLogger(WorkflowModelServerAccess.class);
 
-   // FIXME @sgraband Could this become an injectable similar to the modelserveraccess?
    private ValidationFramework validationFramework;
 
    public void createValidationFramework(final String clientId, final ActionDispatcher actionDispatcher) {
@@ -136,12 +135,10 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
    @Override
    public CompletableFuture<Response<String>> validate() {
-      // FIXME @sgraband validation via validationframework or client?
       return modelServerClient.validate(getSemanticURI());
    }
 
    public CompletableFuture<Void> validateViaFramework() throws IOException, InterruptedException, ExecutionException {
-      // FIXME @sgraband
       return this.validationFramework.validate();
    }
 
