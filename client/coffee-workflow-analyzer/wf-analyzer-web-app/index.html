@@ -61,8 +61,8 @@ var b = {
 
 // Mapping of step names to colors.
 var colors = {
-  "manual": "#db8651",
-  "automatic": "#5b9fa8",
+  "manual": "#74b3ce",
+  "automatic": "#26619c",
 };
 
 // Total size of all segments; we set this later, after loading the data.
@@ -232,6 +232,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
       .attr("y", b.h / 2)
       .attr("dy", "0.35em")
       .attr("text-anchor", "middle")
+      .style("fill", "white")
       .text(function(d) { return d.name; });
 
   // Set position for entering and updating nodes.
@@ -289,6 +290,7 @@ function drawLegend() {
       .attr("y", li.h / 2)
       .attr("dy", "0.35em")
       .attr("text-anchor", "middle")
+      .style("fill", "white")
       .text(function(d) { return d.key; });
 }
 

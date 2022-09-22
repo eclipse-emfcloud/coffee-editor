@@ -49,45 +49,41 @@
 }
 
 .task.automated > .sprotty-node {
-    fill: #035e7b;
+    fill: #26619c;
 }
 
 .task.manual > .sprotty-node {
-    fill: #0acdff;
-}
-
-.category > .sprotty-node {
-    fill: #5c87bd;
+    fill: #74b3ce;
 }
 
 .sprotty-edge.weighted.low:not(.selected),
 .sprotty-edge.weighted.low:not(.selected) .arrow {
-    stroke: rgb(128, 90, 233);
+    stroke: #d7a1f9;
 }
 
 .sprotty-edge.weighted.low:not(.selected) .arrow {
-    fill: rgb(128, 90, 233);
+    fill: #d7a1f9;
 }
 
 .sprotty-edge.weighted:not(.selected),
 .sprotty-edge.weighted:not(.selected) .arrow,
 .sprotty-edge.weighted.medium:not(.selected),
 .sprotty-edge.weighted.medium:not(.selected) .arrow {
-    stroke: rgb(98, 60, 193);
+    stroke: #9417e2;
 }
 
 .sprotty-edge.weighted:not(.selected) .arrow,
 .sprotty-edge.weighted.medium:not(.selected) .arrow {
-    fill: rgb(98, 60, 193);
+    fill: #9417e2;
 }
 
 .sprotty-edge.weighted.high:not(.selected),
 .sprotty-edge.weighted.high:not(.selected) .arrow {
-    stroke: rgb(68, 30, 163);
+    stroke: #51087e;
 }
 
 .sprotty-edge.weighted.high:not(.selected) .arrow {
-    fill: rgb(68, 30, 163);
+    fill: #51087e;
 }
 
 .sprotty-comp {
@@ -108,38 +104,32 @@
     color: var(--theia-list-activeSelectionForeground);
 }
 
-.deleted > .sprotty-node {
+.deleted > .sprotty-node,
+.deleted > .arrow {
     fill: var(--theia-gitDecoration-deletedResourceForeground) !important;
 }
 
-.changed > .sprotty-node {
+.changed > .sprotty-node,
+.changed > .arrow {
     fill: var(--theia-gitDecoration-modifiedResourceForeground) !important;
 }
 
-.added > .sprotty-node {
+.added > .sprotty-node,
+.added > .arrow {
     fill: var(--theia-gitDecoration-untrackedResourceForeground) !important;
 }
 
-.deleted polygon {
-    stroke: var(--theia-gitDecoration-deletedResourceForeground) !important;
-}
-
-.changed polygon {
-    stroke: var(--theia-gitDecoration-modifiedResourceForeground) !important;
-}
-
-.added polygon {
-    stroke: var(--theia-gitDecoration-untrackedResourceForeground) !important;
-}
-
+.deleted polygon,
 .deleted path {
     stroke: var(--theia-gitDecoration-deletedResourceForeground) !important;
 }
 
+.changed polygon,
 .changed path {
     stroke: var(--theia-gitDecoration-modifiedResourceForeground) !important;
 }
 
+.added polygon,
 .added path {
     stroke: var(--theia-gitDecoration-untrackedResourceForeground) !important;
 }
