@@ -20,7 +20,7 @@ Now you can start the Theia Demo app using the following command (or change the 
 
     docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest
 
-Next, open a browser pointing to localhost:3000/#/coffee-editor/client/workspace/SuperBrewer3000 in your host.
+Next, open a browser pointing to <http://localhost:3000/#/coffee-editor/client/workspace/SuperBrewer3000> in your host.
 You should see a Theia application with an example project being loaded.
 Refer to the `Getting Started` widget in the right area of the application for more details on how to use the example project.
 
@@ -59,6 +59,14 @@ If you encounter issues please report them in the corresponding project.
 This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
 
 ## Prerequisites
+
+The following libraries/frameworks need to be installed on your system:
+
+|                                                                              |           |
+| ---------------------------------------------------------------------------- | --------- |
+| [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) | `11`      |
+| [Maven](https://maven.apache.org/)                                           | `>=3.8.6` |
+| [Node](https://nodejs.org/en/)                                               | `>=14     |
 
 ### Java
 

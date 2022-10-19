@@ -129,7 +129,7 @@ export const controlUnitView = {
         },
         {
             type: 'Group',
-            label: 'Dimension',
+            label: 'Description',
             elements: [
                 {
                     type: 'Control',

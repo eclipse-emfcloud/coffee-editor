@@ -40,12 +40,15 @@ import {
     AutomaticTask,
     ControlUnit,
     Decision,
+    Dimension,
+    Display,
     Flow,
     Identifiable,
     JsonPrimitiveType,
     Machine,
     ManualTask,
     Merge,
+    Processor,
     RAM
 } from './coffee-model';
 import {
@@ -234,40 +237,50 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         changedObject: Identifiable,
         oldObject: Identifiable
     ): Operation | Operation[] | undefined {
-        if (diffPatch.op === 'replace' || diffPatch.op === 'add') {
-            if (
-                // eslint-disable-next-line no-null/no-null
-                diffPatch.value === null ||
-                diffPatch.value === '' ||
-                (typeof diffPatch.value === 'number' && isNaN(diffPatch.value as number))
-            ) {
+        switch (diffPatch.op) {
+            case 'replace': {
                 // unset values if input was cleared
+                if (
+                    // eslint-disable-next-line no-null/no-null
+                    diffPatch.value === null ||
+                    (typeof diffPatch.value === 'number' && isNaN(diffPatch.value as number))
+                ) {
+                    return {
+                        op: 'remove',
+                        path: this.getOperationPath(
+                            this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, 'remove'),
+                            this.getFeature(diffPatch.path)
+                        )
+                    };
+                } else {
+                    const feature = this.getFeature(diffPatch.path, !!diffPatch.path.match(/^\/ram(\/\d+)?/gm));
+                    return {
+                        op: diffPatch.op,
+                        path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op), feature),
+                        value: this.getAddValue(diffPatch.value, feature)
+                    };
+                }
+            }
+            case 'add': {
+                const feature = this.getFeature(diffPatch.path, !!diffPatch.path.match(/^\/ram(\/\d+)?/gm));
                 return {
-                    op: 'remove',
-                    path: this.getOperationPath(
-                        this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, 'remove'),
-                        this.getFeature(diffPatch.path)
-                    )
-                };
-            } else {
-                const feature = this.getFeature(diffPatch.path, !!diffPatch.path.match(/^\/ram(\/\d+)?$/gm));
-                // too add ram entries, we need to use the 'add' operation as we add an element to an array,
-                // otherwise set new nested value via replace
-                const operation = feature === 'ram' ? 'add' : 'replace';
-                return {
-                    op: operation,
-                    path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, operation), feature),
+                    op: diffPatch.op,
+                    path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op), feature),
                     value: this.getAddValue(diffPatch.value, feature)
                 };
             }
-        } else if (diffPatch.op === 'remove') {
-            // remove ram entries from array
-            return {
-                op: diffPatch.op,
-                path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op))
-            };
+            case 'remove': {
+                // remove ram entries from array
+                return {
+                    op: diffPatch.op,
+                    path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op))
+                };
+            }
+            default: {
+                console.error('unknown diffPatch operation');
+                return undefined;
+            }
         }
-        return undefined;
     }
 
     protected getFeature(patchPath: string, addFeature = false): string {
@@ -294,7 +307,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             pathSegments = pathSegments.slice(0, -1);
         }
         let id = '';
-        let parentObject = jsonFormsData;
+        let parentObject = oldData; // jsonFormsData?
         pathSegments.forEach(segment => {
             if (!Number.isNaN(Number(segment))) {
                 parentObject = parentObject[Number(segment)] as Identifiable;
@@ -322,6 +335,12 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     protected getAddValue(value: any, feature: string): JsonPrimitiveType {
         if (feature === 'ram') {
             return { $type: RAM.$type, id: UUID.uuid4() };
+        } else if (feature === 'processor') {
+            return { $type: Processor.$type, id: UUID.uuid4(), ...value };
+        } else if (feature === 'dimension') {
+            return { $type: Dimension.$type, id: UUID.uuid4(), ...value };
+        } else if (feature === 'display') {
+            return { $type: Display.$type, id: UUID.uuid4(), ...value };
         }
         return value;
     }
