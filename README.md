@@ -62,11 +62,11 @@ This project should not contain much code and should mostly consist of 'glue' co
 
 The following libraries/frameworks need to be installed on your system:
 
-|                                                                              |           |
-| ---------------------------------------------------------------------------- | --------- |
-| [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) | `11`      |
-| [Maven](https://maven.apache.org/)                                           | `>=3.8.6` |
-| [Node](https://nodejs.org/en/)                                               | `>=14     |
+|                                                                              |            |
+| ---------------------------------------------------------------------------- | ---------- |
+| [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) | `11`       |
+| [Maven](https://maven.apache.org/)                                           | `>=3.8.6`  |
+| [Node](https://nodejs.org/en/)                                               | `>=14 <16` |
 
 ### Java
 

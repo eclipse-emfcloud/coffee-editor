@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.validation;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
@@ -54,10 +55,10 @@ public class WorkflowLabelEditValidator implements LabelEditValidator {
 
    private String getElementId(final String type) {
       if (type.equals(WorkflowModelTypes.AUTOMATED_TASK)) {
-         return idGenerator.getOrCreateId(CoffeePackage.Literals.AUTOMATIC_TASK);
+         return EcoreUtil.getURI(CoffeePackage.Literals.AUTOMATIC_TASK).toString();
       }
       if (type.equals(WorkflowModelTypes.MANUAL_TASK)) {
-         return idGenerator.getOrCreateId(CoffeePackage.Literals.MANUAL_TASK);
+         return EcoreUtil.getURI(CoffeePackage.Literals.MANUAL_TASK).toString();
       }
       return null;
    }
