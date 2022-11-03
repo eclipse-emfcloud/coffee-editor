@@ -8,6 +8,12 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
+:root {
+    --chart-path-color: #fff;
+    --explanation-color: #888;
+    --automated-task-color: #26619c;
+    --manual-task-color: #74b3ce;
+}
 
 /* open-sans-regular - latin */
 
@@ -88,7 +94,7 @@ body {
 }
 
 #chart path {
-    stroke: #fff;
+    stroke: var(--chart-path-color);
 }
 
 #explanation {
@@ -97,7 +103,7 @@ body {
     left: 205px;
     width: 140px;
     text-align: center;
-    color: #888;
+    color: var(--explanation-color);
     z-index: -1;
 }
 

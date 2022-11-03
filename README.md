@@ -109,9 +109,13 @@ Clone the coffee-editor:
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
 
-Run the built coffee-editor:
+Build the coffee-editor:
 
     yarn build
+
+Run the built coffee-editor:
+
+    yarn start
 
 Open <http://localhost:3000> in the browser.
 

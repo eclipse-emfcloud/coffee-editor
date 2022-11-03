@@ -8,6 +8,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
+:root {
+    --coffee-label-color: #000;
+    --coffee-label-heading-color: #f0f3f8;
+    --automated-task-color: #26619c;
+    --manual-task-color: #74b3ce;
+    --weighted-flow-low-color: #d7a1f9;
+    --weighted-flow-medium-color: #9417e2;
+    --weighted-flow-high-color: #51087e;
+}
 
 .sprotty-graph {
     font-size: 15pt;
@@ -27,7 +36,7 @@
 
 .sprotty-label {
     stroke-width: 0;
-    fill: #000;
+    fill: var(--coffee-label-color);
     font-weight: inherit;
     text-align: inherit;
     font-size: 100%;
@@ -36,12 +45,12 @@
 .sprotty-label.heading {
     font-weight: normal;
     font-size: 0.7em;
-    fill: #f0f3f8;
+    fill: var(--coffee-label-heading-color);
 }
 
 .icon path {
     stroke-width: 0;
-    fill: #f0f3f8;
+    fill: var(--coffee-label-heading-color);
 }
 
 .icon .icon-background {
@@ -49,41 +58,41 @@
 }
 
 .task.automated > .sprotty-node {
-    fill: #26619c;
+    fill: var(--automated-task-color);
 }
 
 .task.manual > .sprotty-node {
-    fill: #74b3ce;
+    fill: var(--manual-task-color);
 }
 
 .sprotty-edge.weighted.low:not(.selected),
 .sprotty-edge.weighted.low:not(.selected) .arrow {
-    stroke: #d7a1f9;
+    stroke: var(--weighted-flow-low-color);
 }
 
 .sprotty-edge.weighted.low:not(.selected) .arrow {
-    fill: #d7a1f9;
+    fill: var(--weighted-flow-low-color);
 }
 
 .sprotty-edge.weighted:not(.selected),
 .sprotty-edge.weighted:not(.selected) .arrow,
 .sprotty-edge.weighted.medium:not(.selected),
 .sprotty-edge.weighted.medium:not(.selected) .arrow {
-    stroke: #9417e2;
+    stroke: var(--weighted-flow-medium-color);
 }
 
 .sprotty-edge.weighted:not(.selected) .arrow,
 .sprotty-edge.weighted.medium:not(.selected) .arrow {
-    fill: #9417e2;
+    fill: var(--weighted-flow-medium-color);
 }
 
 .sprotty-edge.weighted.high:not(.selected),
 .sprotty-edge.weighted.high:not(.selected) .arrow {
-    stroke: #51087e;
+    stroke: var(--weighted-flow-high-color);
 }
 
 .sprotty-edge.weighted.high:not(.selected) .arrow {
-    fill: #51087e;
+    fill: var(--weighted-flow-high-color);
 }
 
 .sprotty-comp {

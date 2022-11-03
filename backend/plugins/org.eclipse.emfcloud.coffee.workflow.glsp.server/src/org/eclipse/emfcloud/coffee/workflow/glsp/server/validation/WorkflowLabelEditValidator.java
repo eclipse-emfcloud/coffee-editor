@@ -22,21 +22,15 @@ import org.eclipse.emfcloud.modelserver.emf.common.EMFFacetConstraints;
 import org.eclipse.glsp.graph.GCompartment;
 import org.eclipse.glsp.graph.GLabel;
 import org.eclipse.glsp.graph.GModelElement;
-import org.eclipse.glsp.server.emf.EMFIdGenerator;
 import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
 import org.eclipse.glsp.server.features.directediting.ValidationStatus;
-import org.eclipse.glsp.server.model.GModelState;
 
 import com.google.inject.Inject;
 
 public class WorkflowLabelEditValidator implements LabelEditValidator {
 
    @Inject
-   protected GModelState modelState;
-   @Inject
    protected WorkflowModelServerAccess modelAccess;
-   @Inject
-   protected EMFIdGenerator idGenerator;
 
    @Override
    public ValidationStatus validate(final String label, final GModelElement element) {

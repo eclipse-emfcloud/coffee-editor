@@ -61,8 +61,8 @@ var b = {
 
 // Mapping of step names to colors.
 var colors = {
-  "manual": "#74b3ce",
-  "automatic": "#26619c",
+  "manual": "var(--manual-task-color)",
+  "automatic": "var(--automated-task-color)",
 };
 
 // Total size of all segments; we set this later, after loading the data.
@@ -195,7 +195,7 @@ function initializeBreadcrumbTrail() {
   // Add the label at the end, for the percentage.
   trail.append("svg:text")
     .attr("id", "endlabel")
-    .style("fill", "#888");
+    .style("fill", "var(--explanation-color)");
 }
 
 // Generate a string that describes the points of a breadcrumb polygon.
