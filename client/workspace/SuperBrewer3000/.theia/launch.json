@@ -1,0 +1,31 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug SuperBrewer Java",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "SuperBrewer3000.tests.SuperBrewer3000Runner",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 10100
+    },
+    {
+      "type": "gdb",
+      "request": "launch",
+      "name": "Debug SuperBrewer C++",
+      "program": "${workspaceFolder}/cpp/src/SuperBrewer3000",
+      "preLaunchTask": "Binary build"
+    }
+  ]
+}

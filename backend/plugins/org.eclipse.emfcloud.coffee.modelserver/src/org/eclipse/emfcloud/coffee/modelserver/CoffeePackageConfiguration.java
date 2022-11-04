@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2021 EclipseSource and others.
+ * Copyright (c) 2019-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,7 +13,7 @@ package org.eclipse.emfcloud.coffee.modelserver;
 import java.util.Collection;
 
 import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
+import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV2;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
 import com.google.common.collect.Lists;
@@ -24,7 +24,9 @@ public class CoffeePackageConfiguration implements EPackageConfiguration {
    public String getId() { return CoffeePackage.eINSTANCE.getNsURI(); }
 
    @Override
-   public Collection<String> getFileExtensions() { return Lists.newArrayList(CoffeeResource.FILE_EXTENSION, "json"); }
+   public Collection<String> getFileExtensions() {
+      return Lists.newArrayList(CoffeeResource.FILE_EXTENSION, ModelServerPathParametersV2.FORMAT_JSON);
+   }
 
    @Override
    public void registerEPackage() {

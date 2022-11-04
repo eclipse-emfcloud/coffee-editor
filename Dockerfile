@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
 
-RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
 	apt-get install nodejs -y && \
 	npm install -g yarn
 
@@ -23,11 +23,12 @@ WORKDIR /coffee-editor
 COPY --chown=theia:theia . .
 USER theia
 
-RUN ./run.sh -bcf && \
-	cp ./web/favicon.ico ./web/browser-app/lib
-RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' web/browser-app/lib/index.html
+# Trigger build: Build backend, build client
+RUN yarn build
+RUN cp ./client/favicon.ico ./client/browser-app/lib
+RUN sed -i 's/<\/head>/<link rel="icon" href="favicon.ico" \/><\/head>/g' client/browser-app/lib/index.html
 
-WORKDIR /coffee-editor/backend/examples/SuperBrewer3000
+WORKDIR /coffee-editor/client/workspace/SuperBrewer3000
 
 RUN git config --global user.name "Test User"
 RUN git config --global user.email "test@example.com"
@@ -35,7 +36,7 @@ RUN git init
 RUN git add *
 RUN git commit -m "init"
 
-WORKDIR /coffee-editor/web/browser-app
+WORKDIR /coffee-editor/client/browser-app
 
 EXPOSE 3000
 

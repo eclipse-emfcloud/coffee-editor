@@ -15,8 +15,6 @@
  */
 package org.eclipse.emfcloud.coffee;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Flow</b></em>'. <!-- end-user-doc -->
@@ -33,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Flow extends EObject {
+public interface Flow extends Identifiable {
    /**
     * Returns the value of the '<em><b>Source</b></em>' reference. <!--
     * begin-user-doc --> <!-- end-user-doc -->

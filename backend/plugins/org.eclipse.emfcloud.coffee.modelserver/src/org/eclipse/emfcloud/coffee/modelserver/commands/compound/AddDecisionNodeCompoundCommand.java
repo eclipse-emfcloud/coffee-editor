@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,8 +16,8 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.modelserver.commands.notation.AddNodeShapeCommand;
 import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddDecisionNodeCommand;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddShapeCommand;
 import org.eclipse.glsp.graph.GPoint;
 
 public class AddDecisionNodeCompoundCommand extends CompoundCommand {
@@ -27,6 +27,6 @@ public class AddDecisionNodeCompoundCommand extends CompoundCommand {
       AddDecisionNodeCommand command = new AddDecisionNodeCommand(domain, modelUri);
       this.append(command);
       Supplier<Node> semanticResultSupplier = () -> command.getNode();
-      this.append(new AddNodeShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+      this.append(new AddShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
    }
 }

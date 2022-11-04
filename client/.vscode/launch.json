@@ -1,0 +1,94 @@
+{
+  // Use IntelliSense to learn about possible Node.js debug attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Browser Backend [DEBUG] (Embedded Servers)",
+      "program": "${workspaceRoot}/browser-app/src-gen/backend/main.js",
+      "args": [
+        "--loglevel=debug",
+        "--port=3000",
+        "--no-cluster",
+        "--WF_LSP=5017",
+        "--app-project-path=${workspaceRoot}/browser-app",
+        "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
+        "--root-dir=${workspaceRoot}/workspace/SuperBrewer3000"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "WF_CONFIG_LSP": "localhost:5017"
+      },
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/node_modules/@theia/*/lib/**/*.js",
+        "${workspaceRoot}/node_modules/@eclipse-emfcloud/*/lib/**/*.js",
+        "${workspaceRoot}/browser-app/lib/**/*.js",
+        "${workspaceRoot}/browser-app/src-gen/backend/*.js",
+        "${workspaceRoot}/coffee-editor-extension/lib/**/*.js",
+        "${workspaceRoot}/coffee-java-extension/lib/**/*.js",
+        "${workspaceRoot}/coffee-servers/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-analyzer/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-glsp-theia/lib/**/*.js"
+      ],
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Browser Backend [DEBUG] (External Servers)",
+      "program": "${workspaceRoot}/browser-app/src-gen/backend/main.js",
+      "args": [
+        "--loglevel=debug",
+        "--port=3000",
+        "--no-cluster",
+        "--WF_ANALYZER=5083",
+        "--app-project-path=${workspaceRoot}/browser-app",
+        "--plugins=local-dir:${workspaceRoot}/browser-app/plugins",
+        "--root-dir=${workspaceRoot}/workspace/SuperBrewer3000",
+        "--debug"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "WF_CONFIG_LSP": "localhost:5017"
+      },
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/node_modules/@theia/*/lib/**/*.js",
+        "${workspaceRoot}/node_modules/@eclipse-emfcloud/*/lib/**/*.js",
+        "${workspaceRoot}/browser-app/lib/**/*.js",
+        "${workspaceRoot}/browser-app/src-gen/backend/*.js",
+        "${workspaceRoot}/coffee-editor-extension/lib/**/*.js",
+        "${workspaceRoot}/coffee-java-extension/lib/**/*.js",
+        "${workspaceRoot}/coffee-servers/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-analyzer/lib/**/*.js",
+        "${workspaceRoot}/coffee-workflow-glsp-theia/lib/**/*.js"
+      ],
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std"
+    },
+    {
+      "name": "Launch Browser Frontend",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000/",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}/browser-app"
+    },
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "Launch LSP Extension",
+      "runtimeExecutable": "${execPath}",
+      "args": ["--extensionDevelopmentPath=${workspaceRoot}/coffee-workflow-analyzer-editor"],
+      "outFiles": ["${workspaceRoot}/coffee-workflow-analyzer-editor/out/**/*.js"],
+      "sourceMaps": true
+    }
+  ]
+}

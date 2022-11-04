@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -23,7 +23,7 @@ import org.eclipse.emfcloud.coffee.ManualTask;
 import org.eclipse.emfcloud.coffee.Node;
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.util.CoffeeResource;
+import org.eclipse.emfcloud.coffee.modelserver.CoffeeResource;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.edit.command.SetCommandContribution;
 import org.eclipse.emfcloud.modelserver.edit.util.CommandUtil;
@@ -33,13 +33,16 @@ public final class SemanticCommandUtil {
    // Hide constructor for utility class
    private SemanticCommandUtil() {}
 
-   public static String getSemanticUriFragment(final EObject element) {
-      return EcoreUtil.getURI(element).fragment();
+   // Expect a given EObject with an ID attribute
+   public static String getSemanticElementId(final EObject element) {
+      return EcoreUtil.getID(element);
    }
+
+   public static String getCoffeeFileExtension() { return CoffeeResource.FILE_EXTENSION; }
 
    public static Workflow getModel(final URI modelUri, final EditingDomain domain) {
       Resource semanticResource = domain.getResourceSet()
-         .getResource(modelUri.trimFileExtension().appendFileExtension(CoffeeResource.FILE_EXTENSION), false);
+         .getResource(modelUri.trimFileExtension().appendFileExtension(getCoffeeFileExtension()), false);
       EObject semanticRoot = semanticResource.getContents().get(0);
       if (!(semanticRoot instanceof Machine)) {
          return null;
@@ -52,13 +55,13 @@ public final class SemanticCommandUtil {
       return machine.getWorkflows().get(0);
    }
 
-   public static EObject getElement(final Workflow semanticModel, final String semanticUriFragment) {
-      return semanticModel.eResource().getEObject(semanticUriFragment);
+   public static EObject getElement(final Workflow semanticModel, final String semanticElementId) {
+      return semanticModel.eResource().getEObject(semanticElementId);
    }
 
-   public static <C> C getElement(final Workflow semanticModel, final String semanticUriFragment,
+   public static <C> C getElement(final Workflow semanticModel, final String semanticElementId,
       final java.lang.Class<C> clazz) {
-      EObject element = getElement(semanticModel, semanticUriFragment);
+      EObject element = getElement(semanticModel, semanticElementId);
       return clazz.cast(element);
    }
 
@@ -66,6 +69,12 @@ public final class SemanticCommandUtil {
       final String newName) {
       return SetCommandContribution.clientCommand(CommandUtil.createProxy(getEClass(taskToRename), ownerRefUri),
          CoffeePackage.Literals.TASK__NAME, newName);
+   }
+
+   public static CCommand createSetTaskDurationCommand(final Node task, final String ownerRefUri,
+      final int newDuration) {
+      return SetCommandContribution.clientCommand(CommandUtil.createProxy(getEClass(task), ownerRefUri),
+         CoffeePackage.Literals.TASK__DURATION, newDuration);
    }
 
    protected static EClass getEClass(final EObject element) {

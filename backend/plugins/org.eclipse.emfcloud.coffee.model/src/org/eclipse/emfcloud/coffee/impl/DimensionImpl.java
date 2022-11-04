@@ -18,7 +18,6 @@ package org.eclipse.emfcloud.coffee.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
 import org.eclipse.emfcloud.coffee.Dimension;
 
@@ -36,7 +35,7 @@ import org.eclipse.emfcloud.coffee.Dimension;
  *
  * @generated
  */
-public class DimensionImpl extends MinimalEObjectImpl.Container implements Dimension {
+public class DimensionImpl extends IdentifiableImpl implements Dimension {
    /**
     * The default value of the '{@link #getWidth() <em>Width</em>}' attribute. <!--
     * begin-user-doc --> <!-- end-user-doc -->

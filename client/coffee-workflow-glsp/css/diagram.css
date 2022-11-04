@@ -1,0 +1,144 @@
+/*
+ * Copyright (c) 2019-2022 EclipseSource, Christian W. Damus, and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ */
+:root {
+    --coffee-label-color: #000;
+    --coffee-label-heading-color: #f0f3f8;
+    --automated-task-color: #26619c;
+    --manual-task-color: #74b3ce;
+    --weighted-flow-low-color: #d7a1f9;
+    --weighted-flow-medium-color: #9417e2;
+    --weighted-flow-high-color: #51087e;
+}
+
+.sprotty-graph {
+    font-size: 15pt;
+    border: none;
+    height: 100%;
+}
+
+.sprotty-text {
+    font-size: 12pt;
+    text-anchor: middle;
+}
+
+.sprotty-node {
+    stroke-width: 0;
+    font-weight: bold;
+}
+
+.sprotty-label {
+    stroke-width: 0;
+    fill: var(--coffee-label-color);
+    font-weight: inherit;
+    text-align: inherit;
+    font-size: 100%;
+}
+
+.sprotty-label.heading {
+    font-weight: normal;
+    font-size: 0.7em;
+    fill: var(--coffee-label-heading-color);
+}
+
+.icon path {
+    stroke-width: 0;
+    fill: var(--coffee-label-heading-color);
+}
+
+.icon .icon-background {
+    fill: transparent;
+}
+
+.task.automated > .sprotty-node {
+    fill: var(--automated-task-color);
+}
+
+.task.manual > .sprotty-node {
+    fill: var(--manual-task-color);
+}
+
+.sprotty-edge.weighted.low:not(.selected),
+.sprotty-edge.weighted.low:not(.selected) .arrow {
+    stroke: var(--weighted-flow-low-color);
+}
+
+.sprotty-edge.weighted.low:not(.selected) .arrow {
+    fill: var(--weighted-flow-low-color);
+}
+
+.sprotty-edge.weighted:not(.selected),
+.sprotty-edge.weighted:not(.selected) .arrow,
+.sprotty-edge.weighted.medium:not(.selected),
+.sprotty-edge.weighted.medium:not(.selected) .arrow {
+    stroke: var(--weighted-flow-medium-color);
+}
+
+.sprotty-edge.weighted:not(.selected) .arrow,
+.sprotty-edge.weighted.medium:not(.selected) .arrow {
+    fill: var(--weighted-flow-medium-color);
+}
+
+.sprotty-edge.weighted.high:not(.selected),
+.sprotty-edge.weighted.high:not(.selected) .arrow {
+    stroke: var(--weighted-flow-high-color);
+}
+
+.sprotty-edge.weighted.high:not(.selected) .arrow {
+    fill: var(--weighted-flow-high-color);
+}
+
+.sprotty-comp {
+    stroke: transparent;
+    fill: transparent;
+}
+
+.label-edit input {
+    margin-top: -3px;
+    margin-left: -3px;
+}
+
+.tool-button > i.codicon {
+    color: var(--theia-tab-unfocusedActiveForeground);
+}
+
+.tool-button.clicked > i.codicon {
+    color: var(--theia-list-activeSelectionForeground);
+}
+
+.deleted > .sprotty-node,
+.deleted > .arrow {
+    fill: var(--theia-gitDecoration-deletedResourceForeground) !important;
+}
+
+.changed > .sprotty-node,
+.changed > .arrow {
+    fill: var(--theia-gitDecoration-modifiedResourceForeground) !important;
+}
+
+.added > .sprotty-node,
+.added > .arrow {
+    fill: var(--theia-gitDecoration-untrackedResourceForeground) !important;
+}
+
+.deleted polygon,
+.deleted path {
+    stroke: var(--theia-gitDecoration-deletedResourceForeground) !important;
+}
+
+.changed polygon,
+.changed path {
+    stroke: var(--theia-gitDecoration-modifiedResourceForeground) !important;
+}
+
+.added polygon,
+.added path {
+    stroke: var(--theia-gitDecoration-untrackedResourceForeground) !important;
+}

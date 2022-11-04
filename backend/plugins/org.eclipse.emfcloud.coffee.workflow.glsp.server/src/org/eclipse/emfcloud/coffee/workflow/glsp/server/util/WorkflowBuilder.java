@@ -10,9 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.util;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.model.WorkflowModelState;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.ActivityNode;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.Icon;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
@@ -32,7 +30,7 @@ public final class WorkflowBuilder {
       private String probability;
 
       public WeightedEdgeBuilder() {
-         super(ModelTypes.WEIGHTED_EDGE);
+         super(WorkflowModelTypes.WEIGHTED_EDGE);
       }
 
       public WeightedEdgeBuilder probability(final String probability) {
@@ -127,7 +125,7 @@ public final class WorkflowBuilder {
       }
 
       private GLabel createCompartmentHeader(final TaskNode taskNode) {
-         return new GLabelBuilder(ModelTypes.LABEL_HEADING) //
+         return new GLabelBuilder(WorkflowModelTypes.LABEL_HEADING) //
             .id(taskNode.getId() + "_classname") //
             .text(taskNode.getName()) //
             .build();
@@ -138,7 +136,7 @@ public final class WorkflowBuilder {
    public static class IconBuilder extends AbstractGCompartmentBuilder<Icon, IconBuilder> {
 
       public IconBuilder() {
-         super(ModelTypes.ICON);
+         super(WorkflowModelTypes.ICON);
       }
 
       @Override
@@ -151,10 +149,6 @@ public final class WorkflowBuilder {
          return this;
       }
 
-   }
-   
-   public static String getChangeCssClass(WorkflowModelState modelState, EObject object) {
-	   return modelState.getHighlights().get(EcoreUtil.getURI(object).toString().split("#_")[1]);
    }
 
    private WorkflowBuilder() {}

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emfcloud.coffee.AutomaticTask;
 import org.eclipse.emfcloud.coffee.CoffeePackage;
@@ -119,7 +120,8 @@ public class AnalyzeWorkflow {
    }
 
    private String getId(final org.eclipse.emfcloud.coffee.Node node) {
-      return node.eResource().getURIFragment(node);
+      // Node is an identifiable with with an ID attribute
+      return EcoreUtil.getID(node);
    }
 
    private void connectSourceAndTarget(final Flow flow) {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -23,18 +23,18 @@ public class RemoveFlowCommandContribution extends CompoundCommandContribution {
 
    public static final String TYPE = "removeFlow";
 
-   public static CCompoundCommand create(final String semanticUri) {
+   public static CCompoundCommand create(final String semanticElementId) {
       CCompoundCommand removeNodeCommand = CCommandFactory.eINSTANCE.createCompoundCommand();
       removeNodeCommand.setType(TYPE);
-      removeNodeCommand.getProperties().put(SEMANTIC_URI_FRAGMENT, semanticUri);
+      removeNodeCommand.getProperties().put(SEMANTIC_ELEMENT_ID, semanticElementId);
       return removeNodeCommand;
    }
 
    @Override
    protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
       throws DecodingException {
-      String semanticUriFragment = command.getProperties().get(SEMANTIC_URI_FRAGMENT);
-      return new RemoveFlowCompoundCommand(domain, modelUri, semanticUriFragment);
+      String semanticElementId = command.getProperties().get(SEMANTIC_ELEMENT_ID);
+      return new RemoveFlowCompoundCommand(domain, modelUri, semanticElementId);
    }
 
 }

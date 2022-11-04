@@ -69,13 +69,59 @@ public interface CoffeePackage extends EPackage {
    CoffeePackage eINSTANCE = org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl.init();
 
    /**
+    * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.IdentifiableImpl <em>Identifiable</em>}' class.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @see org.eclipse.emfcloud.coffee.impl.IdentifiableImpl
+    * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getIdentifiable()
+    * @generated
+    */
+   int IDENTIFIABLE = 0;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int IDENTIFIABLE__ID = 0;
+
+   /**
+    * The number of structural features of the '<em>Identifiable</em>' class.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int IDENTIFIABLE_FEATURE_COUNT = 1;
+
+   /**
+    * The number of operations of the '<em>Identifiable</em>' class.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int IDENTIFIABLE_OPERATION_COUNT = 0;
+
+   /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}' class.
     * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @see org.eclipse.emfcloud.coffee.impl.ComponentImpl
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getComponent()
     * @generated
     */
-   int COMPONENT = 0;
+   int COMPONENT = 1;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int COMPONENT__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -83,7 +129,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int COMPONENT__CHILDREN = 0;
+   int COMPONENT__CHILDREN = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
@@ -92,7 +138,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int COMPONENT__PARENT = 1;
+   int COMPONENT__PARENT = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The number of structural features of the '<em>Component</em>' class. <!--
@@ -101,7 +147,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int COMPONENT_FEATURE_COUNT = 2;
+   int COMPONENT_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of operations of the '<em>Component</em>' class. <!--
@@ -110,7 +156,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int COMPONENT_OPERATION_COUNT = 0;
+   int COMPONENT_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MachineImpl <em>Machine</em>}' class.
@@ -119,7 +165,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMachine()
     * @generated
     */
-   int MACHINE = 1;
+   int MACHINE = 2;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int MACHINE__ID = COMPONENT__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -180,7 +235,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getControlUnit()
     * @generated
     */
-   int CONTROL_UNIT = 2;
+   int CONTROL_UNIT = 3;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int CONTROL_UNIT__ID = COMPONENT__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -267,7 +331,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getBrewingUnit()
     * @generated
     */
-   int BREWING_UNIT = 3;
+   int BREWING_UNIT = 4;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int BREWING_UNIT__ID = COMPONENT__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -311,7 +384,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDipTray()
     * @generated
     */
-   int DIP_TRAY = 4;
+   int DIP_TRAY = 5;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int DIP_TRAY__ID = COMPONENT__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -355,7 +437,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWaterTank()
     * @generated
     */
-   int WATER_TANK = 5;
+   int WATER_TANK = 6;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int WATER_TANK__ID = COMPONENT__ID;
 
    /**
     * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -399,7 +490,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProcessor()
     * @generated
     */
-   int PROCESSOR = 6;
+   int PROCESSOR = 7;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int PROCESSOR__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Vendor</b></em>' attribute. <!--
@@ -408,7 +508,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__VENDOR = 0;
+   int PROCESSOR__VENDOR = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Clock Speed</b></em>' attribute. <!--
@@ -417,7 +517,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__CLOCK_SPEED = 1;
+   int PROCESSOR__CLOCK_SPEED = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The feature id for the '<em><b>Number Of Cores</b></em>' attribute. <!--
@@ -426,7 +526,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__NUMBER_OF_CORES = 2;
+   int PROCESSOR__NUMBER_OF_CORES = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The feature id for the '<em><b>Socketconnector Type</b></em>' attribute. <!--
@@ -435,7 +535,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__SOCKETCONNECTOR_TYPE = 3;
+   int PROCESSOR__SOCKETCONNECTOR_TYPE = IDENTIFIABLE_FEATURE_COUNT + 3;
 
    /**
     * The feature id for the '<em><b>Thermal Design Power</b></em>' attribute. <!--
@@ -444,7 +544,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__THERMAL_DESIGN_POWER = 4;
+   int PROCESSOR__THERMAL_DESIGN_POWER = IDENTIFIABLE_FEATURE_COUNT + 4;
 
    /**
     * The feature id for the '<em><b>Manufactoring Process</b></em>' attribute.
@@ -452,7 +552,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR__MANUFACTORING_PROCESS = 5;
+   int PROCESSOR__MANUFACTORING_PROCESS = IDENTIFIABLE_FEATURE_COUNT + 5;
 
    /**
     * The number of structural features of the '<em>Processor</em>' class. <!--
@@ -461,7 +561,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR_FEATURE_COUNT = 6;
+   int PROCESSOR_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 6;
 
    /**
     * The number of operations of the '<em>Processor</em>' class. <!--
@@ -470,7 +570,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int PROCESSOR_OPERATION_COUNT = 0;
+   int PROCESSOR_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DimensionImpl <em>Dimension</em>}' class.
@@ -479,7 +579,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDimension()
     * @generated
     */
-   int DIMENSION = 7;
+   int DIMENSION = 8;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int DIMENSION__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -488,7 +597,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DIMENSION__WIDTH = 0;
+   int DIMENSION__WIDTH = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Height</b></em>' attribute. <!--
@@ -497,7 +606,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DIMENSION__HEIGHT = 1;
+   int DIMENSION__HEIGHT = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The feature id for the '<em><b>Length</b></em>' attribute. <!--
@@ -506,7 +615,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DIMENSION__LENGTH = 2;
+   int DIMENSION__LENGTH = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of structural features of the '<em>Dimension</em>' class. <!--
@@ -515,7 +624,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DIMENSION_FEATURE_COUNT = 3;
+   int DIMENSION_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 3;
 
    /**
     * The number of operations of the '<em>Dimension</em>' class. <!--
@@ -524,7 +633,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DIMENSION_OPERATION_COUNT = 0;
+   int DIMENSION_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.RAMImpl <em>RAM</em>}' class.
@@ -533,7 +642,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRAM()
     * @generated
     */
-   int RAM = 8;
+   int RAM = 9;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int RAM__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Clock Speed</b></em>' attribute. <!--
@@ -542,7 +660,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int RAM__CLOCK_SPEED = 0;
+   int RAM__CLOCK_SPEED = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -551,16 +669,16 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int RAM__SIZE = 1;
+   int RAM__SIZE = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
-    * The feature id for the '<em><b>Type</b></em>' attribute.
-    * <!-- begin-user-doc
-    * --> <!-- end-user-doc -->
+    * The feature id for the '<em><b>Ram Type</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     * @ordered
     */
-   int RAM__TYPE = 2;
+   int RAM__RAM_TYPE = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of structural features of the '<em>RAM</em>' class. <!--
@@ -569,7 +687,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int RAM_FEATURE_COUNT = 3;
+   int RAM_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 3;
 
    /**
     * The number of operations of the '<em>RAM</em>' class.
@@ -578,7 +696,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int RAM_OPERATION_COUNT = 0;
+   int RAM_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}' class.
@@ -587,7 +705,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDisplay()
     * @generated
     */
-   int DISPLAY = 9;
+   int DISPLAY = 10;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int DISPLAY__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -596,7 +723,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DISPLAY__WIDTH = 0;
+   int DISPLAY__WIDTH = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Height</b></em>' attribute. <!--
@@ -605,7 +732,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DISPLAY__HEIGHT = 1;
+   int DISPLAY__HEIGHT = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The number of structural features of the '<em>Display</em>' class. <!--
@@ -614,7 +741,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DISPLAY_FEATURE_COUNT = 2;
+   int DISPLAY_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of operations of the '<em>Display</em>' class.
@@ -623,7 +750,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int DISPLAY_OPERATION_COUNT = 0;
+   int DISPLAY_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.WorkflowImpl <em>Workflow</em>}' class.
@@ -632,7 +759,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWorkflow()
     * @generated
     */
-   int WORKFLOW = 10;
+   int WORKFLOW = 11;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int WORKFLOW__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -641,7 +777,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int WORKFLOW__NAME = 0;
+   int WORKFLOW__NAME = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -649,7 +785,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int WORKFLOW__NODES = 1;
+   int WORKFLOW__NODES = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The feature id for the '<em><b>Flows</b></em>' containment reference list.
@@ -657,7 +793,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int WORKFLOW__FLOWS = 2;
+   int WORKFLOW__FLOWS = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of structural features of the '<em>Workflow</em>' class. <!--
@@ -666,7 +802,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int WORKFLOW_FEATURE_COUNT = 3;
+   int WORKFLOW_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 3;
 
    /**
     * The number of operations of the '<em>Workflow</em>' class. <!--
@@ -675,7 +811,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int WORKFLOW_OPERATION_COUNT = 0;
+   int WORKFLOW_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.NodeImpl <em>Node</em>}' class.
@@ -684,7 +820,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getNode()
     * @generated
     */
-   int NODE = 11;
+   int NODE = 12;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int NODE__ID = IDENTIFIABLE__ID;
 
    /**
     * The number of structural features of the '<em>Node</em>' class. <!--
@@ -693,7 +838,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int NODE_FEATURE_COUNT = 0;
+   int NODE_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The operation id for the '<em>Has Cycle</em>' operation.
@@ -702,7 +847,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = 0;
+   int NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The number of operations of the '<em>Node</em>' class.
@@ -711,7 +856,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int NODE_OPERATION_COUNT = 1;
+   int NODE_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 1;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.TaskImpl <em>Task</em>}' class.
@@ -720,7 +865,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getTask()
     * @generated
     */
-   int TASK = 12;
+   int TASK = 13;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int TASK__ID = NODE__ID;
 
    /**
     * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -801,7 +955,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getAutomaticTask()
     * @generated
     */
-   int AUTOMATIC_TASK = 13;
+   int AUTOMATIC_TASK = 14;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int AUTOMATIC_TASK__ID = TASK__ID;
 
    /**
     * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -890,7 +1053,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManualTask()
     * @generated
     */
-   int MANUAL_TASK = 14;
+   int MANUAL_TASK = 15;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int MANUAL_TASK__ID = TASK__ID;
 
    /**
     * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -980,7 +1152,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getFork()
     * @generated
     */
-   int FORK = 15;
+   int FORK = 16;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int FORK__ID = NODE__ID;
 
    /**
     * The number of structural features of the '<em>Fork</em>' class. <!--
@@ -1016,7 +1197,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getJoin()
     * @generated
     */
-   int JOIN = 16;
+   int JOIN = 17;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int JOIN__ID = NODE__ID;
 
    /**
     * The number of structural features of the '<em>Join</em>' class. <!--
@@ -1052,7 +1242,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getDecision()
     * @generated
     */
-   int DECISION = 17;
+   int DECISION = 18;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int DECISION__ID = NODE__ID;
 
    /**
     * The number of structural features of the '<em>Decision</em>' class. <!--
@@ -1106,7 +1305,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getMerge()
     * @generated
     */
-   int MERGE = 18;
+   int MERGE = 19;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int MERGE__ID = NODE__ID;
 
    /**
     * The number of structural features of the '<em>Merge</em>' class. <!--
@@ -1160,7 +1368,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getFlow()
     * @generated
     */
-   int FLOW = 19;
+   int FLOW = 20;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int FLOW__ID = IDENTIFIABLE__ID;
 
    /**
     * The feature id for the '<em><b>Source</b></em>' reference. <!--
@@ -1169,7 +1386,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int FLOW__SOURCE = 0;
+   int FLOW__SOURCE = IDENTIFIABLE_FEATURE_COUNT + 0;
 
    /**
     * The feature id for the '<em><b>Target</b></em>' reference. <!--
@@ -1178,7 +1395,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int FLOW__TARGET = 1;
+   int FLOW__TARGET = IDENTIFIABLE_FEATURE_COUNT + 1;
 
    /**
     * The number of structural features of the '<em>Flow</em>' class. <!--
@@ -1187,7 +1404,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int FLOW_FEATURE_COUNT = 2;
+   int FLOW_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
 
    /**
     * The number of operations of the '<em>Flow</em>' class.
@@ -1196,7 +1413,7 @@ public interface CoffeePackage extends EPackage {
     * @generated
     * @ordered
     */
-   int FLOW_OPERATION_COUNT = 0;
+   int FLOW_OPERATION_COUNT = IDENTIFIABLE_OPERATION_COUNT + 0;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.WeightedFlowImpl <em>Weighted Flow</em>}' class.
@@ -1205,7 +1422,16 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getWeightedFlow()
     * @generated
     */
-   int WEIGHTED_FLOW = 20;
+   int WEIGHTED_FLOW = 21;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int WEIGHTED_FLOW__ID = FLOW__ID;
 
    /**
     * The feature id for the '<em><b>Source</b></em>' reference. <!--
@@ -1259,7 +1485,7 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getSocketConnectorType()
     * @generated
     */
-   int SOCKET_CONNECTOR_TYPE = 21;
+   int SOCKET_CONNECTOR_TYPE = 22;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.ManufactoringProcess <em>Manufactoring Process</em>}' enum.
@@ -1268,7 +1494,7 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getManufactoringProcess()
     * @generated
     */
-   int MANUFACTORING_PROCESS = 22;
+   int MANUFACTORING_PROCESS = 23;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.RamType <em>Ram Type</em>}' enum.
@@ -1277,7 +1503,7 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getRamType()
     * @generated
     */
-   int RAM_TYPE = 23;
+   int RAM_TYPE = 24;
 
    /**
     * The meta object id for the '{@link org.eclipse.emfcloud.coffee.Probability <em>Probability</em>}' enum.
@@ -1286,7 +1512,7 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getProbability()
     * @generated
     */
-   int PROBABILITY = 24;
+   int PROBABILITY = 25;
 
    /**
     * The meta object id for the '<em>Task Name</em>' data type. <!--
@@ -1296,7 +1522,28 @@ public interface CoffeePackage extends EPackage {
     * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getTaskName()
     * @generated
     */
-   int TASK_NAME = 25;
+   int TASK_NAME = 26;
+
+   /**
+    * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Identifiable <em>Identifiable</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for class '<em>Identifiable</em>'.
+    * @see org.eclipse.emfcloud.coffee.Identifiable
+    * @generated
+    */
+   EClass getIdentifiable();
+
+   /**
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.Identifiable#getId <em>Id</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for the attribute '<em>Id</em>'.
+    * @see org.eclipse.emfcloud.coffee.Identifiable#getId()
+    * @see #getIdentifiable()
+    * @generated
+    */
+   EAttribute getIdentifiable_Id();
 
    /**
     * Returns the meta object for class
@@ -1609,16 +1856,15 @@ public interface CoffeePackage extends EPackage {
    EAttribute getRAM_Size();
 
    /**
-    * Returns the meta object for the attribute
-    * '{@link org.eclipse.emfcloud.coffee.RAM#getType <em>Type</em>}'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
-    * @return the meta object for the attribute '<em>Type</em>'.
-    * @see org.eclipse.emfcloud.coffee.RAM#getType()
+    * Returns the meta object for the attribute '{@link org.eclipse.emfcloud.coffee.RAM#getRamType <em>Ram Type</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for the attribute '<em>Ram Type</em>'.
+    * @see org.eclipse.emfcloud.coffee.RAM#getRamType()
     * @see #getRAM()
     * @generated
     */
-   EAttribute getRAM_Type();
+   EAttribute getRAM_RamType();
 
    /**
     * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'.
@@ -2020,6 +2266,24 @@ public interface CoffeePackage extends EPackage {
     */
    interface Literals {
       /**
+       * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.IdentifiableImpl <em>Identifiable</em>}' class.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @see org.eclipse.emfcloud.coffee.impl.IdentifiableImpl
+       * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getIdentifiable()
+       * @generated
+       */
+      EClass IDENTIFIABLE = eINSTANCE.getIdentifiable();
+
+      /**
+       * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      EAttribute IDENTIFIABLE__ID = eINSTANCE.getIdentifiable_Id();
+
+      /**
        * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.ComponentImpl <em>Component</em>}' class.
        * <!-- begin-user-doc --> <!-- end-user-doc -->
        * @see org.eclipse.emfcloud.coffee.impl.ComponentImpl
@@ -2243,11 +2507,12 @@ public interface CoffeePackage extends EPackage {
       EAttribute RAM__SIZE = eINSTANCE.getRAM_Size();
 
       /**
-       * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-       * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * The meta object literal for the '<em><b>Ram Type</b></em>' attribute feature.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
        * @generated
        */
-      EAttribute RAM__TYPE = eINSTANCE.getRAM_Type();
+      EAttribute RAM__RAM_TYPE = eINSTANCE.getRAM_RamType();
 
       /**
        * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.DisplayImpl <em>Display</em>}' class.

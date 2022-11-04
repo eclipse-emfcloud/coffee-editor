@@ -15,8 +15,6 @@
  */
 package org.eclipse.emfcloud.coffee;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Display</b></em>'. <!-- end-user-doc -->
@@ -33,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Display extends EObject {
+public interface Display extends Identifiable {
    /**
     * Returns the value of the '<em><b>Width</b></em>' attribute. <!--
     * begin-user-doc --> <!-- end-user-doc -->

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,13 +13,13 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.compound;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.modelserver.commands.notation.RemoveFlowEdgeCommand;
 import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.RemoveFlowCommand;
+import org.eclipse.emfcloud.modelserver.glsp.notation.commands.RemoveNotationElementCommand;
 
 public class RemoveFlowCompoundCommand extends CompoundCommand {
 
-   public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticUriFragment) {
-      this.append(new RemoveFlowCommand(domain, modelUri, semanticUriFragment));
-      this.append(new RemoveFlowEdgeCommand(domain, modelUri, semanticUriFragment));
+   public RemoveFlowCompoundCommand(final EditingDomain domain, final URI modelUri, final String semanticElementId) {
+      this.append(new RemoveFlowCommand(domain, modelUri, semanticElementId));
+      this.append(new RemoveNotationElementCommand(domain, modelUri, semanticElementId));
    }
 }

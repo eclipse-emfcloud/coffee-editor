@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2021-2022 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -23,20 +23,20 @@ public class AddFlowCommandContribution extends CompoundCommandContribution {
 
    public static final String TYPE = "addFlowContribution";
 
-   public static CCompoundCommand create(final String sourceUriFragment, final String targetUriFragment) {
+   public static CCompoundCommand create(final String sourceElementId, final String targetElementId) {
       CCompoundCommand command = CCommandFactory.eINSTANCE.createCompoundCommand();
       command.setType(TYPE);
-      command.getProperties().put(SOURCE_URI_FRAGMENT, sourceUriFragment);
-      command.getProperties().put(TARGET_URI_FRAGMENT, targetUriFragment);
+      command.getProperties().put(SOURCE_ELEMENT_ID, sourceElementId);
+      command.getProperties().put(TARGET_ELEMENT_ID, targetElementId);
       return command;
    }
 
    @Override
    protected Command toServer(final URI modelUri, final EditingDomain domain, final CCommand command)
       throws DecodingException {
-      String sourceUriFragment = command.getProperties().get(SOURCE_URI_FRAGMENT);
-      String targetUriFragment = command.getProperties().get(TARGET_URI_FRAGMENT);
-      return new AddFlowCompoundCommand(domain, modelUri, sourceUriFragment, targetUriFragment);
+      String sourceElementId = command.getProperties().get(SOURCE_ELEMENT_ID);
+      String targetElementId = command.getProperties().get(TARGET_ELEMENT_ID);
+      return new AddFlowCompoundCommand(domain, modelUri, sourceElementId, targetElementId);
    }
 
 }

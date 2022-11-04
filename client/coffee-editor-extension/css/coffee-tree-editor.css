@@ -1,0 +1,94 @@
+/*
+ * Copyright (c) 2019-2022 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ */
+
+.theia-tree-editor-form > .jsonforms-container {
+    padding: 0 8px;
+}
+
+.jsonforms-container .theia-input {
+    background: var(--theia-editorInlayHint-background);
+}
+
+.jsonforms-container .theia-select {
+    height: calc(var(--theia-content-line-height) + 2px);
+}
+
+.jsonforms-container .group-layout {
+    margin-top: 8px;
+}
+
+.theia-tree-editor-form .array-table-layout.control > table {
+    border: none;
+    margin: 0;
+}
+
+.theia-tree-editor-form .array-table-layout th,
+.theia-tree-editor-form .array-table-layout td {
+    border: none !important;
+    margin: 3px;
+}
+
+/* If no RAM entries available, style "No data" differently */
+.theia-tree-editor-form .array-table-layout td:only-child {
+    text-align: center;
+    display: block !important;
+    margin: 8px;
+    padding: 5px 0px;
+}
+
+/* FIXME - CREATE CUSTOM RENDERER FOR RAM */
+.theia-tree-editor-form .array-table-layout.control > table > thead > tr > th:nth-child(1),
+.theia-tree-editor-form .array-table-layout.control > table > thead > tr > th:nth-child(2),
+.theia-tree-editor-form .array-table-layout.control > table > thead > tr > th:nth-child(6) {
+    /* temporary workaround: disable $type, id and valid column via css */
+    display: none;
+}
+
+.theia-tree-editor-form .array-table-layout.control table tbody tr td:nth-child(1),
+.theia-tree-editor-form .array-table-layout.control table tbody tr td:nth-child(2),
+.theia-tree-editor-form .array-table-layout.control table tbody tr td:nth-child(6) {
+    /* temporary workaround: disable $type, id and  valid column via css */
+    display: none;
+}
+
+/* Style delete button */
+.theia-tree-editor-form .array-table-layout.control table tbody tr td:nth-child(7) > button {
+    border: none;
+}
+
+/* Style table headers */
+.theia-tree-editor-form .array-table-layout th {
+    text-align: left;
+}
+
+/* Style split handle between tree and form editor */
+#json-forms-tree-editor > div.p-SplitPanel.theia-tree-editor-sash > div.p-SplitPanel-handle {
+    border-left: var(--theia-border-width) solid var(--theia-editorGroup-border);
+    min-width: var(--theia-border-width);
+}
+
+/* Style form editor */
+.theia-tree-editor-tree .tree-icon-container {
+    margin-right: 8px;
+}
+
+/* Style tree editor */
+.theia-tree-editor-tree .tree-icon-container > div.codicon {
+    color: var(--theia-tab-unfocusedActiveForeground);
+}
+
+.theia-tree-editor-tree.theia-Tree:focus-within .theia-TreeNode.theia-mod-selected .tree-icon-container > div.codicon {
+    color: var(--theia-list-activeSelectionForeground);
+}
+
+.theia-tree-icon.rotate-180 {
+    transform: rotate(180deg);
+}

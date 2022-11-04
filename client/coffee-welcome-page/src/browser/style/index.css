@@ -1,0 +1,126 @@
+/*
+ * Copyright (c) 2019-2022 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ */
+
+html,
+body {
+    font-family: var(--theia-ui-font-family);
+}
+
+.col {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-grid {
+    display: flex;
+}
+
+.gs-action-container {
+    line-height: 20px;
+    color: var(--theia-foreground);
+}
+
+.gs-container {
+    padding: 20px;
+}
+
+.gs-header h1 {
+    color: var(--theia-foreground);
+    flex: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.gs-header p > a {
+    text-decoration: none;
+}
+
+.gs-hr {
+    background-color: var(--theia-border-color1);
+    height: 1px;
+    border: 0;
+    margin: 0px;
+}
+
+.gs-section a {
+    border: none;
+    color: var(--theia-textLink-foreground);
+    font-weight: 500;
+    outline: 0;
+    text-decoration: none;
+}
+
+.gs-nested-section {
+    margin-left: 20px;
+}
+
+.gs-header p > a:hover,
+.gs-section a:hover,
+.gs-container summary > .gs-section:hover {
+    cursor: pointer;
+}
+
+.gs-container details > summary:focus {
+    outline: none;
+}
+
+.gs-section-header {
+    color: var(--theia-foreground);
+    font-size: var(--theia-ui-font-size2);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.gs-section-header-icon {
+    padding-right: 10px;
+}
+
+.gs-link-icon {
+    padding-left: 5px;
+}
+
+.gs-sub-header {
+    color: var(--theia-descriptionForeground);
+    text-transform: capitalize;
+    font-weight: 200;
+}
+
+.gs-section-header {
+    display: flex;
+    align-items: center;
+}
+
+.gs-detail-summary {
+    display: inline-block;
+    padding-left: 6px;
+    padding-bottom: 10px;
+}
+
+.gs-container details summary::-webkit-details-marker,
+.gs-container details > summary::marker {
+    content: '\eab6'; /* codicon codicon-chevron-right */
+    font-family: 'codicon';
+}
+
+.gs-container details[open] summary::-webkit-details-marker,
+.gs-container details[open] > summary::marker {
+    content: '\eab4'; /* codicon codicon-chevron-down */
+}
+
+.gs-section-listing {
+    list-style-type: circle;
+}
+
+.gs-language-icon {
+    font-style: normal;
+    font-weight: normal;
+}

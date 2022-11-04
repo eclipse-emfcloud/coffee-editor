@@ -2,7 +2,11 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="coffee" nsURI="http://www.eclipse.org/emfcloud/coffee/model"
     nsPrefix="org.eclipse.emfcloud.coffee.model">
-  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Identifiable" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
         eType="#//Component" containment="true" eOpposite="#//Component/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Component"
@@ -27,7 +31,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="BrewingUnit" eSuperTypes="#//Component"/>
   <eClassifiers xsi:type="ecore:EClass" name="DipTray" eSuperTypes="#//Component"/>
   <eClassifiers xsi:type="ecore:EClass" name="WaterTank" eSuperTypes="#//Component"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Processor">
+  <eClassifiers xsi:type="ecore:EClass" name="Processor" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -43,32 +47,32 @@
     <eLiterals name="nm18" literal="18nm"/>
     <eLiterals name="nm25" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Dimension">
+  <eClassifiers xsi:type="ecore:EClass" name="Dimension" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RAM">
+  <eClassifiers xsi:type="ecore:EClass" name="RAM" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RamType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ramType" eType="#//RamType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RamType">
-    <eLiterals name="SODIMM" literal="SO-DIMM"/>
-    <eLiterals name="SIDIMM" literal="SI-DIMM"/>
+    <eLiterals name="SODIMM" literal="SODIMM"/>
+    <eLiterals name="SIDIMM" value="1" literal="SIDIMM"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Display">
+  <eClassifiers xsi:type="ecore:EClass" name="Display" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Workflow">
+  <eClassifiers xsi:type="ecore:EClass" name="Workflow" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" lowerBound="1" upperBound="-1"
         eType="#//Node" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flows" upperBound="-1"
         eType="#//Flow" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//Identifiable">
     <eOperations name="hasCycle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="chain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -158,7 +162,7 @@
       </eParameters>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Flow">
+  <eClassifiers xsi:type="ecore:EClass" name="Flow" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"

@@ -38,7 +38,7 @@ public enum RamType implements Enumerator {
     * @generated
     * @ordered
     */
-   SODIMM(0, "SODIMM", "SO-DIMM"),
+   SODIMM(0, "SODIMM", "SODIMM"),
 
    /**
     * The '<em><b>SIDIMM</b></em>' literal object.
@@ -48,14 +48,14 @@ public enum RamType implements Enumerator {
     * @generated
     * @ordered
     */
-   SIDIMM(0, "SIDIMM", "SI-DIMM");
+   SIDIMM(1, "SIDIMM", "SIDIMM");
 
    /**
     * The '<em><b>SODIMM</b></em>' literal value.
     * <!-- begin-user-doc --> <!--
     * end-user-doc -->
     * @see #SODIMM
-    * @model literal="SO-DIMM"
+    * @model
     * @generated
     * @ordered
     */
@@ -66,11 +66,11 @@ public enum RamType implements Enumerator {
     * <!-- begin-user-doc --> <!--
     * end-user-doc -->
     * @see #SIDIMM
-    * @model literal="SI-DIMM"
+    * @model
     * @generated
     * @ordered
     */
-   public static final int SIDIMM_VALUE = 0;
+   public static final int SIDIMM_VALUE = 1;
 
    /**
     * An array of all the '<em><b>Ram Type</b></em>' enumerators. <!--
@@ -135,6 +135,7 @@ public enum RamType implements Enumerator {
    public static RamType get(int value) {
       switch (value) {
          case SODIMM_VALUE: return SODIMM;
+         case SIDIMM_VALUE: return SIDIMM;
       }
       return null;
    }

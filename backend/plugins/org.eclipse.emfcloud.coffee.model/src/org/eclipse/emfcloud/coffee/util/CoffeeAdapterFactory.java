@@ -1,66 +1,45 @@
 /**
- * Copyright (c) 2021 EclipseSource and others.
- *
+ * Copyright (c) 2022 EclipseSource and others.
+ * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
- * https://www.eclipse.org/legal/epl-2.0.
- *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ * 
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
 package org.eclipse.emfcloud.coffee.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emfcloud.coffee.AutomaticTask;
-import org.eclipse.emfcloud.coffee.BrewingUnit;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.Component;
-import org.eclipse.emfcloud.coffee.ControlUnit;
-import org.eclipse.emfcloud.coffee.Decision;
-import org.eclipse.emfcloud.coffee.Dimension;
-import org.eclipse.emfcloud.coffee.DipTray;
-import org.eclipse.emfcloud.coffee.Display;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Fork;
-import org.eclipse.emfcloud.coffee.Join;
-import org.eclipse.emfcloud.coffee.Machine;
-import org.eclipse.emfcloud.coffee.ManualTask;
-import org.eclipse.emfcloud.coffee.Merge;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Processor;
-import org.eclipse.emfcloud.coffee.RAM;
-import org.eclipse.emfcloud.coffee.Task;
-import org.eclipse.emfcloud.coffee.WaterTank;
-import org.eclipse.emfcloud.coffee.WeightedFlow;
-import org.eclipse.emfcloud.coffee.Workflow;
+
+import org.eclipse.emfcloud.coffee.*;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
- * an adapter <code>createXXX</code> method for each class of the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * @see org.eclipse.emfcloud.coffee.CoffeePackage
  * @generated
  */
 public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    /**
     * The cached model package.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    protected static CoffeePackage modelPackage;
 
    /**
     * Creates an instance of the adapter factory.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public CoffeeAdapterFactory() {
@@ -70,11 +49,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Returns whether this factory is applicable for the type of the object. <!--
-    * begin-user-doc --> This implementation returns <code>true</code> if the
-    * object is either the model's package or is an instance object of the model.
+    * Returns whether this factory is applicable for the type of the object.
+    * <!-- begin-user-doc -->
+    * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
     * <!-- end-user-doc -->
-    *
     * @return whether this factory is applicable for the type of the object.
     * @generated
     */
@@ -90,12 +68,17 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * The switch that delegates to the <code>createXXX</code> methods. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * The switch that delegates to the <code>createXXX</code> methods.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
-   protected CoffeeSwitch<Adapter> modelSwitch = new CoffeeSwitch<Adapter>() {
+   protected CoffeeSwitch<Adapter> modelSwitch =
+      new CoffeeSwitch<Adapter>() {
+         @Override
+         public Adapter caseIdentifiable(Identifiable object) {
+            return createIdentifiableAdapter();
+         }
          @Override
          public Adapter caseComponent(Component object) {
             return createComponentAdapter();
@@ -188,8 +171,8 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates an adapter for the <code>target</code>.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @param target the object to adapt.
     * @return the adapter for the <code>target</code>.
     * @generated
@@ -199,13 +182,27 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
       return modelSwitch.doSwitch((EObject)target);
    }
 
+
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Component <em>Component</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Identifiable <em>Identifiable</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
+    * @return the new adapter.
+    * @see org.eclipse.emfcloud.coffee.Identifiable
+    * @generated
+    */
+   public Adapter createIdentifiableAdapter() {
+      return null;
+   }
+
+   /**
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Component <em>Component</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Component
     * @generated
@@ -215,12 +212,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Machine <em>Machine</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Machine <em>Machine</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Machine
     * @generated
@@ -230,12 +226,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.ControlUnit <em>Control Unit</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.ControlUnit <em>Control Unit</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.ControlUnit
     * @generated
@@ -245,12 +240,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.BrewingUnit <em>Brewing Unit</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.BrewingUnit <em>Brewing Unit</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.BrewingUnit
     * @generated
@@ -260,12 +254,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.DipTray <em>Dip Tray</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.DipTray <em>Dip Tray</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.DipTray
     * @generated
@@ -275,12 +268,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.WaterTank <em>Water Tank</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.WaterTank <em>Water Tank</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.WaterTank
     * @generated
@@ -290,12 +282,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Processor <em>Processor</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Processor <em>Processor</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Processor
     * @generated
@@ -305,12 +296,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Dimension <em>Dimension</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Dimension <em>Dimension</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Dimension
     * @generated
@@ -321,10 +311,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.RAM <em>RAM</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.RAM
     * @generated
@@ -334,12 +324,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Display <em>Display</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Display
     * @generated
@@ -349,12 +338,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Workflow <em>Workflow</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Workflow <em>Workflow</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Workflow
     * @generated
@@ -365,10 +353,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Node <em>Node</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Node
     * @generated
@@ -379,10 +367,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Task
     * @generated
@@ -393,9 +381,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
-    * <!-- begin-user-doc --> This default implementation returns null so that we
-    * can easily ignore cases; it's useful to ignore a case when inheritance will
-    * catch all the cases anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.AutomaticTask
     * @generated
@@ -405,12 +394,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.ManualTask <em>Manual Task</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.ManualTask <em>Manual Task</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.ManualTask
     * @generated
@@ -421,10 +409,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Fork <em>Fork</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Fork
     * @generated
@@ -435,10 +423,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Join <em>Join</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Join
     * @generated
@@ -448,12 +436,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Decision <em>Decision</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Decision <em>Decision</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Decision
     * @generated
@@ -463,12 +450,11 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
    }
 
    /**
-    * Creates a new adapter for an object of class
-    * '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'. <!--
-    * begin-user-doc --> This default implementation returns null so that we can
-    * easily ignore cases; it's useful to ignore a case when inheritance will catch
-    * all the cases anyway. <!-- end-user-doc -->
-    *
+    * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'.
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Merge
     * @generated
@@ -479,10 +465,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'.
-    * <!-- begin-user-doc
-    * --> This default implementation returns null so that we can easily ignore
-    * cases; it's useful to ignore a case when inheritance will catch all the cases
-    * anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.Flow
     * @generated
@@ -493,9 +479,10 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for an object of class '{@link org.eclipse.emfcloud.coffee.WeightedFlow <em>Weighted Flow</em>}'.
-    * <!-- begin-user-doc --> This default implementation returns null so that we
-    * can easily ignore cases; it's useful to ignore a case when inheritance will
-    * catch all the cases anyway. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null so that we can easily ignore cases;
+    * it's useful to ignore a case when inheritance will catch all the cases anyway.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @see org.eclipse.emfcloud.coffee.WeightedFlow
     * @generated
@@ -506,8 +493,9 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
 
    /**
     * Creates a new adapter for the default case.
-    * <!-- begin-user-doc --> This
-    * default implementation returns null. <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * This default implementation returns null.
+    * <!-- end-user-doc -->
     * @return the new adapter.
     * @generated
     */
@@ -515,4 +503,4 @@ public class CoffeeAdapterFactory extends AdapterFactoryImpl {
       return null;
    }
 
-} // CoffeeAdapterFactory
+} //CoffeeAdapterFactory

@@ -1,0 +1,19 @@
+{
+  "extends": "@eclipse-glsp/ts-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": [
+    "coffee-common/src",
+    "coffee-comparison/src",
+    "coffee-editor-extension/src",
+    "coffee-java-extension/src",
+    "coffee-cpp-extension/src",
+    "coffee-servers/src",
+    "coffee-welcome-page/src",
+    "coffee-workflow-analyzer/src",
+    "coffee-workflow-analyzer-editor/src",
+    "coffee-workflow-glsp/src",
+    "coffee-workflow-glsp-theia/src"
+  ]
+}

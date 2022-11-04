@@ -1,0 +1,112 @@
+/*
+ * Copyright (c) 2019-2021 EclipseSource and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ */
+:root {
+    --chart-path-color: #fff;
+    --explanation-color: #888;
+    --automated-task-color: #26619c;
+    --manual-task-color: #74b3ce;
+}
+
+/* open-sans-regular - latin */
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/open-sans-v15-latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Open Sans Regular'), local('OpenSans-Regular'),
+        url('./fonts/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('./fonts/open-sans-v15-latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('./fonts/open-sans-v15-latin-regular.woff') format('woff'),
+        /* Modern Browsers */ url('./fonts/open-sans-v15-latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('./fonts/open-sans-v15-latin-regular.svg#OpenSans') format('svg');
+    /* Legacy iOS */
+}
+
+/* open-sans-600 - latin */
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('./fonts/open-sans-v15-latin-600.eot');
+    /* IE9 Compat Modes */
+    src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+        url('./fonts/open-sans-v15-latin-600.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('./fonts/open-sans-v15-latin-600.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('./fonts/open-sans-v15-latin-600.woff') format('woff'),
+        /* Modern Browsers */ url('./fonts/open-sans-v15-latin-600.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('./fonts/open-sans-v15-latin-600.svg#OpenSans') format('svg');
+    /* Legacy iOS */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    width: 960px;
+    height: 700px;
+    margin-top: 10px;
+}
+
+/*
+   * Based on work by kerryrodden
+   * Apache License 2.0
+   * See https://bl.ocks.org/kerryrodden/7090426
+   */
+
+#main {
+    float: left;
+    width: 750px;
+}
+
+#sidebar {
+    float: right;
+    width: 100px;
+}
+
+#sequence {
+    width: 700px;
+    height: 70px;
+}
+
+#legend {
+    /* Sufficient top padding in case the breadcrumb is very long, to fit under it. */
+    padding: 50px 0 0 3px;
+}
+
+#sequence text,
+#legend text {
+    font-weight: 400;
+}
+
+#chart {
+    position: relative;
+}
+
+#chart path {
+    stroke: var(--chart-path-color);
+}
+
+#explanation {
+    position: absolute;
+    top: 145px;
+    left: 205px;
+    width: 140px;
+    text-align: center;
+    color: var(--explanation-color);
+    z-index: -1;
+}
+
+#percentage {
+    font-size: 2.3em;
+}

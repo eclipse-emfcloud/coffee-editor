@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2021 EclipseSource and others.&#xA;&#xA;This program and the accompanying materials are made available under the&#xA;terms of the Eclipse Public License v. 2.0 which is available at&#xA;https://www.eclipse.org/legal/epl-2.0, or the MIT License which is&#xA;available at https://opensource.org/licenses/MIT.&#xA;&#xA;SPDX-License-Identifier: EPL-2.0 OR MIT"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2022 EclipseSource and others.&#xA;&#xA;This program and the accompanying materials are made available under the&#xA;terms of the Eclipse Public License v. 2.0 which is available at&#xA;https://www.eclipse.org/legal/epl-2.0, or the MIT License which is&#xA;available at https://opensource.org/licenses/MIT.&#xA;&#xA;SPDX-License-Identifier: EPL-2.0 OR MIT"
     modelDirectory="/org.eclipse.emfcloud.coffee.model/src" modelPluginID="org.eclipse.emfcloud.coffee.model"
     modelName="Coffee" editPluginClass="" editorPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="" testSuiteClass="" importerID="org.eclipse.emf.importer.ecore"
-    bundleManifest="false"  complianceLevel="11.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+    bundleManifest="false" complianceLevel="11.0" copyrightFields="false" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>Coffee.ecore</foreignModel>
-  <genPackages prefix="Coffee" basePackage="org.eclipse.emfcloud" resource="XMI"
-      disposableProviderFactory="true" ecorePackage="Coffee.ecore#/">
+  <genPackages prefix="Coffee" basePackage="org.eclipse.emfcloud" resource="XMI" disposableProviderFactory="true"
+      ecorePackage="Coffee.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Coffee.ecore#//SocketConnectorType">
       <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//SocketConnectorType/A1T"/>
       <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//SocketConnectorType/Z51"/>
@@ -27,6 +27,9 @@
       <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/high"/>
     </genEnums>
     <genDataTypes ecoreDataType="Coffee.ecore#//TaskName"/>
+    <genClasses image="false" ecoreClass="Coffee.ecore#//Identifiable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Identifiable/id"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Coffee.ecore#//Component">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Component/children"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Coffee.ecore#//Component/parent"/>
@@ -61,7 +64,7 @@
     <genClasses ecoreClass="Coffee.ecore#//RAM">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/clockSpeed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//RAM/ramType"/>
     </genClasses>
     <genClasses ecoreClass="Coffee.ecore#//Display">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Display/width"/>

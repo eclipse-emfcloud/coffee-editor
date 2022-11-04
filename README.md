@@ -18,16 +18,16 @@ To build the docker container run the following command once:
 
 Now you can start the Theia Demo app using the following command (or change the host port to your preferences):
 
-    docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest yarn start
+    docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest
 
-Next, open a browser pointing to localhost:3000/#/coffee-editor/backend/examples/SuperBrewer3000 in your host.
+Next, open a browser pointing to <http://localhost:3000/#/coffee-editor/client/workspace/SuperBrewer3000> in your host.
 You should see a Theia application with an example project being loaded.
-Refer to the README.md in the workspace for more details on how to use the example project.
+Refer to the `Getting Started` widget in the right area of the application for more details on how to use the example project.
 
 ### Docker Image information
 
 The docker image includes the Theia application and the following VSCode plugins (among others):
-  
+
 - Clangd for C/C++ editing support
 - Debug for C/C++ debugging support
 - Java LSP
@@ -42,23 +42,31 @@ The runtime environment has installed (among others)
 
 The coffee-editor consists of a frontend and a backend.
 
-The frontend is located in the `web/` folder and frontend specific documentation can be found in the [frontend README](web/README.md)
-The backend is located in the `backend/` folder and backend specific documentation can be found in the [backend README](backend/README.md)
+The frontend is located in the [`client/`](./client/) folder and frontend specific documentation can be found in the [client README](client/README.md)
+The backend is located in the [`backend/`](./backend/) folder and backend specific documentation can be found in the [backend README](backend/README.md)
 
 ## Used Projects
 
 We are relying on a bunch of projects:
 
-- https://github.com/eclipsesource/jsonforms
-- https://github.com/eclipse-glsp/glsp
-- https://github.com/eclipse-emfcloud/emfcloud-modelserver
-- https://github.com/eclipse-emfcloud/emfcloud-modelserver-theia
-- https://github.com/eclipse-emfcloud/theia-tree-editor
+- <https://github.com/eclipsesource/jsonforms>
+- <https://github.com/eclipse-glsp/glsp>
+- <https://github.com/eclipse-emfcloud/emfcloud-modelserver>
+- <https://github.com/eclipse-emfcloud/emfcloud-modelserver-theia>
+- <https://github.com/eclipse-emfcloud/theia-tree-editor>
 
 If you encounter issues please report them in the corresponding project.
 This project should not contain much code and should mostly consist of 'glue' code to combine the different components.
 
 ## Prerequisites
+
+The following libraries/frameworks need to be installed on your system:
+
+|                                                                              |            |
+| ---------------------------------------------------------------------------- | ---------- |
+| [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) | `11`       |
+| [Maven](https://maven.apache.org/)                                           | `>=3.8.6`  |
+| [Node](https://nodejs.org/en/)                                               | `>=14 <16` |
 
 ### Java
 
@@ -70,8 +78,8 @@ You need Java 11 to build the Coffee Editor.
 
 ### Install npm and node
 
-    nvm install 12
-    nvm use 12
+    nvm install 14
+    nvm use 14
 
 ### Install yarn
 
@@ -96,32 +104,22 @@ On Windows the most reliable way seems to be to install Python and set `npm conf
 
 ## Getting started
 
-Clone and build the coffee-editor:
+Clone the coffee-editor:
 
     git clone https://github.com/eclipsesource/coffee-editor.git
     cd coffee-editor
-    ./run.sh
+
+Build the coffee-editor:
+
+    yarn build
 
 Run the built coffee-editor:
 
-    ./run.sh -r
+    yarn start
 
-Open http://localhost:3000 in the browser.
+Open <http://localhost:3000> in the browser.
 
-In Theia open the example workspace `backend/examples/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
-
-## The build and run script
-
-The `run.sh` script provides funtionality to build the coffee-editor, download used libraries, and run the IDE.
-Every part step can be executed independently from each other by using the corresponding paramater:
-
-`-b`: Builds the backend services
-
-`-c`: Integrates the built backend artifacts in the coffee-editor IDE
-
-`-f`: Builds the frontend shown in the web browser
-
-`-r`: Runs the coffee-editor and exposes it at http://localhost:3000
+In Theia open the example workspace `client/workspace/SuperBrewer3000` and double click a `.coffee` file. This opens it in a tree master detail editor.
 
 ## Publishing the coffee-editor-extension
 
@@ -164,17 +162,16 @@ You can also use the predefined `RunSocketServer-Headless.launch` run config.
 
 #### Coffee Model Server
 
-Use the `org.eclipse.emfcloud.coffee.modelserver.app.application` Eclipse Application or the corresponding `modelserver.product` from `org.eclipse.emfcloud.coffee.product` to start the Model Server.
+Use the `CoffeeModelServer` launch config to start the Model Server.
 
 #### Coffee GLSP Server
 
-Use the `workflowserver.product` product to start the GLSP Server.
-On the client side, set the `isRunning` flag of the [CoffeeGlspLaunchOptions](web/coffee-server/src/node/backend-module.ts) to `true`.
+Use the `WorkflowGLSPServer` launch config to start the GLSP Server.
 
-### Debug Frontend
+### Debug Client
 
 - Install VSCode
-- Import projects from `web`
+- Open folder `client`
 
 #### Debug Theia Backend
 

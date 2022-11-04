@@ -37,6 +37,7 @@ import org.eclipse.emfcloud.coffee.DipTray;
 import org.eclipse.emfcloud.coffee.Display;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Fork;
+import org.eclipse.emfcloud.coffee.Identifiable;
 import org.eclipse.emfcloud.coffee.Join;
 import org.eclipse.emfcloud.coffee.Machine;
 import org.eclipse.emfcloud.coffee.ManualTask;
@@ -59,6 +60,13 @@ import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
  * @generated
  */
 public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   private EClass identifiableEClass = null;
+
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
@@ -283,6 +291,26 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       // Update the registry and return the package
       EPackage.Registry.INSTANCE.put(CoffeePackage.eNS_URI, theCoffeePackage);
       return theCoffeePackage;
+   }
+
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public EClass getIdentifiable() {
+      return identifiableEClass;
+   }
+
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public EAttribute getIdentifiable_Id() {
+      return (EAttribute)identifiableEClass.getEStructuralFeatures().get(0);
    }
 
    /**
@@ -547,11 +575,12 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public EAttribute getRAM_Type() {
+   public EAttribute getRAM_RamType() {
       return (EAttribute)ramEClass.getEStructuralFeatures().get(2);
    }
 
@@ -915,6 +944,9 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       isCreated = true;
 
       // Create classes and their features
+      identifiableEClass = createEClass(IDENTIFIABLE);
+      createEAttribute(identifiableEClass, IDENTIFIABLE__ID);
+
       componentEClass = createEClass(COMPONENT);
       createEReference(componentEClass, COMPONENT__CHILDREN);
       createEReference(componentEClass, COMPONENT__PARENT);
@@ -952,7 +984,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       ramEClass = createEClass(RAM);
       createEAttribute(ramEClass, RAM__CLOCK_SPEED);
       createEAttribute(ramEClass, RAM__SIZE);
-      createEAttribute(ramEClass, RAM__TYPE);
+      createEAttribute(ramEClass, RAM__RAM_TYPE);
 
       displayEClass = createEClass(DISPLAY);
       createEAttribute(displayEClass, DISPLAY__WIDTH);
@@ -1035,11 +1067,18 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       // Set bounds for type parameters
 
       // Add supertypes to classes
+      componentEClass.getESuperTypes().add(this.getIdentifiable());
       machineEClass.getESuperTypes().add(this.getComponent());
       controlUnitEClass.getESuperTypes().add(this.getComponent());
       brewingUnitEClass.getESuperTypes().add(this.getComponent());
       dipTrayEClass.getESuperTypes().add(this.getComponent());
       waterTankEClass.getESuperTypes().add(this.getComponent());
+      processorEClass.getESuperTypes().add(this.getIdentifiable());
+      dimensionEClass.getESuperTypes().add(this.getIdentifiable());
+      ramEClass.getESuperTypes().add(this.getIdentifiable());
+      displayEClass.getESuperTypes().add(this.getIdentifiable());
+      workflowEClass.getESuperTypes().add(this.getIdentifiable());
+      nodeEClass.getESuperTypes().add(this.getIdentifiable());
       taskEClass.getESuperTypes().add(this.getNode());
       automaticTaskEClass.getESuperTypes().add(this.getTask());
       manualTaskEClass.getESuperTypes().add(this.getTask());
@@ -1047,9 +1086,13 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       joinEClass.getESuperTypes().add(this.getNode());
       decisionEClass.getESuperTypes().add(this.getNode());
       mergeEClass.getESuperTypes().add(this.getNode());
+      flowEClass.getESuperTypes().add(this.getIdentifiable());
       weightedFlowEClass.getESuperTypes().add(this.getFlow());
 
       // Initialize classes, features, and operations; add parameters
+      initEClass(identifiableEClass, Identifiable.class, "Identifiable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEAttribute(getIdentifiable_Id(), ecorePackage.getEString(), "id", null, 0, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
       initEClass(componentEClass, Component.class, "Component", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEReference(getComponent_Children(), this.getComponent(), this.getComponent_Parent(), "children", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
       initEReference(getComponent_Parent(), this.getComponent(), this.getComponent_Children(), "parent", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1087,7 +1130,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
       initEClass(ramEClass, org.eclipse.emfcloud.coffee.RAM.class, "RAM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEAttribute(getRAM_ClockSpeed(), ecorePackage.getEInt(), "clockSpeed", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
       initEAttribute(getRAM_Size(), ecorePackage.getEInt(), "size", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-      initEAttribute(getRAM_Type(), this.getRamType(), "type", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEAttribute(getRAM_RamType(), this.getRamType(), "ramType", null, 0, 1, org.eclipse.emfcloud.coffee.RAM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
       initEClass(displayEClass, Display.class, "Display", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEAttribute(getDisplay_Width(), ecorePackage.getEInt(), "width", null, 0, 1, Display.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

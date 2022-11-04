@@ -1,17 +1,12 @@
 /**
- * Copyright (c) 2021 EclipseSource and others.
- *
+ * Copyright (c) 2022 EclipseSource and others.
+ * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
- * https://www.eclipse.org/legal/epl-2.0.
- *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ * 
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
 package org.eclipse.emfcloud.coffee.util;
 
@@ -19,54 +14,35 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
-import org.eclipse.emfcloud.coffee.AutomaticTask;
-import org.eclipse.emfcloud.coffee.BrewingUnit;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
-import org.eclipse.emfcloud.coffee.Component;
-import org.eclipse.emfcloud.coffee.ControlUnit;
-import org.eclipse.emfcloud.coffee.Decision;
-import org.eclipse.emfcloud.coffee.Dimension;
-import org.eclipse.emfcloud.coffee.DipTray;
-import org.eclipse.emfcloud.coffee.Display;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Fork;
-import org.eclipse.emfcloud.coffee.Join;
-import org.eclipse.emfcloud.coffee.Machine;
-import org.eclipse.emfcloud.coffee.ManualTask;
-import org.eclipse.emfcloud.coffee.ManufactoringProcess;
-import org.eclipse.emfcloud.coffee.Merge;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Probability;
-import org.eclipse.emfcloud.coffee.Processor;
-import org.eclipse.emfcloud.coffee.RAM;
-import org.eclipse.emfcloud.coffee.RamType;
-import org.eclipse.emfcloud.coffee.SocketConnectorType;
-import org.eclipse.emfcloud.coffee.Task;
-import org.eclipse.emfcloud.coffee.WaterTank;
-import org.eclipse.emfcloud.coffee.WeightedFlow;
-import org.eclipse.emfcloud.coffee.Workflow;
+
+import org.eclipse.emfcloud.coffee.*;
 
 /**
- * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
- * -->
- *
+ * <!-- begin-user-doc -->
+ * The <b>Validator</b> for the model.
+ * <!-- end-user-doc -->
  * @see org.eclipse.emfcloud.coffee.CoffeePackage
  * @generated
  */
 public class CoffeeValidator extends EObjectValidator {
    /**
     * The cached model package
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final CoffeeValidator INSTANCE = new CoffeeValidator();
 
    /**
     * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @see org.eclipse.emf.common.util.Diagnostic#getSource()
     * @see org.eclipse.emf.common.util.Diagnostic#getCode()
     * @generated
@@ -74,74 +50,73 @@ public class CoffeeValidator extends EObjectValidator {
    public static final String DIAGNOSTIC_SOURCE = "org.eclipse.emfcloud.coffee";
 
    /**
-    * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for
-    * constraint 'Has Cycle' of 'Node'. <!-- begin-user-doc --> <!-- end-user-doc
-    * -->
-    *
+    * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Cycle' of 'Node'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int NODE__HAS_CYCLE = 1;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has At Most One Incoming' of 'Task'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int TASK__HAS_AT_MOST_ONE_INCOMING = 2;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has At Most One Outgoing' of 'Task'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int TASK__HAS_AT_MOST_ONE_OUTGOING = 3;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Used' of 'Task'.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int TASK__IS_USED = 4;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has One Incoming' of 'Decision'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int DECISION__HAS_ONE_INCOMING = 5;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Two Outgoing' of 'Decision'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int DECISION__HAS_TWO_OUTGOING = 6;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Two Incoming' of 'Merge'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int MERGE__HAS_TWO_INCOMING = 7;
 
    /**
     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has One Outgoing' of 'Merge'.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public static final int MERGE__HAS_ONE_OUTGOING = 8;
 
    /**
-    * A constant with a fixed name that can be used as the base value for
-    * additional hand written constants. <!-- begin-user-doc --> <!-- end-user-doc
-    * -->
-    *
+    * A constant with a fixed name that can be used as the base value for additional hand written constants.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 8;
@@ -155,9 +130,9 @@ public class CoffeeValidator extends EObjectValidator {
    protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
    /**
-    * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc
-    * -->
-    *
+    * Creates an instance of the switch.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public CoffeeValidator() {
@@ -166,8 +141,8 @@ public class CoffeeValidator extends EObjectValidator {
 
    /**
     * Returns the package of this validator switch.
-    * <!-- begin-user-doc --> <!--
-    * end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
@@ -177,12 +152,15 @@ public class CoffeeValidator extends EObjectValidator {
 
    /**
     * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
    protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
       switch (classifierID) {
+         case CoffeePackage.IDENTIFIABLE:
+            return validateIdentifiable((Identifiable)value, diagnostics, context);
          case CoffeePackage.COMPONENT:
             return validateComponent((Component)value, diagnostics, context);
          case CoffeePackage.MACHINE:
@@ -241,7 +219,17 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   public boolean validateIdentifiable(Identifiable identifiable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+      return validate_EveryDefaultConstraint(identifiable, diagnostics, context);
+   }
+
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateComponent(Component component, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -249,7 +237,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateMachine(Machine machine, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -257,7 +246,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateControlUnit(ControlUnit controlUnit, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -265,7 +255,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateBrewingUnit(BrewingUnit brewingUnit, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -273,7 +264,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDipTray(DipTray dipTray, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -281,7 +273,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateWaterTank(WaterTank waterTank, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -289,7 +282,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateProcessor(Processor processor, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -297,7 +291,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDimension(Dimension dimension, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -305,7 +300,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateRAM(RAM ram, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -313,7 +309,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDisplay(Display display, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -321,7 +318,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateWorkflow(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -329,7 +327,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateNode(Node node, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -357,7 +356,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -378,9 +378,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasAtMostOneIncoming constraint of '<em>Task</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasAtMostOneIncoming constraint of '<em>Task</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTask_hasAtMostOneIncoming(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -388,9 +388,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasAtMostOneOutgoing constraint of '<em>Task</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasAtMostOneOutgoing constraint of '<em>Task</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTask_hasAtMostOneOutgoing(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -408,7 +408,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateAutomaticTask(AutomaticTask automaticTask, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -429,7 +430,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateManualTask(ManualTask manualTask, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -450,7 +452,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateFork(Fork fork, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -468,7 +471,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateJoin(Join join, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -486,7 +490,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDecision(Decision decision, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -506,9 +511,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasOneIncoming constraint of '<em>Decision</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasOneIncoming constraint of '<em>Decision</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDecision_hasOneIncoming(Decision decision, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -516,9 +521,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasTwoOutgoing constraint of '<em>Decision</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasTwoOutgoing constraint of '<em>Decision</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateDecision_hasTwoOutgoing(Decision decision, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -526,7 +531,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateMerge(Merge merge, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -546,9 +552,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasTwoIncoming constraint of '<em>Merge</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasTwoIncoming constraint of '<em>Merge</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateMerge_hasTwoIncoming(Merge merge, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -556,9 +562,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the hasOneOutgoing constraint of '<em>Merge</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the hasOneOutgoing constraint of '<em>Merge</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateMerge_hasOneOutgoing(Merge merge, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -566,7 +572,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateFlow(Flow flow, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -574,7 +581,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateWeightedFlow(WeightedFlow weightedFlow, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -582,7 +590,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateSocketConnectorType(SocketConnectorType socketConnectorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -590,7 +599,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateManufactoringProcess(ManufactoringProcess manufactoringProcess, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -598,7 +608,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateRamType(RamType ramType, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -606,7 +617,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateProbability(Probability probability, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -614,7 +626,8 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTaskName(String taskName, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -625,11 +638,13 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     * @see #validateTaskName_Pattern
     */
-   public static final PatternMatcher [][] TASK_NAME__PATTERN__VALUES = new PatternMatcher [][] {
+   public static final  PatternMatcher [][] TASK_NAME__PATTERN__VALUES =
+      new PatternMatcher [][] {
          new PatternMatcher [] {
             XMLTypeUtil.createPatternMatcher("[a-zA-Z0-9%20\\- ]+")
          }
@@ -637,8 +652,8 @@ public class CoffeeValidator extends EObjectValidator {
 
    /**
     * Validates the Pattern constraint of '<em>Task Name</em>'.
-    * <!-- begin-user-doc
-    * --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTaskName_Pattern(String taskName, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -646,9 +661,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the MinLength constraint of '<em>Task Name</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the MinLength constraint of '<em>Task Name</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTaskName_MinLength(String taskName, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -660,9 +675,9 @@ public class CoffeeValidator extends EObjectValidator {
    }
 
    /**
-    * Validates the MaxLength constraint of '<em>Task Name</em>'. <!--
-    * begin-user-doc --> <!-- end-user-doc -->
-    *
+    * Validates the MaxLength constraint of '<em>Task Name</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    public boolean validateTaskName_MaxLength(String taskName, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -675,7 +690,8 @@ public class CoffeeValidator extends EObjectValidator {
 
    /**
     * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
     * @generated
     */
    @Override
@@ -686,4 +702,4 @@ public class CoffeeValidator extends EObjectValidator {
       return super.getResourceLocator();
    }
 
-} // CoffeeValidator
+} //CoffeeValidator
