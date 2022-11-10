@@ -41,7 +41,7 @@
     "lint": "eslint -c ../.eslintrc.js --ext .ts,.tsx ./src",
     "build": "tsc",
     "watch": "tsc -w",
-    "package": "vsce package && copyfiles coffee-workflow-analyzer-editor-0.1.0.vsix ../browser-app/plugins/"
+    "package": "vsce package --yarn && copyfiles coffee-workflow-analyzer-editor-0.1.0.vsix ../browser-app/plugins/"
   },
   "categories": [
     "Programming Languages"
