@@ -22,7 +22,7 @@ import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib
 import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
 import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { inject, injectable, postConstruct } from 'inversify';
-import * as React from 'react';
+import * as React from '@theia/core/shared/react';
 
 /* eslint-disable no-invalid-this */
 
@@ -532,7 +532,7 @@ export class WelcomePageWidget extends ReactWidget {
     protected startDebugCpp = (): Promise<unknown> => this.startDebug('Debug SuperBrewer C++');
 
     private startDebug = (configName: string): Promise<unknown> => {
-        const config = Array.from(this.debugConfigurationManager.all).find(c => c.configuration.name === configName);
+        const config = Array.from(this.debugConfigurationManager.all).find(c => c.configuration && c.configuration.name === configName);
         return this.commandRegistry.executeCommand(DebugCommands.START.id, config);
     };
 }

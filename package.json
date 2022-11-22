@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "engines": {
     "yarn": ">=1.7.0",
-    "node": ">=14 <16"
+    "node": ">=14.18.0"
   },
   "license": "(EPL-2.0 OR MIT)",
   "contributors": [
@@ -21,10 +21,14 @@
   "homepage": "https://www.eclipse.org/emfcloud/",
   "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
   "scripts": {
-    "build": "yarn build:backend && yarn build:client",
-    "build:client": "yarn --cwd client --ignore-engines",
+    "build": "yarn build:backend && yarn build:client && yarn copy:servers",
+    "build:production": "yarn build:backend && yarn build:client:production && yarn copy:servers",
+    "build:client": "yarn client --ignore-engines && yarn client development",
+    "build:client:production": "yarn client --ignore-engines && yarn client production",
     "build:backend": "cd backend/releng/org.eclipse.emfcloud.coffee.parent && mvn clean verify",
-    "start": "yarn --cwd client start",
-    "start:debug": "yarn --cwd client start:debug"
+    "client": "yarn -s --cwd client",
+    "copy:servers": "yarn client copy:servers",
+    "start": "yarn client start",
+    "start:debug": "yarn client start:debug"
   }
 }
