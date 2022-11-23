@@ -51,13 +51,16 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cAssertionsAssertionParserRuleCall_7_2_1_0 = (RuleCall)cAssertionsAssignment_7_2_1.eContents().get(0);
 		
 		//WorkflowConfiguration:
-		//	'machine' ':' machine=STRING
-		//	'workflow' ':' model=STRING
-		//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
+		//    'machine' ':' machine=STRING
+		//    'workflow' ':' model=STRING
+		//    (probConf=ProbabilityConfiguration)?
+		//    ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'machine' ':' machine=STRING 'workflow' ':' model=STRING probConf=ProbabilityConfiguration? ('assertions'
-		//assertions+=Assertion (',' assertions+=Assertion)*)?
+		//'machine' ':' machine=STRING
+		//'workflow' ':' model=STRING
+		//(probConf=ProbabilityConfiguration)?
+		//('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?
 		public Group getGroup() { return cGroup; }
 		
 		//'machine'
@@ -84,7 +87,7 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getModelSTRINGTerminalRuleCall_5_0() { return cModelSTRINGTerminalRuleCall_5_0; }
 		
-		//probConf=ProbabilityConfiguration?
+		//(probConf=ProbabilityConfiguration)?
 		public Assignment getProbConfAssignment_6() { return cProbConfAssignment_6; }
 		
 		//ProbabilityConfiguration
@@ -124,7 +127,7 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cAfterSTRINGTerminalRuleCall_2_0 = (RuleCall)cAfterAssignment_2.eContents().get(0);
 		
 		//Assertion:
-		//	before=STRING '=>' after=STRING;
+		//    before=STRING '=>' after=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//before=STRING '=>' after=STRING
@@ -166,7 +169,7 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cHighFloatParserRuleCall_2_2_0 = (RuleCall)cHighAssignment_2_2.eContents().get(0);
 		
 		//ProbabilityConfiguration:
-		//	('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float);
+		//    ('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float);
 		@Override public ParserRule getRule() { return rule; }
 		
 		//('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float)
@@ -227,8 +230,8 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//Float ecore::EFloat:
-		//	INT '.' INT;
+		//Float returns ecore::EFloat:
+		//    INT '.' INT;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//INT '.' INT
@@ -293,9 +296,10 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 
 	
 	//WorkflowConfiguration:
-	//	'machine' ':' machine=STRING
-	//	'workflow' ':' model=STRING
-	//	probConf=ProbabilityConfiguration? ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
+	//    'machine' ':' machine=STRING
+	//    'workflow' ':' model=STRING
+	//    (probConf=ProbabilityConfiguration)?
+	//    ('assertions' assertions+=Assertion (',' assertions+=Assertion)*)?;
 	public WorkflowConfigurationElements getWorkflowConfigurationAccess() {
 		return pWorkflowConfiguration;
 	}
@@ -305,7 +309,7 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Assertion:
-	//	before=STRING '=>' after=STRING;
+	//    before=STRING '=>' after=STRING;
 	public AssertionElements getAssertionAccess() {
 		return pAssertion;
 	}
@@ -315,7 +319,7 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//ProbabilityConfiguration:
-	//	('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float);
+	//    ('probabilities' 'low' ':' low=Float) ('medium' ':' medium=Float) ('high' ':' high=Float);
 	public ProbabilityConfigurationElements getProbabilityConfigurationAccess() {
 		return pProbabilityConfiguration;
 	}
@@ -324,8 +328,8 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getProbabilityConfigurationAccess().getRule();
 	}
 	
-	//Float ecore::EFloat:
-	//	INT '.' INT;
+	//Float returns ecore::EFloat:
+	//    INT '.' INT;
 	public FloatElements getFloatAccess() {
 		return pFloat;
 	}
@@ -334,45 +338,40 @@ public class WorkflowGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getFloatAccess().getRule();
 	}
 	
-	//terminal ID:
-	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
 	}
 	
-	//terminal INT returns ecore::EInt:
-	//	'0'..'9'+;
+	//terminal INT returns ecore::EInt: ('0'..'9')+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	}
 	
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' |
-	//	"'" ('\\' . | !('\\' | "'"))* "'";
+	//            '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+	//            "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+	//        ;
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	}
 	
-	//terminal ML_COMMENT:
-	//	'/*'->'*/';
+	//terminal ML_COMMENT : '/*' -> '*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	}
 	
-	//terminal SL_COMMENT:
-	//	'//' !('\n' | '\r')* ('\r'? '\n')?;
+	//terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaTerminals.getSL_COMMENTRule();
 	}
 	
-	//terminal WS:
-	//	' ' | '\t' | '\r' | '\n'+;
+	//terminal WS         : (' '|'\t'|'\r'|'\n')+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	}
 	
-	//terminal ANY_OTHER:
-	//	.;
+	//terminal ANY_OTHER: .;
 	public TerminalRule getANY_OTHERRule() {
 		return gaTerminals.getANY_OTHERRule();
 	}
