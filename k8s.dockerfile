@@ -1,15 +1,14 @@
-# Setup dev environment
 FROM node:16-bullseye as build-stage
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git libxkbfile-dev libsecret-1-dev bash libsecret-1-0  maven openjdk-11-jdk
 
-# Theia build dependencies
+# Theia dependencies
 RUN  export DEBIAN_FRONTEND=noninteractive \
-	&& apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev \
-	build-essential libssl-dev
+    && apt-get -y install --no-install-recommends \
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev \
+    build-essential libssl-dev
 
 
 WORKDIR /coffee-editor
@@ -23,26 +22,33 @@ RUN mvn clean verify
 WORKDIR /coffee-editor/client
 
 RUN yarn install &&\
-	yarn copy:servers &
+    yarn copy:servers &&\
+    yarn production &&\
+    yarn autoclean --init && \
+    echo *.ts >> .yarnclean && \
+    echo *.ts.map >> .yarnclean && \
+    echo *.spec.* >> .yarnclean && \
+    yarn autoclean --force && \
+    yarn cache clean
 
 FROM node:16-bullseye-slim as production-stage
 
 
 # Theia dependencies/Java
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-	&& apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev openjdk-11-jdk \
-	build-essential libssl-dev  wget gnupg git mvn
+    && apt-get -y install --no-install-recommends \
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev openjdk-11-jdk \
+    build-essential libssl-dev  wget gnupg git
 
 # C/C++ dependencies
 RUN add-apt-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-14 main'
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-	&& apt-get -y install  clangd-14 &&\
-	apt-get purge -y && \
-	apt-get clean
+    && apt-get -y install  clangd-14 &&\
+    apt-get purge -y && \
+    apt-get clean
 
 RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100
 
@@ -54,7 +60,6 @@ RUN chmod -R 750 /var/run/
 RUN useradd -ms /bin/bash theia
 WORKDIR /coffee-editor
 COPY --chown=theia:theia --from=build-stage /coffee-editor/client ./client
-COPY --chown=theia:theia --from=build-stage /coffee-editor/backend ./backend
 
 WORKDIR /coffee-editor
 
