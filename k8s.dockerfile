@@ -3,8 +3,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y git libxkbfile-dev libsecret-1-dev bash libsecret-1-0  maven openjdk-11-jdk
 
 # Theia dependencies
-RUN  export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
+RUN apt-get -y install --no-install-recommends \
     software-properties-common \
     libxkbfile-dev \
     libsecret-1-dev \
@@ -32,10 +31,11 @@ RUN yarn install &&\
     yarn cache clean
 
 FROM node:16-bullseye-slim as production-stage
+ENV DEBIAN_FRONTEND noninteractive
 
 
 # Theia dependencies/Java
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update \
     && apt-get -y install --no-install-recommends \
     software-properties-common \
     libxkbfile-dev \
@@ -45,8 +45,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # C/C++ dependencies
 RUN add-apt-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-14 main'
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install  clangd-14 &&\
+RUN apt-get update &&\
+    apt-get -y install  clangd-14 &&\
     apt-get purge -y && \
     apt-get clean
 
