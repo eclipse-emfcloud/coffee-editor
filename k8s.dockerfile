@@ -34,30 +34,6 @@ COPY ./client ./client
 
 WORKDIR /coffee-editor/client
 
-# Copy backend jars
-## ModelServer
-COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar \
-    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar
-## ModelServer Log4JConfig
-COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/log4j2-embedded.xml \
-    /coffee-editor/client/coffee-servers/servers/model-server-log4j2-embedded.xml
-## GLSP Server
-COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar \
-    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar
-## Workflow LSP
-COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.dsl/linux/gtk/x86_64 \
-    /coffee-editor/client/coffee-servers/servers/wf-ls
-## Workflow Analyzer
-COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.analyzer/linux/gtk/x86_64 \
-    /coffee-editor/client/coffee-servers/servers/wf-analyzer
-## Java Codegenerator
-COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen/linux/gtk/x86_64 \
-    /coffee-editor/client/coffee-servers/servers/java-codegen
-## CPP Codegenerator
-COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen.cpp/linux/gtk/x86_64 \
-    /coffee-editor/client/coffee-servers/servers/cpp-codegen
-
-
 RUN yarn install &&\
     yarn production &&\
     yarn autoclean --init && \
@@ -97,6 +73,32 @@ RUN chmod -R 750 /var/run/
 RUN useradd -ms /bin/bash theia
 WORKDIR /coffee-editor
 COPY --chown=theia:theia  --from=frontend /coffee-editor/client ./client
+
+# Copy backend jars
+## ModelServer
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar \
+    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar
+## ModelServer Log4JConfig
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/log4j2-embedded.xml \
+    /coffee-editor/client/coffee-servers/servers/model-server-log4j2-embedded.xml
+## GLSP Server
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar \
+    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar
+## Workflow LSP
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.dsl/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/wf-ls
+## Workflow Analyzer
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.analyzer/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/wf-analyzer
+## Java Codegenerator
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/java-codegen
+## CPP Codegenerator
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen.cpp/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/cpp-codegen
+## Model
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar \
+    /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar
 
 WORKDIR /coffee-editor
 
