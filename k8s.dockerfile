@@ -1,27 +1,64 @@
-FROM node:16-bullseye as build-stage
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y git libxkbfile-dev libsecret-1-dev bash libsecret-1-0  maven openjdk-11-jdk
+# Setup dev environment
+FROM node:16-bullseye as build
 
-# Theia dependencies
-RUN apt-get -y install --no-install-recommends \
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && \
+    apt-get install -y git bash maven openjdk-11-jdk
+
+# Theia build dependencies
+RUN  apt-get -y install --no-install-recommends \
     software-properties-common \
     libxkbfile-dev \
     libsecret-1-dev \
     build-essential libssl-dev
 
 
+# Build the Java backend
+FROM build AS backend
+
 WORKDIR /coffee-editor
 
 COPY ./backend ./backend
-COPY ./client ./client
 
 WORKDIR /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.parent/
+
 RUN mvn clean verify
+
+# Build frontend
+FROM build AS frontend
+
+WORKDIR /coffee-editor
+
+COPY ./client ./client
 
 WORKDIR /coffee-editor/client
 
+# Copy backend jars
+## ModelServer
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar \
+    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar
+## ModelServer Log4JConfig
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.modelserver/log4j2-embedded.xml \
+    /coffee-editor/client/coffee-servers/servers/model-server-log4j2-embedded.xml
+## GLSP Server
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar \
+    /coffee-editor/client/coffee-servers/servers/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar
+## Workflow LSP
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.dsl/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/wf-ls
+## Workflow Analyzer
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.workflow.analyzer/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/wf-analyzer
+## Java Codegenerator
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/java-codegen
+## CPP Codegenerator
+COPY --from=backend /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.product/target/products/org.eclipse.emfcloud.coffee.product.codegen.cpp/linux/gtk/x86_64 \
+    /coffee-editor/client/coffee-servers/servers/cpp-codegen
+
+
 RUN yarn install &&\
-    yarn copy:servers &&\
     yarn production &&\
     yarn autoclean --init && \
     echo *.ts >> .yarnclean && \
@@ -30,7 +67,8 @@ RUN yarn install &&\
     yarn autoclean --force && \
     yarn cache clean
 
-FROM node:16-bullseye-slim as production-stage
+# Build production image
+FROM node:16-bullseye-slim as production
 ENV DEBIAN_FRONTEND noninteractive
 
 
@@ -52,14 +90,13 @@ RUN apt-get update &&\
 
 RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100
 
-
 # Make readable for root only
 RUN chmod -R 750 /var/run/
 
 # Create a user to not run the container as root
 RUN useradd -ms /bin/bash theia
 WORKDIR /coffee-editor
-COPY --chown=theia:theia --from=build-stage /coffee-editor/client ./client
+COPY --chown=theia:theia  --from=frontend /coffee-editor/client ./client
 
 WORKDIR /coffee-editor
 

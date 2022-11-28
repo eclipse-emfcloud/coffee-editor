@@ -1,7 +1,10 @@
 # Setup dev environment
-FROM node:16-bullseye as build-stage
+FROM node:16-bullseye as build
+
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y git libxkbfile-dev libsecret-1-dev bash libsecret-1-0  maven openjdk-11-jdk
+
+RUN apt-get update && \
+	apt-get install -y git bash maven openjdk-11-jdk
 
 # Theia build dependencies
 RUN  apt-get -y install --no-install-recommends \
@@ -11,22 +14,32 @@ RUN  apt-get -y install --no-install-recommends \
 	build-essential libssl-dev
 
 
+# Build the Java backend
+FROM build AS backend
+
 WORKDIR /coffee-editor
 
 COPY ./backend ./backend
-COPY ./client ./client
 
 WORKDIR /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.parent/
+
 RUN mvn clean verify
+
+# Build frontend
+FROM build AS frontend
+
+WORKDIR /coffee-editor
+
+COPY ./client ./client
 
 WORKDIR /coffee-editor/client
 
-RUN yarn install &&\
-	yarn copy:servers &
+RUN yarn install
 
-FROM node:16-bullseye-slim as production-stage
+# Build production image
+FROM node:16-bullseye-slim as production
+
 ENV DEBIAN_FRONTEND noninteractive
-
 
 # Theia dependencies/Java
 RUN apt-get update &&\
@@ -52,11 +65,16 @@ RUN chmod -R 750 /var/run/
 
 # Create a user to not run the container as root
 RUN useradd -ms /bin/bash theia
-WORKDIR /coffee-editor
-COPY --chown=theia:theia --from=build-stage /coffee-editor/client ./client
-COPY --chown=theia:theia --from=build-stage /coffee-editor/backend ./backend
 
+# Copy frontend & backend from build-stage
 WORKDIR /coffee-editor
+COPY --chown=theia:theia --from=frontend /coffee-editor/client ./client
+COPY --chown=theia:theia --from=backend /coffee-editor/backend ./backend
+
+WORKDIR /coffee-editor/client
+RUN yarn copy:servers
+WORKDIR /coffee-editor
+
 
 # Copy favicon
 RUN cp ./client/favicon.ico ./client/browser-app/lib
