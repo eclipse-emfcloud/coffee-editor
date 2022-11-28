@@ -1,21 +1,21 @@
 # Setup dev environment
-FROM ubuntu:18.04 AS environment
+FROM node:16-bullseye as build
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-	apt-get upgrade -y && \
-	apt-get install -y default-jdk maven && \
-	apt-get install wget build-essential cmake libopenblas-dev gnupg curl make git g++-multilib clangd-10 gdb libsecret-1-dev -y
+	apt-get install -y git bash maven openjdk-11-jdk
 
-RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
+# Theia build dependencies
+RUN  apt-get -y install --no-install-recommends \
+	software-properties-common \
+	libxkbfile-dev \
+	libsecret-1-dev \
+	build-essential libssl-dev
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-	apt-get install nodejs -y && \
-	npm install -g yarn
 
 # Build the Java backend
-FROM environment AS backend
+FROM build AS backend
 
 WORKDIR /coffee-editor
 
@@ -25,9 +25,8 @@ WORKDIR /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.parent/
 
 RUN mvn clean verify
 
-
 # Build frontend
-FROM environment AS frontend
+FROM build AS frontend
 
 WORKDIR /coffee-editor
 
@@ -36,24 +35,46 @@ COPY ./client ./client
 WORKDIR /coffee-editor/client
 
 RUN yarn install
-RUN yarn production
 
+# Build production image
+FROM node:16-bullseye-slim as production
 
-# Combine frontend and backend
-FROM environment AS application
+ENV DEBIAN_FRONTEND noninteractive
+
+# Theia dependencies/Java
+RUN apt-get update &&\
+	apt-get -y install --no-install-recommends \
+	software-properties-common \
+	libxkbfile-dev \
+	libsecret-1-dev openjdk-11-jdk \
+	build-essential libssl-dev  wget gnupg git maven
+
+# C/C++ dependencies
+RUN add-apt-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-14 main'
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+RUN apt-get update  &&\
+	apt-get -y install  clangd-14 &&\
+	apt-get purge -y && \
+	apt-get clean
+
+RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100
+
 
 # Make readable for root only
 RUN chmod -R 750 /var/run/
 
 # Create a user to not run the container as root
 RUN useradd -ms /bin/bash theia
+
+# Copy frontend & backend from build-stage
 WORKDIR /coffee-editor
 COPY --chown=theia:theia --from=frontend /coffee-editor/client ./client
-COPY --chown=theia:theia --from=backend /coffee-editor/backend/ ./backend
+COPY --chown=theia:theia --from=backend /coffee-editor/backend ./backend
 
 WORKDIR /coffee-editor/client
 RUN yarn copy:servers
 WORKDIR /coffee-editor
+
 
 # Copy favicon
 RUN cp ./client/favicon.ico ./client/browser-app/lib
@@ -69,7 +90,8 @@ RUN git init
 RUN git add *
 RUN git commit -m "init"
 
-# Start the browser-app
-WORKDIR /coffee-editor/client/browser-app
+
+WORKDIR /coffee-editor/client/browser-app/
 EXPOSE 3000
-CMD yarn start --hostname 0.0.0.0
+ENTRYPOINT [ "node", "/coffee-editor/client/browser-app/src-gen/backend/main.js" ]
+CMD [ "/coffee-editor/client/workspace/SuperBrewer3000", "--hostname=0.0.0.0","--port=3000","--plugins=local-dir:/coffee-editor/client/browser-app/plugins"]
