@@ -4,7 +4,7 @@ FROM node:16-bullseye as build
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    apt-get install -y git bash maven openjdk-11-jdk
+    apt-get install -y git bash maven openjdk-17-jdk
 
 # Theia build dependencies
 RUN apt-get -y install --no-install-recommends \
@@ -60,7 +60,7 @@ RUN apt-get update &&\
     apt-get -y install --no-install-recommends \
     software-properties-common \
     libxkbfile-dev \
-    libsecret-1-dev openjdk-11-jdk \
+    libsecret-1-dev openjdk-17-jdk \
     build-essential libssl-dev wget gnupg git gdb
 
 # C/C++ dependencies

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Workflow DSL" uid="org.eclipse.emfcloud.coffee.product.workflow.dsl" id="org.eclipse.emfcloud.coffee.workflow.dsl.ide.product" application="org.eclipse.emfcloud.coffee.workflow.dsl.ide.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
+<product name="Workflow DSL" uid="org.eclipse.emfcloud.coffee.product.workflow.dsl" id="org.eclipse.emfcloud.coffee.workflow.dsl.ide.product" application="org.eclipse.emfcloud.coffee.workflow.dsl.ide.application" version="0.1.0" useFeatures="false" includeLaunchers="false" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
@@ -94,7 +94,6 @@
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.util"/>
-      <plugin id="org.eclipse.pde.ds.lib"/>
       <plugin id="org.eclipse.xtend.lib"/>
       <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtext"/>
