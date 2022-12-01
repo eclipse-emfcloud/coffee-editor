@@ -3,4 +3,4 @@ dockerfiles
 .travis.yaml
 **/node_modules
 **/target
-web/**/plugins
+client/**/plugins
