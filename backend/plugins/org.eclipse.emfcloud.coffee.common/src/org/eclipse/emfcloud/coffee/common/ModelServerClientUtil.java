@@ -11,7 +11,6 @@
 package org.eclipse.emfcloud.coffee.common;
 
 import java.net.URI;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +26,7 @@ public final class ModelServerClientUtil {
    public static EObject loadResource(final URI uri) throws Exception {
       @SuppressWarnings("resource")
       ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL);
-      return client.get(Paths.get(uri).getFileName().toString(), ModelServerPathParametersV2.FORMAT_XMI).get().body();
+      return client.get(uri.toString(), ModelServerPathParametersV2.FORMAT_XMI).get().body();
    }
 
    @SuppressWarnings("IllegalThrows")

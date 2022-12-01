@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Code Gen" uid="org.eclipse.emfcloud.coffee.product.codegen" id="org.eclipse.emfcloud.coffee.codegen.java.application.product" application="org.eclipse.emfcloud.coffee.codegen.java.application.application" version="0.1.0" useFeatures="false" includeLaunchers="false">
+<product name="Code Gen" uid="org.eclipse.emfcloud.coffee.product.codegen" id="org.eclipse.emfcloud.coffee.codegen.java.application.product" application="org.eclipse.emfcloud.coffee.codegen.java.application.application" version="0.1.0" useFeatures="false" includeLaunchers="false" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
@@ -51,8 +51,6 @@
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.log4j"/>
       <plugin id="org.apache.xmlgraphics"/>
-      <plugin id="org.bouncycastle.bcpg"/>
-      <plugin id="org.bouncycastle.bcprov"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.databinding"/>
