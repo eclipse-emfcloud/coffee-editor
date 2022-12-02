@@ -1,3 +1,4 @@
+const year = new Date().getFullYear();
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
     extends: '@eclipse-glsp',
@@ -17,7 +18,7 @@ module.exports = {
                         {
                             pattern: '[\n\r]+ \\* Copyright \\([cC]\\) \\d{4}(-\\d{4})? .*[\n\r]+',
                             template: `
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) ${year} EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
