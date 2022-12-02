@@ -20,7 +20,8 @@
   "homepage": "https://www.eclipse.org/emfcloud/",
   "bugs": "https://github.com/eclipse-emfcloud/coffee-editor/issues",
   "scripts": {
-    "prepare": "lerna run prepare",
+    "prepare": "lerna run prepare && yarn build:extension",
+    "build:extension": "cd coffee-workflow-analyzer-editor && yarn",
     "rebuild:browser": "theia rebuild:browser",
     "production": "yarn --cwd browser-app production",
     "development": "yarn --cwd browser-app development",
@@ -50,7 +51,6 @@
       "coffee-servers",
       "coffee-welcome-page",
       "coffee-workflow-analyzer",
-      "coffee-workflow-analyzer-editor",
       "coffee-workflow-glsp",
       "coffee-workflow-glsp-theia"
     ]

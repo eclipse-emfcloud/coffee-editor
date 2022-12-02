@@ -10,14 +10,14 @@
  */
 /* eslint-disable import/no-unresolved */
 import * as net from 'net';
-import * as vscode from 'vscode';
-import { SocketMessageReader, SocketMessageWriter } from 'vscode-jsonrpc';
-import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient';
+
+import { ExtensionContext } from 'vscode';
+import { LanguageClient, LanguageClientOptions, ServerOptions, StreamInfo } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
 const DEFAULT_SOCKET_OPTS = 'localhost:5017';
 
-export function activate(_context: vscode.ExtensionContext): void {
+export function activate(_context: ExtensionContext): void {
     client = new LanguageClient('wfconfig', 'wfconfig', createServerOptions(), createClientOptions());
     client.start();
 }
@@ -27,11 +27,16 @@ function createClientOptions(): LanguageClientOptions {
 }
 
 function createServerOptions(): ServerOptions {
-    return async () => {
-        const socket = new net.Socket();
-        const transport = { reader: new SocketMessageReader(socket), writer: new SocketMessageWriter(socket) };
-        socket.connect(getSocketConnectOps(getSocketOpts()));
-        return transport;
+    // The server is a started as a separate app
+    const connectionInfo = getSocketConnectOps(getSocketOpts());
+    return () => {
+        // Connect to language server via socket
+        const socket = net.connect(connectionInfo);
+        const result: StreamInfo = {
+            writer: socket,
+            reader: socket
+        };
+        return Promise.resolve(result);
     };
 }
 
