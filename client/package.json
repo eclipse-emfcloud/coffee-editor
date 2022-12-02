@@ -50,7 +50,6 @@
       "coffee-servers",
       "coffee-welcome-page",
       "coffee-workflow-analyzer",
-      "coffee-workflow-analyzer-editor",
       "coffee-workflow-glsp",
       "coffee-workflow-glsp-theia"
     ]
