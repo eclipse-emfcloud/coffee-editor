@@ -34,7 +34,7 @@
     "vsce": "^2.14.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run build && npm run lint && npm run package",
+    "prepare": "yarn run clean && yarn run build && yarn lint && yarn package",
     "clean": "rimraf tsconfig.tsbuildinfo out",
     "lint": "eslint -c .eslintrc.js --ext .ts,.tsx ./src",
     "build": "tsc",

@@ -23,10 +23,9 @@
   "scripts": {
     "build": "yarn build:backend && yarn build:client && yarn copy:servers",
     "build:production": "yarn build:backend && yarn build:client:production && yarn copy:servers",
-    "build:client": "yarn client --ignore-engines && yarn build:extension && yarn client development",
+    "build:client": "yarn client --ignore-engines && yarn client development",
     "build:client:production": "yarn client --ignore-engines && yarn client production",
     "build:backend": "cd backend/releng/org.eclipse.emfcloud.coffee.parent && mvn clean verify",
-    "build:extension": "cd client/coffee-workflow-analyzer-editor && npm ci",
     "client": "yarn -s --cwd client",
     "copy:servers": "yarn client copy:servers",
     "start": "yarn client start",
