@@ -4,14 +4,14 @@ FROM node:16-bullseye as build
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-	apt-get install -y git bash maven openjdk-11-jdk
+    apt-get install -y git bash maven openjdk-11-jdk
 
 # Theia build dependencies
 RUN apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev \
-	build-essential libssl-dev
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev \
+    build-essential libssl-dev
 
 
 # Build the Java backend
@@ -36,12 +36,20 @@ COPY ./client ./client
 WORKDIR /coffee-editor/client
 
 RUN yarn install && \
-	yarn development
+    yarn production
 
 WORKDIR /coffee-editor
 COPY --from=backend /coffee-editor/backend ./backend
 WORKDIR /coffee-editor/client
 RUN yarn copy:servers
+
+RUN yarn autoclean --init && \
+    echo *.ts >> .yarnclean && \
+    echo *.ts.map >> .yarnclean && \
+    echo *.spec.* >> .yarnclean && \
+    yarn autoclean --force && \
+    yarn cache clean
+
 
 # Build production image
 FROM node:16-bullseye-slim as production
@@ -49,11 +57,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Theia dependencies/Java
 RUN apt-get update &&\
-	apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev openjdk-11-jdk \
-	build-essential libssl-dev  wget gnupg git gdb maven
+    apt-get -y install --no-install-recommends \
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev openjdk-11-jdk \
+    build-essential libssl-dev wget gnupg git gdb
 
 # C/C++ dependencies
 RUN add-apt-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-14 main'
@@ -70,9 +78,13 @@ RUN chmod -R 750 /var/run/
 # Create a user to not run the container as root
 RUN useradd -ms /bin/bash theia
 
-# Copy frontend & backend from build-stage
+# Copy frontend from build-stage
 WORKDIR /coffee-editor
-COPY --chown=theia:theia --from=frontend /coffee-editor/ .
+COPY --chown=theia:theia --from=frontend /coffee-editor/client ./client
+
+# Copy model to production stage (for model comparison)
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar \
+    /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar
 
 # Copy favicon
 RUN cp ./client/favicon.ico ./client/browser-app/lib

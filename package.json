@@ -26,6 +26,7 @@
     "build:client": "yarn client --ignore-engines && yarn client development",
     "build:client:production": "yarn client --ignore-engines && yarn client production",
     "build:backend": "cd backend/releng/org.eclipse.emfcloud.coffee.parent && mvn clean verify",
+    "build:docker": "docker build -t \"coffee-editor:latest\" .",
     "client": "yarn -s --cwd client",
     "copy:servers": "yarn client copy:servers",
     "start": "yarn client start",
