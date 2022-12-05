@@ -4,14 +4,14 @@ FROM node:16-bullseye as build
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-	apt-get install -y git bash maven openjdk-11-jdk
+    apt-get install -y git bash maven openjdk-11-jdk
 
 # Theia build dependencies
-RUN  apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev \
-	build-essential libssl-dev
+RUN apt-get -y install --no-install-recommends \
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev \
+    build-essential libssl-dev
 
 
 # Build the Java backend
@@ -25,6 +25,7 @@ WORKDIR /coffee-editor/backend/releng/org.eclipse.emfcloud.coffee.parent/
 
 RUN mvn clean verify
 
+
 # Build frontend
 FROM build AS frontend
 
@@ -34,31 +35,42 @@ COPY ./client ./client
 
 WORKDIR /coffee-editor/client
 
-RUN yarn install
+RUN yarn install && \
+    yarn production
+
+WORKDIR /coffee-editor
+COPY --from=backend /coffee-editor/backend ./backend
+WORKDIR /coffee-editor/client
+RUN yarn copy:servers
+
+RUN yarn autoclean --init && \
+    echo *.ts >> .yarnclean && \
+    echo *.ts.map >> .yarnclean && \
+    echo *.spec.* >> .yarnclean && \
+    yarn autoclean --force && \
+    yarn cache clean
+
 
 # Build production image
 FROM node:16-bullseye-slim as production
-
 ENV DEBIAN_FRONTEND noninteractive
 
 # Theia dependencies/Java
 RUN apt-get update &&\
-	apt-get -y install --no-install-recommends \
-	software-properties-common \
-	libxkbfile-dev \
-	libsecret-1-dev openjdk-11-jdk \
-	build-essential libssl-dev  wget gnupg git maven
+    apt-get -y install --no-install-recommends \
+    software-properties-common \
+    libxkbfile-dev \
+    libsecret-1-dev openjdk-11-jdk \
+    build-essential libssl-dev wget gnupg git gdb
 
 # C/C++ dependencies
 RUN add-apt-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-14 main'
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-RUN apt-get update  &&\
-	apt-get -y install  clangd-14 &&\
-	apt-get purge -y && \
-	apt-get clean
-
+RUN apt-get update &&\
+    apt-get -y install clangd-14 cmake &&\
+    apt-get purge -y && \
+    apt-get clean
 RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100
-
 
 # Make readable for root only
 RUN chmod -R 750 /var/run/
@@ -66,15 +78,13 @@ RUN chmod -R 750 /var/run/
 # Create a user to not run the container as root
 RUN useradd -ms /bin/bash theia
 
-# Copy frontend & backend from build-stage
+# Copy frontend from build-stage
 WORKDIR /coffee-editor
 COPY --chown=theia:theia --from=frontend /coffee-editor/client ./client
-COPY --chown=theia:theia --from=backend /coffee-editor/backend ./backend
 
-WORKDIR /coffee-editor/client
-RUN yarn copy:servers
-WORKDIR /coffee-editor
-
+# Copy model to production stage (for model comparison)
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar \
+    /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar
 
 # Copy favicon
 RUN cp ./client/favicon.ico ./client/browser-app/lib
@@ -87,9 +97,8 @@ WORKDIR /coffee-editor/client/workspace/SuperBrewer3000
 RUN git config --global user.name "Test User"
 RUN git config --global user.email "test@example.com"
 RUN git init
-RUN git add *
+RUN git add .
 RUN git commit -m "init"
-
 
 WORKDIR /coffee-editor/client/browser-app/
 EXPOSE 3000

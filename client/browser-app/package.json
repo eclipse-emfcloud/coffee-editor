@@ -71,7 +71,18 @@
     "download:plugins": "theia download:plugins"
   },
   "theia": {
-    "target": "browser"
+    "target": "browser",
+    "frontend": {
+      "config": {
+        "applicationName": "emf.cloud Coffee Editor",
+        "defaultIconTheme": "theia-file-icons",
+        "preferences": {
+          "security.workspace.trust.startupPrompt": "never",
+          "security.workspace.trust.enabled": false,
+          "files.autoSave": "off"
+        }
+      }
+    }
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {

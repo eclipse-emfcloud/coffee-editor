@@ -16,6 +16,10 @@ To build the docker container run the following command once:
 
     docker build -t "coffee-editor:latest" .
 
+or use the provided yarn script:
+
+    yarn build:docker
+
 Now you can start the Theia Demo app using the following command (or change the host port to your preferences):
 
     docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest
