@@ -23,7 +23,7 @@
     "src"
   ],
   "dependencies": {
-    "@eclipsesource/comparison-extension": "0.0.1-next.20220920-101703",
+    "@eclipsesource/comparison-extension": "0.0.1-next.20230109-144401",
     "coffee-workflow-glsp-theia": "0.1.0",
     "@theia/core": "^1.0.0",
     "@theia/git": "^1.0.0",
