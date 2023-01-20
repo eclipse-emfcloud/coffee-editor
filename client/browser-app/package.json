@@ -86,15 +86,12 @@
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "java-debug": "https://github.com/microsoft/vscode-java-debug/releases/download/0.43.0/vscjava.vscode-java-debug-0.43.0.vsix",
-    "java-lsp": "https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-1.1.0-465.vsix",
-    "vscode-builtin-cpp": "https://open-vsx.org/api/vscode/cpp/1.62.3/file/vscode.cpp-1.62.3.vsix",
-    "vscode-builtin-java": "https://open-vsx.org/api/vscode/java/1.62.3/file/vscode.java-1.62.3.vsix",
-    "vscode-builtin-json": "https://open-vsx.org/api/vscode/json/1.62.3/file/vscode.json-1.62.3.vsix",
-    "vscode-builtin-json-language-features": "https://open-vsx.org/api/vscode/json-language-features/1.62.3/file/vscode.json-language-features-1.62.3.vsix",
-    "vscode-builtin-xml": "https://open-vsx.org/api/vscode/xml/1.62.3/file/vscode.xml-1.62.3.vsix",
-    "vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.15/file/llvm-vs-code-extensions.vscode-clangd-0.1.15.vsix",
-    "vscode-cmake": "https://open-vsx.org/api/ms-vscode/cmake-tools/1.11.26/file/ms-vscode.cmake-tools-1.11.26.vsix",
-    "cdt-gdb-vscode": "https://open-vsx.org/api/eclipse-cdt/cdt-gdb-vscode/0.0.91/file/eclipse-cdt.cdt-gdb-vscode-0.0.91.vsix"
+    "java-debug": "https://open-vsx.org/api/vscjava/vscode-java-debug/0.47.0/file/vscjava.vscode-java-debug-0.47.0.vsix",
+    "java-lsp": "https://open-vsx.org/api/redhat/java/1.14.0/file/redhat.java-1.14.0.vsix",
+    "vscode-builtin-cpp": "https://open-vsx.org/api/vscode/cpp/1.64.2/file/vscode.cpp-1.64.2.vsix",
+    "vscode-builtin-java": "https://open-vsx.org/api/vscode/java/1.64.2/file/vscode.java-1.64.2.vsix",
+    "vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.23/file/llvm-vs-code-extensions.vscode-clangd-0.1.23.vsix",
+    "vscode-cmake": "https://open-vsx.org/api/ms-vscode/cmake-tools/1.13.40/file/ms-vscode.cmake-tools-1.13.40.vsix",
+    "cdt-gdb-vscode": "https://open-vsx.org/api/eclipse-cdt/cdt-gdb-vscode/0.0.93/file/eclipse-cdt.cdt-gdb-vscode-0.0.93.vsix"
   }
 }
