@@ -148,6 +148,10 @@ export class WelcomePageWidget extends ReactWidget {
                 </div>
                 <details>
                     <summary>{this.renderDetailSummary('Java support', 'java-icon medium-purple gs-language-icon')}</summary>
+                    <div>
+                        As the Java LSP can take some time to start and there is no queue for tasks, we recommend that you wait until the
+                        Java LSP is completely started. You can find the status in the status bar on the left hand side.
+                    </div>
                     <div className='flex-grid gs-nested-section'>
                         <div className='col'>
                             {this.renderFeatureSection(
