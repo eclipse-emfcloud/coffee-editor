@@ -1,7 +1,8 @@
 {
   "private": true,
+  "name": "coffee-editor-parent",
   "description": "Eclipse EMF.cloud Coffee Editor Parent",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "engines": {
     "yarn": ">=1.7.0",
     "node": ">=14.18.0"
