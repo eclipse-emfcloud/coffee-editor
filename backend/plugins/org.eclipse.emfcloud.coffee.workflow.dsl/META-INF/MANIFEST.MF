@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Workflow DSL
 Bundle-Vendor: EclipseSource
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow.dsl;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="[2.23.0,3.0.0)",
  org.eclipse.emf.common,
- org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0"
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.emfcloud.coffee.workflow.dsl,
  org.eclipse.emfcloud.coffee.workflow.dsl.formatting2,
