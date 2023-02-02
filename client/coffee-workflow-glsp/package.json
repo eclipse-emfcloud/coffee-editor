@@ -2,7 +2,7 @@
   "name": "coffee-workflow-glsp",
   "description": "GLSP sprotty diagrams for the Workflow DSL",
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",

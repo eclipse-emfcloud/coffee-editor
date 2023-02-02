@@ -4,7 +4,7 @@
     "theia-extension"
   ],
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -24,13 +24,13 @@
   ],
   "dependencies": {
     "@theia/core": "^1.0.0",
-    "@theia/git": "^1.0.0",
-    "@theia/workspace": "^1.0.0",
-    "@theia/keymaps": "^1.0.0",
-    "@theia/filesystem": "^1.0.0",
-    "@theia/navigator": "^1.0.0",
     "@theia/debug": "^1.0.0",
-    "coffee-java-extension": "0.1.0"
+    "@theia/filesystem": "^1.0.0",
+    "@theia/git": "^1.0.0",
+    "@theia/keymaps": "^1.0.0",
+    "@theia/navigator": "^1.0.0",
+    "@theia/workspace": "^1.0.0",
+    "coffee-java-extension": "^0.8.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

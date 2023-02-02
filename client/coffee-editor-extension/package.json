@@ -4,7 +4,7 @@
     "theia-extension"
   ],
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -25,10 +25,10 @@
   "dependencies": {
     "@eclipse-emfcloud/modelserver-client": "0.8.0-next",
     "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
+    "@eclipse-emfcloud/theia-tree-editor": "0.7.0-next",
     "@theia/core": "^1.0.0",
     "@theia/filesystem": "^1.0.0",
-    "@theia/workspace": "^1.0.0",
-    "@eclipse-emfcloud/theia-tree-editor": "0.7.0-next"
+    "@theia/workspace": "^1.0.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

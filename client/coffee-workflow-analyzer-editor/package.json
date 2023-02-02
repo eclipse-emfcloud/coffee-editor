@@ -4,7 +4,7 @@
   "displayName": "coffee-workflow-analyzer-editor",
   "publisher": "Eclipse-EMFcloud",
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -39,7 +39,7 @@
     "lint": "eslint -c .eslintrc.js --ext .ts,.tsx ./src",
     "build": "tsc",
     "watch": "tsc -w",
-    "package": "vsce package && copyfiles coffee-workflow-analyzer-editor-0.1.0.vsix ../browser-app/plugins/"
+    "package": "vsce package && copyfiles coffee-workflow-analyzer-editor-0.8.0.vsix ../browser-app/plugins/"
   },
   "categories": [
     "Programming Languages"

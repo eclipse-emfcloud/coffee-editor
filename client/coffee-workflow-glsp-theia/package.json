@@ -5,7 +5,7 @@
   ],
   "description": "GLSP editor integration for coffee models",
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -24,10 +24,10 @@
     "src"
   ],
   "dependencies": {
-    "@eclipse-glsp/theia-integration": "1.1.0-next",
     "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
-    "coffee-workflow-glsp": "0.1.0",
-    "balloon-css": "^0.5.0"
+    "@eclipse-glsp/theia-integration": "1.1.0-next",
+    "balloon-css": "^0.5.0",
+    "coffee-workflow-glsp": "^0.8.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
