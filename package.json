@@ -31,6 +31,7 @@
     "client": "yarn -s --cwd client",
     "copy:servers": "yarn client copy:servers",
     "start": "yarn client start",
-    "start:debug": "yarn client start:debug"
+    "start:debug": "yarn client start:debug",
+    "docker:run": "docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest"
   }
 }

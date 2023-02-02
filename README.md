@@ -24,6 +24,10 @@ Now you can start the Theia Demo app using the following command (or change the 
 
     docker run -it -p 0.0.0.0:3000:3000 coffee-editor:latest
 
+or use the provided yarn script:
+
+    yarn docker:run
+
 Next, open a browser pointing to <http://localhost:3000/#/coffee-editor/client/workspace/SuperBrewer3000> in your host.
 You should see a Theia application with an example project being loaded.
 Refer to the `Getting Started` widget in the right area of the application for more details on how to use the example project.
@@ -66,11 +70,11 @@ This project should not contain much code and should mostly consist of 'glue' co
 
 The following libraries/frameworks need to be installed on your system:
 
-|                                                              |             |
-| ------------------------------------------------------------ | ----------- |
-| [Java](https://jdk.java.net/archive/)                        | `17`        |
-| [Maven](https://maven.apache.org/)                           | `>=3.8.6`   |
-| [Node](https://nodejs.org/en/)                               | `>=14.18.0` |
+|                                       |             |
+| ------------------------------------- | ----------- |
+| [Java](https://jdk.java.net/archive/) | `17`        |
+| [Maven](https://maven.apache.org/)    | `>=3.8.6`   |
+| [Node](https://nodejs.org/en/)        | `>=14.18.0` |
 
 ### Java
 
