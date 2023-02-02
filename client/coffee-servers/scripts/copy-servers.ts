@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) 2022-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,14 +13,18 @@ import { copyBackendDirectory, copyBackendFile, getOSProductPath, log } from './
 
 const start = new Date(Date.now());
 
+const BACKEND_VERSION = '0.8.0-SNAPSHOT';
+
 // Model Server
 const modelServerPath = join(__dirname, '..', '..', '..', 'backend', 'plugins', 'org.eclipse.emfcloud.coffee.modelserver');
 const modelServerLogConfigPath = join(modelServerPath, 'log4j2-embedded.xml');
-const modelServerJarPath = join(modelServerPath, 'target', 'org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar');
+const modelServerExecutable = `org.eclipse.emfcloud.coffee.modelserver-${BACKEND_VERSION}-standalone.jar`;
+const modelServerJarPath = join(modelServerPath, 'target', modelServerExecutable);
 
 // GLSP Server
 const glspServerPath = join(__dirname, '..', '..', '..', 'backend', 'plugins', 'org.eclipse.emfcloud.coffee.workflow.glsp.server');
-const glspServerJarPath = join(glspServerPath, 'target', 'org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar');
+const glspServerExecutable = `org.eclipse.emfcloud.coffee.workflow.glsp.server-${BACKEND_VERSION}-glsp.jar`;
+const glspServerJarPath = join(glspServerPath, 'target', glspServerExecutable);
 
 // Coffee products (Equinox servers)
 const coffeeProductsPath = join(
@@ -43,13 +47,13 @@ const cppCodeGenServerPath = join(coffeeProductsPath, 'org.eclipse.emfcloud.coff
 const targetDir = join(__dirname, '..', 'servers');
 
 log('Start copying Model Server JAR..');
-copyBackendFile(modelServerJarPath, targetDir, 'org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar');
+copyBackendFile(modelServerJarPath, targetDir, modelServerExecutable);
 
 log('Start copying Model Server log4j2 config..');
 copyBackendFile(modelServerLogConfigPath, targetDir, 'model-server-log4j2-embedded.xml');
 
 log('Start copying GLSP Server JAR..');
-copyBackendFile(glspServerJarPath, targetDir, 'org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar');
+copyBackendFile(glspServerJarPath, targetDir, glspServerExecutable);
 
 log('Start copying Workflow DSL LSP backend product...');
 copyBackendDirectory(workflowDSLServerPath, join(targetDir, 'wf-lsp'));
