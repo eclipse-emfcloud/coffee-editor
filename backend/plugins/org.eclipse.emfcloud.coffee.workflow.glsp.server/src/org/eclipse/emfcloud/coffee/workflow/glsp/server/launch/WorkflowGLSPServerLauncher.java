@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021-2022 EclipseSource and others.
+ * Copyright (c) 2021-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,7 +10,6 @@
  ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.launch;
 
-import java.io.IOException;
 import java.util.function.Predicate;
 
 import org.apache.commons.cli.ParseException;
@@ -46,7 +45,7 @@ public final class WorkflowGLSPServerLauncher {
 
          GLSPServerLauncher launcher = new SocketGLSPServerLauncher(coffeeServerModule);
          launcher.start("localhost", serverPort);
-      } catch (ParseException | IOException ex) {
+      } catch (ParseException ex) {
          ex.printStackTrace();
          LaunchUtil.printHelp(processName, DefaultCLIParser.getDefaultOptions());
       }

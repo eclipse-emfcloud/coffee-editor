@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2022 EclipseSource and others.
+ * Copyright (c) 2019-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,14 +16,14 @@ import java.util.function.Function;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.modelserver.client.Response;
-import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.AbstractEMSCreateNodeOperationHandler;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSCreateOperationHandler;
 import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 import com.google.inject.Inject;
 
-public abstract class AbstractCreateNodeHandler extends AbstractEMSCreateNodeOperationHandler {
+public abstract class AbstractCreateNodeHandler extends EMSCreateOperationHandler<CreateNodeOperation> {
 
    @Inject
    protected WorkflowModelServerAccess modelAccess;
