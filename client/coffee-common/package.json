@@ -23,7 +23,7 @@
     "lib",
     "src"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "@theia/core": "^1.0.0"
   },
   "devDependencies": {

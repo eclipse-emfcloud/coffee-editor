@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019-2023 EclipseSource, Christian W. Damus, and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -16,7 +16,7 @@ import {
     configureDefaultModelElements,
     configureModelElement,
     ConsoleLogger,
-    createClientContainer,
+    createDiagramContainer,
     DeleteElementContextMenuItemProvider,
     DiamondNodeView,
     editLabelFeature,
@@ -69,7 +69,7 @@ const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind
 });
 
 export default function createContainer(widgetId: string): Container {
-    const container = createClientContainer(workflowDiagramModule, directTaskEditor);
+    const container = createDiagramContainer(workflowDiagramModule, directTaskEditor);
     overrideViewerOptions(container, {
         baseDiv: widgetId,
         hiddenDiv: widgetId + '_hidden'

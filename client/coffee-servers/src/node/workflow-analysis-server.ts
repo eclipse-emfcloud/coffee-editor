@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2020 EclipseSource and others.
+ * Copyright (c) 2019-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -15,8 +15,8 @@ import { Application } from 'express';
 import * as fs from 'fs-extra';
 import { injectable } from 'inversify';
 import * as net from 'net';
-import * as rpc from 'vscode-jsonrpc';
-import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server';
+import { createMessageConnection, MessageConnection, RequestType2 } from 'vscode-jsonrpc';
+import { StreamMessageReader, StreamMessageWriter } from 'vscode-jsonrpc/node';
 
 import { WorkflowAnalysisClient, WorkflowAnalyzer } from 'coffee-workflow-analyzer/lib/common/workflow-analyze-protocol';
 import { EquinoxServer } from './equinox-server';
@@ -43,7 +43,7 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
      */
     private static HANDLE_PATH = '/mini-browser/';
 
-    private connection?: rpc.MessageConnection;
+    private connection?: MessageConnection;
     private client?: WorkflowAnalysisClient;
 
     protected serverName = 'WorkflowAnalysisServer';
@@ -58,7 +58,10 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
             const jarPath = this.getEquinoxJarPath('wf-analyzer');
             const args: string[] = ['-jar', jarPath];
             this.spawnProcessAsync(command, args, undefined, false).then(process => {
-                this.connection = rpc.createMessageConnection(process.outputStream, process.inputStream);
+                this.connection = createMessageConnection(
+                    new StreamMessageReader(process.outputStream),
+                    new StreamMessageWriter(process.inputStream)
+                );
                 this.connection.listen();
             });
         }
@@ -101,12 +104,14 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
 
     private async connect(port: number): Promise<void> {
         const socket = new net.Socket();
+        // eslint-disable-next-line import/no-unresolved
+        const { createSocketConnection } = await import('vscode-ws-jsonrpc/server');
         const connection = createSocketConnection(socket, socket, () => {
             this.logInfo('Socket connection disposed');
             socket.destroy();
         });
         socket.connect(port!);
-        this.connection = rpc.createMessageConnection(connection.reader, connection.writer);
+        this.connection = createMessageConnection(connection.reader, connection.writer);
         this.connection.listen();
     }
 
@@ -139,7 +144,7 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
     async analyze(wfUri: string, wfConfigUri: string): Promise<string> {
         return new Promise((resolve, reject) => {
             if (this.connection) {
-                this.connection.sendRequest(this.createRunAnalysisRequest(), wfUri, wfConfigUri).then(
+                this.connection.sendRequest(new RequestType2<string, string, string, void>('runAnalysis'), wfUri, wfConfigUri).then(
                     r => resolve(r),
                     e => reject(e)
                 );
@@ -149,7 +154,7 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
         });
     }
 
-    public createRunAnalysisRequest(): rpc.RequestType2<string, string, string, void, void> {
-        return new rpc.RequestType2<string, string, string, void, void>('runAnalysis');
+    public createRunAnalysisRequest(): RequestType2<string, string, string, void> {
+        return new RequestType2<string, string, string, void>('runAnalysis');
     }
 }
