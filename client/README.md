@@ -31,8 +31,10 @@ This part contains the frontend of the coffee editor IDE shown in the browser.
 
 ## Update client versions
 
-To update the versions of all client, run the following script. Lerna lets you interactively choose or enter the desired version. This script only updates the versions locally and creates a git tag.
+To update the versions of all client packages, run the following script:
 
     yarn publish:prepare
+
+Lerna lets you interactively choose or enter the desired version. This script only updates the versions locally and creates a git tag.
 
 **NOTE**: Please update the version of `coffee-workflow-analyzer-editor` manually, as it is not included in the general client workspace build but triggered separately.

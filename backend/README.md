@@ -16,12 +16,12 @@ There are two ways to build the backend.
         mvn clean verify
 
 **Note:** To use the newly built backend in the coffee-editor IDE you also need to copy it to the frontend after building it.
-This can be done with running the command `yarn copy:servers` in the root folder.
+This can be done by running the command `yarn copy:servers` in the root folder.
 If you run `yarn build` in the root folder, all necessary build steps are executed automatically (backend and client are built and the backend artifacts are copied to the client).
 
 ## Update backend versions
 
-To update the versions of all backend modules, run the following command, using the specific version, e.g. `-DnewVersion=0.8.0-SNAPSHOT`.
+To update the versions of all backend modules, run the following command, using the specific version, e.g. `0.8.0-SNAPSHOT`.
 
     cd releng/org.eclipse.emfcloud.coffee.parent
     mvn tycho-versions:set-version -DnewVersion=<VERSION>
