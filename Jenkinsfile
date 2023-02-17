@@ -75,8 +75,8 @@ pipeline {
             steps {
                 container('ci') {
                     archiveArtifacts artifacts: 'backend/releng/org.eclipse.emfcloud.coffee.product/target/products/*.zip' , fingerprint: true
-                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar' , fingerprint: true
-                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar' , fingerprint: true
+                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.workflow.glsp.server/target/org.eclipse.emfcloud.coffee.workflow.glsp.server-0.8.0-SNAPSHOT-glsp.jar' , fingerprint: true
+                    archiveArtifacts artifacts: 'backend/plugins/org.eclipse.emfcloud.coffee.modelserver/target/org.eclipse.emfcloud.coffee.modelserver-0.8.0-SNAPSHOT-standalone.jar' , fingerprint: true
                     archiveArtifacts artifacts: 'client/browser-app/**', fingerprint: true
                 }
             }
