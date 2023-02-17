@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Coffee Editor Common Utilities
 Bundle-SymbolicName: org.eclipse.emfcloud.coffee.common
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: EclipseSource
 Automatic-Module-Name: org.eclipse.emfcloud.coffee.common
 Bundle-RequiredExecutionEnvironment: JavaSE-11

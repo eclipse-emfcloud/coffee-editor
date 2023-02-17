@@ -83,8 +83,8 @@ WORKDIR /coffee-editor
 COPY --chown=theia:theia --from=frontend /coffee-editor/client ./client
 
 # Copy model to production stage (for model comparison)
-COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar \
-    /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar
+COPY --from=backend /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.8.0-SNAPSHOT.jar \
+    /coffee-editor/backend/plugins/org.eclipse.emfcloud.coffee.model/target/org.eclipse.emfcloud.coffee.model-0.8.0-SNAPSHOT.jar
 
 # Copy favicon
 RUN cp ./client/favicon.ico ./client/browser-app/lib
@@ -94,11 +94,11 @@ USER theia
 
 # Set up git repo in workspace for comparison
 WORKDIR /coffee-editor/client/workspace/SuperBrewer3000
-RUN git config --global user.name "Test User"
-RUN git config --global user.email "test@example.com"
-RUN git init
-RUN git add .
-RUN git commit -m "init"
+RUN git config --global user.name "Test User" && \
+    git config --global user.email "test@example.com" && \
+    git init && \
+    git add . && \
+    git commit -m "init"
 
 WORKDIR /coffee-editor/client/browser-app/
 EXPOSE 3000

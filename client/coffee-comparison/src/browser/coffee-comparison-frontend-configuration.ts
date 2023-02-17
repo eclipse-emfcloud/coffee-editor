@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) 2022-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -12,6 +12,8 @@ import { ComparisonExtensionConfiguration } from '@eclipsesource/comparison-exte
 import { codicon } from '@theia/core/lib/browser';
 import { injectable } from 'inversify';
 import * as path from 'path';
+
+const BACKEND_VERSION = '0.8.0-SNAPSHOT';
 
 @injectable()
 export class CoffeeComparisonFrontendConfiguration extends ComparisonExtensionConfiguration {
@@ -36,7 +38,7 @@ export class CoffeeComparisonFrontendConfiguration extends ComparisonExtensionCo
             'plugins',
             'org.eclipse.emfcloud.coffee.model',
             'target',
-            'org.eclipse.emfcloud.coffee.model-0.1.0-SNAPSHOT.jar'
+            `org.eclipse.emfcloud.coffee.model-${BACKEND_VERSION}.jar`
         );
     }
 

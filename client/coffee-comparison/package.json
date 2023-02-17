@@ -4,7 +4,7 @@
     "theia-extension"
   ],
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -24,10 +24,10 @@
   ],
   "dependencies": {
     "@eclipsesource/comparison-extension": "0.0.1-next.20230109-144401",
-    "coffee-workflow-glsp-theia": "0.1.0",
     "@theia/core": "^1.0.0",
+    "@theia/filesystem": "^1.0.0",
     "@theia/git": "^1.0.0",
-    "@theia/filesystem": "^1.0.0"
+    "coffee-workflow-glsp-theia": "^0.8.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2022 EclipseSource and others.
+ * Copyright (c) 2020-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -17,8 +17,9 @@ export const GLSP_PORT = 5008;
 export const PORT_ARG_KEY = 'WF_GLSP';
 export const LOG_DIR = join(__dirname, '..', '..', 'logs');
 
+const BACKEND_VERSION = '0.8.0-SNAPSHOT';
 const SERVER_DIR_PATH = join(__dirname, '..', '..', 'servers');
-const JAR_FILE = resolve(join(SERVER_DIR_PATH, 'org.eclipse.emfcloud.coffee.workflow.glsp.server-0.1.0-SNAPSHOT-glsp.jar'));
+const JAR_FILE = resolve(join(SERVER_DIR_PATH, `org.eclipse.emfcloud.coffee.workflow.glsp.server-${BACKEND_VERSION}-glsp.jar`));
 
 @injectable()
 export class WorkflowGLSPServerContribution extends GLSPSocketServerContribution {

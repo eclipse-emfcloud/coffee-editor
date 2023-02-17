@@ -2,7 +2,7 @@
   "private": true,
   "name": "browser-app",
   "license": "(EPL-2.0 OR MIT)",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "contributors": [
     {
       "name": "Eclipse EMF.cloud Project",
@@ -48,15 +48,15 @@
     "@theia/variable-resolver": "1.29.2",
     "@theia/vsx-registry": "1.29.2",
     "@theia/workspace": "1.29.2",
-    "coffee-cpp-extension": "0.1.0",
-    "coffee-common": "0.1.0",
-    "coffee-comparison": "0.1.0",
-    "coffee-editor-extension": "0.1.0",
-    "coffee-java-extension": "0.1.0",
-    "coffee-servers": "0.1.0",
-    "coffee-welcome-page": "0.1.0",
-    "coffee-workflow-glsp-theia": "0.1.0",
-    "coffee-workflow-analyzer": "0.1.0"
+    "coffee-common": "^0.8.0",
+    "coffee-comparison": "^0.8.0",
+    "coffee-cpp-extension": "^0.8.0",
+    "coffee-editor-extension": "^0.8.0",
+    "coffee-java-extension": "^0.8.0",
+    "coffee-servers": "^0.8.0",
+    "coffee-welcome-page": "^0.8.0",
+    "coffee-workflow-analyzer": "^0.8.0",
+    "coffee-workflow-glsp-theia": "^0.8.0"
   },
   "devDependencies": {
     "@theia/cli": "1.29.2"

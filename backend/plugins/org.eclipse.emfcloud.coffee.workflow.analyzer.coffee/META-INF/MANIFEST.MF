@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Workflow Analyzer Coffee Support
 Bundle-SymbolicName: org.eclipse.emfcloud.coffee.workflow.analyzer.coffee
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: EclipseSource
 Automatic-Module-Name: org.eclipse.emfcloud.coffee.workflow.analyzer.json
 Bundle-RequiredExecutionEnvironment: JavaSE-11
@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.emfcloud.coffee.workflow.dsl,
  org.eclipse.xtext;bundle-version="[2.23.0,3.0.0)",
  org.hamcrest.core,
  org.opentest4j,
- org.eclipse.emfcloud.coffee.model;bundle-version="0.1.0",
+ org.eclipse.emfcloud.coffee.model;bundle-version="0.8.0",
  junit-jupiter-api;bundle-version="5.9.0"

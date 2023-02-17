@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) 2022-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -14,7 +14,8 @@ import { join, resolve } from 'path';
 
 const SERVER_DIR_PATH = join(__dirname, '..', '..', 'servers');
 
-const JAR_FILE_PATH = resolve(join(SERVER_DIR_PATH, 'org.eclipse.emfcloud.coffee.modelserver-0.1.0-SNAPSHOT-standalone.jar'));
+const BACKEND_VERSION = '0.8.0-SNAPSHOT';
+const JAR_FILE_PATH = resolve(join(SERVER_DIR_PATH, `org.eclipse.emfcloud.coffee.modelserver-${BACKEND_VERSION}-standalone.jar`));
 const LOG_FILE_PATH = resolve(join(SERVER_DIR_PATH, 'model-server-log4j2-embedded.xml'));
 
 /** Options for the `ModelServerLauncher` to use to start the Model Server */
