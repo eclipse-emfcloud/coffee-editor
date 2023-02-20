@@ -57,8 +57,5 @@
       "coffee-workflow-glsp",
       "coffee-workflow-glsp-theia"
     ]
-  },
-  "resolutions": {
-    "**/vscode-jsonrpc": "^8.1.0"
   }
 }
