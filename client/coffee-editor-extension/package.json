@@ -23,16 +23,18 @@
     "src"
   ],
   "dependencies": {
-    "@eclipse-emfcloud/modelserver-client": "0.8.0-next",
-    "@eclipse-emfcloud/modelserver-theia": "0.8.0-next",
-    "@eclipse-emfcloud/theia-tree-editor": "0.7.0-next",
-    "@theia/core": "^1.0.0",
-    "@theia/filesystem": "^1.0.0",
-    "@theia/workspace": "^1.0.0"
+    "@eclipse-emfcloud/modelserver-client": "0.8.0-theia-cr02",
+    "@eclipse-emfcloud/modelserver-theia": "0.8.0-theia-cr02",
+    "@eclipse-emfcloud/theia-tree-editor": "0.7.0-next.720ee4f"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
     "typescript": "~4.5.5"
+  },
+  "peerDependencies": {
+    "@theia/core": "^1.0.0",
+    "@theia/filesystem": "^1.0.0",
+    "@theia/workspace": "^1.0.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build && yarn lint",

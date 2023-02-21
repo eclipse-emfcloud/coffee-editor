@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 EclipseSource and others.
+ * Copyright (c) 2019-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -11,12 +11,8 @@
 import 'sprotty-theia/css/theia-sprotty.css';
 
 import { labelEditModule } from '@eclipse-glsp/client/lib';
-import {
-    configureDiagramServer,
-    GLSPDiagramConfiguration,
-    GLSPTheiaDiagramServer,
-    TheiaDiagramServer
-} from '@eclipse-glsp/theia-integration';
+import { configureDiagramServer, GLSPDiagramConfiguration, GLSPTheiaDiagramServer } from '@eclipse-glsp/theia-integration/lib/browser';
+
 import { connectTheiaMarkerManager } from '@eclipse-glsp/theia-integration/lib/browser/diagram/theia-marker-manager';
 import { createWorkflowDiagramContainer } from 'coffee-workflow-glsp';
 import { Container, injectable } from 'inversify';
@@ -32,7 +28,6 @@ export class WorkflowDiagramConfiguration extends GLSPDiagramConfiguration {
         container.load(labelEditModule);
         configureDiagramServer(container, GLSPTheiaDiagramServer);
         connectTheiaMarkerManager(container, this.theiaMarkerManager, this.diagramType);
-        container.bind(TheiaDiagramServer).toService(GLSPTheiaDiagramServer);
         return container;
     }
 }

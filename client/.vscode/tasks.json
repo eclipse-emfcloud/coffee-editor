@@ -10,7 +10,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "command": "yarn",
+      "command": "yarn && yarn development",
       "presentation": {
         "reveal": "always",
         "panel": "new"

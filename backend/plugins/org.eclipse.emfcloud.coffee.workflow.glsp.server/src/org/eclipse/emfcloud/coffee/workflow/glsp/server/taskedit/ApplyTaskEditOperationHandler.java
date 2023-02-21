@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) 2022-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,13 +10,13 @@
  ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit;
 
-import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.AbstractEMSOperationHandler;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSOperationHandler;
 import org.eclipse.glsp.server.actions.ActionDispatcher;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 import com.google.inject.Inject;
 
-public class ApplyTaskEditOperationHandler extends AbstractEMSOperationHandler<ApplyTaskEditOperation> {
+public class ApplyTaskEditOperationHandler extends EMSOperationHandler<ApplyTaskEditOperation> {
 
    @Inject
    protected ActionDispatcher actionDispatcher;

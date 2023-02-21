@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2022 EclipseSource and others.
+ * Copyright (c) 2022-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -14,12 +14,12 @@ import static org.eclipse.glsp.server.types.GLSPServerException.getOrThrow;
 
 import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
-import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.AbstractEMSOperationHandler;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSOperationHandler;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 import com.google.inject.Inject;
 
-public class EditTaskOperationHandler extends AbstractEMSOperationHandler<EditTaskOperation> {
+public class EditTaskOperationHandler extends EMSOperationHandler<EditTaskOperation> {
 
    @Inject
    protected WorkflowModelServerAccess modelServerAccess;

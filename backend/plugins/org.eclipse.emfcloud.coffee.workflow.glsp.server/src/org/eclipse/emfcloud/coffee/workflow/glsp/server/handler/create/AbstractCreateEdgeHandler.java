@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019-2022 EclipseSource and others.
+ * Copyright (c) 2019-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -14,13 +14,13 @@ import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.modelserver.client.Response;
-import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.AbstractEMSCreateEdgeOperationHandler;
+import org.eclipse.emfcloud.modelserver.glsp.operations.handlers.EMSCreateOperationHandler;
 import org.eclipse.glsp.server.operations.CreateEdgeOperation;
 import org.eclipse.glsp.server.types.GLSPServerException;
 
 import com.google.inject.Inject;
 
-public abstract class AbstractCreateEdgeHandler extends AbstractEMSCreateEdgeOperationHandler {
+public abstract class AbstractCreateEdgeHandler extends EMSCreateOperationHandler<CreateEdgeOperation> {
 
    @Inject
    protected WorkflowModelServerAccess modelAccess;

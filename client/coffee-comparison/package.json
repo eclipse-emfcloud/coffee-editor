@@ -23,15 +23,18 @@
     "src"
   ],
   "dependencies": {
-    "@eclipsesource/comparison-extension": "0.0.1-next.20230109-144401",
-    "@theia/core": "^1.0.0",
-    "@theia/filesystem": "^1.0.0",
-    "@theia/git": "^1.0.0",
-    "coffee-workflow-glsp-theia": "^0.8.0"
+    "@eclipsesource/comparison-extension": "0.0.1-next.20230217-083829",
+    "coffee-workflow-glsp-theia": "^0.8.0",
+    "sprotty-theia": "0.13.0-next.9cbedec"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
     "typescript": "~4.5.5"
+  },
+  "peerDependencies": {
+    "@theia/core": "^1.0.0",
+    "@theia/git": "^1.0.0",
+    "@theia/filesystem": "^1.0.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build && yarn lint",
