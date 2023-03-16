@@ -24,7 +24,7 @@
     "src"
   ],
   "dependencies": {
-    "@eclipse-emfcloud/modelserver-theia": "0.8.0-theia-cr02",
+    "@eclipse-emfcloud/modelserver-theia": "0.8.0-next.46ba3ca.93",
     "@eclipse-glsp/theia-integration": "1.1.0-RC05",
     "balloon-css": "^0.5.0",
     "coffee-workflow-glsp": "^0.8.0",
