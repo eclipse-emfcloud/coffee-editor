@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee Editor Targetplatform" sequenceNumber="1676637093">
+<target name="Coffee Editor Targetplatform" sequenceNumber="1681375463">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="ch.qos.logback.slf4j" version="1.2.3.v20221112-0806"/>
@@ -54,11 +54,11 @@
       <repository location="https://download.eclipse.org/emfcloud/emfjson-jackson/p2/releases/2.0.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.glsp.graph" version="1.1.0.202302071309"/>
-      <unit id="org.eclipse.glsp.layout" version="1.1.0.202302071309"/>
-      <unit id="org.eclipse.glsp.server" version="1.1.0.202302071309"/>
-      <unit id="org.eclipse.glsp.server.emf" version="1.1.0.202302071309"/>
-      <repository location="https://download.eclipse.org/glsp/server/p2/nightly/1.1/1.1.0.202302071309"/>
+      <unit id="org.eclipse.glsp.graph" version="1.1.0.202303241144"/>
+      <unit id="org.eclipse.glsp.layout" version="1.1.0.202303241144"/>
+      <unit id="org.eclipse.glsp.server" version="1.1.0.202303241144"/>
+      <unit id="org.eclipse.glsp.server.emf" version="1.1.0.202303241144"/>
+      <repository location="https://download.eclipse.org/glsp/server/p2/nightly/1.1/1.1.0.202303241144/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.elk.alg.layered" version="0.8.1"/>
@@ -77,9 +77,9 @@
       <repository location="https://download.eclipse.org/emfcloud/model-validation/p2/nightly/0.2/0.2.0.202203171240/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emfcloud.modelserver.glsp.integration" version="0.8.0.I20230217"/>
-      <unit id="org.eclipse.emfcloud.modelserver.glsp.notation.commands" version="0.8.0.I20230217"/>
-      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/integration/0.8.0.I20230217/"/>
+      <unit id="org.eclipse.emfcloud.modelserver.glsp.integration" version="0.7.0.202304120811"/>
+      <unit id="org.eclipse.emfcloud.modelserver.glsp.notation.commands" version="0.7.0.202304120811"/>
+      <repository location="https://download.eclipse.org/emfcloud/modelserver-glsp-integration/p2/nightly/0.7/0.7.0.202304120811/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="2.14.0.v20221117-1134"/>
