@@ -80,7 +80,8 @@
         "preferences": {
           "security.workspace.trust.startupPrompt": "never",
           "security.workspace.trust.enabled": false,
-          "files.autoSave": "off"
+          "files.autoSave": "off",
+          "workbench.colorTheme": "dark"
         }
       }
     }
