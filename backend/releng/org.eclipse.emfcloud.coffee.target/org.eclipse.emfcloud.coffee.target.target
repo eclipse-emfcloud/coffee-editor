@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Coffee Editor Targetplatform" sequenceNumber="1681375463">
+<target name="Coffee Editor Targetplatform" sequenceNumber="1686579710">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="ch.qos.logback.slf4j" version="1.2.3.v20221112-0806"/>
@@ -19,6 +19,7 @@
       <unit id="com.fasterxml.jackson.core.jackson-databind" version="2.13.2.v20220426-1653"/>
       <unit id="org.junit.jupiter.api" version="5.9.1.v20221103-2317"/>
       <unit id="org.junit.jupiter.engine" version="5.9.1.v20221103-2317"/>
+      <unit id="org.junit.platform.commons" version="1.9.1.v20221103-2317"/>
       <unit id="org.hamcrest" version="2.2.0.v20210711-0821"/>
       <unit id="jakarta.servlet" version="5.0.0.v20221112-0806"/>
       <repository id="orbit-release" location="https://download.eclipse.org/tools/orbit/downloads/drops/R20221123021534/repository/"/>

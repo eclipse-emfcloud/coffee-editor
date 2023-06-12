@@ -924,10 +924,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@eclipse-emfcloud/modelserver-client@0.8.0-theia-cr02", "@eclipse-emfcloud/modelserver-client@^0.8.0-theia-cr02":
-  version "0.8.0-theia-cr02"
-  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-client/-/modelserver-client-0.8.0-theia-cr02.tgz#cb68ad0c3567f9daef535736e9eb8c1d051d4d60"
-  integrity sha512-qIAxUVDoN71Km0217ZooGQM9M0a7NZSmcGU1vc7sEhkpP/epgZ0/k1Y3HrlndtXqJffHBfXh5JomkEAHNsezyg==
+"@eclipse-emfcloud/modelserver-client@0.8.0-theia-cr03", "@eclipse-emfcloud/modelserver-client@^0.8.0-theia-cr03":
+  version "0.8.0-theia-cr03"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-client/-/modelserver-client-0.8.0-theia-cr03.tgz#879b856419ea784000e74692e7a1dbd5d90cdcec"
+  integrity sha512-LQLYNlhLe21yNAhuQnbNcABnbhqt+5BwI9whLwn+nyyMQ3Bc0kz8wBJBYAltjfa3WlN2ruzAeihCtXgsLivNbQ==
   dependencies:
     axios "^0.24.0"
     events "^3.3.0"
@@ -936,12 +936,12 @@
     urijs "^1.19.11"
     ws "^7.1.2"
 
-"@eclipse-emfcloud/modelserver-theia@0.8.0-theia-cr02":
-  version "0.8.0-theia-cr02"
-  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-theia/-/modelserver-theia-0.8.0-theia-cr02.tgz#eb715ffd57f7e72e9fd1376ea285f2ee1cf8a135"
-  integrity sha512-CVtzF6q0V0X/wm27rYN7nRW2uzkCxE6sRGZUzUfKZbO6ZYknUVV3RgHUtb4gmlHzHH3XM0xToHdylLPm6KC71w==
+"@eclipse-emfcloud/modelserver-theia@0.8.0-theia-cr03":
+  version "0.8.0-theia-cr03"
+  resolved "https://registry.yarnpkg.com/@eclipse-emfcloud/modelserver-theia/-/modelserver-theia-0.8.0-theia-cr03.tgz#c6bf74893103bfad578961c11c0106c4bfc967e7"
+  integrity sha512-Q8xWf4Tp5eUVXVR1ze8RpAXjvPOCTFKEMs4MoTTwUll7TYL8heCxusJNtO513ZI+RxYDBBTmjKr/rlGt+Yda/Q==
   dependencies:
-    "@eclipse-emfcloud/modelserver-client" "^0.8.0-theia-cr02"
+    "@eclipse-emfcloud/modelserver-client" "^0.8.0-theia-cr03"
     urijs "^1.19.11"
     ws "^7.1.2"
 
