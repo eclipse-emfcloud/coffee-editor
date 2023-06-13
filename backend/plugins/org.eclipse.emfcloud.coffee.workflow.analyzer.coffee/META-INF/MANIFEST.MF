@@ -17,4 +17,6 @@ Require-Bundle: org.eclipse.emfcloud.coffee.workflow.dsl,
  org.hamcrest.core,
  org.opentest4j,
  org.eclipse.emfcloud.coffee.model;bundle-version="0.8.0",
- junit-jupiter-api;bundle-version="5.9.0"
+ junit-jupiter-api;bundle-version="5.9.1",
+ org.apiguardian.api;bundle-version="1.1.2",
+ org.junit.platform.commons;bundle-version="1.9.1"

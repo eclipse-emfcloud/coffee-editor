@@ -27,6 +27,7 @@ location "https://download.eclipse.org/tools/orbit/downloads/drops/R202211230215
 	com.fasterxml.jackson.core.jackson-databind [2.10.3,3.0.0)
 	org.junit.jupiter.api [5.9.1,6.0.0)
 	org.junit.jupiter.engine [5.9.1,6.0.0)
+	org.junit.platform.commons [1.9.1,2.0.0)
 	org.hamcrest [2.2.0,3.0.0)
 	jakarta.servlet [5.0.0,6.0.0)
 }
