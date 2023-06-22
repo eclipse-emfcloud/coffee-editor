@@ -60,7 +60,7 @@ RUN apt-get update &&\
     apt-get -y install --no-install-recommends \
     software-properties-common \
     libxkbfile-dev \
-    libsecret-1-dev openjdk-17-jdk \
+    libsecret-1-dev ca-certificates-java openjdk-17-jdk \
     build-essential libssl-dev wget gnupg git gdb
 
 # C/C++ dependencies
