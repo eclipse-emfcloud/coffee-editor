@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2022 EclipseSource and others.
+ * Copyright (c) 2020-2023 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -10,7 +10,8 @@
  */
 import { BackendApplicationContribution } from '@theia/core/lib/node';
 import { injectable } from '@theia/core/shared/inversify';
-import * as process from 'process';
+import { platform } from 'os';
+import { on } from 'process';
 
 import { EquinoxServer } from './equinox-server';
 
@@ -22,7 +23,8 @@ export class WorkflowLSPServer extends EquinoxServer implements BackendApplicati
         if (this.inDebugMode()) {
             return;
         }
-        const command = 'java';
+        // ensure jar is run in background
+        const command = platform() === 'win32' ? 'javaw' : 'java';
 
         const jarPath = this.getEquinoxJarPath('wf-lsp');
         if (jarPath.length === 0) {
@@ -36,7 +38,7 @@ export class WorkflowLSPServer extends EquinoxServer implements BackendApplicati
             shell: true,
             stdio: ['inherit', 'pipe']
         });
-        process.on('beforeExit', () => {
+        on('beforeExit', () => {
             spawnedProcess.then(p => p.kill());
         });
     }

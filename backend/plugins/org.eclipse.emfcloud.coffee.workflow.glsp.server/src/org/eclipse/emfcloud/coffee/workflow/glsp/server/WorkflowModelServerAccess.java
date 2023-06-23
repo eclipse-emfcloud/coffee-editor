@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emfcloud.coffee.Flow;
 import org.eclipse.emfcloud.coffee.Node;
@@ -38,6 +39,7 @@ import org.eclipse.emfcloud.coffee.workflow.glsp.server.validation.WorkflowValid
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.command.CCompoundCommand;
+import org.eclipse.emfcloud.modelserver.emf.common.DefaultModelURIConverter;
 import org.eclipse.emfcloud.modelserver.emf.common.EMFFacetConstraints;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelServerAccess;
 import org.eclipse.emfcloud.validation.framework.ValidationFilter;
@@ -46,12 +48,26 @@ import org.eclipse.emfcloud.validation.framework.ValidationResult;
 import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.graph.util.GraphUtil;
 import org.eclipse.glsp.server.actions.ActionDispatcher;
+import org.eclipse.glsp.server.types.GLSPServerException;
+import org.eclipse.glsp.server.utils.ClientOptionsUtil;
 
 public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
 
    private static Logger LOGGER = LogManager.getLogger(WorkflowModelServerAccess.class);
 
    private ValidationFramework validationFramework;
+
+   @Override
+   public void setClientOptions(final Map<String, String> clientOptions) {
+      this.clientOptions = clientOptions;
+      String sourceURI = ClientOptionsUtil.getSourceUri(clientOptions)
+         .orElseThrow(() -> new GLSPServerException("No source URI given to load model!"));
+      // ensure URIs (windows, unix) are parsed correctly
+      URI absoluteFilePath = DefaultModelURIConverter.parseURI(sourceURI);
+      // remove file scheme if any
+      URI uri = URI.createURI(absoluteFilePath.toString().replace("file:/", ""));
+      this.baseSourceUri = uri.trimFileExtension();
+   }
 
    public void createValidationFramework(final String clientId, final ActionDispatcher actionDispatcher) {
       WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(
@@ -62,11 +78,6 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
          LOGGER.error("Creation of ValidationFramework failed!");
          e.printStackTrace();
       }
-   }
-
-   protected String getOwnerRefUri(final EObject element) {
-      return "file:" + baseSourceUri.appendFileExtension(this.semanticFileExtension)
-         .appendFragment(idGenerator.getOrCreateId(element)).toString();
    }
 
    public CompletableFuture<Response<String>> addManualTask(final Optional<GPoint> position) {
@@ -107,6 +118,12 @@ public class WorkflowModelServerAccess extends EMSNotationModelServerAccess {
    public CompletableFuture<Response<String>> removeNode(final Node node) {
       CCompoundCommand command = RemoveNodeCommandContribution.create(idGenerator.getOrCreateId(node));
       return this.edit(command);
+   }
+
+   protected String getOwnerRefUri(final EObject element) {
+      String absoluteFilePath = baseSourceUri.appendFileExtension(this.semanticFileExtension).toString();
+      return DefaultModelURIConverter.parseURI(absoluteFilePath).appendFragment(idGenerator.getOrCreateId(element))
+         .toString();
    }
 
    public CompletableFuture<Response<String>> setTaskName(final Node nodeToRename, final String newName) {

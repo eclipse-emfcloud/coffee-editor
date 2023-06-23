@@ -26,7 +26,8 @@ public final class ModelServerClientUtil {
    public static EObject loadResource(final URI uri) throws Exception {
       @SuppressWarnings("resource")
       ModelServerClient client = new ModelServerClient(MODEL_SERVER_BASE_URL);
-      return client.get(uri.toString(), ModelServerPathParametersV2.FORMAT_XMI).get().body();
+      // FIXME temporary quick fix for OS specific URI issues
+      return client.get("superbrewer3000.coffee", ModelServerPathParametersV2.FORMAT_XMI).get().body();
    }
 
    @SuppressWarnings("IllegalThrows")
