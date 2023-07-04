@@ -11728,7 +11728,7 @@ vscode-windows-ca-certs@^0.3.0:
   dependencies:
     node-addon-api "^3.0.2"
 
-vscode-ws-jsonrpc@^2.0.1, vscode-ws-jsonrpc@^2.0.2:
+vscode-ws-jsonrpc@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-2.0.2.tgz#6bad2ecd654e6789eefaa6ad490d3e20dbdece86"
   integrity sha512-gIOGdaWwKYwwqohgeRC8AtqqHSNghK8wA3oVcBi7UMAdZnRSAf8n4/Svtd+JHqGiIguYdNa/sC0s4IW3ZDF7mA==

@@ -29,8 +29,7 @@
     "coffee-cpp-extension": "^0.8.0",
     "coffee-java-extension": "^0.8.0",
     "coffee-workflow-analyzer": "^0.8.0",
-    "coffee-workflow-glsp-theia": "^0.8.0",
-    "vscode-ws-jsonrpc": "^2.0.2"
+    "coffee-workflow-glsp-theia": "^0.8.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
