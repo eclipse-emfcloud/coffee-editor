@@ -60,14 +60,15 @@
     "coffee-workflow-glsp-theia": "^0.8.0"
   },
   "devDependencies": {
-    "@theia/cli": "^1.34.1"
+    "@theia/cli": "^1.34.1",
+    "cross-env": "^7.0.3"
   },
   "scripts": {
     "prepare": "yarn run download:plugins",
     "development": "theia build --mode development",
     "production": "theia build --mode production",
-    "start": "export WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --root-dir=../workspace/SuperBrewer3000 --plugins=local-dir:./plugins",
-    "start:debug": "export WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --WF_ANALYZER=5083 --root-dir=../workspace/SuperBrewer3000 --plugins=local-dir:./plugins  --loglevel=debug --debug",
+    "start": "cross-env WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --root-dir=../workspace/SuperBrewer3000 --plugins=local-dir:./plugins",
+    "start:debug": "cross-env WF_CONFIG_LSP=localhost:5017 && theia start --port=3000 --WF_ANALYZER=5083 --root-dir=../workspace/SuperBrewer3000 --plugins=local-dir:./plugins  --loglevel=debug --debug",
     "watch": "theia build --watch --mode development",
     "download:plugins": "theia download:plugins"
   },

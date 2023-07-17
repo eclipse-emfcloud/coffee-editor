@@ -15,8 +15,8 @@ import { Application } from 'express';
 import * as fs from 'fs-extra';
 import { injectable } from 'inversify';
 import * as net from 'net';
-import { createMessageConnection, MessageConnection, RequestType2 } from 'vscode-jsonrpc';
-import { StreamMessageReader, StreamMessageWriter } from 'vscode-jsonrpc/node';
+import { MessageConnection, RequestType2, createMessageConnection } from 'vscode-jsonrpc';
+import { SocketMessageReader, SocketMessageWriter, StreamMessageReader, StreamMessageWriter } from 'vscode-jsonrpc/node';
 
 import { WorkflowAnalysisClient, WorkflowAnalyzer } from 'coffee-workflow-analyzer/lib/common/workflow-analyze-protocol';
 import { EquinoxServer } from './equinox-server';
@@ -104,15 +104,17 @@ export class WorkflowAnalysisServer extends EquinoxServer implements WorkflowAna
 
     private async connect(port: number): Promise<void> {
         const socket = new net.Socket();
-        // eslint-disable-next-line import/no-unresolved
-        const { createSocketConnection } = await import('vscode-ws-jsonrpc/server');
-        const connection = createSocketConnection(socket, socket, () => {
+
+        const reader = new SocketMessageReader(socket);
+        const writer = new SocketMessageWriter(socket);
+
+        socket.connect(port!);
+        this.connection = createMessageConnection(reader, writer);
+        this.connection.listen();
+        this.connection.onDispose(() => {
             this.logInfo('Socket connection disposed');
             socket.destroy();
         });
-        socket.connect(port!);
-        this.connection = createMessageConnection(connection.reader, connection.writer);
-        this.connection.listen();
     }
 
     override dispose(): void {
