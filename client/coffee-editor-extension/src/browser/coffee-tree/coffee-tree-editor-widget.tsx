@@ -253,7 +253,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                         )
                     };
                 } else {
-                    const feature = this.getFeature(diffPatch.path, !!diffPatch.path.match(/^\/ram(\/\d+)?/gm));
+                    const feature = this.getFeature(diffPatch.path);
                     return {
                         op: diffPatch.op,
                         path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op), feature),
@@ -262,7 +262,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 }
             }
             case 'add': {
-                const feature = this.getFeature(diffPatch.path, !!diffPatch.path.match(/^\/ram(\/\d+)?/gm));
+                const feature = this.getFeature(diffPatch.path);
                 return {
                     op: diffPatch.op,
                     path: this.getOperationPath(this.getOwnerIdByPath(diffPatch.path, changedObject, oldObject, diffPatch.op), feature),
@@ -283,12 +283,13 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
         }
     }
 
-    protected getFeature(patchPath: string, addFeature = false): string {
-        if (addFeature) {
-            const segments = patchPath.split('/').slice(1);
-            return segments.length > 1 ? segments.slice(0, -1)[0] : segments[0];
+    protected getFeature(patchPath: string): string {
+        let segments = patchPath.split('/');
+        const segmentsLength = segments.length - 1;
+        if (!isNaN(segments[segmentsLength] as any)) {
+            segments = segments.slice(0, segmentsLength);
         }
-        return patchPath.split('/').reverse()[0];
+        return segments[segments.length - 1];
     }
 
     protected getOwnerIdByPath(
